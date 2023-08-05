@@ -1,8 +1,9 @@
 var express = require('express')
 var router = express.Router()
-const { profile } = require('./controller')
-const { isLoginPlayer } = require('../middleware/auth')
+const { profile, getAll } = require('./controller')
+const { isLoginPlayer, isLoginUser } = require('../middleware/auth')
 
 router.get('/profile', isLoginPlayer, profile)
+router.get('/all', isLoginUser, getAll)
 
 module.exports = router

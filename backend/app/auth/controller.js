@@ -1,4 +1,6 @@
 const Player = require('../player/model')
+const User = require('../users/model')
+const Stage = require('../stage/model')
 const config = require('../../config')
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
@@ -7,14 +9,14 @@ module.exports = {
   signup: async (req, res, next) => {
     try {
       const payload = req.body
-      let player = new Player(payload)
-      await player.save()
-      delete player._doc.password
+      let user = new User(payload)
+      await user.save()
+      delete user._doc.password
 
       res.status(201).json({
-        message: 'Successfully create camera',
+        message: 'Successfully create user',
         status: 'success',
-        data: player,
+        data: user,
       })
     } catch (err) {
       return res.status(422).json({
@@ -27,17 +29,17 @@ module.exports = {
 
   signin: (req, res, next) => {
     const { email, password } = req.body
-    Player.findOne({ email: email })
-      .then((player) => {
-        if (player) {
-          const checkPassword = bcrypt.compareSync(password, player.password)
+    User.findOne({ email: email })
+      .then((user) => {
+        if (user) {
+          const checkPassword = bcrypt.compareSync(password, user.password)
           if (checkPassword) {
             const token = jwt.sign(
               {
-                player: {
-                  id: player.id,
-                  username: player.username,
-                  email: player.email,
+                user: {
+                  id: user.id,
+                  username: user.username,
+                  email: user.email,
                 },
               },
               config.jwtKey
@@ -61,8 +63,63 @@ module.exports = {
         res.status(500).json({
           message: err.message || `Internal server error`,
         })
-
-        next()
       })
+  },
+
+  addPlayer: async (req, res, next) => {
+    try {
+      const { username, player_num } = req.body
+      const stage = await Stage.findOne({
+        $or: [{ order_number: 1 }],
+      })
+
+      if (!stage) {
+        return res.status(404).json({
+          error: 1,
+          message: 'Stage not found',
+        })
+      }
+
+      let player = new Player({
+        username: username,
+        player_num: player_num,
+        stage_id: stage._id,
+      })
+      await player.save()
+      res.status(201).json({
+        message: 'Successfully add player',
+        status: 'success',
+        data: player,
+      })
+    } catch (err) {
+      return res.status(422).json({
+        error: 1,
+        message: err.message,
+        fields: err.errors,
+      })
+    }
+  },
+
+  changePlayer: async (req, res, next) => {
+    try {
+      await User.findOneAndUpdate(
+        {
+          _id: req.user._id,
+        },
+        {
+          player_now: req.player_now++,
+        }
+      )
+      res.status(200).json({
+        message: `Successfully change player to ${req.player_now}`,
+        status: 'success',
+      })
+    } catch (err) {
+      return res.status(422).json({
+        error: 1,
+        message: err.message,
+        fields: err.errors,
+      })
+    }
   },
 }

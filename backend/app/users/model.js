@@ -1,4 +1,6 @@
 const mongoose = require('mongoose')
+const bcrypt = require('bcryptjs')
+const HASH_ROUND = 10
 
 let userSchema = mongoose.Schema(
   {
@@ -6,9 +8,9 @@ let userSchema = mongoose.Schema(
       type: String,
       require: [true, 'Email must be filled'],
     },
-    name: {
+    username: {
       type: String,
-      require: [true, 'Name must be filled'],
+      require: [true, 'Username must be filled'],
     },
     password: {
       type: String,
@@ -16,16 +18,43 @@ let userSchema = mongoose.Schema(
     },
     role: {
       type: String,
-      enum: ['admin', 'user'],
-      default: 'admin',
+      enum: ['admin', 'player'],
+      default: 'player',
+      required: [true, 'Role must be filled'],
     },
     status: {
       type: String,
       enum: ['Y', 'N'],
       default: 'Y',
     },
+    players: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Players',
+      },
+    ],
+    player_now: {
+      type: String,
+    },
   },
   { timestamps: true }
 )
+
+userSchema.path('email').validate(
+  async function (value) {
+    try {
+      const count = await this.model('User').countDocuments({ email: value })
+      return !count
+    } catch (err) {
+      throw err
+    }
+  },
+  (attr) => `${attr.value} already registered`
+)
+
+userSchema.pre('save', function (next) {
+  this.password = bcrypt.hashSync(this.password, HASH_ROUND)
+  next()
+})
 
 module.exports = mongoose.model('User', userSchema)

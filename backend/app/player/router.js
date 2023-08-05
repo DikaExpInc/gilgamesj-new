@@ -1,16 +1,8 @@
-var express = require("express");
-var router = express.Router();
-const { editProfile, profile } = require("./controller");
-const { isLoginPlayer } = require("../middleware/auth");
-const multer = require("multer");
-const os = require("os");
+var express = require('express')
+var router = express.Router()
+const { profile } = require('./controller')
+const { isLoginPlayer } = require('../middleware/auth')
 
-router.get("/profile", isLoginPlayer, profile);
-router.put(
-  "/profile",
-  isLoginPlayer,
-  multer({ dest: os.tmpdir() }).single("image"),
-  editProfile
-);
+router.get('/profile', isLoginPlayer, profile)
 
-module.exports = router;
+module.exports = router

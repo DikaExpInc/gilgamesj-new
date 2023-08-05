@@ -1,0 +1,5 @@
+export const CREATE_SETTING = "CREATE_SETTING";
+export const GET_SETTING = "GET_SETTING";
+export const UPDATE_SETTING = "UPDATE_SETTING";
+export const DELETE_SETTING = "DELETE_SETTING";
+export const GET_ALL_SETTING = "GET_ALL_SETTING";

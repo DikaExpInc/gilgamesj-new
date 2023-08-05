@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "506839849202",
+    "project_id": "koning-gilgamesj",
+    "storage_bucket": "koning-gilgamesj.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:506839849202:android:23e81bd920d88f73e0986b",
+        "android_client_info": {
+          "package_name": "com.expinc.gilgamesj"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "506839849202-d2vq5261bvtavkm5qlli9iqnmj6oqmji.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCcR-D0mwbJYSCeuN6IbgGLhUD_smVmyJ4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "506839849202-d2vq5261bvtavkm5qlli9iqnmj6oqmji.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "506839849202-0mv1e9f22dvi57q4cksn7kfhplv35jfp.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.expinc.gilgamesj"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

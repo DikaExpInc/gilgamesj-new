@@ -4,37 +4,36 @@ import {
   GET_ALL_MAPS,
   GET_MAPS,
   UPDATE_MAPS,
-} from "../constants/Maps";
+} from '../constants/Maps'
 
-const initialState = { data: [] };
+const initialState = { data: [] }
 
 function maps(maps = initialState, action) {
-  const { type, payload } = action;
+  const { type, payload } = action
   switch (type) {
     case CREATE_MAPS:
-      return [maps, payload];
+      return { ...maps, data: [...maps.data, payload] }
     case GET_ALL_MAPS:
-      return payload;
+      return { data: payload }
     case GET_MAPS:
-      return payload;
+      return payload
     case UPDATE_MAPS:
-      const dataa = maps.map((data) => {
+      const updatedData = maps.data.map((data) => {
         if (data.id === payload.id) {
           return {
             ...data,
             attributes: payload.attributes,
-          };
+          }
         } else {
-          return data;
+          return data
         }
-      });
-      return { ...maps, data: dataa };
+      })
+      return { ...maps, data: updatedData }
     case DELETE_MAPS:
-      const data = maps.data.filter((data) => data.id !== payload.id.data.id);
-      return { ...maps, data };
-
+      const filteredData = maps.data.filter((data) => data.id !== payload.id)
+      return { ...maps, data: filteredData }
     default:
-      return maps;
+      return maps
   }
 }
-export default maps;
+export default maps

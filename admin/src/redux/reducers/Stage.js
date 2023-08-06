@@ -4,37 +4,36 @@ import {
   GET_ALL_STAGE,
   GET_STAGE,
   UPDATE_STAGE,
-} from "../constants/Stage";
+} from '../constants/Stage'
 
-const initialState = { data: [] };
+const initialState = { data: [] }
 
 function stage(stage = initialState, action) {
-  const { type, payload } = action;
+  const { type, payload } = action
   switch (type) {
     case CREATE_STAGE:
-      return [stage, payload];
+      return { ...stage, data: [...stage.data, payload] }
     case GET_ALL_STAGE:
-      return payload;
+      return { data: payload }
     case GET_STAGE:
-      return payload;
+      return payload
     case UPDATE_STAGE:
-      const dataa = stage.map((data) => {
+      const updatedData = stage.data.map((data) => {
         if (data.id === payload.id) {
           return {
             ...data,
             attributes: payload.attributes,
-          };
+          }
         } else {
-          return data;
+          return data
         }
-      });
-      return { ...stage, data: dataa };
+      })
+      return { ...stage, data: updatedData }
     case DELETE_STAGE:
-      const data = stage.data.filter((data) => data.id !== payload.id.data.id);
-      return { ...stage, data };
-
+      const filteredData = stage.data.filter((data) => data.id !== payload.id)
+      return { ...stage, data: filteredData }
     default:
-      return stage;
+      return stage
   }
 }
-export default stage;
+export default stage

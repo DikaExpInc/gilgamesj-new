@@ -4,37 +4,37 @@ import {
   GET_ALL_USER,
   GET_USER,
   UPDATE_USER,
-} from "../constants/User";
+} from '../constants/User'
 
-const initialState = { data: [] };
+const initialState = { data: [] }
 
 function user(user = initialState, action) {
-  const { type, payload } = action;
+  const { type, payload } = action
   switch (type) {
     case CREATE_USER:
-      return [user, payload];
+      return { ...user, data: [...user.data, payload] }
     case GET_ALL_USER:
-      return payload;
+      return { data: payload }
     case GET_USER:
-      return payload;
+      return payload
     case UPDATE_USER:
-      const dataa = user.map((data) => {
+      const updatedData = user.data.map((data) => {
         if (data.id === payload.id) {
           return {
             ...data,
             attributes: payload.attributes,
-          };
+          }
         } else {
-          return data;
+          return data
         }
-      });
-      return { ...user, data: dataa };
+      })
+      return { ...user, data: updatedData }
     case DELETE_USER:
-      const data = user.data.filter((data) => data.id !== payload.id.data.id);
-      return { ...user, data };
+      const filteredData = user.data.filter((data) => data.id !== payload.id)
+      return { ...user, data: filteredData }
 
     default:
-      return user;
+      return user
   }
 }
-export default user;
+export default user

@@ -4,39 +4,37 @@ import {
   GET_ALL_CONTACT,
   GET_CONTACT,
   UPDATE_CONTACT,
-} from "../constants/Contact";
+} from '../constants/Contact'
 
-const initialState = { data: [] };
+const initialState = { data: [] }
 
 function contact(contact = initialState, action) {
-  const { type, payload } = action;
+  const { type, payload } = action
   switch (type) {
     case CREATE_CONTACT:
-      return [contact, payload];
+      return { ...contact, data: [...contact.data, payload] }
     case GET_ALL_CONTACT:
-      return payload;
+      return { data: payload }
     case GET_CONTACT:
-      return payload;
+      return payload
     case UPDATE_CONTACT:
-      const dataa = contact.map((data) => {
+      const updatedData = contact.data.map((data) => {
         if (data.id === payload.id) {
           return {
             ...data,
             attributes: payload.attributes,
-          };
+          }
         } else {
-          return data;
+          return data
         }
-      });
-      return { ...contact, data: dataa };
+      })
+      return { ...contact, data: updatedData }
     case DELETE_CONTACT:
-      const data = contact.data.filter(
-        (data) => data.id !== payload.id.data.id
-      );
-      return { ...contact, data };
+      const filteredData = contact.data.filter((data) => data.id !== payload.id)
+      return { ...contact, data: filteredData }
 
     default:
-      return contact;
+      return contact
   }
 }
-export default contact;
+export default contact

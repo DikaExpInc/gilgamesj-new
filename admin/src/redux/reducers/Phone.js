@@ -4,37 +4,36 @@ import {
   GET_ALL_PHONE,
   GET_PHONE,
   UPDATE_PHONE,
-} from "../constants/Phone";
+} from '../constants/Phone'
 
-const initialState = { data: [] };
+const initialState = { data: [] }
 
 function phone(phone = initialState, action) {
-  const { type, payload } = action;
+  const { type, payload } = action
   switch (type) {
     case CREATE_PHONE:
-      return [phone, payload];
+      return { ...phone, data: [...phone.data, payload] }
     case GET_ALL_PHONE:
-      return payload;
+      return { data: payload }
     case GET_PHONE:
-      return payload;
+      return payload
     case UPDATE_PHONE:
-      const dataa = phone.map((data) => {
+      const updatedData = phone.data.map((data) => {
         if (data.id === payload.id) {
           return {
             ...data,
             attributes: payload.attributes,
-          };
+          }
         } else {
-          return data;
+          return data
         }
-      });
-      return { ...phone, data: dataa };
+      })
+      return { ...phone, data: updatedData }
     case DELETE_PHONE:
-      const data = phone.data.filter((data) => data.id !== payload.id.data.id);
-      return { ...phone, data };
-
+      const filteredData = phone.data.filter((data) => data.id !== payload.id)
+      return { ...phone, data: filteredData }
     default:
-      return phone;
+      return phone
   }
 }
-export default phone;
+export default phone

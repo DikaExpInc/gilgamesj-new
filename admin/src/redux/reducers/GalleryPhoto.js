@@ -4,40 +4,38 @@ import {
   GET_ALL_GALLERY_PHOTO,
   GET_GALLERY_PHOTO,
   UPDATE_GALLERY_PHOTO,
-} from "../constants/GalleryPhoto";
+} from '../constants/GalleryPhoto'
 
-const initialState = { data: [] };
+const initialState = { data: [] }
 
 function gallery_photo(gallery_photo = initialState, action) {
-  const { type, payload } = action;
+  const { type, payload } = action
   switch (type) {
     case CREATE_GALLERY_PHOTO:
-      return [gallery_photo, payload];
+      return { ...gallery_photo, data: [...gallery_photo.data, payload] }
     case GET_ALL_GALLERY_PHOTO:
-      return payload;
+      return { data: payload }
     case GET_GALLERY_PHOTO:
-      return payload;
+      return payload
     case UPDATE_GALLERY_PHOTO:
-      console.log(gallery_photo);
-      const dataa = gallery_photo.map((data) => {
+      const updatedData = gallery_photo.data.map((data) => {
         if (data.id === payload.id) {
           return {
             ...data,
             attributes: payload.attributes,
-          };
+          }
         } else {
-          return data;
+          return data
         }
-      });
-      return { ...gallery_photo, data: dataa };
+      })
+      return { ...gallery_photo, data: updatedData }
     case DELETE_GALLERY_PHOTO:
-      const data = gallery_photo.data.filter(
-        (data) => data.id !== payload.id.data.id
-      );
-      return { ...gallery_photo, data };
-
+      const filteredData = gallery_photo.data.filter(
+        (data) => data.id !== payload.id
+      )
+      return { ...gallery_photo, data: filteredData }
     default:
-      return gallery_photo;
+      return gallery_photo
   }
 }
-export default gallery_photo;
+export default gallery_photo

@@ -4,39 +4,38 @@ import {
   GET_ALL_DETAIL_CHAT,
   GET_DETAIL_CHAT,
   UPDATE_DETAIL_CHAT,
-} from "../constants/DetailChat";
+} from '../constants/DetailChat'
 
-const initialState = { data: [] };
+const initialState = { data: [] }
 
 function detailChat(detailChat = initialState, action) {
-  const { type, payload } = action;
+  const { type, payload } = action
   switch (type) {
     case CREATE_DETAIL_CHAT:
-      return [detailChat, payload];
+      return { ...detailChat, data: [...detailChat.data, payload] }
     case GET_ALL_DETAIL_CHAT:
-      return payload;
+      return { data: payload }
     case GET_DETAIL_CHAT:
-      return payload;
+      return payload
     case UPDATE_DETAIL_CHAT:
-      const dataa = detailChat.map((data) => {
+      const updatedData = detailChat.data.map((data) => {
         if (data.id === payload.id) {
           return {
             ...data,
             attributes: payload.attributes,
-          };
+          }
         } else {
-          return data;
+          return data
         }
-      });
-      return { ...detailChat, data: dataa };
+      })
+      return { ...detailChat, data: updatedData }
     case DELETE_DETAIL_CHAT:
-      const data = detailChat.data.filter(
-        (data) => data.id !== payload.id.data.id
-      );
-      return { ...detailChat, data };
-
+      const filteredData = detailChat.data.filter(
+        (data) => data.id !== payload.id
+      )
+      return { ...detailChat, data: filteredData }
     default:
-      return detailChat;
+      return detailChat
   }
 }
-export default detailChat;
+export default detailChat

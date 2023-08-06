@@ -4,37 +4,37 @@ import {
   GET_ALL_TASK,
   GET_TASK,
   UPDATE_TASK,
-} from "../constants/Task";
+} from '../constants/Task'
 
-const initialState = { data: [] };
+const initialState = { data: [] }
 
 function task(task = initialState, action) {
-  const { type, payload } = action;
+  const { type, payload } = action
   switch (type) {
     case CREATE_TASK:
-      return [task, payload];
+      return { ...task, data: [...task.data, payload] }
     case GET_ALL_TASK:
-      return payload;
+      return { data: payload }
     case GET_TASK:
-      return payload;
+      return payload
     case UPDATE_TASK:
-      const dataa = task.map((data) => {
+      const updatedData = task.data.map((data) => {
         if (data.id === payload.id) {
           return {
             ...data,
             attributes: payload.attributes,
-          };
+          }
         } else {
-          return data;
+          return data
         }
-      });
-      return { ...task, data: dataa };
+      })
+      return { ...task, data: updatedData }
     case DELETE_TASK:
-      const data = task.data.filter((data) => data.id !== payload.id.data.id);
-      return { ...task, data };
+      const filteredData = task.data.filter((data) => data.id !== payload.id)
+      return { ...task, data: filteredData }
 
     default:
-      return task;
+      return task
   }
 }
-export default task;
+export default task

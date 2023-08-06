@@ -4,30 +4,36 @@ import {
   GET_ALL_SETTING,
   GET_SETTING,
   UPDATE_SETTING,
-} from "../constants/Setting";
+} from '../constants/Setting'
 
-const initialState = { data: [] };
+const initialState = { data: [] }
 
 function setting(setting = initialState, action) {
-  const { type, payload } = action;
+  const { type, payload } = action
   switch (type) {
     case CREATE_SETTING:
-      return [setting, payload];
+      return { ...setting, data: [...setting.data, payload] }
     case GET_ALL_SETTING:
-      return payload;
+      return { data: payload }
     case GET_SETTING:
-      return {
-        ...setting,
-        attributes: payload.attributes,
-      };
+      return payload
+    case UPDATE_SETTING:
+      const updatedData = setting.data.map((data) => {
+        if (data.id === payload.id) {
+          return {
+            ...data,
+            attributes: payload.attributes,
+          }
+        } else {
+          return data
+        }
+      })
+      return { ...setting, data: updatedData }
     case DELETE_SETTING:
-      const data = setting.data.filter(
-        (data) => data.id !== payload.id.data.id
-      );
-      return { ...setting, data };
-
+      const filteredData = setting.data.filter((data) => data.id !== payload.id)
+      return { ...setting, data: filteredData }
     default:
-      return setting;
+      return setting
   }
 }
-export default setting;
+export default setting

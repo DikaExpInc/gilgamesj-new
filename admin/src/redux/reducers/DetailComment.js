@@ -4,39 +4,39 @@ import {
   GET_ALL_DETAIL_COMMENT,
   GET_DETAIL_COMMENT,
   UPDATE_DETAIL_COMMENT,
-} from "../constants/DetailComment";
+} from '../constants/DetailComment'
 
-const initialState = { data: [] };
+const initialState = { data: [] }
 
 function detail_comments(detail_comments = initialState, action) {
-  const { type, payload } = action;
+  const { type, payload } = action
   switch (type) {
     case CREATE_DETAIL_COMMENT:
-      return [detail_comments, payload];
+      return { ...detail_comments, data: [...detail_comments.data, payload] }
     case GET_ALL_DETAIL_COMMENT:
-      return payload;
+      return { data: payload }
     case GET_DETAIL_COMMENT:
-      return payload;
+      return payload
     case UPDATE_DETAIL_COMMENT:
-      const dataa = detail_comments.map((data) => {
+      const updatedData = detail_comments.data.map((data) => {
         if (data.id === payload.id) {
           return {
             ...data,
             attributes: payload.attributes,
-          };
+          }
         } else {
-          return data;
+          return data
         }
-      });
-      return { ...detail_comments, data: dataa };
+      })
+      return { ...detail_comments, data: updatedData }
     case DELETE_DETAIL_COMMENT:
-      const data = detail_comments.data.filter(
-        (data) => data.id !== payload.id.data.id
-      );
-      return { ...detail_comments, data };
+      const filteredData = detail_comments.data.filter(
+        (data) => data.id !== payload.id
+      )
+      return { ...detail_comments, data: filteredData }
 
     default:
-      return detail_comments;
+      return detail_comments
   }
 }
-export default detail_comments;
+export default detail_comments

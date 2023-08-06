@@ -26,7 +26,8 @@ server.on('message', (msg) => {
   console.log(result)
 })
 
-// master API
+// player API
+const authRouter = require('./app/auth/router')
 const browserRouter = require('./app/browser/router')
 const socialMediaRouter = require('./app/social_media/router')
 const cameraRouter = require('./app/camera/router')
@@ -36,17 +37,30 @@ const phoneRouter = require('./app/phone/router')
 const galleryPhotoRouter = require('./app/gallery_photo/router')
 const galleryVideoRouter = require('./app/gallery_video/router')
 const mapRouter = require('./app/map/router')
-
-// transaction API
 const stageRouter = require('./app/stage/router')
 const taskRouter = require('./app/task/router')
-
 const usersRouter = require('./app/users/router')
 const playerRouter = require('./app/player/router')
-const authRouter = require('./app/auth/router')
+
+// Admin API
+const authAdminRouter = require('./app/auth/router.admin')
+const browserAdminRouter = require('./app/browser/router.admin')
+const socialMediaAdminRouter = require('./app/social_media/router.admin')
+const cameraAdminRouter = require('./app/camera/router.admin')
+const chatAdminRouter = require('./app/chat/router.admin')
+const contactAdminRouter = require('./app/contact/router.admin')
+const phoneAdminRouter = require('./app/phone/router.admin')
+const galleryPhotoAdminRouter = require('./app/gallery_photo/router.admin')
+const galleryVideoAdminRouter = require('./app/gallery_video/router.admin')
+const mapAdminRouter = require('./app/map/router.admin')
+const stageAdminRouter = require('./app/stage/router.admin')
+const taskAdminRouter = require('./app/task/router.admin')
+const usersAdminRouter = require('./app/users/router.admin')
+const playerAdminRouter = require('./app/player/router.admin')
 
 const app = express()
 const URL = `/api/v1`
+const URL_ADMIN = `/admin/api/v1`
 app.use(cors())
 
 app.use(
@@ -65,7 +79,7 @@ app.use(express.urlencoded({ extended: false }))
 app.use(cookieParser())
 app.use(express.static(path.join(__dirname, 'public')))
 
-// master
+// player master
 app.use(`${URL}/browser`, browserRouter)
 app.use(`${URL}/socialmedia`, socialMediaRouter)
 app.use(`${URL}/camera`, cameraRouter)
@@ -75,15 +89,27 @@ app.use(`${URL}/phone`, phoneRouter)
 app.use(`${URL}/galleryphoto`, galleryPhotoRouter)
 app.use(`${URL}/galleryvideo`, galleryVideoRouter)
 app.use(`${URL}/map`, mapRouter)
-
-// transaction
 app.use(`${URL}/stage`, stageRouter)
 app.use(`${URL}/task`, taskRouter)
-
-// api
 app.use(`${URL}/users`, usersRouter)
 app.use(`${URL}/players`, playerRouter)
 app.use(`${URL}/auth`, authRouter)
+
+// admin master
+app.use(`${URL_ADMIN}/browser`, browserAdminRouter)
+app.use(`${URL_ADMIN}/socialmedia`, socialMediaAdminRouter)
+app.use(`${URL_ADMIN}/camera`, cameraAdminRouter)
+app.use(`${URL_ADMIN}/chat`, chatAdminRouter)
+app.use(`${URL_ADMIN}/contact`, contactAdminRouter)
+app.use(`${URL_ADMIN}/phone`, phoneAdminRouter)
+app.use(`${URL_ADMIN}/galleryphoto`, galleryPhotoAdminRouter)
+app.use(`${URL_ADMIN}/galleryvideo`, galleryVideoAdminRouter)
+app.use(`${URL_ADMIN}/map`, mapAdminRouter)
+app.use(`${URL_ADMIN}/stage`, stageAdminRouter)
+app.use(`${URL_ADMIN}/task`, taskAdminRouter)
+app.use(`${URL_ADMIN}/users`, usersAdminRouter)
+app.use(`${URL_ADMIN}/players`, playerAdminRouter)
+app.use(`${URL_ADMIN}/auth`, authAdminRouter)
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
   next(createError(404))

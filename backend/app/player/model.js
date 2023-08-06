@@ -18,6 +18,10 @@ let playerSchema = mongoose.Schema(
       enum: ['Y', 'N'],
       default: 'N',
     },
+    user_id: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'User',
+    },
     stage_id: {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'Stage',

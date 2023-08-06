@@ -52,11 +52,13 @@ module.exports = {
       // Assuming the "users" collection has a "player_now" field that stores player IDs
       const user = await User.findOne({ _id: data.user.id })
 
+      console.log(user)
+
       if (!user) {
         throw new Error('User not found')
       }
 
-      const player = Player.find((player) => player.id === user.player_now)
+      const player = Player.find((player) => player._id === user.player_now)
 
       if (!player) {
         throw new Error('Player not found')

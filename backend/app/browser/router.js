@@ -13,7 +13,7 @@ const os = require('os')
 
 const { isLoginPlayer } = require('../middleware/auth')
 
-// router.use(isLoginAdmin);
+router.use(isLoginPlayer)
 router.get('/', index)
 router.get('/:id', getById)
 router.post(

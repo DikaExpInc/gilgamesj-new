@@ -5,7 +5,7 @@ import React, {
   useEffect,
   useRef,
   useState,
-} from "react";
+} from 'react'
 import {
   Input,
   Row,
@@ -17,11 +17,11 @@ import {
   InputNumber,
   Switch,
   Select,
-} from "antd";
-import { ImageSvg } from "assets/svg/icon";
-import CustomIcon from "components/util-components/CustomIcon";
-import { LoadingOutlined } from "@ant-design/icons";
-import { Vector3 } from "@babylonjs/core/Maths/math.vector";
+} from 'antd'
+import { ImageSvg } from 'assets/svg/icon'
+import CustomIcon from 'components/util-components/CustomIcon'
+import { LoadingOutlined } from '@ant-design/icons'
+import { Vector3 } from '@babylonjs/core/Maths/math.vector'
 import {
   AssetManagerContext,
   AssetManagerContextProvider,
@@ -30,9 +30,8 @@ import {
   TaskType,
   useAssetManager,
   useBeforeRender,
-} from "react-babylonjs";
-import FirebaseService from "services/FirebaseService";
-import { useDispatch } from "react-redux";
+} from 'react-babylonjs'
+import { useDispatch } from 'react-redux'
 import {
   getAllCamera,
   getAllChat,
@@ -43,37 +42,37 @@ import {
   getAllNews,
   getAllPhone,
   getAllSocialMedia,
-} from "redux/actions";
+} from 'redux/actions'
 
 const baseUrl =
-  "https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Models/master/2.0/";
+  'https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Models/master/2.0/'
 const modelAssetTasks = [
   {
     taskType: TaskType.Mesh,
     rootUrl: `${baseUrl}BoomBox/glTF/`,
-    sceneFilename: "BoomBox.gltf",
-    name: "boombox",
+    sceneFilename: 'BoomBox.gltf',
+    name: 'boombox',
   },
   {
     taskType: TaskType.Mesh,
     rootUrl: `${baseUrl}Avocado/glTF/`,
-    sceneFilename: "Avocado.gltf",
-    name: "avocado",
+    sceneFilename: 'Avocado.gltf',
+    name: 'avocado',
   },
-];
+]
 const MyFallback = () => {
-  const boxRef = useRef(null);
-  const context = useContext(AssetManagerContext);
+  const boxRef = useRef(null)
+  const context = useContext(AssetManagerContext)
   useBeforeRender((scene) => {
     if (boxRef.current) {
-      var deltaTimeInMillis = scene.getEngine().getDeltaTime();
-      const rpm = 10;
-      boxRef.current.rotation.x = Math.PI / 4;
+      var deltaTimeInMillis = scene.getEngine().getDeltaTime()
+      const rpm = 10
+      boxRef.current.rotation.x = Math.PI / 4
       boxRef.current.rotation.y +=
-        (rpm / 60) * Math.PI * 2 * (deltaTimeInMillis / 1000);
+        (rpm / 60) * Math.PI * 2 * (deltaTimeInMillis / 1000)
     }
-  });
-  const eventData = context?.lastProgress?.eventData;
+  })
+  const eventData = context?.lastProgress?.eventData
   return (
     <>
       <adtFullscreenUi name="ui">
@@ -102,141 +101,141 @@ const MyFallback = () => {
       </adtFullscreenUi>
       <box ref={boxRef} name="fallback" size={2} />
     </>
-  );
-};
+  )
+}
 const MyModels = () => {
-  const assetManagerResult = useAssetManager(modelAssetTasks);
+  const assetManagerResult = useAssetManager(modelAssetTasks)
   useEffect(() => {
-    const boomboxTask = assetManagerResult.taskNameMap["boombox"];
-    boomboxTask.loadedMeshes[0].position = new Vector3(2.5, 0, 0);
-    boomboxTask.loadedMeshes[1].scaling = new Vector3(20, 20, 20);
-    const avocadoTask = assetManagerResult.taskNameMap["avocado"];
-    avocadoTask.loadedMeshes[0].position = new Vector3(-2.5, 0, 0);
-    avocadoTask.loadedMeshes[1].scaling = new Vector3(20, 20, 20);
-  });
-  return null;
-};
+    const boomboxTask = assetManagerResult.taskNameMap['boombox']
+    boomboxTask.loadedMeshes[0].position = new Vector3(2.5, 0, 0)
+    boomboxTask.loadedMeshes[1].scaling = new Vector3(20, 20, 20)
+    const avocadoTask = assetManagerResult.taskNameMap['avocado']
+    avocadoTask.loadedMeshes[0].position = new Vector3(-2.5, 0, 0)
+    avocadoTask.loadedMeshes[1].scaling = new Vector3(20, 20, 20)
+  })
+  return null
+}
 
-const { Dragger } = Upload;
+const { Dragger } = Upload
 
 const rules = {
   title: [
     {
       required: true,
-      message: "Please fill title",
+      message: 'Please fill title',
     },
   ],
   description: [
     {
       required: true,
-      message: "Please fill description",
+      message: 'Please fill description',
     },
   ],
   order_number: [
     {
       required: true,
-      message: "Please fill order number",
+      message: 'Please fill order number',
     },
     {
       validator: (_, value) => {
         if (!value || /^[0-9]+$/.test(value)) {
-          return Promise.resolve();
+          return Promise.resolve()
         }
-        return Promise.reject("Please enter numbers only");
+        return Promise.reject('Please enter numbers only')
       },
     },
   ],
   timer: [
     {
       required: true,
-      message: "Please fill timer",
+      message: 'Please fill timer',
     },
     {
       validator: (_, value) => {
         if (!value || /^[0-9]+$/.test(value)) {
-          return Promise.resolve();
+          return Promise.resolve()
         }
-        return Promise.reject("Please enter numbers only");
+        return Promise.reject('Please enter numbers only')
       },
     },
   ],
   total_user: [
     {
       required: true,
-      message: "Please fill total user",
+      message: 'Please fill total user',
     },
     {
       validator: (_, value) => {
         if (!value || /^[0-9]+$/.test(value)) {
-          return Promise.resolve();
+          return Promise.resolve()
         }
-        return Promise.reject("Please enter numbers only");
+        return Promise.reject('Please enter numbers only')
       },
     },
   ],
   status: [
     {
       required: true,
-      message: "Please fill status",
+      message: 'Please fill status',
     },
   ],
   lock_code: [
     {
       required: true,
-      message: "Please fill lock code",
+      message: 'Please fill lock code',
     },
   ],
-};
+}
 
 const imageUploadProps = {
-  name: "file",
+  name: 'file',
   multiple: false,
-  listType: "picture-card",
+  listType: 'picture-card',
   showUploadList: false,
-};
+}
 
 const modelUploadProps = {
-  name: "file",
+  name: 'file',
   multiple: false,
-  listType: "picture-card",
+  listType: 'picture-card',
   showUploadList: false,
-};
+}
 
 const beforeUpload = (file) => {
-  const isJpgOrPng = file.type === "image/jpeg" || file.type === "image/png";
+  const isJpgOrPng = file.type === 'image/jpeg' || file.type === 'image/png'
   if (!isJpgOrPng) {
-    message.error("You can only upload JPG/PNG file!");
+    message.error('You can only upload JPG/PNG file!')
   }
-  const isLt2M = file.size / 1024 / 1024 < 2;
+  const isLt2M = file.size / 1024 / 1024 < 2
   if (!isLt2M) {
-    message.error("Image must smaller than 2MB!");
+    message.error('Image must smaller than 2MB!')
   }
-  return isJpgOrPng && isLt2M;
-};
+  return isJpgOrPng && isLt2M
+}
 
 const beforeUploadBackground = (file) => {
-  const isJpgOrPng = file.type === "image/jpeg" || file.type === "image/png";
+  const isJpgOrPng = file.type === 'image/jpeg' || file.type === 'image/png'
   if (!isJpgOrPng) {
-    message.error("You can only upload JPG/PNG file!");
+    message.error('You can only upload JPG/PNG file!')
   }
-  const isLt2M = file.size / 1024 / 1024 < 2;
+  const isLt2M = file.size / 1024 / 1024 < 2
   if (!isLt2M) {
-    message.error("Image must smaller than 2MB!");
+    message.error('Image must smaller than 2MB!')
   }
-  return isJpgOrPng && isLt2M;
-};
+  return isJpgOrPng && isLt2M
+}
 
 const beforeUploadModel = (file) => {
-  const isGLB = file.type === "model/gltf-binary" || file.name.endsWith(".glb");
+  const isGLB = file.type === 'model/gltf-binary' || file.name.endsWith('.glb')
   if (!isGLB) {
-    message.error("You can only upload GLB files!");
+    message.error('You can only upload GLB files!')
   }
-  const isLt2M = file.size / 1024 / 1024 < 2;
+  const isLt2M = file.size / 1024 / 1024 < 2
   if (!isLt2M) {
-    message.error("File must be smaller than 2MB!");
+    message.error('File must be smaller than 2MB!')
   }
-  return isGLB && isLt2M;
-};
+  return isGLB && isLt2M
+}
 
 const MyScene = () => {
   return (
@@ -262,182 +261,174 @@ const MyScene = () => {
         </AssetManagerContextProvider>
       </Scene>
     </Engine>
-  );
-};
+  )
+}
 
 const GeneralField = (props) => {
-  const dispatch = useDispatch();
-  const [socialMedia, setSocialMedia] = useState([]);
-  const [galleryPhoto, setGalleryPhoto] = useState([]);
-  const [galleryVideo, setGalleryVideo] = useState([]);
-  const [maps, setMaps] = useState([]);
-  const [chat, setChat] = useState([]);
-  const [camera, setCamera] = useState([]);
-  const [phone, setPhone] = useState([]);
-  const [contact, setContact] = useState([]);
-  const [browser, setBrowser] = useState([]);
+  const dispatch = useDispatch()
+  const [socialMedia, setSocialMedia] = useState([])
+  const [galleryPhoto, setGalleryPhoto] = useState([])
+  const [galleryVideo, setGalleryVideo] = useState([])
+  const [maps, setMaps] = useState([])
+  const [chat, setChat] = useState([])
+  const [camera, setCamera] = useState([])
+  const [phone, setPhone] = useState([])
+  const [contact, setContact] = useState([])
+  const [browser, setBrowser] = useState([])
 
   const handleInputChange = useCallback((name, value) => {
     props.setSelectValues((prevValues) => ({
       ...prevValues,
       [name]: value,
-    }));
-  }, []);
+    }))
+  }, [])
 
   useEffect(() => {
     // get sosmed
-    FirebaseService.getSocialMedia()
-      .then((querySnapshot) => {
-        let listData = [];
-        querySnapshot.forEach((doc) => {
-          listData.push({
-            value: doc.id,
-            label: "Social Media - " + doc.data().name,
-          });
-        });
-        dispatch(getAllSocialMedia(listData));
-        setSocialMedia(listData);
-      })
-      .catch((error) => {
-        console.log("Error getting document:", error);
-      });
-
-    // get gallery photo
-    FirebaseService.getGalleryPhoto()
-      .then((querySnapshot) => {
-        let listData = [];
-        querySnapshot.forEach((doc) => {
-          listData.push({
-            value: doc.id,
-            label: "Photo - " + doc.data().name,
-          });
-        });
-        dispatch(getAllGalleryPhoto(listData));
-        setGalleryPhoto(listData);
-      })
-      .catch((error) => {
-        console.log("Error getting document:", error);
-      });
-
-    // get gallery video
-    FirebaseService.getGalleryVideo()
-      .then((querySnapshot) => {
-        let listData = [];
-        querySnapshot.forEach((doc) => {
-          listData.push({
-            value: doc.id,
-            label: "Video - " + doc.data().name,
-          });
-        });
-        dispatch(getAllGalleryVideo(listData));
-        setGalleryVideo(listData);
-      })
-      .catch((error) => {
-        console.log("Error getting document:", error);
-      });
-
-    // get maps
-    FirebaseService.getMaps()
-      .then((querySnapshot) => {
-        let listData = [];
-        querySnapshot.forEach((doc) => {
-          listData.push({
-            value: doc.id,
-            label: "Map - " + doc.data().label,
-          });
-        });
-        dispatch(getAllMaps(listData));
-        setMaps(listData);
-      })
-      .catch((error) => {
-        console.log("Error getting document:", error);
-      });
-
-    // get chats
-    FirebaseService.getChat()
-      .then((querySnapshot) => {
-        let listData = [];
-        querySnapshot.forEach((doc) => {
-          listData.push({
-            value: doc.id,
-            label: "Chat - " + doc.data().name,
-          });
-        });
-        dispatch(getAllChat(listData));
-        setChat(listData);
-      })
-      .catch((error) => {
-        console.log("Error getting document:", error);
-      });
-
-    // get cameras
-    FirebaseService.getCamera()
-      .then((querySnapshot) => {
-        let listData = [];
-        querySnapshot.forEach((doc) => {
-          listData.push({
-            value: doc.id,
-            label: "Camera - " + doc.data().name,
-          });
-        });
-        dispatch(getAllCamera(listData));
-        setCamera(listData);
-      })
-      .catch((error) => {
-        console.log("Error getting document:", error);
-      });
-
-    // get phone
-    FirebaseService.getPhone()
-      .then((querySnapshot) => {
-        let listData = [];
-        querySnapshot.forEach((doc) => {
-          listData.push({
-            value: doc.id,
-            label: "Phone - " + doc.data().name,
-          });
-        });
-        dispatch(getAllPhone(listData));
-        setPhone(listData);
-      })
-      .catch((error) => {
-        console.log("Error getting document:", error);
-      });
-
-    // get contact
-    FirebaseService.getContact()
-      .then((querySnapshot) => {
-        let listData = [];
-        querySnapshot.forEach((doc) => {
-          listData.push({
-            value: doc.id,
-            label: "Contact - " + doc.data().name,
-          });
-        });
-        dispatch(getAllContact(listData));
-        setContact(listData);
-      })
-      .catch((error) => {
-        console.log("Error getting document:", error);
-      });
-
-    // get browser
-    FirebaseService.getNews()
-      .then((querySnapshot) => {
-        let listData = [];
-        querySnapshot.forEach((doc) => {
-          listData.push({
-            value: doc.id,
-            label: "browser - " + doc.data().title,
-          });
-        });
-        dispatch(getAllNews(listData));
-        setBrowser(listData);
-      })
-      .catch((error) => {
-        console.log("Error getting document:", error);
-      });
-  }, []);
+    // FirebaseService.getSocialMedia()
+    //   .then((querySnapshot) => {
+    //     let listData = [];
+    //     querySnapshot.forEach((doc) => {
+    //       listData.push({
+    //         value: doc.id,
+    //         label: "Social Media - " + doc.data().name,
+    //       });
+    //     });
+    //     dispatch(getAllSocialMedia(listData));
+    //     setSocialMedia(listData);
+    //   })
+    //   .catch((error) => {
+    //     console.log("Error getting document:", error);
+    //   });
+    // // get gallery photo
+    // FirebaseService.getGalleryPhoto()
+    //   .then((querySnapshot) => {
+    //     let listData = [];
+    //     querySnapshot.forEach((doc) => {
+    //       listData.push({
+    //         value: doc.id,
+    //         label: "Photo - " + doc.data().name,
+    //       });
+    //     });
+    //     dispatch(getAllGalleryPhoto(listData));
+    //     setGalleryPhoto(listData);
+    //   })
+    //   .catch((error) => {
+    //     console.log("Error getting document:", error);
+    //   });
+    // // get gallery video
+    // FirebaseService.getGalleryVideo()
+    //   .then((querySnapshot) => {
+    //     let listData = [];
+    //     querySnapshot.forEach((doc) => {
+    //       listData.push({
+    //         value: doc.id,
+    //         label: "Video - " + doc.data().name,
+    //       });
+    //     });
+    //     dispatch(getAllGalleryVideo(listData));
+    //     setGalleryVideo(listData);
+    //   })
+    //   .catch((error) => {
+    //     console.log("Error getting document:", error);
+    //   });
+    // // get maps
+    // FirebaseService.getMaps()
+    //   .then((querySnapshot) => {
+    //     let listData = [];
+    //     querySnapshot.forEach((doc) => {
+    //       listData.push({
+    //         value: doc.id,
+    //         label: "Map - " + doc.data().label,
+    //       });
+    //     });
+    //     dispatch(getAllMaps(listData));
+    //     setMaps(listData);
+    //   })
+    //   .catch((error) => {
+    //     console.log("Error getting document:", error);
+    //   });
+    // // get chats
+    // FirebaseService.getChat()
+    //   .then((querySnapshot) => {
+    //     let listData = [];
+    //     querySnapshot.forEach((doc) => {
+    //       listData.push({
+    //         value: doc.id,
+    //         label: "Chat - " + doc.data().name,
+    //       });
+    //     });
+    //     dispatch(getAllChat(listData));
+    //     setChat(listData);
+    //   })
+    //   .catch((error) => {
+    //     console.log("Error getting document:", error);
+    //   });
+    // // get cameras
+    // FirebaseService.getCamera()
+    //   .then((querySnapshot) => {
+    //     let listData = [];
+    //     querySnapshot.forEach((doc) => {
+    //       listData.push({
+    //         value: doc.id,
+    //         label: "Camera - " + doc.data().name,
+    //       });
+    //     });
+    //     dispatch(getAllCamera(listData));
+    //     setCamera(listData);
+    //   })
+    //   .catch((error) => {
+    //     console.log("Error getting document:", error);
+    //   });
+    // // get phone
+    // FirebaseService.getPhone()
+    //   .then((querySnapshot) => {
+    //     let listData = [];
+    //     querySnapshot.forEach((doc) => {
+    //       listData.push({
+    //         value: doc.id,
+    //         label: "Phone - " + doc.data().name,
+    //       });
+    //     });
+    //     dispatch(getAllPhone(listData));
+    //     setPhone(listData);
+    //   })
+    //   .catch((error) => {
+    //     console.log("Error getting document:", error);
+    //   });
+    // // get contact
+    // FirebaseService.getContact()
+    //   .then((querySnapshot) => {
+    //     let listData = [];
+    //     querySnapshot.forEach((doc) => {
+    //       listData.push({
+    //         value: doc.id,
+    //         label: "Contact - " + doc.data().name,
+    //       });
+    //     });
+    //     dispatch(getAllContact(listData));
+    //     setContact(listData);
+    //   })
+    //   .catch((error) => {
+    //     console.log("Error getting document:", error);
+    //   });
+    // // get browser
+    // FirebaseService.getNews()
+    //   .then((querySnapshot) => {
+    //     let listData = [];
+    //     querySnapshot.forEach((doc) => {
+    //       listData.push({
+    //         value: doc.id,
+    //         label: "browser - " + doc.data().title,
+    //       });
+    //     });
+    //     dispatch(getAllNews(listData));
+    //     setBrowser(listData);
+    //   })
+    //   .catch((error) => {
+    //     console.log("Error getting document:", error);
+    //   });
+  }, [])
 
   return (
     <>
@@ -461,7 +452,7 @@ const GeneralField = (props) => {
             >
               <InputNumber
                 placeholder="Stage order number"
-                style={{ width: "100%" }}
+                style={{ width: '100%' }}
               />
             </Form.Item>
 
@@ -472,7 +463,7 @@ const GeneralField = (props) => {
             >
               <InputNumber
                 placeholder="Stage total user"
-                style={{ width: "100%" }}
+                style={{ width: '100%' }}
               />
             </Form.Item>
             <Form.Item
@@ -480,7 +471,7 @@ const GeneralField = (props) => {
               label="Time to finish (minutes)"
               rules={rules.timer}
             >
-              <InputNumber placeholder="Timer" style={{ width: "100%" }} />
+              <InputNumber placeholder="Timer" style={{ width: '100%' }} />
             </Form.Item>
             <Form.Item
               name="status"
@@ -497,7 +488,7 @@ const GeneralField = (props) => {
               label="Lock Code"
               rules={rules.lock_code}
             >
-              <InputNumber placeholder="Lock Code" style={{ width: "100%" }} />
+              <InputNumber placeholder="Lock Code" style={{ width: '100%' }} />
             </Form.Item>
           </Card>
 
@@ -510,10 +501,10 @@ const GeneralField = (props) => {
               <Select
                 mode="multiple"
                 placeholder="Please select"
-                style={{ width: "100%" }}
+                style={{ width: '100%' }}
                 options={socialMedia}
                 onChange={(value) =>
-                  handleInputChange("social_media_selected", value)
+                  handleInputChange('social_media_selected', value)
                 }
                 defaultValue={props.social_media_list}
               />
@@ -526,10 +517,10 @@ const GeneralField = (props) => {
               <Select
                 mode="multiple"
                 placeholder="Please select"
-                style={{ width: "100%" }}
+                style={{ width: '100%' }}
                 options={galleryPhoto}
                 onChange={(value) =>
-                  handleInputChange("gallery_photo_selected", value)
+                  handleInputChange('gallery_photo_selected', value)
                 }
                 defaultValue={props.gallery_photo_list}
               />
@@ -542,10 +533,10 @@ const GeneralField = (props) => {
               <Select
                 mode="multiple"
                 placeholder="Please select"
-                style={{ width: "100%" }}
+                style={{ width: '100%' }}
                 options={galleryVideo}
                 onChange={(value) =>
-                  handleInputChange("gallery_video_selected", value)
+                  handleInputChange('gallery_video_selected', value)
                 }
                 defaultValue={props.gallery_video_list}
               />
@@ -554,9 +545,9 @@ const GeneralField = (props) => {
               <Select
                 mode="multiple"
                 placeholder="Please select"
-                style={{ width: "100%" }}
+                style={{ width: '100%' }}
                 options={maps}
-                onChange={(value) => handleInputChange("map_selected", value)}
+                onChange={(value) => handleInputChange('map_selected', value)}
                 defaultValue={props.map_list}
               />
             </Form.Item>
@@ -564,9 +555,9 @@ const GeneralField = (props) => {
               <Select
                 mode="multiple"
                 placeholder="Please select"
-                style={{ width: "100%" }}
+                style={{ width: '100%' }}
                 options={chat}
-                onChange={(value) => handleInputChange("chat_selected", value)}
+                onChange={(value) => handleInputChange('chat_selected', value)}
                 defaultValue={props.chat_list}
               />
             </Form.Item>
@@ -578,10 +569,10 @@ const GeneralField = (props) => {
               <Select
                 mode="multiple"
                 placeholder="Please select"
-                style={{ width: "100%" }}
+                style={{ width: '100%' }}
                 options={camera}
                 onChange={(value) =>
-                  handleInputChange("camera_selected", value)
+                  handleInputChange('camera_selected', value)
                 }
                 defaultValue={props.camera_list}
               />
@@ -590,9 +581,9 @@ const GeneralField = (props) => {
               <Select
                 mode="multiple"
                 placeholder="Please select"
-                style={{ width: "100%" }}
+                style={{ width: '100%' }}
                 options={phone}
-                onChange={(value) => handleInputChange("phone_selected", value)}
+                onChange={(value) => handleInputChange('phone_selected', value)}
                 defaultValue={props.phone_list}
               />
             </Form.Item>
@@ -604,10 +595,10 @@ const GeneralField = (props) => {
               <Select
                 mode="multiple"
                 placeholder="Please select"
-                style={{ width: "100%" }}
+                style={{ width: '100%' }}
                 options={contact}
                 onChange={(value) =>
-                  handleInputChange("contact_selected", value)
+                  handleInputChange('contact_selected', value)
                 }
                 defaultValue={props.contact_list}
               />
@@ -620,10 +611,10 @@ const GeneralField = (props) => {
               <Select
                 mode="multiple"
                 placeholder="Please select"
-                style={{ width: "100%" }}
+                style={{ width: '100%' }}
                 options={browser}
                 onChange={(value) =>
-                  handleInputChange("browser_selected", value)
+                  handleInputChange('browser_selected', value)
                 }
                 defaultValue={props.news_list}
               />
@@ -721,7 +712,7 @@ const GeneralField = (props) => {
         </Col>
       </Row>
     </>
-  );
-};
+  )
+}
 
-export default GeneralField;
+export default GeneralField

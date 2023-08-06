@@ -1,42 +1,41 @@
-import React, { useState } from "react";
-import { Row, Col, Card, Form, Select, Slider, Switch } from "antd";
-import FirebaseService from "services/FirebaseService";
+import React, { useState } from 'react'
+import { Row, Col, Card, Form, Select, Slider, Switch } from 'antd'
 
 const rules = {
   page: [
     {
       required: true,
-      message: "Please fill name",
+      message: 'Please fill name',
     },
   ],
-};
+}
 
 const GeneralField = (props) => {
-  const [clapValue, setClapValue] = useState(1);
-  const [statusFinishClap, setStatusFinishClap] = useState(false);
+  const [clapValue, setClapValue] = useState(1)
+  const [statusFinishClap, setStatusFinishClap] = useState(false)
   const [showSliderClap, setShowSliderClap] = useState(
-    props.clapStatus === "clap" ? true : false
-  );
+    props.clapStatus === 'clap' ? true : false
+  )
   const onChange = (newValue) => {
-    setClapValue(newValue);
-    FirebaseService.updateSetting("67tjgzl3kIytfIRKV0K5", {
-      value_clap: clapValue,
-      status_finish: statusFinishClap,
-    }).then((resp) => {});
-  };
+    setClapValue(newValue)
+    // FirebaseService.updateSetting('67tjgzl3kIytfIRKV0K5', {
+    //   value_clap: clapValue,
+    //   status_finish: statusFinishClap,
+    // }).then((resp) => {})
+  }
   const onChangeFinish = () => {
-    FirebaseService.updateSetting("67tjgzl3kIytfIRKV0K5", {
-      value_clap: clapValue,
-      status_finish: statusFinishClap,
-    }).then((resp) => {});
-  };
+    // FirebaseService.updateSetting('67tjgzl3kIytfIRKV0K5', {
+    //   value_clap: clapValue,
+    //   status_finish: statusFinishClap,
+    // }).then((resp) => {})
+  }
   const handleChange = (value) => {
-    if (value === "clap") {
-      setShowSliderClap(true);
+    if (value === 'clap') {
+      setShowSliderClap(true)
     } else {
-      setShowSliderClap(false);
+      setShowSliderClap(false)
     }
-  };
+  }
 
   return (
     <Row gutter={16}>
@@ -46,13 +45,13 @@ const GeneralField = (props) => {
             <Select
               placeholder="Type Task"
               showSearch
-              style={{ width: "100%" }}
+              style={{ width: '100%' }}
               onChange={handleChange}
               options={[
-                { value: "main", label: "Main Game" },
-                { value: "group", label: "Show Group" },
-                { value: "clap", label: "Show Clapping" },
-                { value: "performance", label: "Show Performance" },
+                { value: 'main', label: 'Main Game' },
+                { value: 'group', label: 'Show Group' },
+                { value: 'clap', label: 'Show Clapping' },
+                { value: 'performance', label: 'Show Performance' },
               ]}
             />
           </Form.Item>
@@ -67,7 +66,7 @@ const GeneralField = (props) => {
                   min={1}
                   max={100}
                   onChange={onChange}
-                  value={typeof inputValue === "number" ? clapValue : 0}
+                  value={typeof inputValue === 'number' ? clapValue : 0}
                 />
               </Form.Item>
               <Form.Item
@@ -88,7 +87,7 @@ const GeneralField = (props) => {
         </Card>
       </Col>
     </Row>
-  );
-};
+  )
+}
 
-export default GeneralField;
+export default GeneralField

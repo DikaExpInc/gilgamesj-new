@@ -4,7 +4,7 @@ const JwtAuthService = {}
 
 JwtAuthService.login = function (data) {
   return fetch({
-    url: '/auth/local?populate=*',
+    url: '/auth/signin',
     method: 'post',
     headers: {
       'public-request': 'true',
@@ -25,13 +25,6 @@ JwtAuthService.updateUser = function (data) {
     url: '/users-permissions/users/me/update-data',
     method: 'put',
     data: data,
-  })
-}
-
-JwtAuthService.getPetugasByUser = function (id) {
-  return fetch({
-    url: '/officers?populate=*&filters[user]=' + id,
-    method: 'get',
   })
 }
 

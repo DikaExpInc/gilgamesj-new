@@ -1,61 +1,60 @@
-import React, { useEffect, useState } from "react";
-import { Card, Table, Input, Button, Menu, message, Modal } from "antd";
+import React, { useEffect, useState } from 'react'
+import { Card, Table, Input, Button, Menu, message, Modal } from 'antd'
 import {
   EyeOutlined,
   DeleteOutlined,
   SearchOutlined,
   PlusCircleOutlined,
-} from "@ant-design/icons";
-import EllipsisDropdown from "components/shared-components/EllipsisDropdown";
-import Flex from "components/shared-components/Flex";
-import { useHistory } from "react-router-dom";
-import utils from "utils";
-import FirebaseService from "services/FirebaseService";
-import { useDispatch, useSelector } from "react-redux";
-import { getAllPhone } from "redux/actions";
-import { ExclamationCircleOutlined } from "@ant-design/icons";
-import { colorPrimary } from "configs/AppConfig";
-import moment from "moment";
+} from '@ant-design/icons'
+import EllipsisDropdown from 'components/shared-components/EllipsisDropdown'
+import Flex from 'components/shared-components/Flex'
+import { useHistory } from 'react-router-dom'
+import utils from 'utils'
+import { useDispatch, useSelector } from 'react-redux'
+import { getAllPhone } from 'redux/actions'
+import { ExclamationCircleOutlined } from '@ant-design/icons'
+import { colorPrimary } from 'configs/AppConfig'
+import moment from 'moment'
 
 const PhoneList = () => {
-  let history = useHistory();
-  const phones = useSelector((state) => state.phones);
-  const dispatch = useDispatch();
-  const [list, setList] = useState([]);
-  const [selectedRows, setSelectedRows] = useState([]);
-  const [selectedRowKeys, setSelectedRowKeys] = useState([]);
+  let history = useHistory()
+  const phones = useSelector((state) => state.phones)
+  const dispatch = useDispatch()
+  const [list, setList] = useState([])
+  const [selectedRows, setSelectedRows] = useState([])
+  const [selectedRowKeys, setSelectedRowKeys] = useState([])
 
   useEffect(() => {
-    FirebaseService.getPhone()
-      .then((querySnapshot) => {
-        let listData = [];
-        querySnapshot.forEach((doc) => {
-          listData.push({ ...doc.data(), id: doc.id });
-        });
-        dispatch(getAllPhone(listData));
-        setList(listData);
-      })
-      .catch((error) => {
-        console.log("Error getting document:", error);
-      });
-  }, []);
+    // FirebaseService.getPhone()
+    //   .then((querySnapshot) => {
+    //     let listData = []
+    //     querySnapshot.forEach((doc) => {
+    //       listData.push({ ...doc.data(), id: doc.id })
+    //     })
+    //     dispatch(getAllPhone(listData))
+    //     setList(listData)
+    //   })
+    //   .catch((error) => {
+    //     console.log('Error getting document:', error)
+    //   })
+  }, [])
 
   const confirm = (e) => {
     Modal.confirm({
-      title: "Warning",
+      title: 'Warning',
       icon: <ExclamationCircleOutlined />,
-      content: "Are you really wanna delete this data ?",
-      okText: "Delete",
-      cancelText: "Cancel",
+      content: 'Are you really wanna delete this data ?',
+      okText: 'Delete',
+      cancelText: 'Cancel',
       onOk: () => {
-        deleteRow(e);
+        deleteRow(e)
       },
-    });
-  };
+    })
+  }
 
   const cancel = (e) => {
-    message.error("Tidak jadi dihapus");
-  };
+    message.error('Tidak jadi dihapus')
+  }
 
   const dropdownMenu = (row) => (
     <Menu>
@@ -72,74 +71,74 @@ const PhoneList = () => {
           <span className="ml-2">
             {selectedRows.length > 0
               ? `Delete (${selectedRows.length})`
-              : "Delete"}
+              : 'Delete'}
           </span>
         </Flex>
       </Menu.Item>
     </Menu>
-  );
+  )
 
   const addPhone = () => {
-    history.push(`/app/phones/add-phone`);
-  };
+    history.push(`/app/phones/add-phone`)
+  }
 
   const viewDetails = (row) => {
-    history.push(`/app/phones/edit-phone/${row.id}`);
-  };
+    history.push(`/app/phones/edit-phone/${row.id}`)
+  }
 
   const deleteRow = (row) => {
-    const objKey = "id";
-    let data = list;
+    const objKey = 'id'
+    let data = list
     if (selectedRows.length > 1) {
       selectedRows.forEach((elm) => {
-        FirebaseService.deletePhone(elm.id);
-        data = utils.deleteArrayRow(data, objKey, elm.id);
-        setList(data);
-        setSelectedRows([]);
-      });
+        // FirebaseService.deletePhone(elm.id)
+        data = utils.deleteArrayRow(data, objKey, elm.id)
+        setList(data)
+        setSelectedRows([])
+      })
     } else {
-      FirebaseService.deletePhone(row.id);
-      data = utils.deleteArrayRow(data, objKey, row.id);
-      setList(data);
+      // FirebaseService.deletePhone(row.id)
+      data = utils.deleteArrayRow(data, objKey, row.id)
+      setList(data)
     }
-  };
+  }
 
   const tableColumns = [
     {
-      title: "Name",
-      dataIndex: "name",
-      sorter: (a, b) => utils.antdTableSorter(a, b, "name"),
+      title: 'Name',
+      dataIndex: 'name',
+      sorter: (a, b) => utils.antdTableSorter(a, b, 'name'),
     },
     {
-      title: "Code",
-      dataIndex: "code",
-      sorter: (a, b) => utils.antdTableSorter(a, b, "code"),
+      title: 'Code',
+      dataIndex: 'code',
+      sorter: (a, b) => utils.antdTableSorter(a, b, 'code'),
     },
     {
-      title: "",
-      dataIndex: "actions",
+      title: '',
+      dataIndex: 'actions',
       render: (_, elm) => (
         <div className="text-right">
           <EllipsisDropdown menu={dropdownMenu(elm)} />
         </div>
       ),
     },
-  ];
+  ]
 
   const rowSelection = {
     onChange: (key, rows) => {
-      setSelectedRows(rows);
-      setSelectedRowKeys(key);
+      setSelectedRows(rows)
+      setSelectedRowKeys(key)
     },
-  };
+  }
 
   const onSearch = (e) => {
-    const value = e.currentTarget.value;
-    const searchArray = e.currentTarget.value ? list : phones;
-    const data = utils.wildCardSearch(searchArray, value);
-    setList(data);
-    setSelectedRowKeys([]);
-  };
+    const value = e.currentTarget.value
+    const searchArray = e.currentTarget.value ? list : phones
+    const data = utils.wildCardSearch(searchArray, value)
+    setList(data)
+    setSelectedRowKeys([])
+  }
 
   return (
     <Card>
@@ -158,8 +157,8 @@ const PhoneList = () => {
             onClick={addPhone}
             style={{
               backgroundColor: colorPrimary,
-              color: "white",
-              border: "none",
+              color: 'white',
+              border: 'none',
             }}
             icon={<PlusCircleOutlined />}
             block
@@ -175,14 +174,14 @@ const PhoneList = () => {
           rowKey="id"
           rowSelection={{
             selectedRowKeys: selectedRowKeys,
-            type: "checkbox",
+            type: 'checkbox',
             preserveSelectedRowKeys: false,
             ...rowSelection,
           }}
         />
       </div>
     </Card>
-  );
-};
+  )
+}
 
-export default PhoneList;
+export default PhoneList

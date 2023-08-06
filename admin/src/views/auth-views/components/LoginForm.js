@@ -1,22 +1,20 @@
-import React, { useEffect } from "react";
-import { connect } from "react-redux";
-import { Button, Form, Input, Alert } from "antd";
-import { MailOutlined, LockOutlined } from "@ant-design/icons";
-import PropTypes from "prop-types";
+import React, { useEffect } from 'react'
+import { connect } from 'react-redux'
+import { Button, Form, Input, Alert } from 'antd'
+import { MailOutlined, LockOutlined } from '@ant-design/icons'
+import PropTypes from 'prop-types'
 import {
   signIn,
   showLoading,
   showAuthMessage,
   hideAuthMessage,
-  signInWithGoogle,
-  signInWithFacebook,
-} from "redux/actions/Auth";
-import { useHistory } from "react-router-dom";
-import { motion } from "framer-motion";
-import { colorPrimary } from "configs/AppConfig";
+} from 'redux/actions/Auth'
+import { useHistory } from 'react-router-dom'
+import { motion } from 'framer-motion'
+import { colorPrimary } from 'configs/AppConfig'
 
 export const LoginForm = (props) => {
-  let history = useHistory();
+  let history = useHistory()
 
   const {
     showForgetPassword,
@@ -30,28 +28,28 @@ export const LoginForm = (props) => {
     showMessage,
     message,
     allowRedirect,
-  } = props;
+  } = props
 
   const initialCredential = {
-    email: "",
-    password: "",
-  };
+    email: '',
+    password: '',
+  }
 
   const onLogin = (values) => {
-    showLoading();
-    signIn(values);
-  };
+    showLoading()
+    signIn(values)
+  }
 
   useEffect(() => {
     if (token !== null && allowRedirect) {
-      history.push(redirect);
+      history.push(redirect)
     }
     if (showMessage) {
       setTimeout(() => {
-        hideAuthMessage();
-      }, 3000);
+        hideAuthMessage()
+      }, 3000)
     }
-  });
+  })
 
   return (
     <>
@@ -77,11 +75,11 @@ export const LoginForm = (props) => {
           rules={[
             {
               required: true,
-              message: "Please fill email",
+              message: 'Please fill email',
             },
             {
-              type: "email",
-              message: "Please fill email as email format!",
+              type: 'email',
+              message: 'Please fill email as email format!',
             },
           ]}
         >
@@ -94,8 +92,8 @@ export const LoginForm = (props) => {
             <div
               className={`${
                 showForgetPassword
-                  ? "d-flex justify-content-between w-100 align-items-center"
-                  : ""
+                  ? 'd-flex justify-content-between w-100 align-items-center'
+                  : ''
               }`}
             >
               <span>Password</span>
@@ -104,7 +102,7 @@ export const LoginForm = (props) => {
           rules={[
             {
               required: true,
-              message: "Please fill your password",
+              message: 'Please fill your password',
             },
           ]}
         >
@@ -118,7 +116,7 @@ export const LoginForm = (props) => {
             loading={loading}
             style={{
               backgroundColor: colorPrimary,
-              border: "none",
+              border: 'none',
               fontWeight: 700,
             }}
           >
@@ -129,32 +127,30 @@ export const LoginForm = (props) => {
         {extra}
       </Form>
     </>
-  );
-};
+  )
+}
 
 LoginForm.propTypes = {
   otherSignIn: PropTypes.bool,
   showForgetPassword: PropTypes.bool,
   extra: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
-};
+}
 
 LoginForm.defaultProps = {
   otherSignIn: true,
   showForgetPassword: false,
-};
+}
 
 const mapStateToProps = ({ auth }) => {
-  const { loading, message, showMessage, token, redirect } = auth;
-  return { loading, message, showMessage, token, redirect };
-};
+  const { loading, message, showMessage, token, redirect } = auth
+  return { loading, message, showMessage, token, redirect }
+}
 
 const mapDispatchToProps = {
   signIn,
   showAuthMessage,
   showLoading,
   hideAuthMessage,
-  signInWithGoogle,
-  signInWithFacebook,
-};
+}
 
-export default connect(mapStateToProps, mapDispatchToProps)(LoginForm);
+export default connect(mapStateToProps, mapDispatchToProps)(LoginForm)

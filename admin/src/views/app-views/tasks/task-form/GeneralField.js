@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState } from 'react'
 import {
   Input,
   Row,
@@ -9,13 +9,12 @@ import {
   message,
   Switch,
   Select,
-} from "antd";
-import { ImageSvg } from "assets/svg/icon";
-import CustomIcon from "components/util-components/CustomIcon";
-import { LoadingOutlined } from "@ant-design/icons";
-import { useEffect } from "react";
-import FirebaseService from "services/FirebaseService";
-import { useDispatch } from "react-redux";
+} from 'antd'
+import { ImageSvg } from 'assets/svg/icon'
+import CustomIcon from 'components/util-components/CustomIcon'
+import { LoadingOutlined } from '@ant-design/icons'
+import { useEffect } from 'react'
+import { useDispatch } from 'react-redux'
 import {
   getAllChat,
   getAllGalleryPhoto,
@@ -23,188 +22,188 @@ import {
   getAllMaps,
   getAllSocialMedia,
   getAllStage,
-} from "redux/actions";
+} from 'redux/actions'
 
-const { Dragger } = Upload;
+const { Dragger } = Upload
 
 const rules = {
   stage_id: [
     {
       required: true,
-      message: "Please fill stage id",
+      message: 'Please fill stage id',
     },
   ],
   title: [
     {
       required: true,
-      message: "Please fill title",
+      message: 'Please fill title',
     },
   ],
   description: [
     {
       required: true,
-      message: "Please fill description",
+      message: 'Please fill description',
     },
   ],
   type: [
     {
       required: true,
-      message: "Please fill type",
+      message: 'Please fill type',
     },
   ],
   is_bonus: [
     {
       required: true,
-      message: "Please fill is bonus",
+      message: 'Please fill is bonus',
     },
   ],
   status: [
     {
       required: true,
-      message: "Please fill status",
+      message: 'Please fill status',
     },
   ],
-};
+}
 
 const imageUploadProps = {
-  name: "file",
+  name: 'file',
   multiple: true,
-  listType: "picture-card",
+  listType: 'picture-card',
   showUploadList: false,
-};
+}
 
 const beforeUpload = (file) => {
-  const isJpgOrPng = file.type === "image/jpeg" || file.type === "image/png";
+  const isJpgOrPng = file.type === 'image/jpeg' || file.type === 'image/png'
   if (!isJpgOrPng) {
-    message.error("You can only upload JPG/PNG file!");
+    message.error('You can only upload JPG/PNG file!')
   }
-  const isLt2M = file.size / 1024 / 1024 < 2;
+  const isLt2M = file.size / 1024 / 1024 < 2
   if (!isLt2M) {
-    message.error("Image must smaller than 2MB!");
+    message.error('Image must smaller than 2MB!')
   }
-  return isJpgOrPng && isLt2M;
-};
+  return isJpgOrPng && isLt2M
+}
 
 const GeneralField = (props) => {
-  const dispatch = useDispatch();
-  const [list, setList] = useState([]);
-  const [stage, setStage] = useState([]);
+  const dispatch = useDispatch()
+  const [list, setList] = useState([])
+  const [stage, setStage] = useState([])
 
   useEffect(() => {
-    FirebaseService.getStage()
-      .then((querySnapshot) => {
-        let listData = [];
-        querySnapshot.forEach((doc) => {
-          listData.push({
-            label: `stage ${doc.data().order_number} - ${doc.data().title}`,
-            value: doc.id,
-          });
-        });
-        dispatch(getAllStage(listData));
-        setStage(listData);
-      })
-      .catch((error) => {
-        console.log("Error getting document:", error);
-      });
-  }, []);
+    // FirebaseService.getStage()
+    //   .then((querySnapshot) => {
+    //     let listData = []
+    //     querySnapshot.forEach((doc) => {
+    //       listData.push({
+    //         label: `stage ${doc.data().order_number} - ${doc.data().title}`,
+    //         value: doc.id,
+    //       })
+    //     })
+    //     dispatch(getAllStage(listData))
+    //     setStage(listData)
+    //   })
+    //   .catch((error) => {
+    //     console.log('Error getting document:', error)
+    //   })
+  }, [])
 
   const handleChange = (type) => {
-    switch (type) {
-      case "social media":
-        FirebaseService.getSocialMedia()
-          .then((querySnapshot) => {
-            let listData = [];
-            querySnapshot.forEach((doc) => {
-              listData.push({
-                value: doc.id,
-                label: "Social Media - " + doc.data().name,
-              });
-            });
-            dispatch(getAllSocialMedia(listData));
-            setList(listData);
-          })
-          .catch((error) => {
-            console.log("Error getting document:", error);
-          });
-        break;
-      case "gallery photo":
-        FirebaseService.getGalleryPhoto()
-          .then((querySnapshot) => {
-            let listData = [];
-            querySnapshot.forEach((doc) => {
-              listData.push({
-                value: doc.id,
-                label: "Photo - " + doc.data().name,
-              });
-            });
-            dispatch(getAllGalleryPhoto(listData));
-            setList(listData);
-          })
-          .catch((error) => {
-            console.log("Error getting document:", error);
-          });
-        break;
-      case "gallery video":
-        FirebaseService.getGalleryVideo()
-          .then((querySnapshot) => {
-            let listData = [];
-            querySnapshot.forEach((doc) => {
-              listData.push({
-                value: doc.id,
-                label: "Photo - " + doc.data().name,
-              });
-            });
-            dispatch(getAllGalleryVideo(listData));
-            setList(listData);
-          })
-          .catch((error) => {
-            console.log("Error getting document:", error);
-          });
-        break;
-      case "maps":
-        FirebaseService.getMaps()
-          .then((querySnapshot) => {
-            let listData = [];
-            querySnapshot.forEach((doc) => {
-              listData.push({
-                value: doc.id,
-                label: "Maps - " + doc.data().label,
-              });
-            });
-            dispatch(getAllMaps(listData));
-            setList(listData);
-          })
-          .catch((error) => {
-            console.log("Error getting document:", error);
-          });
-        break;
-      case "chat":
-        FirebaseService.getChat()
-          .then((querySnapshot) => {
-            let listData = [];
-            querySnapshot.forEach((doc) => {
-              listData.push({
-                value: doc.id,
-                label: "Chat - " + doc.data().name,
-              });
-            });
-            dispatch(getAllChat(listData));
-            setList(listData);
-          })
-          .catch((error) => {
-            console.log("Error getting document:", error);
-          });
-        break;
-      case "camera":
-        break;
-      case "phone":
-        break;
-      case "browser":
-        break;
-      default:
-        break;
-    }
-  };
+    // switch (type) {
+    //   case 'social media':
+    //     FirebaseService.getSocialMedia()
+    //       .then((querySnapshot) => {
+    //         let listData = []
+    //         querySnapshot.forEach((doc) => {
+    //           listData.push({
+    //             value: doc.id,
+    //             label: 'Social Media - ' + doc.data().name,
+    //           })
+    //         })
+    //         dispatch(getAllSocialMedia(listData))
+    //         setList(listData)
+    //       })
+    //       .catch((error) => {
+    //         console.log('Error getting document:', error)
+    //       })
+    //     break
+    //   case 'gallery photo':
+    //     FirebaseService.getGalleryPhoto()
+    //       .then((querySnapshot) => {
+    //         let listData = []
+    //         querySnapshot.forEach((doc) => {
+    //           listData.push({
+    //             value: doc.id,
+    //             label: 'Photo - ' + doc.data().name,
+    //           })
+    //         })
+    //         dispatch(getAllGalleryPhoto(listData))
+    //         setList(listData)
+    //       })
+    //       .catch((error) => {
+    //         console.log('Error getting document:', error)
+    //       })
+    //     break
+    //   case 'gallery video':
+    //     FirebaseService.getGalleryVideo()
+    //       .then((querySnapshot) => {
+    //         let listData = []
+    //         querySnapshot.forEach((doc) => {
+    //           listData.push({
+    //             value: doc.id,
+    //             label: 'Photo - ' + doc.data().name,
+    //           })
+    //         })
+    //         dispatch(getAllGalleryVideo(listData))
+    //         setList(listData)
+    //       })
+    //       .catch((error) => {
+    //         console.log('Error getting document:', error)
+    //       })
+    //     break
+    //   case 'maps':
+    //     FirebaseService.getMaps()
+    //       .then((querySnapshot) => {
+    //         let listData = []
+    //         querySnapshot.forEach((doc) => {
+    //           listData.push({
+    //             value: doc.id,
+    //             label: 'Maps - ' + doc.data().label,
+    //           })
+    //         })
+    //         dispatch(getAllMaps(listData))
+    //         setList(listData)
+    //       })
+    //       .catch((error) => {
+    //         console.log('Error getting document:', error)
+    //       })
+    //     break
+    //   case 'chat':
+    //     FirebaseService.getChat()
+    //       .then((querySnapshot) => {
+    //         let listData = []
+    //         querySnapshot.forEach((doc) => {
+    //           listData.push({
+    //             value: doc.id,
+    //             label: 'Chat - ' + doc.data().name,
+    //           })
+    //         })
+    //         dispatch(getAllChat(listData))
+    //         setList(listData)
+    //       })
+    //       .catch((error) => {
+    //         console.log('Error getting document:', error)
+    //       })
+    //     break
+    //   case 'camera':
+    //     break
+    //   case 'phone':
+    //     break
+    //   case 'browser':
+    //     break
+    //   default:
+    //     break
+    // }
+  }
 
   return (
     <Row gutter={16}>
@@ -213,7 +212,7 @@ const GeneralField = (props) => {
           <Form.Item name="stage_id" label="Stage" rules={rules.stage_id}>
             <Select
               showSearch
-              style={{ width: "100%" }}
+              style={{ width: '100%' }}
               placeholder="Type Stage"
               options={stage}
             />
@@ -232,18 +231,18 @@ const GeneralField = (props) => {
             <Select
               placeholder="Type Task"
               showSearch
-              style={{ width: "100%" }}
+              style={{ width: '100%' }}
               onChange={handleChange}
               options={[
-                { value: "social media", label: "Social Media" },
-                { value: "gallery photo", label: "Gallery Photo" },
-                { value: "gallery video", label: "Gallery Video" },
-                { value: "maps", label: "Maps" },
-                { value: "chat", label: "Chat" },
-                { value: "camera", label: "Camera" },
-                { value: "phone", label: "Phone" },
-                { value: "contact", label: "Contact" },
-                { value: "browser", label: "Browser" },
+                { value: 'social media', label: 'Social Media' },
+                { value: 'gallery photo', label: 'Gallery Photo' },
+                { value: 'gallery video', label: 'Gallery Video' },
+                { value: 'maps', label: 'Maps' },
+                { value: 'chat', label: 'Chat' },
+                { value: 'camera', label: 'Camera' },
+                { value: 'phone', label: 'Phone' },
+                { value: 'contact', label: 'Contact' },
+                { value: 'browser', label: 'Browser' },
               ]}
             />
           </Form.Item>
@@ -256,7 +255,7 @@ const GeneralField = (props) => {
             <Select
               placeholder="Type Detail Task"
               showSearch
-              style={{ width: "100%" }}
+              style={{ width: '100%' }}
               options={list}
             />
           </Form.Item>
@@ -304,7 +303,7 @@ const GeneralField = (props) => {
         </Card>
       </Col>
     </Row>
-  );
-};
+  )
+}
 
-export default GeneralField;
+export default GeneralField

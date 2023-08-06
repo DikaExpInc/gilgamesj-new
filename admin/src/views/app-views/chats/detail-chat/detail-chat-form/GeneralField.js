@@ -1,10 +1,9 @@
-import React, { useEffect, useState } from "react";
-import { Input, Row, Col, Card, Form, InputNumber, Switch, Select } from "antd";
+import React, { useEffect, useState } from 'react'
+import { Input, Row, Col, Card, Form, InputNumber, Switch, Select } from 'antd'
 
-import FirebaseService from "services/FirebaseService";
-import { useDispatch } from "react-redux";
-import { getAllDetailChat } from "redux/actions";
-import { useParams } from "react-router-dom/cjs/react-router-dom";
+import { useDispatch } from 'react-redux'
+import { getAllDetailChat } from 'redux/actions'
+import { useParams } from 'react-router-dom/cjs/react-router-dom'
 
 // const { Dragger } = Upload;
 
@@ -12,55 +11,55 @@ const rules = {
   title: [
     {
       required: true,
-      message: "Please fill name",
+      message: 'Please fill name',
     },
   ],
   order: [
     {
       required: true,
-      message: "Please fill order",
+      message: 'Please fill order',
     },
     {
       validator: (_, value) => {
         if (!value || /^[0-9]+$/.test(value)) {
-          return Promise.resolve();
+          return Promise.resolve()
         }
-        return Promise.reject("Please enter numbers only");
+        return Promise.reject('Please enter numbers only')
       },
     },
   ],
   sender: [
     {
       required: true,
-      message: "Please fill sender",
+      message: 'Please fill sender',
     },
   ],
-};
+}
 
 const GeneralField = (props) => {
-  const dispatch = useDispatch();
-  const { chatId } = useParams();
+  const dispatch = useDispatch()
+  const { chatId } = useParams()
 
-  const [chats, setChats] = useState([]);
+  const [chats, setChats] = useState([])
 
   useEffect(() => {
-    FirebaseService.getDetailChat(chatId)
-      .then((querySnapshot) => {
-        let listData = [];
-        querySnapshot.forEach((doc) => {
-          listData.push({
-            label: `chat ${doc.data().order_number} - ${doc.data().title}`,
-            value: doc.id,
-          });
-        });
-        dispatch(getAllDetailChat(listData));
-        setChats(listData);
-      })
-      .catch((error) => {
-        console.log("Error getting document:", error);
-      });
+    // FirebaseService.getDetailChat(chatId)
+    //   .then((querySnapshot) => {
+    //     let listData = []
+    //     querySnapshot.forEach((doc) => {
+    //       listData.push({
+    //         label: `chat ${doc.data().order_number} - ${doc.data().title}`,
+    //         value: doc.id,
+    //       })
+    //     })
+    //     dispatch(getAllDetailChat(listData))
+    //     setChats(listData)
+    //   })
+    //   .catch((error) => {
+    //     console.log('Error getting document:', error)
+    //   })
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [])
 
   return (
     <Row gutter={16}>
@@ -73,7 +72,7 @@ const GeneralField = (props) => {
             <Input placeholder="Chat sender" />
           </Form.Item>
           <Form.Item name="order" label="Chat order" rules={rules.order}>
-            <InputNumber placeholder="Chat sender" style={{ width: "100%" }} />
+            <InputNumber placeholder="Chat sender" style={{ width: '100%' }} />
           </Form.Item>
           <Form.Item name="status" label="Chat Status" rules={rules.status}>
             <Switch checkedChildren="sender" unCheckedChildren="receiver" />
@@ -85,7 +84,7 @@ const GeneralField = (props) => {
           >
             <Select
               showSearch
-              style={{ width: "100%" }}
+              style={{ width: '100%' }}
               placeholder="Type Chat Sibling"
               options={chats}
             />
@@ -97,7 +96,7 @@ const GeneralField = (props) => {
           >
             <Select
               showSearch
-              style={{ width: "100%" }}
+              style={{ width: '100%' }}
               placeholder="Type Chat Family"
               options={chats}
             />
@@ -105,7 +104,7 @@ const GeneralField = (props) => {
         </Card>
       </Col>
     </Row>
-  );
-};
+  )
+}
 
-export default GeneralField;
+export default GeneralField

@@ -1,61 +1,60 @@
-import React, { useEffect, useState } from "react";
-import { Card, Table, Input, Button, Menu, message, Modal } from "antd";
+import React, { useEffect, useState } from 'react'
+import { Card, Table, Input, Button, Menu, message, Modal } from 'antd'
 import {
   EyeOutlined,
   DeleteOutlined,
   SearchOutlined,
   PlusCircleOutlined,
-} from "@ant-design/icons";
-import EllipsisDropdown from "components/shared-components/EllipsisDropdown";
-import Flex from "components/shared-components/Flex";
-import { useHistory } from "react-router-dom";
-import utils from "utils";
-import FirebaseService from "services/FirebaseService";
-import { useDispatch, useSelector } from "react-redux";
-import { getAllGalleryPhoto } from "redux/actions";
-import { ExclamationCircleOutlined } from "@ant-design/icons";
-import { colorPrimary } from "configs/AppConfig";
-import moment from "moment";
+} from '@ant-design/icons'
+import EllipsisDropdown from 'components/shared-components/EllipsisDropdown'
+import Flex from 'components/shared-components/Flex'
+import { useHistory } from 'react-router-dom'
+import utils from 'utils'
+import { useDispatch, useSelector } from 'react-redux'
+import { getAllGalleryPhoto } from 'redux/actions'
+import { ExclamationCircleOutlined } from '@ant-design/icons'
+import { colorPrimary } from 'configs/AppConfig'
+import moment from 'moment'
 
 const GalleryPhotoList = () => {
-  let history = useHistory();
-  const galleryPhotos = useSelector((state) => state.news);
-  const dispatch = useDispatch();
-  const [list, setList] = useState([]);
-  const [selectedRows, setSelectedRows] = useState([]);
-  const [selectedRowKeys, setSelectedRowKeys] = useState([]);
+  let history = useHistory()
+  const galleryPhotos = useSelector((state) => state.news)
+  const dispatch = useDispatch()
+  const [list, setList] = useState([])
+  const [selectedRows, setSelectedRows] = useState([])
+  const [selectedRowKeys, setSelectedRowKeys] = useState([])
 
   useEffect(() => {
-    FirebaseService.getGalleryPhoto()
-      .then((querySnapshot) => {
-        let listData = [];
-        querySnapshot.forEach((doc) => {
-          listData.push({ ...doc.data(), id: doc.id });
-        });
-        dispatch(getAllGalleryPhoto(listData));
-        setList(listData);
-      })
-      .catch((error) => {
-        console.log("Error getting document:", error);
-      });
-  }, []);
+    // FirebaseService.getGalleryPhoto()
+    //   .then((querySnapshot) => {
+    //     let listData = []
+    //     querySnapshot.forEach((doc) => {
+    //       listData.push({ ...doc.data(), id: doc.id })
+    //     })
+    //     dispatch(getAllGalleryPhoto(listData))
+    //     setList(listData)
+    //   })
+    //   .catch((error) => {
+    //     console.log('Error getting document:', error)
+    //   })
+  }, [])
 
   const confirm = (e) => {
     Modal.confirm({
-      title: "Warning",
+      title: 'Warning',
       icon: <ExclamationCircleOutlined />,
-      content: "Are you really wanna delete this data ?",
-      okText: "Delete",
-      cancelText: "Cancel",
+      content: 'Are you really wanna delete this data ?',
+      okText: 'Delete',
+      cancelText: 'Cancel',
       onOk: () => {
-        deleteRow(e);
+        deleteRow(e)
       },
-    });
-  };
+    })
+  }
 
   const cancel = (e) => {
-    message.error("Tidak jadi dihapus");
-  };
+    message.error('Tidak jadi dihapus')
+  }
 
   const dropdownMenu = (row) => (
     <Menu>
@@ -72,75 +71,75 @@ const GalleryPhotoList = () => {
           <span className="ml-2">
             {selectedRows.length > 0
               ? `Delete (${selectedRows.length})`
-              : "Delete"}
+              : 'Delete'}
           </span>
         </Flex>
       </Menu.Item>
     </Menu>
-  );
+  )
 
   const addGalleryPhoto = () => {
-    history.push(`/app/gallery-photos/add-gallery-photo`);
-  };
+    history.push(`/app/gallery-photos/add-gallery-photo`)
+  }
 
   const viewDetails = (row) => {
-    history.push(`/app/gallery-photos/edit-gallery-photo/${row.id}`);
-  };
+    history.push(`/app/gallery-photos/edit-gallery-photo/${row.id}`)
+  }
 
   const deleteRow = (row) => {
-    const objKey = "id";
-    let data = list;
+    const objKey = 'id'
+    let data = list
     if (selectedRows.length > 1) {
       selectedRows.forEach((elm) => {
-        FirebaseService.deleteGalleryPhoto(elm.id);
-        data = utils.deleteArrayRow(data, objKey, elm.id);
-        setList(data);
-        setSelectedRows([]);
-      });
+        // FirebaseService.deleteGalleryPhoto(elm.id)
+        data = utils.deleteArrayRow(data, objKey, elm.id)
+        setList(data)
+        setSelectedRows([])
+      })
     } else {
-      FirebaseService.deleteGalleryPhoto(row.id);
-      data = utils.deleteArrayRow(data, objKey, row.id);
-      setList(data);
+      // FirebaseService.deleteGalleryPhoto(row.id)
+      data = utils.deleteArrayRow(data, objKey, row.id)
+      setList(data)
     }
-  };
+  }
 
   const tableColumns = [
     {
-      title: "Name",
-      dataIndex: "name",
-      sorter: (a, b) => utils.antdTableSorter(a, b, "name"),
+      title: 'Name',
+      dataIndex: 'name',
+      sorter: (a, b) => utils.antdTableSorter(a, b, 'name'),
     },
     {
-      title: "Date",
-      dataIndex: "date",
-      sorter: (a, b) => utils.antdTableSorter(a, b, "date"),
+      title: 'Date',
+      dataIndex: 'date',
+      sorter: (a, b) => utils.antdTableSorter(a, b, 'date'),
       render: (date) => moment.unix(date),
     },
     {
-      title: "",
-      dataIndex: "actions",
+      title: '',
+      dataIndex: 'actions',
       render: (_, elm) => (
         <div className="text-right">
           <EllipsisDropdown menu={dropdownMenu(elm)} />
         </div>
       ),
     },
-  ];
+  ]
 
   const rowSelection = {
     onChange: (key, rows) => {
-      setSelectedRows(rows);
-      setSelectedRowKeys(key);
+      setSelectedRows(rows)
+      setSelectedRowKeys(key)
     },
-  };
+  }
 
   const onSearch = (e) => {
-    const value = e.currentTarget.value;
-    const searchArray = e.currentTarget.value ? list : galleryPhotos;
-    const data = utils.wildCardSearch(searchArray, value);
-    setList(data);
-    setSelectedRowKeys([]);
-  };
+    const value = e.currentTarget.value
+    const searchArray = e.currentTarget.value ? list : galleryPhotos
+    const data = utils.wildCardSearch(searchArray, value)
+    setList(data)
+    setSelectedRowKeys([])
+  }
 
   return (
     <Card>
@@ -159,8 +158,8 @@ const GalleryPhotoList = () => {
             onClick={addGalleryPhoto}
             style={{
               backgroundColor: colorPrimary,
-              color: "white",
-              border: "none",
+              color: 'white',
+              border: 'none',
             }}
             icon={<PlusCircleOutlined />}
             block
@@ -176,14 +175,14 @@ const GalleryPhotoList = () => {
           rowKey="id"
           rowSelection={{
             selectedRowKeys: selectedRowKeys,
-            type: "checkbox",
+            type: 'checkbox',
             preserveSelectedRowKeys: false,
             ...rowSelection,
           }}
         />
       </div>
     </Card>
-  );
-};
+  )
+}
 
-export default GalleryPhotoList;
+export default GalleryPhotoList

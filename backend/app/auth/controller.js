@@ -68,7 +68,7 @@ module.exports = {
 
   addPlayer: async (req, res, next) => {
     try {
-      const { username, player_num } = req.body
+      const { username } = req.body
       const stage = await Stage.findOne({
         $or: [{ order_number: 1 }],
       })
@@ -79,6 +79,12 @@ module.exports = {
           message: 'Stage not found',
         })
       }
+
+      // Hitung jumlah pemain saat ini dalam koleksi "Player"
+      const totalPlayers = await Player.countDocuments()
+
+      // Tambahkan 1 untuk mendapatkan nilai "player_num" baru
+      const player_num = totalPlayers + 1
 
       let player = new Player({
         username: username,

@@ -1,17 +1,18 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose')
 
 let settingSchema = mongoose.Schema(
   {
-    name: {
-      type: String,
-      required: [true, "Name must be filled"],
-    },
     page: {
       type: String,
-      required: [true, "Code must be filled"],
+      required: [true, 'Code must be filled'],
     },
+    stage_id: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Stage',
+    },
+    
   },
   { timestamps: true }
-);
+)
 
-module.exports = mongoose.model("Setting", settingSchema);
+module.exports = mongoose.model('Setting', settingSchema)

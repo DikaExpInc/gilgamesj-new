@@ -7,7 +7,7 @@ let playerSchema = mongoose.Schema(
       required: [true, 'Username must be filled'],
     },
     player_num: {
-      type: String,
+      type: Number,
     },
     time: {
       type: Number,

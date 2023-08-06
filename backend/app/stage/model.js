@@ -1,10 +1,10 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose')
 
 const stageSchema = mongoose.Schema(
   {
     background: {
       type: String,
-      required: [true, "Background must be filled"],
+      required: [true, 'Background must be filled'],
     },
     objective: {
       type: String,
@@ -14,22 +14,22 @@ const stageSchema = mongoose.Schema(
     },
     title: {
       type: String,
-      required: [true, "Title must be filled"],
+      required: [true, 'Title must be filled'],
     },
     description: {
       type: String,
-      required: [true, "Description must be filled"],
+      required: [true, 'Description must be filled'],
     },
     lock_code: {
       type: Number,
     },
     order_number: {
       type: Number,
-      required: [true, "Order number must be filled"],
+      required: [true, 'Order number must be filled'],
     },
     timer: {
       type: Number,
-      required: [true, "Timer must be filled in minutes"],
+      required: [true, 'Timer must be filled in minutes'],
     },
     data_game: {
       camera: [String],
@@ -45,11 +45,26 @@ const stageSchema = mongoose.Schema(
     tasks: [
       {
         type: mongoose.Schema.Types.ObjectId,
-        ref: "Task",
+        ref: 'Task',
       },
     ],
+    players: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Player',
+      },
+    ],
+    is_bonus: {
+      type: String,
+      enum: ['Y', 'N'],
+      default: 'N',
+    },
+    total_player: {
+      type: Number,
+      default: 0,
+    },
   },
   { timestamps: true }
-);
+)
 
-module.exports = mongoose.model("Stage", stageSchema);
+module.exports = mongoose.model('Stage', stageSchema)

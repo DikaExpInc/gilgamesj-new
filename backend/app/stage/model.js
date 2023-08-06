@@ -54,11 +54,6 @@ const stageSchema = mongoose.Schema(
         ref: 'Player',
       },
     ],
-    is_bonus: {
-      type: String,
-      enum: ['Y', 'N'],
-      default: 'N',
-    },
     total_player: {
       type: Number,
       default: 0,

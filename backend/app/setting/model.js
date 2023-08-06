@@ -3,14 +3,17 @@ const mongoose = require('mongoose')
 let settingSchema = mongoose.Schema(
   {
     page: {
+      enum: ['stage', 'light', 'notification', 'bonus'],
+      default: 'stage',
       type: String,
-      required: [true, 'Code must be filled'],
     },
     stage_id: {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'Stage',
     },
-    
+    notification: {
+      type: String,
+    },
   },
   { timestamps: true }
 )

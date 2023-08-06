@@ -43,7 +43,6 @@ module.exports = {
         order_number,
         timer,
         data_game,
-        is_bonus,
         total_player,
       } = req.body
 
@@ -131,7 +130,6 @@ module.exports = {
         order_number,
         timer,
         data_game,
-        is_bonus,
         total_player,
       })
 
@@ -164,7 +162,6 @@ module.exports = {
         order_number,
         timer,
         data_game,
-        is_bonus,
         total_player,
       } = req.body
 
@@ -268,7 +265,6 @@ module.exports = {
       stage.order_number = order_number || stage.order_number
       stage.timer = timer || stage.timer
       stage.data_game = data_game || stage.data_game
-      stage.is_bonus = is_bonus || stage.is_bonus
       stage.total_player = total_player || stage.total_player
 
       // Update background image if provided

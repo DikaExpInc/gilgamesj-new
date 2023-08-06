@@ -7,15 +7,19 @@ export function* signIn() {
   yield takeEvery(SIGNIN, function* ({ payload }) {
     const { email, password } = payload
     try {
-      const user = yield call(JwtAuthService.login, email, password)
-      if (user.message) {
-        yield put(showAuthMessage(user.message))
-      } else {
-        localStorage.setItem(AUTH_TOKEN, user.user.uid)
-        yield put(authenticated(user.user.uid))
-      }
+      const user = yield call(JwtAuthService.login, {
+        email: email,
+        password: password,
+      })
+      localStorage.setItem(AUTH_TOKEN, user.data.token)
+      yield put(authenticated(user.data.token))
     } catch (err) {
-      yield put(showAuthMessage(err))
+      console.log(err)
+      let errorMessage = 'An error occurred.'
+      if (err.response && err.response.data && err.response.data.message) {
+        errorMessage = err.response.data.message
+      }
+      yield put(showAuthMessage(errorMessage))
     }
   })
 }

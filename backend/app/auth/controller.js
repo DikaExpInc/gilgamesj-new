@@ -70,8 +70,8 @@ module.exports = {
     const { email, password } = req.body
     User.findOne({ email: email })
       .then((user) => {
-        if (user.role === 'admin') {
-          if (user) {
+        if (user) {
+          if (user.role === 'admin') {
             const checkPassword = bcrypt.compareSync(password, user.password)
             if (checkPassword) {
               const token = jwt.sign(
@@ -95,12 +95,12 @@ module.exports = {
             }
           } else {
             res.status(403).json({
-              message: 'Email not yet registry',
+              message: 'Account is not admin role',
             })
           }
         } else {
           res.status(403).json({
-            message: 'Account is not admin role',
+            message: 'Email not yet registry',
           })
         }
       })

@@ -14,6 +14,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { getAllNews } from 'redux/actions'
 import { ExclamationCircleOutlined } from '@ant-design/icons'
 import { colorPrimary } from 'configs/AppConfig'
+import newsService from 'services/NewsService'
 
 const NewsList = () => {
   let history = useHistory()
@@ -24,19 +25,20 @@ const NewsList = () => {
   const [selectedRowKeys, setSelectedRowKeys] = useState([])
 
   useEffect(() => {
-    // FirebaseService.getNews()
-    //   .then((querySnapshot) => {
-    //     let listData = []
-    //     querySnapshot.forEach((doc) => {
-    //       listData.push({ ...doc.data(), id: doc.id })
-    //     })
-    //     dispatch(getAllNews(listData))
-    //     setList(listData)
-    //   })
-    //   .catch((error) => {
-    //     console.log('Error getting document:', error)
-    //   })
-  }, [])
+    newsService
+      .getBrowserList()
+      .then((querySnapshot) => {
+        let listData = []
+        querySnapshot.data.forEach((doc) => {
+          listData.push({ ...doc, id: doc.id })
+        })
+        dispatch(getAllNews(listData))
+        setList(listData)
+      })
+      .catch((error) => {
+        console.log('Error getting document:', error)
+      })
+  }, [dispatch])
 
   const confirm = (e) => {
     Modal.confirm({
@@ -48,6 +50,9 @@ const NewsList = () => {
       onOk: () => {
         deleteRow(e)
       },
+      onCancel: () => {
+        cancel(e)
+      },
     })
   }
 
@@ -57,14 +62,14 @@ const NewsList = () => {
 
   const dropdownMenu = (row) => (
     <Menu>
-      <Menu.Item onClick={() => viewDetails(row)}>
+      <Menu.Item key={1} onClick={() => viewDetails(row)}>
         <Flex alignItems="center">
           <EyeOutlined />
           <span className="ml-2">View Details</span>
         </Flex>
       </Menu.Item>
 
-      <Menu.Item key={5} onClick={() => confirm(row)}>
+      <Menu.Item key={2} onClick={() => confirm(row)}>
         <Flex alignItems="center">
           <DeleteOutlined />
           <span className="ml-2">
@@ -82,22 +87,22 @@ const NewsList = () => {
   }
 
   const viewDetails = (row) => {
-    history.push(`/app/news/edit-news/${row.id}`)
+    history.push(`/app/news/edit-news/${row._id}`)
   }
 
   const deleteRow = (row) => {
-    const objKey = 'id'
+    const objKey = '_id'
     let data = list
     if (selectedRows.length > 1) {
       selectedRows.forEach((elm) => {
-        // FirebaseService.deleteNews(elm.id)
-        data = utils.deleteArrayRow(data, objKey, elm.id)
+        newsService.deleteBrowser(elm._id)
+        data = utils.deleteArrayRow(data, objKey, elm._id)
         setList(data)
         setSelectedRows([])
       })
     } else {
-      // FirebaseService.deleteNews(row.id)
-      data = utils.deleteArrayRow(data, objKey, row.id)
+      newsService.deleteBrowser(row._id)
+      data = utils.deleteArrayRow(data, objKey, row._id)
       setList(data)
     }
   }
@@ -170,7 +175,7 @@ const NewsList = () => {
         <Table
           columns={tableColumns}
           dataSource={list}
-          rowKey="id"
+          rowKey="_id"
           rowSelection={{
             selectedRowKeys: selectedRowKeys,
             type: 'checkbox',

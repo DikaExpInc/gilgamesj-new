@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react'
 import PageHeaderAlt from 'components/layout-components/PageHeaderAlt'
-import { Tabs, Form, Button, message, Spin, Row, Col } from 'antd'
+import { Tabs, Form, Button, message, Spin } from 'antd'
 import Flex from 'components/shared-components/Flex'
 import GeneralField from './GeneralField'
 import { createNews, updateNews } from 'redux/actions'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 import newsService from 'services/NewsService'
 
@@ -24,7 +24,6 @@ const NewsForm = (props) => {
 
   let history = useHistory()
   const [form] = Form.useForm()
-  const news = useSelector((state) => state.news)
   const dispatch = useDispatch()
   const [uploadedImg, setImage] = useState('')
   const [imageOriginal, setImageOriginal] = useState('')
@@ -36,21 +35,35 @@ const NewsForm = (props) => {
   useEffect(() => {
     if (mode === EDIT) {
       const { id } = param
-      const costId = parseInt(id)
-      const datas = news.data.filter((data) => data.id === costId)
-      form.setFieldsValue({
-        title: datas[0].attributes.title,
-        description: datas[0].attributes.description,
-        category: datas[0].attributes.category,
+      newsService.getBrowser(id).then((querySnapshot) => {
+        setNewsData({ ...querySnapshot.data, _id: querySnapshot.data._id })
+        form.setFieldsValue({
+          title: querySnapshot.data.title,
+          description: querySnapshot.data.description,
+          category: querySnapshot.data.category,
+        })
+        setImage(querySnapshot.data.image)
+        setLoadingData(false)
       })
-      setImage(datas[0].attributes.image)
-      setLoadingData(false)
     } else {
       setLoadingData(false)
     }
   }, [form, mode, param, props])
 
   const handleUploadChange = (info) => {
+    const isJpgOrPng =
+      info.file.type === 'image/jpeg' || info.file.type === 'image/png'
+    if (!isJpgOrPng) {
+      message.error('You can only upload JPG/PNG file!')
+      return
+    }
+
+    const isLt2M = info.file.size / 1024 / 1024 < 2
+    if (!isLt2M) {
+      message.error('Image must be smaller than 2MB!')
+      return
+    }
+
     setImageOriginal(info.file)
     getBase64(info.file.originFileObj, (imageUrl) => {
       setImage(imageUrl)
@@ -58,91 +71,38 @@ const NewsForm = (props) => {
     })
   }
 
-  const onFinish = () => {
+  const onFinish = async () => {
     setSubmitLoading(true)
-    // form
-    //   .validateFields()
-    //   .then((values) => {
-    //     setTimeout(async () => {
-    //       setSubmitLoading(false);
-    //       if (mode === ADD) {
-    //         const fileName = `images/news/${Date.now()}-${imageOriginal.name}`;
-    //         const fileRef = storage.ref().child(fileName);
-    //         try {
-    //           const designFile = await fileRef.put(imageOriginal.originFileObj);
-    //           const downloadUrl = await designFile.ref.getDownloadURL();
+    try {
+      const values = await form.validateFields()
+      const formData = new FormData()
 
-    //           newsService
-    //             .addBrowser({
-    //               ...values,
-    //               downloadUrl,
-    //               date: Date.now(),
-    //             })
-    //             .then((resp) => {
-    //               dispatch(
-    //                 createNews({ ...values, downloadUrl, date: Date.now() })
-    //               );
-    //               message.success(`Create news with title '${values.title}'`);
-    //               history.push(`/app/news`);
-    //             });
-    //         } catch (e) {
-    //           console.log(e);
-    //         }
-    //       }
-    //       if (mode === EDIT) {
-    //         if (imageOriginal === "") {
-    //           FirebaseService.updateNews(newsData.id, {
-    //             ...values,
-    //             downloadUrl: uploadedImg,
-    //           }).then((resp) => {
-    //             dispatch(
-    //               updateNews({
-    //                 ...values,
-    //                 downloadUrl: uploadedImg,
-    //               })
-    //             );
-    //             message.success(
-    //               `News with title '${values.title}' has updated`
-    //             );
-    //             history.push(`/app/news`);
-    //           });
-    //         } else {
-    //           const fileName = `images/news/${Date.now()}-${
-    //             imageOriginal.name
-    //           }`;
-    //           const fileRef = storage.ref().child(fileName);
-    //           try {
-    //             const designFile = await fileRef.put(
-    //               imageOriginal.originFileObj
-    //             );
-    //             const downloadUrl = await designFile.ref.getDownloadURL();
-    //             FirebaseService.updateNews(newsData.id, {
-    //               ...values,
-    //               downloadUrl,
-    //             }).then((resp) => {
-    //               dispatch(
-    //                 updateNews({
-    //                   ...values,
-    //                   downloadUrl,
-    //                 })
-    //               );
-    //               message.success(
-    //                 `News with title '${values.title}' has updated`
-    //               );
-    //               history.push(`/app/news`);
-    //             });
-    //           } catch (e) {
-    //             console.log(e);
-    //           }
-    //         }
-    //       }
-    //     }, 1500);
-    //   })
-    //   .catch((info) => {
-    //     setSubmitLoading(false);
-    //     console.log("info", info);
-    //     message.error("Please enter all required field ");
-    //   });
+      if (mode === ADD) {
+        formData.append('image', imageOriginal.originFileObj)
+        for (const key in values) {
+          formData.append(key, values[key])
+        }
+
+        const resp = await newsService.addBrowser(formData)
+        dispatch(createNews(resp.data)) // Assuming the API returns the created news data
+        message.success(`Create news with title '${values.title}'`)
+        history.push(`/app/news`)
+      } else if (mode === EDIT) {
+        formData.append('image', imageOriginal.originFileObj)
+        for (const key in values) {
+          formData.append(key, values[key])
+        }
+
+        const resp = await newsService.updateBrowser(newsData.id, formData)
+        dispatch(updateNews(resp.data)) // Assuming the API returns the updated news data
+        message.success(`News with title '${values.title}' has updated`)
+        history.push(`/app/news`)
+      }
+    } catch (error) {
+      setSubmitLoading(false)
+      console.log('Error:', error)
+      message.error('An error occurred. Please try again later.')
+    }
   }
 
   const onDiscard = () => {

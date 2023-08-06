@@ -1,44 +1,31 @@
-import React from "react";
-import { Input, Row, Col, Card, Form, Upload, message } from "antd";
-import { ImageSvg } from "assets/svg/icon";
-import CustomIcon from "components/util-components/CustomIcon";
-import { LoadingOutlined } from "@ant-design/icons";
+import React from 'react'
+import { Input, Row, Col, Card, Form, Upload } from 'antd'
+import { ImageSvg } from 'assets/svg/icon'
+import CustomIcon from 'components/util-components/CustomIcon'
+import { LoadingOutlined } from '@ant-design/icons'
 
-const { Dragger } = Upload;
+const { Dragger } = Upload
 
 const rules = {
   title: [
     {
       required: true,
-      message: "Please fill title",
+      message: 'Please fill title',
     },
   ],
   description: [
     {
       required: true,
-      message: "Please fill description",
+      message: 'Please fill description',
     },
   ],
-};
+}
 
 const imageUploadProps = {
-  name: "file",
-  multiple: true,
-  listType: "picture-card",
+  name: 'file',
+  multiple: false,
   showUploadList: false,
-};
-
-const beforeUpload = (file) => {
-  const isJpgOrPng = file.type === "image/jpeg" || file.type === "image/png";
-  if (!isJpgOrPng) {
-    message.error("You can only upload JPG/PNG file!");
-  }
-  const isLt2M = file.size / 1024 / 1024 < 2;
-  if (!isLt2M) {
-    message.error("Image must smaller than 2MB!");
-  }
-  return isJpgOrPng && isLt2M;
-};
+}
 
 const GeneralField = (props) => (
   <Row gutter={16}>
@@ -60,7 +47,6 @@ const GeneralField = (props) => (
       <Card title="Media">
         <Dragger
           {...imageUploadProps}
-          beforeUpload={beforeUpload}
           onChange={(e) => props.handleUploadChange(e)}
         >
           {props.uploadedImg ? (
@@ -84,6 +70,6 @@ const GeneralField = (props) => (
       </Card>
     </Col>
   </Row>
-);
+)
 
-export default GeneralField;
+export default GeneralField

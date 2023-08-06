@@ -90,12 +90,12 @@ module.exports = {
       const phone = new Phone({
         name: name,
         phone_number: phone_number,
-        profile: `${profileImageFile.filename}.${profileImageFile.originalname
-          .split('.')
-          .pop()}`,
-        audio: `${audioFile.filename}.${audioFile.originalname
-          .split('.')
-          .pop()}`,
+        profile: `public/uploads/phones/${
+          profileImageFile.filename
+        }.${profileImageFile.originalname.split('.').pop()}`,
+        audio: `public/uploads/phones/${
+          audioFile.filename
+        }.${audioFile.originalname.split('.').pop()}`,
       })
 
       await phone.save()
@@ -118,9 +118,13 @@ module.exports = {
     try {
       const { id } = req.params
       const { name, phone_number } = req.body
-      const profileImageFile = req.file
+      const profileImageFile = req.files['profile']
+        ? req.files['profile'][0]
+        : null
+      const audioFile = req.files['audio'] ? req.files['audio'][0] : null
 
       let profileImage = null
+      let audio = null
 
       if (profileImageFile) {
         if (!['image/jpeg', 'image/png'].includes(profileImageFile.mimetype)) {
@@ -134,42 +138,84 @@ module.exports = {
         // Move profile image to the destination folder
         const profileImagePath = path.resolve(
           config.rootPath,
-          `public/uploads/phones/${
+          `public/uploads/contacts/${
             profileImageFile.filename
           }.${profileImageFile.originalname.split('.').pop()}`
         )
         fs.renameSync(profileImageFile.path, profileImagePath)
 
-        profileImage = `${
+        profileImage = `public/uploads/contacts/${
           profileImageFile.filename
         }.${profileImageFile.originalname.split('.').pop()}`
       }
 
-      const phone = await Phone.findById(id)
-      if (!phone) {
-        return res.status(404).json({ error: 1, message: 'Phone not found' })
+      // Cek apakah ada file audio baru yang diunggah
+      if (audioFile) {
+        const audioFile = req.files['audio'][0]
+
+        if (
+          !['audio/mpeg', 'audio/wav', 'audio/mp3'].includes(audioFile.mimetype)
+        ) {
+          return res.status(422).json({
+            error: 1,
+            message:
+              'Invalid audio type. Only MPEG, WAV and MP3 audio are allowed.',
+          })
+        }
+
+        // Move audio file to the destination folder
+        const audioPath = path.resolve(
+          config.rootPath,
+          `public/uploads/contacts/${
+            audioFile.filename
+          }.${audioFile.originalname.split('.').pop()}`
+        )
+        fs.renameSync(audioFile.path, audioPath)
+
+        audio = `public/uploads/contacts/${
+          audioFile.filename
+        }.${audioFile.originalname.split('.').pop()}`
       }
 
-      phone.name = name
-      phone.phone_number = phone_number
+      const contact = await Contact.findById(id)
+      if (!contact) {
+        return res.status(404).json({ error: 1, message: 'Contact not found' })
+      }
+
+      contact.name = name
+      contact.phone_number = phone_number
 
       // Update profile image if provided
       if (profileImage) {
         fs.unlinkSync(
           path.resolve(
             config.rootPath,
-            `public/uploads/phones/${phone.profile}`
+            `public/uploads/contacts/${contact.profile}`
           )
         )
-        phone.profile = profileImage
+        contact.profile = profileImage
       }
 
-      await phone.save()
+      // Update audio if provided
+      if (audio) {
+        // Delete previous audio file if it exists
+        if (contact.audio) {
+          fs.unlinkSync(
+            path.resolve(
+              config.rootPath,
+              `public/uploads/contacts/${contact.audio}`
+            )
+          )
+        }
+        contact.audio = audio
+      }
+
+      await contact.save()
 
       res.status(200).json({
-        message: 'Successfully update phone',
+        message: 'Successfully update contact',
         status: 'success',
-        data: phone,
+        data: contact,
       })
     } catch (err) {
       return res.status(422).json({

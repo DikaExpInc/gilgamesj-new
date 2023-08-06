@@ -3,12 +3,10 @@ import fetch from 'auth/FetchInterceptor'
 const JwtAuthService = {}
 
 JwtAuthService.login = function (data) {
+  console.log(data)
   return fetch({
     url: '/auth/signin',
     method: 'post',
-    headers: {
-      'public-request': 'true',
-    },
     data: data,
   })
 }

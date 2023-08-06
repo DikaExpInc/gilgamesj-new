@@ -66,7 +66,7 @@ module.exports = {
             let browser = new Browser({
               title: title,
               description: description,
-              image: image,
+              image: `public/uploads/browsers/${image}`,
             })
             await browser.save()
 
@@ -151,7 +151,7 @@ module.exports = {
               {
                 title: title,
                 description: description,
-                image: image,
+                image: `public/uploads/browsers/${image}`,
               }
             )
 

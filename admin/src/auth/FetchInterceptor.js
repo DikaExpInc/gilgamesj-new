@@ -1,6 +1,5 @@
 import axios from 'axios'
 import { API_BASE_URL } from 'configs/AppConfig'
-import history from '../history'
 import { AUTH_TOKEN } from 'redux/constants/Auth'
 import { notification } from 'antd'
 
@@ -10,9 +9,7 @@ const service = axios.create({
 })
 
 // Config
-const ENTRY_ROUTE = '/auth/login'
 const TOKEN_PAYLOAD_KEY = 'authorization'
-const PUBLIC_REQUEST_KEY = 'public-request'
 
 // API Request interceptor
 service.interceptors.request.use(
@@ -22,11 +19,6 @@ service.interceptors.request.use(
     if (jwtToken) {
       config.headers[TOKEN_PAYLOAD_KEY] = jwtToken
     }
-
-    // if (!jwtToken && !config.headers[PUBLIC_REQUEST_KEY]) {
-    //   history.push(ENTRY_ROUTE)
-    //   window.location.reload()
-    // }
 
     return config
   },
@@ -53,9 +45,7 @@ service.interceptors.response.use(
     if (error.response.status === 400 || error.response.status === 403) {
       notificationParam.message = 'Authentication Fail'
       notificationParam.description = 'Please login again'
-      //   localStorage.removeItem(AUTH_TOKEN)
-      //   history.push(ENTRY_ROUTE)
-      //   window.location.reload()
+      localStorage.removeItem(AUTH_TOKEN)
     }
 
     if (error.response.status === 404) {
@@ -68,6 +58,10 @@ service.interceptors.response.use(
 
     if (error.response.status === 508) {
       notificationParam.message = 'Time Out'
+    }
+
+    if (error.response.status === 410) {
+      notificationParam.message = 'Deleted'
     }
 
     notification.error(notificationParam)

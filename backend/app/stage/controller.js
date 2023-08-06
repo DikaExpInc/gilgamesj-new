@@ -115,13 +115,13 @@ module.exports = {
 
       // Save the filenames in the MongoDB document
       const stage = new Stage({
-        background: `${
+        background: `uploads/stages/${
           backgroundImageFile.filename
         }.${backgroundImageFile.originalname.split('.').pop()}`,
-        objective: `${
+        objective: `uploads/stages/${
           objectiveImageFile.filename
         }.${objectiveImageFile.originalname.split('.').pop()}`,
-        model: `${modelFile.filename}.${modelFile.originalname
+        model: `uploads/stages/${modelFile.filename}.${modelFile.originalname
           .split('.')
           .pop()}`,
         title,
@@ -191,7 +191,7 @@ module.exports = {
           )
 
           fs.renameSync(backgroundImageFile.path, backgroundImagePath)
-          backgroundImage = `${
+          backgroundImage = `uploads/stages/${
             backgroundImageFile.filename
           }.${backgroundImageFile.originalname.split('.').pop()}`
         }
@@ -217,7 +217,7 @@ module.exports = {
           )
 
           fs.renameSync(objectiveImageFile.path, objectiveImagePath)
-          objectiveImage = `${
+          objectiveImage = `uploads/stages/${
             objectiveImageFile.filename
           }.${objectiveImageFile.originalname.split('.').pop()}`
         }
@@ -245,9 +245,9 @@ module.exports = {
           )
 
           fs.renameSync(modelFileData.path, modelPath)
-          modelFile = `${modelFileData.filename}.${modelFileData.originalname
-            .split('.')
-            .pop()}`
+          modelFile = `uploads/stages/${
+            modelFileData.filename
+          }.${modelFileData.originalname.split('.').pop()}`
         }
       }
 

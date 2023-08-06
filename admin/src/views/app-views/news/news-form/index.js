@@ -7,6 +7,7 @@ import { createNews, updateNews } from 'redux/actions'
 import { useDispatch } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 import newsService from 'services/NewsService'
+import { BASE_URL } from 'configs/AppConfig'
 
 const { TabPane } = Tabs
 
@@ -42,7 +43,7 @@ const NewsForm = (props) => {
           description: querySnapshot.data.description,
           category: querySnapshot.data.category,
         })
-        setImage(querySnapshot.data.image)
+        setImage(`${BASE_URL}${querySnapshot.data.image}`)
         setLoadingData(false)
       })
     } else {
@@ -93,7 +94,7 @@ const NewsForm = (props) => {
           formData.append(key, values[key])
         }
 
-        const resp = await newsService.updateBrowser(newsData.id, formData)
+        const resp = await newsService.updateBrowser(newsData._id, formData)
         dispatch(updateNews(resp.data)) // Assuming the API returns the updated news data
         message.success(`News with title '${values.title}' has updated`)
         history.push(`/app/news`)

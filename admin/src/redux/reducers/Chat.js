@@ -4,37 +4,37 @@ import {
   GET_ALL_CHAT,
   GET_CHAT,
   UPDATE_CHAT,
-} from "../constants/Chat";
+} from '../constants/Chat'
 
-const initialState = { data: [] };
+const initialState = { data: [] }
 
 function chat(chat = initialState, action) {
-  const { type, payload } = action;
+  const { type, payload } = action
   switch (type) {
     case CREATE_CHAT:
-      return [chat, payload];
+      return { ...chat, data: [...chat.data, payload] }
     case GET_ALL_CHAT:
-      return payload;
+      return { data: payload }
     case GET_CHAT:
-      return payload;
+      return payload
     case UPDATE_CHAT:
-      const dataa = chat.map((data) => {
+      const updatedData = chat.data.map((data) => {
         if (data.id === payload.id) {
           return {
             ...data,
             attributes: payload.attributes,
-          };
+          }
         } else {
-          return data;
+          return data
         }
-      });
-      return { ...chat, data: dataa };
+      })
+      return { ...chat, data: updatedData }
     case DELETE_CHAT:
-      const data = chat.data.filter((data) => data.id !== payload.id.data.id);
-      return { ...chat, data };
+      const filteredData = chat.data.filter((data) => data.id !== payload.id)
+      return { ...chat, data: filteredData }
 
     default:
-      return chat;
+      return chat
   }
 }
-export default chat;
+export default chat

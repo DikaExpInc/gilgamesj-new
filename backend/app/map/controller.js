@@ -68,7 +68,7 @@ module.exports = {
               description: description,
               latitude: latitude,
               longitude: longitude,
-              image: `public/uploads/maps/${image}`,
+              image: `uploads/maps/${image}`,
             })
             await map.save()
 
@@ -157,7 +157,7 @@ module.exports = {
                 description: description,
                 latitude: latitude,
                 longitude: longitude,
-                image: `public/uploads/maps/${image}`,
+                image: `uploads/maps/${image}`,
               }
             )
 

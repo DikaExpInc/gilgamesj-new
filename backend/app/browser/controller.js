@@ -66,7 +66,7 @@ module.exports = {
             let browser = new Browser({
               title: title,
               description: description,
-              image: `public/uploads/browsers/${image}`,
+              image: `uploads/browsers/${image}`,
             })
             await browser.save()
 
@@ -151,14 +151,14 @@ module.exports = {
               {
                 title: title,
                 description: description,
-                image: `public/uploads/browsers/${image}`,
+                image: `uploads/browsers/${image}`,
               }
             )
 
             res.status(200).json({
               message: 'Successfully update browser',
               status: 'success',
-              data: [],
+              data: browser,
             })
           } catch (err) {
             if (err && err.name === 'ValidationError') {

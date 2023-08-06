@@ -4,37 +4,36 @@ import {
   GET_ALL_NEWS,
   GET_NEWS,
   UPDATE_NEWS,
-} from "../constants/News";
+} from '../constants/News'
 
-const initialState = { data: [] };
+const initialState = { data: [] }
 
 function news(news = initialState, action) {
-  const { type, payload } = action;
+  const { type, payload } = action
   switch (type) {
     case CREATE_NEWS:
-      return [news, payload];
+      return { ...news, data: [...news.data, payload] }
     case GET_ALL_NEWS:
-      return payload;
+      return { data: payload }
     case GET_NEWS:
-      return payload;
+      return payload
     case UPDATE_NEWS:
-      const dataa = news.map((data) => {
+      const updatedData = news.data.map((data) => {
         if (data.id === payload.id) {
           return {
             ...data,
             attributes: payload.attributes,
-          };
+          }
         } else {
-          return data;
+          return data
         }
-      });
-      return { ...news, data: dataa };
+      })
+      return { ...news, data: updatedData }
     case DELETE_NEWS:
-      const data = news.data.filter((data) => data.id !== payload.id.data.id);
-      return { ...news, data };
-
+      const filteredData = news.data.filter((data) => data.id !== payload.id)
+      return { ...news, data: filteredData }
     default:
-      return news;
+      return news
   }
 }
-export default news;
+export default news

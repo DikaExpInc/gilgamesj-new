@@ -4,6 +4,7 @@ import { env } from './EnvironmentConfig'
 export const APP_NAME = 'Admin Gilgamesj'
 export const API_BASE_URL =
   env.API_ENDPOINT_URL || 'http://localhost:4000/admin/api/v1'
+export const BASE_URL = env.ENDPOINT_URL || 'http://localhost:4000/'
 export const APP_PREFIX_PATH = '/app'
 export const AUTH_PREFIX_PATH = '/auth'
 

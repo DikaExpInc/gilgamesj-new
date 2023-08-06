@@ -92,10 +92,10 @@ module.exports = {
         date: date,
         like: like,
         location: location,
-        profile: `public/uploads/social-medias/${
+        profile: `uploads/social-medias/${
           profileImageFile.filename
         }.${profileImageFile.originalname.split('.').pop()}`,
-        post_image: `public/uploads/social-medias/${
+        post_image: `uploads/social-medias/${
           postImageFile.filename
         }.${postImageFile.originalname.split('.').pop()}`,
       })
@@ -144,7 +144,7 @@ module.exports = {
           )
 
           fs.renameSync(profileFile.path, profileImagePath)
-          profileImage = `public/uploads/social-medias/${
+          profileImage = `uploads/social-medias/${
             profileFile.filename
           }.${profileFile.originalname.split('.').pop()}`
         }
@@ -168,7 +168,7 @@ module.exports = {
           )
 
           fs.renameSync(postImageFile.path, postImagePath)
-          postImage = `public/uploads/social-medias/${
+          postImage = `uploads/social-medias/${
             postImageFile.filename
           }.${postImageFile.originalname.split('.').pop()}`
         }

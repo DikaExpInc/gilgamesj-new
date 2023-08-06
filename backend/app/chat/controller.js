@@ -67,7 +67,7 @@ module.exports = {
       const chat = new Chat({
         name: name,
         contact_number: contact_number,
-        profile: `public/uploads/chats/${
+        profile: `uploads/chats/${
           profileImageFile.filename
         }.${profileImageFile.originalname.split('.').pop()}`,
       })
@@ -114,7 +114,7 @@ module.exports = {
         )
         fs.renameSync(profileImageFile.path, profileImagePath)
 
-        profileImage = `public/uploads/chats/${
+        profileImage = `uploads/chats/${
           profileImageFile.filename
         }.${profileImageFile.originalname.split('.').pop()}`
       }

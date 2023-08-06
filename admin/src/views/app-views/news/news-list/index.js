@@ -18,7 +18,7 @@ import newsService from 'services/NewsService'
 
 const NewsList = () => {
   let history = useHistory()
-  const news = useSelector((state) => state.news)
+  const news = useSelector((state) => state.news.data)
   const dispatch = useDispatch()
   const [list, setList] = useState([])
   const [selectedRows, setSelectedRows] = useState([])

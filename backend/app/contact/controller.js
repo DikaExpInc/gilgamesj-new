@@ -90,12 +90,12 @@ module.exports = {
       const contact = new Contact({
         name: name,
         contact_number: contact_number,
-        profile: `public/uploads/contacts/${
+        profile: `uploads/contacts/${
           profileImageFile.filename
         }.${profileImageFile.originalname.split('.').pop()}`,
-        audio: `public/uploads/contacts/${
-          audioFile.filename
-        }.${audioFile.originalname.split('.').pop()}`,
+        audio: `uploads/contacts/${audioFile.filename}.${audioFile.originalname
+          .split('.')
+          .pop()}`,
       })
 
       await contact.save()
@@ -144,7 +144,7 @@ module.exports = {
         )
         fs.renameSync(profileImageFile.path, profileImagePath)
 
-        profileImage = `public/uploads/contacts/${
+        profileImage = `uploads/contacts/${
           profileImageFile.filename
         }.${profileImageFile.originalname.split('.').pop()}`
       }
@@ -172,9 +172,9 @@ module.exports = {
         )
         fs.renameSync(audioFile.path, audioPath)
 
-        audio = `public/uploads/contacts/${
-          audioFile.filename
-        }.${audioFile.originalname.split('.').pop()}`
+        audio = `uploads/contacts/${audioFile.filename}.${audioFile.originalname
+          .split('.')
+          .pop()}`
       }
 
       const contact = await Contact.findById(id)

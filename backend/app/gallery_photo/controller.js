@@ -66,7 +66,7 @@ module.exports = {
             let galleryPhoto = new GalleryPhoto({
               title: title,
               date: date,
-              image: `public/uploads/gallery-photos/${image}`,
+              image: `uploads/gallery-photos/${image}`,
             })
             await galleryPhoto.save()
 
@@ -151,7 +151,7 @@ module.exports = {
               {
                 title: title,
                 date: date,
-                image: `public/uploads/gallery-photos/${image}`,
+                image: `uploads/gallery-photos/${image}`,
               }
             )
 

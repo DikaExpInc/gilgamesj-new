@@ -4,37 +4,37 @@ import {
   GET_ALL_CAMERA,
   GET_CAMERA,
   UPDATE_CAMERA,
-} from "../constants/Camera";
+} from '../constants/Camera'
 
-const initialState = { data: [] };
+const initialState = { data: [] }
 
 function camera(camera = initialState, action) {
-  const { type, payload } = action;
+  const { type, payload } = action
   switch (type) {
     case CREATE_CAMERA:
-      return [camera, payload];
+      return { ...camera, data: [...camera.data, payload] }
     case GET_ALL_CAMERA:
-      return payload;
+      return { data: payload }
     case GET_CAMERA:
-      return payload;
+      return payload
     case UPDATE_CAMERA:
-      const dataa = camera.map((data) => {
+      const updatedData = camera.data.map((data) => {
         if (data.id === payload.id) {
           return {
             ...data,
             attributes: payload.attributes,
-          };
+          }
         } else {
-          return data;
+          return data
         }
-      });
-      return { ...camera, data: dataa };
+      })
+      return { ...camera, data: updatedData }
     case DELETE_CAMERA:
-      const data = camera.data.filter((data) => data.id !== payload.id.data.id);
-      return { ...camera, data };
+      const filteredData = camera.data.filter((data) => data.id !== payload.id)
+      return { ...camera, data: filteredData }
 
     default:
-      return camera;
+      return camera
   }
 }
-export default camera;
+export default camera

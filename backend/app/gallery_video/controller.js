@@ -66,7 +66,7 @@ module.exports = {
             let galleryVideo = new GalleryVideo({
               title: title,
               date: date,
-              image: `public/uploads/gallery-videos/${image}`,
+              image: `uploads/gallery-videos/${image}`,
             })
             await galleryVideo.save()
 
@@ -151,7 +151,7 @@ module.exports = {
               {
                 title: title,
                 date: date,
-                image: `public/uploads/gallery-videos/${image}`,
+                image: `uploads/gallery-videos/${image}`,
               }
             )
 

@@ -1,42 +1,42 @@
-import fetch from "auth/FetchInterceptor";
+import fetch from 'auth/FetchInterceptor'
 
-const socialMediaService = {};
+const socialMediaService = {}
 
 socialMediaService.getSocialMediaList = function () {
   return fetch({
-    url: "/socialmedia",
-    method: "get",
-  });
-};
+    url: '/socialmedia',
+    method: 'get',
+  })
+}
 
 socialMediaService.addSocialMedia = function (data) {
   return fetch({
-    url: "/socialmedia",
-    method: "post",
+    url: '/socialmedia/create',
+    method: 'post',
     data: data,
-  });
-};
+  })
+}
 
 socialMediaService.getSocialMedia = function (id) {
   return fetch({
-    url: "/socialmedia/" + id,
-    method: "get",
-  });
-};
+    url: '/socialmedia/' + id,
+    method: 'get',
+  })
+}
 
 socialMediaService.deleteSocialMedia = function (id) {
   return fetch({
-    url: "/socialmedia/" + id,
-    method: "delete",
-  });
-};
+    url: '/socialmedia/delete/' + id,
+    method: 'delete',
+  })
+}
 
 socialMediaService.updateSocialMedia = function (id, data) {
   return fetch({
-    url: "/socialmedia/" + id,
-    method: "put",
+    url: '/socialmedia/edit/' + id,
+    method: 'put',
     data: data,
-  });
-};
+  })
+}
 
-export default socialMediaService;
+export default socialMediaService

@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react'
 import {
   Input,
   Row,
@@ -6,76 +6,60 @@ import {
   Card,
   Form,
   Upload,
-  message,
   DatePicker,
   InputNumber,
-} from "antd";
-import { ImageSvg } from "assets/svg/icon";
-import CustomIcon from "components/util-components/CustomIcon";
-import { LoadingOutlined } from "@ant-design/icons";
+} from 'antd'
+import { ImageSvg } from 'assets/svg/icon'
+import CustomIcon from 'components/util-components/CustomIcon'
+import { LoadingOutlined } from '@ant-design/icons'
 
-const { Dragger } = Upload;
+const { Dragger } = Upload
 
 const rules = {
   name: [
     {
       required: true,
-      message: "Please fill name",
+      message: 'Please fill name',
     },
   ],
   description: [
     {
       required: true,
-      message: "Please fill description",
+      message: 'Please fill description',
     },
   ],
   location: [
     {
       required: true,
-      message: "Please fill location",
+      message: 'Please fill location',
     },
   ],
   date: [
     {
       required: true,
-      message: "Please fill date",
+      message: 'Please fill date',
     },
   ],
-};
+}
 
 const imageUploadProps = {
-  name: "media",
+  name: 'media',
   multiple: false,
-  listType: "picture-card",
   showUploadList: false,
-};
+}
 
 const profileImageUploadProps = {
-  name: "profile",
+  name: 'profile',
   multiple: false,
-  listType: "picture-card",
   showUploadList: false,
-};
-
-const beforeUpload = (file) => {
-  const isJpgOrPng = file.type === "image/jpeg" || file.type === "image/png";
-  if (!isJpgOrPng) {
-    message.error("You can only upload JPG/PNG file!");
-  }
-  const isLt2M = file.size / 1024 / 1024 < 2;
-  if (!isLt2M) {
-    message.error("Image must smaller than 2MB!");
-  }
-  return isJpgOrPng && isLt2M;
-};
+}
 
 const GeneralField = (props) => (
   <Row gutter={16}>
     <Col xs={24} sm={24} md={17}>
-      <Card name="Media">
+      <Card name="Media" title="Post Image">
         <Dragger
           {...imageUploadProps}
-          beforeUpload={beforeUpload}
           onChange={(e) => props.handleUploadChange(e)}
         >
           {props.uploadedImg ? (
@@ -118,23 +102,22 @@ const GeneralField = (props) => (
         <Form.Item name="date" label="Social Media Date" rules={rules.date}>
           <DatePicker
             placeholder="Social Medias Date"
-            style={{ width: "100%" }}
+            style={{ width: '100%' }}
           />
         </Form.Item>
         <Form.Item name="like" label="Social Media Like" initialValue={0}>
           <InputNumber
             placeholder="Social Media Like"
-            style={{ width: "100%" }}
+            style={{ width: '100%' }}
             readOnly
           />
         </Form.Item>
       </Card>
     </Col>
     <Col xs={24} sm={24} md={7}>
-      <Card name="Profile">
+      <Card name="Profile" title="Profile">
         <Dragger
           {...profileImageUploadProps}
-          beforeUpload={beforeUpload}
           onChange={(e) => props.handleUploadProfileChange(e)}
         >
           {props.profileUploadImg ? (
@@ -162,6 +145,6 @@ const GeneralField = (props) => (
       </Card>
     </Col>
   </Row>
-);
+)
 
-export default GeneralField;
+export default GeneralField

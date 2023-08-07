@@ -1,42 +1,42 @@
-import fetch from "auth/FetchInterceptor";
+import fetch from 'auth/FetchInterceptor'
 
-const mapService = {};
+const mapService = {}
 
 mapService.getMapList = function () {
   return fetch({
-    url: "/map",
-    method: "get",
-  });
-};
+    url: '/map',
+    method: 'get',
+  })
+}
 
 mapService.addMap = function (data) {
   return fetch({
-    url: "/map",
-    method: "post",
+    url: '/map/create',
+    method: 'post',
     data: data,
-  });
-};
+  })
+}
 
 mapService.getMap = function (id) {
   return fetch({
-    url: "/map/" + id,
-    method: "get",
-  });
-};
+    url: '/map/' + id,
+    method: 'get',
+  })
+}
 
 mapService.deleteMap = function (id) {
   return fetch({
-    url: "/map/" + id,
-    method: "delete",
-  });
-};
+    url: '/map/delete/' + id,
+    method: 'delete',
+  })
+}
 
 mapService.updateMap = function (id, data) {
   return fetch({
-    url: "/map/" + id,
-    method: "put",
+    url: '/map/edit/' + id,
+    method: 'put',
     data: data,
-  });
-};
+  })
+}
 
-export default mapService;
+export default mapService

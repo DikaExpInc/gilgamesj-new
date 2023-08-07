@@ -37,7 +37,7 @@ const NewsForm = (props) => {
     if (mode === EDIT) {
       const { id } = param
       newsService.getBrowser(id).then((querySnapshot) => {
-        setNewsData({ ...querySnapshot.data, _id: querySnapshot.data._id })
+        setNewsData({ ...querySnapshot.data, _id: id })
         form.setFieldsValue({
           title: querySnapshot.data.title,
           description: querySnapshot.data.description,

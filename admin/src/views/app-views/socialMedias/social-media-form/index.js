@@ -6,8 +6,9 @@ import GeneralField from './GeneralField'
 import { createSocialMedia, updateSocialMedia } from 'redux/actions'
 import { useDispatch } from 'react-redux'
 import { useHistory } from 'react-router-dom'
-import { colorPrimary } from 'configs/AppConfig'
+import { BASE_URL, colorPrimary } from 'configs/AppConfig'
 import moment from 'moment'
+import socialMediaService from 'services/SocialMediaService'
 
 const { TabPane } = Tabs
 
@@ -43,27 +44,40 @@ const SocialMediasForm = (props) => {
     if (mode === EDIT) {
       const { id } = param
 
-      // FirebaseService.getSocialMediaDetail(id).then((querySnapshot) => {
-      //   setSocialMediasData({
-      //     ...querySnapshot.data(),
-      //     id: id,
-      //   })
-      //   form.setFieldsValue({
-      //     name: querySnapshot.data().name,
-      //     description: querySnapshot.data().description,
-      //     location: querySnapshot.data().location,
-      //     date: moment.unix(querySnapshot.data().date / 1000),
-      //   })
-      //   setImage(querySnapshot.data().mediaUrl)
-      //   setProfileImage(querySnapshot.data().profileUrl)
-      //   setLoadingData(false)
-      // })
+      socialMediaService.getSocialMedia(id).then((querySnapshot) => {
+        setSocialMediasData({
+          ...querySnapshot.data,
+          _id: id,
+        })
+        form.setFieldsValue({
+          name: querySnapshot.data.name,
+          description: querySnapshot.data.description,
+          location: querySnapshot.data.location,
+          date: moment(querySnapshot.data.date, 'YYYY-MM-DD'),
+        })
+        setImage(`${BASE_URL}${querySnapshot.data.post_image}`)
+        setProfileImage(`${BASE_URL}${querySnapshot.data.profile}`)
+        setLoadingData(false)
+      })
     } else {
       setLoadingData(false)
     }
   }, [form, mode, param, props])
 
   const handleUploadProfileChange = (info) => {
+    const isJpgOrPng =
+      info.file.type === 'image/jpeg' || info.file.type === 'image/png'
+    if (!isJpgOrPng) {
+      message.error('You can only upload JPG/PNG file!')
+      return
+    }
+
+    const isLt2M = info.file.size / 1024 / 1024 < 2
+    if (!isLt2M) {
+      message.error('Image must be smaller than 2MB!')
+      return
+    }
+
     setProfileImageOriginal(info.file)
     getBase64(info.file.originFileObj, (imageUrl) => {
       setProfileImage(imageUrl)
@@ -72,6 +86,19 @@ const SocialMediasForm = (props) => {
   }
 
   const handleUploadChange = (info) => {
+    const isJpgOrPng =
+      info.file.type === 'image/jpeg' || info.file.type === 'image/png'
+    if (!isJpgOrPng) {
+      message.error('You can only upload JPG/PNG file!')
+      return
+    }
+
+    const isLt2M = info.file.size / 1024 / 1024 < 2
+    if (!isLt2M) {
+      message.error('Image must be smaller than 2MB!')
+      return
+    }
+
     setImageOriginal(info.file)
     getBase64(info.file.originFileObj, (imageUrl) => {
       setImage(imageUrl)
@@ -79,133 +106,41 @@ const SocialMediasForm = (props) => {
     })
   }
 
-  const onFinish = () => {
+  const onFinish = async () => {
     setSubmitLoading(true)
-    // form
-    //   .validateFields()
-    //   .then((values) => {
-    //     setTimeout(async () => {
-    //       if (mode === ADD) {
-    //         const fileName = `images/social-medias/medias/${Date.now()}-${
-    //           imageOriginal.name
-    //         }`
-    //         const fileRef = storage.ref().child(fileName)
+    try {
+      const values = await form.validateFields()
+      const formData = new FormData()
 
-    //         const fileProfileName = `images/social-medias/profiles/${Date.now()}-${
-    //           profileImageOriginal.name
-    //         }`
-    //         const fileProfileRef = storage.ref().child(fileProfileName)
-    //         try {
-    //           const mediaFile = await fileRef.put(imageOriginal.originFileObj)
-    //           const mediaUrl = await mediaFile.ref.getDownloadURL()
-
-    //           const profileFile = await fileProfileRef.put(
-    //             profileImageOriginal.originFileObj
-    //           )
-    //           values.date = moment(values.date, 'YYYY-MM-DD').valueOf() / 1000
-    //           const profileUrl = await profileFile.ref.getDownloadURL()
-    //           FirebaseService.addSocialMedia({
-    //             ...values,
-    //             mediaUrl,
-    //             profileUrl,
-    //           }).then((resp) => {
-    //             dispatch(
-    //               createSocialMedia({
-    //                 ...values,
-    //                 mediaUrl,
-    //                 profileUrl,
-    //               })
-    //             )
-    //             message.success(
-    //               `Create socialMedias with name '${values.name}'`
-    //             )
-    //             history.push(`/app/social-medias`)
-    //             setSubmitLoading(false)
-    //           })
-    //         } catch (e) {
-    //           console.log(e)
-    //         }
-    //       }
-    //       if (mode === EDIT) {
-    //         if (imageOriginal === '') {
-    //           values.date = moment(values.date, 'YYYY-MM-DD').valueOf() / 1000
-    //           FirebaseService.updateSocialMedia(socialMediasData.id, {
-    //             ...values,
-    //             mediaUrl: uploadedImg,
-    //             profileUrl: profileImageOriginal,
-    //           }).then((resp) => {
-    //             dispatch(
-    //               updateSocialMedia({
-    //                 ...values,
-    //                 mediaUrl: uploadedImg,
-    //                 profileUrl: profileImageOriginal,
-    //               })
-    //             )
-    //             message.success(
-    //               `SocialMedias with name '${values.name}' has updated`
-    //             )
-    //             setSubmitLoading(false)
-    //             history.push(`/app/social-medias`)
-    //           })
-    //         } else {
-    //           const fileName = `images/social-medias/medias/${Date.now()}-${
-    //             imageOriginal.name
-    //           }`
-    //           const fileRef = storage.ref().child(fileName)
-
-    //           const profileName = `images/social-medias/profiles/${Date.now()}-${
-    //             imageOriginal.name
-    //           }`
-    //           const profileRef = storage.ref().child(profileName)
-    //           try {
-    //             const profileFile = await profileRef.put(
-    //               profileImageOriginal.originFileObj
-    //             )
-    //             const profileUrl = await profileFile.ref.getDownloadURL()
-    //             values.date = moment(values.date, 'YYYY-MM-DD').valueOf() / 1000
-    //             FirebaseService.updateSocialMedia(socialMediasData.id, {
-    //               ...values,
-    //               profileUrl,
-    //             }).then((resp) => {
-    //               dispatch(
-    //                 updateSocialMedia({
-    //                   ...values,
-    //                   profileUrl,
-    //                 })
-    //               )
-    //             })
-
-    //             const designFile = await fileRef.put(
-    //               imageOriginal.originFileObj
-    //             )
-    //             const mediaUrl = await designFile.ref.getDownloadURL()
-    //             FirebaseService.updateSocialMedia(socialMediasData.id, {
-    //               ...values,
-    //               mediaUrl,
-    //             }).then((resp) => {
-    //               dispatch(
-    //                 updateSocialMedia({
-    //                   ...values,
-    //                   mediaUrl,
-    //                 })
-    //               )
-    //               message.success(
-    //                 `SocialMedias with name '${values.name}' has updated`
-    //               )
-    //               setSubmitLoading(false)
-    //               history.push(`/app/social-medias`)
-    //             })
-    //           } catch (e) {
-    //             console.log(e)
-    //           }
-    //         }
-    //       }
-    //     }, 1500)
-    //   })
-    //   .catch((info) => {
-    //     setSubmitLoading(false)
-    //     message.error('Please enter all required field ')
-    //   })
+      if (mode === ADD) {
+        formData.append('profile', profileImageOriginal.originFileObj)
+        formData.append('post_image', imageOriginal.originFileObj)
+        for (const key in values) {
+          formData.append(key, values[key])
+        }
+        const resp = await socialMediaService.addSocialMedia(formData)
+        dispatch(createSocialMedia(resp.data)) // Assuming the API returns the created news data
+        message.success(`Create social media '${values.name}' success`)
+        history.push(`/app/social-medias`)
+      } else if (mode === EDIT) {
+        formData.append('profile', profileImageOriginal.originFileObj)
+        formData.append('post_image', imageOriginal.originFileObj)
+        for (const key in values) {
+          formData.append(key, values[key])
+        }
+        const resp = await socialMediaService.updateSocialMedia(
+          socialMediasData._id,
+          formData
+        )
+        dispatch(updateSocialMedia(resp.data)) // Assuming the API returns the updated news data
+        message.success(`Social Media '${values.title}' has updated`)
+        history.push(`/app/social-medias`)
+      }
+    } catch (error) {
+      setSubmitLoading(false)
+      console.log('Error:', error)
+      message.error('An error occurred. Please try again later.')
+    }
   }
 
   const onDiscard = () => {

@@ -9,34 +9,34 @@ taskService.getTaskList = function () {
   })
 }
 
-// taskService.addTask = function (data) {
-//   return fetch({
-//     url: '/task',
-//     method: 'post',
-//     data: data,
-//   })
-// }
+taskService.addTask = function (data) {
+  return fetch({
+    url: '/task/create',
+    method: 'post',
+    data: data,
+  })
+}
 
-// taskService.getTask = function (id) {
-//   return fetch({
-//     url: '/task/' + id,
-//     method: 'get',
-//   })
-// }
+taskService.getTask = function (id) {
+  return fetch({
+    url: '/task/' + id,
+    method: 'get',
+  })
+}
 
-// taskService.deleteTask = function (id) {
-//   return fetch({
-//     url: '/task/' + id,
-//     method: 'delete',
-//   })
-// }
+taskService.deleteTask = function (id) {
+  return fetch({
+    url: '/task/delete/' + id,
+    method: 'delete',
+  })
+}
 
-// taskService.updateTask = function (id, data) {
-//   return fetch({
-//     url: '/task/' + id,
-//     method: 'put',
-//     data: data,
-//   })
-// }
+taskService.updateTask = function (id, data) {
+  return fetch({
+    url: '/task/edit/' + id,
+    method: 'put',
+    data: data,
+  })
+}
 
 export default taskService

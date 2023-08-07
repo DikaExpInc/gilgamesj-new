@@ -11,7 +11,7 @@ cameraService.getCameraList = function () {
 
 cameraService.addCamera = function (data) {
   return fetch({
-    url: '/camera',
+    url: '/camera/create',
     method: 'post',
     data: data,
   })
@@ -26,14 +26,14 @@ cameraService.getCamera = function (id) {
 
 cameraService.deleteCamera = function (id) {
   return fetch({
-    url: '/camera/' + id,
+    url: '/camera/delete/' + id,
     method: 'delete',
   })
 }
 
 cameraService.updateCamera = function (id, data) {
   return fetch({
-    url: '/camera/' + id,
+    url: '/camera/edit/' + id,
     method: 'put',
     data: data,
   })

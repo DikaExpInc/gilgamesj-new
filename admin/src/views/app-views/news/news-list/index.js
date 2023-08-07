@@ -30,7 +30,7 @@ const NewsList = () => {
       .then((querySnapshot) => {
         let listData = []
         querySnapshot.data.forEach((doc) => {
-          listData.push({ ...doc, id: doc.id })
+          listData.push({ ...doc, id: doc._id })
         })
         dispatch(getAllNews(listData))
         setList(listData)
@@ -57,7 +57,7 @@ const NewsList = () => {
   }
 
   const cancel = (e) => {
-    message.error('Tidak jadi dihapus')
+    message.error('Canceled')
   }
 
   const dropdownMenu = (row) => (

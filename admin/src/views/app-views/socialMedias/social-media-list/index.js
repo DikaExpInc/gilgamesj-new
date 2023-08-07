@@ -15,29 +15,31 @@ import { useDispatch, useSelector } from 'react-redux'
 import { getAllSocialMedia } from 'redux/actions'
 import { ExclamationCircleOutlined } from '@ant-design/icons'
 import { colorPrimary } from 'configs/AppConfig'
+import socialMediaService from 'services/SocialMediaService'
 
 const SocialMediasList = () => {
   let history = useHistory()
-  const news = useSelector((state) => state.news)
+  const social_medias = useSelector((state) => state.social_medias)
   const dispatch = useDispatch()
   const [list, setList] = useState([])
   const [selectedRows, setSelectedRows] = useState([])
   const [selectedRowKeys, setSelectedRowKeys] = useState([])
 
   useEffect(() => {
-    // FirebaseService.getSocialMedia()
-    //   .then((querySnapshot) => {
-    //     let listData = []
-    //     querySnapshot.forEach((doc) => {
-    //       listData.push({ ...doc.data(), id: doc.id })
-    //     })
-    //     dispatch(getAllSocialMedia(listData))
-    //     setList(listData)
-    //   })
-    //   .catch((error) => {
-    //     console.log('Error getting document:', error)
-    //   })
-  }, [])
+    socialMediaService
+      .getSocialMediaList()
+      .then((querySnapshot) => {
+        let listData = []
+        querySnapshot.data.forEach((doc) => {
+          listData.push({ ...doc, id: doc._id })
+        })
+        dispatch(getAllSocialMedia(listData))
+        setList(listData)
+      })
+      .catch((error) => {
+        console.log('Error getting document:', error)
+      })
+  }, [dispatch])
 
   const confirm = (e) => {
     Modal.confirm({
@@ -49,11 +51,14 @@ const SocialMediasList = () => {
       onOk: () => {
         deleteRow(e)
       },
+      onCancel: () => {
+        cancel(e)
+      },
     })
   }
 
   const cancel = (e) => {
-    message.error('Tidak jadi dihapus')
+    message.error('Canceled')
   }
 
   const dropdownMenu = (row) => (
@@ -90,26 +95,26 @@ const SocialMediasList = () => {
   }
 
   const viewDetails = (row) => {
-    history.push(`/app/social-medias/edit-social-media/${row.id}`)
+    history.push(`/app/social-medias/edit-social-media/${row._id}`)
   }
 
   const detailComments = (row) => {
-    history.push(`/app/social-medias/comment/${row.id}`)
+    history.push(`/app/social-medias/comment/${row._id}`)
   }
 
   const deleteRow = (row) => {
-    const objKey = 'id'
+    const objKey = '_id'
     let data = list
     if (selectedRows.length > 1) {
       selectedRows.forEach((elm) => {
-        // FirebaseService.deleteSocialMedia(elm.id)
-        data = utils.deleteArrayRow(data, objKey, elm.id)
+        socialMediaService.deleteSocialMedia(elm._id)
+        data = utils.deleteArrayRow(data, objKey, elm._id)
         setList(data)
         setSelectedRows([])
       })
     } else {
-      // FirebaseService.deleteSocialMedia(row.id)
-      data = utils.deleteArrayRow(data, objKey, row.id)
+      socialMediaService.deleteSocialMedia(row._id)
+      data = utils.deleteArrayRow(data, objKey, row._id)
       setList(data)
     }
   }
@@ -145,7 +150,7 @@ const SocialMediasList = () => {
 
   const onSearch = (e) => {
     const value = e.currentTarget.value
-    const searchArray = e.currentTarget.value ? list : news
+    const searchArray = e.currentTarget.value ? list : social_medias
     const data = utils.wildCardSearch(searchArray, value)
     setList(data)
     setSelectedRowKeys([])

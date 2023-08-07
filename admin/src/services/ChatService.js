@@ -1,42 +1,42 @@
-import fetch from "auth/FetchInterceptor";
+import fetch from 'auth/FetchInterceptor'
 
-const chatService = {};
+const chatService = {}
 
 chatService.getChatList = function () {
   return fetch({
-    url: "/chat",
-    method: "get",
-  });
-};
+    url: '/chat',
+    method: 'get',
+  })
+}
 
 chatService.addChat = function (data) {
   return fetch({
-    url: "/chat",
-    method: "post",
+    url: '/chat/create',
+    method: 'post',
     data: data,
-  });
-};
+  })
+}
 
 chatService.getChat = function (id) {
   return fetch({
-    url: "/chat/" + id,
-    method: "get",
-  });
-};
+    url: '/chat/' + id,
+    method: 'get',
+  })
+}
 
 chatService.deleteChat = function (id) {
   return fetch({
-    url: "/chat/" + id,
-    method: "delete",
-  });
-};
+    url: '/chat/delete/' + id,
+    method: 'delete',
+  })
+}
 
 chatService.updateChat = function (id, data) {
   return fetch({
-    url: "/chat/" + id,
-    method: "put",
+    url: '/chat/edit/' + id,
+    method: 'put',
     data: data,
-  });
-};
+  })
+}
 
-export default chatService;
+export default chatService

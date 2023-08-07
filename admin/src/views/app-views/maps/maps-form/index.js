@@ -6,8 +6,8 @@ import GeneralField from './GeneralField'
 import { createMaps, updateMaps } from 'redux/actions'
 import { useDispatch } from 'react-redux'
 import { useHistory } from 'react-router-dom'
-import { colorPrimary } from 'configs/AppConfig'
-import moment from 'moment'
+import { BASE_URL, colorPrimary } from 'configs/AppConfig'
+import mapService from 'services/MapService'
 
 const { TabPane } = Tabs
 
@@ -36,24 +36,36 @@ const MapsForm = (props) => {
   useEffect(() => {
     if (mode === EDIT) {
       const { id } = param
-
-      // FirebaseService.getMapsDetail(id).then((querySnapshot) => {
-      //   setMapData({ ...querySnapshot.data(), id: querySnapshot.id })
-      //   form.setFieldsValue({
-      //     label: querySnapshot.data().label,
-      //     description: querySnapshot.data().description,
-      //     latitude: querySnapshot.data().latitude,
-      //     longitude: querySnapshot.data().longitude,
-      //   })
-      //   setImage(querySnapshot.data().downloadUrl)
-      //   setLoadingData(false)
-      // })
+      mapService.getMap(id).then((querySnapshot) => {
+        setMapData({ ...querySnapshot.data, _id: id })
+        form.setFieldsValue({
+          title: querySnapshot.data.title,
+          description: querySnapshot.data.description,
+          latitude: querySnapshot.data.latitude,
+          longitude: querySnapshot.data.longitude,
+        })
+        setImage(`${BASE_URL}${querySnapshot.data.image}`)
+        setLoadingData(false)
+      })
     } else {
       setLoadingData(false)
     }
   }, [form, mode, param, props])
 
   const handleUploadChange = (info) => {
+    const isJpgOrPng =
+      info.file.type === 'image/jpeg' || info.file.type === 'image/png'
+    if (!isJpgOrPng) {
+      message.error('You can only upload JPG/PNG file!')
+      return
+    }
+
+    const isLt2M = info.file.size / 1024 / 1024 < 2
+    if (!isLt2M) {
+      message.error('Image must be smaller than 2MB!')
+      return
+    }
+
     setImageOriginal(info.file)
     getBase64(info.file.originFileObj, (imageUrl) => {
       setImage(imageUrl)
@@ -61,91 +73,38 @@ const MapsForm = (props) => {
     })
   }
 
-  const onFinish = () => {
+  const onFinish = async () => {
     setSubmitLoading(true)
-    // form
-    //   .validateFields()
-    //   .then((values) => {
-    //     setTimeout(async () => {
-    //       if (mode === ADD) {
-    //         const fileName = `images/maps/${Date.now()}-${imageOriginal.name}`
-    //         const fileRef = storage.ref().child(fileName)
-    //         try {
-    //           const designFile = await fileRef.put(imageOriginal.originFileObj)
-    //           const downloadUrl = await designFile.ref.getDownloadURL()
-    //           FirebaseService.addMaps({
-    //             ...values,
-    //             downloadUrl,
-    //             date: Date.now(),
-    //           }).then((resp) => {
-    //             dispatch(
-    //               createMaps({
-    //                 ...values,
-    //                 downloadUrl,
-    //                 date: Date.now(),
-    //               })
-    //             )
-    //             message.success(`Create map with title '${values.title}'`)
-    //             setSubmitLoading(false)
-    //             history.push(`/app/maps`)
-    //           })
-    //         } catch (e) {
-    //           console.log(e)
-    //         }
-    //       }
-    //       if (mode === EDIT) {
-    //         if (imageOriginal === '') {
-    //           values.date = moment(values.date, 'YYYY-MM-DD').valueOf() / 1000
-    //           FirebaseService.updateMaps(mapData.id, {
-    //             ...values,
-    //             downloadUrl: uploadedImg,
-    //           }).then((resp) => {
-    //             dispatch(
-    //               updateMaps({
-    //                 ...values,
-    //                 downloadUrl: uploadedImg,
-    //               })
-    //             )
-    //             message.success(`Maps with title '${values.title}' has updated`)
-    //             setSubmitLoading(false)
-    //             history.push(`/app/maps`)
-    //           })
-    //         } else {
-    //           const fileName = `images/maps/${Date.now()}-${imageOriginal.name}`
-    //           const fileRef = storage.ref().child(fileName)
-    //           try {
-    //             const designFile = await fileRef.put(
-    //               imageOriginal.originFileObj
-    //             )
-    //             const downloadUrl = await designFile.ref.getDownloadURL()
-    //             FirebaseService.updateMaps(mapData.id, {
-    //               ...values,
-    //               downloadUrl,
-    //             }).then((resp) => {
-    //               dispatch(
-    //                 updateMaps({
-    //                   ...values,
-    //                   downloadUrl,
-    //                 })
-    //               )
-    //               message.success(
-    //                 `Maps with title '${values.title}' has updated`
-    //               )
-    //               setSubmitLoading(false)
-    //               history.push(`/app/maps`)
-    //             })
-    //           } catch (e) {
-    //             console.log(e)
-    //           }
-    //         }
-    //       }
-    //     }, 1500)
-    //   })
-    //   .catch((info) => {
-    //     setSubmitLoading(false)
-    //     console.log('info', info)
-    //     message.error('Please enter all required field ')
-    //   })
+    try {
+      const values = await form.validateFields()
+      const formData = new FormData()
+
+      if (mode === ADD) {
+        formData.append('image', imageOriginal.originFileObj)
+        for (const key in values) {
+          formData.append(key, values[key])
+        }
+
+        const resp = await mapService.addMap(formData)
+        dispatch(createMaps(resp.data)) // Assuming the API returns the created news data
+        message.success(`Create maps with title '${values.title}'`)
+        history.push(`/app/maps`)
+      } else if (mode === EDIT) {
+        formData.append('image', imageOriginal.originFileObj)
+        for (const key in values) {
+          formData.append(key, values[key])
+        }
+
+        const resp = await mapService.updateMap(mapData._id, formData)
+        dispatch(updateMaps(resp.data)) // Assuming the API returns the updated news data
+        message.success(`Maps with title '${values.title}' has updated`)
+        history.push(`/app/maps`)
+      }
+    } catch (error) {
+      setSubmitLoading(false)
+      console.log('Error:', error)
+      message.error('An error occurred. Please try again later.')
+    }
   }
 
   const onDiscard = () => {

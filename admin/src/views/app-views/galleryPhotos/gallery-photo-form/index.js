@@ -6,8 +6,9 @@ import GeneralField from './GeneralField'
 import { createGalleryPhoto, updateGalleryPhoto } from 'redux/actions'
 import { useDispatch } from 'react-redux'
 import { useHistory } from 'react-router-dom'
-import { colorPrimary } from 'configs/AppConfig'
+import { BASE_URL, colorPrimary } from 'configs/AppConfig'
 import moment from 'moment'
+import galleryPhotoService from 'services/GalleryPhotoService'
 
 const { TabPane } = Tabs
 
@@ -37,21 +38,34 @@ const GalleryPhotoForm = (props) => {
     if (mode === EDIT) {
       const { id } = param
 
-      // FirebaseService.getGalleryPhotoDetail(id).then((querySnapshot) => {
-      //   setGalleryPhotoData({ ...querySnapshot.data(), id: querySnapshot.id })
-      //   form.setFieldsValue({
-      //     name: querySnapshot.data().name,
-      //     date: moment.unix(querySnapshot.data().date),
-      //   })
-      //   setImage(querySnapshot.data().downloadUrl)
-      //   setLoadingData(false)
-      // })
+      galleryPhotoService.getGalleryPhoto(id).then((querySnapshot) => {
+        setGalleryPhotoData({ ...querySnapshot.data, _id: id })
+        form.setFieldsValue({
+          title: querySnapshot.data.title,
+          date: moment(querySnapshot.data.date),
+        })
+        setImage(`${BASE_URL}${querySnapshot.data.image}`)
+        setLoadingData(false)
+      })
     } else {
       setLoadingData(false)
     }
   }, [form, mode, param, props])
 
   const handleUploadChange = (info) => {
+    const isJpgOrPng =
+      info.file.type === 'image/jpeg' || info.file.type === 'image/png'
+    if (!isJpgOrPng) {
+      message.error('You can only upload JPG/PNG file!')
+      return
+    }
+
+    const isLt2M = info.file.size / 1024 / 1024 < 2
+    if (!isLt2M) {
+      message.error('Image must be smaller than 2MB!')
+      return
+    }
+
     setImageOriginal(info.file)
     getBase64(info.file.originFileObj, (imageUrl) => {
       setImage(imageUrl)
@@ -59,99 +73,43 @@ const GalleryPhotoForm = (props) => {
     })
   }
 
-  const onFinish = () => {
+  const onFinish = async () => {
     setSubmitLoading(true)
-    // form
-    //   .validateFields()
-    //   .then((values) => {
-    //     setTimeout(async () => {
-    //       if (mode === ADD) {
-    //         const fileName = `images/galleries/photos/${Date.now()}-${
-    //           imageOriginal.name
-    //         }`
-    //         const fileRef = storage.ref().child(fileName)
-    //         try {
-    //           const designFile = await fileRef.put(imageOriginal.originFileObj)
-    //           const downloadUrl = await designFile.ref.getDownloadURL()
-    //           FirebaseService.addGalleryPhoto({
-    //             ...values,
-    //             downloadUrl,
-    //             date: moment(values.date, 'YYYY-MM-DD').valueOf() / 1000,
-    //           }).then((resp) => {
-    //             dispatch(
-    //               createGalleryPhoto({
-    //                 ...values,
-    //                 downloadUrl,
-    //                 date: moment(values.date, 'YYYY-MM-DD').valueOf() / 1000,
-    //               })
-    //             )
-    //             message.success(
-    //               `Create galleryPhoto with title '${values.title}'`
-    //             )
-    //             setSubmitLoading(false)
-    //             history.push(`/app/gallery-photos`)
-    //           })
-    //         } catch (e) {
-    //           console.log(e)
-    //         }
-    //       }
-    //       if (mode === EDIT) {
-    //         if (imageOriginal === '') {
-    //           values.date = moment(values.date, 'YYYY-MM-DD').valueOf() / 1000
-    //           FirebaseService.updateGalleryPhoto(galleryPhotoData.id, {
-    //             ...values,
-    //             downloadUrl: uploadedImg,
-    //           }).then((resp) => {
-    //             dispatch(
-    //               updateGalleryPhoto({
-    //                 ...values,
-    //                 downloadUrl: uploadedImg,
-    //               })
-    //             )
-    //             message.success(
-    //               `Gallery Photo with title '${values.title}' has updated`
-    //             )
-    //             setSubmitLoading(false)
-    //             history.push(`/app/gallery-photos`)
-    //           })
-    //         } else {
-    //           const fileName = `images/galleries/photos/${Date.now()}-${
-    //             imageOriginal.name
-    //           }`
-    //           const fileRef = storage.ref().child(fileName)
-    //           try {
-    //             const designFile = await fileRef.put(
-    //               imageOriginal.originFileObj
-    //             )
-    //             const downloadUrl = await designFile.ref.getDownloadURL()
-    //             FirebaseService.updateGalleryPhoto(galleryPhotoData.id, {
-    //               ...values,
-    //               downloadUrl,
-    //             }).then((resp) => {
-    //               dispatch(
-    //                 updateGalleryPhoto({
-    //                   ...values,
-    //                   downloadUrl,
-    //                 })
-    //               )
-    //               message.success(
-    //                 `Gallery Photo with title '${values.title}' has updated`
-    //               )
-    //               setSubmitLoading(false)
-    //               history.push(`/app/gallery-photos`)
-    //             })
-    //           } catch (e) {
-    //             console.log(e)
-    //           }
-    //         }
-    //       }
-    //     }, 1500)
-    //   })
-    //   .catch((info) => {
-    //     setSubmitLoading(false)
-    //     console.log('info', info)
-    //     message.error('Please enter all required field ')
-    //   })
+    try {
+      const values = await form.validateFields()
+      const formData = new FormData()
+
+      if (mode === ADD) {
+        formData.append('image', imageOriginal.originFileObj)
+        for (const key in values) {
+          formData.append(key, values[key])
+        }
+
+        const resp = await galleryPhotoService.addGalleryPhoto(formData)
+        dispatch(createGalleryPhoto(resp.data)) // Assuming the API returns the created news data
+        message.success(`Create gallery photo with title '${values.title}'`)
+        history.push(`/app/gallery-photos`)
+      } else if (mode === EDIT) {
+        formData.append('image', imageOriginal.originFileObj)
+        for (const key in values) {
+          formData.append(key, values[key])
+        }
+
+        const resp = await galleryPhotoService.updateGalleryPhoto(
+          galleryPhotoData._id,
+          formData
+        )
+        dispatch(updateGalleryPhoto(resp.data)) // Assuming the API returns the updated news data
+        message.success(
+          `Gallery photo with title '${values.title}' has updated`
+        )
+        history.push(`/app/gallery-photos`)
+      }
+    } catch (error) {
+      setSubmitLoading(false)
+      console.log('Error:', error)
+      message.error('An error occurred. Please try again later.')
+    }
   }
 
   const onDiscard = () => {

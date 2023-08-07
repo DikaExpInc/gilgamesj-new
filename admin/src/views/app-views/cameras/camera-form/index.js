@@ -7,7 +7,7 @@ import { createCamera, updateCamera } from 'redux/actions'
 import { useDispatch } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 import { colorPrimary } from 'configs/AppConfig'
-import moment from 'moment'
+import cameraService from 'services/CameraService'
 
 const { TabPane } = Tabs
 
@@ -28,67 +28,49 @@ const CameraForm = (props) => {
     if (mode === EDIT) {
       const { id } = param
 
-      // FirebaseService.getCameraDetail(id).then((querySnapshot) => {
-      //   setCameraData({ ...querySnapshot.data(), id: querySnapshot.id })
-      //   form.setFieldsValue({
-      //     name: querySnapshot.data().name,
-      //     code: querySnapshot.data().code,
-      //   })
-      //   setLoadingData(false)
-      // })
+      cameraService.getCamera(id).then((querySnapshot) => {
+        setCameraData({ ...querySnapshot.data, _id: id })
+        form.setFieldsValue({
+          name: querySnapshot.data.name,
+          code: querySnapshot.data.code,
+        })
+        setLoadingData(false)
+      })
     } else {
       setLoadingData(false)
     }
   }, [form, mode, param, props])
 
-  const onFinish = () => {
+  const onFinish = async () => {
     setSubmitLoading(true)
-    // form
-    //   .validateFields()
-    //   .then((values) => {
-    //     setTimeout(async () => {
-    //       if (mode === ADD) {
-    //         try {
-    //           FirebaseService.addCamera({
-    //             ...values,
-    //             date: Date.now(),
-    //           }).then((resp) => {
-    //             dispatch(
-    //               createCamera({
-    //                 ...values,
-    //                 date: Date.now(),
-    //               })
-    //             )
-    //             message.success(`Create camera with name '${values.name}'`)
-    //             setSubmitLoading(false)
-    //             history.push(`/app/cameras`)
-    //           })
-    //         } catch (e) {
-    //           console.log(e)
-    //         }
-    //       }
-    //       if (mode === EDIT) {
-    //         values.date = moment(values.date, 'YYYY-MM-DD').valueOf() / 1000
-    //         FirebaseService.updateCamera(cameraData.id, {
-    //           ...values,
-    //         }).then((resp) => {
-    //           dispatch(
-    //             updateCamera({
-    //               ...values,
-    //             })
-    //           )
-    //           message.success(`Camera with name '${values.name}' has updated`)
-    //           setSubmitLoading(false)
-    //           history.push(`/app/cameras`)
-    //         })
-    //       }
-    //     }, 1500)
-    //   })
-    //   .catch((info) => {
-    //     setSubmitLoading(false)
-    //     console.log('info', info)
-    //     message.error('Please enter all required field ')
-    //   })
+    try {
+      const values = await form.validateFields()
+      const formData = new FormData()
+
+      if (mode === ADD) {
+        for (const key in values) {
+          formData.append(key, values[key])
+        }
+
+        const resp = await cameraService.addCamera(formData)
+        dispatch(createCamera(resp.data)) // Assuming the API returns the created news data
+        message.success(`Create camera with name '${values.name}'`)
+        history.push(`/app/cameras`)
+      } else if (mode === EDIT) {
+        for (const key in values) {
+          formData.append(key, values[key])
+        }
+
+        const resp = await cameraService.updateCamera(cameraData._id, formData)
+        dispatch(updateCamera(resp.data)) // Assuming the API returns the updated news data
+        message.success(`Camera with name '${values.name}' has updated`)
+        history.push(`/app/cameras`)
+      }
+    } catch (error) {
+      setSubmitLoading(false)
+      console.log('Error:', error)
+      message.error('An error occurred. Please try again later.')
+    }
   }
 
   const onDiscard = () => {

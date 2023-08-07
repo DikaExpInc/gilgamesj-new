@@ -14,30 +14,31 @@ import { useDispatch, useSelector } from 'react-redux'
 import { getAllPhone } from 'redux/actions'
 import { ExclamationCircleOutlined } from '@ant-design/icons'
 import { colorPrimary } from 'configs/AppConfig'
-import moment from 'moment'
+import phoneService from 'services/PhoneService'
 
 const PhoneList = () => {
   let history = useHistory()
-  const phones = useSelector((state) => state.phones)
+  const phones = useSelector((state) => state.phone.data)
   const dispatch = useDispatch()
   const [list, setList] = useState([])
   const [selectedRows, setSelectedRows] = useState([])
   const [selectedRowKeys, setSelectedRowKeys] = useState([])
 
   useEffect(() => {
-    // FirebaseService.getPhone()
-    //   .then((querySnapshot) => {
-    //     let listData = []
-    //     querySnapshot.forEach((doc) => {
-    //       listData.push({ ...doc.data(), id: doc.id })
-    //     })
-    //     dispatch(getAllPhone(listData))
-    //     setList(listData)
-    //   })
-    //   .catch((error) => {
-    //     console.log('Error getting document:', error)
-    //   })
-  }, [])
+    phoneService
+      .getPhoneList()
+      .then((querySnapshot) => {
+        let listData = []
+        querySnapshot.forEach((doc) => {
+          listData.push({ ...doc, id: doc._id })
+        })
+        dispatch(getAllPhone(listData))
+        setList(listData)
+      })
+      .catch((error) => {
+        console.log('Error getting document:', error)
+      })
+  }, [dispatch])
 
   const confirm = (e) => {
     Modal.confirm({
@@ -49,11 +50,14 @@ const PhoneList = () => {
       onOk: () => {
         deleteRow(e)
       },
+      onCancel: () => {
+        cancel(e)
+      },
     })
   }
 
   const cancel = (e) => {
-    message.error('Tidak jadi dihapus')
+    message.error('Canceled')
   }
 
   const dropdownMenu = (row) => (
@@ -91,14 +95,14 @@ const PhoneList = () => {
     let data = list
     if (selectedRows.length > 1) {
       selectedRows.forEach((elm) => {
-        // FirebaseService.deletePhone(elm.id)
-        data = utils.deleteArrayRow(data, objKey, elm.id)
+        phoneService.deletePhone(elm._id)
+        data = utils.deleteArrayRow(data, objKey, elm._id)
         setList(data)
         setSelectedRows([])
       })
     } else {
-      // FirebaseService.deletePhone(row.id)
-      data = utils.deleteArrayRow(data, objKey, row.id)
+      phoneService.deletePhone(row._id)
+      data = utils.deleteArrayRow(data, objKey, row._id)
       setList(data)
     }
   }
@@ -110,9 +114,9 @@ const PhoneList = () => {
       sorter: (a, b) => utils.antdTableSorter(a, b, 'name'),
     },
     {
-      title: 'Code',
-      dataIndex: 'code',
-      sorter: (a, b) => utils.antdTableSorter(a, b, 'code'),
+      title: 'Phone Number',
+      dataIndex: 'phone_number',
+      sorter: (a, b) => utils.antdTableSorter(a, b, 'phone_number'),
     },
     {
       title: '',

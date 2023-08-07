@@ -14,30 +14,31 @@ import { useDispatch, useSelector } from 'react-redux'
 import { getAllMaps } from 'redux/actions'
 import { ExclamationCircleOutlined } from '@ant-design/icons'
 import { colorPrimary } from 'configs/AppConfig'
-import moment from 'moment'
+import mapService from 'services/MapService'
 
 const MapsList = () => {
   let history = useHistory()
-  const maps = useSelector((state) => state.news)
+  const maps = useSelector((state) => state.maps.data)
   const dispatch = useDispatch()
   const [list, setList] = useState([])
   const [selectedRows, setSelectedRows] = useState([])
   const [selectedRowKeys, setSelectedRowKeys] = useState([])
 
   useEffect(() => {
-    // FirebaseService.getMaps()
-    //   .then((querySnapshot) => {
-    //     let listData = []
-    //     querySnapshot.forEach((doc) => {
-    //       listData.push({ ...doc.data(), id: doc.id })
-    //     })
-    //     dispatch(getAllMaps(listData))
-    //     setList(listData)
-    //   })
-    //   .catch((error) => {
-    //     console.log('Error getting document:', error)
-    //   })
-  }, [])
+    mapService
+      .getMapList()
+      .then((querySnapshot) => {
+        let listData = []
+        querySnapshot.data.forEach((doc) => {
+          listData.push({ ...doc, id: doc._id })
+        })
+        dispatch(getAllMaps(listData))
+        setList(listData)
+      })
+      .catch((error) => {
+        console.log('Error getting document:', error)
+      })
+  }, [dispatch])
 
   const confirm = (e) => {
     Modal.confirm({
@@ -49,11 +50,14 @@ const MapsList = () => {
       onOk: () => {
         deleteRow(e)
       },
+      onCancel: () => {
+        cancel(e)
+      },
     })
   }
 
   const cancel = (e) => {
-    message.error('Tidak jadi dihapus')
+    message.error('Canceled')
   }
 
   const dropdownMenu = (row) => (
@@ -91,23 +95,23 @@ const MapsList = () => {
     let data = list
     if (selectedRows.length > 1) {
       selectedRows.forEach((elm) => {
-        // FirebaseService.deleteMaps(elm.id)
-        data = utils.deleteArrayRow(data, objKey, elm.id)
+        mapService.deleteMap(elm._id)
+        data = utils.deleteArrayRow(data, objKey, elm._id)
         setList(data)
         setSelectedRows([])
       })
     } else {
-      // FirebaseService.deleteMaps(row.id)
-      data = utils.deleteArrayRow(data, objKey, row.id)
+      mapService.deleteMaps(row._id)
+      data = utils.deleteArrayRow(data, objKey, row._id)
       setList(data)
     }
   }
 
   const tableColumns = [
     {
-      title: 'Label',
-      dataIndex: 'label',
-      sorter: (a, b) => utils.antdTableSorter(a, b, 'label'),
+      title: 'Title',
+      dataIndex: 'title',
+      sorter: (a, b) => utils.antdTableSorter(a, b, 'title'),
     },
     {
       title: 'Latitude',

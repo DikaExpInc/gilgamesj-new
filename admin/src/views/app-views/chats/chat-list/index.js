@@ -14,30 +14,31 @@ import { useDispatch, useSelector } from 'react-redux'
 import { getAllChat } from 'redux/actions'
 import { ExclamationCircleOutlined } from '@ant-design/icons'
 import { colorPrimary } from 'configs/AppConfig'
-import moment from 'moment'
+import chatService from 'services/ChatService'
 
 const ChatList = () => {
   let history = useHistory()
-  const chats = useSelector((state) => state.chats)
+  const chats = useSelector((state) => state.chat.data)
   const dispatch = useDispatch()
   const [list, setList] = useState([])
   const [selectedRows, setSelectedRows] = useState([])
   const [selectedRowKeys, setSelectedRowKeys] = useState([])
 
   useEffect(() => {
-    // FirebaseService.getChat()
-    //   .then((querySnapshot) => {
-    //     let listData = [];
-    //     querySnapshot.forEach((doc) => {
-    //       listData.push({ ...doc.data(), id: doc.id });
-    //     });
-    //     dispatch(getAllChat(listData));
-    //     setList(listData);
-    //   })
-    //   .catch((error) => {
-    //     console.log("Error getting document:", error);
-    //   });
-  }, [])
+    chatService
+      .getChatList()
+      .then((querySnapshot) => {
+        let listData = []
+        querySnapshot.data.forEach((doc) => {
+          listData.push({ ...doc, id: doc._id })
+        })
+        dispatch(getAllChat(listData))
+        setList(listData)
+      })
+      .catch((error) => {
+        console.log('Error getting document:', error)
+      })
+  }, [dispatch])
 
   const confirm = (e) => {
     Modal.confirm({
@@ -49,11 +50,14 @@ const ChatList = () => {
       onOk: () => {
         deleteRow(e)
       },
+      onCancel: () => {
+        cancel(e)
+      },
     })
   }
 
   const cancel = (e) => {
-    message.error('Tidak jadi dihapus')
+    message.error('Canceled')
   }
 
   const dropdownMenu = (row) => (
@@ -102,14 +106,14 @@ const ChatList = () => {
     let data = list
     if (selectedRows.length > 1) {
       selectedRows.forEach((elm) => {
-        // FirebaseService.deleteChat(elm.id)
-        data = utils.deleteArrayRow(data, objKey, elm.id)
+        chatService.deleteChat(elm._id)
+        data = utils.deleteArrayRow(data, objKey, elm._id)
         setList(data)
         setSelectedRows([])
       })
     } else {
-      // FirebaseService.deleteChat(row.id)
-      data = utils.deleteArrayRow(data, objKey, row.id)
+      chatService.deleteChat(row._id)
+      data = utils.deleteArrayRow(data, objKey, row._id)
       setList(data)
     }
   }
@@ -122,8 +126,8 @@ const ChatList = () => {
     },
     {
       title: 'Contact',
-      dataIndex: 'contact',
-      sorter: (a, b) => utils.antdTableSorter(a, b, 'contact'),
+      dataIndex: 'contact_number',
+      sorter: (a, b) => utils.antdTableSorter(a, b, 'contact_number'),
     },
     {
       title: '',
@@ -182,7 +186,7 @@ const ChatList = () => {
         <Table
           columns={tableColumns}
           dataSource={list}
-          rowKey="id"
+          rowKey="_id"
           rowSelection={{
             selectedRowKeys: selectedRowKeys,
             type: 'checkbox',

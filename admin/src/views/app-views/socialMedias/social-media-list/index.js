@@ -19,7 +19,7 @@ import socialMediaService from 'services/SocialMediaService'
 
 const SocialMediasList = () => {
   let history = useHistory()
-  const social_medias = useSelector((state) => state.social_medias)
+  const social_medias = useSelector((state) => state.socialMedia.data)
   const dispatch = useDispatch()
   const [list, setList] = useState([])
   const [selectedRows, setSelectedRows] = useState([])
@@ -187,7 +187,7 @@ const SocialMediasList = () => {
         <Table
           columns={tableColumns}
           dataSource={list}
-          rowKey="id"
+          rowKey="_id"
           rowSelection={{
             selectedRowKeys: selectedRowKeys,
             type: 'checkbox',

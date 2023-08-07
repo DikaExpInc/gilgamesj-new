@@ -10,35 +10,35 @@ import EllipsisDropdown from 'components/shared-components/EllipsisDropdown'
 import Flex from 'components/shared-components/Flex'
 import { useHistory } from 'react-router-dom'
 import utils from 'utils'
-// import FirebaseService from "services/FirebaseService";
 import { useDispatch, useSelector } from 'react-redux'
 import { getAllCamera } from 'redux/actions'
 import { ExclamationCircleOutlined } from '@ant-design/icons'
 import { colorPrimary } from 'configs/AppConfig'
-import moment from 'moment'
+import cameraService from 'services/CameraService'
 
 const CameraList = () => {
   let history = useHistory()
-  const cameras = useSelector((state) => state.cameras)
+  const cameras = useSelector((state) => state.camera.data)
   const dispatch = useDispatch()
   const [list, setList] = useState([])
   const [selectedRows, setSelectedRows] = useState([])
   const [selectedRowKeys, setSelectedRowKeys] = useState([])
 
   useEffect(() => {
-    // FirebaseService.getCamera()
-    //   .then((querySnapshot) => {
-    //     let listData = []
-    //     querySnapshot.forEach((doc) => {
-    //       listData.push({ ...doc.data(), id: doc.id })
-    //     })
-    //     dispatch(getAllCamera(listData))
-    //     setList(listData)
-    //   })
-    //   .catch((error) => {
-    //     console.log('Error getting document:', error)
-    //   })
-  }, [])
+    cameraService
+      .getCameraList()
+      .then((querySnapshot) => {
+        let listData = []
+        querySnapshot.data.forEach((doc) => {
+          listData.push({ ...doc, id: doc._id })
+        })
+        dispatch(getAllCamera(listData))
+        setList(listData)
+      })
+      .catch((error) => {
+        console.log('Error getting document:', error)
+      })
+  }, [dispatch])
 
   const confirm = (e) => {
     Modal.confirm({
@@ -50,11 +50,14 @@ const CameraList = () => {
       onOk: () => {
         deleteRow(e)
       },
+      onCancel: () => {
+        cancel(e)
+      },
     })
   }
 
   const cancel = (e) => {
-    message.error('Tidak jadi dihapus')
+    message.error('Canceled')
   }
 
   const dropdownMenu = (row) => (
@@ -92,14 +95,14 @@ const CameraList = () => {
     let data = list
     if (selectedRows.length > 1) {
       selectedRows.forEach((elm) => {
-        // FirebaseService.deleteCamera(elm.id)
-        data = utils.deleteArrayRow(data, objKey, elm.id)
+        cameraService.deleteCamera(elm._id)
+        data = utils.deleteArrayRow(data, objKey, elm._id)
         setList(data)
         setSelectedRows([])
       })
     } else {
-      // FirebaseService.deleteCamera(row.id)
-      data = utils.deleteArrayRow(data, objKey, row.id)
+      cameraService.deleteCamera(row._id)
+      data = utils.deleteArrayRow(data, objKey, row._id)
       setList(data)
     }
   }

@@ -6,8 +6,8 @@ import GeneralField from './GeneralField'
 import { createChat, updateChat } from 'redux/actions'
 import { useDispatch } from 'react-redux'
 import { useHistory } from 'react-router-dom'
-import { colorPrimary } from 'configs/AppConfig'
-import moment from 'moment'
+import { BASE_URL, colorPrimary } from 'configs/AppConfig'
+import chatService from 'services/ChatService'
 
 const { TabPane } = Tabs
 
@@ -36,16 +36,16 @@ const ChatForm = (props) => {
   useEffect(() => {
     if (mode === EDIT) {
       const { id } = param
-
-      // FirebaseService.getChatDetail(id).then((querySnapshot) => {
-      //   setChatData({ ...querySnapshot.data(), id: querySnapshot.id })
-      //   form.setFieldsValue({
-      //     title: querySnapshot.data().title,
-      //     date: moment.unix(querySnapshot.data().date),
-      //   })
-      //   setImage(querySnapshot.data().downloadUrl)
-      //   setLoadingData(false)
-      // })
+      chatService.getChat(id).then((querySnapshot) => {
+        setChatData({ ...querySnapshot.data, _id: id })
+        form.setFieldsValue({
+          name: querySnapshot.data.name,
+          contact_number: querySnapshot.data.contact_number,
+          profile: querySnapshot.data.profile,
+        })
+        setImage(`${BASE_URL}${querySnapshot.data.profile}`)
+        setLoadingData(false)
+      })
     } else {
       setLoadingData(false)
     }
@@ -59,93 +59,38 @@ const ChatForm = (props) => {
     })
   }
 
-  const onFinish = () => {
+  const onFinish = async () => {
     setSubmitLoading(true)
-    // form
-    //   .validateFields()
-    //   .then((values) => {
-    //     setTimeout(async () => {
-    //       if (mode === ADD) {
-    //         const fileName = `images/chats/${Date.now()}-${imageOriginal.name}`;
-    //         const fileRef = storage.ref().child(fileName);
-    //         try {
-    //           const designFile = await fileRef.put(imageOriginal.originFileObj);
-    //           const downloadUrl = await designFile.ref.getDownloadURL();
-    //           FirebaseService.addChat({
-    //             ...values,
-    //             downloadUrl,
-    //             date: Date.now(),
-    //           }).then((resp) => {
-    //             dispatch(
-    //               createChat({
-    //                 ...values,
-    //                 downloadUrl,
-    //                 date: Date.now(),
-    //               })
-    //             );
-    //             message.success(`Create chat with name '${values.name}'`);
-    //             setSubmitLoading(false);
-    //             history.push(`/app/chats`);
-    //           });
-    //         } catch (e) {
-    //           console.log(e);
-    //         }
-    //       }
-    //       if (mode === EDIT) {
-    //         if (imageOriginal === "") {
-    //           values.date = moment(values.date, "YYYY-MM-DD").valueOf() / 1000;
-    //           FirebaseService.updateChat(chatData.id, {
-    //             ...values,
-    //             downloadUrl: uploadedImg,
-    //           }).then((resp) => {
-    //             dispatch(
-    //               updateChat({
-    //                 ...values,
-    //                 downloadUrl: uploadedImg,
-    //               })
-    //             );
-    //             message.success(`Chat with name '${values.name}' has updated`);
-    //             setSubmitLoading(false);
-    //             history.push(`/app/chats`);
-    //           });
-    //         } else {
-    //           const fileName = `images/chats/${Date.now()}-${
-    //             imageOriginal.name
-    //           }`;
-    //           const fileRef = storage.ref().child(fileName);
-    //           try {
-    //             const designFile = await fileRef.put(
-    //               imageOriginal.originFileObj
-    //             );
-    //             const downloadUrl = await designFile.ref.getDownloadURL();
-    //             FirebaseService.updateChat(chatData.id, {
-    //               ...values,
-    //               downloadUrl,
-    //             }).then((resp) => {
-    //               dispatch(
-    //                 updateChat({
-    //                   ...values,
-    //                   downloadUrl,
-    //                 })
-    //               );
-    //               message.success(
-    //                 `Chat with name '${values.name}' has updated`
-    //               );
-    //               setSubmitLoading(false);
-    //               history.push(`/app/chats`);
-    //             });
-    //           } catch (e) {
-    //             console.log(e);
-    //           }
-    //         }
-    //       }
-    //     }, 1500);
-    //   })
-    //   .catch((info) => {
-    //     setSubmitLoading(false);
-    //     console.log("info", info);
-    //     message.error("Please enter all required field ");
-    //   });
+    try {
+      const values = await form.validateFields()
+      const formData = new FormData()
+
+      if (mode === ADD) {
+        formData.append('profile', imageOriginal.originFileObj)
+        for (const key in values) {
+          formData.append(key, values[key])
+        }
+
+        const resp = await chatService.addChat(formData)
+        dispatch(createChat(resp.data)) // Assuming the API returns the created news data
+        message.success(`Create chat with name '${values.name}'`)
+        history.push(`/app/chats`)
+      } else if (mode === EDIT) {
+        formData.append('profile', imageOriginal.originFileObj)
+        for (const key in values) {
+          formData.append(key, values[key])
+        }
+
+        const resp = await chatService.updateChat(chatData._id, formData)
+        dispatch(updateChat(resp.data)) // Assuming the API returns the updated news data
+        message.success(`Chat with name '${values.title}' has updated`)
+        history.push(`/app/chats`)
+      }
+    } catch (error) {
+      setSubmitLoading(false)
+      console.log('Error:', error)
+      message.error('An error occurred. Please try again later.')
+    }
   }
 
   const onDiscard = () => {

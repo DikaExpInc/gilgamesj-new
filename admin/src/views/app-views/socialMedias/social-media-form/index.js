@@ -53,7 +53,7 @@ const SocialMediasForm = (props) => {
           name: querySnapshot.data.name,
           description: querySnapshot.data.description,
           location: querySnapshot.data.location,
-          date: moment(querySnapshot.data.date, 'YYYY-MM-DD'),
+          date: moment(querySnapshot.data.date),
         })
         setImage(`${BASE_URL}${querySnapshot.data.post_image}`)
         setProfileImage(`${BASE_URL}${querySnapshot.data.profile}`)

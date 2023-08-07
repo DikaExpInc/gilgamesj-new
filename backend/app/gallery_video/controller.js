@@ -37,67 +37,74 @@ module.exports = {
   actionCreate: async (req, res) => {
     try {
       const { title, date } = req.body
-      if (req.file) {
-        if (!['image/jpeg', 'image/png'].includes(req.file.mimetype)) {
-          return res.status(422).json({
-            error: 1,
-            message: 'Invalid file type. Only JPEG and PNG images are allowed.',
-          })
-        }
 
-        let tmp_path = req.file.path
-        let originaExt =
-          req.file.originalname.split('.')[
-            req.file.originalname.split('.').length - 1
-          ]
-        let image = req.file.filename + '.' + originaExt
-        let target_path = path.resolve(
-          config.rootPath,
-          `public/uploads/gallery-videos/${image}`
-        )
+      const thumbnailFile = req.files['thumbnail']
+        ? req.files['thumbnail'][0]
+        : null
+      const videoFile = req.files['video'] ? req.files['video'][0] : null
 
-        const src = fs.createReadStream(tmp_path)
-        const dest = fs.createWriteStream(target_path)
-
-        src.pipe(dest)
-
-        src.on('end', async () => {
-          try {
-            let galleryVideo = new GalleryVideo({
-              title: title,
-              date: date,
-              image: `uploads/gallery-videos/${image}`,
-            })
-            await galleryVideo.save()
-
-            res.status(201).json({
-              message: 'Successfully create galleryVideo',
-              status: 'success',
-              data: galleryVideo,
-            })
-          } catch (err) {
-            if (err && err.name === 'ValidationError') {
-              return res.status(422).json({
-                error: 1,
-                message: err.message,
-                fields: err.errors,
-              })
-            }
-          }
-        })
-      } else {
-        let galleryVideo = new GalleryVideo({
-          title: title,
-          date: date,
-        })
-        await galleryVideo.save()
-
-        res.status(201).json({
-          message: 'Successfully create galleryVideo',
-          status: 'success',
-          data: galleryVideo,
+      if (!thumbnailFile || !videoFile) {
+        return res.status(422).json({
+          error: 1,
+          message: 'Thumbnail and video files are required.',
         })
       }
+
+      if (!['image/jpeg', 'image/png'].includes(thumbnailFile.mimetype)) {
+        return res.status(422).json({
+          error: 1,
+          message:
+            'Invalid thumbnail image type. Only JPEG and PNG images are allowed.',
+        })
+      }
+
+      if (
+        !['video/mp4', 'video/mpeg', 'video/webm'].includes(videoFile.mimetype)
+      ) {
+        return res.status(422).json({
+          error: 1,
+          message:
+            'Invalid video type. Only MP4, MPEG and WEBM images are allowed.',
+        })
+      }
+
+      // Move thumbnail image to the destination folder
+      const thumbnailPath = path.resolve(
+        config.rootPath,
+        `public/uploads/gallery-videos/${
+          thumbnailFile.filename
+        }.${thumbnailFile.originalname.split('.').pop()}`
+      )
+      fs.renameSync(thumbnailFile.path, thumbnailPath)
+
+      // Move video image to the destination folder
+      const videoPath = path.resolve(
+        config.rootPath,
+        `public/uploads/gallery-videos/${
+          videoFile.filename
+        }.${videoFile.originalname.split('.').pop()}`
+      )
+      fs.renameSync(videoFile.path, videoPath)
+
+      // Save the filenames in the MongoDB document
+      const galleryVideo = new GalleryVideo({
+        thumbnail: `uploads/gallery-videos/${
+          thumbnailFile.filename
+        }.${thumbnailFile.originalname.split('.').pop()}`,
+        video: `uploads/gallery-videos/${
+          videoFile.filename
+        }.${videoFile.originalname.split('.').pop()}`,
+        title,
+        date,
+      })
+
+      await galleryVideo.save()
+
+      res.status(201).json({
+        message: 'Successfully create gallery video',
+        status: 'success',
+        data: galleryVideo,
+      })
     } catch (err) {
       return res.status(422).json({
         error: 1,
@@ -112,80 +119,102 @@ module.exports = {
       const { id } = req.params
       const { title, date } = req.body
 
-      if (req.file) {
-        if (!['image/jpeg', 'image/png'].includes(req.file.mimetype)) {
-          return res.status(422).json({
-            error: 1,
-            message: 'Invalid file type. Only JPEG and PNG images are allowed.',
-          })
-        }
-        let tmp_path = req.file.path
-        let originaExt =
-          req.file.originalname.split('.')[
-            req.file.originalname.split('.').length - 1
-          ]
-        let image = req.file.filename + '.' + originaExt
-        let target_path = path.resolve(
-          config.rootPath,
-          `public/uploads/gallery-videos/${image}`
-        )
+      let thumbnail = null
+      let video = null
 
-        const src = fs.createReadStream(tmp_path)
-        const dest = fs.createWriteStream(target_path)
+      if (req.files) {
+        if (req.files['thumbnail']) {
+          const thumbnailFile = req.files['thumbnail'][0]
 
-        src.pipe(dest)
-
-        src.on('end', async () => {
-          try {
-            const galleryVideo = await GalleryVideo.findOne({ _id: id })
-
-            let currentImage = `${config.rootPath}/public/uploads/gallery-videos/${galleryVideo.image}`
-            if (fs.existsSync(currentImage)) {
-              fs.unlinkSync(currentImage)
-            }
-
-            await GalleryVideo.findOneAndUpdate(
-              {
-                _id: id,
-              },
-              {
-                title: title,
-                date: date,
-                image: `uploads/gallery-videos/${image}`,
-              }
-            )
-
-            res.status(200).json({
-              message: 'Successfully update galleryVideo',
-              status: 'success',
-              data: [],
+          if (!['image/jpeg', 'image/png'].includes(thumbnailFile.mimetype)) {
+            return res.status(422).json({
+              error: 1,
+              message:
+                'Invalid thumbnail image type. Only JPEG and PNG images are allowed.',
             })
-          } catch (err) {
-            if (err && err.name === 'ValidationError') {
-              return res.status(422).json({
-                error: 1,
-                message: err.message,
-                fields: err.errors,
-              })
-            }
           }
-        })
-      } else {
-        await GalleryVideo.findOneAndUpdate(
-          {
-            _id: id,
-          },
-          {
-            title: title,
-            date: date,
+
+          const thumbnailPath = path.resolve(
+            config.rootPath,
+            `public/uploads/gallery-videos/${
+              thumbnailFile.filename
+            }.${thumbnailFile.originalname.split('.').pop()}`
+          )
+
+          fs.renameSync(thumbnailFile.path, thumbnailPath)
+          thumbnail = `uploads/gallery-videos/${
+            thumbnailFile.filename
+          }.${thumbnailFile.originalname.split('.').pop()}`
+        }
+
+        if (req.files['video']) {
+          const videoFile = req.files['video'][0]
+
+          if (
+            !['video/mp4', 'video/mpeg', 'video/webm'].includes(
+              videoFile.mimetype
+            )
+          ) {
+            return res.status(422).json({
+              error: 1,
+              message:
+                'Invalid video image type. Only JPEG and PNG images are allowed.',
+            })
           }
-        )
-        res.status(200).json({
-          message: 'Successfully update galleryVideo',
-          status: 'success',
-          data: [],
-        })
+
+          const videoPath = path.resolve(
+            config.rootPath,
+            `public/uploads/gallery-videos/${
+              videoFile.filename
+            }.${videoFile.originalname.split('.').pop()}`
+          )
+
+          fs.renameSync(videoFile.path, videoPath)
+          video = `uploads/gallery-videos/${
+            videoFile.filename
+          }.${videoFile.originalname.split('.').pop()}`
+        }
       }
+
+      const galleryVideo = await GalleryVideo.findById(id)
+      if (!galleryVideo) {
+        return res.status(404).json({ error: 1, message: 'Gallery not found' })
+      }
+
+      galleryVideo.thumbnail = thumbnail || galleryVideo.thumbnail
+      galleryVideo.video = video || galleryVideo.video
+      galleryVideo.title = title || galleryVideo.title
+      galleryVideo.date = date || galleryVideo.date
+
+      // Update thumbnail image if provided
+      if (thumbnail) {
+        fs.unlinkSync(
+          path.resolve(
+            config.rootPath,
+            `public/uploads/gallery-videos/${galleryVideo.thumbnail}`
+          )
+        )
+        galleryVideo.thumbnail = thumbnail
+      }
+
+      // Update video image if provided
+      if (video) {
+        fs.unlinkSync(
+          path.resolve(
+            config.rootPath,
+            `public/uploads/gallery-videos/${galleryVideo.video}`
+          )
+        )
+        galleryVideo.video = video
+      }
+
+      await galleryVideo.save()
+
+      res.status(200).json({
+        message: 'Successfully update gallery video',
+        status: 'success',
+        data: galleryVideo,
+      })
     } catch (err) {
       return res.status(422).json({
         error: 1,

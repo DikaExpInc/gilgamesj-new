@@ -3,11 +3,12 @@ import PageHeaderAlt from 'components/layout-components/PageHeaderAlt'
 import { Tabs, Form, Button, message, Spin } from 'antd'
 import Flex from 'components/shared-components/Flex'
 import GeneralField from './GeneralField'
-import { createPhone, updatePhone } from 'redux/actions'
+import { createNews, createPhone, updatePhone } from 'redux/actions'
 import { useDispatch } from 'react-redux'
 import { useHistory } from 'react-router-dom'
-import { colorPrimary } from 'configs/AppConfig'
+import { BASE_URL, colorPrimary } from 'configs/AppConfig'
 import moment from 'moment'
+import phoneService from 'services/PhoneService'
 
 const { TabPane } = Tabs
 
@@ -39,17 +40,16 @@ const PhoneForm = (props) => {
   useEffect(() => {
     if (mode === EDIT) {
       const { id } = param
-
-      // FirebaseService.getPhoneDetail(id).then((querySnapshot) => {
-      //   setPhoneData({ ...querySnapshot.data(), id: querySnapshot.id })
-      //   form.setFieldsValue({
-      //     name: querySnapshot.data().name,
-      //     code: querySnapshot.data().code,
-      //   })
-      //   setImage(querySnapshot.data().profileUrl)
-      //   setAudio(querySnapshot.data().audioUrl)
-      //   setLoadingData(false)
-      // })
+      phoneService.getPhone(id).then((querySnapshot) => {
+        setPhoneData({ ...querySnapshot.data, _id: id })
+        form.setFieldsValue({
+          name: querySnapshot.data.name,
+          phone_number: querySnapshot.data.phone_number,
+        })
+        setImage(`${BASE_URL}${querySnapshot.data.profile}`)
+        setAudio(`${BASE_URL}${querySnapshot.data.audio}`)
+        setLoadingData(false)
+      })
     } else {
       setLoadingData(false)
     }
@@ -71,116 +71,39 @@ const PhoneForm = (props) => {
     })
   }
 
-  const onFinish = () => {
+  const onFinish = async () => {
     setSubmitLoading(true)
-    // form
-    //   .validateFields()
-    //   .then((values) => {
-    //     setTimeout(async () => {
-    //       if (mode === ADD) {
-    //         const fileName = `images/phones/${Date.now()}-${imageOriginal.name}`
-    //         const fileRef = storage.ref().child(fileName)
-    //         const audioFileName = `audios/phones/${Date.now()}-${
-    //           audioOriginal.name
-    //         }`
-    //         const audioFileRef = storage.ref().child(audioFileName)
-    //         try {
-    //           const designFile = await fileRef.put(imageOriginal.originFileObj)
-    //           const profileUrl = await designFile.ref.getDownloadURL()
-    //           const audioFile = await audioFileRef.put(
-    //             audioOriginal.originFileObj
-    //           )
-    //           const audioUrl = await audioFile.ref.getDownloadURL()
-    //           FirebaseService.addPhone({
-    //             ...values,
-    //             profileUrl,
-    //             audioUrl,
-    //             date: Date.now(),
-    //           }).then((resp) => {
-    //             dispatch(
-    //               createPhone({
-    //                 ...values,
-    //                 profileUrl,
-    //                 audioUrl,
-    //                 date: Date.now(),
-    //               })
-    //             )
-    //             message.success(`Create phone with name '${values.name}'`)
-    //             setSubmitLoading(false)
-    //             history.push(`/app/phones`)
-    //           })
-    //         } catch (e) {
-    //           console.log(e)
-    //         }
-    //       }
-    //       if (mode === EDIT) {
-    //         if (imageOriginal === '') {
-    //           values.date = moment(values.date, 'YYYY-MM-DD').valueOf() / 1000
-    //           FirebaseService.updatePhone(phoneData.id, {
-    //             ...values,
-    //             profileUrl: uploadedImg,
-    //             audioUrl: uploadedAudio,
-    //           }).then((resp) => {
-    //             dispatch(
-    //               updatePhone({
-    //                 ...values,
-    //                 profileUrl: uploadedImg,
-    //                 audioUrl: uploadedAudio,
-    //               })
-    //             )
-    //             message.success(`Phone with name '${values.name}' has updated`)
-    //             setSubmitLoading(false)
-    //             history.push(`/app/phones`)
-    //           })
-    //         } else {
-    //           const fileName = `images/phones/${Date.now()}-${
-    //             imageOriginal.name
-    //           }`
-    //           const fileRef = storage.ref().child(fileName)
+    setSubmitLoading(true)
+    try {
+      const values = await form.validateFields()
+      const formData = new FormData()
 
-    //           const audioFileName = `audios/phones/${Date.now()}-${
-    //             imageOriginal.name
-    //           }`
-    //           const audioFileRef = storage.ref().child(audioFileName)
-    //           try {
-    //             const designFile = await fileRef.put(
-    //               imageOriginal.originFileObj
-    //             )
-    //             const profileUrl = await designFile.ref.getDownloadURL()
-    //             const audioFile = await audioFileRef.put(
-    //               imageOriginal.originFileObj
-    //             )
-    //             const audioUrl = await audioFile.ref.getDownloadURL()
-    //             FirebaseService.updatePhone(phoneData.id, {
-    //               ...values,
-    //               profileUrl,
-    //               audioUrl,
-    //             }).then((resp) => {
-    //               dispatch(
-    //                 updatePhone({
-    //                   ...values,
-    //                   profileUrl,
-    //                   audioUrl,
-    //                 })
-    //               )
-    //               message.success(
-    //                 `Phone with name '${values.name}' has updated`
-    //               )
-    //               setSubmitLoading(false)
-    //               history.push(`/app/phones`)
-    //             })
-    //           } catch (e) {
-    //             console.log(e)
-    //           }
-    //         }
-    //       }
-    //     }, 1500)
-    //   })
-    //   .catch((info) => {
-    //     setSubmitLoading(false)
-    //     console.log('info', info)
-    //     message.error('Please enter all required field ')
-    //   })
+      if (mode === ADD) {
+        formData.append('image', imageOriginal.originFileObj)
+        for (const key in values) {
+          formData.append(key, values[key])
+        }
+
+        const resp = await phoneService.addPhone(formData)
+        dispatch(createPhone(resp.data)) // Assuming the API returns the created news data
+        message.success(`Create phone with title '${values.title}'`)
+        history.push(`/app/phones`)
+      } else if (mode === EDIT) {
+        formData.append('image', imageOriginal.originFileObj)
+        for (const key in values) {
+          formData.append(key, values[key])
+        }
+
+        const resp = await phoneService.updatePhone(phoneData._id, formData)
+        dispatch(updatePhone(resp.data)) // Assuming the API returns the updated news data
+        message.success(`Phone with title '${values.title}' has updated`)
+        history.push(`/app/phones`)
+      }
+    } catch (error) {
+      setSubmitLoading(false)
+      console.log('Error:', error)
+      message.error('An error occurred. Please try again later.')
+    }
   }
 
   const onDiscard = () => {

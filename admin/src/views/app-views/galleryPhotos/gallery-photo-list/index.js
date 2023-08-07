@@ -14,30 +14,31 @@ import { useDispatch, useSelector } from 'react-redux'
 import { getAllGalleryPhoto } from 'redux/actions'
 import { ExclamationCircleOutlined } from '@ant-design/icons'
 import { colorPrimary } from 'configs/AppConfig'
-import moment from 'moment'
+import galleryPhotoService from 'services/GalleryPhotoService'
 
 const GalleryPhotoList = () => {
   let history = useHistory()
-  const galleryPhotos = useSelector((state) => state.news)
+  const galleryPhotos = useSelector((state) => state.galleryPhoto.data)
   const dispatch = useDispatch()
   const [list, setList] = useState([])
   const [selectedRows, setSelectedRows] = useState([])
   const [selectedRowKeys, setSelectedRowKeys] = useState([])
 
   useEffect(() => {
-    // FirebaseService.getGalleryPhoto()
-    //   .then((querySnapshot) => {
-    //     let listData = []
-    //     querySnapshot.forEach((doc) => {
-    //       listData.push({ ...doc.data(), id: doc.id })
-    //     })
-    //     dispatch(getAllGalleryPhoto(listData))
-    //     setList(listData)
-    //   })
-    //   .catch((error) => {
-    //     console.log('Error getting document:', error)
-    //   })
-  }, [])
+    galleryPhotoService
+      .getGalleryPhotoList()
+      .then((querySnapshot) => {
+        let listData = []
+        querySnapshot.data.forEach((doc) => {
+          listData.push({ ...doc, id: doc._id })
+        })
+        dispatch(getAllGalleryPhoto(listData))
+        setList(listData)
+      })
+      .catch((error) => {
+        console.log('Error getting document:', error)
+      })
+  }, [dispatch])
 
   const confirm = (e) => {
     Modal.confirm({
@@ -49,11 +50,14 @@ const GalleryPhotoList = () => {
       onOk: () => {
         deleteRow(e)
       },
+      onCancel: () => {
+        cancel(e)
+      },
     })
   }
 
   const cancel = (e) => {
-    message.error('Tidak jadi dihapus')
+    message.error('Canceled')
   }
 
   const dropdownMenu = (row) => (
@@ -87,33 +91,32 @@ const GalleryPhotoList = () => {
   }
 
   const deleteRow = (row) => {
-    const objKey = 'id'
+    const objKey = '_id'
     let data = list
     if (selectedRows.length > 1) {
       selectedRows.forEach((elm) => {
-        // FirebaseService.deleteGalleryPhoto(elm.id)
-        data = utils.deleteArrayRow(data, objKey, elm.id)
+        galleryPhotoService.deleteGalleryPhoto(elm._id)
+        data = utils.deleteArrayRow(data, objKey, elm._id)
         setList(data)
         setSelectedRows([])
       })
     } else {
-      // FirebaseService.deleteGalleryPhoto(row.id)
-      data = utils.deleteArrayRow(data, objKey, row.id)
+      galleryPhotoService.deleteGalleryPhoto(row._id)
+      data = utils.deleteArrayRow(data, objKey, row._id)
       setList(data)
     }
   }
 
   const tableColumns = [
     {
-      title: 'Name',
-      dataIndex: 'name',
-      sorter: (a, b) => utils.antdTableSorter(a, b, 'name'),
+      title: 'Title',
+      dataIndex: 'title',
+      sorter: (a, b) => utils.antdTableSorter(a, b, 'title'),
     },
     {
       title: 'Date',
       dataIndex: 'date',
       sorter: (a, b) => utils.antdTableSorter(a, b, 'date'),
-      render: (date) => moment.unix(date),
     },
     {
       title: '',
@@ -172,7 +175,7 @@ const GalleryPhotoList = () => {
         <Table
           columns={tableColumns}
           dataSource={list}
-          rowKey="id"
+          rowKey="_id"
           rowSelection={{
             selectedRowKeys: selectedRowKeys,
             type: 'checkbox',

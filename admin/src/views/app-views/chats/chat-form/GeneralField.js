@@ -1,52 +1,39 @@
-import React from "react";
-import { Input, Row, Col, Card, Form, Upload, message, DatePicker } from "antd";
-import { ImageSvg } from "assets/svg/icon";
-import CustomIcon from "components/util-components/CustomIcon";
-import { LoadingOutlined } from "@ant-design/icons";
+import React from 'react'
+import { Input, Row, Col, Card, Form, Upload } from 'antd'
+import { ImageSvg } from 'assets/svg/icon'
+import CustomIcon from 'components/util-components/CustomIcon'
+import { LoadingOutlined } from '@ant-design/icons'
 
-const { Dragger } = Upload;
+const { Dragger } = Upload
 
 const rules = {
   name: [
     {
       required: true,
-      message: "Please fill name",
+      message: 'Please fill name',
     },
   ],
-  contact: [
+  contact_number: [
     {
       required: true,
-      message: "Please fill contact",
+      message: 'Please fill contact',
     },
     {
       validator: (_, value) => {
         if (!value || /^[0-9]+$/.test(value)) {
-          return Promise.resolve();
+          return Promise.resolve()
         }
-        return Promise.reject("Please enter numbers only");
+        return Promise.reject('Please enter numbers only')
       },
     },
   ],
-};
+}
 
 const imageUploadProps = {
-  name: "file",
-  multiple: true,
-  listType: "picture-card",
+  name: 'file',
+  multiple: false,
   showUploadList: false,
-};
-
-const beforeUpload = (file) => {
-  const isJpgOrPng = file.type === "image/jpeg" || file.type === "image/png";
-  if (!isJpgOrPng) {
-    message.error("You can only upload JPG/PNG file!");
-  }
-  const isLt2M = file.size / 1024 / 1024 < 2;
-  if (!isLt2M) {
-    message.error("Image must smaller than 2MB!");
-  }
-  return isJpgOrPng && isLt2M;
-};
+}
 
 const GeneralField = (props) => (
   <Row gutter={16}>
@@ -55,8 +42,12 @@ const GeneralField = (props) => (
         <Form.Item name="name" label="Chat Name" rules={rules.name}>
           <Input placeholder="Chat Name" />
         </Form.Item>
-        <Form.Item name="contact" label="Chat Contact" rules={rules.contact}>
-          <Input placeholder="Chat Contact" style={{ width: "100%" }} />
+        <Form.Item
+          name="contact_number"
+          label="Chat Contact"
+          rules={rules.contact}
+        >
+          <Input placeholder="Chat Contact" style={{ width: '100%' }} />
         </Form.Item>
       </Card>
     </Col>
@@ -64,7 +55,6 @@ const GeneralField = (props) => (
       <Card title="Photo Profile">
         <Dragger
           {...imageUploadProps}
-          beforeUpload={beforeUpload}
           onChange={(e) => props.handleUploadChange(e)}
         >
           {props.uploadedImg ? (
@@ -88,6 +78,6 @@ const GeneralField = (props) => (
       </Card>
     </Col>
   </Row>
-);
+)
 
-export default GeneralField;
+export default GeneralField

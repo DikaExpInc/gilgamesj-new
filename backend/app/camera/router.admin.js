@@ -1,20 +1,31 @@
-var express = require("express");
-var router = express.Router();
+var express = require('express')
+var router = express.Router()
 const {
   index,
   getById,
   actionCreate,
   actionEdit,
   actionDelete,
-} = require("./controller");
+} = require('./controller')
 
-const { isLoginAdmin } = require("../middleware/auth");
+const multer = require('multer')
+const os = require('os')
 
-// router.use(isLoginAdmin);
-router.get("/", index);
-router.get("/:id", getById);
-router.post("/create", actionCreate);
-router.put("/edit/:id", actionEdit);
-router.delete("/delete/:id", actionDelete);
+const { isLoginUser } = require('../middleware/auth')
 
-module.exports = router;
+router.use(isLoginUser)
+router.get('/', index)
+router.get('/:id', getById)
+router.post(
+  '/create',
+  multer({ dest: os.tmpdir() }).single('image'),
+  actionCreate
+)
+router.put(
+  '/edit/:id',
+  multer({ dest: os.tmpdir() }).single('image'),
+  actionEdit
+)
+router.delete('/delete/:id', actionDelete)
+
+module.exports = router

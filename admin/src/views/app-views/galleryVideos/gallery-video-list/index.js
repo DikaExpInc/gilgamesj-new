@@ -14,30 +14,31 @@ import { useDispatch, useSelector } from 'react-redux'
 import { getAllGalleryVideo } from 'redux/actions'
 import { ExclamationCircleOutlined } from '@ant-design/icons'
 import { colorPrimary } from 'configs/AppConfig'
-import moment from 'moment'
+import galleryVideoService from 'services/GalleryVideoService'
 
 const GalleryVideoList = () => {
   let history = useHistory()
-  const galleryVideos = useSelector((state) => state.news)
+  const galleryVideos = useSelector((state) => state.galleryVideo.data)
   const dispatch = useDispatch()
   const [list, setList] = useState([])
   const [selectedRows, setSelectedRows] = useState([])
   const [selectedRowKeys, setSelectedRowKeys] = useState([])
 
   useEffect(() => {
-    // FirebaseService.getGalleryVideo()
-    //   .then((querySnapshot) => {
-    //     let listData = []
-    //     querySnapshot.forEach((doc) => {
-    //       listData.push({ ...doc.data(), id: doc.id })
-    //     })
-    //     dispatch(getAllGalleryVideo(listData))
-    //     setList(listData)
-    //   })
-    //   .catch((error) => {
-    //     console.log('Error getting document:', error)
-    //   })
-  }, [])
+    galleryVideoService
+      .getGalleryVideoList()
+      .then((querySnapshot) => {
+        let listData = []
+        querySnapshot.data.forEach((doc) => {
+          listData.push({ ...doc, id: doc._id })
+        })
+        dispatch(getAllGalleryVideo(listData))
+        setList(listData)
+      })
+      .catch((error) => {
+        console.log('Error getting document:', error)
+      })
+  }, [dispatch])
 
   const confirm = (e) => {
     Modal.confirm({
@@ -49,11 +50,14 @@ const GalleryVideoList = () => {
       onOk: () => {
         deleteRow(e)
       },
+      onCancel: () => {
+        cancel(e)
+      },
     })
   }
 
   const cancel = (e) => {
-    message.error('Tidak jadi dihapus')
+    message.error('Canceled')
   }
 
   const dropdownMenu = (row) => (
@@ -91,29 +95,28 @@ const GalleryVideoList = () => {
     let data = list
     if (selectedRows.length > 1) {
       selectedRows.forEach((elm) => {
-        // FirebaseService.deleteGalleryVideo(elm.id)
-        data = utils.deleteArrayRow(data, objKey, elm.id)
+        galleryVideoService.deleteGalleryVideo(elm._id)
+        data = utils.deleteArrayRow(data, objKey, elm._id)
         setList(data)
         setSelectedRows([])
       })
     } else {
-      // FirebaseService.deleteGalleryVideo(row.id)
-      data = utils.deleteArrayRow(data, objKey, row.id)
+      galleryVideoService.deleteGalleryVideo(row._id)
+      data = utils.deleteArrayRow(data, objKey, row._id)
       setList(data)
     }
   }
 
   const tableColumns = [
     {
-      title: 'Name',
-      dataIndex: 'name',
-      sorter: (a, b) => utils.antdTableSorter(a, b, 'name'),
+      title: 'Title',
+      dataIndex: 'title',
+      sorter: (a, b) => utils.antdTableSorter(a, b, 'title'),
     },
     {
       title: 'Date',
       dataIndex: 'date',
       sorter: (a, b) => utils.antdTableSorter(a, b, 'date'),
-      render: (date) => moment.unix(date),
     },
     {
       title: '',
@@ -172,7 +175,7 @@ const GalleryVideoList = () => {
         <Table
           columns={tableColumns}
           dataSource={list}
-          rowKey="id"
+          rowKey="_id"
           rowSelection={{
             selectedRowKeys: selectedRowKeys,
             type: 'checkbox',

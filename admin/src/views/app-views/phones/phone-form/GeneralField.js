@@ -48,7 +48,11 @@ const GeneralField = (props) => (
         <Form.Item name="name" label="Phone Name" rules={rules.name}>
           <Input placeholder="Phone Name" />
         </Form.Item>
-        <Form.Item name="phone_number" label="Phone Number" rules={rules.code}>
+        <Form.Item
+          name="phone_number"
+          label="Phone Number"
+          rules={rules.phone_number}
+        >
           <Input placeholder="Phone number" />
         </Form.Item>
       </Card>

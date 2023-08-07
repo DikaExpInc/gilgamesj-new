@@ -3,11 +3,10 @@ import PageHeaderAlt from 'components/layout-components/PageHeaderAlt'
 import { Tabs, Form, Button, message, Spin } from 'antd'
 import Flex from 'components/shared-components/Flex'
 import GeneralField from './GeneralField'
-import { createNews, createPhone, updatePhone } from 'redux/actions'
+import { createPhone, updatePhone } from 'redux/actions'
 import { useDispatch } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 import { BASE_URL, colorPrimary } from 'configs/AppConfig'
-import moment from 'moment'
 import phoneService from 'services/PhoneService'
 
 const { TabPane } = Tabs
@@ -56,6 +55,19 @@ const PhoneForm = (props) => {
   }, [form, mode, param, props])
 
   const handleUploadChange = (info) => {
+    const isJpgOrPng =
+      info.file.type === 'image/jpeg' || info.file.type === 'image/png'
+    if (!isJpgOrPng) {
+      message.error('You can only upload JPG/PNG file!')
+      return
+    }
+
+    const isLt2M = info.file.size / 1024 / 1024 < 2
+    if (!isLt2M) {
+      message.error('Image must be smaller than 2MB!')
+      return
+    }
+
     setImageOriginal(info.file)
     getBase64(info.file.originFileObj, (imageUrl) => {
       setImage(imageUrl)
@@ -64,6 +76,21 @@ const PhoneForm = (props) => {
   }
 
   const handleUploadAudioChange = (info) => {
+    const isMp3OrWav =
+      info.file.type === 'audio/mp3' ||
+      info.file.type === 'audio/mpeg' ||
+      info.file.type === 'audio/wav'
+    if (!isMp3OrWav) {
+      message.error('You can only upload MP3/WAV file!')
+      return
+    }
+
+    const isLt10M = info.file.size / 1024 / 1024 < 10
+    if (!isLt10M) {
+      message.error('Audio must be smaller than 10MB!')
+      return
+    }
+
     setAudioOriginal(info.file)
     getBase64(info.file.originFileObj, (audioUrl) => {
       setAudio(audioUrl)
@@ -79,24 +106,26 @@ const PhoneForm = (props) => {
       const formData = new FormData()
 
       if (mode === ADD) {
-        formData.append('image', imageOriginal.originFileObj)
+        formData.append('profile', imageOriginal.originFileObj)
+        formData.append('audio', audioOriginal.originFileObj)
         for (const key in values) {
           formData.append(key, values[key])
         }
 
         const resp = await phoneService.addPhone(formData)
         dispatch(createPhone(resp.data)) // Assuming the API returns the created news data
-        message.success(`Create phone with title '${values.title}'`)
+        message.success(`Create phone with name '${values.name}'`)
         history.push(`/app/phones`)
       } else if (mode === EDIT) {
-        formData.append('image', imageOriginal.originFileObj)
+        formData.append('profile', imageOriginal.originFileObj)
+        formData.append('audio', audioOriginal.originFileObj)
         for (const key in values) {
           formData.append(key, values[key])
         }
 
         const resp = await phoneService.updatePhone(phoneData._id, formData)
         dispatch(updatePhone(resp.data)) // Assuming the API returns the updated news data
-        message.success(`Phone with title '${values.title}' has updated`)
+        message.success(`Phone with name '${values.name}' has updated`)
         history.push(`/app/phones`)
       }
     } catch (error) {

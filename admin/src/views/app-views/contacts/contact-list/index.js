@@ -14,30 +14,31 @@ import { useDispatch, useSelector } from 'react-redux'
 import { getAllContact } from 'redux/actions'
 import { ExclamationCircleOutlined } from '@ant-design/icons'
 import { colorPrimary } from 'configs/AppConfig'
-import moment from 'moment'
+import contactService from 'services/ContactService'
 
 const ContactList = () => {
   let history = useHistory()
-  const contacts = useSelector((state) => state.contacts)
+  const contacts = useSelector((state) => state.contact.data)
   const dispatch = useDispatch()
   const [list, setList] = useState([])
   const [selectedRows, setSelectedRows] = useState([])
   const [selectedRowKeys, setSelectedRowKeys] = useState([])
 
   useEffect(() => {
-    // FirebaseService.getContact()
-    //   .then((querySnapshot) => {
-    //     let listData = []
-    //     querySnapshot.forEach((doc) => {
-    //       listData.push({ ...doc.data(), id: doc.id })
-    //     })
-    //     dispatch(getAllContact(listData))
-    //     setList(listData)
-    //   })
-    //   .catch((error) => {
-    //     console.log('Error getting document:', error)
-    //   })
-  }, [])
+    contactService
+      .getContactList()
+      .then((querySnapshot) => {
+        let listData = []
+        querySnapshot.data.forEach((doc) => {
+          listData.push({ ...doc, id: doc._id })
+        })
+        dispatch(getAllContact(listData))
+        setList(listData)
+      })
+      .catch((error) => {
+        console.log('Error getting document:', error)
+      })
+  }, [dispatch])
 
   const confirm = (e) => {
     Modal.confirm({
@@ -48,6 +49,9 @@ const ContactList = () => {
       cancelText: 'Cancel',
       onOk: () => {
         deleteRow(e)
+      },
+      onCancel: () => {
+        cancel(e)
       },
     })
   }
@@ -91,14 +95,14 @@ const ContactList = () => {
     let data = list
     if (selectedRows.length > 1) {
       selectedRows.forEach((elm) => {
-        // FirebaseService.deleteContact(elm.id)
-        data = utils.deleteArrayRow(data, objKey, elm.id)
+        contactService.deleteContact(elm._id)
+        data = utils.deleteArrayRow(data, objKey, elm._id)
         setList(data)
         setSelectedRows([])
       })
     } else {
-      // FirebaseService.deleteContact(row.id)
-      data = utils.deleteArrayRow(data, objKey, row.id)
+      contactService.deleteContact(row._id)
+      data = utils.deleteArrayRow(data, objKey, row._id)
       setList(data)
     }
   }
@@ -110,15 +114,9 @@ const ContactList = () => {
       sorter: (a, b) => utils.antdTableSorter(a, b, 'name'),
     },
     {
-      title: 'Phone Number',
-      dataIndex: 'phone_number',
-      sorter: (a, b) => utils.antdTableSorter(a, b, 'phone_number'),
-    },
-    {
-      title: 'Is Called',
-      dataIndex: 'is_called',
-      sorter: (a, b) => utils.antdTableSorter(a, b, 'is_called'),
-      render: (res) => (res ? <>true</> : <>false</>),
+      title: 'Contact Number',
+      dataIndex: 'contact_number',
+      sorter: (a, b) => utils.antdTableSorter(a, b, 'contact_number'),
     },
     {
       title: '',

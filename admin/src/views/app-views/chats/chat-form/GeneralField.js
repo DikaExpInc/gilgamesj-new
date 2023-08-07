@@ -45,7 +45,7 @@ const GeneralField = (props) => (
         <Form.Item
           name="contact_number"
           label="Chat Contact"
-          rules={rules.contact}
+          rules={rules.contact_number}
         >
           <Input placeholder="Chat Contact" style={{ width: '100%' }} />
         </Form.Item>

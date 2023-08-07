@@ -138,13 +138,13 @@ module.exports = {
         // Move profile image to the destination folder
         const profileImagePath = path.resolve(
           config.rootPath,
-          `public/uploads/contacts/${
+          `public/uploads/phones/${
             profileImageFile.filename
           }.${profileImageFile.originalname.split('.').pop()}`
         )
         fs.renameSync(profileImageFile.path, profileImagePath)
 
-        profileImage = `uploads/contacts/${
+        profileImage = `uploads/phones/${
           profileImageFile.filename
         }.${profileImageFile.originalname.split('.').pop()}`
       }
@@ -166,56 +166,56 @@ module.exports = {
         // Move audio file to the destination folder
         const audioPath = path.resolve(
           config.rootPath,
-          `public/uploads/contacts/${
-            audioFile.filename
-          }.${audioFile.originalname.split('.').pop()}`
+          `public/uploads/phones/${audioFile.filename}.${audioFile.originalname
+            .split('.')
+            .pop()}`
         )
         fs.renameSync(audioFile.path, audioPath)
 
-        audio = `uploads/contacts/${audioFile.filename}.${audioFile.originalname
+        audio = `uploads/phones/${audioFile.filename}.${audioFile.originalname
           .split('.')
           .pop()}`
       }
 
-      const contact = await Contact.findById(id)
-      if (!contact) {
-        return res.status(404).json({ error: 1, message: 'Contact not found' })
+      const phone = await Phone.findById(id)
+      if (!phone) {
+        return res.status(404).json({ error: 1, message: 'Phone not found' })
       }
 
-      contact.name = name
-      contact.phone_number = phone_number
+      phone.name = name
+      phone.phone_number = phone_number
 
       // Update profile image if provided
       if (profileImage) {
         fs.unlinkSync(
           path.resolve(
             config.rootPath,
-            `public/uploads/contacts/${contact.profile}`
+            `public/uploads/phones/${phone.profile}`
           )
         )
-        contact.profile = profileImage
+        phone.profile = profileImage
       }
 
       // Update audio if provided
       if (audio) {
         // Delete previous audio file if it exists
-        if (contact.audio) {
+        if (phone.audio) {
           fs.unlinkSync(
             path.resolve(
               config.rootPath,
-              `public/uploads/contacts/${contact.audio}`
+              `public/uploads/phones/${phone.audio}`
             )
           )
         }
-        contact.audio = audio
+        phone.audio = audio
       }
 
-      await contact.save()
+      await phone.save()
 
       res.status(200).json({
-        message: 'Successfully update contact',
+        message: 'Successfully update phone',
         status: 'success',
-        data: contact,
+        data: phone,
       })
     } catch (err) {
       return res.status(422).json({

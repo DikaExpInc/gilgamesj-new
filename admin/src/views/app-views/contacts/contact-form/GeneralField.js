@@ -1,91 +1,45 @@
-import React from "react";
-import {
-  Input,
-  Row,
-  Col,
-  Card,
-  Form,
-  Upload,
-  message,
-  DatePicker,
-  Switch,
-} from "antd";
-import { AudioSvg, ImageSvg } from "assets/svg/icon";
-import CustomIcon from "components/util-components/CustomIcon";
-import { LoadingOutlined } from "@ant-design/icons";
+import React from 'react'
+import { Input, Row, Col, Card, Form, Upload } from 'antd'
+import { AudioSvg, ImageSvg } from 'assets/svg/icon'
+import CustomIcon from 'components/util-components/CustomIcon'
+import { LoadingOutlined } from '@ant-design/icons'
 
-const { Dragger } = Upload;
+const { Dragger } = Upload
 
 const rules = {
   name: [
     {
       required: true,
-      message: "Please fill name",
+      message: 'Please fill name',
     },
   ],
-  code: [
+  contact_number: [
     {
       required: true,
-      message: "Please fill code",
+      message: 'Please fill contact_number',
     },
     {
       validator: (_, value) => {
         if (!value || /^[0-9]+$/.test(value)) {
-          return Promise.resolve();
+          return Promise.resolve()
         }
-        return Promise.reject("Please enter numbers only");
+        return Promise.reject('Please enter numbers only')
       },
     },
   ],
-  isCalled: [
-    {
-      required: true,
-      message: "Please fill isCalled",
-    },
-  ],
-};
+}
 
 const imageUploadProps = {
-  name: "file",
+  name: 'file',
   multiple: false,
-  listType: "picture-card",
   showUploadList: false,
-};
+}
 
 const audioUploadProps = {
-  name: "audio",
+  name: 'audio',
   multiple: false,
-  listType: "picture-card",
   showUploadList: false,
-};
-
-const beforeUpload = (file) => {
-  const isJpgOrPng = file.type === "image/jpeg" || file.type === "image/png";
-  if (!isJpgOrPng) {
-    message.error("You can only upload JPG/PNG file!");
-  }
-  const isLt2M = file.size / 1024 / 1024 < 2;
-  if (!isLt2M) {
-    message.error("Image must smaller than 2MB!");
-  }
-  return isJpgOrPng && isLt2M;
-};
-
-const beforeUploadAudio = (file) => {
-  const allowedTypes = ["audio/mpeg", "audio/wav"]; // Jenis file audio yang diizinkan
-  const isAllowedType = allowedTypes.includes(file.type);
-
-  if (!isAllowedType) {
-    message.error("You can only upload MP3/WAV audio files!");
-  }
-
-  const isLt2M = file.size / 1024 / 1024 < 2; // Batasan ukuran file 2MB
-  if (!isLt2M) {
-    message.error("Audio file must be smaller than 2MB!");
-  }
-
-  return isAllowedType && isLt2M;
-};
+}
 
 const GeneralField = (props) => (
   <Row gutter={16}>
@@ -95,14 +49,11 @@ const GeneralField = (props) => (
           <Input placeholder="Contact Name" />
         </Form.Item>
         <Form.Item
-          name="phone_number"
+          name="contact_number"
           label="Contact Number"
-          rules={rules.code}
+          rules={rules.contact_number}
         >
-          <Input placeholder="Contact code" />
-        </Form.Item>
-        <Form.Item name="is_called" label="Is Called ? " rules={rules.isCalled}>
-          <Switch checkedChildren="Can Call" unCheckedChildren="Can't Call" />
+          <Input placeholder="Contact number" />
         </Form.Item>
       </Card>
     </Col>
@@ -110,7 +61,6 @@ const GeneralField = (props) => (
       <Card title="Profile">
         <Dragger
           {...imageUploadProps}
-          beforeUpload={beforeUpload}
           onChange={(e) => props.handleUploadChange(e)}
         >
           {props.uploadedImg ? (
@@ -135,7 +85,6 @@ const GeneralField = (props) => (
       <Card title="Audio">
         <Dragger
           {...audioUploadProps}
-          beforeUpload={beforeUploadAudio}
           onChange={(e) => props.handleUploadAudioChange(e)}
         >
           {props.uploadedAudio ? (
@@ -159,6 +108,6 @@ const GeneralField = (props) => (
       </Card>
     </Col>
   </Row>
-);
+)
 
-export default GeneralField;
+export default GeneralField

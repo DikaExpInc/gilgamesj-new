@@ -29,7 +29,7 @@ const PhoneList = () => {
       .getPhoneList()
       .then((querySnapshot) => {
         let listData = []
-        querySnapshot.forEach((doc) => {
+        querySnapshot.data.forEach((doc) => {
           listData.push({ ...doc, id: doc._id })
         })
         dispatch(getAllPhone(listData))

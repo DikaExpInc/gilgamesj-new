@@ -6,8 +6,8 @@ import GeneralField from './GeneralField'
 import { createContact, updateContact } from 'redux/actions'
 import { useDispatch } from 'react-redux'
 import { useHistory } from 'react-router-dom'
-import { colorPrimary } from 'configs/AppConfig'
-import moment from 'moment'
+import { BASE_URL, colorPrimary } from 'configs/AppConfig'
+import contactService from 'services/ContactService'
 
 const { TabPane } = Tabs
 
@@ -39,24 +39,35 @@ const ContactForm = (props) => {
   useEffect(() => {
     if (mode === EDIT) {
       const { id } = param
-
-      // FirebaseService.getContactDetail(id).then((querySnapshot) => {
-      //   setContactData({ ...querySnapshot.data(), id: querySnapshot.id })
-      //   form.setFieldsValue({
-      //     name: querySnapshot.data().name,
-      //     phone_number: querySnapshot.data().phone_number,
-      //     is_called: querySnapshot.data().is_called,
-      //   })
-      //   setImage(querySnapshot.data().profileUrl)
-      //   setAudio(querySnapshot.data().audioUrl)
-      //   setLoadingData(false)
-      // })
+      contactService.getContact(id).then((querySnapshot) => {
+        setContactData({ ...querySnapshot.data, _id: id })
+        form.setFieldsValue({
+          name: querySnapshot.data.name,
+          contact_number: querySnapshot.data.contact_number,
+        })
+        setImage(`${BASE_URL}${querySnapshot.data.profile}`)
+        setAudio(`${BASE_URL}${querySnapshot.data.audio}`)
+        setLoadingData(false)
+      })
     } else {
       setLoadingData(false)
     }
   }, [form, mode, param, props])
 
   const handleUploadChange = (info) => {
+    const isJpgOrPng =
+      info.file.type === 'image/jpeg' || info.file.type === 'image/png'
+    if (!isJpgOrPng) {
+      message.error('You can only upload JPG/PNG file!')
+      return
+    }
+
+    const isLt2M = info.file.size / 1024 / 1024 < 2
+    if (!isLt2M) {
+      message.error('Image must be smaller than 2MB!')
+      return
+    }
+
     setImageOriginal(info.file)
     getBase64(info.file.originFileObj, (imageUrl) => {
       setImage(imageUrl)
@@ -65,6 +76,21 @@ const ContactForm = (props) => {
   }
 
   const handleUploadAudioChange = (info) => {
+    const isMp3OrWav =
+      info.file.type === 'audio/mp3' ||
+      info.file.type === 'audio/mpeg' ||
+      info.file.type === 'audio/wav'
+    if (!isMp3OrWav) {
+      message.error('You can only upload MP3/WAV file!')
+      return
+    }
+
+    const isLt10M = info.file.size / 1024 / 1024 < 10
+    if (!isLt10M) {
+      message.error('Audio must be smaller than 10MB!')
+      return
+    }
+
     setAudioOriginal(info.file)
     getBase64(info.file.originFileObj, (audioUrl) => {
       setAudio(audioUrl)
@@ -72,120 +98,44 @@ const ContactForm = (props) => {
     })
   }
 
-  const onFinish = () => {
+  const onFinish = async () => {
     setSubmitLoading(true)
-    // form
-    //   .validateFields()
-    //   .then((values) => {
-    //     setTimeout(async () => {
-    //       if (mode === ADD) {
-    //         const fileName = `images/contacts/${Date.now()}-${
-    //           imageOriginal.name
-    //         }`
-    //         const fileRef = storage.ref().child(fileName)
-    //         const audioFileName = `audios/contacts/${Date.now()}-${
-    //           audioOriginal.name
-    //         }`
-    //         const audioFileRef = storage.ref().child(audioFileName)
-    //         try {
-    //           const designFile = await fileRef.put(imageOriginal.originFileObj)
-    //           const profileUrl = await designFile.ref.getDownloadURL()
-    //           const audioFile = await audioFileRef.put(
-    //             audioOriginal.originFileObj
-    //           )
-    //           const audioUrl = await audioFile.ref.getDownloadURL()
-    //           FirebaseService.addContact({
-    //             ...values,
-    //             profileUrl,
-    //             audioUrl,
-    //             date: Date.now(),
-    //           }).then((resp) => {
-    //             dispatch(
-    //               createContact({
-    //                 ...values,
-    //                 profileUrl,
-    //                 audioUrl,
-    //                 date: Date.now(),
-    //               })
-    //             )
-    //             message.success(`Create contact with name '${values.name}'`)
-    //             setSubmitLoading(false)
-    //             history.push(`/app/contacts`)
-    //           })
-    //         } catch (e) {
-    //           console.log(e)
-    //         }
-    //       }
-    //       if (mode === EDIT) {
-    //         if (imageOriginal === '') {
-    //           values.date = moment(values.date, 'YYYY-MM-DD').valueOf() / 1000
-    //           FirebaseService.updateContact(contactData.id, {
-    //             ...values,
-    //             profileUrl: uploadedImg,
-    //             audioUrl: uploadedAudio,
-    //           }).then((resp) => {
-    //             dispatch(
-    //               updateContact({
-    //                 ...values,
-    //                 profileUrl: uploadedImg,
-    //                 audioUrl: uploadedAudio,
-    //               })
-    //             )
-    //             message.success(
-    //               `Contact with name '${values.name}' has updated`
-    //             )
-    //             setSubmitLoading(false)
-    //             history.push(`/app/contacts`)
-    //           })
-    //         } else {
-    //           const fileName = `images/contacts/${Date.now()}-${
-    //             imageOriginal.name
-    //           }`
-    //           const fileRef = storage.ref().child(fileName)
+    setSubmitLoading(true)
+    try {
+      const values = await form.validateFields()
+      const formData = new FormData()
 
-    //           const audioFileName = `audios/contacts/${Date.now()}-${
-    //             imageOriginal.name
-    //           }`
-    //           const audioFileRef = storage.ref().child(audioFileName)
-    //           try {
-    //             const designFile = await fileRef.put(
-    //               imageOriginal.originFileObj
-    //             )
-    //             const profileUrl = await designFile.ref.getDownloadURL()
-    //             const audioFile = await audioFileRef.put(
-    //               imageOriginal.originFileObj
-    //             )
-    //             const audioUrl = await audioFile.ref.getDownloadURL()
-    //             FirebaseService.updateContact(contactData.id, {
-    //               ...values,
-    //               profileUrl,
-    //               audioUrl,
-    //             }).then((resp) => {
-    //               dispatch(
-    //                 updateContact({
-    //                   ...values,
-    //                   profileUrl,
-    //                   audioUrl,
-    //                 })
-    //               )
-    //               message.success(
-    //                 `Contact with name '${values.name}' has updated`
-    //               )
-    //               setSubmitLoading(false)
-    //               history.push(`/app/contacts`)
-    //             })
-    //           } catch (e) {
-    //             console.log(e)
-    //           }
-    //         }
-    //       }
-    //     }, 1500)
-    //   })
-    //   .catch((info) => {
-    //     setSubmitLoading(false)
-    //     console.log('info', info)
-    //     message.error('Please enter all required field ')
-    //   })
+      if (mode === ADD) {
+        formData.append('profile', imageOriginal.originFileObj)
+        formData.append('audio', audioOriginal.originFileObj)
+        for (const key in values) {
+          formData.append(key, values[key])
+        }
+
+        const resp = await contactService.addContact(formData)
+        dispatch(createContact(resp.data)) // Assuming the API returns the created news data
+        message.success(`Create contact with name '${values.name}'`)
+        history.push(`/app/contacts`)
+      } else if (mode === EDIT) {
+        formData.append('profile', imageOriginal.originFileObj)
+        formData.append('audio', audioOriginal.originFileObj)
+        for (const key in values) {
+          formData.append(key, values[key])
+        }
+
+        const resp = await contactService.updateContact(
+          contactData._id,
+          formData
+        )
+        dispatch(updateContact(resp.data)) // Assuming the API returns the updated news data
+        message.success(`Contact with name '${values.name}' has updated`)
+        history.push(`/app/contacts`)
+      }
+    } catch (error) {
+      setSubmitLoading(false)
+      console.log('Error:', error)
+      message.error('An error occurred. Please try again later.')
+    }
   }
 
   const onDiscard = () => {

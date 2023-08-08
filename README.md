@@ -9,8 +9,9 @@
 - yarn start
 
 ### backend gilgamesj
-
-- npm i -g yarn
+s
+- copy .env.local to .env (so we have 2 environment, .env.local and .env)
+- npm i s-g yarn
 - yarn install
 - yarn start
 

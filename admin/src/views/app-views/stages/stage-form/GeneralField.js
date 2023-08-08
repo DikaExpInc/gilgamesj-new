@@ -1,36 +1,15 @@
-import React, {
-  Suspense,
-  useCallback,
-  useContext,
-  useEffect,
-  useRef,
-  useState,
-} from 'react'
-import {
-  Input,
-  Row,
-  Col,
-  Card,
-  Form,
-  Upload,
-  message,
-  InputNumber,
-  Switch,
-  Select,
-} from 'antd'
+import React, { useCallback, useEffect, useState } from 'react'
+import { Input, Row, Col, Card, Form, Upload, InputNumber, Select } from 'antd'
 import { ImageSvg } from 'assets/svg/icon'
 import CustomIcon from 'components/util-components/CustomIcon'
 import { LoadingOutlined } from '@ant-design/icons'
-import { Vector3 } from '@babylonjs/core/Maths/math.vector'
-import {
-  AssetManagerContext,
-  AssetManagerContextProvider,
-  Engine,
-  Scene,
-  TaskType,
-  useAssetManager,
-  useBeforeRender,
-} from 'react-babylonjs'
+// import { Vector3 } from '@babylonjs/core/Maths/math.vector'
+// import {
+//   AssetManagerContext,
+//   TaskType,
+//   useAssetManager,
+//   useBeforeRender,
+// } from 'react-babylonjs'
 import { useDispatch } from 'react-redux'
 import {
   getAllCamera,
@@ -43,78 +22,87 @@ import {
   getAllPhone,
   getAllSocialMedia,
 } from 'redux/actions'
+import socialMediaService from 'services/SocialMediaService'
+import galleryPhotoService from 'services/GalleryPhotoService'
+import galleryVideoService from 'services/GalleryVideoService'
+import mapService from 'services/MapService'
+import chatService from 'services/ChatService'
+import cameraService from 'services/CameraService'
+import phoneService from 'services/PhoneService'
+import contactService from 'services/ContactService'
+import newsService from 'services/NewsService'
 
-const baseUrl =
-  'https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Models/master/2.0/'
-const modelAssetTasks = [
-  {
-    taskType: TaskType.Mesh,
-    rootUrl: `${baseUrl}BoomBox/glTF/`,
-    sceneFilename: 'BoomBox.gltf',
-    name: 'boombox',
-  },
-  {
-    taskType: TaskType.Mesh,
-    rootUrl: `${baseUrl}Avocado/glTF/`,
-    sceneFilename: 'Avocado.gltf',
-    name: 'avocado',
-  },
-]
-const MyFallback = () => {
-  const boxRef = useRef(null)
-  const context = useContext(AssetManagerContext)
-  useBeforeRender((scene) => {
-    if (boxRef.current) {
-      var deltaTimeInMillis = scene.getEngine().getDeltaTime()
-      const rpm = 10
-      boxRef.current.rotation.x = Math.PI / 4
-      boxRef.current.rotation.y +=
-        (rpm / 60) * Math.PI * 2 * (deltaTimeInMillis / 1000)
-    }
-  })
-  const eventData = context?.lastProgress?.eventData
-  return (
-    <>
-      <adtFullscreenUi name="ui">
-        <rectangle name="rect" height="50px" width="150px">
-          <rectangle>
-            {eventData !== undefined && (
-              <textBlock
-                text={`${eventData.totalCount - eventData.remainingCount}/${
-                  eventData.totalCount
-                }`}
-                fontStyle="bold"
-                fontSize={20}
-                color="white"
-              />
-            )}
-            {eventData === undefined && (
-              <textBlock
-                text="0/2"
-                fontStyle="bold"
-                fontSize={20}
-                color="white"
-              />
-            )}
-          </rectangle>
-        </rectangle>
-      </adtFullscreenUi>
-      <box ref={boxRef} name="fallback" size={2} />
-    </>
-  )
-}
-const MyModels = () => {
-  const assetManagerResult = useAssetManager(modelAssetTasks)
-  useEffect(() => {
-    const boomboxTask = assetManagerResult.taskNameMap['boombox']
-    boomboxTask.loadedMeshes[0].position = new Vector3(2.5, 0, 0)
-    boomboxTask.loadedMeshes[1].scaling = new Vector3(20, 20, 20)
-    const avocadoTask = assetManagerResult.taskNameMap['avocado']
-    avocadoTask.loadedMeshes[0].position = new Vector3(-2.5, 0, 0)
-    avocadoTask.loadedMeshes[1].scaling = new Vector3(20, 20, 20)
-  })
-  return null
-}
+// const baseUrl =
+// 'https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Models/master/2.0/'
+// const modelAssetTasks = [
+//   {
+//     taskType: TaskType.Mesh,
+//     rootUrl: `${baseUrl}BoomBox/glTF/`,
+//     sceneFilename: 'BoomBox.gltf',
+//     name: 'boombox',
+//   },
+//   {
+//     taskType: TaskType.Mesh,
+//     rootUrl: `${baseUrl}Avocado/glTF/`,
+//     sceneFilename: 'Avocado.gltf',
+//     name: 'avocado',
+//   },
+// ]
+// const MyFallback = () => {
+//   const boxRef = useRef(null)
+//   const context = useContext(AssetManagerContext)
+//   useBeforeRender((scene) => {
+//     if (boxRef.current) {
+//       var deltaTimeInMillis = scene.getEngine().getDeltaTime()
+//       const rpm = 10
+//       boxRef.current.rotation.x = Math.PI / 4
+//       boxRef.current.rotation.y +=
+//         (rpm / 60) * Math.PI * 2 * (deltaTimeInMillis / 1000)
+//     }
+//   })
+//   const eventData = context?.lastProgress?.eventData
+//   return (
+//     <>
+//       <adtFullscreenUi name="ui">
+//         <rectangle name="rect" height="50px" width="150px">
+//           <rectangle>
+//             {eventData !== undefined && (
+//               <textBlock
+//                 text={`${eventData.totalCount - eventData.remainingCount}/${
+//                   eventData.totalCount
+//                 }`}
+//                 fontStyle="bold"
+//                 fontSize={20}
+//                 color="white"
+//               />
+//             )}
+//             {eventData === undefined && (
+//               <textBlock
+//                 text="0/2"
+//                 fontStyle="bold"
+//                 fontSize={20}
+//                 color="white"
+//               />
+//             )}
+//           </rectangle>
+//         </rectangle>
+//       </adtFullscreenUi>
+//       <box ref={boxRef} name="fallback" size={2} />
+//     </>
+//   )
+// }
+// const MyModels = () => {
+//   const assetManagerResult = useAssetManager(modelAssetTasks)
+//   useEffect(() => {
+//     const boomboxTask = assetManagerResult.taskNameMap['boombox']
+//     boomboxTask.loadedMeshes[0].position = new Vector3(2.5, 0, 0)
+//     boomboxTask.loadedMeshes[1].scaling = new Vector3(20, 20, 20)
+//     const avocadoTask = assetManagerResult.taskNameMap['avocado']
+//     avocadoTask.loadedMeshes[0].position = new Vector3(-2.5, 0, 0)
+//     avocadoTask.loadedMeshes[1].scaling = new Vector3(20, 20, 20)
+//   })
+//   return null
+// }
 
 const { Dragger } = Upload
 
@@ -159,7 +147,7 @@ const rules = {
       },
     },
   ],
-  total_user: [
+  total_player: [
     {
       required: true,
       message: 'Please fill total user',
@@ -190,79 +178,41 @@ const rules = {
 const imageUploadProps = {
   name: 'file',
   multiple: false,
-  listType: 'picture-card',
   showUploadList: false,
 }
 
 const modelUploadProps = {
   name: 'file',
   multiple: false,
-  listType: 'picture-card',
   showUploadList: false,
 }
 
-const beforeUpload = (file) => {
-  const isJpgOrPng = file.type === 'image/jpeg' || file.type === 'image/png'
-  if (!isJpgOrPng) {
-    message.error('You can only upload JPG/PNG file!')
-  }
-  const isLt2M = file.size / 1024 / 1024 < 2
-  if (!isLt2M) {
-    message.error('Image must smaller than 2MB!')
-  }
-  return isJpgOrPng && isLt2M
-}
-
-const beforeUploadBackground = (file) => {
-  const isJpgOrPng = file.type === 'image/jpeg' || file.type === 'image/png'
-  if (!isJpgOrPng) {
-    message.error('You can only upload JPG/PNG file!')
-  }
-  const isLt2M = file.size / 1024 / 1024 < 2
-  if (!isLt2M) {
-    message.error('Image must smaller than 2MB!')
-  }
-  return isJpgOrPng && isLt2M
-}
-
-const beforeUploadModel = (file) => {
-  const isGLB = file.type === 'model/gltf-binary' || file.name.endsWith('.glb')
-  if (!isGLB) {
-    message.error('You can only upload GLB files!')
-  }
-  const isLt2M = file.size / 1024 / 1024 < 2
-  if (!isLt2M) {
-    message.error('File must be smaller than 2MB!')
-  }
-  return isGLB && isLt2M
-}
-
-const MyScene = () => {
-  return (
-    <Engine antialias adaptToDeviceRatio canvasId="babylon-js">
-      <Scene>
-        <arcRotateCamera
-          name="camera1"
-          alpha={Math.PI / 2}
-          beta={Math.PI / 2}
-          radius={9.0}
-          target={Vector3.Zero()}
-          minZ={0.001}
-        />
-        <hemisphericLight
-          name="light1"
-          intensity={0.7}
-          direction={Vector3.Up()}
-        />
-        <AssetManagerContextProvider>
-          <Suspense fallback={<MyFallback />}>
-            <MyModels />
-          </Suspense>
-        </AssetManagerContextProvider>
-      </Scene>
-    </Engine>
-  )
-}
+// const MyScene = () => {
+//   return (
+//     <Engine antialias adaptToDeviceRatio canvasId="babylon-js">
+//       <Scene>
+//         <arcRotateCamera
+//           name="camera1"
+//           alpha={Math.PI / 2}
+//           beta={Math.PI / 2}
+//           radius={9.0}
+//           target={Vector3.Zero()}
+//           minZ={0.001}
+//         />
+//         <hemisphericLight
+//           name="light1"
+//           intensity={0.7}
+//           direction={Vector3.Up()}
+//         />
+//         <AssetManagerContextProvider>
+//           <Suspense fallback={<MyFallback />}>
+//             <MyModels />
+//           </Suspense>
+//         </AssetManagerContextProvider>
+//       </Scene>
+//     </Engine>
+//   )
+// }
 
 const GeneralField = (props) => {
   const dispatch = useDispatch()
@@ -276,159 +226,171 @@ const GeneralField = (props) => {
   const [contact, setContact] = useState([])
   const [browser, setBrowser] = useState([])
 
-  const handleInputChange = useCallback((name, value) => {
-    props.setSelectValues((prevValues) => ({
-      ...prevValues,
-      [name]: value,
-    }))
-  }, [])
+  const handleInputChange = useCallback(
+    (name, value) => {
+      props.setSelectValues((prevValues) => ({
+        ...prevValues,
+        [name]: value,
+      }))
+    },
+    [props]
+  )
 
   useEffect(() => {
     // get sosmed
-    // FirebaseService.getSocialMedia()
-    //   .then((querySnapshot) => {
-    //     let listData = [];
-    //     querySnapshot.forEach((doc) => {
-    //       listData.push({
-    //         value: doc.id,
-    //         label: "Social Media - " + doc.data().name,
-    //       });
-    //     });
-    //     dispatch(getAllSocialMedia(listData));
-    //     setSocialMedia(listData);
-    //   })
-    //   .catch((error) => {
-    //     console.log("Error getting document:", error);
-    //   });
-    // // get gallery photo
-    // FirebaseService.getGalleryPhoto()
-    //   .then((querySnapshot) => {
-    //     let listData = [];
-    //     querySnapshot.forEach((doc) => {
-    //       listData.push({
-    //         value: doc.id,
-    //         label: "Photo - " + doc.data().name,
-    //       });
-    //     });
-    //     dispatch(getAllGalleryPhoto(listData));
-    //     setGalleryPhoto(listData);
-    //   })
-    //   .catch((error) => {
-    //     console.log("Error getting document:", error);
-    //   });
-    // // get gallery video
-    // FirebaseService.getGalleryVideo()
-    //   .then((querySnapshot) => {
-    //     let listData = [];
-    //     querySnapshot.forEach((doc) => {
-    //       listData.push({
-    //         value: doc.id,
-    //         label: "Video - " + doc.data().name,
-    //       });
-    //     });
-    //     dispatch(getAllGalleryVideo(listData));
-    //     setGalleryVideo(listData);
-    //   })
-    //   .catch((error) => {
-    //     console.log("Error getting document:", error);
-    //   });
-    // // get maps
-    // FirebaseService.getMaps()
-    //   .then((querySnapshot) => {
-    //     let listData = [];
-    //     querySnapshot.forEach((doc) => {
-    //       listData.push({
-    //         value: doc.id,
-    //         label: "Map - " + doc.data().label,
-    //       });
-    //     });
-    //     dispatch(getAllMaps(listData));
-    //     setMaps(listData);
-    //   })
-    //   .catch((error) => {
-    //     console.log("Error getting document:", error);
-    //   });
-    // // get chats
-    // FirebaseService.getChat()
-    //   .then((querySnapshot) => {
-    //     let listData = [];
-    //     querySnapshot.forEach((doc) => {
-    //       listData.push({
-    //         value: doc.id,
-    //         label: "Chat - " + doc.data().name,
-    //       });
-    //     });
-    //     dispatch(getAllChat(listData));
-    //     setChat(listData);
-    //   })
-    //   .catch((error) => {
-    //     console.log("Error getting document:", error);
-    //   });
-    // // get cameras
-    // FirebaseService.getCamera()
-    //   .then((querySnapshot) => {
-    //     let listData = [];
-    //     querySnapshot.forEach((doc) => {
-    //       listData.push({
-    //         value: doc.id,
-    //         label: "Camera - " + doc.data().name,
-    //       });
-    //     });
-    //     dispatch(getAllCamera(listData));
-    //     setCamera(listData);
-    //   })
-    //   .catch((error) => {
-    //     console.log("Error getting document:", error);
-    //   });
-    // // get phone
-    // FirebaseService.getPhone()
-    //   .then((querySnapshot) => {
-    //     let listData = [];
-    //     querySnapshot.forEach((doc) => {
-    //       listData.push({
-    //         value: doc.id,
-    //         label: "Phone - " + doc.data().name,
-    //       });
-    //     });
-    //     dispatch(getAllPhone(listData));
-    //     setPhone(listData);
-    //   })
-    //   .catch((error) => {
-    //     console.log("Error getting document:", error);
-    //   });
-    // // get contact
-    // FirebaseService.getContact()
-    //   .then((querySnapshot) => {
-    //     let listData = [];
-    //     querySnapshot.forEach((doc) => {
-    //       listData.push({
-    //         value: doc.id,
-    //         label: "Contact - " + doc.data().name,
-    //       });
-    //     });
-    //     dispatch(getAllContact(listData));
-    //     setContact(listData);
-    //   })
-    //   .catch((error) => {
-    //     console.log("Error getting document:", error);
-    //   });
-    // // get browser
-    // FirebaseService.getNews()
-    //   .then((querySnapshot) => {
-    //     let listData = [];
-    //     querySnapshot.forEach((doc) => {
-    //       listData.push({
-    //         value: doc.id,
-    //         label: "browser - " + doc.data().title,
-    //       });
-    //     });
-    //     dispatch(getAllNews(listData));
-    //     setBrowser(listData);
-    //   })
-    //   .catch((error) => {
-    //     console.log("Error getting document:", error);
-    //   });
-  }, [])
+    socialMediaService
+      .getSocialMediaList()
+      .then((querySnapshot) => {
+        let listData = []
+        querySnapshot.data.forEach((doc) => {
+          listData.push({
+            value: doc._id,
+            label: 'Social Media - ' + doc.name,
+          })
+        })
+        dispatch(getAllSocialMedia(listData))
+        setSocialMedia(listData)
+      })
+      .catch((error) => {
+        console.log('Error getting document:', error)
+      })
+    // get gallery photo
+    galleryPhotoService
+      .getGalleryPhotoList()
+      .then((querySnapshot) => {
+        let listData = []
+        querySnapshot.data.forEach((doc) => {
+          listData.push({
+            value: doc._id,
+            label: 'Photo - ' + doc.title,
+          })
+        })
+        dispatch(getAllGalleryPhoto(listData))
+        setGalleryPhoto(listData)
+      })
+      .catch((error) => {
+        console.log('Error getting document:', error)
+      })
+    // get gallery video
+    galleryVideoService
+      .getGalleryVideoList()
+      .then((querySnapshot) => {
+        let listData = []
+        querySnapshot.data.forEach((doc) => {
+          listData.push({
+            value: doc._id,
+            label: 'Video - ' + doc.title,
+          })
+        })
+        dispatch(getAllGalleryVideo(listData))
+        setGalleryVideo(listData)
+      })
+      .catch((error) => {
+        console.log('Error getting document:', error)
+      })
+    // get maps
+    mapService
+      .getMapList()
+      .then((querySnapshot) => {
+        let listData = []
+        querySnapshot.data.forEach((doc) => {
+          listData.push({
+            value: doc._id,
+            label: 'Map - ' + doc.title,
+          })
+        })
+        dispatch(getAllMaps(listData))
+        setMaps(listData)
+      })
+      .catch((error) => {
+        console.log('Error getting document:', error)
+      })
+    // get chats
+    chatService
+      .getChatList()
+      .then((querySnapshot) => {
+        let listData = []
+        querySnapshot.data.forEach((doc) => {
+          listData.push({
+            value: doc._id,
+            label: 'Chat - ' + doc.name,
+          })
+        })
+        dispatch(getAllChat(listData))
+        setChat(listData)
+      })
+      .catch((error) => {
+        console.log('Error getting document:', error)
+      })
+    // get cameras
+    cameraService
+      .getCameraList()
+      .then((querySnapshot) => {
+        let listData = []
+        querySnapshot.data.forEach((doc) => {
+          listData.push({
+            value: doc._id,
+            label: 'Camera - ' + doc.name,
+          })
+        })
+        dispatch(getAllCamera(listData))
+        setCamera(listData)
+      })
+      .catch((error) => {
+        console.log('Error getting document:', error)
+      })
+    // get phone
+    phoneService
+      .getPhoneList()
+      .then((querySnapshot) => {
+        let listData = []
+        querySnapshot.data.forEach((doc) => {
+          listData.push({
+            value: doc._id,
+            label: 'Phone - ' + doc.name,
+          })
+        })
+        dispatch(getAllPhone(listData))
+        setPhone(listData)
+      })
+      .catch((error) => {
+        console.log('Error getting document:', error)
+      })
+    // get contact
+    contactService
+      .getContactList()
+      .then((querySnapshot) => {
+        let listData = []
+        querySnapshot.data.forEach((doc) => {
+          listData.push({
+            value: doc._id,
+            label: 'Contact - ' + doc.name,
+          })
+        })
+        dispatch(getAllContact(listData))
+        setContact(listData)
+      })
+      .catch((error) => {
+        console.log('Error getting document:', error)
+      })
+    // get browser
+    newsService
+      .getBrowserList()
+      .then((querySnapshot) => {
+        let listData = []
+        querySnapshot.data.forEach((doc) => {
+          listData.push({
+            value: doc._id,
+            label: 'browser - ' + doc.title,
+          })
+        })
+        dispatch(getAllNews(listData))
+        setBrowser(listData)
+      })
+      .catch((error) => {
+        console.log('Error getting document:', error)
+      })
+  }, [dispatch])
 
   return (
     <>
@@ -457,9 +419,9 @@ const GeneralField = (props) => {
             </Form.Item>
 
             <Form.Item
-              name="total_user"
-              label="Stage total user (fill 0 to infinity user)"
-              rules={rules.total_user}
+              name="total_player"
+              label="Stage total player (fill 0 to infinity player)"
+              rules={rules.total_player}
             >
               <InputNumber
                 placeholder="Stage total user"
@@ -472,14 +434,6 @@ const GeneralField = (props) => {
               rules={rules.timer}
             >
               <InputNumber placeholder="Timer" style={{ width: '100%' }} />
-            </Form.Item>
-            <Form.Item
-              name="status"
-              label="Status Stage"
-              rules={rules.status}
-              valuePropName="checked"
-            >
-              <Switch checkedChildren="On" unCheckedChildren="Off" />
             </Form.Item>
           </Card>
           <Card title="Lock Code Information">
@@ -626,7 +580,6 @@ const GeneralField = (props) => {
           <Card title="Gameplay Background">
             <Dragger
               {...imageUploadProps}
-              beforeUpload={beforeUploadBackground}
               onChange={(e) => props.handleUploadBackgroundChange(e)}
             >
               {props.uploadedBackground ? (
@@ -656,12 +609,11 @@ const GeneralField = (props) => {
           <Card title="Objective Image">
             <Dragger
               {...imageUploadProps}
-              beforeUpload={beforeUpload}
               onChange={(e) => props.handleUploadChange(e)}
             >
-              {props.uploadedImg ? (
+              {props.uploadedObjective ? (
                 <img
-                  src={props.uploadedImg}
+                  src={props.uploadedObjective}
                   alt="avatar"
                   className="img-fluid"
                 />
@@ -686,7 +638,6 @@ const GeneralField = (props) => {
           <Card title="Objective 3D Model">
             <Dragger
               {...modelUploadProps}
-              beforeUpload={beforeUploadModel}
               onChange={(e) => props.handleUploadModelChange(e)}
             >
               {/* <MyScene /> */}

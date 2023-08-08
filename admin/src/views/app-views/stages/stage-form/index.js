@@ -6,8 +6,8 @@ import GeneralField from './GeneralField'
 import { createStage, updateStage } from 'redux/actions'
 import { useDispatch } from 'react-redux'
 import { useHistory } from 'react-router-dom'
-import { colorPrimary } from 'configs/AppConfig'
-import moment from 'moment'
+import { BASE_URL, colorPrimary } from 'configs/AppConfig'
+import stageService from 'services/StageService'
 
 const { TabPane } = Tabs
 
@@ -26,9 +26,10 @@ const StageForm = (props) => {
   let history = useHistory()
   const [form] = Form.useForm()
   const dispatch = useDispatch()
-  const [uploadedImg, setImage] = useState('')
-  const [imageOriginal, setImageOriginal] = useState('')
-  const [uploadLoading, setUploadLoading] = useState(false)
+
+  const [uploadedObjective, setObjective] = useState('')
+  const [objectiveOriginal, setObjectiveOriginal] = useState('')
+  const [uploadObjectiveLoading, setUploadObjectiveLoading] = useState(false)
 
   const [uploadedBackground, setBackground] = useState('')
   const [backgroundOriginal, setBackgroundOriginal] = useState('')
@@ -69,63 +70,86 @@ const StageForm = (props) => {
   useEffect(() => {
     if (mode === EDIT) {
       const { id } = param
-      // FirebaseService.getStageDetail(id).then((querySnapshot) => {
-      //   setStageData({ ...querySnapshot.data(), id: querySnapshot.id })
-      //   form.setFieldsValue({
-      //     title: querySnapshot.data().title,
-      //     description: querySnapshot.data().description,
-      //     order_number: querySnapshot.data().order_number,
-      //     total_user: querySnapshot.data().total_user,
-      //     user_joined: querySnapshot.data().user_joined,
-      //     lock_code: querySnapshot.data().lock_code,
-      //     timer: querySnapshot.data().timer,
-      //   })
+      stageService.getStage(id).then((querySnapshot) => {
+        setStageData({ ...querySnapshot.data, _id: id })
+        form.setFieldsValue({
+          title: querySnapshot.data.title,
+          description: querySnapshot.data.description,
+          order_number: querySnapshot.data.order_number,
+          total_player: querySnapshot.data.total_player,
+          user_joined: querySnapshot.data.user_joined,
+          lock_code: querySnapshot.data.lock_code,
+          timer: querySnapshot.data.timer,
+        })
+        // set List Data Selected
+        setSocial_media_list(querySnapshot.data.data_game.social_media)
+        setGallery_photo_list(querySnapshot.data.data_game.gallery_photo)
+        setGallery_video_list(querySnapshot.data.data_game.gallery_video)
+        setMap_list(querySnapshot.data.data_game.map)
+        setChat_list(querySnapshot.data.data_game.chat)
+        setCamera_list(querySnapshot.data.data_game.camera)
+        setPhone_list(querySnapshot.data.data_game.phone)
+        setContact_list(querySnapshot.data.data_game.contact)
+        setNews_browser_list(querySnapshot.data.data_game.news)
 
-      //   setStatus_stage(querySnapshot.data().status)
+        setSelectValues((prevValues) => ({
+          ...prevValues,
+          social_media_selected: querySnapshot.data.data_game.social_media,
+          gallery_photo_selected: querySnapshot.data.data_game.gallery_photo,
+          gallery_video_selected: querySnapshot.data.data_game.gallery_video,
+          map_selected: querySnapshot.data.data_game.map,
+          chat_selected: querySnapshot.data.data_game.chat,
+          camera_selected: querySnapshot.data.data_game.camera,
+          phone_selected: querySnapshot.data.data_game.phone,
+          contact_selected: querySnapshot.data.data_game.contact,
+          browser_selected: querySnapshot.data.data_game.news,
+        }))
 
-      //   // set List Data Selected
-      //   setSocial_media_list(querySnapshot.data().data_game.social_media)
-      //   setGallery_photo_list(querySnapshot.data().data_game.gallery_photo)
-      //   setGallery_video_list(querySnapshot.data().data_game.gallery_video)
-      //   setMap_list(querySnapshot.data().data_game.map)
-      //   setChat_list(querySnapshot.data().data_game.chat)
-      //   setCamera_list(querySnapshot.data().data_game.camera)
-      //   setPhone_list(querySnapshot.data().data_game.phone)
-      //   setContact_list(querySnapshot.data().data_game.contact)
-      //   setNews_browser_list(querySnapshot.data().data_game.news)
-
-      //   setSelectValues((prevValues) => ({
-      //     ...prevValues,
-      //     social_media_selected: querySnapshot.data().data_game.social_media,
-      //     gallery_photo_selected: querySnapshot.data().data_game.gallery_photo,
-      //     gallery_video_selected: querySnapshot.data().data_game.gallery_video,
-      //     map_selected: querySnapshot.data().data_game.map,
-      //     chat_selected: querySnapshot.data().data_game.chat,
-      //     camera_selected: querySnapshot.data().data_game.camera,
-      //     phone_selected: querySnapshot.data().data_game.phone,
-      //     contact_selected: querySnapshot.data().data_game.contact,
-      //     browser_selected: querySnapshot.data().data_game.news,
-      //   }))
-
-      //   setImage(querySnapshot.data().imageUrl)
-      //   setBackground(querySnapshot.data().backgroundUrl)
-      //   setModel(querySnapshot.data().modelUrl)
-      //   setLoadingData(false)
-      // })
+        setObjective(`${BASE_URL}${querySnapshot.data.objective}`)
+        setBackground(`${BASE_URL}${querySnapshot.data.background}`)
+        setModel(`${BASE_URL}${querySnapshot.data.model}`)
+        setLoadingData(false)
+      })
     } else {
       setLoadingData(false)
     }
   }, [form, mode, param, props])
 
-  const handleUploadChange = (info) => {
-    setImageOriginal(info.file)
+  const handleUploadObjectiveChange = (info) => {
+    const isJpgOrPng =
+      info.file.type === 'image/jpeg' || info.file.type === 'image/png'
+    if (!isJpgOrPng) {
+      message.error('You can only upload JPG/PNG file!')
+      return
+    }
+
+    const isLt2M = info.file.size / 1024 / 1024 < 2
+    if (!isLt2M) {
+      message.error('Objective must be smaller than 2MB!')
+      return
+    }
+
+    setObjectiveOriginal(info.file)
     getBase64(info.file.originFileObj, (imageUrl) => {
-      setImage(imageUrl)
-      setUploadLoading(true)
+      setObjective(imageUrl)
+      setUploadObjectiveLoading(true)
     })
   }
 
   const handleUploadBackgroundChange = (info) => {
+    const isJpgOrPng =
+      info.file.type === 'image/jpeg' || info.file.type === 'image/png'
+    if (!isJpgOrPng) {
+      message.error('You can only upload JPG/PNG file!')
+      return
+    }
+
+    const isLt2M = info.file.size / 1024 / 1024 < 2
+    if (!isLt2M) {
+      message.error('Background must be smaller than 2MB!')
+      return
+    }
+
     setBackgroundOriginal(info.file)
     getBase64(info.file.originFileObj, (imageUrl) => {
       setBackground(imageUrl)
@@ -134,6 +158,22 @@ const StageForm = (props) => {
   }
 
   const handleUploadModelChange = (info) => {
+    console.log(info)
+    const isGltfOrGlb =
+      info.file.type === 'model/gltf-binary' ||
+      info.file.type === 'model/gltf+json' ||
+      info.file.name.endsWith('.glb')
+    if (!isGltfOrGlb) {
+      message.error('You can only upload gltf/glb file!')
+      return
+    }
+
+    const isLt2M = info.file.size / 1024 / 1024 < 2
+    if (!isLt2M) {
+      message.error('Model must be smaller than 2MB!')
+      return
+    }
+
     setModelOriginal(info.file)
     getBase64(info.file.originFileObj, (modelUrl) => {
       setModel(modelUrl)
@@ -141,272 +181,80 @@ const StageForm = (props) => {
     })
   }
 
-  const onFinish = () => {
+  const onFinish = async () => {
     setSubmitLoading(true)
-    // form
-    //   .validateFields()
-    //   .then((values) => {
-    //     setTimeout(async () => {
-    //       if (mode === ADD) {
-    //         const fileName = `images/stages/${Date.now()}-${imageOriginal.name}`
-    //         const fileRef = storage.ref().child(fileName)
+    try {
+      const values = await form.validateFields()
+      const formData = new FormData()
 
-    //         const backgroundName = `images/stages/${Date.now()}-${
-    //           backgroundOriginal.name
-    //         }`
-    //         const backgroundRef = storage.ref().child(backgroundName)
+      if (mode === ADD) {
+        const data_game = {
+          social_media: selectValues.social_media_selected,
+          gallery_photo: selectValues.gallery_photo_selected,
+          gallery_video: selectValues.gallery_video_selected,
+          map: selectValues.map_selected,
+          chat: selectValues.chat_selected,
+          camera: selectValues.camera_selected,
+          phone: selectValues.phone_selected,
+          contact: selectValues.contact_selected,
+          news: selectValues.browser_selected,
+        }
 
-    //         const modelName = `models/stages/${Date.now()}-${
-    //           modelOriginal.name
-    //         }`
-    //         const modelRef = storage.ref().child(modelName)
-    //         try {
-    //           const designFile = await fileRef.put(imageOriginal.originFileObj)
-    //           const imageUrl = await designFile.ref.getDownloadURL()
-    //           const modelFile = await modelRef.put(modelOriginal.originFileObj)
-    //           const modelUrl = await modelFile.ref.getDownloadURL()
-    //           const backgroundFile = await backgroundRef.put(
-    //             backgroundOriginal.originFileObj
-    //           )
-    //           const backgroundUrl = await backgroundFile.ref.getDownloadURL()
+        formData.append('background', backgroundOriginal.originFileObj)
+        formData.append('objective', objectiveOriginal.originFileObj)
+        formData.append('model', modelOriginal.originFileObj)
 
-    //           FirebaseService.addStage({
-    //             data_game: {
-    //               social_media: selectValues.social_media_selected,
-    //               gallery_photo: selectValues.gallery_photo_selected,
-    //               gallery_video: selectValues.gallery_video_selected,
-    //               map: selectValues.map_selected,
-    //               chat: selectValues.chat_selected,
-    //               camera: selectValues.camera_selected,
-    //               phone: selectValues.phone_selected,
-    //               contact: selectValues.contact_selected,
-    //               news: selectValues.browser_selected,
-    //             },
-    //             description: values.description,
-    //             order_number: values.order_number,
-    //             status: values.status,
-    //             title: values.title,
-    //             total_user: values.total_user,
-    //             lock_code: values.lock_code,
-    //             timer: values.timer,
-    //             imageUrl,
-    //             modelUrl,
-    //             backgroundUrl,
-    //             date: Date.now(),
-    //           }).then((resp) => {
-    //             dispatch(
-    //               createStage({
-    //                 data_game: {
-    //                   social_media: selectValues.social_media_selected,
-    //                   gallery_photo: selectValues.gallery_photo_selected,
-    //                   gallery_video: selectValues.gallery_video_selected,
-    //                   map: selectValues.map_selected,
-    //                   chat: selectValues.chat_selected,
-    //                   camera: selectValues.camera_selected,
-    //                   phone: selectValues.phone_selected,
-    //                   contact: selectValues.contact_selected,
-    //                   news: selectValues.browser_selected,
-    //                 },
-    //                 description: values.description,
-    //                 order_number: values.order_number,
-    //                 status: values.status,
-    //                 title: values.title,
-    //                 total_user: values.total_user,
-    //                 lock_code: values.lock_code,
-    //                 timer: values.timer,
-    //                 imageUrl,
-    //                 modelUrl,
-    //                 backgroundUrl,
-    //                 date: Date.now(),
-    //               })
-    //             )
-    //             message.success(`Create stage with title '${values.title}'`)
-    //             setSubmitLoading(false)
-    //             history.push(`/app/stages`)
-    //           })
-    //         } catch (e) {
-    //           console.log(e)
-    //         }
-    //       }
-    //       if (mode === EDIT) {
-    //         if (
-    //           imageOriginal === '' &&
-    //           backgroundOriginal === '' &&
-    //           modelOriginal === ''
-    //         ) {
-    //           console.log(selectValues)
-    //           values.date = moment(values.date, 'YYYY-MM-DD').valueOf() / 1000
-    //           FirebaseService.updateStage(stageData.id, {
-    //             data_game: {
-    //               social_media: selectValues.social_media_selected,
-    //               gallery_photo: selectValues.gallery_photo_selected,
-    //               gallery_video: selectValues.gallery_video_selected,
-    //               map: selectValues.map_selected,
-    //               chat: selectValues.chat_selected,
-    //               camera: selectValues.camera_selected,
-    //               phone: selectValues.phone_selected,
-    //               contact: selectValues.contact_selected,
-    //               news: selectValues.browser_selected,
-    //             },
-    //             description: values.description,
-    //             order_number: values.order_number,
-    //             status: values.status,
-    //             title: values.title,
-    //             total_user: values.total_user,
-    //             lock_code: values.lock_code,
-    //             timer: values.timer,
-    //             imageUrl: uploadedImg,
-    //             backgroundUrl: uploadedBackground,
-    //             modelUrl: uploadedModel,
-    //           }).then((resp) => {
-    //             dispatch(
-    //               updateStage({
-    //                 data_game: {
-    //                   social_media: selectValues.social_media_selected,
-    //                   gallery_photo: selectValues.gallery_photo_selected,
-    //                   gallery_video: selectValues.gallery_video_selected,
-    //                   map: selectValues.map_selected,
-    //                   chat: selectValues.chat_selected,
-    //                   camera: selectValues.camera_selected,
-    //                   phone: selectValues.phone_selected,
-    //                   contact: selectValues.contact_selected,
-    //                   news: selectValues.browser_selected,
-    //                 },
-    //                 description: values.description,
-    //                 order_number: values.order_number,
-    //                 status: values.status,
-    //                 title: values.title,
-    //                 total_user: values.total_user,
-    //                 lock_code: values.lock_code,
-    //                 timer: values.timer,
-    //                 imageUrl: uploadedImg,
-    //                 modelUrl: uploadedModel,
-    //                 backgroundUrl: uploadedBackground,
-    //               })
-    //             )
-    //             message.success(
-    //               `Stage with title '${values.title}' has updated`
-    //             )
-    //             setSubmitLoading(false)
-    //             history.push(`/app/stages`)
-    //           })
-    //         } else {
-    //           let imageUrl = uploadedImg
-    //           let modelUrl = uploadedModel
-    //           let backgroundUrl = uploadedBackground
+        for (const key in values) {
+          formData.append(key, values[key])
+        }
 
-    //           // Jika terdapat gambar imageOriginal
-    //           if (imageOriginal !== '') {
-    //             const fileName = `images/stages/${Date.now()}-${
-    //               imageOriginal.name
-    //             }`
-    //             const fileRef = storage.ref().child(fileName)
-    //             try {
-    //               const designFile = await fileRef.put(
-    //                 imageOriginal.originFileObj
-    //               )
-    //               imageUrl = await designFile.ref.getDownloadURL()
-    //             } catch (e) {
-    //               console.log(e)
-    //             }
-    //           }
+        // Append each property of the data_game object to formData
+        for (const key in data_game) {
+          formData.append(`data_game[${key}]`, data_game[key])
+        }
 
-    //           // Jika terdapat gambar backgroundOriginal
-    //           if (backgroundOriginal !== '') {
-    //             const backgroundName = `models/stages/${Date.now()}-${
-    //               backgroundOriginal.name
-    //             }`
-    //             const backgroundRef = storage.ref().child(backgroundName)
-    //             try {
-    //               const backgroundFile = await backgroundRef.put(
-    //                 backgroundOriginal.originFileObj
-    //               )
-    //               backgroundUrl = await backgroundFile.ref.getDownloadURL()
-    //             } catch (e) {
-    //               console.log(e)
-    //             }
-    //           }
+        const resp = await stageService.addStage(formData)
+        dispatch(createStage(resp.data)) // Assuming the API returns the created news data
+        message.success(`Create stage with title '${values.title}'`)
+        history.push(`/app/stages`)
+      } else if (mode === EDIT) {
+        const data_game = {
+          social_media: selectValues.social_media_selected,
+          gallery_photo: selectValues.gallery_photo_selected,
+          gallery_video: selectValues.gallery_video_selected,
+          map: selectValues.map_selected,
+          chat: selectValues.chat_selected,
+          camera: selectValues.camera_selected,
+          phone: selectValues.phone_selected,
+          contact: selectValues.contact_selected,
+          news: selectValues.browser_selected,
+        }
 
-    //           // Jika terdapat gambar modelOriginal
-    //           if (modelOriginal !== '') {
-    //             const modelName = `models/stages/${Date.now()}-${
-    //               modelOriginal.name
-    //             }`
-    //             const modelRef = storage.ref().child(modelName)
-    //             try {
-    //               const modelFile = await modelRef.put(
-    //                 modelOriginal.originFileObj
-    //               )
-    //               modelUrl = await modelFile.ref.getDownloadURL()
-    //             } catch (e) {
-    //               console.log(e)
-    //             }
-    //           }
+        formData.append('background', backgroundOriginal.originFileObj)
+        formData.append('objective', objectiveOriginal.originFileObj)
+        formData.append('model', modelOriginal.originFileObj)
 
-    //           // Proses update dengan gambar
-    //           FirebaseService.updateStage(stageData.id, {
-    //             data_game: {
-    //               social_media: selectValues.social_media_selected,
-    //               gallery_photo: selectValues.gallery_photo_selected,
-    //               gallery_video: selectValues.gallery_video_selected,
-    //               map: selectValues.map_selected,
-    //               chat: selectValues.chat_selected,
-    //               camera: selectValues.camera_selected,
-    //               phone: selectValues.phone_selected,
-    //               contact: selectValues.contact_selected,
-    //               news: selectValues.browser_selected,
-    //             },
-    //             description: values.description,
-    //             order_number: values.order_number,
-    //             status: values.status,
-    //             title: values.title,
-    //             total_user: values.total_user,
-    //             lock_code: values.lock_code,
-    //             timer: values.timer,
-    //             imageUrl,
-    //             modelUrl,
-    //             backgroundUrl,
-    //           }).then((resp) => {
-    //             dispatch(
-    //               updateStage({
-    //                 data_game: {
-    //                   social_media: selectValues.social_media_selected,
-    //                   gallery_photo: selectValues.gallery_photo_selected,
-    //                   gallery_video: selectValues.gallery_video_selected,
-    //                   map: selectValues.map_selected,
-    //                   chat: selectValues.chat_selected,
-    //                   camera: selectValues.camera_selected,
-    //                   phone: selectValues.phone_selected,
-    //                   contact: selectValues.contact_selected,
-    //                   news: selectValues.browser_selected,
-    //                 },
-    //                 description: values.description,
-    //                 order_number: values.order_number,
-    //                 status: values.status,
-    //                 title: values.title,
-    //                 total_user: values.total_user,
-    //                 lock_code: values.lock_code,
-    //                 timer: values.timer,
-    //                 imageUrl,
-    //                 modelUrl,
-    //                 backgroundUrl,
-    //               })
-    //             )
-    //             message.success(
-    //               `Stage with title '${values.title}' has updated`
-    //             )
-    //             setSubmitLoading(false)
-    //             history.push(`/app/stages`)
-    //           })
-    //         }
-    //       }
-    //     }, 1500)
-    //   })
-    //   .catch((info) => {
-    //     setSubmitLoading(false)
-    //     console.log('info', info)
-    //     message.error('Please enter all required field ')
-    //   })
+        console.log(modelOriginal.originFileObj)
+
+        for (const key in values) {
+          formData.append(key, values[key])
+        }
+
+        // Append each property of the data_game object to formData
+        for (const key in data_game) {
+          formData.append(`data_game[${key}]`, data_game[key])
+        }
+
+        const resp = await stageService.updateStage(stageData._id, formData)
+        dispatch(updateStage(resp.data)) // Assuming the API returns the updated news data
+        message.success(`Stage with title '${values.title}' has updated`)
+        history.push(`/app/stages`)
+      }
+    } catch (error) {
+      setSubmitLoading(false)
+      console.log('Error:', error)
+      message.error('An error occurred. Please try again later.')
+    }
   }
 
   const onDiscard = () => {
@@ -461,9 +309,9 @@ const StageForm = (props) => {
               {loadingData && <Spin size="large" tip="Please Wait" />}
               {!loadingData && (
                 <GeneralField
-                  uploadedImg={uploadedImg}
-                  uploadLoading={uploadLoading}
-                  handleUploadChange={handleUploadChange}
+                  uploadedObjective={uploadedObjective}
+                  uploadObjectiveLoading={uploadObjectiveLoading}
+                  handleUploadChange={handleUploadObjectiveChange}
                   uploadedModel={uploadedModel}
                   uploadModelLoading={uploadModelLoading}
                   handleUploadModelChange={handleUploadModelChange}
@@ -480,6 +328,7 @@ const StageForm = (props) => {
                   contact_list={contact_list}
                   news_browser_list={news_browser_list}
                   setSelectValues={setSelectValues}
+                  selectValues={selectValues}
                 />
               )}
             </TabPane>

@@ -14,30 +14,31 @@ import { useDispatch, useSelector } from 'react-redux'
 import { getAllStage } from 'redux/actions'
 import { ExclamationCircleOutlined } from '@ant-design/icons'
 import { colorPrimary } from 'configs/AppConfig'
-import moment from 'moment'
+import stageService from 'services/StageService'
 
 const StageList = () => {
   let history = useHistory()
-  const stages = useSelector((state) => state.stages)
+  const stages = useSelector((state) => state.stage.data)
   const dispatch = useDispatch()
   const [list, setList] = useState([])
   const [selectedRows, setSelectedRows] = useState([])
   const [selectedRowKeys, setSelectedRowKeys] = useState([])
 
   useEffect(() => {
-    // FirebaseService.getStage()
-    //   .then((querySnapshot) => {
-    //     let listData = []
-    //     querySnapshot.forEach((doc) => {
-    //       listData.push({ ...doc.data(), id: doc.id })
-    //     })
-    //     dispatch(getAllStage(listData))
-    //     setList(listData)
-    //   })
-    //   .catch((error) => {
-    //     console.log('Error getting document:', error)
-    //   })
-  }, [])
+    stageService
+      .getStageList()
+      .then((querySnapshot) => {
+        let listData = []
+        querySnapshot.data.forEach((doc) => {
+          listData.push({ ...doc, id: doc._id })
+        })
+        dispatch(getAllStage(listData))
+        setList(listData)
+      })
+      .catch((error) => {
+        console.log('Error getting document:', error)
+      })
+  }, [dispatch])
 
   const confirm = (e) => {
     Modal.confirm({
@@ -48,6 +49,9 @@ const StageList = () => {
       cancelText: 'Cancel',
       onOk: () => {
         deleteRow(e)
+      },
+      onCancel: () => {
+        cancel(e)
       },
     })
   }
@@ -62,6 +66,13 @@ const StageList = () => {
         <Flex alignItems="center">
           <EyeOutlined />
           <span className="ml-2">View Details</span>
+        </Flex>
+      </Menu.Item>
+
+      <Menu.Item onClick={() => taskDetails(row)}>
+        <Flex alignItems="center">
+          <EyeOutlined />
+          <span className="ml-2">Add Task</span>
         </Flex>
       </Menu.Item>
 
@@ -86,19 +97,23 @@ const StageList = () => {
     history.push(`/app/stages/edit-stage/${row.id}`)
   }
 
+  const taskDetails = (row) => {
+    history.push(`/app/stages/detail-task/${row.id}`)
+  }
+
   const deleteRow = (row) => {
     const objKey = 'id'
     let data = list
     if (selectedRows.length > 1) {
       selectedRows.forEach((elm) => {
-        // FirebaseService.deleteStage(elm.id)
-        data = utils.deleteArrayRow(data, objKey, elm.id)
+        stageService.deleteStage(elm._id)
+        data = utils.deleteArrayRow(data, objKey, elm._id)
         setList(data)
         setSelectedRows([])
       })
     } else {
-      // FirebaseService.deleteStage(row.id)
-      data = utils.deleteArrayRow(data, objKey, row.id)
+      stageService.deleteStage(row._id)
+      data = utils.deleteArrayRow(data, objKey, row._id)
       setList(data)
     }
   }
@@ -110,10 +125,14 @@ const StageList = () => {
       sorter: (a, b) => utils.antdTableSorter(a, b, 'title'),
     },
     {
-      title: 'Date',
-      dataIndex: 'date',
-      sorter: (a, b) => utils.antdTableSorter(a, b, 'date'),
-      render: (date) => moment.unix(date / 1000),
+      title: 'Description',
+      dataIndex: 'description',
+      sorter: (a, b) => utils.antdTableSorter(a, b, 'description'),
+    },
+    {
+      title: 'Lock Code',
+      dataIndex: 'lock_code',
+      sorter: (a, b) => utils.antdTableSorter(a, b, 'lock_code'),
     },
     {
       title: '',

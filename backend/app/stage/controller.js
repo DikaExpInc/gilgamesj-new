@@ -77,9 +77,7 @@ module.exports = {
         })
       }
 
-      if (
-        !['model/gltf-binary', 'model/gltf+json'].includes(modelFile.mimetype)
-      ) {
+      if (!modelFile.originalname.endsWith('.glb')) {
         return res.status(422).json({
           error: 1,
           message: 'Invalid model type. Only FBX and OBJ models are allowed.',
@@ -225,11 +223,7 @@ module.exports = {
         if (req.files['model']) {
           const modelFileData = req.files['model'][0]
 
-          if (
-            !['model/gltf-binary', 'model/gltf+json'].includes(
-              modelFileData.mimetype
-            )
-          ) {
+          if (!modelFileData.originalname.endsWith('.glb')) {
             return res.status(422).json({
               error: 1,
               message:

@@ -2,22 +2,10 @@ import 'package:get/get.dart';
 
 class ChatDetailController extends GetxController {
   //TODO: Implement ChatDetailController
+  RxBool isBottomSheetVisible = false.obs;
+  final Map<String, dynamic> chatData = Get.arguments;
 
-  final count = 0.obs;
-  @override
-  void onInit() {
-    super.onInit();
+  void toggleBottomSheetVisibility() {
+    isBottomSheetVisible.value = !isBottomSheetVisible.value;
   }
-
-  @override
-  void onReady() {
-    super.onReady();
-  }
-
-  @override
-  void onClose() {
-    super.onClose();
-  }
-
-  void increment() => count.value++;
 }

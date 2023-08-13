@@ -13,6 +13,11 @@ let playerSchema = mongoose.Schema(
       type: Number,
       default: 0,
     },
+    status_play: {
+      type: String,
+      enum: ['Y', 'N'],
+      default: 'N',
+    },
     status_done: {
       type: String,
       enum: ['Y', 'N'],

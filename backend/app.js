@@ -8,8 +8,8 @@ const session = require('express-session')
 const flash = require('connect-flash')
 var cors = require('cors')
 const { Client, Server } = require('node-osc')
-
-var server = new Server(53000, '192.168.1.4') // set IP and Port of Server
+N
+var server = new Server(53000, '192.168.8.238') // set IP and Port of Server
 
 server.on('listening', () => {
   console.log('OSC Server is listening.')

@@ -113,7 +113,7 @@ module.exports = {
 
   addPlayer: async (req, res, next) => {
     try {
-      const { username } = req.body
+      const { total_player } = req.body
       const stage = await Stage.findOne({
         $or: [{ order_number: 1 }],
       })
@@ -125,29 +125,49 @@ module.exports = {
         })
       }
 
-      // Hitung jumlah pemain saat ini dalam koleksi "Player"
-      const totalPlayers = await Player.countDocuments({
-        user_id: req.user.id,
-      })
+      for (let player_num = 1; player_num <= total_player; player_num++) {
+        let player
+        if (player_num == 1) {
+          player = new Player({
+            username: `player-${player_num}`,
+            player_num: player_num,
+            stage_id: stage._id,
+            user_id: req.user.id,
+            status_play: 'Y',
+          })
+          await User.findByIdAndUpdate(req.user._id, {
+            $set: { player_now: player_num },
+          })
+        } else {
+          player = new Player({
+            username: `player-${player_num}`,
+            player_num: player_num,
+            stage_id: stage._id,
+            user_id: req.user.id,
+          })
+        }
 
-      // Tambahkan 1 untuk mendapatkan nilai "player_num" baru
-      const player_num = totalPlayers + 1
+        await player.save()
+      }
 
-      let player = new Player({
-        username: username,
-        player_num: player_num,
-        stage_id: stage._id,
-        user_id: req.user.id,
-      })
-
-      if (player_num == 1)
-        await User.findByIdAndUpdate(req.user._id, {
-          $set: { player_now: player_num },
-        })
-
-      await player.save()
       res.status(201).json({
-        message: 'Successfully add player',
+        message: `Successfully add ${total_player} player`,
+        status: 'success',
+      })
+    } catch (err) {
+      return res.status(422).json({
+        error: 1,
+        message: err.message,
+        fields: err.errors,
+      })
+    }
+  },
+
+  getPlayers: async (req, res, next) => {
+    try {
+      const player = await Player.find({ user_id: req.user.id })
+      res.status(200).json({
+        message: `Successfully get players`,
         status: 'success',
         data: player,
       })

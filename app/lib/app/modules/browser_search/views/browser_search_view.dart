@@ -1,22 +1,78 @@
+import 'package:app/app/modules/browser_search/controllers/browser_search_controller.dart';
+import 'package:app/app/widgets/navbar_browser.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 
-import '../controllers/browser_search_controller.dart';
-
+// ignore: must_be_immutable
 class BrowserSearchView extends GetView<BrowserSearchController> {
-  const BrowserSearchView({Key? key}) : super(key: key);
+  late double mWidth;
+  late double mHeight;
+
   @override
   Widget build(BuildContext context) {
+    mWidth = MediaQuery.of(context).size.width;
+    mHeight = MediaQuery.of(context).size.height;
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('BrowserSearchView'),
-        centerTitle: true,
-      ),
-      body: Center(
-        child: Text(
-          'BrowserSearchView is working',
-          style: TextStyle(fontSize: 20),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            Container(
+              width: mWidth,
+              height: mHeight,
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                  colorFilter: ColorFilter.mode(
+                      Colors.black.withOpacity(0), BlendMode.srcOver),
+                  image: AssetImage("assets/images/background2.png"),
+                  fit: BoxFit.cover,
+                ),
+              ),
+              child: Column(
+                children: [
+                  SizedBox(
+                    height: 32,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 64.0,
+                      vertical: 16.0,
+                    ),
+                    child: Column(
+                      children: [
+                        NavbarWidget(mWidth: mWidth),
+                      ],
+                    ),
+                  ),
+                  Expanded(
+                    child: Container(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Image.asset(
+                            'assets/images/no_internet.png',
+                            height: 200,
+                          ),
+                          Text(
+                            "There was a problem with the network [404]",
+                            style: TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.w400,
+                              color: Colors.white,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    height: 32,
+                  ),
+                ],
+              ),
+            ),
+          ],
         ),
       ),
     );

@@ -1,23 +1,19 @@
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 
 class MapController extends GetxController {
-  //TODO: Implement MapController
+  RxBool isBottomSheetVisible = false.obs;
+  RxBool isLoading = false.obs;
+  var tasks = RxList<Map<String, dynamic>>([]);
+  var doneTasks = RxList<Map<String, dynamic>>([]);
+  final box = GetStorage();
 
-  final count = 0.obs;
   @override
   void onInit() {
     super.onInit();
   }
 
-  @override
-  void onReady() {
-    super.onReady();
+  void toggleBottomSheetVisibility() {
+    isBottomSheetVisible.value = !isBottomSheetVisible.value;
   }
-
-  @override
-  void onClose() {
-    super.onClose();
-  }
-
-  void increment() => count.value++;
 }

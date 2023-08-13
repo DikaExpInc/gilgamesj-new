@@ -1,22 +1,38 @@
+import 'package:app/app/modules/comment/controllers/comment_controller.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 
-import '../controllers/comment_controller.dart';
-
 class CommentView extends GetView<CommentController> {
-  const CommentView({Key? key}) : super(key: key);
+  late double mWidth;
+  late double mHeight;
+
   @override
   Widget build(BuildContext context) {
+    mWidth = MediaQuery.of(context).size.width;
+    mHeight = MediaQuery.of(context).size.height;
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('CommentView'),
-        centerTitle: true,
-      ),
-      body: Center(
-        child: Text(
-          'CommentView is working',
-          style: TextStyle(fontSize: 20),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            Container(
+              width: mWidth,
+              height: mHeight,
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                  colorFilter: ColorFilter.mode(
+                      Colors.black.withOpacity(0), BlendMode.srcOver),
+                  image: AssetImage("assets/images/background2.png"),
+                  fit: BoxFit.cover,
+                ),
+              ),
+              child: Container(
+                child: Center(
+                  child: Text("Data history masih belum ada"),
+                ),
+              ),
+            ),
+          ],
         ),
       ),
     );

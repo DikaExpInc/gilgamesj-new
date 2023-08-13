@@ -21,7 +21,6 @@ abstract class Routes {
   static const GALLERY_VIDEO_DETAIL = _Paths.GALLERY_VIDEO_DETAIL;
   static const INTRODUCTION = _Paths.INTRODUCTION;
   static const LOCK_MUSIC = _Paths.LOCK_MUSIC;
-  static const LOCK_SCREEN = _Paths.LOCK_SCREEN;
   static const MAP = _Paths.MAP;
   static const NEWS_DETAIL = _Paths.NEWS_DETAIL;
   static const OBJECTIVE = _Paths.OBJECTIVE;
@@ -32,6 +31,8 @@ abstract class Routes {
   static const RULES = _Paths.RULES;
   static const SOCIAL_MEDIA = _Paths.SOCIAL_MEDIA;
   static const START = _Paths.START;
+  static const CREATE_PLAYER = _Paths.CREATE_PLAYER;
+  static const VIEW_PLAYER = _Paths.VIEW_PLAYER;
 }
 
 abstract class _Paths {
@@ -54,7 +55,6 @@ abstract class _Paths {
   static const GALLERY_VIDEO_DETAIL = '/gallery-video-detail';
   static const INTRODUCTION = '/introduction';
   static const LOCK_MUSIC = '/lock-music';
-  static const LOCK_SCREEN = '/lock-screen';
   static const MAP = '/map';
   static const NEWS_DETAIL = '/news-detail';
   static const OBJECTIVE = '/objective';
@@ -65,4 +65,6 @@ abstract class _Paths {
   static const RULES = '/rules';
   static const SOCIAL_MEDIA = '/social-media';
   static const START = '/start';
+  static const CREATE_PLAYER = '/create-player';
+  static const VIEW_PLAYER = '/view-player';
 }

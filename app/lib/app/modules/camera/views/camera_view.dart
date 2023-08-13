@@ -1,22 +1,36 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 
-import 'package:get/get.dart';
+class CameraView extends StatefulWidget {
+  @override
+  _CameraViewState createState() => _CameraViewState();
+}
 
-import '../controllers/camera_controller.dart';
+class _CameraViewState extends State<CameraView> {
+  final GlobalKey webViewKey = GlobalKey();
+  InAppWebViewController? webViewController;
 
-class CameraView extends GetView<CameraController> {
-  const CameraView({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('CameraView'),
-        centerTitle: true,
-      ),
-      body: Center(
-        child: Text(
-          'CameraView is working',
-          style: TextStyle(fontSize: 20),
+      body: Container(
+        child: InAppWebView(
+          key: webViewKey,
+          initialFile: "assets/html/demo4/index.html",
+          initialOptions: InAppWebViewGroupOptions(
+            crossPlatform: InAppWebViewOptions(
+              mediaPlaybackRequiresUserGesture: false,
+            ),
+          ),
+          onWebViewCreated: (controller) {
+            webViewController = controller;
+          },
+          androidOnPermissionRequest: (InAppWebViewController controller,
+              String origin, List<String> resources) async {
+            return PermissionRequestResponse(
+                resources: resources,
+                action: PermissionRequestResponseAction.GRANT);
+          },
         ),
       ),
     );

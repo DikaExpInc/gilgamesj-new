@@ -5,6 +5,7 @@ class AutoLoad extends StatefulWidget {
   final Widget? child;
   const AutoLoad({@required this.onInit, @required this.child});
   @override
+  // ignore: library_private_types_in_public_api
   _AutoLoadState createState() => _AutoLoadState();
 }
 
@@ -12,7 +13,7 @@ class _AutoLoadState extends State<AutoLoad> {
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance?.addPostFrameCallback((_) {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
       print("WidgetsBinding");
 
       if (widget.onInit != null) {

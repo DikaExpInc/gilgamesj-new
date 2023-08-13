@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 class UserModel {
   final int? status;
   final int? id;

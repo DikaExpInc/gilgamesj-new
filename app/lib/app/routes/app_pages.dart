@@ -22,6 +22,8 @@ import '../modules/clap/bindings/clap_binding.dart';
 import '../modules/clap/views/clap_view.dart';
 import '../modules/comment/bindings/comment_binding.dart';
 import '../modules/comment/views/comment_view.dart';
+import '../modules/create_player/bindings/create_player_binding.dart';
+import '../modules/create_player/views/create_player_view.dart';
 import '../modules/create_team/bindings/create_team_binding.dart';
 import '../modules/create_team/views/create_team_view.dart';
 import '../modules/gallery/bindings/gallery_binding.dart';
@@ -36,8 +38,6 @@ import '../modules/introduction/bindings/introduction_binding.dart';
 import '../modules/introduction/views/introduction_view.dart';
 import '../modules/lock_music/bindings/lock_music_binding.dart';
 import '../modules/lock_music/views/lock_music_view.dart';
-import '../modules/lock_screen/bindings/lock_screen_binding.dart';
-import '../modules/lock_screen/views/lock_screen_view.dart';
 import '../modules/map/bindings/map_binding.dart';
 import '../modules/map/views/map_view.dart';
 import '../modules/news_detail/bindings/news_detail_binding.dart';
@@ -56,154 +56,161 @@ import '../modules/social_media/bindings/social_media_binding.dart';
 import '../modules/social_media/views/social_media_view.dart';
 import '../modules/start/bindings/start_binding.dart';
 import '../modules/start/views/start_view.dart';
+import '../modules/view_player/bindings/view_player_binding.dart';
+import '../modules/view_player/views/view_player_view.dart';
 
 part 'app_routes.dart';
 
 class AppPages {
   AppPages._();
 
-  static const INITIAL = Routes.HOME;
+  static const INITIAL = Routes.CREATE_TEAM;
 
   static final routes = [
     GetPage(
       name: _Paths.HOME,
-      page: () => const HomeView(),
+      page: () => HomeView(),
       binding: HomeBinding(),
     ),
     GetPage(
       name: _Paths.BLANK,
-      page: () => const BlankView(),
+      page: () => BlankView(),
       binding: BlankBinding(),
     ),
     GetPage(
       name: _Paths.BONUS,
-      page: () => const BonusView(),
+      page: () => BonusView(),
       binding: BonusBinding(),
     ),
     GetPage(
       name: _Paths.BONUS_CAMERA,
-      page: () => const BonusCameraView(),
+      page: () => BonusCameraView(),
       binding: BonusCameraBinding(),
     ),
     GetPage(
       name: _Paths.BONUS_HOME,
-      page: () => const BonusHomeView(),
+      page: () => BonusHomeView(),
       binding: BonusHomeBinding(),
     ),
     GetPage(
       name: _Paths.BROWSER,
-      page: () => const BrowserView(),
+      page: () => BrowserView(),
       binding: BrowserBinding(),
     ),
     GetPage(
       name: _Paths.BROWSER_SEARCH,
-      page: () => const BrowserSearchView(),
+      page: () => BrowserSearchView(),
       binding: BrowserSearchBinding(),
     ),
     GetPage(
       name: _Paths.CAMERA,
-      page: () => const CameraView(),
+      page: () => CameraView(),
       binding: CameraBinding(),
     ),
     GetPage(
       name: _Paths.CHAT,
-      page: () => const ChatView(),
+      page: () => ChatView(),
       binding: ChatBinding(),
     ),
     GetPage(
       name: _Paths.CHAT_DETAIL,
-      page: () => const ChatDetailView(),
+      page: () => ChatDetailView(),
       binding: ChatDetailBinding(),
     ),
     GetPage(
       name: _Paths.CLAP,
-      page: () => const ClapView(),
+      page: () => ClapView(),
       binding: ClapBinding(),
     ),
     GetPage(
       name: _Paths.COMMENT,
-      page: () => const CommentView(),
+      page: () => CommentView(),
       binding: CommentBinding(),
     ),
     GetPage(
       name: _Paths.CREATE_TEAM,
-      page: () => const CreateTeamView(),
+      page: () => CreateTeamView(),
       binding: CreateTeamBinding(),
     ),
     GetPage(
       name: _Paths.GALLERY,
-      page: () => const GalleryView(),
+      page: () => GalleryView(),
       binding: GalleryBinding(),
     ),
     GetPage(
       name: _Paths.GALLERY_IMAGE_DETAIL,
-      page: () => const GalleryImageDetailView(),
+      page: () => GalleryImageDetailView(),
       binding: GalleryImageDetailBinding(),
     ),
     GetPage(
       name: _Paths.GALLERY_VIDEO_DETAIL,
-      page: () => const GalleryVideoDetailView(),
+      page: () => GalleryVideoDetailView(),
       binding: GalleryVideoDetailBinding(),
     ),
     GetPage(
       name: _Paths.INTRODUCTION,
-      page: () => const IntroductionView(),
+      page: () => IntroductionView(),
       binding: IntroductionBinding(),
     ),
     GetPage(
       name: _Paths.LOCK_MUSIC,
-      page: () => const LockMusicView(),
+      page: () => LockMusicView(),
       binding: LockMusicBinding(),
     ),
     GetPage(
-      name: _Paths.LOCK_SCREEN,
-      page: () => const LockScreenView(),
-      binding: LockScreenBinding(),
-    ),
-    GetPage(
       name: _Paths.MAP,
-      page: () => const MapView(),
+      page: () => MapView(),
       binding: MapBinding(),
     ),
     GetPage(
       name: _Paths.NEWS_DETAIL,
-      page: () => const NewsDetailView(),
+      page: () => NewsDetailView(),
       binding: NewsDetailBinding(),
     ),
     GetPage(
       name: _Paths.OBJECTIVE_DETAIL,
-      page: () => const ObjectiveDetailView(),
+      page: () => ObjectiveDetailView(),
       binding: ObjectiveDetailBinding(),
     ),
     GetPage(
       name: _Paths.PERFORMANCE,
-      page: () => const PerformanceView(),
+      page: () => PerformanceView(),
       binding: PerformanceBinding(),
     ),
     GetPage(
       name: _Paths.PHONE,
-      page: () => const PhoneView(),
+      page: () => PhoneView(),
       binding: PhoneBinding(),
     ),
     GetPage(
       name: _Paths.PHONE_CALL,
-      page: () => const PhoneCallView(),
+      page: () => PhoneCallView(),
       binding: PhoneCallBinding(),
     ),
     GetPage(
       name: _Paths.RULES,
-      page: () => const RulesView(),
+      page: () => RulesView(),
       binding: RulesBinding(),
     ),
     GetPage(
       name: _Paths.SOCIAL_MEDIA,
-      page: () => const SocialMediaView(),
+      page: () => SocialMediaView(),
       binding: SocialMediaBinding(),
     ),
     GetPage(
       name: _Paths.START,
-      page: () => const StartView(),
+      page: () => StartView(),
       binding: StartBinding(),
+    ),
+    GetPage(
+      name: _Paths.CREATE_PLAYER,
+      page: () => CreatePlayerView(),
+      binding: CreatePlayerBinding(),
+    ),
+    GetPage(
+      name: _Paths.VIEW_PLAYER,
+      page: () => ViewPlayerView(),
+      binding: ViewPlayerBinding(),
     ),
   ];
 }

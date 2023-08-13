@@ -3,21 +3,5 @@ import 'package:get/get.dart';
 class GalleryImageDetailController extends GetxController {
   //TODO: Implement GalleryImageDetailController
 
-  final count = 0.obs;
-  @override
-  void onInit() {
-    super.onInit();
-  }
-
-  @override
-  void onReady() {
-    super.onReady();
-  }
-
-  @override
-  void onClose() {
-    super.onClose();
-  }
-
-  void increment() => count.value++;
+  final Map<String, dynamic> arguments = Get.arguments;
 }

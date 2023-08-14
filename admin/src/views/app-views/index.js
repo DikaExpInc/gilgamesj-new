@@ -65,6 +65,10 @@ export const AppViews = () => {
           component={lazy(() => import(`./stages`))}
         />
         <Route
+          path={`${APP_PREFIX_PATH}/lights`}
+          component={lazy(() => import(`./lights`))}
+        />
+        <Route
           path={`${APP_PREFIX_PATH}/settings`}
           component={lazy(() => import(`./settings`))}
         />

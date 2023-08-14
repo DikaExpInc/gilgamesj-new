@@ -12,6 +12,7 @@ import {
   SettingOutlined,
   CheckSquareFilled,
   CameraOutlined,
+  LinkOutlined,
 } from '@ant-design/icons'
 import { APP_PREFIX_PATH } from 'configs/AppConfig'
 
@@ -110,6 +111,14 @@ const dashBoardNavTree = [
     path: `${APP_PREFIX_PATH}/stages`,
     title: 'Stage',
     icon: CheckSquareFilled,
+    breadcrumb: false,
+    submenu: [],
+  },
+  {
+    key: 'light',
+    path: `${APP_PREFIX_PATH}/lights`,
+    title: 'Light',
+    icon: LinkOutlined,
     breadcrumb: false,
     submenu: [],
   },

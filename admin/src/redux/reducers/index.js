@@ -1,21 +1,22 @@
-import { combineReducers } from "redux";
-import Auth from "./Auth";
-import Theme from "./Theme";
-import News from "./News";
-import Maps from "./Maps";
-import SocialMedia from "./SocialMedia";
-import DetailComment from "./DetailComment";
-import GalleryPhoto from "./GalleryPhoto";
-import GalleryVideo from "./GalleryVideo";
-import Chat from "./Chat";
-import DetailChat from "./DetailChat";
-import Camera from "./Camera";
-import Phone from "./Phone";
-import Contact from "./Contact";
-import Stage from "./Stage";
-import Task from "./Task";
-import Setting from "./Setting";
-import User from "./User";
+import { combineReducers } from 'redux'
+import Auth from './Auth'
+import Theme from './Theme'
+import News from './News'
+import Maps from './Maps'
+import SocialMedia from './SocialMedia'
+import DetailComment from './DetailComment'
+import GalleryPhoto from './GalleryPhoto'
+import GalleryVideo from './GalleryVideo'
+import Chat from './Chat'
+import DetailChat from './DetailChat'
+import Camera from './Camera'
+import Phone from './Phone'
+import Contact from './Contact'
+import Stage from './Stage'
+import Task from './Task'
+import Setting from './Setting'
+import User from './User'
+import Light from './Light'
 
 const reducers = combineReducers({
   theme: Theme,
@@ -35,6 +36,7 @@ const reducers = combineReducers({
   task: Task,
   setting: Setting,
   user: User,
-});
+  light: Light,
+})
 
-export default reducers;
+export default reducers

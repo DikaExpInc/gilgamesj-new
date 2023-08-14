@@ -29,7 +29,7 @@ module.exports = {
       }
 
       const task = await Task.findById(taskId)
-      if (!task || task.stage.toString() !== id) {
+      if (!task) {
         return res.status(404).json({ message: 'Task not found' })
       }
 
@@ -94,7 +94,7 @@ module.exports = {
       }
 
       const task = await Task.findById(taskId)
-      if (!task || task.stage.toString() !== id) {
+      if (!task) {
         return res.status(404).json({ message: 'Task not found' })
       }
 

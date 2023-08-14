@@ -2,38 +2,38 @@ import fetch from 'auth/FetchInterceptor'
 
 const taskService = {}
 
-taskService.getTaskList = function () {
+taskService.getTaskList = function (stageID) {
   return fetch({
-    url: '/task',
+    url: `/task/${stageID}`,
     method: 'get',
   })
 }
 
-taskService.addTask = function (data) {
+taskService.addTask = function (stageID, data) {
   return fetch({
-    url: '/task/create',
+    url: `/task/${stageID}/create`,
     method: 'post',
     data: data,
   })
 }
 
-taskService.getTask = function (id) {
+taskService.getTask = function (stageID, id) {
   return fetch({
-    url: '/task/' + id,
+    url: `/task/${stageID}/find/${id}`,
     method: 'get',
   })
 }
 
-taskService.deleteTask = function (id) {
+taskService.deleteTask = function (stageID, id) {
   return fetch({
-    url: '/task/delete/' + id,
+    url: `/task/${stageID}/delete/${id}`,
     method: 'delete',
   })
 }
 
-taskService.updateTask = function (id, data) {
+taskService.updateTask = function (stageID, id, data) {
   return fetch({
-    url: '/task/edit/' + id,
+    url: `/task/${stageID}/edit/${id}`,
     method: 'put',
     data: data,
   })

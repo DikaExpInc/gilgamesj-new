@@ -1,5 +1,6 @@
 import 'package:app/app/modules/view_player/controllers/view_player_controller.dart';
 import 'package:app/app/modules/view_player/views/widgets/player_widget.dart';
+import 'package:app/app/widgets/no_data.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
@@ -27,9 +28,9 @@ class ViewPlayerView extends GetView<ViewPlayerController> {
           ),
         ),
         child: Padding(
-          padding: EdgeInsets.only(top: mHeight / 25),
+          padding: EdgeInsets.only(top: mHeight / 20),
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -65,26 +66,47 @@ class ViewPlayerView extends GetView<ViewPlayerController> {
                   SizedBox(
                     height: 80,
                   ),
-                  PlayerWidget(
-                    name: "Player 1",
-                    status: "Played",
-                  ),
-                  PlayerWidget(
-                    name: "Player 2",
-                    status: "",
-                  ),
-                  PlayerWidget(
-                    name: "Player 3",
-                    status: "",
-                  ),
-                  PlayerWidget(
-                    name: "Player 4",
-                    status: "",
-                  ),
-                  SizedBox(
-                    height: 80,
-                  ),
                 ],
+              ),
+              Expanded(
+                child: GetBuilder<ViewPlayerController>(
+                  builder: (controller) =>
+                      controller.playerListModel?.statusCode == 200
+                          ? controller.playerListModel!.items!.length != 0
+                              ? Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 48.0),
+                                  child: ListView.builder(
+                                    itemCount: controller
+                                        .playerListModel!.items!.length,
+                                    itemBuilder: (context, index) {
+                                      return PlayerWidget(
+                                        name: controller.playerListModel!
+                                                    .items![index].username ==
+                                                null
+                                            ? "Player " +
+                                                controller.playerListModel!
+                                                    .items![index].playerNum
+                                                    .toString()
+                                            : controller.playerListModel!
+                                                .items![index].username
+                                                .toString(),
+                                        status: controller.playerListModel!
+                                                    .items![index].statusPlay ==
+                                                "Y"
+                                            ? "Playing"
+                                            : "",
+                                      );
+                                    },
+                                  ),
+                                )
+                              : NoData()
+                          : controller.playerListModel?.statusCode == 204
+                              ? Container(
+                                  child: Text("Empty"),
+                                )
+                              : NoData(),
+                ),
               ),
               Column(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -121,6 +143,9 @@ class ViewPlayerView extends GetView<ViewPlayerController> {
                         ],
                       ),
                     ),
+                  ),
+                  SizedBox(
+                    height: 80,
                   ),
                 ],
               ),

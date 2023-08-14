@@ -7,15 +7,10 @@ import { createTask, updateTask } from 'redux/actions'
 import { useDispatch } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 import { colorPrimary } from 'configs/AppConfig'
-import moment from 'moment'
+import taskService from 'services/TaskService'
+import { useParams } from 'react-router-dom/cjs/react-router-dom.min'
 
 const { TabPane } = Tabs
-
-const getBase64 = (img, callback) => {
-  const reader = new FileReader()
-  reader.addEventListener('load', () => callback(reader.result))
-  reader.readAsDataURL(img)
-}
 
 const ADD = 'ADD'
 const EDIT = 'EDIT'
@@ -26,157 +21,66 @@ const TaskForm = (props) => {
   let history = useHistory()
   const [form] = Form.useForm()
   const dispatch = useDispatch()
-  const [uploadedImg, setImage] = useState('')
-  const [imageOriginal, setImageOriginal] = useState('')
-  const [uploadLoading, setUploadLoading] = useState(false)
   const [submitLoading, setSubmitLoading] = useState(false)
   const [loadingData, setLoadingData] = useState(true)
   const [taskData, setTaskData] = useState({})
+  const { stageId } = useParams()
 
   useEffect(() => {
     if (mode === EDIT) {
       const { id } = param
 
-      // FirebaseService.getTaskDetail(id).then((querySnapshot) => {
-      //   setTaskData({ ...querySnapshot.data(), id: querySnapshot.id })
-      //   form.setFieldsValue({
-      //     title: querySnapshot.data().title,
-      //     stage_id: querySnapshot.data().stage_id,
-      //     description: querySnapshot.data().description,
-      //     type: querySnapshot.data().type,
-      //     detail_id: querySnapshot.data().detail_id,
-      //     is_bonus: querySnapshot.data().is_bonus,
-      //     status: querySnapshot.data().status,
-      //     date: moment.unix(querySnapshot.data().date),
-      //   })
-      //   setImage(querySnapshot.data().downloadUrl)
-      //   setLoadingData(false)
-      // })
+      taskService.getTask(stageId, id).then((querySnapshot) => {
+        setTaskData({ ...querySnapshot.data, _id: id })
+        form.setFieldsValue({
+          title: querySnapshot.data.title,
+          description: querySnapshot.data.description,
+          type: querySnapshot.data.type,
+          detail_id: querySnapshot.data.detail_id,
+        })
+        setLoadingData(false)
+      })
     } else {
       setLoadingData(false)
     }
-  }, [form, mode, param, props])
+  }, [form, mode, param, props, stageId])
 
-  const handleUploadChange = (info) => {
-    setImageOriginal(info.file)
-    getBase64(info.file.originFileObj, (imageUrl) => {
-      setImage(imageUrl)
-      setUploadLoading(true)
-    })
-  }
-
-  const onFinish = () => {
+  const onFinish = async () => {
     setSubmitLoading(true)
-    // form
-    //   .validateFields()
-    //   .then((values) => {
-    //     setTimeout(async () => {
-    //       if (mode === ADD) {
-    //         if (imageOriginal === '') {
-    //           try {
-    //             FirebaseService.addTask({
-    //               ...values,
-    //               date: Date.now(),
-    //             }).then((resp) => {
-    //               dispatch(
-    //                 createTask({
-    //                   ...values,
-    //                   date: Date.now(),
-    //                 })
-    //               )
-    //               message.success(`Create task with title '${values.title}'`)
-    //               setSubmitLoading(false)
-    //               history.push(`/app/tasks`)
-    //             })
-    //           } catch (e) {
-    //             console.log(e)
-    //           }
-    //         } else {
-    //           const fileName = `images/tasks/${Date.now()}-${
-    //             imageOriginal.name
-    //           }`
-    //           const fileRef = storage.ref().child(fileName)
-    //           try {
-    //             const designFile = await fileRef.put(
-    //               imageOriginal.originFileObj
-    //             )
-    //             const downloadUrl = await designFile.ref.getDownloadURL()
-    //             FirebaseService.addTask({
-    //               ...values,
-    //               downloadUrl,
-    //               date: Date.now(),
-    //             }).then((resp) => {
-    //               dispatch(
-    //                 createTask({
-    //                   ...values,
-    //                   downloadUrl,
-    //                   date: Date.now(),
-    //                 })
-    //               )
-    //               message.success(`Create task with title '${values.title}'`)
-    //               setSubmitLoading(false)
-    //               history.push(`/app/tasks`)
-    //             })
-    //           } catch (e) {
-    //             console.log(e)
-    //           }
-    //         }
-    //       }
-    //       if (mode === EDIT) {
-    //         if (imageOriginal === '') {
-    //           values.date = moment(values.date, 'YYYY-MM-DD').valueOf() / 1000
-    //           FirebaseService.updateTask(taskData.id, {
-    //             ...values,
-    //             downloadUrl: uploadedImg,
-    //           }).then((resp) => {
-    //             dispatch(
-    //               updateTask({
-    //                 ...values,
-    //                 downloadUrl: uploadedImg,
-    //               })
-    //             )
-    //             message.success(`Task with title '${values.title}' has updated`)
-    //             setSubmitLoading(false)
-    //             history.push(`/app/tasks`)
-    //           })
-    //         } else {
-    //           const fileName = `images/tasks/${Date.now()}-${
-    //             imageOriginal.name
-    //           }`
-    //           const fileRef = storage.ref().child(fileName)
-    //           try {
-    //             const designFile = await fileRef.put(
-    //               imageOriginal.originFileObj
-    //             )
-    //             const downloadUrl = await designFile.ref.getDownloadURL()
-    //             FirebaseService.updateTask(taskData.id, {
-    //               ...values,
-    //               downloadUrl,
-    //             }).then((resp) => {
-    //               dispatch(
-    //                 updateTask({
-    //                   ...values,
-    //                   downloadUrl,
-    //                 })
-    //               )
-    //               message.success(
-    //                 `Task with title '${values.title}' has updated`
-    //               )
-    //               setSubmitLoading(false)
-    //               history.push(`/app/tasks`)
-    //             })
-    //           } catch (e) {
-    //             console.log(e)
-    //           }
-    //         }
-    //       }
-    //     }, 1500)
-    //   })
-    //   .catch((info) => {
-    //     setSubmitLoading(false)
-    //     console.log('info', info)
-    //     message.error('Please enter all required field ')
-    //   })
+    try {
+      const values = await form.validateFields()
+      const formData = new FormData()
+
+      if (mode === ADD) {
+        formData.append('stage_id', stageId)
+        for (const key in values) {
+          formData.append(key, values[key])
+        }
+
+        const resp = await taskService.addTask(stageId, formData)
+        dispatch(createTask(resp.data)) // Assuming the API returns the created news data
+        message.success(`Create task with title '${values.title}'`)
+        history.push(`/app/stages/detail-task/${stageId}`)
+      } else if (mode === EDIT) {
+        formData.append('stage_id', stageId)
+        for (const key in values) {
+          formData.append(key, values[key])
+        }
+
+        const resp = await taskService.updateTask(
+          stageId,
+          taskData._id,
+          formData
+        )
+        dispatch(updateTask(resp.data)) // Assuming the API returns the updated news data
+        message.success(`News with title '${values.title}' has updated`)
+        history.push(`/app/stages/detail-task/${stageId}`)
+      }
+    } catch (error) {
+      setSubmitLoading(false)
+      console.log('Error:', error)
+      message.error('An error occurred. Please try again later.')
+    }
   }
 
   const onDiscard = () => {
@@ -231,13 +135,7 @@ const TaskForm = (props) => {
           <Tabs defaultActiveKey="1" style={{ marginTop: 30 }}>
             <TabPane tab="General" key="1">
               {loadingData && <Spin size="large" tip="Please Wait" />}
-              {!loadingData && (
-                <GeneralField
-                  uploadedImg={uploadedImg}
-                  uploadLoading={uploadLoading}
-                  handleUploadChange={handleUploadChange}
-                />
-              )}
+              {!loadingData && <GeneralField form={form} />}
             </TabPane>
           </Tabs>
         </div>

@@ -69,7 +69,7 @@ class CreatePlayerView extends GetView<CreatePlayerController> {
                   ),
                 ),
                 child: TextField(
-                  controller: controller.teamNameC,
+                  controller: controller.totalPlayerC,
                   style: TextStyle(color: Colors.white),
                   onChanged: (value) {
                     controller.isButtonVisible(value.isNotEmpty);
@@ -89,7 +89,7 @@ class CreatePlayerView extends GetView<CreatePlayerController> {
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           InkWell(
-                            onTap: () => controller.addTeamName(),
+                            onTap: () => controller.addPlayer(),
                             child: Container(
                               width: 200,
                               height: 50,

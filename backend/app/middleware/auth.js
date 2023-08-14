@@ -24,6 +24,7 @@ module.exports = {
         : null
 
       const data = jwt.verify(token, config.jwtKey)
+      console.log(data.user)
 
       const user = await User.findOne({ _id: data.user.id })
 
@@ -74,3 +75,4 @@ module.exports = {
     }
   },
 }
+  

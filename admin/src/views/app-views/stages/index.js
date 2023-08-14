@@ -25,7 +25,7 @@ const Stage = (props) => {
         component={AddTask}
       />
       <Route
-        path={`${match.url}/detail-task/:stageId/:id/edit`}
+        path={`${match.url}/detail-task/:stageId/edit-task/:id`}
         component={EditTask}
       />
     </Switch>

@@ -13,10 +13,21 @@ module.exports = {
       await user.save()
       delete user._doc.password
 
+      const token = jwt.sign(
+        {
+          user: {
+            id: user.id,
+            username: user.username,
+            email: user.email,
+          },
+        },
+        config.jwtKey
+      )
+
       res.status(201).json({
         message: 'Successfully create user',
         status: 'success',
-        data: user,
+        data: { user, token, type: 'Bearer' },
       })
     } catch (err) {
       return res.status(422).json({
@@ -114,6 +125,11 @@ module.exports = {
   addPlayer: async (req, res, next) => {
     try {
       const { total_player } = req.body
+
+      if (!total_player || isNaN(total_player) || total_player <= 0) {
+        return res.status(400).json({ error: 'Invalid total player value' })
+      }
+
       const stage = await Stage.findOne({
         $or: [{ order_number: 1 }],
       })
@@ -148,6 +164,10 @@ module.exports = {
         }
 
         await player.save()
+
+        await User.findByIdAndUpdate(req.user._id, {
+          $push: { players: player._id },
+        })
       }
 
       res.status(201).json({

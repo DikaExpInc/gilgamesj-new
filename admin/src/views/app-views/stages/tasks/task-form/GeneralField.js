@@ -1,30 +1,26 @@
-import React, { useState } from 'react'
-import {
-  Input,
-  Row,
-  Col,
-  Card,
-  Form,
-  Upload,
-  message,
-  Switch,
-  Select,
-} from 'antd'
-import { ImageSvg } from 'assets/svg/icon'
-import CustomIcon from 'components/util-components/CustomIcon'
-import { LoadingOutlined } from '@ant-design/icons'
-import { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
+import { Input, Row, Col, Card, Form, Select } from 'antd'
 import { useDispatch } from 'react-redux'
 import {
+  getAllCamera,
   getAllChat,
+  getAllContact,
   getAllGalleryPhoto,
   getAllGalleryVideo,
   getAllMaps,
+  getAllNews,
+  getAllPhone,
   getAllSocialMedia,
-  getAllStage,
 } from 'redux/actions'
-
-const { Dragger } = Upload
+import socialMediaService from 'services/SocialMediaService'
+import galleryPhotoService from 'services/GalleryPhotoService'
+import galleryVideoService from 'services/GalleryVideoService'
+import mapService from 'services/MapService'
+import chatService from 'services/ChatService'
+import cameraService from 'services/CameraService'
+import phoneService from 'services/PhoneService'
+import contactService from 'services/ContactService'
+import newsService from 'services/NewsService'
 
 const rules = {
   stage_id: [
@@ -65,158 +61,355 @@ const rules = {
   ],
 }
 
-const imageUploadProps = {
-  name: 'file',
-  multiple: true,
-  listType: 'picture-card',
-  showUploadList: false,
-}
-
-const beforeUpload = (file) => {
-  const isJpgOrPng = file.type === 'image/jpeg' || file.type === 'image/png'
-  if (!isJpgOrPng) {
-    message.error('You can only upload JPG/PNG file!')
-  }
-  const isLt2M = file.size / 1024 / 1024 < 2
-  if (!isLt2M) {
-    message.error('Image must smaller than 2MB!')
-  }
-  return isJpgOrPng && isLt2M
-}
-
 const GeneralField = (props) => {
   const dispatch = useDispatch()
   const [list, setList] = useState([])
-  const [stage, setStage] = useState([])
 
   useEffect(() => {
-    // FirebaseService.getStage()
-    //   .then((querySnapshot) => {
-    //     let listData = []
-    //     querySnapshot.forEach((doc) => {
-    //       listData.push({
-    //         label: `stage ${doc.data().order_number} - ${doc.data().title}`,
-    //         value: doc.id,
-    //       })
-    //     })
-    //     dispatch(getAllStage(listData))
-    //     setStage(listData)
-    //   })
-    //   .catch((error) => {
-    //     console.log('Error getting document:', error)
-    //   })
-  }, [])
+    switch (props.form.getFieldValue('type')) {
+      case 'social media':
+        socialMediaService
+          .getSocialMediaList()
+          .then((querySnapshot) => {
+            let listData = []
+            querySnapshot.data.forEach((doc) => {
+              console.log(doc)
+              listData.push({
+                value: doc._id,
+                label: 'Social Media - ' + doc.name,
+              })
+            })
+            dispatch(getAllSocialMedia(listData))
+            setList(listData)
+          })
+          .catch((error) => {
+            console.log('Error getting document:', error)
+          })
+        break
+      case 'gallery photo':
+        galleryPhotoService
+          .getGalleryPhotoList()
+          .then((querySnapshot) => {
+            let listData = []
+            querySnapshot.data.forEach((doc) => {
+              listData.push({
+                value: doc._id,
+                label: 'Photo - ' + doc.title,
+              })
+            })
+            dispatch(getAllGalleryPhoto(listData))
+            setList(listData)
+          })
+          .catch((error) => {
+            console.log('Error getting document:', error)
+          })
+        break
+      case 'gallery video':
+        galleryVideoService
+          .getGalleryVideoList()
+          .then((querySnapshot) => {
+            let listData = []
+            querySnapshot.data.forEach((doc) => {
+              listData.push({
+                value: doc._id,
+                label: 'Video - ' + doc.title,
+              })
+            })
+            dispatch(getAllGalleryVideo(listData))
+            setList(listData)
+          })
+          .catch((error) => {
+            console.log('Error getting document:', error)
+          })
+        break
+      case 'maps':
+        mapService
+          .getMapList()
+          .then((querySnapshot) => {
+            let listData = []
+            querySnapshot.data.forEach((doc) => {
+              listData.push({
+                value: doc._id,
+                label: 'Maps - ' + doc.title,
+              })
+            })
+            dispatch(getAllMaps(listData))
+            setList(listData)
+          })
+          .catch((error) => {
+            console.log('Error getting document:', error)
+          })
+        break
+      case 'chat':
+        chatService
+          .getChatList()
+          .then((querySnapshot) => {
+            let listData = []
+            querySnapshot.data.forEach((doc) => {
+              listData.push({
+                value: doc._id,
+                label: 'Chat - ' + doc.name,
+              })
+            })
+            dispatch(getAllChat(listData))
+            setList(listData)
+          })
+          .catch((error) => {
+            console.log('Error getting document:', error)
+          })
+        break
+      case 'camera':
+        cameraService
+          .getCameraList()
+          .then((querySnapshot) => {
+            let listData = []
+            querySnapshot.data.forEach((doc) => {
+              listData.push({
+                value: doc._id,
+                label: 'Camera - ' + doc.name,
+              })
+            })
+            dispatch(getAllCamera(listData))
+            setList(listData)
+          })
+          .catch((error) => {
+            console.log('Error getting document:', error)
+          })
+        break
+      case 'phone':
+        phoneService
+          .getPhoneList()
+          .then((querySnapshot) => {
+            let listData = []
+            querySnapshot.data.forEach((doc) => {
+              listData.push({
+                value: doc._id,
+                label: 'Phone - ' + doc.name,
+              })
+            })
+            dispatch(getAllPhone(listData))
+            setList(listData)
+          })
+          .catch((error) => {
+            console.log('Error getting document:', error)
+          })
+        break
+      case 'contact':
+        contactService
+          .getContactList()
+          .then((querySnapshot) => {
+            let listData = []
+            querySnapshot.data.forEach((doc) => {
+              listData.push({
+                value: doc._id,
+                label: 'Contact - ' + doc.name,
+              })
+            })
+            dispatch(getAllContact(listData))
+            setList(listData)
+          })
+          .catch((error) => {
+            console.log('Error getting document:', error)
+          })
+        break
+      case 'browser':
+        newsService
+          .getBrowserList()
+          .then((querySnapshot) => {
+            let listData = []
+            querySnapshot.data.forEach((doc) => {
+              listData.push({
+                value: doc._id,
+                label: 'Browser - ' + doc.title,
+              })
+            })
+            dispatch(getAllNews(listData))
+            setList(listData)
+          })
+          .catch((error) => {
+            console.log('Error getting document:', error)
+          })
+        break
+      default:
+        break
+    }
+  }, [dispatch, props.form])
 
   const handleChange = (type) => {
-    // switch (type) {
-    //   case 'social media':
-    //     FirebaseService.getSocialMedia()
-    //       .then((querySnapshot) => {
-    //         let listData = []
-    //         querySnapshot.forEach((doc) => {
-    //           listData.push({
-    //             value: doc.id,
-    //             label: 'Social Media - ' + doc.data().name,
-    //           })
-    //         })
-    //         dispatch(getAllSocialMedia(listData))
-    //         setList(listData)
-    //       })
-    //       .catch((error) => {
-    //         console.log('Error getting document:', error)
-    //       })
-    //     break
-    //   case 'gallery photo':
-    //     FirebaseService.getGalleryPhoto()
-    //       .then((querySnapshot) => {
-    //         let listData = []
-    //         querySnapshot.forEach((doc) => {
-    //           listData.push({
-    //             value: doc.id,
-    //             label: 'Photo - ' + doc.data().name,
-    //           })
-    //         })
-    //         dispatch(getAllGalleryPhoto(listData))
-    //         setList(listData)
-    //       })
-    //       .catch((error) => {
-    //         console.log('Error getting document:', error)
-    //       })
-    //     break
-    //   case 'gallery video':
-    //     FirebaseService.getGalleryVideo()
-    //       .then((querySnapshot) => {
-    //         let listData = []
-    //         querySnapshot.forEach((doc) => {
-    //           listData.push({
-    //             value: doc.id,
-    //             label: 'Photo - ' + doc.data().name,
-    //           })
-    //         })
-    //         dispatch(getAllGalleryVideo(listData))
-    //         setList(listData)
-    //       })
-    //       .catch((error) => {
-    //         console.log('Error getting document:', error)
-    //       })
-    //     break
-    //   case 'maps':
-    //     FirebaseService.getMaps()
-    //       .then((querySnapshot) => {
-    //         let listData = []
-    //         querySnapshot.forEach((doc) => {
-    //           listData.push({
-    //             value: doc.id,
-    //             label: 'Maps - ' + doc.data().label,
-    //           })
-    //         })
-    //         dispatch(getAllMaps(listData))
-    //         setList(listData)
-    //       })
-    //       .catch((error) => {
-    //         console.log('Error getting document:', error)
-    //       })
-    //     break
-    //   case 'chat':
-    //     FirebaseService.getChat()
-    //       .then((querySnapshot) => {
-    //         let listData = []
-    //         querySnapshot.forEach((doc) => {
-    //           listData.push({
-    //             value: doc.id,
-    //             label: 'Chat - ' + doc.data().name,
-    //           })
-    //         })
-    //         dispatch(getAllChat(listData))
-    //         setList(listData)
-    //       })
-    //       .catch((error) => {
-    //         console.log('Error getting document:', error)
-    //       })
-    //     break
-    //   case 'camera':
-    //     break
-    //   case 'phone':
-    //     break
-    //   case 'browser':
-    //     break
-    //   default:
-    //     break
-    // }
+    props.form.setFieldsValue({ detail_id: undefined })
+    switch (type) {
+      case 'social media':
+        socialMediaService
+          .getSocialMediaList()
+          .then((querySnapshot) => {
+            let listData = []
+            querySnapshot.data.forEach((doc) => {
+              console.log(doc)
+              listData.push({
+                value: doc._id,
+                label: 'Social Media - ' + doc.name,
+              })
+            })
+            dispatch(getAllSocialMedia(listData))
+            setList(listData)
+          })
+          .catch((error) => {
+            console.log('Error getting document:', error)
+          })
+        break
+      case 'gallery photo':
+        galleryPhotoService
+          .getGalleryPhotoList()
+          .then((querySnapshot) => {
+            let listData = []
+            querySnapshot.data.forEach((doc) => {
+              listData.push({
+                value: doc._id,
+                label: 'Photo - ' + doc.title,
+              })
+            })
+            dispatch(getAllGalleryPhoto(listData))
+            setList(listData)
+          })
+          .catch((error) => {
+            console.log('Error getting document:', error)
+          })
+        break
+      case 'gallery video':
+        galleryVideoService
+          .getGalleryVideoList()
+          .then((querySnapshot) => {
+            let listData = []
+            querySnapshot.data.forEach((doc) => {
+              listData.push({
+                value: doc._id,
+                label: 'Video - ' + doc.title,
+              })
+            })
+            dispatch(getAllGalleryVideo(listData))
+            setList(listData)
+          })
+          .catch((error) => {
+            console.log('Error getting document:', error)
+          })
+        break
+      case 'maps':
+        mapService
+          .getMapList()
+          .then((querySnapshot) => {
+            let listData = []
+            querySnapshot.data.forEach((doc) => {
+              listData.push({
+                value: doc._id,
+                label: 'Maps - ' + doc.title,
+              })
+            })
+            dispatch(getAllMaps(listData))
+            setList(listData)
+          })
+          .catch((error) => {
+            console.log('Error getting document:', error)
+          })
+        break
+      case 'chat':
+        chatService
+          .getChatList()
+          .then((querySnapshot) => {
+            let listData = []
+            querySnapshot.data.forEach((doc) => {
+              listData.push({
+                value: doc._id,
+                label: 'Chat - ' + doc.name,
+              })
+            })
+            dispatch(getAllChat(listData))
+            setList(listData)
+          })
+          .catch((error) => {
+            console.log('Error getting document:', error)
+          })
+        break
+      case 'camera':
+        cameraService
+          .getCameraList()
+          .then((querySnapshot) => {
+            let listData = []
+            querySnapshot.data.forEach((doc) => {
+              listData.push({
+                value: doc._id,
+                label: 'Camera - ' + doc.name,
+              })
+            })
+            dispatch(getAllCamera(listData))
+            setList(listData)
+          })
+          .catch((error) => {
+            console.log('Error getting document:', error)
+          })
+        break
+      case 'phone':
+        phoneService
+          .getPhoneList()
+          .then((querySnapshot) => {
+            let listData = []
+            querySnapshot.data.forEach((doc) => {
+              listData.push({
+                value: doc._id,
+                label: 'Phone - ' + doc.name,
+              })
+            })
+            dispatch(getAllPhone(listData))
+            setList(listData)
+          })
+          .catch((error) => {
+            console.log('Error getting document:', error)
+          })
+        break
+      case 'contact':
+        contactService
+          .getContactList()
+          .then((querySnapshot) => {
+            let listData = []
+            querySnapshot.data.forEach((doc) => {
+              listData.push({
+                value: doc._id,
+                label: 'Contact - ' + doc.name,
+              })
+            })
+            dispatch(getAllContact(listData))
+            setList(listData)
+          })
+          .catch((error) => {
+            console.log('Error getting document:', error)
+          })
+        break
+      case 'browser':
+        newsService
+          .getBrowserList()
+          .then((querySnapshot) => {
+            let listData = []
+            querySnapshot.data.forEach((doc) => {
+              listData.push({
+                value: doc._id,
+                label: 'Browser - ' + doc.title,
+              })
+            })
+            dispatch(getAllNews(listData))
+            setList(listData)
+          })
+          .catch((error) => {
+            console.log('Error getting document:', error)
+          })
+        break
+      default:
+        break
+    }
   }
 
   return (
     <Row gutter={16}>
-      <Col xs={24} sm={24} md={17}>
+      <Col xs={24} sm={24} md={24}>
         <Card title="Task Information">
-          <Form.Item name="stage_id" label="Stage" rules={rules.stage_id}>
-            <Select
-              showSearch
-              style={{ width: '100%' }}
-              placeholder="Type Stage"
-              options={stage}
-            />
-          </Form.Item>
           <Form.Item name="title" label="Task Title" rules={rules.title}>
             <Input placeholder="Task Title" />
           </Form.Item>
@@ -227,7 +420,7 @@ const GeneralField = (props) => {
           >
             <Input.TextArea rows={4} placeholder="Task Description" />
           </Form.Item>
-          <Form.Item name="type" label="Type Task" rules={rules.description}>
+          <Form.Item name="type" label="Type Task" rules={rules.type}>
             <Select
               placeholder="Type Task"
               showSearch
@@ -246,7 +439,6 @@ const GeneralField = (props) => {
               ]}
             />
           </Form.Item>
-
           <Form.Item
             name="detail_id"
             label="Type Detail Task"
@@ -259,47 +451,6 @@ const GeneralField = (props) => {
               options={list}
             />
           </Form.Item>
-          <Form.Item
-            name="is_bonus"
-            label="Is Bonus Task ?"
-            rules={rules.is_bonus}
-          >
-            <Switch
-              checkedChildren="Bonus Task"
-              unCheckedChildren="Normal Task"
-            />
-          </Form.Item>
-
-          <Form.Item name="status" label="Status Task" rules={rules.status}>
-            <Switch checkedChildren="On" unCheckedChildren="Off" />
-          </Form.Item>
-        </Card>
-      </Col>
-      <Col xs={24} sm={24} md={7}>
-        <Card title="Media">
-          <Dragger
-            {...imageUploadProps}
-            beforeUpload={beforeUpload}
-            onChange={(e) => props.handleUploadChange(e)}
-          >
-            {props.uploadedImg ? (
-              <img src={props.uploadedImg} alt="avatar" className="img-fluid" />
-            ) : (
-              <div>
-                {props.uploadLoading ? (
-                  <div>
-                    <LoadingOutlined className="font-size-xxl text-primary" />
-                    <div className="mt-3">Uploading</div>
-                  </div>
-                ) : (
-                  <div>
-                    <CustomIcon className="display-3" svg={ImageSvg} />
-                    <p>Click or drag file to upload</p>
-                  </div>
-                )}
-              </div>
-            )}
-          </Dragger>
         </Card>
       </Col>
     </Row>

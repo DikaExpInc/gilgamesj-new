@@ -1,6 +1,10 @@
+import 'package:app/app/data/stage_model.dart';
+import 'package:app/app/services/auth_service.dart';
+import 'package:app/app/services/stage_service.dart';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:app/app/widgets/loading.dart';
 
 class StartController extends GetxController {
   final AudioCache audioCache = AudioCache(
@@ -8,27 +12,34 @@ class StartController extends GetxController {
   );
 
   final box = GetStorage();
+  RxBool isLoading = false.obs;
+  StageModel? stageModel;
 
   @override
   void onInit() async {
     // TODO: implement onInit
     super.onInit();
-    // DocumentSnapshot<Map<String, dynamic>> stageSnapshot = await firestore
-    //     .collection("stages")
-    //     .where("order_number", isEqualTo: 1)
-    //     .get()
-    //     .then((querySnapshot) => querySnapshot.docs.first);
 
-    // if (stageSnapshot.exists) {
-    //   box.write("background_url", stageSnapshot.data()!['backgroundUrl']);
-    //   box.write("stage_id", stageSnapshot.id);
-    //   box.write("stage_image", stageSnapshot.data()!['imageUrl']);
-    //   box.write("stage_model", stageSnapshot.data()!['modelUrl:']);
-    // }
-    // }
+    loadstageNow();
+  }
 
-    // Stream<DocumentSnapshot<Map<String, dynamic>>> streamTeam() async* {
-    // String uid = auth.currentUser!.uid;
-    // yield* firestore.collection("team_name").doc(uid).snapshots();
+  loadstageNow() async {
+    update();
+    showLoading();
+    stageModel = await StageApi().loadStageAPI();
+    update();
+    stopLoading();
+    if (stageModel?.statusCode == 200) {
+      print(stageModel?.background.toString());
+      // box.write("background_url", stageSnapshot.data()!['backgroundUrl']);
+      // box.write("stage_id", stageSnapshot.id);
+    } else if (stageModel!.statusCode == 204) {
+      print("Empty");
+    } else if (stageModel!.statusCode == 404) {
+      update();
+    } else if (stageModel!.statusCode == 401) {
+    } else {
+      print("someting wrong 400");
+    }
   }
 }

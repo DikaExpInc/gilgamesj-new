@@ -5,7 +5,6 @@ class NoData extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Colors.white,
       width: double.infinity,
       height: double.infinity,
       alignment: Alignment.center,
@@ -13,7 +12,7 @@ class NoData extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Image.asset(
-            'assets/img/empty.png',
+            'assets/images/empty.png',
             height: 180,
             width: 180,
           ),
@@ -21,7 +20,7 @@ class NoData extends StatelessWidget {
             height: 20,
           ),
           Text(
-            "Data Kosong",
+            "Data Empty",
             style: GoogleFonts.tajawal(
                 fontSize: 24,
                 fontWeight: FontWeight.w500,
@@ -33,7 +32,7 @@ class NoData extends StatelessWidget {
           Container(
             margin: EdgeInsets.fromLTRB(20, 0, 20, 0),
             child: Text(
-              "Data dari server masih belum ada nih ...",
+              "Data from server is empty",
               style: GoogleFonts.cairo(
                 color: Color(0xff777777),
               ),

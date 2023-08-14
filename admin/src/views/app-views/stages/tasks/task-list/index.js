@@ -11,53 +11,36 @@ import Flex from 'components/shared-components/Flex'
 import { useHistory } from 'react-router-dom'
 import utils from 'utils'
 import { useDispatch, useSelector } from 'react-redux'
-import { getAllStage, getAllTask } from 'redux/actions'
+import { getAllTask } from 'redux/actions'
 import { ExclamationCircleOutlined } from '@ant-design/icons'
 import { colorPrimary } from 'configs/AppConfig'
-import moment from 'moment'
+import { useParams } from 'react-router-dom/cjs/react-router-dom.min'
+import taskService from 'services/TaskService'
 
 const TaskList = () => {
   let history = useHistory()
   const tasks = useSelector((state) => state.tasks)
   const dispatch = useDispatch()
   const [list, setList] = useState([])
-  const [stages, setStages] = useState([])
   const [selectedRows, setSelectedRows] = useState([])
   const [selectedRowKeys, setSelectedRowKeys] = useState([])
+  const { stageId } = useParams()
 
   useEffect(() => {
-    // FirebaseService.getStage()
-    //   .then((querySnapshot) => {
-    //     let listData = [];
-    //     querySnapshot.forEach((doc) => {
-    //       listData.push({ ...doc.data(), id: doc.id });
-    //     });
-    //     dispatch(getAllStage(listData));
-    //     setStages(listData);
-    //     FirebaseService.getTask()
-    //       .then((taskSnapshot) => {
-    //         let listTask = [];
-    //         taskSnapshot.forEach((doc) => {
-    //           const stageData = listData.findIndex(
-    //             (stage) => stage.id === doc.data().stage_id
-    //           );
-    //           listTask.push({
-    //             ...doc.data(),
-    //             id: doc.id,
-    //             stage: listData[stageData],
-    //           });
-    //         });
-    //         dispatch(getAllTask(listTask));
-    //         setList(listTask);
-    //       })
-    //       .catch((error) => {
-    //         console.log("Error getting document:", error);
-    //       });
-    //   })
-    //   .catch((error) => {
-    //     console.log("Error getting document:", error);
-    //   });
-  }, [])
+    taskService
+      .getTaskList(stageId)
+      .then((querySnapshot) => {
+        let listData = []
+        querySnapshot.data.forEach((doc) => {
+          listData.push({ ...doc, id: doc._id })
+        })
+        dispatch(getAllTask(listData))
+        setList(listData)
+      })
+      .catch((error) => {
+        console.log('Error getting document:', error)
+      })
+  }, [dispatch, stageId])
 
   const confirm = (e) => {
     Modal.confirm({
@@ -68,6 +51,9 @@ const TaskList = () => {
       cancelText: 'Cancel',
       onOk: () => {
         deleteRow(e)
+      },
+      onCancel: () => {
+        cancel(e)
       },
     })
   }
@@ -99,11 +85,11 @@ const TaskList = () => {
   )
 
   const addTask = () => {
-    history.push(`/app/tasks/add-task`)
+    history.push(`/app/stages/detail-task/${stageId}/add`)
   }
 
   const viewDetails = (row) => {
-    history.push(`/app/tasks/edit-task/${row.id}`)
+    history.push(`/app/stages/detail-task/${stageId}/edit-task/${row.id}`)
   }
 
   const deleteRow = (row) => {
@@ -111,24 +97,19 @@ const TaskList = () => {
     let data = list
     if (selectedRows.length > 1) {
       selectedRows.forEach((elm) => {
-        // FirebaseService.deleteTask(elm.id)
+        taskService.deleteTask(elm._id)
         data = utils.deleteArrayRow(data, objKey, elm.id)
         setList(data)
         setSelectedRows([])
       })
     } else {
-      // FirebaseService.deleteTask(row.id)
+      taskService.deleteTask(row._id)
       data = utils.deleteArrayRow(data, objKey, row.id)
       setList(data)
     }
   }
 
   const tableColumns = [
-    {
-      title: 'Stage',
-      dataIndex: ['stage', 'title'],
-      sorter: (a, b) => utils.antdTableSorter(a, b, ['stage', 'title']),
-    },
     {
       title: 'Title',
       dataIndex: 'title',

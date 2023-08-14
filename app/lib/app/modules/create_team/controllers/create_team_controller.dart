@@ -1,4 +1,6 @@
+import 'package:app/app/data/user_model.dart';
 import 'package:app/app/routes/app_pages.dart';
+import 'package:app/app/services/auth_service.dart';
 import 'package:app/app/widgets/toast/custom_toast.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -8,7 +10,7 @@ class CreateTeamController extends GetxController {
   //TODO: Implement CreateTeamController
 
   final box = GetStorage();
-
+  UserModel? user;
   RxBool hasReconnect = false.obs;
   RxBool isLoading = false.obs;
   RxBool isLoadingCreatePegawai = false.obs;
@@ -40,7 +42,17 @@ class CreateTeamController extends GetxController {
   }
 
   createTeamName() async {
-    Get.toNamed(Routes.CREATE_PLAYER);
+    update();
+    user = await AuthApi().registerAPI(teamNameC.text);
+    print(user!.statusCode);
+    if (user!.statusCode == 201) {
+      box.write("token", user!.accessToken);
+      box.write("teamName", teamNameC.text);
+      update();
+      Get.offAndToNamed(Routes.CREATE_PLAYER);
+    } else if (user!.statusCode == 404) {
+      update();
+    }
   }
 
   reconnect() async {

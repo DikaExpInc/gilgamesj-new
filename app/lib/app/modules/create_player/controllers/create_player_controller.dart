@@ -1,4 +1,6 @@
+import 'package:app/app/data/player_model.dart';
 import 'package:app/app/routes/app_pages.dart';
+import 'package:app/app/services/auth_service.dart';
 import 'package:app/app/widgets/toast/custom_toast.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -8,12 +10,13 @@ class CreatePlayerController extends GetxController {
   //TODO: Implement CreateTeamController
 
   final box = GetStorage();
+  PlayerModel? player;
 
   RxBool hasReconnect = false.obs;
   RxBool isLoading = false.obs;
   RxBool isLoadingCreatePegawai = false.obs;
 
-  TextEditingController teamNameC = TextEditingController();
+  TextEditingController totalPlayerC = TextEditingController();
   RxBool isButtonVisible = false.obs;
 
   @override
@@ -26,11 +29,11 @@ class CreatePlayerController extends GetxController {
     }
   }
 
-  Future<void> addTeamName() async {
-    if (teamNameC.text.isNotEmpty) {
+  Future<void> addPlayer() async {
+    if (totalPlayerC.text.isNotEmpty) {
       isLoading.value = true;
       if (isLoadingCreatePegawai.isFalse) {
-        await createTeamName();
+        await createTotalPlayer();
         isLoading.value = false;
       }
     } else {
@@ -39,8 +42,15 @@ class CreatePlayerController extends GetxController {
     }
   }
 
-  createTeamName() async {
-    Get.toNamed(Routes.VIEW_PLAYER);
+  createTotalPlayer() async {
+    update();
+    player = await AuthApi().addplayerAPI(totalPlayerC.text);
+    if (player!.statusCode == 201) {
+      box.write("totalPlayer", totalPlayerC.text);
+      Get.toNamed(Routes.VIEW_PLAYER);
+    } else if (player!.statusCode == 404) {
+      update();
+    }
   }
 
   reconnect() async {

@@ -12,6 +12,7 @@ class StartView extends GetView<StartController> {
 
   @override
   Widget build(BuildContext context) {
+    Get.put(PageAllController());
     final PageAllController pageAllController = Get.find<PageAllController>();
 
     final List<int>? pattern =

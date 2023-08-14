@@ -11,10 +11,28 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Permission.camera.request();
   await GetStorage.init();
+
+  String initialRoute =
+      AppPages.INITIAL; // Rute default jika tidak ada data yang diisi
+
+  // Cek apakah data team name telah diisi
+  String? teamName = GetStorage().read('teamName');
+  if (teamName != null && teamName.isNotEmpty) {
+    initialRoute =
+        Routes.CREATE_PLAYER; // Ganti rute jika team name telah diisi
+
+    // Cek apakah data total player telah diisi
+    String? totalPlayer = GetStorage().read('totalPlayer');
+    if (totalPlayer != null && totalPlayer.isNotEmpty) {
+      initialRoute =
+          Routes.VIEW_PLAYER; // Ganti rute jika total player telah diisi
+    }
+  }
+
   runApp(
     GetMaterialApp(
       title: "Application",
-      initialRoute: AppPages.INITIAL,
+      initialRoute: initialRoute,
       getPages: AppPages.routes,
       builder: BotToastInit(),
       navigatorObservers: [BotToastNavigatorObserver()],

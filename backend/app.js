@@ -41,6 +41,7 @@ const stageRouter = require('./app/stage/router')
 const taskRouter = require('./app/task/router')
 const usersRouter = require('./app/users/router')
 const playerRouter = require('./app/player/router')
+const lightRouter = require('./app/light/router')
 
 // Admin API
 const authAdminRouter = require('./app/auth/router.admin')
@@ -57,6 +58,7 @@ const stageAdminRouter = require('./app/stage/router.admin')
 const taskAdminRouter = require('./app/task/router.admin')
 const usersAdminRouter = require('./app/users/router.admin')
 const playerAdminRouter = require('./app/player/router.admin')
+const lightAdminRouter = require('./app/light/router.admin')
 
 const app = express()
 const URL = `/api/v1`
@@ -94,6 +96,7 @@ app.use(`${URL}/task`, taskRouter)
 app.use(`${URL}/users`, usersRouter)
 app.use(`${URL}/players`, playerRouter)
 app.use(`${URL}/auth`, authRouter)
+app.use(`${URL}/light`, lightRouter)
 
 // admin master
 app.use(`${URL_ADMIN}/browser`, browserAdminRouter)
@@ -110,6 +113,8 @@ app.use(`${URL_ADMIN}/task`, taskAdminRouter)
 app.use(`${URL_ADMIN}/users`, usersAdminRouter)
 app.use(`${URL_ADMIN}/players`, playerAdminRouter)
 app.use(`${URL_ADMIN}/auth`, authAdminRouter)
+app.use(`${URL_ADMIN}/light`, lightAdminRouter)
+
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
   next(createError(404))

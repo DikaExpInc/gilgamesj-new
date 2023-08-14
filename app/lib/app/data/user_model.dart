@@ -35,17 +35,19 @@ class UserModel {
       });
     }
     return UserModel(
-      role: jsonData['role'],
-      statusCode: jsonData['status_code'],
-      status: jsonData['status'],
-      sId: jsonData['_id'],
-      username: jsonData['username'],
+      role: jsonData['role'] != null ? jsonData['role'] : "",
+      statusCode:
+          jsonData['status_code'] != null ? jsonData['status_code'] : "",
+      status: jsonData['status'] != null ? jsonData['status'] : "",
+      sId: jsonData['_id'] != null ? jsonData['_id'] : "",
+      username: jsonData['username'] != null ? jsonData['username'] : "",
       players: playerList,
-      email: jsonData['email'],
-      createdAt: jsonData['createdAt'],
-      updatedAt: jsonData['updatedAt'],
-      accessToken: jsonData['access_token'],
-      tokenType: jsonData['token_type'],
+      email: jsonData['email'] != null ? jsonData['email'] : "",
+      createdAt: jsonData['createdAt'] != null ? jsonData['createdAt'] : "",
+      updatedAt: jsonData['updatedAt'] != null ? jsonData['updatedAt'] : "",
+      accessToken:
+          jsonData['access_token'] != null ? jsonData['access_token'] : "",
+      tokenType: jsonData['token_type'] != null ? jsonData['token_type'] : "",
     );
   }
 }

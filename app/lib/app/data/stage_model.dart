@@ -13,7 +13,6 @@ class StageModel {
   int? timer;
   String? createdAt;
   String? updatedAt;
-  int? iV;
 
   StageModel({
     this.statusCode,
@@ -30,28 +29,26 @@ class StageModel {
     this.timer,
     this.createdAt,
     this.updatedAt,
-    this.iV,
   });
 
   factory StageModel.fromJson(Map<String, dynamic> json) {
     return StageModel(
-      statusCode: json['statusCode'],
+      statusCode: json['status_code'],
       dataGame: json['data_game'] != null
           ? new DataGame.fromJson(json['data_game'])
           : null,
-      totalPlayer: json['total_player'],
-      sId: json['_id'],
-      background: json['background'],
-      objective: json['objective'],
-      model: json['model'],
-      title: json['title'],
-      description: json['description'],
-      lockCode: json['lock_code'],
-      orderNumber: json['order_number'],
-      timer: json['timer'],
-      createdAt: json['createdAt'],
-      updatedAt: json['updatedAt'],
-      iV: json['__v'],
+      totalPlayer: json['total_player'] != null ? json['total_player'] : 0,
+      sId: json['_id'] != null ? json['_id'] : "",
+      background: json['background'] != null ? json['background'] : "",
+      objective: json['objective'] != null ? json['objective'] : "",
+      model: json['model'] != null ? json['model'] : "",
+      title: json['title'] != null ? json['title'] : "",
+      description: json['description'] != null ? json['objective'] : "",
+      lockCode: json['lock_code'] != null ? json['lock_code'] : 0,
+      orderNumber: json['order_number'] != null ? json['order_number'] : 0,
+      timer: json['timer'] != null ? json['timer'] : 0,
+      createdAt: json['createdAt'] != null ? json['createdAt'] : "",
+      updatedAt: json['updatedAt'] != null ? json['updatedAt'] : "",
     );
   }
 }

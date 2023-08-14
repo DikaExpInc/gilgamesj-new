@@ -82,27 +82,36 @@ const StageForm = (props) => {
           timer: querySnapshot.data.timer,
         })
         // set List Data Selected
-        setSocial_media_list(querySnapshot.data.data_game.social_media)
-        setGallery_photo_list(querySnapshot.data.data_game.gallery_photo)
-        setGallery_video_list(querySnapshot.data.data_game.gallery_video)
-        setMap_list(querySnapshot.data.data_game.map)
-        setChat_list(querySnapshot.data.data_game.chat)
-        setCamera_list(querySnapshot.data.data_game.camera)
-        setPhone_list(querySnapshot.data.data_game.phone)
-        setContact_list(querySnapshot.data.data_game.contact)
-        setNews_browser_list(querySnapshot.data.data_game.news)
+        setSocial_media_list(
+          querySnapshot.data.data_game.social_media[0].split(',')
+        )
+        setGallery_photo_list(
+          querySnapshot.data.data_game.gallery_photo[0].split(',')
+        )
+        setGallery_video_list(
+          querySnapshot.data.data_game.gallery_video[0].split(',')
+        )
+        setMap_list(querySnapshot.data.data_game.map[0].split(','))
+        setChat_list(querySnapshot.data.data_game.chat[0].split(','))
+        setCamera_list(querySnapshot.data.data_game.camera[0].split(','))
+        setPhone_list(querySnapshot.data.data_game.phone[0].split(','))
+        setContact_list(querySnapshot.data.data_game.contact[0].split(','))
+        setNews_browser_list(querySnapshot.data.data_game.news[0].split(','))
 
         setSelectValues((prevValues) => ({
           ...prevValues,
-          social_media_selected: querySnapshot.data.data_game.social_media,
-          gallery_photo_selected: querySnapshot.data.data_game.gallery_photo,
-          gallery_video_selected: querySnapshot.data.data_game.gallery_video,
-          map_selected: querySnapshot.data.data_game.map,
-          chat_selected: querySnapshot.data.data_game.chat,
-          camera_selected: querySnapshot.data.data_game.camera,
-          phone_selected: querySnapshot.data.data_game.phone,
-          contact_selected: querySnapshot.data.data_game.contact,
-          browser_selected: querySnapshot.data.data_game.news,
+          social_media_selected:
+            querySnapshot.data.data_game.social_media[0].split(','),
+          gallery_photo_selected:
+            querySnapshot.data.data_game.gallery_photo[0].split(','),
+          gallery_video_selected:
+            querySnapshot.data.data_game.gallery_video[0].split(','),
+          map_selected: querySnapshot.data.data_game.map[0].split(','),
+          chat_selected: querySnapshot.data.data_game.chat[0].split(','),
+          camera_selected: querySnapshot.data.data_game.camera[0].split(','),
+          phone_selected: querySnapshot.data.data_game.phone[0].split(','),
+          contact_selected: querySnapshot.data.data_game.contact[0].split(','),
+          browser_selected: querySnapshot.data.data_game.news[0].split(','),
         }))
 
         setObjective(`${BASE_URL}${querySnapshot.data.objective}`)
@@ -230,11 +239,15 @@ const StageForm = (props) => {
           news: selectValues.browser_selected,
         }
 
-        formData.append('background', backgroundOriginal.originFileObj)
-        formData.append('objective', objectiveOriginal.originFileObj)
-        formData.append('model', modelOriginal.originFileObj)
-
-        console.log(modelOriginal.originFileObj)
+        if (backgroundOriginal.originFileObj) {
+          formData.append('background', backgroundOriginal.originFileObj)
+        }
+        if (objectiveOriginal.originFileObj) {
+          formData.append('objective', objectiveOriginal.originFileObj)
+        }
+        if (modelOriginal.originFileObj) {
+          formData.append('model', modelOriginal.originFileObj)
+        }
 
         for (const key in values) {
           formData.append(key, values[key])
@@ -326,7 +339,7 @@ const StageForm = (props) => {
                   camera_list={camera_list}
                   phone_list={phone_list}
                   contact_list={contact_list}
-                  news_browser_list={news_browser_list}
+                  news_list={news_browser_list}
                   setSelectValues={setSelectValues}
                   selectValues={selectValues}
                 />

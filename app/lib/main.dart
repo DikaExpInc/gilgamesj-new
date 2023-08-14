@@ -26,6 +26,13 @@ Future<void> main() async {
     if (totalPlayer != null && totalPlayer.isNotEmpty) {
       initialRoute =
           Routes.VIEW_PLAYER; // Ganti rute jika total player telah diisi
+
+      // Cek apakah data stage telah diisi
+      String? stageID = GetStorage().read('stage_id');
+      if (stageID != null && stageID.isNotEmpty) {
+        initialRoute =
+            Routes.LOCK_MUSIC; // Ganti rute jika total player telah diisi
+      }
     }
   }
 

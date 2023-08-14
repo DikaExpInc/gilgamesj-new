@@ -1,4 +1,5 @@
 const Stage = require('./model')
+const Browser = require('../browser/model')
 const path = require('path')
 const fs = require('fs')
 const config = require('../../config')
@@ -264,10 +265,7 @@ module.exports = {
       // Update background image if provided
       if (backgroundImage) {
         fs.unlinkSync(
-          path.resolve(
-            config.rootPath,
-            `public/uploads/stages/${stage.background}`
-          )
+          path.resolve(config.rootPath, `public/${stage.background}`)
         )
         stage.background = backgroundImage
       }
@@ -275,19 +273,14 @@ module.exports = {
       // Update objective image if provided
       if (objectiveImage) {
         fs.unlinkSync(
-          path.resolve(
-            config.rootPath,
-            `public/uploads/stages/${stage.objective}`
-          )
+          path.resolve(config.rootPath, `public/${stage.objective}`)
         )
         stage.objective = objectiveImage
       }
 
       // Update model file if provided
       if (modelFile) {
-        fs.unlinkSync(
-          path.resolve(config.rootPath, `public/uploads/stages/${stage.model}`)
-        )
+        fs.unlinkSync(path.resolve(config.rootPath, `public/${stage.model}`))
         stage.model = modelFile
       }
 
@@ -356,6 +349,54 @@ module.exports = {
     } catch (err) {
       res.status(500).json({
         message: err.message || 'Internal server error',
+      })
+    }
+  },
+
+  // News
+  getBrowserByStage: async (req, res) => {
+    const { id } = req.params
+    try {
+      const stage = await Stage.findById(req.player.stage_id)
+      const newsIds = stage.data_game.news
+
+      const browsers = await Promise.all(
+        newsIds.map(async (newsId) => {
+          const browser = await Browser.findById(newsId)
+          return browser
+        })
+      )
+
+      if (!browsers.length) {
+        return res.status(404).json({ message: 'Browsers not found' })
+      }
+
+      res.status(200).json({
+        data: browsers,
+      })
+    } catch (err) {
+      res.status(500).json({
+        message: err.message || 'Internal server error',
+      })
+    }
+  },
+
+  // Camera
+  getCameraByStage: async (req, res) => {
+    const { id } = req.params
+    try {
+      const stage = await Stage.findById(req.player.stage_id)
+      console.log(stage.data_game.news)
+      const camera = await Browser.findById(id)
+      if (!browser) {
+        return res.status(404).json({ message: 'Camera not found' })
+      }
+      res.status(200).json({
+        data: browser,
+      })
+    } catch (err) {
+      res.status(500).json({
+        message: err.message || `Internal server error`,
       })
     }
   },

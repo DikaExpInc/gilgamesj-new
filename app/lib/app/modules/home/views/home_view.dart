@@ -12,13 +12,16 @@ import 'package:get/get.dart';
 class HomeView extends GetView<HomeController> {
   PageController hPagerController =
       PageController(keepPage: true, initialPage: 1);
-  final PageAllController pageAllController = Get.find<PageAllController>();
+
   PageController vPagerController = PageController(keepPage: true);
   late double mWidth;
   late double mHeight;
 
   @override
   Widget build(BuildContext context) {
+    Get.put(PageAllController());
+    final PageAllController pageAllController = Get.find<PageAllController>();
+
     mWidth = MediaQuery.of(context).size.width;
     mHeight = MediaQuery.of(context).size.height;
     return Scaffold(

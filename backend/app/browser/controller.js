@@ -1,4 +1,6 @@
 const Browser = require('./model')
+const Stage = require('../stage/model')
+
 const path = require('path')
 const fs = require('fs')
 const config = require('../../config')

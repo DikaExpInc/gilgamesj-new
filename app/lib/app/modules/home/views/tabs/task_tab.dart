@@ -7,6 +7,8 @@ import 'package:flutter_svg/flutter_svg.dart';
 
 import 'package:get/get.dart';
 
+import '../../../../widgets/no_data.dart';
+
 class TaskTab extends GetView<HomeController> {
   late double mWidth;
   late double mHeight;
@@ -72,23 +74,40 @@ class TaskTab extends GetView<HomeController> {
           ),
         ),
         Expanded(
-          child: Padding(
-            padding: EdgeInsets.all(mWidth / 10),
-            child: Column(
-              children: [
-                TaskWidget(
-                  status: false,
-                  title: "title",
-                  desc: "Desc",
-                  press: () {
-                    CustomToast.successToast(
-                      'Task',
-                      'Task: Title \n Description: Desc',
-                    );
-                  },
-                )
-              ],
-            ),
+          child: GetBuilder<HomeController>(
+            builder: (controller) =>
+                controller.pageAllController.tasks?.statusCode == 200
+                    ? controller.pageAllController.tasks?.items!.length != 0
+                        ? Padding(
+                            padding: EdgeInsets.all(mWidth / 10),
+                            child: ListView.builder(
+                              itemCount: controller
+                                  .pageAllController.tasks?.items!.length,
+                              itemBuilder: (context, index) {
+                                return TaskWidget(
+                                  status: false,
+                                  title: controller.pageAllController.tasks!
+                                      .items![index].title
+                                      .toString(),
+                                  desc: controller.pageAllController.tasks!
+                                      .items![index].description
+                                      .toString(),
+                                  press: () {
+                                    CustomToast.successToast(
+                                      'Task',
+                                      'Task: ${controller.pageAllController.tasks?.items![index].title} \n Description: ${controller.pageAllController.tasks?.items![index].description}',
+                                    );
+                                  },
+                                );
+                              },
+                            ),
+                          )
+                        : NoData()
+                    : controller.pageAllController.tasks?.statusCode == 204
+                        ? Container(
+                            child: Text("Empty"),
+                          )
+                        : NoData(),
           ),
         ),
       ],

@@ -1,3 +1,4 @@
+import 'package:app/app/controllers/page_all_controller.dart';
 import 'package:get/get.dart';
 
 import '../controllers/home_controller.dart';

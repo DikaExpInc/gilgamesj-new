@@ -29,6 +29,20 @@ module.exports = {
     }
   },
 
+  getAllByUser: async (req, res) => {
+    const userId = req.user._id // Get the user ID from req.user._id
+    try {
+      const players = await Player.find({ user_id: userId }) // Filter players by userId
+      res.status(200).json({
+        data: players,
+      })
+    } catch (err) {
+      res.status(500).json({
+        message: err.message || 'Internal server error',
+      })
+    }
+  },
+
   checkAvailableBonus: async (req, res) => {
     try {
       const player = await Player.find()

@@ -15,13 +15,13 @@ dependencies:
     sdk: flutter
   flutter_animation_progress_bar: ^2.3.1
   flutter_inappwebview:
-  flutter_map: ^3.1.0
+  flutter_map: ^0.14.0
   flutter_svg: ^1.1.6
   get: 4.6.5
   get_storage: ^2.1.1
   google_fonts: ^4.0.4
   http: ^0.13.5
-  intl: ^0.18.1
+  intl: ^0.17.0
   introduction_screen: ^3.1.4
   latlong2: ^0.8.2
   maps_launcher: ^2.2.0
@@ -37,6 +37,7 @@ flutter:
   assets:
     - assets/gif/
     - assets/images/
+    - assets/images/maps/
     - assets/icons/
     - assets/fonts/
     - assets/audios/

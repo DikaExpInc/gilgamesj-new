@@ -104,7 +104,7 @@ class AuthApi extends SharedApi {
 
   Future<PlayerListModel> loadAllPlayerAPI() async {
     try {
-      var data = await http.get(Uri.parse(baseUrl + 'players/all'),
+      var data = await http.get(Uri.parse(baseUrl + 'players/all/byuser'),
           headers: getToken());
 
       if (data.statusCode == 200) {

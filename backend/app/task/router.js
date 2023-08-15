@@ -1,31 +1,34 @@
-var express = require("express");
-var router = express.Router();
+var express = require('express')
+var router = express.Router()
 const {
   getByStageId,
-  getById,
   actionCreate,
   actionEdit,
   actionDelete,
-} = require("./controller");
+  actionDone,
+  getByPlayerId,
+  getById,
+} = require('./controller')
 
-const multer = require("multer");
-const os = require("os");
+const multer = require('multer')
+const os = require('os')
 
-const { isLoginAdmin } = require("../middleware/auth");
+const { isLoginPlayer } = require('../middleware/auth')
 
-// router.use(isLoginAdmin);
-router.get("/:id", getByStageId);
-router.get("/:id/find/:taskId", getById);
+router.get('/:id', getByStageId)
+router.get('/:id/findplayer', isLoginPlayer, getByPlayerId)
+router.get('/:id/find/:taskId', getById)
+router.get('/:id/done/:taskId', isLoginPlayer, actionDone)
 router.post(
-  "/:id/create",
-  multer({ dest: os.tmpdir() }).single("image"),
+  '/:id/create',
+  multer({ dest: os.tmpdir() }).single('image'),
   actionCreate
-);
+)
 router.put(
-  "/:id/edit/:taskId",
-  multer({ dest: os.tmpdir() }).single("image"),
+  '/:id/edit/:taskId',
+  multer({ dest: os.tmpdir() }).single('image'),
   actionEdit
-);
-router.delete("/:id/delete/:taskId", actionDelete);
+)
+router.delete('/:id/delete/:taskId', actionDelete)
 
-module.exports = router;
+module.exports = router

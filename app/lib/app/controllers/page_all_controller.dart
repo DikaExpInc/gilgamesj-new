@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:app/app/data/task_model.dart';
 import 'package:app/app/routes/app_pages.dart';
 import 'package:app/app/widgets/dialog/bonus_dialog.dart';
 import 'package:app/app/widgets/dialog/bonus_skip_dialog.dart';
@@ -9,6 +10,7 @@ import 'package:get/get.dart';
 class PageAllController extends GetxController {
   RxInt pageIndex = 0.obs;
   RxInt lengthNow = 0.obs;
+  TaskListModel? tasks;
 
   // timer
   RxString countdown = '00:00'.obs;

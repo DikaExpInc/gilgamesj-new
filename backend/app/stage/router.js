@@ -7,6 +7,15 @@ const {
   actionEdit,
   actionDelete,
   getBrowserByStage,
+  getCameraByStage,
+  getChatByStage,
+  getChatDetailByStage,
+  getContactByStage,
+  getGalleryPhotoByStage,
+  getGalleryVideoByStage,
+  getMapByStage,
+  getPhoneByStage,
+  getSocialMediaByStage,
 } = require('./controller')
 
 const multer = require('multer')
@@ -44,7 +53,16 @@ router.put(
   actionEdit
 )
 router.delete('/delete/:id', actionDelete)
-// browser
+// get by id
 router.get('/browser/get/bystage', isLoginPlayer, getBrowserByStage)
+router.get('/camera/get/bystage', isLoginPlayer, getCameraByStage)
+router.get('/chat/get/bystage', isLoginPlayer, getChatByStage)
+router.get('/chatdetail/get/bystage', isLoginPlayer, getChatDetailByStage)
+router.get('/contact/get/bystage', isLoginPlayer, getContactByStage)
+router.get('/galleryphoto/get/bystage', isLoginPlayer, getGalleryPhotoByStage)
+router.get('/galleryvideo/get/bystage', isLoginPlayer, getGalleryVideoByStage)
+router.get('/map/get/bystage', isLoginPlayer, getMapByStage)
+router.get('/phone/get/bystage', isLoginPlayer, getPhoneByStage)
+router.get('/socialmedia/get/bystage', isLoginPlayer, getSocialMediaByStage)
 
 module.exports = router

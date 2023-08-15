@@ -12,7 +12,8 @@ class SocialMediaApi extends SharedApi {
     try {
       var jsonData;
       showLoading();
-      var data = await http.get(Uri.parse(baseUrl + 'socialmedia'),
+      var data = await http.get(
+          Uri.parse(baseUrl + 'stage/socialmedia/get/bystage'),
           headers: getToken());
       stopLoading();
       jsonData = json.decode(data.body);

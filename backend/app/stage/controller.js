@@ -1,5 +1,14 @@
 const Stage = require('./model')
 const Browser = require('../browser/model')
+const Camera = require('../camera/model')
+const Chat = require('../chat/model')
+const ChatDetail = require('../chat_detail/model')
+const Contact = require('../contact/model')
+const GalleryPhoto = require('../gallery_photo/model')
+const GalleryVideo = require('../gallery_video/model')
+const Map = require('../map/model')
+const Phone = require('../phone/model')
+const SocialMedia = require('../social_media/model')
 const path = require('path')
 const fs = require('fs')
 const config = require('../../config')
@@ -353,7 +362,8 @@ module.exports = {
     }
   },
 
-  // News
+  // ===================================================
+  // Browser
   getBrowserByStage: async (req, res) => {
     const { id } = req.params
     try {
@@ -386,17 +396,249 @@ module.exports = {
     const { id } = req.params
     try {
       const stage = await Stage.findById(req.player.stage_id)
-      console.log(stage.data_game.news)
-      const camera = await Browser.findById(id)
-      if (!browser) {
-        return res.status(404).json({ message: 'Camera not found' })
+      const camerasIds = stage.data_game.cameras
+
+      const cameras = await Promise.all(
+        camerasIds.map(async (camerasId) => {
+          const camera = await Camera.findById(camerasId)
+          return camera
+        })
+      )
+
+      if (!cameras.length) {
+        return res.status(404).json({ message: 'Cameras not found' })
       }
+
       res.status(200).json({
-        data: browser,
+        data: cameras,
       })
     } catch (err) {
       res.status(500).json({
-        message: err.message || `Internal server error`,
+        message: err.message || 'Internal server error',
+      })
+    }
+  },
+
+  // Chat
+  getChatByStage: async (req, res) => {
+    const { id } = req.params
+    try {
+      const stage = await Stage.findById(req.player.stage_id)
+      const chatsIds = stage.data_game.chats
+
+      const chats = await Promise.all(
+        chatsIds.map(async (chatsId) => {
+          const chat = await Chat.findById(chatsId)
+          return chat
+        })
+      )
+
+      if (!chats.length) {
+        return res.status(404).json({ message: 'Chats not found' })
+      }
+
+      res.status(200).json({
+        data: chats,
+      })
+    } catch (err) {
+      res.status(500).json({
+        message: err.message || 'Internal server error',
+      })
+    }
+  },
+
+  // ChatDetail
+  getChatDetailByStage: async (req, res) => {
+    const { id } = req.params
+    try {
+      const stage = await Stage.findById(req.player.stage_id)
+      const chatsIds = stage.data_game.chats
+
+      const chats = await Promise.all(
+        chatsIds.map(async (chatsId) => {
+          const chat = await ChatDetail.findById(chatsId)
+          return chat
+        })
+      )
+
+      if (!chats.length) {
+        return res.status(404).json({ message: 'Chat details not found' })
+      }
+
+      res.status(200).json({
+        data: chats,
+      })
+    } catch (err) {
+      res.status(500).json({
+        message: err.message || 'Internal server error',
+      })
+    }
+  },
+
+  // Contact
+  getContactByStage: async (req, res) => {
+    const { id } = req.params
+    try {
+      const stage = await Stage.findById(req.player.stage_id)
+      const contactsIds = stage.data_game.contacts
+
+      const contacts = await Promise.all(
+        contactsIds.map(async (contactsId) => {
+          const contact = await Contact.findById(contactsId)
+          return contact
+        })
+      )
+
+      if (!contacts.length) {
+        return res.status(404).json({ message: 'Contacts not found' })
+      }
+
+      res.status(200).json({
+        data: contacts,
+      })
+    } catch (err) {
+      res.status(500).json({
+        message: err.message || 'Internal server error',
+      })
+    }
+  },
+
+  // GalleryPhoto
+  getGalleryPhotoByStage: async (req, res) => {
+    const { id } = req.params
+    try {
+      const stage = await Stage.findById(req.player.stage_id)
+      const galleryPhotosIds = stage.data_game.galleryPhotos
+
+      const galleryPhotos = await Promise.all(
+        galleryPhotosIds.map(async (galleryPhotosId) => {
+          const galleryPhoto = await GalleryPhoto.findById(galleryPhotosId)
+          return galleryPhoto
+        })
+      )
+
+      if (!galleryPhotos.length) {
+        return res.status(404).json({ message: 'GalleryPhotos not found' })
+      }
+
+      res.status(200).json({
+        data: galleryPhotos,
+      })
+    } catch (err) {
+      res.status(500).json({
+        message: err.message || 'Internal server error',
+      })
+    }
+  },
+
+  // GalleryVideo
+  getGalleryVideoByStage: async (req, res) => {
+    const { id } = req.params
+    try {
+      const stage = await Stage.findById(req.player.stage_id)
+      const galleryVideosIds = stage.data_game.galleryVideos
+
+      const galleryVideos = await Promise.all(
+        galleryVideosIds.map(async (galleryVideosId) => {
+          const galleryVideo = await GalleryVideo.findById(galleryVideosId)
+          return galleryVideo
+        })
+      )
+
+      if (!galleryVideos.length) {
+        return res.status(404).json({ message: 'GalleryVideos not found' })
+      }
+
+      res.status(200).json({
+        data: galleryVideos,
+      })
+    } catch (err) {
+      res.status(500).json({
+        message: err.message || 'Internal server error',
+      })
+    }
+  },
+
+  // Map
+  getMapByStage: async (req, res) => {
+    const { id } = req.params
+    try {
+      const stage = await Stage.findById(req.player.stage_id)
+      const mapsIds = stage.data_game.maps
+
+      const maps = await Promise.all(
+        mapsIds.map(async (mapsId) => {
+          const map = await Map.findById(mapsId)
+          return map
+        })
+      )
+
+      if (!maps.length) {
+        return res.status(404).json({ message: 'Maps not found' })
+      }
+
+      res.status(200).json({
+        data: maps,
+      })
+    } catch (err) {
+      res.status(500).json({
+        message: err.message || 'Internal server error',
+      })
+    }
+  },
+
+  // Phone
+  getPhoneByStage: async (req, res) => {
+    const { id } = req.params
+    try {
+      const stage = await Stage.findById(req.player.stage_id)
+      const phonesIds = stage.data_game.phones
+
+      const phones = await Promise.all(
+        phonesIds.phone(async (phonesId) => {
+          const phone = await Phone.findById(phonesId)
+          return phone
+        })
+      )
+
+      if (!phones.length) {
+        return res.status(404).json({ message: 'Phones not found' })
+      }
+
+      res.status(200).json({
+        data: phones,
+      })
+    } catch (err) {
+      res.status(500).json({
+        message: err.message || 'Internal server error',
+      })
+    }
+  },
+
+  // SocialMedia
+  getSocialMediaByStage: async (req, res) => {
+    const { id } = req.params
+    try {
+      const stage = await Stage.findById(req.player.stage_id)
+      const socialMediasIds = stage.data_game.socialMedias
+
+      const socialMedias = await Promise.all(
+        socialMediasIds.socialMedia(async (socialMediasId) => {
+          const socialMedia = await SocialMedia.findById(socialMediasId)
+          return socialMedia
+        })
+      )
+
+      if (!socialMedias.length) {
+        return res.status(404).json({ message: 'SocialMedias not found' })
+      }
+
+      res.status(200).json({
+        data: socialMedias,
+      })
+    } catch (err) {
+      res.status(500).json({
+        message: err.message || 'Internal server error',
       })
     }
   },

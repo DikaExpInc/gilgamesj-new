@@ -31,10 +31,17 @@ class CreatePlayerController extends GetxController {
 
   Future<void> addPlayer() async {
     if (totalPlayerC.text.isNotEmpty) {
-      isLoading.value = true;
-      if (isLoadingCreatePegawai.isFalse) {
-        await createTotalPlayer();
-        isLoading.value = false;
+      final int totalPlayer = int.tryParse(totalPlayerC.text) ?? 0;
+
+      if (totalPlayer >= 2 && totalPlayer <= 4) {
+        isLoading.value = true;
+        if (isLoadingCreatePegawai.isFalse) {
+          await createTotalPlayer();
+          isLoading.value = false;
+        }
+      } else {
+        CustomToast.errorToast(
+            'Error', 'Total players must be between 2 and 4');
       }
     } else {
       isLoading.value = false;

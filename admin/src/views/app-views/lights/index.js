@@ -2,7 +2,7 @@ import React from 'react'
 import { Route, Switch, Redirect } from 'react-router-dom'
 import LightList from './light-list'
 import AddLight from './add-light'
-import EditLight from './edit-light'
+import EditLight from './edit-camera'
 
 const Light = (props) => {
   const { match } = props

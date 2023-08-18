@@ -1,8 +1,8 @@
-import React from "react";
-import DetailCommentForm from "../detail-comment-form";
+import React from 'react'
+import SocialMediaCommentForm from '../detail-comment-form'
 
-const AddDetailComment = () => {
-  return <DetailCommentForm mode="ADD" />;
-};
+const AddSocialMediaComment = () => {
+  return <SocialMediaCommentForm mode="ADD" />
+}
 
-export default AddDetailComment;
+export default AddSocialMediaComment

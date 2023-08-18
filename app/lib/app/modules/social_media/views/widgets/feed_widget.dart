@@ -1,5 +1,6 @@
 import 'package:app/app/modules/social_media/controllers/social_media_controller.dart';
 import 'package:app/app/routes/app_pages.dart';
+import 'package:app/app/utils/api.dart';
 import 'package:app/app/utils/app_color.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
@@ -9,14 +10,12 @@ import 'package:intl/intl.dart';
 class FeedWidget extends GetView<SocialMediaController> {
   final String id;
   final String profileUrl;
-  final double date;
+  final String date;
   final String mediaUrl;
   final int like;
   final String name;
   final String description;
   final String location;
-  final String taskId;
-  final bool isActive;
 
   const FeedWidget({
     Key? key,
@@ -28,8 +27,6 @@ class FeedWidget extends GetView<SocialMediaController> {
     required this.name,
     required this.description,
     required this.location,
-    required this.taskId,
-    required this.isActive,
   }) : super(key: key);
 
   @override
@@ -54,7 +51,7 @@ class FeedWidget extends GetView<SocialMediaController> {
                 children: [
                   CircleAvatar(
                     backgroundImage: CachedNetworkImageProvider(
-                      '${profileUrl}',
+                      '${SharedApi().imageUrl}${profileUrl}',
                     ),
                     radius: 40,
                   ),
@@ -86,7 +83,7 @@ class FeedWidget extends GetView<SocialMediaController> {
                 ],
               ),
               Text(
-                '${DateFormat('dd MMMM yyyy', 'id_ID').format(DateTime.fromMillisecondsSinceEpoch((date * 1000).toInt()))}',
+                '${DateFormat('dd MMMM yyyy', 'id_ID').format(DateFormat("EEE MMM dd yyyy HH:mm:ss 'GMT'Z", 'en_US').parse(date))}',
                 style: TextStyle(
                   color: AppColor.primary,
                 ),
@@ -100,7 +97,7 @@ class FeedWidget extends GetView<SocialMediaController> {
           decoration: BoxDecoration(
             image: DecorationImage(
               image: CachedNetworkImageProvider(
-                "${mediaUrl}",
+                "${SharedApi().imageUrl}${mediaUrl}",
               ),
               fit: BoxFit.cover,
             ),
@@ -117,39 +114,42 @@ class FeedWidget extends GetView<SocialMediaController> {
             children: [
               Row(
                 children: [
-                  Container(
-                    padding: EdgeInsets.symmetric(
-                        vertical: 10.0,
-                        horizontal:
-                            MediaQuery.of(context).size.width > 600 ? 50 : 20),
-                    decoration: BoxDecoration(
-                      image: DecorationImage(
-                        image: AssetImage("assets/images/bg_btn.png"),
-                        fit: BoxFit.fill,
+                  InkWell(
+                    onTap: () => controller.like(id),
+                    child: Container(
+                      padding: EdgeInsets.symmetric(
+                          vertical: 10.0,
+                          horizontal:
+                              MediaQuery.of(context).size.width > 600 ? 50 : 20),
+                      decoration: BoxDecoration(
+                        image: DecorationImage(
+                          image: AssetImage("assets/images/bg_btn.png"),
+                          fit: BoxFit.fill,
+                        ),
                       ),
-                    ),
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Icon(
-                          Icons.thumb_up,
-                          color: Colors.white,
-                        ),
-                        SizedBox(
-                          width: 10,
-                        ),
-                        Text(
-                          "${like}",
-                          style: TextStyle(
-                            fontSize: MediaQuery.of(context).size.width > 600
-                                ? 16
-                                : 12,
-                            fontWeight: FontWeight.w700,
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Icon(
+                            Icons.thumb_up,
                             color: Colors.white,
                           ),
-                        ),
-                      ],
+                          SizedBox(
+                            width: 10,
+                          ),
+                          Text(
+                            "${like}",
+                            style: TextStyle(
+                              fontSize: MediaQuery.of(context).size.width > 600
+                                  ? 16
+                                  : 12,
+                              fontWeight: FontWeight.w700,
+                              color: Colors.white,
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                   SizedBox(
@@ -160,7 +160,12 @@ class FeedWidget extends GetView<SocialMediaController> {
                       InkWell(
                         onTap: () => {
                           // if (isActive) {controller.openTask(taskId)},
-                          Get.toNamed(Routes.COMMENT, arguments: {"id": id})
+                          Get.toNamed(Routes.COMMENT, arguments: {
+                            "id": id,
+                            "profile": "${SharedApi().imageUrl}${profileUrl}",
+                            "name": name,
+                            "description": description,
+                          })
                         },
                         child: Container(
                           padding: EdgeInsets.symmetric(
@@ -201,18 +206,19 @@ class FeedWidget extends GetView<SocialMediaController> {
                           ),
                         ),
                       ),
-                      isActive
-                          ? Positioned(
-                              right:
-                                  10, // Atur posisi horizontal ikon tanda seru
-                              child: Icon(
-                                Icons
-                                    .error_outline, // Ganti dengan ikon tanda seru yang sesuai
-                                size: 36,
-                                color: Colors.red,
-                              ),
-                            )
-                          : Container(),
+                      // isActive
+                      //     ? Positioned(
+                      //         right:
+                      //             10, // Atur posisi horizontal ikon tanda seru
+                      //         child: Icon(
+                      //           Icons
+                      //               .error_outline, // Ganti dengan ikon tanda seru yang sesuai
+                      //           size: 36,
+                      //           color: Colors.red,
+                      //         ),
+                      //       )
+                      //     :
+                      Container(),
                     ],
                   ),
                 ],

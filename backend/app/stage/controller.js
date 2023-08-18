@@ -9,6 +9,7 @@ const GalleryVideo = require('../gallery_video/model')
 const Map = require('../map/model')
 const Phone = require('../phone/model')
 const SocialMedia = require('../social_media/model')
+const SocialMediaComment = require('../social_media_comment/model')
 const path = require('path')
 const fs = require('fs')
 const config = require('../../config')
@@ -371,7 +372,7 @@ module.exports = {
       const newsIds = stage.data_game.news
 
       const browsers = await Promise.all(
-        newsIds.map(async (newsId) => {
+        newsIds[0].split(',').map(async (newsId) => {
           const browser = await Browser.findById(newsId)
           return browser
         })
@@ -396,10 +397,10 @@ module.exports = {
     const { id } = req.params
     try {
       const stage = await Stage.findById(req.player.stage_id)
-      const camerasIds = stage.data_game.cameras
+      const camerasIds = stage.data_game.camera
 
       const cameras = await Promise.all(
-        camerasIds.map(async (camerasId) => {
+        camerasIds[0].split(',').map(async (camerasId) => {
           const camera = await Camera.findById(camerasId)
           return camera
         })
@@ -424,10 +425,10 @@ module.exports = {
     const { id } = req.params
     try {
       const stage = await Stage.findById(req.player.stage_id)
-      const chatsIds = stage.data_game.chats
+      const chatsIds = stage.data_game.chat
 
       const chats = await Promise.all(
-        chatsIds.map(async (chatsId) => {
+        chatsIds[0].split(',').map(async (chatsId) => {
           const chat = await Chat.findById(chatsId)
           return chat
         })
@@ -449,24 +450,27 @@ module.exports = {
 
   // ChatDetail
   getChatDetailByStage: async (req, res) => {
-    const { id } = req.params
+    const { chatid } = req.params
     try {
-      const stage = await Stage.findById(req.player.stage_id)
-      const chatsIds = stage.data_game.chats
+      const chat = await Chat.findById(chatid)
 
-      const chats = await Promise.all(
-        chatsIds.map(async (chatsId) => {
-          const chat = await ChatDetail.findById(chatsId)
-          return chat
+      if (!chat) {
+        return res.status(404).json({ message: 'Chat detail not found' })
+      }
+
+      const chatDetails = await Promise.all(
+        chat.detail_chat.map(async (chatDetailId) => {
+          const chatDetail = await ChatDetail.findById(chatDetailId)
+          return chatDetail
         })
       )
 
-      if (!chats.length) {
+      if (!chatDetails.length) {
         return res.status(404).json({ message: 'Chat details not found' })
       }
 
       res.status(200).json({
-        data: chats,
+        data: chatDetails,
       })
     } catch (err) {
       res.status(500).json({
@@ -480,10 +484,10 @@ module.exports = {
     const { id } = req.params
     try {
       const stage = await Stage.findById(req.player.stage_id)
-      const contactsIds = stage.data_game.contacts
+      const contactsIds = stage.data_game.contact
 
       const contacts = await Promise.all(
-        contactsIds.map(async (contactsId) => {
+        contactsIds[0].split(',').map(async (contactsId) => {
           const contact = await Contact.findById(contactsId)
           return contact
         })
@@ -508,10 +512,10 @@ module.exports = {
     const { id } = req.params
     try {
       const stage = await Stage.findById(req.player.stage_id)
-      const galleryPhotosIds = stage.data_game.galleryPhotos
+      const galleryPhotosIds = stage.data_game.gallery_photo
 
       const galleryPhotos = await Promise.all(
-        galleryPhotosIds.map(async (galleryPhotosId) => {
+        galleryPhotosIds[0].split(',').map(async (galleryPhotosId) => {
           const galleryPhoto = await GalleryPhoto.findById(galleryPhotosId)
           return galleryPhoto
         })
@@ -536,10 +540,10 @@ module.exports = {
     const { id } = req.params
     try {
       const stage = await Stage.findById(req.player.stage_id)
-      const galleryVideosIds = stage.data_game.galleryVideos
+      const galleryVideosIds = stage.data_game.gallery_video
 
       const galleryVideos = await Promise.all(
-        galleryVideosIds.map(async (galleryVideosId) => {
+        galleryVideosIds[0].split(',').map(async (galleryVideosId) => {
           const galleryVideo = await GalleryVideo.findById(galleryVideosId)
           return galleryVideo
         })
@@ -564,10 +568,10 @@ module.exports = {
     const { id } = req.params
     try {
       const stage = await Stage.findById(req.player.stage_id)
-      const mapsIds = stage.data_game.maps
+      const mapsIds = stage.data_game.map
 
       const maps = await Promise.all(
-        mapsIds.map(async (mapsId) => {
+        mapsIds[0].split(',').map(async (mapsId) => {
           const map = await Map.findById(mapsId)
           return map
         })
@@ -592,10 +596,10 @@ module.exports = {
     const { id } = req.params
     try {
       const stage = await Stage.findById(req.player.stage_id)
-      const phonesIds = stage.data_game.phones
+      const phonesIds = stage.data_game.phone
 
       const phones = await Promise.all(
-        phonesIds.phone(async (phonesId) => {
+        phonesIds[0].split(',').map(async (phonesId) => {
           const phone = await Phone.findById(phonesId)
           return phone
         })
@@ -620,11 +624,11 @@ module.exports = {
     const { id } = req.params
     try {
       const stage = await Stage.findById(req.player.stage_id)
-      const socialMediasIds = stage.data_game.socialMedias
+      const socialMediasIds = stage.data_game.social_media
 
       const socialMedias = await Promise.all(
-        socialMediasIds.socialMedia(async (socialMediasId) => {
-          const socialMedia = await SocialMedia.findById(socialMediasId)
+        socialMediasIds[0].split(',').map(async (socialMediaId) => {
+          const socialMedia = await SocialMedia.findById(socialMediaId)
           return socialMedia
         })
       )
@@ -635,6 +639,44 @@ module.exports = {
 
       res.status(200).json({
         data: socialMedias,
+      })
+    } catch (err) {
+      res.status(500).json({
+        message: err.message || 'Internal server error',
+      })
+    }
+  },
+
+  // SocialMediaComment
+  getSocialMediaCommentByStage: async (req, res) => {
+    const { sosmedid } = req.params
+    try {
+      const socialMedia = await SocialMedia.findById(sosmedid)
+
+
+      if (!socialMedia) {
+        return res
+          .status(404)
+          .json({ message: 'Social Media Comment not found' })
+      }
+
+      const socialMediaComments = await Promise.all(
+        socialMedia.social_media_comment.map(async (socialMediaCommentId) => {
+          const socialMediaComment = await SocialMediaComment.findById(
+            socialMediaCommentId
+          )
+          return socialMediaComment
+        })
+      )
+
+      // if (!socialMediaComments.length) {
+      //   return res
+      //     .status(404)
+      //     .json({ message: 'Social Media Comments not found' })
+      // }
+
+      res.status(200).json({
+        data: socialMediaComments,
       })
     } catch (err) {
       res.status(500).json({

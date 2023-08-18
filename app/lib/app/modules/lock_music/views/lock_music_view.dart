@@ -4,20 +4,17 @@ import 'package:app/app/modules/lock_music/controllers/lock_music_controller.dar
 import 'package:app/app/modules/lock_music/views/components/password_music.dart';
 import 'package:app/app/routes/app_pages.dart';
 import 'package:app/app/utils/app_color.dart';
-import 'package:audioplayers/audioplayers.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 
+// ignore: must_be_immutable
 class LockMusicView extends GetView<LockMusicController> {
   late double mWidth;
   late double mHeight;
 
   @override
   Widget build(BuildContext context) {
-    final List<int>? pattern =
-        ModalRoute.of(context)!.settings.arguments as List<int>?;
     mWidth = MediaQuery.of(context).size.width;
     mHeight = MediaQuery.of(context).size.height;
     return Scaffold(

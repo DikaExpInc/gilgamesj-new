@@ -260,4 +260,49 @@ module.exports = {
       })
     }
   },
+
+  actionLike: async (req, res) => {
+    try {
+      const { id } = req.params
+
+      const socialMedia = await SocialMedia.findById(id)
+      if (!socialMedia) {
+        return res
+          .status(404)
+          .json({ error: 1, message: 'Social Media not found' })
+      }
+
+      // Inisialisasi properti "likes" jika belum ada
+      if (!socialMedia.likes) {
+        socialMedia.likes = []
+      }
+
+      // Cek apakah pengguna sudah "like"
+      if (socialMedia.likes.includes(req.player._id)) {
+        return res
+          .status(400)
+          .json({ error: 1, message: 'User already liked this Social Media' })
+      }
+
+      // Tambahkan ID pengguna ke daftar "likes" dan increment "like" count
+      await SocialMedia.findByIdAndUpdate(id, {
+        $push: { likes: req.player._id },
+      })
+      socialMedia.like = socialMedia.likes.length
+
+      await socialMedia.save()
+
+      res.status(200).json({
+        message: 'Successfully liked social media',
+        status: 'success',
+        data: socialMedia,
+      })
+    } catch (err) {
+      return res.status(422).json({
+        error: 1,
+        message: err.message,
+        fields: err.errors,
+      })
+    }
+  },
 }

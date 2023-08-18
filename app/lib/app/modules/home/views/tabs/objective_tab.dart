@@ -1,9 +1,9 @@
 import 'package:app/app/modules/home/controllers/home_controller.dart';
 import 'package:app/app/routes/app_pages.dart';
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+// ignore: must_be_immutable
 class ObjectiveTab extends GetView<HomeController> {
   late double mWidth;
   late double mHeight;
@@ -18,7 +18,6 @@ class ObjectiveTab extends GetView<HomeController> {
 
   @override
   Widget build(BuildContext context) {
-    Orientation orientation = getScreenOrientation(context);
     mWidth = MediaQuery.of(context).size.width;
     mHeight = MediaQuery.of(context).size.height;
     return Column(

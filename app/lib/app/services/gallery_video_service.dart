@@ -4,25 +4,22 @@ import '../data/gallery_video_model.dart';
 import '../utils/api.dart';
 import '../widgets/loading.dart';
 import 'package:http/http.dart' as http;
-import '../widgets/message/errorMessage.dart';
 
 class GalleryVideoApi extends SharedApi {
   Future<GalleryVideoListModel> loadGalleryVideoAPI() async {
     try {
-      var jsonData;
       showLoading();
       var data = await http.get(
           Uri.parse(baseUrl + 'stage/galleryvideo/get/bystage'),
           headers: getToken());
       stopLoading();
-      jsonData = json.decode(data.body);
-
       if (data.statusCode == 200) {
-        jsonData['data'][0]['status_code'] = 200;
-        return GalleryVideoListModel.fromJson(jsonData['data'][0]);
+        var jsonData = json.decode(data.body);
+        return GalleryVideoListModel.fromJson(
+            {"status": 200, "items": jsonData['data']});
       } else {
-        showErrorMessage(jsonData['message']);
-        return GalleryVideoListModel.fromJson({"status_code": data.statusCode});
+        return GalleryVideoListModel.fromJson(
+            {"status": data.statusCode, "items": []});
       }
     } on Exception catch (_) {
       return GalleryVideoListModel.fromJson({"status": 404, "items": []});

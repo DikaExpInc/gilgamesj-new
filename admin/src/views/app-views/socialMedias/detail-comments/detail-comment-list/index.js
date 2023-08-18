@@ -11,12 +11,13 @@ import Flex from 'components/shared-components/Flex'
 import { useHistory } from 'react-router-dom'
 import utils from 'utils'
 import { useDispatch, useSelector } from 'react-redux'
-import { getAllDetailComment } from 'redux/actions'
+import { getAllSocialMediaComment } from 'redux/actions'
 import { ExclamationCircleOutlined } from '@ant-design/icons'
 import { colorPrimary } from 'configs/AppConfig'
 import { useParams } from 'react-router-dom/cjs/react-router-dom'
+import socialMediaCommentService from 'services/SocialMediaCommentService'
 
-const DetailCommentList = () => {
+const SocialMediaCommentList = () => {
   const { socialMediaId } = useParams()
   let history = useHistory()
   const chats = useSelector((state) => state.chats)
@@ -26,19 +27,20 @@ const DetailCommentList = () => {
   const [selectedRowKeys, setSelectedRowKeys] = useState([])
 
   useEffect(() => {
-    // FirebaseService.getDetailComment(socialMediaId)
-    //   .then((querySnapshot) => {
-    //     let listData = []
-    //     querySnapshot.forEach((doc) => {
-    //       listData.push({ ...doc.data(), id: doc.id })
-    //     })
-    //     dispatch(getAllDetailComment(listData))
-    //     setList(listData)
-    //   })
-    //   .catch((error) => {
-    //     console.log('Error getting document:', error)
-    //   })
-  }, [])
+    socialMediaCommentService
+      .getSocialMediaList(socialMediaId)
+      .then((querySnapshot) => {
+        let listData = []
+        querySnapshot.data.forEach((doc) => {
+          listData.push({ ...doc, id: doc._id })
+        })
+        dispatch(getAllSocialMediaComment(listData))
+        setList(listData)
+      })
+      .catch((error) => {
+        console.log('Error getting document:', error)
+      })
+  }, [dispatch, socialMediaId])
 
   const confirm = (e) => {
     Modal.confirm({
@@ -49,6 +51,9 @@ const DetailCommentList = () => {
       cancelText: 'Cancel',
       onOk: () => {
         deleteRow(e)
+      },
+      onCancel: () => {
+        cancel(e)
       },
     })
   }
@@ -79,7 +84,7 @@ const DetailCommentList = () => {
     </Menu>
   )
 
-  const addDetailComment = () => {
+  const addSocialMediaComment = () => {
     history.push(`/app/social-medias/comment/${socialMediaId}/add`)
   }
 
@@ -92,13 +97,13 @@ const DetailCommentList = () => {
     let data = list
     if (selectedRows.length > 1) {
       selectedRows.forEach((elm) => {
-        // FirebaseService.deleteChat(elm.id)
+        socialMediaCommentService.deleteSocialMedia(socialMediaId, elm._id)
         data = utils.deleteArrayRow(data, objKey, elm.id)
         setList(data)
         setSelectedRows([])
       })
     } else {
-      // FirebaseService.deleteChat(row.id)
+      socialMediaCommentService.deleteSocialMedia(socialMediaId, row._id)
       data = utils.deleteArrayRow(data, objKey, row.id)
       setList(data)
     }
@@ -155,7 +160,7 @@ const DetailCommentList = () => {
         </Flex>
         <div>
           <Button
-            onClick={addDetailComment}
+            onClick={addSocialMediaComment}
             style={{
               backgroundColor: colorPrimary,
               color: 'white',
@@ -185,4 +190,4 @@ const DetailCommentList = () => {
   )
 }
 
-export default DetailCommentList
+export default SocialMediaCommentList

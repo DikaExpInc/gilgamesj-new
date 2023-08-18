@@ -1,9 +1,9 @@
 import 'package:app/app/modules/phone/controllers/phone_controller.dart';
-import 'package:app/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 
+// ignore: must_be_immutable
 class PhoneTab extends GetView<PhoneController> {
   late double mWidth;
   late double mHeight;
@@ -311,14 +311,7 @@ class PhoneTab extends GetView<PhoneController> {
                                 ),
                                 InkWell(
                                   onTap: () => {
-                                    Get.toNamed(
-                                      Routes.PHONE_CALL,
-                                      arguments: {
-                                        "name": "unknown",
-                                        "profile_url": 'none',
-                                        "status": "fake"
-                                      },
-                                    )
+                                    controller.call(),
                                   },
                                   child: Container(
                                     width: 80,

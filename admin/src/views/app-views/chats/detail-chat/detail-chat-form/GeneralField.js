@@ -2,10 +2,9 @@ import React, { useEffect, useState } from 'react'
 import { Input, Row, Col, Card, Form, InputNumber, Switch, Select } from 'antd'
 
 import { useDispatch } from 'react-redux'
-import { getAllDetailChat } from 'redux/actions'
+import { getAllChatDetail } from 'redux/actions'
 import { useParams } from 'react-router-dom/cjs/react-router-dom'
-
-// const { Dragger } = Upload;
+import chatDetailService from 'services/ChatDetailService'
 
 const rules = {
   title: [
@@ -43,23 +42,23 @@ const GeneralField = (props) => {
   const [chats, setChats] = useState([])
 
   useEffect(() => {
-    // FirebaseService.getDetailChat(chatId)
-    //   .then((querySnapshot) => {
-    //     let listData = []
-    //     querySnapshot.forEach((doc) => {
-    //       listData.push({
-    //         label: `chat ${doc.data().order_number} - ${doc.data().title}`,
-    //         value: doc.id,
-    //       })
-    //     })
-    //     dispatch(getAllDetailChat(listData))
-    //     setChats(listData)
-    //   })
-    //   .catch((error) => {
-    //     console.log('Error getting document:', error)
-    //   })
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+    chatDetailService
+      .getChatDetailList(chatId)
+      .then((querySnapshot) => {
+        let listData = []
+        querySnapshot.data.forEach((doc) => {
+          listData.push({
+            value: doc._id,
+            label: `Chat Detail ${doc.order_number} - ${doc.title}`,
+          })
+        })
+        dispatch(getAllChatDetail(listData))
+        setChats(listData)
+      })
+      .catch((error) => {
+        console.log('Error getting document:', error)
+      })
+  }, [chatId, dispatch])
 
   return (
     <Row gutter={16}>

@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 
+// ignore: must_be_immutable
 class ViewPlayerView extends GetView<ViewPlayerController> {
   late double mWidth;
   late double mHeight;
@@ -15,7 +16,6 @@ class ViewPlayerView extends GetView<ViewPlayerController> {
 
   @override
   Widget build(BuildContext context) {
-    Orientation orientation = getScreenOrientation(context);
     mWidth = MediaQuery.of(context).size.width;
     mHeight = MediaQuery.of(context).size.height;
     return Scaffold(

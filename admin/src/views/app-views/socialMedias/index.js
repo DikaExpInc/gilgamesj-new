@@ -1,14 +1,14 @@
-import React from "react";
-import { Route, Switch, Redirect } from "react-router-dom";
-import SocialMediaList from "./social-media-list";
-import AddSocialMedia from "./add-social-media";
-import EditSocialMedia from "./edit-social-media";
-import DetailCommentList from "./detail-comments/detail-comment-list";
-import AddDetailComment from "./detail-comments/add-detail-comment";
-import EditDetailComment from "./detail-comments/edit-detail-comment";
+import React from 'react'
+import { Route, Switch, Redirect } from 'react-router-dom'
+import SocialMediaList from './social-media-list'
+import AddSocialMedia from './add-social-media'
+import EditSocialMedia from './edit-social-media'
+import SocialMediaCommentList from './detail-comments/detail-comment-list'
+import AddSocialMediaComment from './detail-comments/add-detail-comment'
+import EditSocialMediaComment from './detail-comments/edit-detail-comment'
 
 const SocialMedia = (props) => {
-  const { match } = props;
+  const { match } = props
   return (
     <Switch>
       <Redirect
@@ -31,18 +31,18 @@ const SocialMedia = (props) => {
       <Route
         exact
         path={`${match.url}/comment/:socialMediaId`}
-        component={DetailCommentList}
+        component={SocialMediaCommentList}
       />
       <Route
         path={`${match.url}/comment/:socialMediaId/add`}
-        component={AddDetailComment}
+        component={AddSocialMediaComment}
       />
       <Route
         path={`${match.url}/comment/:socialMediaId/:id/edit`}
-        component={EditDetailComment}
+        component={EditSocialMediaComment}
       />
     </Switch>
-  );
-};
+  )
+}
 
-export default SocialMedia;
+export default SocialMedia

@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 
+// ignore: must_be_immutable
 class PhoneView extends GetView<PhoneController> {
   late double mWidth;
   late double mHeight;
@@ -62,7 +63,6 @@ class PhoneView extends GetView<PhoneController> {
                       Tab(
                         text: 'Telefoon',
                       ),
-
                       // second tab [you can add an icon using the icon property]
                       Tab(
                         text: 'Contacten',

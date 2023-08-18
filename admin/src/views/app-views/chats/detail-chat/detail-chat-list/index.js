@@ -11,10 +11,11 @@ import Flex from 'components/shared-components/Flex'
 import { useHistory } from 'react-router-dom'
 import utils from 'utils'
 import { useDispatch, useSelector } from 'react-redux'
-import { getAllDetailChat } from 'redux/actions'
 import { ExclamationCircleOutlined } from '@ant-design/icons'
 import { colorPrimary } from 'configs/AppConfig'
 import { useParams } from 'react-router-dom/cjs/react-router-dom'
+import chatDetailService from 'services/ChatDetailService'
+import { getAllChatDetail } from 'redux/actions'
 
 const DetailChatList = () => {
   const { chatId } = useParams()
@@ -26,19 +27,20 @@ const DetailChatList = () => {
   const [selectedRowKeys, setSelectedRowKeys] = useState([])
 
   useEffect(() => {
-    // FirebaseService.getDetailChat(chatId)
-    //   .then((querySnapshot) => {
-    //     let listData = []
-    //     querySnapshot.forEach((doc) => {
-    //       listData.push({ ...doc.data(), id: doc.id })
-    //     })
-    //     dispatch(getAllDetailChat(listData))
-    //     setList(listData)
-    //   })
-    //   .catch((error) => {
-    //     console.log('Error getting document:', error)
-    //   })
-  }, [])
+    chatDetailService
+      .getChatDetailList(chatId)
+      .then((querySnapshot) => {
+        let listData = []
+        querySnapshot.data.forEach((doc) => {
+          listData.push({ ...doc, id: doc._id })
+        })
+        dispatch(getAllChatDetail(listData))
+        setList(listData)
+      })
+      .catch((error) => {
+        console.log('Error getting document:', error)
+      })
+  }, [chatId, dispatch])
 
   const confirm = (e) => {
     Modal.confirm({
@@ -49,6 +51,9 @@ const DetailChatList = () => {
       cancelText: 'Cancel',
       onOk: () => {
         deleteRow(e)
+      },
+      onCancel: () => {
+        cancel(e)
       },
     })
   }
@@ -92,13 +97,13 @@ const DetailChatList = () => {
     let data = list
     if (selectedRows.length > 1) {
       selectedRows.forEach((elm) => {
-        // FirebaseService.deleteChat(elm.id)
+        chatDetailService.deleteChatDetail(chatId, elm._id)
         data = utils.deleteArrayRow(data, objKey, elm.id)
         setList(data)
         setSelectedRows([])
       })
     } else {
-      // FirebaseService.deleteChat(row.id)
+      chatDetailService.deleteChatDetail(chatId, row._id)
       data = utils.deleteArrayRow(data, objKey, row.id)
       setList(data)
     }

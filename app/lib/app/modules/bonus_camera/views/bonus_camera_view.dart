@@ -4,6 +4,7 @@ import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 
 import 'package:get/get.dart';
 
+// ignore: must_be_immutable
 class BonusCameraView extends GetView<BonusCameraController> {
   final GlobalKey webViewKey = GlobalKey();
   InAppWebViewController? webViewController;

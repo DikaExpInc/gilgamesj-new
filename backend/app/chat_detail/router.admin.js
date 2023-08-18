@@ -1,31 +1,31 @@
-var express = require("express");
-var router = express.Router();
+var express = require('express')
+var router = express.Router()
 const {
   index,
   getById,
   actionCreate,
   actionEdit,
   actionDelete,
-} = require("./controller");
+} = require('./controller')
 
-const multer = require("multer");
-const os = require("os");
+const multer = require('multer')
+const os = require('os')
 
-const { isLoginAdmin } = require("../middleware/auth");
+const { isLoginAdmin } = require('../middleware/auth')
 
 // router.use(isLoginAdmin);
-router.get("/", index);
-router.get("/:id", getById);
+router.get('/:chatid/', index)
+router.get('/:chatid/:id', getById)
 router.post(
-  "/create",
-  multer({ dest: os.tmpdir() }).single("image"),
+  '/:chatid/create',
+  multer({ dest: os.tmpdir() }).single('image'),
   actionCreate
-);
+)
 router.put(
-  "/edit/:id",
-  multer({ dest: os.tmpdir() }).single("image"),
+  '/:chatid/edit/:id',
+  multer({ dest: os.tmpdir() }).single('image'),
   actionEdit
-);
-router.delete("/delete/:id", actionDelete);
+)
+router.delete('/:chatid/delete/:id', actionDelete)
 
-module.exports = router;
+module.exports = router

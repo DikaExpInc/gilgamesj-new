@@ -1,230 +1,162 @@
-const ChatDetail = require("./model");
-const path = require("path");
-const fs = require("fs");
-const config = require("../../config");
+const ChatDetail = require('./model')
+const Chat = require('../chat/model')
 
 module.exports = {
   index: async (req, res) => {
     try {
-      const chatDetail = await ChatDetail.find();
+      const chatDetails = await ChatDetail.find()
       res.status(200).json({
-        data: chatDetail,
-      });
+        data: chatDetails,
+      })
     } catch (err) {
       res.status(500).json({
-        message: err.message || `Internal server error`,
-      });
+        message: err.message || 'Internal server error',
+      })
     }
   },
 
   getById: async (req, res) => {
-    const { id } = req.params;
+    const { id } = req.params
     try {
-      const chatDetail = await ChatDetail.findById(id);
+      const chatDetail = await ChatDetail.findById(id)
       if (!chatDetail) {
-        return res.status(404).json({ message: "Social Media not found" });
+        return res.status(404).json({ message: 'ChatDetail not found' })
       }
       res.status(200).json({
         data: chatDetail,
-      });
+      })
     } catch (err) {
       res.status(500).json({
-        message: err.message || `Internal server error`,
-      });
+        message: err.message || 'Internal server error',
+      })
     }
   },
 
   actionCreate: async (req, res) => {
+    const { chatid } = req.params
     try {
-      const { title, chat_family_id, chat_sibling_id, order, sender } =
-        req.body;
-      if (req.file) {
-        if (!["image/jpeg", "image/png"].includes(req.file.mimetype)) {
-          return res.status(422).json({
-            error: 1,
-            message: "Invalid file type. Only JPEG and PNG images are allowed.",
-          });
-        }
+      const { chat_family_id, chat_sibling_id, order, sender, status, title } =
+        req.body
 
-        let tmp_path = req.file.path;
-        let originaExt =
-          req.file.originaltitle.split(".")[
-            req.file.originaltitle.split(".").length - 1
-          ];
-        let image = req.file.filetitle + "." + originaExt;
-        let target_path = path.resolve(
-          config.rootPath,
-          `public/uploads/social-medias/${image}`
-        );
+      // Save the profile filename in the MongoDB document
+      const chatDetail = new ChatDetail({
+        chat_family_id: chat_family_id,
+        chat_sibling_id: chat_sibling_id,
+        order: order,
+        sender: sender,
+        status: status,
+        title: title,
+      })
 
-        const src = fs.createReadStream(tmp_path);
-        const dest = fs.createWriteStream(target_path);
+      await chatDetail.save()
 
-        src.pipe(dest);
+      console.log(req.params)
 
-        src.on("end", async () => {
-          try {
-            let chatDetail = new ChatDetail({
-              title: title,
-              chat_family_id: chat_family_id,
-              chat_sibling_id: chat_sibling_id,
-              order: order,
-              sender: sender,
-              profile: image,
-            });
-            await chatDetail.save();
+      await Chat.findByIdAndUpdate(chatid, {
+        $push: { detail_chat: chatDetail._id },
+      })
 
-            res.status(201).json({
-              message: "Successfully create social Media",
-              status: "success",
-              data: chatDetail,
-            });
-          } catch (err) {
-            if (err && err.title === "ValidationError") {
-              return res.status(422).json({
-                error: 1,
-                message: err.message,
-                fields: err.errors,
-              });
-            }
-          }
-        });
-      } else {
-        let chatDetail = new ChatDetail({
-          title: title,
-          chat_family_id: chat_family_id,
-          chat_sibling_id: chat_sibling_id,
-          order: order,
-          sender: sender,
-        });
-        await chatDetail.save();
-
-        res.status(201).json({
-          message: "Successfully create social media",
-          status: "success",
-          data: chatDetail,
-        });
-      }
+      res.status(201).json({
+        message: 'Successfully create chatDetail',
+        status: 'success',
+        data: chatDetail,
+      })
     } catch (err) {
       return res.status(422).json({
         error: 1,
         message: err.message,
         fields: err.errors,
-      });
+      })
     }
   },
 
   actionEdit: async (req, res) => {
     try {
-      const { id } = req.params;
-      const { title, chat_family_id, chat_sibling_id, order, sender } =
-        req.body;
+      const { id } = req.params
+      const { chat_family_id, chat_sibling_id, order, sender, status, title } =
+        req.body
 
-      if (req.file) {
-        let tmp_path = req.file.path;
-        let originaExt =
-          req.file.originaltitle.split(".")[
-            req.file.originaltitle.split(".").length - 1
-          ];
-        let image = req.file.filetitle + "." + originaExt;
-        let target_path = path.resolve(
-          config.rootPath,
-          `public/uploads/social-medias/${image}`
-        );
-
-        const src = fs.createReadStream(tmp_path);
-        const dest = fs.createWriteStream(target_path);
-
-        src.pipe(dest);
-
-        src.on("end", async () => {
-          try {
-            const chatDetail = await ChatDetail.findOne({ _id: id });
-
-            let currentImage = `${config.rootPath}/public/uploads/social-medias/${chatDetail.image}`;
-            if (fs.existsSync(currentImage)) {
-              fs.unlinkSync(currentImage);
-            }
-
-            await ChatDetail.findOneAndUpchat_sibling_id(
-              {
-                _id: id,
-              },
-              {
-                title: title,
-                chat_family_id: chat_family_id,
-                chat_sibling_id: chat_sibling_id,
-                order: order,
-                sender: sender,
-                profile: image,
-              }
-            );
-
-            res.status(200).json({
-              message: "Successfully upchat_sibling_id social media",
-              status: "success",
-              data: [],
-            });
-          } catch (err) {
-            if (err && err.title === "ValidationError") {
-              return res.status(422).json({
-                error: 1,
-                message: err.message,
-                fields: err.errors,
-              });
-            }
-          }
-        });
-      } else {
-        const chatDetail = await ChatDetail.findOneAndUpchat_sibling_id(
-          {
-            _id: id,
-          },
-          {
-            title: title,
-            chat_family_id: chat_family_id,
-            chat_sibling_id: chat_sibling_id,
-            order: order,
-            sender: sender,
-          }
-        );
-        res.status(200).json({
-          message: "Successfully upchat_sibling_id social media",
-          status: "success",
-          data: [],
-        });
+      const chatDetail = await ChatDetail.findById(id)
+      if (!chatDetail) {
+        return res
+          .status(404)
+          .json({ error: 1, message: 'ChatDetail not found' })
       }
+
+      chatDetail.chat_family_id = chat_family_id
+      chatDetail.chat_sibling_id = chat_sibling_id
+      chatDetail.order = order
+      chatDetail.sender = sender
+      chatDetail.status = status
+      chatDetail.title = title
+
+      await chatDetail.save()
+
+      res.status(200).json({
+        message: 'Successfully update chat Detail',
+        status: 'success',
+        data: chatDetail,
+      })
     } catch (err) {
       return res.status(422).json({
         error: 1,
         message: err.message,
         fields: err.errors,
-      });
+      })
     }
   },
 
   actionDelete: async (req, res) => {
     try {
-      const { id } = req.params;
+      const { chatid, id } = req.params
 
       const chatDetail = await ChatDetail.findOneAndRemove({
         _id: id,
-      });
+      })
 
-      let currentImage = `${config.rootPath}/public/uploads/social-medias/${chatDetail.image}`;
-      if (fs.existsSync(currentImage)) {
-        fs.unlinkSync(currentImage);
-      }
+      await Chat.findByIdAndUpdate(chatid, {
+        $pull: { detail_chat: id },
+      })
 
       res.status(410).json({
-        message: "Successfully delete social media",
-        status: "success",
+        message: 'Successfully delete chatDetail',
+        status: 'success',
         data: chatDetail,
-      });
+      })
     } catch (err) {
       res.status(500).json({
-        message: err.message || `Internal server error`,
-      });
+        message: err.message || 'Internal server error',
+      })
     }
   },
-};
+
+  initChat: async (req, res) => {
+    try {
+      const { chatid, id } = req.params
+    } catch (err) {
+      res.status(500).json({
+        message: err.message || 'Internal server error',
+      })
+    }
+  },
+
+  getAnswer: async (req, res) => {
+    try {
+      const { chatid, id } = req.params
+    } catch (err) {
+      res.status(500).json({
+        message: err.message || 'Internal server error',
+      })
+    }
+  },
+
+  answerChat: async (req, res) => {
+    try {
+      const { chatid, id } = req.params
+    } catch (err) {
+      res.status(500).json({
+        message: err.message || 'Internal server error',
+      })
+    }
+  },
+}

@@ -16,6 +16,7 @@ const {
   getMapByStage,
   getPhoneByStage,
   getSocialMediaByStage,
+  getSocialMediaCommentByStage,
 } = require('./controller')
 
 const multer = require('multer')
@@ -57,12 +58,17 @@ router.delete('/delete/:id', actionDelete)
 router.get('/browser/get/bystage', isLoginPlayer, getBrowserByStage)
 router.get('/camera/get/bystage', isLoginPlayer, getCameraByStage)
 router.get('/chat/get/bystage', isLoginPlayer, getChatByStage)
-router.get('/chatdetail/get/bystage', isLoginPlayer, getChatDetailByStage)
+router.get('/chat/get/bystage/:chatid', isLoginPlayer, getChatDetailByStage)
 router.get('/contact/get/bystage', isLoginPlayer, getContactByStage)
 router.get('/galleryphoto/get/bystage', isLoginPlayer, getGalleryPhotoByStage)
 router.get('/galleryvideo/get/bystage', isLoginPlayer, getGalleryVideoByStage)
 router.get('/map/get/bystage', isLoginPlayer, getMapByStage)
 router.get('/phone/get/bystage', isLoginPlayer, getPhoneByStage)
 router.get('/socialmedia/get/bystage', isLoginPlayer, getSocialMediaByStage)
+router.get(
+  '/socialmedia/get/bystage/:sosmedid',
+  isLoginPlayer,
+  getSocialMediaCommentByStage
+)
 
 module.exports = router

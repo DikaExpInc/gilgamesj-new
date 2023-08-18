@@ -1,14 +1,13 @@
 import 'package:app/app/modules/home/controllers/home_controller.dart';
 import 'package:app/app/modules/home/views/tabs/widgets/task_widget.dart';
 import 'package:app/app/widgets/toast/custom_toast.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
 import 'package:get/get.dart';
 
 import '../../../../widgets/no_data.dart';
 
+// ignore: must_be_immutable
 class TaskTab extends GetView<HomeController> {
   late double mWidth;
   late double mHeight;

@@ -33,7 +33,7 @@ class SocialMediaModel {
       description:
           jsonData['description'] != null ? jsonData['description'] : "",
       date: jsonData['date'] != null ? jsonData['date'] : "",
-      like: jsonData['like'] != null ? jsonData['like'] : "",
+      like: jsonData['like'] != null ? jsonData['like'] : 0,
       location: jsonData['location'] != null ? jsonData['location'] : "",
       profile: jsonData['profile'] != null ? jsonData['profile'] : "",
       postImage: jsonData['post_image'] != null ? jsonData['post_image'] : "",
@@ -51,9 +51,10 @@ class SocialMediaListModel {
 
   factory SocialMediaListModel.fromJson(Map<String, dynamic> jsonData) {
     return SocialMediaListModel(
-        statusCode: jsonData['status'],
-        items: jsonData['items']
-            .map<SocialMediaModel>((data) => SocialMediaModel.fromJson(data))
-            .toList());
+      statusCode: jsonData['status'],
+      items: jsonData['items']
+          .map<SocialMediaModel>((data) => SocialMediaModel.fromJson(data))
+          .toList(),
+    );
   }
 }

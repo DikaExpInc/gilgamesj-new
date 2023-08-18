@@ -1,46 +1,56 @@
-var express = require("express");
-var router = express.Router();
+var express = require('express')
+var router = express.Router()
 const {
   index,
   getById,
   actionCreate,
   actionEdit,
   actionDelete,
-} = require("./controller");
+  actionLike,
+} = require('./controller')
 
-const multer = require("multer");
-const os = require("os");
+const multer = require('multer')
+const os = require('os')
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, "tmp/uploads");
+    cb(null, 'tmp/uploads')
   },
   filename: (req, file, cb) => {
-    cb(null, file.fieldname + "-" + Date.now());
+    cb(null, file.fieldname + '-' + Date.now())
   },
-});
-const upload = multer({ dest: os.tmpdir(), storage: storage });
+})
+const upload = multer({ dest: os.tmpdir(), storage: storage })
 
-const { isLoginAdmin } = require("../middleware/auth");
+const { isLoginPlayer } = require('../middleware/auth')
 
 // router.use(isLoginAdmin);
-router.get("/", index);
-router.get("/:id", getById);
+router.get('/', index)
+router.get('/:id', getById)
 router.post(
-  "/create",
+  '/create',
   upload.fields([
-    { name: "profile", maxCount: 1 },
-    { name: "post_image", maxCount: 1 },
+    { name: 'profile', maxCount: 1 },
+    { name: 'post_image', maxCount: 1 },
   ]),
   actionCreate
-);
+)
 router.put(
-  "/edit/:id",
+  '/edit/:id',
   upload.fields([
-    { name: "profile", maxCount: 1 },
-    { name: "post_image", maxCount: 1 },
+    { name: 'profile', maxCount: 1 },
+    { name: 'post_image', maxCount: 1 },
   ]),
   actionEdit
-);
-router.delete("/delete/:id", actionDelete);
+)
+router.put(
+  '/like/:id',
+  upload.fields([
+    { name: 'profile', maxCount: 1 },
+    { name: 'post_image', maxCount: 1 },
+  ]),
+  isLoginPlayer,
+  actionLike
+)
+router.delete('/delete/:id', actionDelete)
 
-module.exports = router;
+module.exports = router

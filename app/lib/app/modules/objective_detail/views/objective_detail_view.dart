@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 
+// ignore: must_be_immutable
 class ObjectiveDetailView extends GetView<ObjectiveDetailController> {
   late double mWidth;
   late double mHeight;

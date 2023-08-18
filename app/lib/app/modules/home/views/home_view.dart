@@ -9,6 +9,7 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 
+// ignore: must_be_immutable
 class HomeView extends GetView<HomeController> {
   PageController hPagerController =
       PageController(keepPage: true, initialPage: 1);

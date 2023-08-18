@@ -3,7 +3,7 @@ const mongoose = require('mongoose')
 let settingSchema = mongoose.Schema(
   {
     page: {
-      enum: ['stage', 'light', 'notification', 'bonus'],
+      enum: ['stage', 'light', 'notification', 'bonus', 'blank'],
       default: 'stage',
       type: String,
     },

@@ -135,7 +135,6 @@ class FileTileProvider extends TileProvider {
 
   FileTileProvider(this.assetPath);
 
-  @override
   ImageProvider createImage(TileLayerOptions options, Tile tile) {
     return AssetImage(assetPath);
   }

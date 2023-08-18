@@ -1,5 +1,4 @@
 import 'package:app/app/data/stage_model.dart';
-import 'package:app/app/services/auth_service.dart';
 import 'package:app/app/services/stage_service.dart';
 import 'package:app/app/utils/api.dart';
 import 'package:audioplayers/audioplayers.dart';

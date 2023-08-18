@@ -14,7 +14,7 @@ class ChatModel {
     this.contact_number,
     this.profile,
     this.createdAt,
-    this.updatedAt,
+    this.updatedAt, 
   });
 
   factory ChatModel.fromJson(Map<String, dynamic> jsonData) {

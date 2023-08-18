@@ -15,6 +15,7 @@ class HomeController extends GetxController with WidgetsBindingObserver {
   AudioPlayer? audioPlayer;
   RxBool isLoading = false.obs;
   final PageAllController pageAllController = Get.find<PageAllController>();
+  
   @override
   void onInit() async {
     super.onInit();
@@ -40,16 +41,16 @@ class HomeController extends GetxController with WidgetsBindingObserver {
   loadTasks() async {
     update();
     showLoading();
-    pageAllController.tasks =
-        await TaskApi().loadTaskAPI(box.read('stage_id'));
+    TaskListModel tasks = await TaskApi().loadTaskAPI(box.read('stage_id'));
+    pageAllController.updateTask(tasks);
     update();
     stopLoading();
-    if (PageAllController().tasks?.statusCode == 200) {
-    } else if (PageAllController().tasks!.statusCode == 204) {
+    if (tasks.statusCode == 200) {
+    } else if (tasks.statusCode == 204) {
       print("Empty");
-    } else if (PageAllController().tasks!.statusCode == 404) {
+    } else if (tasks.statusCode == 404) {
       update();
-    } else if (PageAllController().tasks!.statusCode == 401) {
+    } else if (tasks.statusCode == 401) {
     } else {
       print("someting wrong 400");
     }

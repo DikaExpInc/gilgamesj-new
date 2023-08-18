@@ -1,10 +1,10 @@
 import 'package:app/app/modules/gallery_image_detail/controllers/gallery_image_detail_controller.dart';
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 
+// ignore: must_be_immutable
 class GalleryImageDetailView extends GetView<GalleryImageDetailController> {
   late double mWidth;
   late double mHeight;

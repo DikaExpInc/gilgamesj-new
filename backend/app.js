@@ -8,6 +8,7 @@ const session = require('express-session')
 const flash = require('connect-flash')
 var cors = require('cors')
 const { Client, Server } = require('node-osc')
+const Setting = require('./app/setting/model')
 
 var server = new Server(53000, '192.168.8.238') // set IP and Port of Server
 
@@ -15,7 +16,7 @@ server.on('listening', () => {
   console.log('OSC Server is listening.')
 })
 
-server.on('message', (msg) => {
+server.on('message', async (msg) => {
   const [address, ...args] = msg
 
   const result = {
@@ -23,15 +24,64 @@ server.on('message', (msg) => {
     value: args,
   }
 
-  console.log(result)
+  if (result['url'] == '/mode') {
+    if (result['value'] == 'phone') {
+      await Setting.findOneAndUpdate(
+        {
+          _id: '64de3fd2843badaf9efc006b',
+        },
+        {
+          page: 'phone',
+        }
+      )
+    } else if (result['value'] == 'bonus') {
+      await Setting.findOneAndUpdate(
+        {
+          _id: '64de3fd2843badaf9efc006b',
+        },
+        {
+          page: 'bonus',
+        }
+      )
+    } else if (result['value'] == 'light') {
+      await Setting.findOneAndUpdate(
+        {
+          _id: '64de3fd2843badaf9efc006b',
+        },
+        {
+          page: 'light',
+        }
+      )
+    } else if (result['value'] == 'notification') {
+      await Setting.findOneAndUpdate(
+        {
+          _id: '64de3fd2843badaf9efc006b',
+        },
+        {
+          page: 'notification',
+        }
+      )
+    } else if (result['value'] == 'blank') {
+      await Setting.findOneAndUpdate(
+        {
+          _id: '64de3fd2843badaf9efc006b',
+        },
+        {
+          page: 'blank',
+        }
+      )
+    }
+  }
 })
 
 // player API
 const authRouter = require('./app/auth/router')
 const browserRouter = require('./app/browser/router')
 const socialMediaRouter = require('./app/social_media/router')
+const socialMediaCommentRouter = require('./app/social_media_comment/router')
 const cameraRouter = require('./app/camera/router')
 const chatRouter = require('./app/chat/router')
+const chatDetailRouter = require('./app/chat_detail/router')
 const contactRouter = require('./app/contact/router')
 const phoneRouter = require('./app/phone/router')
 const galleryPhotoRouter = require('./app/gallery_photo/router')
@@ -47,8 +97,10 @@ const lightRouter = require('./app/light/router')
 const authAdminRouter = require('./app/auth/router.admin')
 const browserAdminRouter = require('./app/browser/router.admin')
 const socialMediaAdminRouter = require('./app/social_media/router.admin')
+const socialMediaCommentAdminRouter = require('./app/social_media_comment/router.admin')
 const cameraAdminRouter = require('./app/camera/router.admin')
 const chatAdminRouter = require('./app/chat/router.admin')
+const chatDetailAdminRouter = require('./app/chat_detail/router.admin')
 const contactAdminRouter = require('./app/contact/router.admin')
 const phoneAdminRouter = require('./app/phone/router.admin')
 const galleryPhotoAdminRouter = require('./app/gallery_photo/router.admin')
@@ -84,8 +136,10 @@ app.use(express.static(path.join(__dirname, 'public')))
 // player master
 app.use(`${URL}/browser`, browserRouter)
 app.use(`${URL}/socialmedia`, socialMediaRouter)
+app.use(`${URL}/socialmediacomment`, socialMediaCommentRouter)
 app.use(`${URL}/camera`, cameraRouter)
 app.use(`${URL}/chat`, chatRouter)
+app.use(`${URL}/chatdetail`, chatDetailRouter)
 app.use(`${URL}/contact`, contactRouter)
 app.use(`${URL}/phone`, phoneRouter)
 app.use(`${URL}/galleryphoto`, galleryPhotoRouter)
@@ -101,8 +155,10 @@ app.use(`${URL}/light`, lightRouter)
 // admin master
 app.use(`${URL_ADMIN}/browser`, browserAdminRouter)
 app.use(`${URL_ADMIN}/socialmedia`, socialMediaAdminRouter)
+app.use(`${URL_ADMIN}/socialmediacomment`, socialMediaCommentAdminRouter)
 app.use(`${URL_ADMIN}/camera`, cameraAdminRouter)
 app.use(`${URL_ADMIN}/chat`, chatAdminRouter)
+app.use(`${URL_ADMIN}/chatdetail`, chatDetailAdminRouter)
 app.use(`${URL_ADMIN}/contact`, contactAdminRouter)
 app.use(`${URL_ADMIN}/phone`, phoneAdminRouter)
 app.use(`${URL_ADMIN}/galleryphoto`, galleryPhotoAdminRouter)

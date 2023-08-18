@@ -3,12 +3,15 @@ import PageHeaderAlt from 'components/layout-components/PageHeaderAlt'
 import { Tabs, Form, Button, message, Spin } from 'antd'
 import Flex from 'components/shared-components/Flex'
 import GeneralField from './GeneralField'
-import { createDetailComment, updateDetailComment } from 'redux/actions'
+import {
+  createSocialMediaComment,
+  updateSocialMediaComment,
+} from 'redux/actions'
 import { useDispatch } from 'react-redux'
 import { useHistory } from 'react-router-dom'
-import { colorPrimary } from 'configs/AppConfig'
-import moment from 'moment'
+import { BASE_URL, colorPrimary } from 'configs/AppConfig'
 import { useParams } from 'react-router-dom/cjs/react-router-dom.min'
+import socialMediaCommentService from 'services/SocialMediaCommentService'
 
 const { TabPane } = Tabs
 
@@ -21,148 +24,101 @@ const getBase64 = (img, callback) => {
 const ADD = 'ADD'
 const EDIT = 'EDIT'
 
-const DetailCommentForm = (props) => {
+const SocialMediaCommentForm = (props) => {
   const { mode = ADD, param } = props
 
   let history = useHistory()
   const { socialMediaId } = useParams()
   const [form] = Form.useForm()
   const dispatch = useDispatch()
-  const [uploadedImg, setImage] = useState('')
-  const [imageOriginal, setImageOriginal] = useState('')
-  const [uploadLoading, setUploadLoading] = useState(false)
+  const [uploadedProfileImg, setProfileImage] = useState('')
+  const [profileImageOriginal, setProfileImageOriginal] = useState('')
+  const [profileUploadLoading, setProfileUploadLoading] = useState(false)
   const [submitLoading, setSubmitLoading] = useState(false)
   const [loadingData, setLoadingData] = useState(true)
-  const [detailCommentData, setDetailCommentData] = useState({})
+  const [SocialMediaCommentData, setSocialMediaCommentData] = useState({})
 
   useEffect(() => {
     if (mode === EDIT) {
       const { id } = param
-
-      // FirebaseService.getDetailCommentDetail(socialMediaId, id).then(
-      //   (querySnapshot) => {
-      //     setDetailCommentData({
-      //       ...querySnapshot.data(),
-      //       id: querySnapshot.id,
-      //     })
-      //     form.setFieldsValue({
-      //       name: querySnapshot.data().name,
-      //       comment: querySnapshot.data().comment,
-      //     })
-      //     setImage(querySnapshot.data().profileUrl)
-      //     setLoadingData(false)
-      //   }
-      // )
+      socialMediaCommentService
+        .getSocialMedia(socialMediaId, id)
+        .then((querySnapshot) => {
+          setSocialMediaCommentData({
+            ...querySnapshot.data,
+            _id: id,
+          })
+          form.setFieldsValue({
+            name: querySnapshot.data.name,
+            comment: querySnapshot.data.comment,
+            location: querySnapshot.data.location,
+          })
+          setProfileImage(`${BASE_URL}${querySnapshot.data.profile}`)
+          setLoadingData(false)
+        })
     } else {
       setLoadingData(false)
     }
   }, [form, mode, param, props])
 
-  const handleUploadChange = (info) => {
-    setImageOriginal(info.file)
+  const handleUploadProfileChange = (info) => {
+    const isJpgOrPng =
+      info.file.type === 'image/jpeg' || info.file.type === 'image/png'
+    if (!isJpgOrPng) {
+      message.error('You can only upload JPG/PNG file!')
+      return
+    }
+
+    const isLt2M = info.file.size / 1024 / 1024 < 2
+    if (!isLt2M) {
+      message.error('Image must be smaller than 2MB!')
+      return
+    }
+
+    setProfileImageOriginal(info.file)
     getBase64(info.file.originFileObj, (imageUrl) => {
-      setImage(imageUrl)
-      setUploadLoading(true)
+      setProfileImage(imageUrl)
+      setProfileUploadLoading(true)
     })
   }
 
-  const onFinish = () => {
+  const onFinish = async () => {
     setSubmitLoading(true)
-    // form
-    //   .validateFields()
-    //   .then((values) => {
-    //     setTimeout(async () => {
-    //       if (mode === ADD) {
-    //         const fileName = `images/social-medias/comments/${Date.now()}-${
-    //           imageOriginal.name
-    //         }`
-    //         const fileRef = storage.ref().child(fileName)
-    //         try {
-    //           const designFile = await fileRef.put(imageOriginal.originFileObj)
-    //           const profileUrl = await designFile.ref.getDownloadURL()
-    //           FirebaseService.addDetailComment(socialMediaId, {
-    //             ...values,
-    //             profileUrl,
-    //           }).then((resp) => {
-    //             dispatch(
-    //               createDetailComment({
-    //                 ...values,
-    //                 profileUrl,
-    //               })
-    //             )
-    //             message.success(`Create comment with name '${values.name}'`)
-    //             setSubmitLoading(false)
-    //             history.push(`/app/social-medias/comment/${socialMediaId}`)
-    //           })
-    //         } catch (e) {
-    //           console.log(e)
-    //         }
-    //       }
-    //       if (mode === EDIT) {
-    //         if (imageOriginal === '') {
-    //           FirebaseService.updateDetailComment(
-    //             socialMediaId,
-    //             detailCommentData.id,
-    //             {
-    //               ...values,
-    //               profileUrl: uploadedImg,
-    //             }
-    //           ).then((resp) => {
-    //             dispatch(
-    //               updateDetailComment({
-    //                 ...values,
-    //                 profileUrl: uploadedImg,
-    //               })
-    //             )
-    //             message.success(
-    //               `Comment with name '${values.name}' has updated`
-    //             )
-    //             setSubmitLoading(false)
-    //             history.push(`/app/social-medias/comment/${socialMediaId}`)
-    //           })
-    //         } else {
-    //           const fileName = `images/social-medias/comments/${Date.now()}-${
-    //             imageOriginal.name
-    //           }`
-    //           const fileRef = storage.ref().child(fileName)
+    try {
+      const values = await form.validateFields()
+      const formData = new FormData()
 
-    //           try {
-    //             const designFile = await fileRef.put(
-    //               imageOriginal.originFileObj
-    //             )
-    //             const profileUrl = await designFile.ref.getDownloadURL()
-    //             FirebaseService.updateDetailComment(
-    //               socialMediaId,
-    //               detailCommentData.id,
-    //               {
-    //                 ...values,
-    //                 profileUrl,
-    //               }
-    //             ).then((resp) => {
-    //               dispatch(
-    //                 updateDetailComment({
-    //                   ...values,
-    //                   profileUrl,
-    //                 })
-    //               )
-    //               message.success(
-    //                 `Comment with name '${values.name}' has updated`
-    //               )
-    //               setSubmitLoading(false)
-    //               history.push(`/app/social-medias/comment/${socialMediaId}`)
-    //             })
-    //           } catch (e) {
-    //             console.log(e)
-    //           }
-    //         }
-    //       }
-    //     }, 1500)
-    //   })
-    //   .catch((info) => {
-    //     setSubmitLoading(false)
-    //     console.log('info', info)
-    //     message.error('Please enter all required field ')
-    //   })
+      if (mode === ADD) {
+        formData.append('profile', profileImageOriginal.originFileObj)
+        for (const key in values) {
+          formData.append(key, values[key])
+        }
+        const resp = await socialMediaCommentService.addSocialMedia(
+          socialMediaId,
+          formData
+        )
+        dispatch(createSocialMediaComment(resp.data)) // Assuming the API returns the created news data
+        message.success(`Create social media '${values.name}' success`)
+        history.push(`/app/social-medias/comment/${socialMediaId}`)
+      } else if (mode === EDIT) {
+        formData.append('profile', profileImageOriginal.originFileObj)
+        for (const key in values) {
+          formData.append(key, values[key])
+        }
+        const resp = await socialMediaCommentService.updateSocialMedia(
+          socialMediaId,
+          SocialMediaCommentData._id,
+          formData
+        )
+        dispatch(updateSocialMediaComment(resp.data)) // Assuming the API returns the updated news data
+        message.success(`Social Media '${values.title}' has updated`)
+        history.push(`/app/social-medias/comment/${socialMediaId}`)
+      }
+    } catch (error) {
+      setSubmitLoading(false)
+      console.log('Error:', error)
+      message.error('An error occurred. Please try again later.')
+    }
   }
 
   const onDiscard = () => {
@@ -219,9 +175,9 @@ const DetailCommentForm = (props) => {
               {loadingData && <Spin size="large" tip="Please Wait" />}
               {!loadingData && (
                 <GeneralField
-                  uploadedImg={uploadedImg}
-                  uploadLoading={uploadLoading}
-                  handleUploadChange={handleUploadChange}
+                  uploadedImg={uploadedProfileImg}
+                  uploadLoading={profileUploadLoading}
+                  handleUploadChange={handleUploadProfileChange}
                 />
               )}
             </TabPane>
@@ -232,4 +188,4 @@ const DetailCommentForm = (props) => {
   )
 }
 
-export default DetailCommentForm
+export default SocialMediaCommentForm

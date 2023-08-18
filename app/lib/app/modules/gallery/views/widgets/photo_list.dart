@@ -1,12 +1,15 @@
+import 'package:app/app/data/gallery_photo_model.dart';
 import 'package:app/app/modules/gallery/controllers/gallery_controller.dart';
 import 'package:app/app/routes/app_pages.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../../../utils/api.dart';
+
 class PhotoListWidget extends GetView<GalleryController> {
   final String date;
-  final List<dynamic> listPhoto;
+  final GalleryPhotoListModel? listPhoto;
   final List<dynamic> listIsActiveTask;
   final List<dynamic> listAllTask;
 
@@ -20,34 +23,22 @@ class PhotoListWidget extends GetView<GalleryController> {
 
   @override
   Widget build(BuildContext context) {
-    List documentIds =
-        listPhoto.map((taskSnapshot) => taskSnapshot.id).toList();
+    // List documentIds =
+    //     listPhoto.map((taskSnapshot) => taskSnapshot.id).toList();
 
-    List<dynamic> photos = listPhoto.map((taskSnapshot) {
-      var taskData = taskSnapshot.data() as Map<String, dynamic>;
-      var photoValue = taskData["downloadUrl"];
-      return photoValue;
-    }).toList();
+    // List<bool> hasDetailIds = documentIds.map((id) {
+    //   return listAllTask.any((task) => task['detail_id'] == id);
+    // }).toList();
 
-    List<dynamic> names = listPhoto.map((taskSnapshot) {
-      var taskData = taskSnapshot.data() as Map<String, dynamic>;
-      var photoValue = taskData["name"];
-      return photoValue;
-    }).toList();
-
-    List<bool> hasDetailIds = documentIds.map((id) {
-      return listAllTask.any((task) => task['detail_id'] == id);
-    }).toList();
-
-    List taskIds = documentIds.map((id) {
-      var task;
-      try {
-        task = listAllTask.firstWhere((task) => task['detail_id'] == id);
-      } catch (_) {
-        task = null;
-      }
-      return task != null ? task['id'] : '';
-    }).toList();
+    // List taskIds = documentIds.map((id) {
+    //   var task;
+    //   try {
+    //     task = listAllTask.firstWhere((task) => task['detail_id'] == id);
+    //   } catch (_) {
+    //     task = null;
+    //   }
+    //   return task != null ? task['id'] : '';
+    // }).toList();
 
     return Column(
       children: [
@@ -73,11 +64,12 @@ class PhotoListWidget extends GetView<GalleryController> {
                 crossAxisSpacing: 10.0,
                 childAspectRatio: 1.0,
               ),
-              itemCount: photos.length,
+              itemCount: listPhoto!.items!.length,
               itemBuilder: (BuildContext context, int index) {
                 final Map<String, dynamic> arguments = {
-                  'image': photos[index],
-                  'name': names[index],
+                  'image':
+                      '${SharedApi().imageUrl}${listPhoto!.items![index].image}',
+                  'name': listPhoto!.items![index].title,
                   'date': date,
                 };
                 return InkWell(
@@ -94,7 +86,7 @@ class PhotoListWidget extends GetView<GalleryController> {
                           borderRadius: BorderRadius.circular(10.0),
                           image: DecorationImage(
                             image: CachedNetworkImageProvider(
-                              photos[index],
+                              '${SharedApi().imageUrl}${listPhoto!.items![index].image!}',
                             ),
                             fit: BoxFit.cover,
                           ),

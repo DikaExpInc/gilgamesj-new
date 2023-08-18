@@ -1,5 +1,16 @@
 import 'dart:async';
 
+import 'package:app/app/data/browser_model.dart';
+import 'package:app/app/data/camera_model.dart';
+import 'package:app/app/data/chat_detail_model.dart';
+import 'package:app/app/data/chat_model.dart';
+import 'package:app/app/data/contact_model.dart';
+import 'package:app/app/data/gallery_photo_model.dart';
+import 'package:app/app/data/gallery_video_model.dart';
+import 'package:app/app/data/map_model.dart';
+import 'package:app/app/data/phone_model.dart';
+import 'package:app/app/data/social_media_comment.dart';
+import 'package:app/app/data/social_media_model.dart';
 import 'package:app/app/data/task_model.dart';
 import 'package:app/app/routes/app_pages.dart';
 import 'package:app/app/widgets/dialog/bonus_dialog.dart';
@@ -11,6 +22,17 @@ class PageAllController extends GetxController {
   RxInt pageIndex = 0.obs;
   RxInt lengthNow = 0.obs;
   TaskListModel? tasks;
+  BrowserListModel? browsers;
+  CameraListModel? cameras;
+  ChatListModel? chats;
+  ChatDetailListModel? chatDetails;
+  ContactListModel? contacts;
+  GalleryPhotoListModel? galleryPhotos;
+  GalleryVideoListModel? galleryVideos;
+  MapListModel? maps;
+  PhoneListModel? phones;
+  SocialMediaListModel? socialMedias;
+  SocialMediaCommentListModel? socialMediaComments;
 
   // timer
   RxString countdown = '00:00'.obs;
@@ -22,6 +44,7 @@ class PageAllController extends GetxController {
   @override
   void onInit() {
     super.onInit();
+    
   }
 
   void showBonusDialog() {
@@ -85,5 +108,56 @@ class PageAllController extends GetxController {
         timer.cancel(); // Stop the timer when countdown reaches 0 or negative
       }
     });
+  }
+
+  // Update Data
+
+  void updateTask(TaskListModel newTasks) {
+    tasks = newTasks;
+  }
+
+  void updateBrowser(BrowserListModel newBrowsers) {
+    browsers = newBrowsers;
+  }
+
+  void updateCamera(CameraListModel newCameras) {
+    cameras = newCameras;
+  }
+
+  void updateChat(ChatListModel newChats) {
+    chats = newChats;
+  }
+
+  void updateChatDetails(ChatDetailListModel newChatDetails) {
+    chatDetails = newChatDetails;
+  }
+
+  void updateContact(ContactListModel newContacts) {
+    contacts = newContacts;
+  }
+
+  void updateGalleryPhoto(GalleryPhotoListModel newGalleryPhotos) {
+    galleryPhotos = newGalleryPhotos;
+  }
+
+  void updateGalleryVideo(GalleryVideoListModel newGalleryVideos) {
+    galleryVideos = newGalleryVideos;
+  }
+
+  void updateMap(MapListModel newMap) {
+    maps = newMap;
+  }
+
+  void updatePhone(PhoneListModel newPhone) {
+    phones = newPhone;
+  }
+
+  void updateSocialMedia(SocialMediaListModel newSocialMedia) {
+    socialMedias = newSocialMedia;
+  }
+
+  void updateSocialMediaComment(
+      SocialMediaCommentListModel newSocialMediaComment) {
+    socialMediaComments = newSocialMediaComment;
   }
 }

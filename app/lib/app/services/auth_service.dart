@@ -63,7 +63,6 @@ class AuthApi extends SharedApi {
         jsonData['data']['user']['token_type'] = jsonData['data']['type'];
         return UserModel.fromJson(jsonData['data']['user']);
       } else {
-        print(jsonData);
         showErrorMessage(jsonData['message']);
         return UserModel.fromJson({"status_code": data.statusCode});
       }
@@ -91,7 +90,6 @@ class AuthApi extends SharedApi {
         jsonData['status_code'] = 201;
         return PlayerModel.fromJson(jsonData);
       } else {
-        print(jsonData);
         showErrorMessage(jsonData['message']);
         return PlayerModel.fromJson({"status_code": data.statusCode});
       }

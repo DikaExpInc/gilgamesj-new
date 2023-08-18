@@ -7,6 +7,7 @@ import 'package:get_storage/get_storage.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:introduction_screen/introduction_screen.dart';
 
+// ignore: must_be_immutable
 class IntroductionView extends GetView<IntroductionController> {
   final box = GetStorage();
   late double mWidth;

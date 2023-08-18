@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 
+// ignore: must_be_immutable
 class CreatePlayerView extends GetView<CreatePlayerController> {
   late double mWidth;
   late double mHeight;

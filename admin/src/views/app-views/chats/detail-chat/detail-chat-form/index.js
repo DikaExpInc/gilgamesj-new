@@ -6,17 +6,11 @@ import GeneralField from './GeneralField'
 import { useDispatch } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 import { colorPrimary } from 'configs/AppConfig'
-import moment from 'moment'
 import { useParams } from 'react-router-dom/cjs/react-router-dom'
-import { createDetailChat, updateDetailChat } from 'redux/actions'
+import chatDetailService from 'services/ChatDetailService'
+import { createChatDetail, updateChatDetail } from 'redux/actions'
 
 const { TabPane } = Tabs
-
-const getBase64 = (img, callback) => {
-  const reader = new FileReader()
-  reader.addEventListener('load', () => callback(reader.result))
-  reader.readAsDataURL(img)
-}
 
 const ADD = 'ADD'
 const EDIT = 'EDIT'
@@ -28,114 +22,70 @@ const DetailChatForm = (props) => {
   const { chatId } = useParams()
   const [form] = Form.useForm()
   const dispatch = useDispatch()
-  // const [uploadedImg, setImage] = useState("");
-  // const [imageOriginal, setImageOriginal] = useState("");
-  // const [uploadLoading, setUploadLoading] = useState(false);
   const [submitLoading, setSubmitLoading] = useState(false)
   const [loadingData, setLoadingData] = useState(true)
-  const [chatData, setChatData] = useState({})
+  const [chatDetailData, setChatData] = useState({})
 
   useEffect(() => {
     if (mode === EDIT) {
-      const { id } = param
-      // FirebaseService.getDetailChatDetail(chatId, id).then((querySnapshot) => {
-      //   setChatData({ ...querySnapshot.data(), id: querySnapshot.id })
-      //   let status = false
-      //   if (querySnapshot.data().status === 'sender') {
-      //     status = true
-      //   }
-      //   form.setFieldsValue({
-      //     title: querySnapshot.data().title,
-      //     sender: querySnapshot.data().sender,
-      //     order: querySnapshot.data().order,
-      //     status: status,
-      //     date: moment.unix(querySnapshot.data().date),
-      //   })
-      //   // setImage(querySnapshot.data().downloadUrl);
-      //   setLoadingData(false)
-      // })
+      const { chatId, id } = param
+      chatDetailService.getChatDetail(chatId, id).then((querySnapshot) => {
+        setChatData({ ...querySnapshot.data, _id: id })
+        form.setFieldsValue({
+          title: querySnapshot.data.title,
+          sender: querySnapshot.data.sender,
+          order: querySnapshot.data.order,
+          status: querySnapshot.data.status,
+        })
+        setLoadingData(false)
+      })
     } else {
       setLoadingData(false)
     }
   }, [form, mode, param, props])
 
-  // const handleUploadChange = (info) => {
-  //   setImageOriginal(info.file);
-  //   getBase64(info.file.originFileObj, (imageUrl) => {
-  //     setImage(imageUrl);
-  //     setUploadLoading(true);
-  //   });
-  // };
-
-  const onFinish = () => {
+  const onFinish = async () => {
     setSubmitLoading(true)
-    form
-      .validateFields()
-      .then((values) => {
-        setTimeout(async () => {
-          if (mode === ADD) {
-            // const fileName = `images/chats/${Date.now()}-${imageOriginal.name}`;
-            // const fileRef = storage.ref().child(fileName);
-            try {
-              if (values.chat_family_id === undefined)
-                values.chat_family_id = 'no'
-              if (values.chat_sibling_id === undefined)
-                values.chat_sibling_id = 'no'
 
-              if (values.status) {
-                values.status = 'sender'
-              } else {
-                values.status = 'receiver'
-              }
-              // const designFile = await fileRef.put(imageOriginal.originFileObj);
-              // const downloadUrl = await designFile.ref.getDownloadURL();
-              // FirebaseService.addDetailChat(chatId, {
-              //   ...values,
-              // }).then((resp) => {
-              //   dispatch(
-              //     createDetailChat({
-              //       ...values,
-              //     })
-              //   )
-              //   message.success(`Create chat with name '${values.title}'`)
-              //   setSubmitLoading(false)
-              //   history.push(`/app/chats/detail-chat/${chatId}`)
-              // })
-            } catch (e) {
-              console.log(e)
-            }
-          }
-          if (mode === EDIT) {
-            if (values.chat_family_id === undefined)
-              values.chat_family_id = 'no'
-            if (values.chat_sibling_id === undefined)
-              values.chat_sibling_id = 'no'
+    try {
+      const values = await form.validateFields()
+      if (values.chatDetail_family_id === undefined)
+        values.chatDetail_family_id = 'no'
+      if (values.chatDetail_sibling_id === undefined)
+        values.chatDetail_sibling_id = 'no'
 
-            if (values.status) {
-              values.status = 'sender'
-            } else {
-              values.status = 'receiver'
-            }
-            // FirebaseService.updateDetailChat(chatId, chatData.id, {
-            //   ...values,
-            // }).then((resp) => {
-            //   dispatch(
-            //     updateDetailChat({
-            //       ...values,
-            //     })
-            //   )
-            //   message.success(`Chat with name '${values.title}' has updated`)
-            //   setSubmitLoading(false)
-            //   history.push(`/app/chats/detail-chat/${chatId}`)
-            // })
-          }
-        }, 1500)
-      })
-      .catch((info) => {
-        setSubmitLoading(false)
-        console.log('info', info)
-        message.error('Please enter all required field ')
-      })
+      if (values.status) {
+        values.status = 'sender'
+      } else {
+        values.status = 'receiver'
+      }
+      const formData = new FormData()
+      if (mode === ADD) {
+        for (const key in values) {
+          formData.append(key, values[key])
+        }
+        const resp = await chatDetailService.addChatDetail(chatId, formData)
+        dispatch(createChatDetail(resp.data)) // Assuming the API returns the created news data
+        message.success(`Create chat detail with title '${values.title}'`)
+        history.push(`/app/chats/detail-chat/${chatId}`)
+      } else if (mode === EDIT) {
+        for (const key in values) {
+          formData.append(key, values[key])
+        }
+        const resp = await chatDetailService.updateChatDetail(
+          chatId,
+          chatDetailData._id,
+          formData
+        )
+        dispatch(updateChatDetail(resp.data)) // Assuming the API returns the updated news data
+        message.success(`Chat Detail with title '${values.title}' has updated`)
+        history.push(`/app/chats/detail-chat/${chatId}`)
+      }
+    } catch (error) {
+      setSubmitLoading(false)
+      console.log('Error:', error)
+      message.error('An error occurred. Please try again later.')
+    }
   }
 
   const onDiscard = () => {
@@ -190,13 +140,7 @@ const DetailChatForm = (props) => {
           <Tabs defaultActiveKey="1" style={{ marginTop: 30 }}>
             <TabPane tab="General" key="1">
               {loadingData && <Spin size="large" tip="Please Wait" />}
-              {!loadingData && (
-                <GeneralField
-                // uploadedImg={uploadedImg}
-                // uploadLoading={uploadLoading}
-                // handleUploadChange={handleUploadChange}
-                />
-              )}
+              {!loadingData && <GeneralField />}
             </TabPane>
           </Tabs>
         </div>

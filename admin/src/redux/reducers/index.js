@@ -4,11 +4,11 @@ import Theme from './Theme'
 import News from './News'
 import Maps from './Maps'
 import SocialMedia from './SocialMedia'
-import DetailComment from './DetailComment'
+import SocialMediaComment from './SocialMediaComment'
 import GalleryPhoto from './GalleryPhoto'
 import GalleryVideo from './GalleryVideo'
 import Chat from './Chat'
-import DetailChat from './DetailChat'
+import ChatDetail from './ChatDetail'
 import Camera from './Camera'
 import Phone from './Phone'
 import Contact from './Contact'
@@ -24,11 +24,12 @@ const reducers = combineReducers({
   news: News,
   maps: Maps,
   socialMedia: SocialMedia,
-  detailComment: DetailComment,
+  socialMediaComment: SocialMediaComment,
+  SocialMediaComment: SocialMediaComment,
   galleryPhoto: GalleryPhoto,
   galleryVideo: GalleryVideo,
   chat: Chat,
-  detailChat: DetailChat,
+  chatDetail: ChatDetail,
   camera: Camera,
   phone: Phone,
   contact: Contact,

@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 
 import '../controllers/clap_controller.dart';
 
+// ignore: must_be_immutable
 class ClapView extends GetView<ClapController> {
   late double mWidth;
   late double mHeight;

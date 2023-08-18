@@ -6,6 +6,7 @@ import 'package:get/get.dart';
 
 import '../../../routes/app_pages.dart';
 
+// ignore: must_be_immutable
 class StartView extends GetView<StartController> {
   late double mWidth;
   late double mHeight;
@@ -14,9 +15,6 @@ class StartView extends GetView<StartController> {
   Widget build(BuildContext context) {
     Get.put(PageAllController());
     final PageAllController pageAllController = Get.find<PageAllController>();
-
-    final List<int>? pattern =
-        ModalRoute.of(context)!.settings.arguments as List<int>?;
 
     mWidth = MediaQuery.of(context).size.width;
     mHeight = MediaQuery.of(context).size.height;
@@ -91,14 +89,9 @@ class StartView extends GetView<StartController> {
             GestureDetector(
               onPanUpdate: (details) {
                 if (details.delta.dy < 0) {
-                  // print("ini geser atas");
                   controller.audioCache.play('lock_code.mp3');
                   Get.toNamed(Routes.LOCK_MUSIC);
                 }
-
-                // if (details.delta.dy > 0) {
-                //   print("ini geser bawah");
-                // }
               },
               child: Container(
                 color: Colors.transparent,

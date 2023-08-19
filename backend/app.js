@@ -10,7 +10,7 @@ var cors = require('cors')
 const { Client, Server } = require('node-osc')
 const Setting = require('./app/setting/model')
 
-var server = new Server(53000, '192.168.8.238') // set IP and Port of Server
+var server = new Server(53000, '192.168.1.17') // set IP and Port of Server
 
 server.on('listening', () => {
   console.log('OSC Server is listening.')
@@ -32,15 +32,6 @@ server.on('message', async (msg) => {
         },
         {
           page: 'phone',
-        }
-      )
-    } else if (result['value'] == 'bonus') {
-      await Setting.findOneAndUpdate(
-        {
-          _id: '64de3fd2843badaf9efc006b',
-        },
-        {
-          page: 'bonus',
         }
       )
     } else if (result['value'] == 'light') {
@@ -70,6 +61,33 @@ server.on('message', async (msg) => {
           page: 'blank',
         }
       )
+    } else if (result['value'] == 'clap') {
+      await Setting.findOneAndUpdate(
+        {
+          _id: '64de3fd2843badaf9efc006b',
+        },
+        {
+          page: 'clap',
+        }
+      )
+    } else if (result['value'] == 'group') {
+      await Setting.findOneAndUpdate(
+        {
+          _id: '64de3fd2843badaf9efc006b',
+        },
+        {
+          page: 'group',
+        }
+      )
+    } else if (result['value'] == 'performance') {
+      await Setting.findOneAndUpdate(
+        {
+          _id: '64de3fd2843badaf9efc006b',
+        },
+        {
+          page: 'performance',
+        }
+      )
     }
   }
 })
@@ -92,6 +110,7 @@ const taskRouter = require('./app/task/router')
 const usersRouter = require('./app/users/router')
 const playerRouter = require('./app/player/router')
 const lightRouter = require('./app/light/router')
+const settingRouter = require('./app/setting/router')
 
 // Admin API
 const authAdminRouter = require('./app/auth/router.admin')
@@ -111,6 +130,7 @@ const taskAdminRouter = require('./app/task/router.admin')
 const usersAdminRouter = require('./app/users/router.admin')
 const playerAdminRouter = require('./app/player/router.admin')
 const lightAdminRouter = require('./app/light/router.admin')
+const settingAdminRouter = require('./app/setting/router.admin')
 
 const app = express()
 const URL = `/api/v1`
@@ -151,6 +171,7 @@ app.use(`${URL}/users`, usersRouter)
 app.use(`${URL}/players`, playerRouter)
 app.use(`${URL}/auth`, authRouter)
 app.use(`${URL}/light`, lightRouter)
+app.use(`${URL}/setting`, settingRouter)
 
 // admin master
 app.use(`${URL_ADMIN}/browser`, browserAdminRouter)
@@ -170,6 +191,7 @@ app.use(`${URL_ADMIN}/users`, usersAdminRouter)
 app.use(`${URL_ADMIN}/players`, playerAdminRouter)
 app.use(`${URL_ADMIN}/auth`, authAdminRouter)
 app.use(`${URL_ADMIN}/light`, lightAdminRouter)
+app.use(`${URL_ADMIN}/setting`, settingAdminRouter)
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

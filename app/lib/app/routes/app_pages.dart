@@ -22,6 +22,8 @@ import '../modules/clap/bindings/clap_binding.dart';
 import '../modules/clap/views/clap_view.dart';
 import '../modules/comment/bindings/comment_binding.dart';
 import '../modules/comment/views/comment_view.dart';
+import '../modules/connection/bindings/connection_binding.dart';
+import '../modules/connection/views/connection_view.dart';
 import '../modules/create_player/bindings/create_player_binding.dart';
 import '../modules/create_player/views/create_player_view.dart';
 import '../modules/create_team/bindings/create_team_binding.dart';
@@ -32,16 +34,26 @@ import '../modules/gallery_image_detail/bindings/gallery_image_detail_binding.da
 import '../modules/gallery_image_detail/views/gallery_image_detail_view.dart';
 import '../modules/gallery_video_detail/bindings/gallery_video_detail_binding.dart';
 import '../modules/gallery_video_detail/views/gallery_video_detail_view.dart';
+import '../modules/go_theater/bindings/go_theater_binding.dart';
+import '../modules/go_theater/views/go_theater_view.dart';
+import '../modules/group/bindings/group_binding.dart';
+import '../modules/group/views/group_view.dart';
 import '../modules/home/bindings/home_binding.dart';
 import '../modules/home/views/home_view.dart';
+import '../modules/intro/bindings/intro_binding.dart';
+import '../modules/intro/views/intro_view.dart';
 import '../modules/introduction/bindings/introduction_binding.dart';
 import '../modules/introduction/views/introduction_view.dart';
+import '../modules/light/bindings/light_binding.dart';
+import '../modules/light/views/light_view.dart';
 import '../modules/lock_music/bindings/lock_music_binding.dart';
 import '../modules/lock_music/views/lock_music_view.dart';
 import '../modules/map/bindings/map_binding.dart';
 import '../modules/map/views/map_view.dart';
 import '../modules/news_detail/bindings/news_detail_binding.dart';
 import '../modules/news_detail/views/news_detail_view.dart';
+import '../modules/notification/bindings/notification_binding.dart';
+import '../modules/notification/views/notification_view.dart';
 import '../modules/objective_detail/bindings/objective_detail_binding.dart';
 import '../modules/objective_detail/views/objective_detail_view.dart';
 import '../modules/performance/bindings/performance_binding.dart';
@@ -50,6 +62,10 @@ import '../modules/phone/bindings/phone_binding.dart';
 import '../modules/phone/views/phone_view.dart';
 import '../modules/phone_call/bindings/phone_call_binding.dart';
 import '../modules/phone_call/views/phone_call_view.dart';
+import '../modules/pre_game_items/bindings/pre_game_items_binding.dart';
+import '../modules/pre_game_items/views/pre_game_items_view.dart';
+import '../modules/pre_game_talking_video/bindings/pre_game_talking_video_binding.dart';
+import '../modules/pre_game_talking_video/views/pre_game_talking_video_view.dart';
 import '../modules/rules/bindings/rules_binding.dart';
 import '../modules/rules/views/rules_view.dart';
 import '../modules/social_media/bindings/social_media_binding.dart';
@@ -211,6 +227,46 @@ class AppPages {
       name: _Paths.VIEW_PLAYER,
       page: () => ViewPlayerView(),
       binding: ViewPlayerBinding(),
+    ),
+    GetPage(
+      name: _Paths.INTRO,
+      page: () => const IntroView(),
+      binding: IntroBinding(),
+    ),
+    GetPage(
+      name: _Paths.PRE_GAME_ITEMS,
+      page: () => const PreGameItemsView(),
+      binding: PreGameItemsBinding(),
+    ),
+    GetPage(
+      name: _Paths.PRE_GAME_TALKING_VIDEO,
+      page: () => const PreGameTalkingVideoView(),
+      binding: PreGameTalkingVideoBinding(),
+    ),
+    GetPage(
+      name: _Paths.GO_THEATER,
+      page: () => const GoTheaterView(),
+      binding: GoTheaterBinding(),
+    ),
+    GetPage(
+      name: _Paths.CONNECTION,
+      page: () => const ConnectionView(),
+      binding: ConnectionBinding(),
+    ),
+    GetPage(
+      name: _Paths.LIGHT,
+      page: () => const LightView(),
+      binding: LightBinding(),
+    ),
+    GetPage(
+      name: _Paths.NOTIFICATION,
+      page: () => const NotificationView(),
+      binding: NotificationBinding(),
+    ),
+    GetPage(
+      name: _Paths.GROUP,
+      page: () => GroupView(),
+      binding: GroupBinding(),
     ),
   ];
 }

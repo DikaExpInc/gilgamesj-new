@@ -33,6 +33,14 @@ abstract class Routes {
   static const START = _Paths.START;
   static const CREATE_PLAYER = _Paths.CREATE_PLAYER;
   static const VIEW_PLAYER = _Paths.VIEW_PLAYER;
+  static const INTRO = _Paths.INTRO;
+  static const PRE_GAME_ITEMS = _Paths.PRE_GAME_ITEMS;
+  static const PRE_GAME_TALKING_VIDEO = _Paths.PRE_GAME_TALKING_VIDEO;
+  static const GO_THEATER = _Paths.GO_THEATER;
+  static const CONNECTION = _Paths.CONNECTION;
+  static const LIGHT = _Paths.LIGHT;
+  static const NOTIFICATION = _Paths.NOTIFICATION;
+  static const GROUP = _Paths.GROUP;
 }
 
 abstract class _Paths {
@@ -67,4 +75,12 @@ abstract class _Paths {
   static const START = '/start';
   static const CREATE_PLAYER = '/create-player';
   static const VIEW_PLAYER = '/view-player';
+  static const INTRO = '/intro';
+  static const PRE_GAME_ITEMS = '/pre-game-items';
+  static const PRE_GAME_TALKING_VIDEO = '/pre-game-talking-video';
+  static const GO_THEATER = '/go-theater';
+  static const CONNECTION = '/connection';
+  static const LIGHT = '/light';
+  static const NOTIFICATION = '/notification';
+  static const GROUP = '/group';
 }

@@ -1,12 +1,13 @@
-import 'package:app/app/modules/view_player/controllers/view_player_controller.dart';
-import 'package:app/app/modules/view_player/views/widgets/player_widget.dart';
-import 'package:app/app/widgets/no_data.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 
+import '../../../widgets/no_data.dart';
+import 'widgets/player_widget.dart';
+import '../controllers/change_player_controller.dart';
+
 // ignore: must_be_immutable
-class ViewPlayerView extends GetView<ViewPlayerController> {
+class ChangePlayerView extends GetView<ChangePlayerController> {
   late double mWidth;
   late double mHeight;
 
@@ -93,38 +94,43 @@ class ViewPlayerView extends GetView<ViewPlayerController> {
                 ),
               ),
               Expanded(
-                child: GetBuilder<ViewPlayerController>(
-                  builder: (controller) => controller
-                              .playerListModel?.statusCode ==
-                          200
-                      ? controller.playerListModel!.items!.length != 0
-                          ? Padding(
-                              padding:
-                                  const EdgeInsets.symmetric(horizontal: 48.0),
-                              child: ListView.builder(
-                                itemCount:
-                                    controller.playerListModel!.items!.length,
-                                itemBuilder: (context, index) {
-                                  final textController =
-                                      controller.playerNameControllers[index];
-                                  return PlayerWidget(
-                                    nameController: textController,
-                                    status: controller.playerListModel!
-                                                .items![index].statusPlay ==
-                                            "Y"
-                                        ? "Playing"
-                                        : "",
-                                        index: index,
-                                  );
-                                },
-                              ),
-                            )
-                          : NoData()
-                      : controller.playerListModel?.statusCode == 204
-                          ? Container(
-                              child: Text("Empty"),
-                            )
-                          : NoData(),
+                child: GetBuilder<ChangePlayerController>(
+                  builder: (controller) =>
+                      controller.playerListModel?.statusCode == 200
+                          ? controller.playerListModel!.items!.length != 0
+                              ? Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 48.0),
+                                  child: ListView.builder(
+                                    itemCount: controller
+                                        .playerListModel!.items!.length,
+                                    itemBuilder: (context, index) {
+                                      return PlayerWidget(
+                                        name: controller.playerListModel!
+                                                    .items![index].username ==
+                                                null
+                                            ? "Player " +
+                                                controller.playerListModel!
+                                                    .items![index].playerNum
+                                                    .toString()
+                                            : controller.playerListModel!
+                                                .items![index].username
+                                                .toString(),
+                                        status: controller.playerListModel!
+                                                    .items![index].statusPlay ==
+                                                "Y"
+                                            ? "Playing"
+                                            : "",
+                                      );
+                                    },
+                                  ),
+                                )
+                              : NoData()
+                          : controller.playerListModel?.statusCode == 204
+                              ? Container(
+                                  child: Text("Empty"),
+                                )
+                              : NoData(),
                 ),
               ),
               Center(

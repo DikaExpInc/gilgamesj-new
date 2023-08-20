@@ -1,5 +1,6 @@
 import 'package:app/app/modules/create_team/controllers/create_team_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 import 'package:get/get.dart';
 
@@ -16,7 +17,6 @@ class CreateTeamView extends GetView<CreateTeamController> {
       body: Container(
         width: mWidth,
         height: mHeight,
-        // color: colors[0],
         decoration: BoxDecoration(
           image: DecorationImage(
             colorFilter: ColorFilter.mode(
@@ -64,28 +64,110 @@ class CreateTeamView extends GetView<CreateTeamController> {
                 height: 200,
                 child: Image.asset('assets/images/welcome-image.png'),
               ),
-              Container(
-                width: mWidth / 1.2,
-                decoration: BoxDecoration(
-                  image: DecorationImage(
-                    colorFilter: ColorFilter.mode(
-                        Colors.black.withOpacity(0), BlendMode.srcOver),
-                    image: AssetImage("assets/images/bg_input.png"),
-                    fit: BoxFit.fill,
-                  ),
-                ),
-                child: TextField(
-                  controller: controller.teamNameC,
-                  style: TextStyle(color: Colors.white),
-                  onChanged: (value) {
-                    controller.isButtonVisible(value.isNotEmpty);
-                  },
-                  decoration: InputDecoration(
-                    hintText: 'VOER HIER JE NAAM IN',
-                    hintStyle: TextStyle(color: Colors.white54),
-                    border: InputBorder.none,
-                    contentPadding: EdgeInsets.all(16.0),
-                  ),
+              Padding(
+                padding: const EdgeInsets.all(40.0),
+                child: Column(
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(right: 40),
+                          child: Text(
+                            'TEAM NAAM',
+                            style: TextStyle(
+                              color: Colors.white,
+                            ),
+                          ),
+                        ),
+                        Container(
+                          width: mWidth / 1.4,
+                          decoration: BoxDecoration(
+                            image: DecorationImage(
+                              colorFilter: ColorFilter.mode(
+                                  Colors.black.withOpacity(0),
+                                  BlendMode.srcOver),
+                              image: AssetImage("assets/images/bg_input.png"),
+                              fit: BoxFit.fill,
+                            ),
+                          ),
+                          child: TextField(
+                            controller: controller.teamNameC,
+                            style: TextStyle(color: Colors.white),
+                            onChanged: (value) {
+                              controller.isButtonVisible(value.isNotEmpty);
+                            },
+                            decoration: InputDecoration(
+                              hintText: 'VOER HIER JE NAAM IN',
+                              hintStyle: TextStyle(color: Colors.white54),
+                              border: InputBorder.none,
+                              contentPadding: EdgeInsets.all(16.0),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    SizedBox(
+                      height: 40,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(right: 60),
+                          child: Text(
+                            'SPELERS',
+                            style: TextStyle(
+                              color: Colors.white,
+                            ),
+                          ),
+                        ),
+                        Row(
+                          children: [
+                            InkWell(
+                              onTap: controller.subsPlayer,
+                              child: SvgPicture.asset(
+                                "assets/icons/subtract.svg",
+                              ),
+                            ),
+                            Obx(
+                              () => Container(
+                                  width: mWidth / 6,
+                                  decoration: BoxDecoration(
+                                    image: DecorationImage(
+                                      colorFilter: ColorFilter.mode(
+                                          Colors.black.withOpacity(0),
+                                          BlendMode.srcOver),
+                                      image: AssetImage(
+                                          "assets/images/bg_input.png"),
+                                      fit: BoxFit.fill,
+                                    ),
+                                  ),
+                                  margin: EdgeInsets.symmetric(horizontal: 20),
+                                  child: Center(
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(12.0),
+                                      child: Text(
+                                        "${controller.totalPlayer}",
+                                        style: TextStyle(
+                                          fontSize: 18,
+                                          color: Colors.white,
+                                        ),
+                                      ),
+                                    ),
+                                  )),
+                            ),
+                            InkWell(
+                              onTap: controller.addPlayer,
+                              child: SvgPicture.asset(
+                                "assets/icons/plus.svg",
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ],
                 ),
               ),
               Column(

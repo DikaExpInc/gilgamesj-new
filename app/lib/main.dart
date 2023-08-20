@@ -23,20 +23,13 @@ Future<void> main() async {
   String? teamName = GetStorage().read('teamName');
   if (teamName != null && teamName.isNotEmpty) {
     initialRoute =
-        Routes.CREATE_PLAYER; // Ganti rute jika team name telah diisi
+        Routes.VIEW_PLAYER; // Ganti rute jika total player telah diisi
 
-    // Cek apakah data total player telah diisi
-    String? totalPlayer = GetStorage().read('totalPlayer');
-    if (totalPlayer != null && totalPlayer.isNotEmpty) {
+    // Cek apakah data stage telah diisi
+    String? stageID = GetStorage().read('stage_id');
+    if (stageID != null && stageID.isNotEmpty) {
       initialRoute =
-          Routes.VIEW_PLAYER; // Ganti rute jika total player telah diisi
-
-      // Cek apakah data stage telah diisi
-      String? stageID = GetStorage().read('stage_id');
-      if (stageID != null && stageID.isNotEmpty) {
-        initialRoute =
-            Routes.LOCK_MUSIC; // Ganti rute jika total player telah diisi
-      }
+          Routes.LOCK_MUSIC; // Ganti rute jika total player telah diisi
     }
   }
 

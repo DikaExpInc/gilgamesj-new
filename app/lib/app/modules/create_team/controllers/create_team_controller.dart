@@ -15,6 +15,7 @@ class CreateTeamController extends GetxController {
   RxBool isLoading = false.obs;
   RxBool isLoadingCreatePegawai = false.obs;
   RxBool isButtonVisible = false.obs;
+  RxInt totalPlayer = 2.obs;
 
   TextEditingController teamNameC = TextEditingController();
 
@@ -43,12 +44,12 @@ class CreateTeamController extends GetxController {
 
   createTeamName() async {
     update();
-    user = await AuthApi().registerAPI(teamNameC.text);
+    user = await AuthApi().registerAPI(teamNameC.text, totalPlayer.toString());
     if (user!.statusCode == 201) {
       box.write("token", user!.accessToken);
       box.write("teamName", teamNameC.text);
       update();
-      Get.offAndToNamed(Routes.CREATE_PLAYER);
+      Get.offAndToNamed(Routes.VIEW_PLAYER);
     } else if (user!.statusCode == 404) {
       update();
     }
@@ -59,6 +60,18 @@ class CreateTeamController extends GetxController {
       Get.toNamed(Routes.HOME);
     } catch (e) {
       CustomToast.errorToast('Error', 'error : ${e.toString()}');
+    }
+  }
+
+  void addPlayer() {
+    if (totalPlayer <= 3) {
+      totalPlayer++;
+    }
+  }
+
+  void subsPlayer() {
+    if (totalPlayer >= 2) {
+      totalPlayer--;
     }
   }
 }

@@ -14,6 +14,8 @@ import '../modules/browser_search/bindings/browser_search_binding.dart';
 import '../modules/browser_search/views/browser_search_view.dart';
 import '../modules/camera/bindings/camera_binding.dart';
 import '../modules/camera/views/camera_view.dart';
+import '../modules/change_player/bindings/change_player_binding.dart';
+import '../modules/change_player/views/change_player_view.dart';
 import '../modules/chat/bindings/chat_binding.dart';
 import '../modules/chat/views/chat_view.dart';
 import '../modules/chat_detail/bindings/chat_detail_binding.dart';
@@ -24,8 +26,6 @@ import '../modules/comment/bindings/comment_binding.dart';
 import '../modules/comment/views/comment_view.dart';
 import '../modules/connection/bindings/connection_binding.dart';
 import '../modules/connection/views/connection_view.dart';
-import '../modules/create_player/bindings/create_player_binding.dart';
-import '../modules/create_player/views/create_player_view.dart';
 import '../modules/create_team/bindings/create_team_binding.dart';
 import '../modules/create_team/views/create_team_view.dart';
 import '../modules/gallery/bindings/gallery_binding.dart';
@@ -219,11 +219,6 @@ class AppPages {
       binding: StartBinding(),
     ),
     GetPage(
-      name: _Paths.CREATE_PLAYER,
-      page: () => CreatePlayerView(),
-      binding: CreatePlayerBinding(),
-    ),
-    GetPage(
       name: _Paths.VIEW_PLAYER,
       page: () => ViewPlayerView(),
       binding: ViewPlayerBinding(),
@@ -267,6 +262,11 @@ class AppPages {
       name: _Paths.GROUP,
       page: () => GroupView(),
       binding: GroupBinding(),
+    ),
+    GetPage(
+      name: _Paths.CHANGE_PLAYER,
+      page: () => ChangePlayerView(),
+      binding: ChangePlayerBinding(),
     ),
   ];
 }

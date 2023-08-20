@@ -41,7 +41,7 @@ class AuthApi extends SharedApi {
   }
 
   // Register API
-  Future<UserModel?> registerAPI(String name) async {
+  Future<UserModel?> registerAPI(String name, String totalPlayer) async {
     try {
       var jsonData;
       showLoading();
@@ -51,7 +51,8 @@ class AuthApi extends SharedApi {
           'username': name,
           'name': name,
           'email': name + '@gilgamesj.io',
-          'password': 'password'
+          'password': 'password',
+          'total_player': totalPlayer
         },
       );
       stopLoading();

@@ -31,7 +31,6 @@ abstract class Routes {
   static const RULES = _Paths.RULES;
   static const SOCIAL_MEDIA = _Paths.SOCIAL_MEDIA;
   static const START = _Paths.START;
-  static const CREATE_PLAYER = _Paths.CREATE_PLAYER;
   static const VIEW_PLAYER = _Paths.VIEW_PLAYER;
   static const INTRO = _Paths.INTRO;
   static const PRE_GAME_ITEMS = _Paths.PRE_GAME_ITEMS;
@@ -41,6 +40,7 @@ abstract class Routes {
   static const LIGHT = _Paths.LIGHT;
   static const NOTIFICATION = _Paths.NOTIFICATION;
   static const GROUP = _Paths.GROUP;
+  static const CHANGE_PLAYER = _Paths.CHANGE_PLAYER;
 }
 
 abstract class _Paths {
@@ -73,7 +73,6 @@ abstract class _Paths {
   static const RULES = '/rules';
   static const SOCIAL_MEDIA = '/social-media';
   static const START = '/start';
-  static const CREATE_PLAYER = '/create-player';
   static const VIEW_PLAYER = '/view-player';
   static const INTRO = '/intro';
   static const PRE_GAME_ITEMS = '/pre-game-items';
@@ -83,4 +82,5 @@ abstract class _Paths {
   static const LIGHT = '/light';
   static const NOTIFICATION = '/notification';
   static const GROUP = '/group';
+  static const CHANGE_PLAYER = '/change-player';
 }

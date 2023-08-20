@@ -3,15 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class PlayerWidget extends GetView<ViewPlayerController> {
-  final TextEditingController nameController;
+  final String name;
   final String status;
-  final int index;
 
   const PlayerWidget({
     Key? key,
-    required this.nameController,
+    required this.name,
     required this.status,
-    required this.index,
   }) : super(key: key);
 
   Orientation getScreenOrientation(BuildContext context) {
@@ -32,7 +30,7 @@ class PlayerWidget extends GetView<ViewPlayerController> {
           Container(
             margin: EdgeInsets.only(right: 20),
             child: Text(
-              "SPELER ${index + 1}",
+              "SPELER 1",
               style: TextStyle(color: Colors.white),
             ),
           ),
@@ -52,15 +50,13 @@ class PlayerWidget extends GetView<ViewPlayerController> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Container(
-                  width: mWidth / 2,
-                  child: TextField(
-                    controller: nameController,
-                    style: TextStyle(color: Colors.white),
-                    decoration: InputDecoration(
-                      hintText: 'VOER HIER JE NAAM IN',
-                      hintStyle: TextStyle(color: Colors.white54),
-                      border: InputBorder.none,
-                      contentPadding: EdgeInsets.all(16.0),
+                  child: Text(
+                    "${name}",
+                    softWrap: true,
+                    style: TextStyle(
+                      fontSize: 22,
+                      fontWeight: FontWeight.w700,
+                      color: Colors.white,
                     ),
                   ),
                 ),

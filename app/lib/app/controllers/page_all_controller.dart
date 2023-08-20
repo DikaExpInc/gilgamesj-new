@@ -19,6 +19,7 @@ import 'package:app/app/widgets/dialog/bonus_dialog.dart';
 import 'package:app/app/widgets/dialog/bonus_skip_dialog.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 
 class PageAllController extends GetxController {
   RxInt pageIndex = 0.obs;
@@ -52,48 +53,58 @@ class PageAllController extends GetxController {
   late StreamSubscription sub;
 
   void fetchDataFromApi() async {
-    update();
-    SettingModel? settingModel = await SettingApi().getSetting();
-    updateSetting(settingModel!);
-    update();
+    // Cek apakah data team name telah diisi
+    String? teamName = GetStorage().read('teamName');
+    if (teamName != null && teamName.isNotEmpty) {
+      String? totalPlayer = GetStorage().read('totalPlayer');
+      if (totalPlayer != null && totalPlayer.isNotEmpty) {
+        String? stageID = GetStorage().read('stage_id');
+        if (stageID != null && stageID.isNotEmpty) {
+          update();
+          SettingModel? settingModel = await SettingApi().getSetting();
+          updateSetting(settingModel!);
+          update();
 
-    if (settingModel.statusCode == 200) {
-      // Cek apakah halaman yang diterima sama dengan halaman saat ini
-      if (setting!.page!.toString() != currentPage.toString()) {
-        switch (setting!.page) {
-          case "phone":
-            changePage(1, setting!.page!);
-            break;
-          case "clap":
-            changePage(2, setting!.page!);
-            break;
-          case "blank":
-            changePage(3, setting!.page!);
-            break;
-          case "light":
-            changePage(4, setting!.page!);
-            break;
-          case "notification":
-            changePage(5, setting!.page!);
-            break;
-          case "group":
-            changePage(6, setting!.page!);
-            break;
-          case "performance":
-            changePage(7, setting!.page!);
-            break;
-          default:
-            changePage(1, setting!.page!);
-            break;
+          if (settingModel.statusCode == 200) {
+            // Cek apakah halaman yang diterima sama dengan halaman saat ini
+            if (setting!.page!.toString() != currentPage.toString()) {
+              switch (setting!.page) {
+                case "phone":
+                  changePage(1, setting!.page!);
+                  break;
+                case "clap":
+                  changePage(2, setting!.page!);
+                  break;
+                case "blank":
+                  changePage(3, setting!.page!);
+                  break;
+                case "light":
+                  changePage(4, setting!.page!);
+                  break;
+                case "notification":
+                  changePage(5, setting!.page!);
+                  break;
+                case "group":
+                  changePage(6, setting!.page!);
+                  break;
+                case "performance":
+                  changePage(7, setting!.page!);
+                  break;
+                default:
+                  changePage(1, setting!.page!);
+                  break;
+              }
+            }
+          } else if (settingModel.statusCode == 204) {
+            print("Empty");
+          } else if (settingModel.statusCode == 404) {
+            update();
+          } else if (settingModel.statusCode == 401) {
+          } else {
+            print("Something went wrong with status code 400");
+          }
         }
       }
-    } else if (settingModel.statusCode == 204) {
-      print("Empty");
-    } else if (settingModel.statusCode == 404) {
-      update();
-    } else if (settingModel.statusCode == 401) {
-    } else {
-      print("Something went wrong with status code 400");
     }
   }
 

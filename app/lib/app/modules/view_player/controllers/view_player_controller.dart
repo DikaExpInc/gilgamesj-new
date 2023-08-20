@@ -13,6 +13,7 @@ class ViewPlayerController extends GetxController {
   final box = GetStorage();
   RxBool isLoading = false.obs;
   PlayerListModel? playerListModel;
+  var playerNameControllers = <TextEditingController>[].obs;
 
   Future<void> onNext() async {
     Get.toNamed(Routes.INTRODUCTION);
@@ -31,6 +32,11 @@ class ViewPlayerController extends GetxController {
     update();
     stopLoading();
     if (playerListModel?.statusCode == 200) {
+      // Inisialisasi data pemain dan TextEditingController
+      for (var i = 0; i < playerListModel!.items!.length; i++) {
+        playerNameControllers.add(TextEditingController());
+        playerNameControllers[i].text = "SPELER ${i + 1}";
+      }
     } else if (playerListModel!.statusCode == 204) {
       print("Empty");
     } else if (playerListModel!.statusCode == 404) {

@@ -1,3 +1,3 @@
 class AppConfig {
-  String ipaddr = "192.168.137.1";
+  String ipaddr = "192.168.1.23";
 }

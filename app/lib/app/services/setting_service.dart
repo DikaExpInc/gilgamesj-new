@@ -12,11 +12,9 @@ class SettingApi extends SharedApi {
   Future<SettingModel?> getSetting() async {
     try {
       var jsonData;
-      showLoading();
       var data = await http.get(
           Uri.parse(baseUrl + 'setting/64de3fd2843badaf9efc006b'),
           headers: getToken());
-      stopLoading();
       jsonData = json.decode(data.body);
       if (data.statusCode == 200) {
         jsonData['data']['status_code'] = 200;
@@ -29,7 +27,6 @@ class SettingApi extends SharedApi {
         return SettingModel.fromJson({"status_code": data.statusCode});
       }
     } on Exception catch (_) {
-      stopLoading();
       showInternetMessage("Periksa koneksi internet anda");
       return SettingModel.fromJson({"status_code": 404});
     }

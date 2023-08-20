@@ -313,4 +313,56 @@ module.exports = {
       });
     }
   },
+
+  changeNamePlayer: async (req, res, next) => {
+    try {
+      const { changes } = req.body;
+      if (!changes || !Array.isArray(changes)) {
+        return res.status(400).json({
+          message: "Please provide an array of changes",
+          status: "failed",
+        });
+      }
+
+      const updatedUsers = await Promise.all(
+        changes.map(async (change) => {
+          const { player_id, playerName } = change;
+
+          if (!player_id || !playerName) {
+            return null; // Melewatkan perubahan yang tidak lengkap
+          }
+
+          // Mencari dan mengubah nama pemain dalam database berdasarkan _id
+          return await Player.findOneAndUpdate(
+            { _id: player_id },
+            { username: playerName } // Menggunakan field playerName sesuai dengan model
+          );
+        })
+      );
+
+      const validUpdates = updatedUsers.filter((user) => user !== null);
+
+      if (validUpdates.length === 0) {
+        return res.status(404).json({
+          message: "No valid updates found",
+          status: "failed",
+        });
+      }
+
+      const updatedNames = validUpdates.map((user) => user.playerName);
+
+      res.status(200).json({
+        message: `Successfully changed player names to: ${updatedNames.join(
+          ", "
+        )}`,
+        status: "success",
+      });
+    } catch (err) {
+      res.status(500).json({
+        message: "An error occurred",
+        status: "error",
+        error: err.message,
+      });
+    }
+  },
 };

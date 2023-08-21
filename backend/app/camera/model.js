@@ -10,6 +10,10 @@ let cameraSchema = mongoose.Schema(
       type: String,
       required: [true, "Name must be filled"],
     },
+    url: {
+      type: String,
+      required: [true, "URL must be filled"],
+    },
   },
   { timestamps: true }
 );

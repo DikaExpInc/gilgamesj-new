@@ -1,5 +1,6 @@
 class PlayerModel {
   final int? statusCode;
+  final String? sId;
   final String? username;
   final int? playerNum;
   final int? time;
@@ -10,6 +11,7 @@ class PlayerModel {
 
   PlayerModel({
     this.statusCode,
+    this.sId,
     this.username,
     this.playerNum,
     this.time,
@@ -22,6 +24,7 @@ class PlayerModel {
   factory PlayerModel.fromJson(Map<String, dynamic> jsonData) {
     return PlayerModel(
       statusCode: jsonData['status_code'],
+      sId: jsonData['_id'] != null ? jsonData['_id'] : "",
       username: jsonData['username'] != null ? jsonData['status_code'] : "",
       playerNum: jsonData['player_num'] != null ? jsonData['player_num'] : 0,
       time: jsonData['time'] != null ? jsonData['time'] : 0,

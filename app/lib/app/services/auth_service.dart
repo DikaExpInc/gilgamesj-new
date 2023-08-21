@@ -6,6 +6,7 @@ import 'package:app/app/utils/api.dart';
 import 'package:app/app/widgets/loading.dart';
 import 'package:app/app/widgets/message/errorMessage.dart';
 import 'package:app/app/widgets/message/internetMessage.dart';
+import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
 class AuthApi extends SharedApi {
@@ -116,6 +117,34 @@ class AuthApi extends SharedApi {
       }
     } on Exception catch (_) {
       return PlayerListModel.fromJson({"status": 404, "items": []});
+    }
+  }
+
+  // Change Player API
+  Future<void> changeNamePlayers(List<Map<String, dynamic>> changes) async {
+    final List<PlayerModel> updatedPlayers = [];
+
+    try {
+      showLoading();
+      final data = await http.put(
+        Uri.parse(baseUrl +
+            'auth/changenameplayer'), // Ubah URL sesuai dengan endpoint yang sesuai
+        body: {"changes": json.encode(changes)},
+        headers: getToken(),
+      );
+
+      final jsonData = json.decode(data.body);
+
+      if (data.statusCode == 200) {
+        updatedPlayers.add(PlayerModel.fromJson(jsonData));
+      } else {
+        showErrorMessage(jsonData['message']);
+      }
+
+      stopLoading();
+    } on Exception catch (_) {
+      stopLoading();
+      showInternetMessage("Please check your connection");
     }
   }
 }

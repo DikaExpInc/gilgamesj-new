@@ -41,6 +41,7 @@ abstract class Routes {
   static const NOTIFICATION = _Paths.NOTIFICATION;
   static const GROUP = _Paths.GROUP;
   static const CHANGE_PLAYER = _Paths.CHANGE_PLAYER;
+  static const PRE_GAME_RUNE = _Paths.PRE_GAME_RUNE;
 }
 
 abstract class _Paths {
@@ -83,4 +84,5 @@ abstract class _Paths {
   static const NOTIFICATION = '/notification';
   static const GROUP = '/group';
   static const CHANGE_PLAYER = '/change-player';
+  static const PRE_GAME_RUNE = '/pre-game-rune';
 }

@@ -64,6 +64,8 @@ import '../modules/phone_call/bindings/phone_call_binding.dart';
 import '../modules/phone_call/views/phone_call_view.dart';
 import '../modules/pre_game_items/bindings/pre_game_items_binding.dart';
 import '../modules/pre_game_items/views/pre_game_items_view.dart';
+import '../modules/pre_game_rune/bindings/pre_game_rune_binding.dart';
+import '../modules/pre_game_rune/views/pre_game_rune_view.dart';
 import '../modules/pre_game_talking_video/bindings/pre_game_talking_video_binding.dart';
 import '../modules/pre_game_talking_video/views/pre_game_talking_video_view.dart';
 import '../modules/rules/bindings/rules_binding.dart';
@@ -225,12 +227,12 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.INTRO,
-      page: () => const IntroView(),
+      page: () => IntroView(),
       binding: IntroBinding(),
     ),
     GetPage(
       name: _Paths.PRE_GAME_ITEMS,
-      page: () => const PreGameItemsView(),
+      page: () => PreGameItemsView(),
       binding: PreGameItemsBinding(),
     ),
     GetPage(
@@ -240,7 +242,7 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.GO_THEATER,
-      page: () => const GoTheaterView(),
+      page: () => GoTheaterView(),
       binding: GoTheaterBinding(),
     ),
     GetPage(
@@ -267,6 +269,11 @@ class AppPages {
       name: _Paths.CHANGE_PLAYER,
       page: () => ChangePlayerView(),
       binding: ChangePlayerBinding(),
+    ),
+    GetPage(
+      name: _Paths.PRE_GAME_RUNE,
+      page: () => PreGameRuneView(),
+      binding: PreGameRuneBinding(),
     ),
   ];
 }

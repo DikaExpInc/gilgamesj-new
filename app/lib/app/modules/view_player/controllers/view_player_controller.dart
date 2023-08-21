@@ -16,7 +16,23 @@ class ViewPlayerController extends GetxController {
   var playerNameControllers = <TextEditingController>[].obs;
 
   Future<void> onNext() async {
-    Get.toNamed(Routes.INTRODUCTION);
+    final changes = playerListModel?.items?.asMap().entries.map((entry) {
+      final player = entry.value;
+      final playerName = playerNameControllers[entry.key].text;
+
+      return {
+        "player_id": player.sId,
+        "playerName": playerName,
+      };
+    }).toList();
+
+    if (changes != null && changes.isNotEmpty) {
+      await AuthApi().changeNamePlayers(changes);
+    }
+
+    box.write('totalPlayer', playerListModel?.items?.length.toString());
+
+    Get.toNamed(Routes.INTRO);
   }
 
   @override

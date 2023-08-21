@@ -26,10 +26,32 @@ Future<void> main() async {
         Routes.VIEW_PLAYER; // Ganti rute jika total player telah diisi
 
     // Cek apakah data stage telah diisi
-    String? stageID = GetStorage().read('stage_id');
-    if (stageID != null && stageID.isNotEmpty) {
-      initialRoute =
-          Routes.LOCK_MUSIC; // Ganti rute jika total player telah diisi
+    String? mode = GetStorage().read('mode');
+    if (mode != null && mode.isNotEmpty) {
+      switch (mode) {
+        case 'value':
+          initialRoute = Routes.LOCK_MUSIC;
+          break;
+        case 'value1':
+          initialRoute = Routes.LOCK_MUSIC;
+          break;
+        case 'value2':
+          initialRoute = Routes.LOCK_MUSIC;
+          break;
+        case 'value3':
+          initialRoute = Routes.LOCK_MUSIC;
+          break;
+        case 'value4':
+          initialRoute = Routes.LOCK_MUSIC;
+          break;
+        case 'value5':
+          initialRoute = Routes.LOCK_MUSIC;
+          break;
+        case 'value6':
+          initialRoute = Routes.LOCK_MUSIC;
+          break;
+        default:
+      }
     }
   }
 

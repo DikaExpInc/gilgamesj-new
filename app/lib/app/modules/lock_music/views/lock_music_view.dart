@@ -39,7 +39,7 @@ class LockMusicView extends GetView<LockMusicController> {
                   height: 50,
                 ),
                 InkWell(
-                  onTap: () => {controller.audioCache.play('lock_code.mp3')},
+                  onTap: () => {controller.playAudioSequenceFromLockCode()},
                   child: Image.asset(
                     "assets/images/btn_audio.png",
                   ),
@@ -86,7 +86,8 @@ class LockMusicView extends GetView<LockMusicController> {
       StreamController<bool>.broadcast();
 
   _onPasscodeEntered(String enteredPasscode) async {
-    bool isValid = '5231' == enteredPasscode;
+    bool isValid =
+        controller.box.read('tuts').toString() == enteredPasscode.toString();
     _verificationNotifier.add(isValid);
   }
 }

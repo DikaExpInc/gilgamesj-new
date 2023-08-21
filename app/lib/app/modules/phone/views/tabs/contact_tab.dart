@@ -66,6 +66,8 @@ class ContactTab extends GetView<PhoneController> {
                                               "name": '${contactData.name}',
                                               "profile_url":
                                                   '${SharedApi().imageUrl}${contactData.profile}',
+                                              "audio":
+                                                  '${SharedApi().imageUrl}${contactData.audio}',
                                               "status": "real"
                                             },
                                           )

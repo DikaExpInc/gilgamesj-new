@@ -122,7 +122,7 @@ class KeyboardMusic extends StatelessWidget {
                 AudioCache(prefix: 'assets/audios/tuts/');
             int tutsNumber = int.parse(index) + 1;
             audioCache.play('' + tutsNumber.toString() + '.mp3');
-            onKeyboardTap(index);
+            onKeyboardTap(tutsNumber.toString());
           },
           child: Container(
             child: Container(

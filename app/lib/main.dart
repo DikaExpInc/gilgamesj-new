@@ -29,26 +29,32 @@ Future<void> main() async {
     String? mode = GetStorage().read('mode');
     if (mode != null && mode.isNotEmpty) {
       switch (mode) {
-        case 'value':
-          initialRoute = Routes.LOCK_MUSIC;
+        case 'phone':
+          initialRoute = Routes.INTRODUCTION;
           break;
-        case 'value1':
-          initialRoute = Routes.LOCK_MUSIC;
+        case 'clap':
+          initialRoute = Routes.CLAP;
           break;
-        case 'value2':
-          initialRoute = Routes.LOCK_MUSIC;
+        case 'blank':
+          initialRoute = Routes.BLANK;
           break;
-        case 'value3':
-          initialRoute = Routes.LOCK_MUSIC;
+        case 'light':
+          initialRoute = Routes.LIGHT;
           break;
-        case 'value4':
-          initialRoute = Routes.LOCK_MUSIC;
+        case 'notification':
+          initialRoute = Routes.NOTIFICATION;
           break;
-        case 'value5':
-          initialRoute = Routes.LOCK_MUSIC;
+        case 'group':
+          initialRoute = Routes.GROUP;
           break;
-        case 'value6':
-          initialRoute = Routes.LOCK_MUSIC;
+        case 'performance':
+          initialRoute = Routes.PERFORMANCE;
+          break;
+        case "pre_game":
+          initialRoute = Routes.INTRO;
+          break;
+        case "go_to_theater":
+          initialRoute = Routes.GO_THEATER;
           break;
         default:
       }

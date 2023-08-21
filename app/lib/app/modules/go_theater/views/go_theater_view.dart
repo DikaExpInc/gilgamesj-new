@@ -41,6 +41,7 @@ class GoTheaterView extends GetView<GoTheaterController> {
               fontWeight: FontWeight.w700,
             ),
           ),
+          Center(),
           // Center(
           //   child: Column(
           //     children: [

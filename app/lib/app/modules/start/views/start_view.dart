@@ -89,7 +89,7 @@ class StartView extends GetView<StartController> {
             GestureDetector(
               onPanUpdate: (details) {
                 if (details.delta.dy < 0) {
-                  controller.audioCache.play('lock_code.mp3');
+                  controller.playAudioSequenceFromLockCode();
                   Get.toNamed(Routes.LOCK_MUSIC);
                 }
               },

@@ -86,9 +86,18 @@ class PhoneCallController extends GetxController
     isIdleTimerRunning.value = true;
     update();
 
-    Future.delayed(Duration(seconds: 5), () {
+    Future.delayed(Duration(seconds: 5), () async {
       isIdleTimerRunning.value = false;
       audioPlayer?.stop();
+      if (contactData['audio'] != "none") {
+        audioPlayer?.play(contactData['audio']);
+        audioPlayer?.onPlayerCompletion.listen((event) async {
+          audioPlayer = await audioCache.play('call_phone_reject.mp3');
+          audioPlayer?.onPlayerCompletion.listen((event) async {
+            Get.back();
+          });
+        });
+      }
       idleTime.value = "00:00";
       startTimer();
       update();

@@ -26,6 +26,7 @@ dependencies:
   latlong2: ^0.8.2
   maps_launcher: ^2.2.0
   permission_handler: ^10.4.3
+  video_player: ^2.7.0
 
 dev_dependencies:
   flutter_lints: ^2.0.0

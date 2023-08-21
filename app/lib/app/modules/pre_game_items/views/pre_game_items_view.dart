@@ -18,7 +18,7 @@ class PreGameItemsView extends GetView<PreGameItemsController> {
   Widget build(BuildContext context) {
     mWidth = MediaQuery.of(context).size.width;
     mHeight = MediaQuery.of(context).size.height;
-    return Scaffold(
+    return Scaffold(  
       body: Container(
         width: mWidth,
         decoration: BoxDecoration(

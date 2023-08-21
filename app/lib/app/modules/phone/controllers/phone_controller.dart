@@ -85,6 +85,7 @@ class PhoneController extends GetxController
           "name": filteredPhoneNumber[0].name,
           "profile_url":
               '${SharedApi().imageUrl}${filteredPhoneNumber[0].profile}',
+          "audio": '${SharedApi().imageUrl}${filteredPhoneNumber[0].audio}',
           "status": "real"
         },
       );
@@ -95,13 +96,19 @@ class PhoneController extends GetxController
           "name": filteredContacts[0].name,
           "profile_url":
               '${SharedApi().imageUrl}${filteredContacts[0].profile}',
+          "audio": '${SharedApi().imageUrl}${filteredContacts[0].audio}',
           "status": "real"
         },
       );
     } else {
       Get.toNamed(
         Routes.PHONE_CALL,
-        arguments: {"name": 'unknown', "profile_url": 'none', "status": "fake"},
+        arguments: {
+          "name": 'unknown',
+          "profile_url": 'none',
+          "audio": 'none',
+          "status": "fake"
+        },
       );
     }
   }

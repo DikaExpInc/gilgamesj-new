@@ -68,33 +68,43 @@ class PageAllController extends GetxController {
           if (setting!.page!.toString() != currentPage.toString()) {
             switch (setting!.page) {
               case "phone":
+                GetStorage().write('mode', "phone");
                 changePage(1, setting!.page!);
                 break;
               case "clap":
+                GetStorage().write('mode', "clap");
                 changePage(2, setting!.page!);
                 break;
               case "blank":
+                GetStorage().write('mode', "blank");
                 changePage(3, setting!.page!);
                 break;
               case "light":
+                GetStorage().write('mode', "light");
                 changePage(4, setting!.page!);
                 break;
               case "notification":
+                GetStorage().write('mode', "notification");
                 changePage(5, setting!.page!);
                 break;
               case "group":
+                GetStorage().write('mode', "group");
                 changePage(6, setting!.page!);
                 break;
               case "performance":
+                GetStorage().write('mode', "performance");
                 changePage(7, setting!.page!);
                 break;
               case "pre_game":
+                GetStorage().write('mode', "pre_game");
                 changePage(8, setting!.page!);
                 break;
               case "go_to_theater":
+                GetStorage().write('mode', "go_to_theater");
                 changePage(9, setting!.page!);
                 break;
               default:
+                GetStorage().write('mode', "phone");
                 changePage(1, setting!.page!);
                 break;
             }
@@ -116,7 +126,12 @@ class PageAllController extends GetxController {
     pageIndex.value = index;
     switch (index) {
       case 1:
-        Get.offAllNamed(Routes.START);
+        if (GetStorage().read('stage_id') != null &&
+            GetStorage().read('stage_id').isNotEmpty) {
+          Get.offAllNamed(Routes.START);
+        } else {
+          Get.offAllNamed(Routes.INTRODUCTION);
+        }
         break;
       case 2:
         Get.offAllNamed(Routes.CLAP);

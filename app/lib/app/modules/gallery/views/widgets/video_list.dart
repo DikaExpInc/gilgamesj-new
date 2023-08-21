@@ -69,6 +69,8 @@ class VideoListWidget extends GetView<GalleryController> {
                 final Map<String, dynamic> arguments = {
                   'image':
                       '${SharedApi().imageUrl}${listVideo!.items![index].thumbnail}',
+                  'video':
+                      '${SharedApi().imageUrl}${listVideo!.items![index].video}',
                   'name': listVideo!.items![index].title,
                   'date': date,
                 };
@@ -76,7 +78,7 @@ class VideoListWidget extends GetView<GalleryController> {
                   onTap: () => {
                     // if (listIsActiveTask[index])
                     // {controller.openTask(taskIds[index])},
-                    Get.toNamed(Routes.GALLERY_IMAGE_DETAIL,
+                    Get.toNamed(Routes.GALLERY_VIDEO_DETAIL,
                         arguments: arguments)
                   },
                   child: Stack(

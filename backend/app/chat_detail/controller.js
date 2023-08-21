@@ -35,17 +35,16 @@ module.exports = {
   actionCreate: async (req, res) => {
     const { chatid } = req.params;
     try {
-      const { chat_family_id, chat_sibling_id, order, sender, status, title } =
-        req.body;
+      const { chat_family_id, order, sender, status, title } = req.body;
 
       // Save the profile filename in the MongoDB document
       const chatDetail = new ChatDetail({
         chat_family_id: chat_family_id,
-        chat_sibling_id: chat_sibling_id,
         order: order,
         sender: sender,
         status: status,
         title: title,
+        chat_id: chatid,
       });
 
       await chatDetail.save();
@@ -73,8 +72,7 @@ module.exports = {
   actionEdit: async (req, res) => {
     try {
       const { id } = req.params;
-      const { chat_family_id, chat_sibling_id, order, sender, status, title } =
-        req.body;
+      const { chat_family_id, order, sender, status, title } = req.body;
 
       const chatDetail = await ChatDetail.findById(id);
       if (!chatDetail) {
@@ -84,7 +82,6 @@ module.exports = {
       }
 
       chatDetail.chat_family_id = chat_family_id;
-      chatDetail.chat_sibling_id = chat_sibling_id;
       chatDetail.order = order;
       chatDetail.sender = sender;
       chatDetail.status = status;

@@ -14,6 +14,12 @@ const rules = {
       message: "Please fill code",
     },
   ],
+  url: [
+    {
+      required: true,
+      message: "Please fill URL",
+    },
+  ],
 };
 
 const GeneralField = (props) => (
@@ -25,6 +31,9 @@ const GeneralField = (props) => (
         </Form.Item>
         <Form.Item name="code" label="Camera code" rules={rules.code}>
           <Input placeholder="Camera code" />
+        </Form.Item>
+        <Form.Item name="url" label="AR URL" rules={rules.code}>
+          <Input placeholder="AR URL" />
         </Form.Item>
       </Card>
     </Col>

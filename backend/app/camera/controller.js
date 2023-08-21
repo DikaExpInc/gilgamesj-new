@@ -33,11 +33,12 @@ module.exports = {
 
   actionCreate: async (req, res) => {
     try {
-      const { code, name } = req.body;
+      const { code, name, url } = req.body;
 
       let camera = new Camera({
         code: code,
         name: name,
+        url: url,
       });
 
       await camera.save();
@@ -59,7 +60,7 @@ module.exports = {
   actionEdit: async (req, res) => {
     try {
       const { id } = req.params;
-      const { code, name } = req.body;
+      const { code, name, url } = req.body;
 
       await Camera.findOneAndUpdate(
         {
@@ -68,6 +69,7 @@ module.exports = {
         {
           code: code,
           name: name,
+          url: url,
         }
       );
       res.status(200).json({

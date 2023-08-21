@@ -316,10 +316,20 @@ module.exports = {
 
   changeNamePlayer: async (req, res, next) => {
     try {
-      const { changes } = req.body;
-      if (!changes || !Array.isArray(changes)) {
+      const data = req.body;
+
+      if (!data.changes) {
         return res.status(400).json({
-          message: "Please provide an array of changes",
+          message: "Please provide the changes",
+          status: "failed",
+        });
+      }
+
+      const changes = JSON.parse(data.changes);
+
+      if (!Array.isArray(changes)) {
+        return res.status(400).json({
+          message: "Changes should be an array",
           status: "failed",
         });
       }

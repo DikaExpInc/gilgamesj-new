@@ -9,6 +9,7 @@ import 'package:app/app/data/gallery_photo_model.dart';
 import 'package:app/app/data/gallery_video_model.dart';
 import 'package:app/app/data/map_model.dart';
 import 'package:app/app/data/phone_model.dart';
+import 'package:app/app/data/player_chat_model.dart';
 import 'package:app/app/data/setting_model.dart';
 import 'package:app/app/data/social_media_comment.dart';
 import 'package:app/app/data/social_media_model.dart';
@@ -29,6 +30,7 @@ class PageAllController extends GetxController {
   CameraListModel? cameras;
   ChatListModel? chats;
   ChatDetailListModel? chatDetails;
+  PlayerChatListModel? playerChat;
   ContactListModel? contacts;
   GalleryPhotoListModel? galleryPhotos;
   GalleryVideoListModel? galleryVideos;
@@ -271,5 +273,9 @@ class PageAllController extends GetxController {
 
   void updateSetting(SettingModel newSetting) {
     setting = newSetting;
+  }
+
+  void updatePlayerChat(PlayerChatListModel newPlayerChat) {
+    playerChat = newPlayerChat;
   }
 }

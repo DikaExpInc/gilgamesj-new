@@ -6,6 +6,7 @@ const {
   getAnswer,
   initChat,
   getChat,
+  replyChat,
 } = require("./controller");
 
 const multer = require("multer");
@@ -19,7 +20,13 @@ router.post(
   initChat
 );
 router.post(
-  "/:chatid/:id/answerchat",
+  "/:chatid/replychat",
+  multer({ dest: os.tmpdir() }).single("image"),
+  isLoginPlayer,
+  replyChat
+);
+router.post(
+  "/:chatid/answerchat/:id",
   multer({ dest: os.tmpdir() }).single("image"),
   isLoginPlayer,
   answerChat

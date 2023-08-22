@@ -248,6 +248,8 @@ module.exports = {
       const chatPlayer = await PlayerChat.find({
         chat_id: chatid,
         player_id: req.player._id,
+      }).sort({
+        order: 1,
       });
 
       res.status(200).json({

@@ -103,5 +103,13 @@ dist
 # TernJS port file
 .tern-port
 
-public/
+public/uploads/browsers
+public/uploads/chats
+public/uploads/contacts
+public/uploads/gallery-photos
+public/uploads/gallery-videos
+public/uploads/maps
+public/uploads/phones
+public/uploads/social-medias
+public/uploads/stages
 tmp/

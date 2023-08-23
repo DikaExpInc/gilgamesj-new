@@ -1,64 +1,64 @@
-import React, { useEffect, useState } from 'react'
-import { Input, Row, Col, Card, Form, InputNumber, Switch, Select } from 'antd'
+import React, { useEffect, useState } from "react";
+import { Input, Row, Col, Card, Form, InputNumber, Switch, Select } from "antd";
 
-import { useDispatch } from 'react-redux'
-import { getAllChatDetail } from 'redux/actions'
-import { useParams } from 'react-router-dom/cjs/react-router-dom'
-import chatDetailService from 'services/ChatDetailService'
+import { useDispatch } from "react-redux";
+import { getAllChatDetail } from "redux/actions";
+import { useParams } from "react-router-dom/cjs/react-router-dom";
+import chatDetailService from "services/ChatDetailService";
 
 const rules = {
   title: [
     {
       required: true,
-      message: 'Please fill name',
+      message: "Please fill name",
     },
   ],
   order: [
     {
       required: true,
-      message: 'Please fill order',
+      message: "Please fill order",
     },
     {
       validator: (_, value) => {
         if (!value || /^[0-9]+$/.test(value)) {
-          return Promise.resolve()
+          return Promise.resolve();
         }
-        return Promise.reject('Please enter numbers only')
+        return Promise.reject("Please enter numbers only");
       },
     },
   ],
   sender: [
     {
       required: true,
-      message: 'Please fill sender',
+      message: "Please fill sender",
     },
   ],
-}
+};
 
 const GeneralField = (props) => {
-  const dispatch = useDispatch()
-  const { chatId } = useParams()
+  const dispatch = useDispatch();
+  const { chatId } = useParams();
 
-  const [chats, setChats] = useState([])
+  const [chats, setChats] = useState([]);
 
   useEffect(() => {
     chatDetailService
       .getChatDetailList(chatId)
       .then((querySnapshot) => {
-        let listData = []
+        let listData = [];
         querySnapshot.data.forEach((doc) => {
           listData.push({
             value: doc._id,
             label: `Chat Detail ${doc.order_number} - ${doc.title}`,
-          })
-        })
-        dispatch(getAllChatDetail(listData))
-        setChats(listData)
+          });
+        });
+        dispatch(getAllChatDetail(listData));
+        setChats(listData);
       })
       .catch((error) => {
-        console.log('Error getting document:', error)
-      })
-  }, [chatId, dispatch])
+        console.log("Error getting document:", error);
+      });
+  }, [chatId, dispatch]);
 
   return (
     <Row gutter={16}>
@@ -71,12 +71,12 @@ const GeneralField = (props) => {
             <Input placeholder="Chat sender" />
           </Form.Item>
           <Form.Item name="order" label="Chat order" rules={rules.order}>
-            <InputNumber placeholder="Chat sender" style={{ width: '100%' }} />
+            <InputNumber placeholder="Chat sender" style={{ width: "100%" }} />
           </Form.Item>
           <Form.Item name="status" label="Chat Status" rules={rules.status}>
             <Switch checkedChildren="sender" unCheckedChildren="receiver" />
           </Form.Item>
-          <Form.Item
+          {/* <Form.Item
             name="chat_sibling_id"
             label="Chat Sibling ID"
             rules={rules.chat_sibling_id}
@@ -87,7 +87,7 @@ const GeneralField = (props) => {
               placeholder="Type Chat Sibling"
               options={chats}
             />
-          </Form.Item>
+          </Form.Item> */}
           <Form.Item
             name="chat_family_id"
             label="Chat Family ID"
@@ -95,7 +95,7 @@ const GeneralField = (props) => {
           >
             <Select
               showSearch
-              style={{ width: '100%' }}
+              style={{ width: "100%" }}
               placeholder="Type Chat Family"
               options={chats}
             />
@@ -103,7 +103,7 @@ const GeneralField = (props) => {
         </Card>
       </Col>
     </Row>
-  )
-}
+  );
+};
 
-export default GeneralField
+export default GeneralField;

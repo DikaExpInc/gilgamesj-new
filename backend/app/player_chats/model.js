@@ -18,6 +18,10 @@ let playerChatSchema = mongoose.Schema(
       type: mongoose.Schema.Types.ObjectId,
       ref: "Chat",
     },
+    player_id: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Player",
+    },
   },
   { timestamps: true }
 );

@@ -1,7 +1,7 @@
-import React, { lazy, Suspense } from 'react'
-import { Switch, Route, Redirect } from 'react-router-dom'
-import Loading from 'components/shared-components/Loading'
-import { APP_PREFIX_PATH } from 'configs/AppConfig'
+import React, { lazy, Suspense } from "react";
+import { Switch, Route, Redirect } from "react-router-dom";
+import Loading from "components/shared-components/Loading";
+import { APP_PREFIX_PATH } from "configs/AppConfig";
 // import { signOut } from 'redux/sagas/Auth'
 
 export const AppViews = () => {
@@ -65,6 +65,10 @@ export const AppViews = () => {
           component={lazy(() => import(`./stages`))}
         />
         <Route
+          path={`${APP_PREFIX_PATH}/pre-games`}
+          component={lazy(() => import(`./preGames`))}
+        />
+        <Route
           path={`${APP_PREFIX_PATH}/lights`}
           component={lazy(() => import(`./lights`))}
         />
@@ -78,7 +82,7 @@ export const AppViews = () => {
         />
       </Switch>
     </Suspense>
-  )
-}
+  );
+};
 
-export default React.memo(AppViews)
+export default React.memo(AppViews);

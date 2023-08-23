@@ -39,10 +39,16 @@ module.exports = {
 
   actionCreate: async (req, res) => {
     try {
+<<<<<<< HEAD
       const { title, description, mode, order_number, chat_id, camera_id } =
         req.body;
 
       const iconFile = req.files["icon"] ? req.files["icon"][0] : null;
+=======
+      const { title, description, order_number, chat_id, camera_id } = req.body;
+
+      const iconFile = req.files["icon "] ? req.files["icon"][0] : null;
+>>>>>>> 442cac55d9b708d2c506ff6aa4766882efc286d9
 
       if (!iconFile) {
         return res.status(422).json({
@@ -75,7 +81,10 @@ module.exports = {
           .pop()}`,
         title,
         description,
+<<<<<<< HEAD
         mode,
+=======
+>>>>>>> 442cac55d9b708d2c506ff6aa4766882efc286d9
         order_number,
         chat_id,
         camera_id,
@@ -100,8 +109,12 @@ module.exports = {
   actionEdit: async (req, res) => {
     try {
       const { id } = req.params;
+<<<<<<< HEAD
       const { title, description, mode, order_number, chat_id, camera_id } =
         req.body;
+=======
+      const { title, description, order_number, chat_id, camera_id } = req.body;
+>>>>>>> 442cac55d9b708d2c506ff6aa4766882efc286d9
 
       let icon = null;
 
@@ -141,7 +154,10 @@ module.exports = {
       preGame.icon = icon || preGame.icon;
       preGame.title = title || preGame.title;
       preGame.description = description || preGame.description;
+<<<<<<< HEAD
       preGame.mode = mode || preGame.mode;
+=======
+>>>>>>> 442cac55d9b708d2c506ff6aa4766882efc286d9
       preGame.order_number = order_number || preGame.order_number;
       preGame.chat_id = chat_id || preGame.chat_id;
       preGame.camera_id = camera_id || preGame.camera_id;

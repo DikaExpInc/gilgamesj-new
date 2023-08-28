@@ -1,36 +1,36 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose')
 
-const stageSchema = mongoose.Schema(
+const preGameSchema = mongoose.Schema(
   {
     icon: {
       type: String,
     },
     title: {
       type: String,
-      required: [true, "Title must be filled"],
+      required: [true, 'Title must be filled'],
     },
     description: {
       type: String,
-      required: [true, "Description must be filled"],
+      required: [true, 'Description must be filled'],
     },
     mode: {
       type: String,
-      required: [true, "Mode must be filled"],
+      required: [true, 'Mode must be filled'],
     },
     order_number: {
       type: Number,
-      required: [true, "Order number must be filled"],
+      required: [true, 'Order number must be filled'],
     },
     chat_id: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "Chat",
+      ref: 'Chat',
     },
     camera_id: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "Camera",
+      ref: 'Camera',
     },
   },
   { timestamps: true }
-);
+)
 
-module.exports = mongoose.model("PreGame", stageSchema);
+module.exports = mongoose.model('PreGame', preGameSchema)

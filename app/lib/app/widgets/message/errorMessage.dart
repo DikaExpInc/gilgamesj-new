@@ -47,7 +47,7 @@ showErrorMessage(String message) {
                   height: 56,
                   alignment: Alignment.center,
                   child: Text(
-                    "Gagal",
+                    "Failed",
                     style: TextStyle(
                       fontFamily: 'Droid',
                       fontSize: 24,

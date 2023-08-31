@@ -27,7 +27,7 @@ class SettingApi extends SharedApi {
         return SettingModel.fromJson({"status_code": data.statusCode});
       }
     } on Exception catch (_) {
-      showInternetMessage("Periksa koneksi internet anda");
+      showInternetMessage("Please check the server");
       return SettingModel.fromJson({"status_code": 404});
     }
   }

@@ -62,12 +62,30 @@ import '../modules/phone/bindings/phone_binding.dart';
 import '../modules/phone/views/phone_view.dart';
 import '../modules/phone_call/bindings/phone_call_binding.dart';
 import '../modules/phone_call/views/phone_call_view.dart';
+import '../modules/pre_game_credit/bindings/pre_game_credit_binding.dart';
+import '../modules/pre_game_credit/views/pre_game_credit_view.dart';
+import '../modules/pre_game_descibel_game/bindings/pre_game_descibel_game_binding.dart';
+import '../modules/pre_game_descibel_game/views/pre_game_descibel_game_view.dart';
 import '../modules/pre_game_items/bindings/pre_game_items_binding.dart';
 import '../modules/pre_game_items/views/pre_game_items_view.dart';
+import '../modules/pre_game_menu/bindings/pre_game_menu_binding.dart';
+import '../modules/pre_game_menu/views/pre_game_menu_view.dart';
+import '../modules/pre_game_music_game/bindings/pre_game_music_game_binding.dart';
+import '../modules/pre_game_music_game/views/pre_game_music_game_view.dart';
 import '../modules/pre_game_rune/bindings/pre_game_rune_binding.dart';
 import '../modules/pre_game_rune/views/pre_game_rune_view.dart';
+import '../modules/pre_game_shake_game/bindings/pre_game_shake_game_binding.dart';
+import '../modules/pre_game_shake_game/views/pre_game_shake_game_view.dart';
+import '../modules/pre_game_spirit_realm/bindings/pre_game_spirit_realm_binding.dart';
+import '../modules/pre_game_spirit_realm/views/pre_game_spirit_realm_view.dart';
+import '../modules/pre_game_splash/bindings/pre_game_splash_binding.dart';
+import '../modules/pre_game_splash/views/pre_game_splash_view.dart';
+import '../modules/pre_game_start/bindings/pre_game_start_binding.dart';
+import '../modules/pre_game_start/views/pre_game_start_view.dart';
 import '../modules/pre_game_talking_video/bindings/pre_game_talking_video_binding.dart';
 import '../modules/pre_game_talking_video/views/pre_game_talking_video_view.dart';
+import '../modules/pre_game_tutorial/bindings/pre_game_tutorial_binding.dart';
+import '../modules/pre_game_tutorial/views/pre_game_tutorial_view.dart';
 import '../modules/rules/bindings/rules_binding.dart';
 import '../modules/rules/views/rules_view.dart';
 import '../modules/social_media/bindings/social_media_binding.dart';
@@ -274,6 +292,51 @@ class AppPages {
       name: _Paths.PRE_GAME_RUNE,
       page: () => PreGameRuneView(),
       binding: PreGameRuneBinding(),
+    ),
+    GetPage(
+      name: _Paths.PRE_GAME_SPLASH,
+      page: () => PreGameSplashView(),
+      binding: PreGameSplashBinding(),
+    ),
+    GetPage(
+      name: _Paths.PRE_GAME_START,
+      page: () => PreGameStartView(),
+      binding: PreGameStartBinding(),
+    ),
+    GetPage(
+      name: _Paths.PRE_GAME_MENU,
+      page: () => PreGameMenuView(),
+      binding: PreGameMenuBinding(),
+    ),
+    GetPage(
+      name: _Paths.PRE_GAME_TUTORIAL,
+      page: () => PreGameTutorialView(),
+      binding: PreGameTutorialBinding(),
+    ),
+    GetPage(
+      name: _Paths.PRE_GAME_CREDIT,
+      page: () => PreGameCreditView(),
+      binding: PreGameCreditBinding(),
+    ),
+    GetPage(
+      name: _Paths.PRE_GAME_SPIRIT_REALM,
+      page: () => PreGameSpiritRealmView(),
+      binding: PreGameSpiritRealmBinding(),
+    ),
+    GetPage(
+      name: _Paths.PRE_GAME_MUSIC_GAME,
+      page: () => const PreGameMusicGameView(),
+      binding: PreGameMusicGameBinding(),
+    ),
+    GetPage(
+      name: _Paths.PRE_GAME_DESCIBEL_GAME,
+      page: () => const PreGameDescibelGameView(),
+      binding: PreGameDescibelGameBinding(),
+    ),
+    GetPage(
+      name: _Paths.PRE_GAME_SHAKE_GAME,
+      page: () => const PreGameShakeGameView(),
+      binding: PreGameShakeGameBinding(),
     ),
   ];
 }

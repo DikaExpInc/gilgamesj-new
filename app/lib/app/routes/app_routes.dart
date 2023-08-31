@@ -42,6 +42,15 @@ abstract class Routes {
   static const GROUP = _Paths.GROUP;
   static const CHANGE_PLAYER = _Paths.CHANGE_PLAYER;
   static const PRE_GAME_RUNE = _Paths.PRE_GAME_RUNE;
+  static const PRE_GAME_SPLASH = _Paths.PRE_GAME_SPLASH;
+  static const PRE_GAME_START = _Paths.PRE_GAME_START;
+  static const PRE_GAME_MENU = _Paths.PRE_GAME_MENU;
+  static const PRE_GAME_TUTORIAL = _Paths.PRE_GAME_TUTORIAL;
+  static const PRE_GAME_CREDIT = _Paths.PRE_GAME_CREDIT;
+  static const PRE_GAME_SPIRIT_REALM = _Paths.PRE_GAME_SPIRIT_REALM;
+  static const PRE_GAME_MUSIC_GAME = _Paths.PRE_GAME_MUSIC_GAME;
+  static const PRE_GAME_DESCIBEL_GAME = _Paths.PRE_GAME_DESCIBEL_GAME;
+  static const PRE_GAME_SHAKE_GAME = _Paths.PRE_GAME_SHAKE_GAME;
 }
 
 abstract class _Paths {
@@ -85,4 +94,13 @@ abstract class _Paths {
   static const GROUP = '/group';
   static const CHANGE_PLAYER = '/change-player';
   static const PRE_GAME_RUNE = '/pre-game-rune';
+  static const PRE_GAME_SPLASH = '/pre-game-splash';
+  static const PRE_GAME_START = '/pre-game-start';
+  static const PRE_GAME_MENU = '/pre-game-menu';
+  static const PRE_GAME_TUTORIAL = '/pre-game-tutorial';
+  static const PRE_GAME_CREDIT = '/pre-game-credit';
+  static const PRE_GAME_SPIRIT_REALM = '/pre-game-spirit-realm';
+  static const PRE_GAME_MUSIC_GAME = '/pre-game-music-game';
+  static const PRE_GAME_DESCIBEL_GAME = '/pre-game-descibel-game';
+  static const PRE_GAME_SHAKE_GAME = '/pre-game-shake-game';
 }

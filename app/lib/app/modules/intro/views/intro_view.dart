@@ -49,7 +49,8 @@ class IntroView extends GetView<IntroController> {
                       ),
                     ),
                     InkWell(
-                      onTap: () => {Get.toNamed(Routes.PRE_GAME_ITEMS)},
+                      // onTap: () => {Get.toNamed(Routes.PRE_GAME_ITEMS)},
+                      onTap: () => {Get.toNamed(Routes.PRE_GAME_SPLASH)},
                       child: Image.asset("assets/images/ic_back.png"),
                     ),
                   ],

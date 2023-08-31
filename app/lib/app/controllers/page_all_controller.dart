@@ -154,7 +154,7 @@ class PageAllController extends GetxController {
         Get.offAllNamed(Routes.PERFORMANCE);
         break;
       case 8:
-        Get.offAllNamed(Routes.INTRO);
+        Get.offAllNamed(Routes.PRE_GAME_SPLASH);
         break;
       case 9:
         Get.offAllNamed(Routes.GO_THEATER);
@@ -168,12 +168,8 @@ class PageAllController extends GetxController {
   @override
   void onInit() {
     super.onInit();
-    sub = settingStream.listen((event) {
-      fetchDataFromApi();
-    });
-
     // membuat langganan
-    // triggerStream.listen((event) {
+    // sub = settingStream.listen((event) {
     //   fetchDataFromApi();
     // });
   }

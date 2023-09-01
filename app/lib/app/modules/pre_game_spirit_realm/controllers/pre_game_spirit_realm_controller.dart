@@ -1,3 +1,4 @@
+import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -18,6 +19,9 @@ class PreGameSpiritRealmController extends GetxController
       vsync: this,
       duration: Duration(seconds: 10),
     )..repeat();
+
+    final AudioCache audioCache = AudioCache(prefix: 'assets/audios/');
+    audioCache.play('spirit_realms.mp3');
   }
 
   @override

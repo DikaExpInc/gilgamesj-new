@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 
 import '../controllers/pre_game_splash_controller.dart';
 
+// ignore: must_be_immutable
 class PreGameSplashView extends GetView<PreGameSplashController> {
   late double mWidth;
   late double mHeight;

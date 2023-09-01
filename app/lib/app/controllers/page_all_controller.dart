@@ -68,46 +68,73 @@ class PageAllController extends GetxController {
         if (settingModel.statusCode == 200) {
           // Cek apakah halaman yang diterima sama dengan halaman saat ini
           if (setting!.page!.toString() != currentPage.toString()) {
+            String? mode = GetStorage().read('mode');
             switch (setting!.page) {
               case "phone":
-                GetStorage().write('mode', "phone");
-                changePage(1, setting!.page!);
+                if (mode != "phone") {
+                  GetStorage().write('mode', "phone");
+                  changePage(1, setting!.page!);
+                }
                 break;
               case "clap":
-                GetStorage().write('mode', "clap");
-                changePage(2, setting!.page!);
+                if (mode != "clap") {
+                  GetStorage().write('mode', "clap");
+                  changePage(2, setting!.page!);
+                }
                 break;
               case "blank":
-                GetStorage().write('mode', "blank");
-                changePage(3, setting!.page!);
+                if (mode != "blank") {
+                  GetStorage().write('mode', "blank");
+                  changePage(3, setting!.page!);
+                }
                 break;
               case "light":
-                GetStorage().write('mode', "light");
-                changePage(4, setting!.page!);
+                if (mode != "light") {
+                  GetStorage().write('mode', "light");
+                  changePage(4, setting!.page!);
+                }
                 break;
               case "notification":
-                GetStorage().write('mode', "notification");
-                changePage(5, setting!.page!);
+                if (mode != "notification") {
+                  GetStorage().write('mode', "notification");
+                  changePage(5, setting!.page!);
+                }
                 break;
               case "group":
-                GetStorage().write('mode', "group");
-                changePage(6, setting!.page!);
+                if (mode != "group") {
+                  GetStorage().write('mode', "group");
+                  changePage(6, setting!.page!);
+                }
                 break;
               case "performance":
-                GetStorage().write('mode', "performance");
-                changePage(7, setting!.page!);
+                if (mode != "performance") {
+                  GetStorage().write('mode', "performance");
+                  changePage(7, setting!.page!);
+                }
                 break;
               case "pre_game":
-                GetStorage().write('mode', "pre_game");
-                changePage(8, setting!.page!);
+                if (mode != "pre_game") {
+                  GetStorage().write('mode', "pre_game");
+                  changePage(8, setting!.page!);
+                }
                 break;
               case "go_to_theater":
-                GetStorage().write('mode', "go_to_theater");
-                changePage(9, setting!.page!);
+                if (mode != "go_to_theater") {
+                  GetStorage().write('mode', "go_to_theater");
+                  changePage(9, setting!.page!);
+                }
+                break;
+              case "intro":
+                if (mode != "intro") {
+                  GetStorage().write('mode', "intro");
+                  changePage(10, setting!.page!);
+                }
                 break;
               default:
-                GetStorage().write('mode', "phone");
-                changePage(1, setting!.page!);
+                if (mode != "intro") {
+                  GetStorage().write('mode', "phone");
+                  changePage(1, setting!.page!);
+                }
                 break;
             }
           }
@@ -154,10 +181,13 @@ class PageAllController extends GetxController {
         Get.offAllNamed(Routes.PERFORMANCE);
         break;
       case 8:
-        Get.offAllNamed(Routes.PRE_GAME_SPLASH);
+        Get.offAllNamed(Routes.INTRO);
         break;
       case 9:
         Get.offAllNamed(Routes.GO_THEATER);
+        break;
+      case 10:
+        Get.offAllNamed(Routes.PRE_GAME_SPLASH);
         break;
       default:
         Get.offAllNamed(Routes.START);
@@ -169,9 +199,9 @@ class PageAllController extends GetxController {
   void onInit() {
     super.onInit();
     // membuat langganan
-    // sub = settingStream.listen((event) {
-    //   fetchDataFromApi();
-    // });
+    sub = settingStream.listen((event) {
+      fetchDataFromApi();
+    });
   }
 
   void showBonusDialog() {

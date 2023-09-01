@@ -62,6 +62,8 @@ import '../modules/phone/bindings/phone_binding.dart';
 import '../modules/phone/views/phone_view.dart';
 import '../modules/phone_call/bindings/phone_call_binding.dart';
 import '../modules/phone_call/views/phone_call_view.dart';
+import '../modules/pre_game_audio/bindings/pre_game_audio_binding.dart';
+import '../modules/pre_game_audio/views/pre_game_audio_view.dart';
 import '../modules/pre_game_credit/bindings/pre_game_credit_binding.dart';
 import '../modules/pre_game_credit/views/pre_game_credit_view.dart';
 import '../modules/pre_game_descibel_game/bindings/pre_game_descibel_game_binding.dart';
@@ -255,7 +257,7 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.PRE_GAME_TALKING_VIDEO,
-      page: () => const PreGameTalkingVideoView(),
+      page: () => PreGameTalkingVideoView(),
       binding: PreGameTalkingVideoBinding(),
     ),
     GetPage(
@@ -337,6 +339,11 @@ class AppPages {
       name: _Paths.PRE_GAME_SHAKE_GAME,
       page: () => const PreGameShakeGameView(),
       binding: PreGameShakeGameBinding(),
+    ),
+    GetPage(
+      name: _Paths.PRE_GAME_AUDIO,
+      page: () => PreGameAudioView(),
+      binding: PreGameAudioBinding(),
     ),
   ];
 }

@@ -78,7 +78,7 @@ class _ShakingTextAnimationState extends State<ShakingTextAnimation> {
                         child: Image.asset(
                           '${widget.image}',
                           width: widget.width,
-                          height: 45, // Path to your GIF image
+                          height: 45,
                         ),
                       ),
               ),

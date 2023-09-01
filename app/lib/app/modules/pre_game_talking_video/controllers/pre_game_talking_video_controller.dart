@@ -3,7 +3,8 @@ import 'package:get/get.dart';
 class PreGameTalkingVideoController extends GetxController {
   //TODO: Implement PreGameTalkingVideoController
 
-  final count = 0.obs;
+  RxBool hasNavigated = true.obs;
+
   @override
   void onInit() {
     super.onInit();
@@ -18,6 +19,4 @@ class PreGameTalkingVideoController extends GetxController {
   void onClose() {
     super.onClose();
   }
-
-  void increment() => count.value++;
 }

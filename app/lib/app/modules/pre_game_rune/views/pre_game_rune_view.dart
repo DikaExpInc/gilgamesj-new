@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import '../../../routes/app_pages.dart';
 import '../controllers/pre_game_rune_controller.dart';
 
+// ignore: must_be_immutable
 class PreGameRuneView extends GetView<PreGameRuneController> {
   late double mWidth;
   late double mHeight;

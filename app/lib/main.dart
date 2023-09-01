@@ -53,11 +53,28 @@ Future<void> main() async {
         case "pre_game":
           initialRoute = Routes.INTRO;
           break;
+        case "intro":
+          initialRoute = Routes.PRE_GAME_SPLASH;
+          break;
         case "go_to_theater":
           initialRoute = Routes.GO_THEATER;
           break;
         default:
       }
+    }
+  } else {
+    String? mode = GetStorage().read('mode');
+    if (mode != null && mode.isNotEmpty) {
+      switch (mode) {
+        case 'phone':
+          initialRoute = Routes.INTRODUCTION;
+          break;
+        default:
+          initialRoute = Routes.INTRO;
+          break;
+      }
+    } else {
+      initialRoute = Routes.PRE_GAME_SPLASH;
     }
   }
 

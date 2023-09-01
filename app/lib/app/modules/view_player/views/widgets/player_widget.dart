@@ -33,18 +33,23 @@ class PlayerWidget extends GetView<ViewPlayerController> {
             margin: EdgeInsets.only(right: 20),
             child: Text(
               "SPELER ${index + 1}",
-              style: TextStyle(color: Colors.white),
+              style: TextStyle(
+                fontFamily: 'Centrion',
+                color: Color(0xffEFC77A),
+              ),
             ),
           ),
           Container(
-            width: mWidth / 1.4, // Lebar 100%
+            width: mWidth / 1.6, // Lebar 100%
             padding: EdgeInsets.symmetric(
                 vertical: 20.0,
                 horizontal: MediaQuery.of(context).size.width > 600 ? 50 : 20),
             decoration: BoxDecoration(
-              image: DecorationImage(
-                image: AssetImage("assets/images/bg_input.png"),
-                fit: BoxFit.fill,
+              border: Border(
+                bottom: BorderSide(
+                  color: Colors.white, // Color of the bottom border
+                  width: 2.0, // Width of the bottom border
+                ),
               ),
             ),
 
@@ -52,7 +57,7 @@ class PlayerWidget extends GetView<ViewPlayerController> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Container(
-                  width: mWidth / 2,
+                  width: mWidth / 3,
                   child: TextField(
                     controller: nameController,
                     style: TextStyle(color: Colors.white),

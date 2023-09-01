@@ -45,13 +45,8 @@ flutter:
     - assets/fonts/
     - assets/audios/
     - assets/audios/tuts/
+    - assets/audios/pregames/
     - assets/objects/
-    - assets/html/demo4/index.html
-    - assets/html/demo4/itracker.js
-    - assets/html/demo4/opencv.js
-    - assets/html/demo4/Build/
-    - assets/html/demo4/targets/
-    - assets/html/demo4/TemplateData/
   fonts:
     - family: Centrion
       fonts:

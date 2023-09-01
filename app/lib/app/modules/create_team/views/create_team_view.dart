@@ -60,7 +60,7 @@ class CreateTeamView extends GetView<CreateTeamController> {
                             ),
                           ),
                           Container(
-                            width: mWidth / 1.6,
+                            width: mWidth / 1.8,
                             decoration: BoxDecoration(
                               border: Border(
                                 bottom: BorderSide(

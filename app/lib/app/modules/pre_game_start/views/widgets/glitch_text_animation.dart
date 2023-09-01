@@ -1,3 +1,4 @@
+import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'dart:async';
 import 'dart:math';
@@ -19,6 +20,10 @@ class _GlitchTextAnimationState extends State<GlitchTextAnimation>
     setState(() {
       isTextVisible = !isTextVisible;
     });
+    // if (!isTextVisible) {
+    //   final AudioCache audioCache = AudioCache(prefix: 'assets/audios/');
+    //   audioCache.play('glitch-text.wav');
+    // }
   }
 
   void _startToggleTimer() {
@@ -40,7 +45,7 @@ class _GlitchTextAnimationState extends State<GlitchTextAnimation>
       duration: Duration(milliseconds: 200),
     );
 
-    _timer = Timer.periodic(Duration(seconds: 2), (_) {
+    _timer = Timer.periodic(Duration(milliseconds: 1600), (_) {
       if (_controller.status == AnimationStatus.completed ||
           _controller.status == AnimationStatus.forward) {
         _controller.reverse();

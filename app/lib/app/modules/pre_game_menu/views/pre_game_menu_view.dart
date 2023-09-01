@@ -1,11 +1,13 @@
 import 'package:app/app/modules/pre_game_menu/views/widgets/shaking_text_animation.dart';
 import 'package:app/app/routes/app_pages.dart';
+import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 
 import '../controllers/pre_game_menu_controller.dart';
 
+// ignore: must_be_immutable
 class PreGameMenuView extends GetView<PreGameMenuController> {
   late double mWidth;
   late double mHeight;
@@ -67,6 +69,9 @@ class PreGameMenuView extends GetView<PreGameMenuController> {
                           ),
                           InkWell(
                             onTap: () async {
+                              final AudioCache audioCache =
+                                  AudioCache(prefix: 'assets/audios/');
+                              audioCache.play('error-glitch.mp3');
                               controller.isGlitch.value = true;
                               await Future.delayed(Duration(seconds: 1));
                               controller.isGlitch.value = false;

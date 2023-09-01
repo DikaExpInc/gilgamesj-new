@@ -31,6 +31,7 @@ class ViewPlayerController extends GetxController {
     }
 
     box.write('totalPlayer', playerListModel?.items?.length.toString());
+    box.write('mode', "intro");
 
     Get.toNamed(Routes.INTRO);
   }

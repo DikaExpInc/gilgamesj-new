@@ -51,6 +51,7 @@ abstract class Routes {
   static const PRE_GAME_MUSIC_GAME = _Paths.PRE_GAME_MUSIC_GAME;
   static const PRE_GAME_DESCIBEL_GAME = _Paths.PRE_GAME_DESCIBEL_GAME;
   static const PRE_GAME_SHAKE_GAME = _Paths.PRE_GAME_SHAKE_GAME;
+  static const PRE_GAME_AUDIO = _Paths.PRE_GAME_AUDIO;
 }
 
 abstract class _Paths {
@@ -103,4 +104,5 @@ abstract class _Paths {
   static const PRE_GAME_MUSIC_GAME = '/pre-game-music-game';
   static const PRE_GAME_DESCIBEL_GAME = '/pre-game-descibel-game';
   static const PRE_GAME_SHAKE_GAME = '/pre-game-shake-game';
+  static const PRE_GAME_AUDIO = '/pre-game-audio';
 }

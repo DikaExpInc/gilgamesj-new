@@ -60,11 +60,12 @@ class ViewPlayerView extends GetView<ViewPlayerController> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      "WELKOM ${controller.box.read('teamName')}",
+                      "WELKOM (${controller.box.read('teamName')})",
                       style: TextStyle(
                         fontSize: 48,
                         color: Colors.white,
                         fontWeight: FontWeight.w700,
+                        fontFamily: 'Centrion',
                       ),
                     ),
                     Padding(
@@ -114,7 +115,7 @@ class ViewPlayerView extends GetView<ViewPlayerController> {
                                             "Y"
                                         ? "Playing"
                                         : "",
-                                        index: index,
+                                    index: index,
                                   );
                                 },
                               ),

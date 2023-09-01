@@ -6,6 +6,7 @@ import 'package:get/get.dart';
 
 import '../controllers/pre_game_tutorial_controller.dart';
 
+// ignore: must_be_immutable
 class PreGameTutorialView extends GetView<PreGameTutorialController> {
   late double mWidth;
   late double mHeight;

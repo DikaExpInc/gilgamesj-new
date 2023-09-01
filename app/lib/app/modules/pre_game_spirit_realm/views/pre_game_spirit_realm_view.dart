@@ -6,6 +6,7 @@ import 'package:get/get.dart';
 
 import '../controllers/pre_game_spirit_realm_controller.dart';
 
+// ignore: must_be_immutable
 class PreGameSpiritRealmView extends GetView<PreGameSpiritRealmController> {
   late double mWidth;
   late double mHeight;

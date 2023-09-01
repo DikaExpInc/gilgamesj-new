@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 
 import '../controllers/go_theater_controller.dart';
 
+// ignore: must_be_immutable
 class GoTheaterView extends GetView<GoTheaterController> {
   late double mWidth;
   late double mHeight;

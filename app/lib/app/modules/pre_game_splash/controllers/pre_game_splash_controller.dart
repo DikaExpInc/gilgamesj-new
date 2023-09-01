@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:app/app/routes/app_pages.dart';
+import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -37,6 +38,10 @@ class PreGameSplashController extends GetxController
       Future.delayed(Duration(milliseconds: 500), () {
         currentImageIndex.value = (currentImageIndex.value + 1) % images.length;
         fadeAnimationController.forward(from: 0.0); // Start fade in animation
+        if (currentImageIndex.value == 5) {
+          final AudioCache audioCache = AudioCache(prefix: 'assets/audios/');
+          audioCache.play('expinc-logo.mp3');
+        }
         if (currentImageIndex.value == images.length - 1) {
           Get.offNamed(
             Routes.PRE_GAME_START,

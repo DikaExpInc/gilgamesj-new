@@ -36,7 +36,7 @@ class AuthApi extends SharedApi {
       }
     } on Exception catch (_) {
       stopLoading();
-      showInternetMessage("Periksa koneksi internet anda");
+      showInternetMessage("Please check the server");
       return UserModel.fromJson({"status_code": 404});
     }
   }

@@ -1,4 +1,3 @@
-import 'package:app/app/modules/gallery_video_detail/controllers/gallery_video_detail_controller.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';

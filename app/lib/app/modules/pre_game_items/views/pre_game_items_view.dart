@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 
 import '../../../routes/app_pages.dart';
 import '../controllers/pre_game_items_controller.dart';
@@ -18,7 +19,7 @@ class PreGameItemsView extends GetView<PreGameItemsController> {
   Widget build(BuildContext context) {
     mWidth = MediaQuery.of(context).size.width;
     mHeight = MediaQuery.of(context).size.height;
-    return Scaffold(  
+    return Scaffold(
       body: Container(
         width: mWidth,
         decoration: BoxDecoration(
@@ -49,7 +50,7 @@ class PreGameItemsView extends GetView<PreGameItemsController> {
                       ),
                     ),
                     InkWell(
-                      onTap: () => {Get.toNamed(Routes.PRE_GAME_RUNE)},
+                      onTap: () => {Get.toNamed(Routes.INTRO)},
                       child: Image.asset("assets/images/ic_rune.png"),
                     ),
                   ],
@@ -57,16 +58,54 @@ class PreGameItemsView extends GetView<PreGameItemsController> {
                 Expanded(
                   child: Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 120),
-                    child: GridView.count(
-                      crossAxisCount: 3,
-                      // Generate 100 widgets that display their index in the List.
-                      children: List.generate(12, (index) {
-                        return Container(
-                          margin: EdgeInsets.all(20.0),
-                          child:
-                              Image.asset("assets/images/tile${index + 1}.png"),
-                        );
-                      }),
+                    child: Obx(
+                      () => GridView.count(
+                        crossAxisCount: 3,
+                        // Generate 100 widgets that display their index in the List.
+                        children: List.generate(9, (index) {
+                          if (index == 4) {
+                            return Container(
+                              margin: EdgeInsets.all(20.0),
+                            );
+                          } else {
+                            final box = GetStorage();
+
+                            final isSelected =
+                                index == controller.selectedItemIndex.value;
+                            final statusDone =
+                                box.read('pregame_item_$index') != null
+                                    ? false
+                                    : true;
+                            return GestureDetector(
+                              onTap: () {
+                                controller.selectedItemIndex.value =
+                                    isSelected ? -1 : index;
+                              },
+                              child: Container(
+                                margin: EdgeInsets.all(mWidth / 40.0),
+                                decoration: BoxDecoration(
+                                  border: Border.all(
+                                    color: isSelected
+                                        ? Colors.white
+                                        : Colors.transparent,
+                                    width: 2.0,
+                                  ),
+                                  borderRadius: BorderRadius.all(
+                                    Radius.circular(10),
+                                  ),
+                                ),
+                                child: statusDone
+                                    ? Image.asset(
+                                        "assets/images/tile${index + 1}.png",
+                                      )
+                                    : Image.asset(
+                                        "assets/images/tile${index + 1}-complete.png",
+                                      ),
+                              ),
+                            );
+                          }
+                        }),
+                      ),
                     ),
                   ),
                 ),
@@ -74,7 +113,12 @@ class PreGameItemsView extends GetView<PreGameItemsController> {
                   child: Column(
                     children: [
                       InkWell(
-                        onTap: () => {},
+                        onTap: () => {
+                          Get.toNamed(Routes.PRE_GAME_TALKING_VIDEO,
+                              arguments: {
+                                "id": controller.selectedItemIndex.value
+                              }),
+                        },
                         child: Container(
                           width: mWidth / 4,
                           padding: EdgeInsets.symmetric(

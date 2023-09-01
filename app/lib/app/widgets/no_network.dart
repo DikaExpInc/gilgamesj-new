@@ -36,7 +36,7 @@ class NoNetwork extends StatelessWidget {
           Container(
             margin: EdgeInsets.fromLTRB(20, 0, 20, 0),
             child: Text(
-              "Maaf, koneksi internet tidak tersedia, periksa koneksi internet Anda dan coba lagi",
+              "Maaf, koneksi internet tidak tersedia, Please check the server dan coba lagi",
               style: GoogleFonts.cairo(
                 color: Color(0xff777777),
               ),

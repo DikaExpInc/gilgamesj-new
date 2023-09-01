@@ -1,9 +1,10 @@
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 
 class PreGameItemsController extends GetxController {
   //TODO: Implement PreGameItemsController
+  RxInt selectedItemIndex = 0.obs;
 
-  final count = 0.obs;
   @override
   void onInit() {
     super.onInit();
@@ -18,6 +19,4 @@ class PreGameItemsController extends GetxController {
   void onClose() {
     super.onClose();
   }
-
-  void increment() => count.value++;
 }

@@ -14,233 +14,216 @@ class CreateTeamView extends GetView<CreateTeamController> {
     mWidth = MediaQuery.of(context).size.width;
     mHeight = MediaQuery.of(context).size.height;
     return Scaffold(
-      body: Container(
-        width: mWidth,
-        height: mHeight,
-        decoration: BoxDecoration(
-          image: DecorationImage(
-            colorFilter: ColorFilter.mode(
-                Colors.black.withOpacity(0.5), BlendMode.srcOver),
-            image: AssetImage("assets/images/background.png"),
-            fit: BoxFit.cover,
+      body: SingleChildScrollView(
+        child: Container(
+          width: mWidth,
+          height: mHeight,
+          decoration: BoxDecoration(
+            image: DecorationImage(
+              colorFilter: ColorFilter.mode(
+                  Colors.black.withOpacity(0.3), BlendMode.srcOver),
+              image: AssetImage("assets/images/background.png"),
+              fit: BoxFit.cover,
+            ),
           ),
-        ),
-        child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 20),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: <Widget>[
-              Align(
-                alignment: Alignment.centerRight,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      "made by",
-                      style: TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.w400,
-                        color: Colors.white,
-                      ),
-                    ),
-                    Container(
-                      width: 100,
-                      height: 50,
-                      child: Image.asset('assets/images/logo-1.png'),
-                    ),
-                  ],
+          child: Padding(
+            padding: EdgeInsets.symmetric(horizontal: 20),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: <Widget>[
+                Text(
+                  "BEDENK EEN TEAM NAAM",
+                  style: TextStyle(
+                    fontFamily: 'Centrion',
+                    fontSize: 26,
+                    fontWeight: FontWeight.w700,
+                    color: Colors.white,
+                  ),
                 ),
-              ),
-              Text(
-                "BEDENK EEN TEAMNAAM",
-                style: TextStyle(
-                  fontSize: 26,
-                  fontWeight: FontWeight.w700,
-                  color: Colors.white,
-                ),
-              ),
-              Container(
-                width: 200,
-                height: 200,
-                child: Image.asset('assets/images/welcome-image.png'),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(40.0),
-                child: Column(
-                  children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.only(right: 40),
-                          child: Text(
-                            'TEAM NAAM',
-                            style: TextStyle(
-                              color: Colors.white,
-                            ),
-                          ),
-                        ),
-                        Container(
-                          width: mWidth / 1.4,
-                          decoration: BoxDecoration(
-                            image: DecorationImage(
-                              colorFilter: ColorFilter.mode(
-                                  Colors.black.withOpacity(0),
-                                  BlendMode.srcOver),
-                              image: AssetImage("assets/images/bg_input.png"),
-                              fit: BoxFit.fill,
-                            ),
-                          ),
-                          child: TextField(
-                            controller: controller.teamNameC,
-                            style: TextStyle(color: Colors.white),
-                            onChanged: (value) {
-                              controller.isButtonVisible(value.isNotEmpty);
-                            },
-                            decoration: InputDecoration(
-                              hintText: 'VOER HIER JE NAAM IN',
-                              hintStyle: TextStyle(color: Colors.white54),
-                              border: InputBorder.none,
-                              contentPadding: EdgeInsets.all(16.0),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                    SizedBox(
-                      height: 40,
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.only(right: 60),
-                          child: Text(
-                            'SPELERS',
-                            style: TextStyle(
-                              color: Colors.white,
-                            ),
-                          ),
-                        ),
-                        Row(
-                          children: [
-                            InkWell(
-                              onTap: controller.subsPlayer,
-                              child: SvgPicture.asset(
-                                "assets/icons/subtract.svg",
+                controller.rotatingImage,
+                Padding(
+                  padding: const EdgeInsets.all(40.0),
+                  child: Column(
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.only(right: 40),
+                            child: Text(
+                              'TEAM NAAM',
+                              style: TextStyle(
+                                fontFamily: 'Centrion',
+                                color: Color(0xFFEFC77A),
+                                fontSize: 20,
                               ),
                             ),
-                            Obx(
-                              () => Container(
-                                  width: mWidth / 6,
-                                  decoration: BoxDecoration(
-                                    image: DecorationImage(
-                                      colorFilter: ColorFilter.mode(
-                                          Colors.black.withOpacity(0),
-                                          BlendMode.srcOver),
-                                      image: AssetImage(
-                                          "assets/images/bg_input.png"),
-                                      fit: BoxFit.fill,
+                          ),
+                          Container(
+                            width: mWidth / 1.8,
+                            decoration: BoxDecoration(
+                              border: Border(
+                                bottom: BorderSide(
+                                  color: Colors
+                                      .white, // Color of the bottom border
+                                  width: 2.0, // Width of the bottom border
+                                ),
+                              ),
+                            ),
+                            child: TextField(
+                              controller: controller.teamNameC,
+                              style: TextStyle(color: Colors.white),
+                              onChanged: (value) {
+                                controller.isButtonVisible(value.isNotEmpty);
+                              },
+                              decoration: InputDecoration(
+                                hintText: 'VOER HIER JE NAAM IN',
+                                hintStyle: TextStyle(color: Colors.white54),
+                                border: InputBorder.none,
+                                contentPadding: EdgeInsets.all(16.0),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                      SizedBox(
+                        height: 40,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.only(right: 60),
+                            child: Text(
+                              'SPELERS',
+                              style: TextStyle(
+                                fontFamily: 'Centrion',
+                                color: Color(0xFFEFC77A),
+                                fontSize: 20,
+                              ),
+                            ),
+                          ),
+                          Row(
+                            children: [
+                              InkWell(
+                                onTap: controller.subsPlayer,
+                                child: SvgPicture.asset(
+                                  "assets/icons/subtract.svg",
+                                ),
+                              ),
+                              Obx(
+                                () => Container(
+                                    width: mWidth / 6,
+                                    decoration: BoxDecoration(
+                                      border: Border.all(
+                                        color: Colors.white, // Border color
+                                        width: 2.0, // Border width
+                                      ),
+                                      borderRadius: BorderRadius.circular(
+                                          10.0), // Border radius
                                     ),
-                                  ),
-                                  margin: EdgeInsets.symmetric(horizontal: 20),
-                                  child: Center(
-                                    child: Padding(
-                                      padding: const EdgeInsets.all(12.0),
-                                      child: Text(
-                                        "${controller.totalPlayer}",
-                                        style: TextStyle(
-                                          fontSize: 18,
-                                          color: Colors.white,
+                                    margin:
+                                        EdgeInsets.symmetric(horizontal: 20),
+                                    child: Center(
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(12.0),
+                                        child: Text(
+                                          "${controller.totalPlayer}",
+                                          style: TextStyle(
+                                            fontSize: 18,
+                                            color: Colors.white,
+                                          ),
                                         ),
                                       ),
-                                    ),
-                                  )),
-                            ),
-                            InkWell(
-                              onTap: controller.addPlayer,
-                              child: SvgPicture.asset(
-                                "assets/icons/plus.svg",
+                                    )),
                               ),
-                            ),
-                          ],
-                        ),
-                      ],
+                              InkWell(
+                                onTap: controller.addPlayer,
+                                child: SvgPicture.asset(
+                                  "assets/icons/plus.svg",
+                                ),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Obx(() {
+                      return controller.isButtonVisible.value
+                          ? InkWell(
+                              onTap: () => controller.addTeamName(),
+                              child: Container(
+                                width: 200,
+                                height: 50,
+                                decoration: BoxDecoration(
+                                  image: DecorationImage(
+                                    image:
+                                        AssetImage("assets/images/bg_btn.png"),
+                                    fit: BoxFit.fill,
+                                  ),
+                                ),
+                                child: Row(
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Text(
+                                      "DOORGAAN",
+                                      style: TextStyle(
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.w700,
+                                        color: Colors.white,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            )
+                          : SizedBox();
+                    }),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    Obx(
+                      () => controller.hasReconnect.value
+                          ? InkWell(
+                              onTap: () => controller.reconnect(),
+                              child: Container(
+                                width: 200,
+                                height: 50,
+                                decoration: BoxDecoration(
+                                  image: DecorationImage(
+                                    image:
+                                        AssetImage("assets/images/bg_btn.png"),
+                                    fit: BoxFit.fill,
+                                  ),
+                                ),
+                                child: Row(
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Text(
+                                      "RECONNECT",
+                                      style: TextStyle(
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.w700,
+                                        color: Colors.white,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            )
+                          : Container(),
                     ),
                   ],
                 ),
-              ),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Obx(() {
-                    return controller.isButtonVisible.value
-                        ? InkWell(
-                            onTap: () => controller.addTeamName(),
-                            child: Container(
-                              width: 200,
-                              height: 50,
-                              decoration: BoxDecoration(
-                                image: DecorationImage(
-                                  image: AssetImage("assets/images/bg_btn.png"),
-                                  fit: BoxFit.fill,
-                                ),
-                              ),
-                              child: Row(
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Text(
-                                    "DOORGAAN",
-                                    style: TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.w700,
-                                      color: Colors.white,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          )
-                        : SizedBox();
-                  }),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  Obx(
-                    () => controller.hasReconnect.value
-                        ? InkWell(
-                            onTap: () => controller.reconnect(),
-                            child: Container(
-                              width: 200,
-                              height: 50,
-                              decoration: BoxDecoration(
-                                image: DecorationImage(
-                                  image: AssetImage("assets/images/bg_btn.png"),
-                                  fit: BoxFit.fill,
-                                ),
-                              ),
-                              child: Row(
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Text(
-                                    "RECONNECT",
-                                    style: TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.w700,
-                                      color: Colors.white,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          )
-                        : Container(),
-                  ),
-                ],
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),

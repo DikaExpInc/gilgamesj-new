@@ -6,8 +6,15 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
-class CreateTeamController extends GetxController {
-  //TODO: Implement CreateTeamController
+class CreateTeamController extends GetxController
+    with GetTickerProviderStateMixin {
+  late AnimationController _controller;
+
+  @override
+  void onClose() {
+    _controller.dispose();
+    super.onClose();
+  }
 
   final box = GetStorage();
   UserModel? user;
@@ -27,6 +34,10 @@ class CreateTeamController extends GetxController {
     } else {
       print("not logged in");
     }
+    _controller = AnimationController(
+      vsync: this,
+      duration: Duration(seconds: 20),
+    )..repeat();
   }
 
   Future<void> addTeamName() async {
@@ -40,6 +51,13 @@ class CreateTeamController extends GetxController {
       isLoading.value = false;
       CustomToast.errorToast('Error', 'you need to fill all form');
     }
+  }
+
+  Widget get rotatingImage {
+    return RotationTransition(
+      turns: _controller,
+      child: Image.asset('assets/images/isolation_mode.png'),
+    );
   }
 
   createTeamName() async {

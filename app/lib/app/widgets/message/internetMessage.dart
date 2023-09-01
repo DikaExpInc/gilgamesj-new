@@ -47,7 +47,7 @@ showInternetMessage(String message) {
                   height: 56,
                   alignment: Alignment.center,
                   child: Text(
-                    "Gagal",
+                    "Failed Connect to Server",
                     style: TextStyle(
                       fontFamily: 'Droid',
                       fontSize: 24,

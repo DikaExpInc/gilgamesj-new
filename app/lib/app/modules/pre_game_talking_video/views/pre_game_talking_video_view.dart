@@ -54,19 +54,78 @@ class PreGameTalkingVideoView extends GetView<PreGameTalkingVideoController> {
                   if (controller.hasNavigated.value &&
                       consoleMessage.message == "unityTargetFound marker 4") {
                     // Menandai bahwa navigasi sudah terjadi
-                    Future.delayed(Duration(seconds: 3), () {
-                      // Setelah menunggu 3 detik, pindah ke halaman lain jika belum pernah navigasi
-                      if (!controller.hasNavigated.value) {
-                        Get.offAllNamed(Routes.PRE_GAME_AUDIO, arguments: {
-                          "id": arguments['id']
-                        }); // Ganti dengan nama rute halaman tujuan
-                      }
-                    });
+
+                    // Future.delayed(Duration(seconds: 3), () {
+                    //   // Setelah menunggu 3 detik, pindah ke halaman lain jika belum pernah navigasi
+                    //   if (!controller.hasNavigated.value) {
+                    //     Get.offAllNamed(Routes.PRE_GAME_AUDIO, arguments: {
+                    //       "id": arguments['id']
+                    //     }); // Ganti dengan nama rute halaman tujuan
+                    //   }
+                    // });
                     controller.hasNavigated.value = false;
                   }
                 },
               ),
             ),
+            !controller.hasNavigated.value
+                ? Positioned(
+                    bottom: 0,
+                    child: Container(
+                      width: mWidth,
+                      height: mHeight / 6,
+                      decoration: BoxDecoration(
+                        image: DecorationImage(
+                          colorFilter: ColorFilter.mode(
+                              Colors.black.withOpacity(0), BlendMode.srcOver),
+                          image: AssetImage("assets/images/bg_bottom.png"),
+                          fit: BoxFit.fill,
+                        ),
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 40.0, vertical: 20.0),
+                        child: Center(
+                          child: Obx(
+                            () => InkWell(
+                              onTap: () => {
+                                Get.offAllNamed(
+                                  Routes.PRE_GAME_AUDIO,
+                                  arguments: {"id": arguments['id']},
+                                )
+                              },
+                              child: Container(
+                                width: 200,
+                                height: 50,
+                                decoration: BoxDecoration(
+                                  image: DecorationImage(
+                                    image:
+                                        AssetImage("assets/images/bg_btn.png"),
+                                    fit: BoxFit.fill,
+                                  ),
+                                ),
+                                child: Row(
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Text(
+                                      "DOORGAAN",
+                                      style: TextStyle(
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.w700,
+                                        color: Colors.white,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  )
+                : SizedBox(),
           ],
         ),
       ),

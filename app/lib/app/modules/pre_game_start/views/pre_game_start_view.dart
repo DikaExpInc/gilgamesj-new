@@ -1,4 +1,3 @@
-import 'package:app/app/modules/pre_game_start/views/widgets/glitch_text_animation.dart';
 import 'package:app/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 
@@ -29,8 +28,52 @@ class PreGameStartView extends GetView<PreGameStartController> {
             fit: BoxFit.cover,
           ),
         ),
-        child: Center(
-          child: GlitchTextAnimation(),
+        child: Padding(
+          padding: EdgeInsets.symmetric(horizontal: 20),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              Align(
+                alignment: Alignment.centerRight,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      "made by",
+                      style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.w400,
+                        color: Colors.white,
+                      ),
+                    ),
+                    Container(
+                      width: 100,
+                      height: 50,
+                      child: Image.asset('assets/images/logo_color.png'),
+                    ),
+                    Text(
+                      "www.expinc.io",
+                      style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.w400,
+                        color: Colors.white,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              Text(
+                'PRESS TO\nSTART',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 64,
+                  fontWeight: FontWeight.w900,
+                ),
+              ),
+              Container(),
+            ],
+          ),
         ),
       ),
     ));

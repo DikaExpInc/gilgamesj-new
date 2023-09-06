@@ -32,25 +32,54 @@ class PreGameTutorialView extends GetView<PreGameTutorialController> {
             Positioned(
               top: 80,
               left: 80,
-              child: InkWell(
-                onTap: () => {Get.toNamed(Routes.PRE_GAME_SPIRIT_REALM)},
-                child: SvgPicture.asset("assets/icons/finger.svg"),
+              child: GestureDetector(
+                onTapDown: (_) => controller.toggleTap(1),
+                onTapUp: (_) => controller.toggleTap(1, isTapped: false),
+                child: SvgPicture.asset(
+                  "assets/icons/finger.svg",
+                  width: 100,
+                  height: 100,
+                ),
               ),
             ),
             Positioned(
               top: 80,
               right: 80,
-              child: SvgPicture.asset("assets/icons/finger.svg"),
+              child: GestureDetector(
+                onTap: () => controller.toggleTap(2),
+                onTapUp: (_) => controller.toggleTap(2, isTapped: false),
+                child: SvgPicture.asset(
+                  "assets/icons/finger.svg",
+                  width: 100,
+                  height: 100,
+                ),
+              ),
             ),
             Positioned(
               bottom: 80,
               left: 80,
-              child: SvgPicture.asset("assets/icons/finger.svg"),
+              child: GestureDetector(
+                onTap: () => controller.toggleTap(3),
+                onTapUp: (_) => controller.toggleTap(3, isTapped: false),
+                child: SvgPicture.asset(
+                  "assets/icons/finger.svg",
+                  width: 100,
+                  height: 100,
+                ),
+              ),
             ),
             Positioned(
               bottom: 80,
               right: 80,
-              child: SvgPicture.asset("assets/icons/finger.svg"),
+              child: GestureDetector(
+                onTap: () => controller.toggleTap(4),
+                onTapUp: (_) => controller.toggleTap(4, isTapped: false),
+                child: SvgPicture.asset(
+                  "assets/icons/finger.svg",
+                  width: 100,
+                  height: 100,
+                ),
+              ),
             ),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 50),

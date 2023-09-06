@@ -20,63 +20,65 @@ Future<void> main() async {
       AppPages.INITIAL; // Rute default jika tidak ada data yang diisi
 
   // Cek apakah data team name telah diisi
-  String? teamName = GetStorage().read('teamName');
-  if (teamName != null && teamName.isNotEmpty) {
-    initialRoute =
-        Routes.VIEW_PLAYER; // Ganti rute jika total player telah diisi
+  initialRoute = Routes.PRE_GAME_ITEMS;
 
-    // Cek apakah data stage telah diisi
-    String? mode = GetStorage().read('mode');
-    if (mode != null && mode.isNotEmpty) {
-      switch (mode) {
-        case 'phone':
-          initialRoute = Routes.INTRODUCTION;
-          break;
-        case 'clap':
-          initialRoute = Routes.CLAP;
-          break;
-        case 'blank':
-          initialRoute = Routes.BLANK;
-          break;
-        case 'light':
-          initialRoute = Routes.LIGHT;
-          break;
-        case 'notification':
-          initialRoute = Routes.NOTIFICATION;
-          break;
-        case 'group':
-          initialRoute = Routes.GROUP;
-          break;
-        case 'performance':
-          initialRoute = Routes.PERFORMANCE;
-          break;
-        case "pre_game":
-          initialRoute = Routes.INTRO;
-          break;
-        case "intro":
-          initialRoute = Routes.PRE_GAME_SPLASH;
-          break;
-        case "go_to_theater":
-          initialRoute = Routes.GO_THEATER;
-          break;
-        default:
-      }
-    }
-  } else {
-    String? mode = GetStorage().read('mode');
-    if (mode != null && mode.isNotEmpty) {
-      switch (mode) {
-        case 'phone':
-          initialRoute = Routes.INTRODUCTION;
-          break;
-        default:
-          initialRoute = Routes.INTRO;
-          break;
-      }
-    } else {
-      initialRoute = Routes.PRE_GAME_SPLASH;
-    }
-  }
+  // String? teamName = GetStorage().read('teamName');
+  // if (teamName != null && teamName.isNotEmpty) {
+  //   initialRoute =
+  //       Routes.VIEW_PLAYER; // Ganti rute jika total player telah diisi
+
+  //   // Cek apakah data stage telah diisi
+  //   String? mode = GetStorage().read('mode');
+  //   if (mode != null && mode.isNotEmpty) {
+  //     switch (mode) {
+  //       case 'phone':
+  //         initialRoute = Routes.INTRODUCTION;
+  //         break;
+  //       case 'clap':
+  //         initialRoute = Routes.CLAP;
+  //         break;
+  //       case 'blank':
+  //         initialRoute = Routes.BLANK;
+  //         break;
+  //       case 'light':
+  //         initialRoute = Routes.LIGHT;
+  //         break;
+  //       case 'notification':
+  //         initialRoute = Routes.NOTIFICATION;
+  //         break;
+  //       case 'group':
+  //         initialRoute = Routes.GROUP;
+  //         break;
+  //       case 'performance':
+  //         initialRoute = Routes.PERFORMANCE;
+  //         break;
+  //       case "pre_game":
+  //         initialRoute = Routes.INTRO;
+  //         break;
+  //       case "intro":
+  //         initialRoute = Routes.PRE_GAME_SPLASH;
+  //         break;
+  //       case "go_to_theater":
+  //         initialRoute = Routes.GO_THEATER;
+  //         break;
+  //       default:
+  //     }
+  //   }
+  // } else {
+  //   String? mode = GetStorage().read('mode');
+  //   if (mode != null && mode.isNotEmpty) {
+  //     switch (mode) {
+  //       case 'phone':
+  //         initialRoute = Routes.INTRODUCTION;
+  //         break;
+  //       default:
+  //         initialRoute = Routes.INTRO;
+  //         break;
+  //     }
+  //   } else {
+  //     initialRoute = Routes.PRE_GAME_SPLASH;
+  //   }
+  // }
 
   runApp(
     GetMaterialApp(

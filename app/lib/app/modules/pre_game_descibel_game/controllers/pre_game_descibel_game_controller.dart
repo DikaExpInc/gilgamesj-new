@@ -8,7 +8,8 @@ class PreGameDescibelGameController extends GetxController {
   //TODO: Implement PreGameDescibelGameController
 
   RxBool isRecording = false.obs;
-  NoiseReading? latestReading;
+  Rx<NoiseReading?> latestReading = Rx<NoiseReading?>(null);
+  // NoiseReading? latestReading;
   StreamSubscription<NoiseReading>? noiseSubscription;
   NoiseMeter? noiseMeter;
 
@@ -33,7 +34,7 @@ class PreGameDescibelGameController extends GetxController {
   }
 
   void onData(NoiseReading noiseReading) {
-    latestReading = noiseReading;
+    latestReading.value = noiseReading;
     if (!isRecording.value) isRecording.value = true;
   }
 

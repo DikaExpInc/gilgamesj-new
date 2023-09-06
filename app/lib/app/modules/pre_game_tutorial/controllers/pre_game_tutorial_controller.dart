@@ -1,23 +1,23 @@
+import 'package:app/app/routes/app_pages.dart';
 import 'package:get/get.dart';
 
 class PreGameTutorialController extends GetxController {
-  //TODO: Implement PreGameTutorialController
+  final RxList<bool> tappedList = RxList<bool>.of([false, false, false, false]);
 
-  final count = 0.obs;
   @override
   void onInit() {
+    ever(tappedList, (_) {
+      if (isAllTapped) {
+        Get.toNamed(Routes.PRE_GAME_SPIRIT_REALM);
+      }
+    });
     super.onInit();
   }
 
-  @override
-  void onReady() {
-    super.onReady();
-  }
+  bool get isAllTapped =>
+      tappedList[0] && tappedList[1] && tappedList[2] && tappedList[3];
 
-  @override
-  void onClose() {
-    super.onClose();
+  void toggleTap(int index, {bool isTapped = true}) {
+    tappedList[index - 1] = isTapped;
   }
-
-  void increment() => count.value++;
 }

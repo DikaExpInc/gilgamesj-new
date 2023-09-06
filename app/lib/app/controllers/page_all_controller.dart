@@ -130,6 +130,18 @@ class PageAllController extends GetxController {
                   changePage(10, setting!.page!);
                 }
                 break;
+              case "game_descibel":
+                if (mode != "game_descibel") {
+                  GetStorage().write('mode', "game_descibel");
+                  changePage(11, setting!.page!);
+                }
+                break;
+              case "game_music":
+                if (mode != "game_music") {
+                  GetStorage().write('mode', "game_music");
+                  changePage(12, setting!.page!);
+                }
+                break;
               default:
                 if (mode != "intro") {
                   GetStorage().write('mode', "phone");
@@ -189,6 +201,12 @@ class PageAllController extends GetxController {
       case 10:
         Get.offAllNamed(Routes.PRE_GAME_SPLASH);
         break;
+      case 11:
+        Get.offAllNamed(Routes.PRE_GAME_DESCIBEL_GAME);
+        break;
+      case 11:
+        Get.offAllNamed(Routes.PRE_GAME_MUSIC_GAME);
+        break;
       default:
         Get.offAllNamed(Routes.START);
         break;
@@ -199,9 +217,9 @@ class PageAllController extends GetxController {
   void onInit() {
     super.onInit();
     // membuat langganan
-    sub = settingStream.listen((event) {
-      fetchDataFromApi();
-    });
+    // sub = settingStream.listen((event) {
+    //   fetchDataFromApi();
+    // });
   }
 
   void showBonusDialog() {

@@ -1,11 +1,6 @@
 import React, { useEffect, useState } from 'react'
-import { Card, Table, Input, Button, Menu, message, Modal } from 'antd'
-import {
-  EyeOutlined,
-  DeleteOutlined,
-  SearchOutlined,
-  PlusCircleOutlined,
-} from '@ant-design/icons'
+import { Card, Table, Input, Menu, message, Modal } from 'antd'
+import { EyeOutlined, DeleteOutlined, SearchOutlined } from '@ant-design/icons'
 import EllipsisDropdown from 'components/shared-components/EllipsisDropdown'
 import Flex from 'components/shared-components/Flex'
 import { useHistory } from 'react-router-dom'
@@ -13,7 +8,7 @@ import utils from 'utils'
 import { useDispatch, useSelector } from 'react-redux'
 import { getAllUser } from 'redux/actions'
 import { ExclamationCircleOutlined } from '@ant-design/icons'
-import { colorPrimary } from 'configs/AppConfig'
+import userService from 'services/UserService'
 
 const UserList = () => {
   let history = useHistory()
@@ -24,19 +19,20 @@ const UserList = () => {
   const [selectedRowKeys, setSelectedRowKeys] = useState([])
 
   useEffect(() => {
-    // FirebaseService.getUser()
-    //   .then((querySnapshot) => {
-    //     let listData = []
-    //     querySnapshot.forEach((doc) => {
-    //       listData.push({ ...doc.data(), id: doc.id })
-    //     })
-    //     dispatch(getAllUser(listData))
-    //     setList(listData)
-    //   })
-    //   .catch((error) => {
-    //     console.log('Error getting document:', error)
-    //   })
-  }, [])
+    userService
+      .getUserList()
+      .then((querySnapshot) => {
+        let listData = []
+        querySnapshot.data.forEach((doc) => {
+          listData.push({ ...doc, id: doc._id })
+        })
+        dispatch(getAllUser(listData))
+        setList(listData)
+      })
+      .catch((error) => {
+        console.log('Error getting document:', error)
+      })
+  }, [dispatch])
 
   const confirm = (e) => {
     Modal.confirm({
@@ -76,28 +72,22 @@ const UserList = () => {
       </Menu.Item>
     </Menu>
   )
-
-  const addUser = () => {
-    history.push(`/app/users/add-user`)
-  }
-
   const viewDetails = (row) => {
     history.push(`/app/users/edit-user/${row.id}`)
   }
-
   const deleteRow = (row) => {
     const objKey = 'id'
     let data = list
     if (selectedRows.length > 1) {
       selectedRows.forEach((elm) => {
-        // FirebaseService.deleteUser(elm.id)
-        data = utils.deleteArrayRow(data, objKey, elm.id)
+        userService.deleteUser(elm._id)
+        data = utils.deleteArrayRow(data, objKey, elm._id)
         setList(data)
         setSelectedRows([])
       })
     } else {
-      // FirebaseService.deleteUser(row.id)
-      data = utils.deleteArrayRow(data, objKey, row.id)
+      userService.deleteUser(row._id)
+      data = utils.deleteArrayRow(data, objKey, row._id)
       setList(data)
     }
   }
@@ -105,8 +95,8 @@ const UserList = () => {
   const tableColumns = [
     {
       title: 'Name',
-      dataIndex: 'name',
-      sorter: (a, b) => utils.antdTableSorter(a, b, 'name'),
+      dataIndex: 'username',
+      sorter: (a, b) => utils.antdTableSorter(a, b, 'username'),
     },
     {
       title: 'Group Code',

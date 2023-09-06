@@ -1,4 +1,3 @@
-import 'package:app/app/modules/pre_game_menu/views/widgets/shaking_text_animation.dart';
 import 'package:app/app/routes/app_pages.dart';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
@@ -51,18 +50,46 @@ class PreGameMenuView extends GetView<PreGameMenuController> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
                       Container(),
+                      // Center(
+                      //     child:
+                      //         Image.asset('assets/images/logo-pre-game.png')),
                       Center(
-                          child:
-                              Image.asset('assets/images/logo-pre-game.png')),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              'Koning',
+                              style: TextStyle(
+                                color: Color(0xffFFD954),
+                                fontSize: 68,
+                              ),
+                            ),
+                            Text(
+                              'Gilgamesj',
+                              style: TextStyle(
+                                color: Color(0xffFFD954),
+                                fontSize: 128,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          ShakingTextAnimation(
-                            url: Routes.PRE_GAME_TUTORIAL,
-                            initialText: 'NEW GAME',
-                            image: 'assets/gif/new-game.gif',
-                            duration: 1,
-                            width: 200,
+                          InkWell(
+                            onTap: () {
+                              Get.toNamed(Routes.PRE_GAME_TUTORIAL);
+                            },
+                            child: Text(
+                              'NEW GAME',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 38,
+                                fontWeight: FontWeight.w800,
+                              ),
+                            ),
                           ),
                           SizedBox(
                             height: 40,
@@ -76,23 +103,30 @@ class PreGameMenuView extends GetView<PreGameMenuController> {
                               await Future.delayed(Duration(seconds: 1));
                               controller.isGlitch.value = false;
                             },
-                            child: ShakingTextAnimation(
-                              url: '',
-                              initialText: 'CONTINUE',
-                              image: 'assets/gif/continue.gif',
-                              duration: 2,
-                              width: 190,
+                            child: Text(
+                              'CONTINUE',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 38,
+                                fontWeight: FontWeight.w800,
+                              ),
                             ),
                           ),
                           SizedBox(
                             height: 40,
                           ),
-                          ShakingTextAnimation(
-                            url: Routes.PRE_GAME_CREDIT,
-                            initialText: 'CREDITS',
-                            image: 'assets/gif/credit.gif',
-                            duration: 4,
-                            width: 150,
+                          InkWell(
+                            onTap: () {
+                              Get.toNamed(Routes.PRE_GAME_CREDIT);
+                            },
+                            child: Text(
+                              'CREDITS',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 38,
+                                fontWeight: FontWeight.w800,
+                              ),
+                            ),
                           ),
                         ],
                       ),

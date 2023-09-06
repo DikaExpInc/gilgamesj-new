@@ -25,6 +25,7 @@ dependencies:
   intl: ^0.17.0
   introduction_screen: ^3.1.4
   latlong2: ^0.8.2
+  liquid_progress_indicator_v2: ^0.5.0
   maps_launcher: ^2.2.0
   noise_meter: ^4.0.1
   permission_handler: ^10.4.3

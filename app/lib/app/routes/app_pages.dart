@@ -327,17 +327,17 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.PRE_GAME_MUSIC_GAME,
-      page: () => const PreGameMusicGameView(),
+      page: () => PreGameMusicGameView(),
       binding: PreGameMusicGameBinding(),
     ),
     GetPage(
       name: _Paths.PRE_GAME_DESCIBEL_GAME,
-      page: () => const PreGameDescibelGameView(),
+      page: () => PreGameDescibelGameView(),
       binding: PreGameDescibelGameBinding(),
     ),
     GetPage(
       name: _Paths.PRE_GAME_SHAKE_GAME,
-      page: () => const PreGameShakeGameView(),
+      page: () => PreGameShakeGameView(),
       binding: PreGameShakeGameBinding(),
     ),
     GetPage(

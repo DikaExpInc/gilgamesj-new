@@ -3,6 +3,7 @@ import 'package:app/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 
 import '../controllers/pre_game_spirit_realm_controller.dart';
 
@@ -32,30 +33,73 @@ class PreGameSpiritRealmView extends GetView<PreGameSpiritRealmController> {
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              controller.rotatingImage,
-              DefaultTextStyle(
-                style: const TextStyle(
-                  fontFamily: 'Centrion',
-                  fontSize: 30,
-                  color: Colors.white,
-                  fontWeight: FontWeight.normal,
-                ),
-                child: AnimatedTextKit(
-                  animatedTexts: [
-                    TyperAnimatedText('It is not enough to do your best,'),
-                    TyperAnimatedText('you must know what to do,'),
-                    TyperAnimatedText('and then do your best'),
-                    TyperAnimatedText('It is not enough to do your best,'),
-                    TyperAnimatedText('you must know what to do,'),
-                    TyperAnimatedText('and then do your best'),
-                  ],
-                  isRepeatingAnimation: false,
-                  onFinished: () {
-                    // Navigate to the next page here
-                    Get.toNamed(Routes
-                        .CREATE_TEAM); // Replace with your navigation code
-                  },
-                ),
+              Stack(
+                children: [
+                  controller.rotatingImage,
+                  Positioned(
+                    right: 10,
+                    top: 10,
+                    child: Text(
+                      "${GetStorage().read('played_name_${GetStorage().read('played_number')}')}",
+                      style: TextStyle(
+                        fontFamily: 'Centrion',
+                        fontSize: 42,
+                        color: Colors.white,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              Column(
+                children: [
+                  DefaultTextStyle(
+                    style: const TextStyle(
+                      fontFamily: 'Centrion',
+                      fontSize: 30,
+                      color: Colors.white,
+                      fontWeight: FontWeight.normal,
+                    ),
+                    child: AnimatedTextKit(
+                      animatedTexts: [
+                        TyperAnimatedText('It is not enough to do your best,'),
+                        TyperAnimatedText('you must know what to do,'),
+                        TyperAnimatedText('and then do your best'),
+                        TyperAnimatedText('It is not enough to do your best,'),
+                        TyperAnimatedText('you must know what to do,'),
+                        TyperAnimatedText('and then do your best'),
+                        TyperAnimatedText(''),
+                      ],
+                      isRepeatingAnimation: false,
+                      onFinished: () {
+                        // Navigate to the next page here
+                        controller.isFinished.value = true;
+                      },
+                    ),
+                  ),
+                  SizedBox(
+                    height: 60,
+                  ),
+                  Obx(() {
+                    return controller.isFinished.value
+                        ? InkWell(
+                            onTap: () => Get.toNamed(Routes.PRE_GAME_ITEMS_AR),
+                            child: Text(
+                              'Doorgaan',
+                              style: TextStyle(
+                                fontFamily: 'Centrion',
+                                fontSize: 42,
+                                color: Colors.white,
+                                fontWeight: FontWeight.w500,
+                              ),
+                            ),
+                          )
+                        : SizedBox();
+                  }),
+                  SizedBox(
+                    height: 60,
+                  ),
+                ],
               ),
             ],
           ),

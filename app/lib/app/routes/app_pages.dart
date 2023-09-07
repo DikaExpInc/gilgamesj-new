@@ -70,6 +70,8 @@ import '../modules/pre_game_descibel_game/bindings/pre_game_descibel_game_bindin
 import '../modules/pre_game_descibel_game/views/pre_game_descibel_game_view.dart';
 import '../modules/pre_game_items/bindings/pre_game_items_binding.dart';
 import '../modules/pre_game_items/views/pre_game_items_view.dart';
+import '../modules/pre_game_items_ar/bindings/pre_game_items_ar_binding.dart';
+import '../modules/pre_game_items_ar/views/pre_game_items_ar_view.dart';
 import '../modules/pre_game_menu/bindings/pre_game_menu_binding.dart';
 import '../modules/pre_game_menu/views/pre_game_menu_view.dart';
 import '../modules/pre_game_music_game/bindings/pre_game_music_game_binding.dart';
@@ -344,6 +346,11 @@ class AppPages {
       name: _Paths.PRE_GAME_AUDIO,
       page: () => PreGameAudioView(),
       binding: PreGameAudioBinding(),
+    ),
+    GetPage(
+      name: _Paths.PRE_GAME_ITEMS_AR,
+      page: () => PreGameItemsArView(),
+      binding: PreGameItemsArBinding(),
     ),
   ];
 }

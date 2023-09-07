@@ -1,22 +1,38 @@
+import 'package:app/app/routes/app_pages.dart';
+import 'package:app/app/widgets/dialog/items_dialog.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
-import 'package:get_storage/get_storage.dart';
 
 class PreGameItemsController extends GetxController {
-  //TODO: Implement PreGameItemsController
   RxInt selectedItemIndex = 0.obs;
+
+  final RxList<bool> tappedList = RxList<bool>.of([false, false, false, false]);
 
   @override
   void onInit() {
+    ever(tappedList, (_) {
+      if (isAllTapped) {
+        Get.toNamed(Routes.PRE_GAME_SPIRIT_REALM);
+      }
+    });
     super.onInit();
   }
 
-  @override
-  void onReady() {
-    super.onReady();
+  bool get isAllTapped =>
+      tappedList[0] && tappedList[1] && tappedList[2] && tappedList[3];
+
+  void toggleTap(int index, {bool isTapped = true}) {
+    tappedList[index - 1] = isTapped;
   }
 
-  @override
-  void onClose() {
-    super.onClose();
+  void showItemDialog(
+      {String image = '', required String title, required String description}) {
+    Get.dialog(
+      ItemsDialog(
+        image: image,
+        title: title,
+        description: description,
+      ),
+    );
   }
 }

@@ -53,7 +53,11 @@ Future<void> main() async {
           initialRoute = Routes.PERFORMANCE;
           break;
         case "pre_game":
-          initialRoute = Routes.INTRO;
+          // initialRoute = Routes.INTRO;
+          initialRoute = Routes.PRE_GAME_START;
+          break;
+        case "item":
+          initialRoute = Routes.PRE_GAME_ITEMS;
           break;
         case "intro":
           initialRoute = Routes.PRE_GAME_SPLASH;
@@ -78,11 +82,11 @@ Future<void> main() async {
           initialRoute = Routes.INTRODUCTION;
           break;
         default:
-          initialRoute = Routes.INTRO;
+          initialRoute = Routes.PRE_GAME_START;
           break;
       }
     } else {
-      initialRoute = Routes.PRE_GAME_SPLASH;
+      initialRoute = Routes.PRE_GAME_START;
     }
   }
 

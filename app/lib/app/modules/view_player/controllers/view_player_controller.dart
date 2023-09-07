@@ -31,9 +31,14 @@ class ViewPlayerController extends GetxController {
     }
 
     box.write('totalPlayer', playerListModel?.items?.length.toString());
-    box.write('mode', "intro");
+    playerListModel?.items?.asMap().entries.map((entry) {
+      final playerName = playerNameControllers[entry.key].text;
+      box.write('played_name_${entry.key}', playerName);
+    }).toList();
+    box.write('played_number', 0);
+    box.write('mode', "item");
 
-    Get.toNamed(Routes.INTRO);
+    Get.toNamed(Routes.PRE_GAME_ITEMS);
   }
 
   @override
@@ -52,7 +57,7 @@ class ViewPlayerController extends GetxController {
       // Inisialisasi data pemain dan TextEditingController
       for (var i = 0; i < playerListModel!.items!.length; i++) {
         playerNameControllers.add(TextEditingController());
-        playerNameControllers[i].text = "SPELER ${i + 1}";
+        playerNameControllers[i].text = "${box.read('teamName')} ${i + 1}";
       }
     } else if (playerListModel!.statusCode == 204) {
       print("Empty");

@@ -6,6 +6,7 @@ class PreGameSpiritRealmController extends GetxController
     with GetTickerProviderStateMixin {
   late AnimationController _controller;
   late AnimationController _controllerParticle;
+  RxBool isFinished = false.obs;
 
   @override
   void onInit() {

@@ -34,8 +34,7 @@ class PlayerWidget extends GetView<ViewPlayerController> {
             child: Text(
               "SPELER ${index + 1}",
               style: TextStyle(
-                fontFamily: 'Centrion',
-                color: Color(0xffEFC77A),
+                color: Color(0xff79684B),
               ),
             ),
           ),
@@ -47,7 +46,7 @@ class PlayerWidget extends GetView<ViewPlayerController> {
             decoration: BoxDecoration(
               border: Border(
                 bottom: BorderSide(
-                  color: Colors.white, // Color of the bottom border
+                  color: Colors.black, // Color of the bottom border
                   width: 2.0, // Width of the bottom border
                 ),
               ),
@@ -60,7 +59,7 @@ class PlayerWidget extends GetView<ViewPlayerController> {
                   width: mWidth / 3,
                   child: TextField(
                     controller: nameController,
-                    style: TextStyle(color: Colors.white),
+                    style: TextStyle(color: Colors.black),
                     decoration: InputDecoration(
                       hintText: 'VOER HIER JE NAAM IN',
                       hintStyle: TextStyle(color: Colors.white54),
@@ -78,7 +77,7 @@ class PlayerWidget extends GetView<ViewPlayerController> {
                     softWrap: true,
                     style: TextStyle(
                       fontSize: 18,
-                      color: Colors.white,
+                      color: Colors.black,
                     ),
                   ),
                 ),

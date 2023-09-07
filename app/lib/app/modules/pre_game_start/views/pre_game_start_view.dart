@@ -23,7 +23,7 @@ class PreGameStartView extends GetView<PreGameStartController> {
         decoration: BoxDecoration(
           image: DecorationImage(
             colorFilter: ColorFilter.mode(
-                Colors.black.withOpacity(0.2), BlendMode.srcOver),
+                Colors.black.withOpacity(0.0), BlendMode.srcOver),
             image: AssetImage("assets/images/background3.png"),
             fit: BoxFit.cover,
           ),
@@ -43,7 +43,7 @@ class PreGameStartView extends GetView<PreGameStartController> {
                       style: TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.w400,
-                        color: Colors.white,
+                        color: Colors.black,
                       ),
                     ),
                     Container(
@@ -56,7 +56,7 @@ class PreGameStartView extends GetView<PreGameStartController> {
                       style: TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.w400,
-                        color: Colors.white,
+                        color: Colors.black,
                       ),
                     ),
                   ],
@@ -66,7 +66,7 @@ class PreGameStartView extends GetView<PreGameStartController> {
                 'PRESS TO\nSTART',
                 textAlign: TextAlign.center,
                 style: TextStyle(
-                  color: Colors.white,
+                  color: Colors.black,
                   fontSize: 64,
                   fontWeight: FontWeight.w900,
                 ),

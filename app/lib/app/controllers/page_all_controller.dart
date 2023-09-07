@@ -56,6 +56,7 @@ class PageAllController extends GetxController {
 
   void fetchDataFromApi() async {
     // Cek apakah data team name telah diisi
+    // GetStorage().write('mode', "test");
     String? teamName = GetStorage().read('teamName');
     if (teamName != null && teamName.isNotEmpty) {
       String? totalPlayer = GetStorage().read('totalPlayer');
@@ -71,81 +72,86 @@ class PageAllController extends GetxController {
             String? mode = GetStorage().read('mode');
             switch (setting!.page) {
               case "phone":
-                if (mode != "phone") {
-                  GetStorage().write('mode', "phone");
-                  changePage(1, setting!.page!);
+                if (mode == "phone") {
+                  // GetStorage().write('mode', "phone");
+                  if (GetStorage().read('stage_id') != null &&
+                      GetStorage().read('stage_id').isNotEmpty) {
+                    Get.offAllNamed(Routes.START);
+                  } else {
+                    Get.offAllNamed(Routes.INTRODUCTION);
+                  }
                 }
                 break;
               case "clap":
-                if (mode != "clap") {
-                  GetStorage().write('mode', "clap");
-                  changePage(2, setting!.page!);
+                if (mode == "clap") {
+                  Get.offAllNamed(Routes.CLAP);
                 }
                 break;
               case "blank":
-                if (mode != "blank") {
-                  GetStorage().write('mode', "blank");
-                  changePage(3, setting!.page!);
+                if (mode == "blank") {
+                  Get.offAllNamed(Routes.BLANK);
                 }
                 break;
               case "light":
-                if (mode != "light") {
-                  GetStorage().write('mode', "light");
-                  changePage(4, setting!.page!);
+                if (mode == "light") {
+                  Get.offAllNamed(Routes.LIGHT);
                 }
                 break;
               case "notification":
-                if (mode != "notification") {
-                  GetStorage().write('mode', "notification");
-                  changePage(5, setting!.page!);
+                if (mode == "notification") {
+                  Get.offAllNamed(Routes.NOTIFICATION);
                 }
                 break;
               case "group":
-                if (mode != "group") {
-                  GetStorage().write('mode', "group");
-                  changePage(6, setting!.page!);
+                if (mode == "group") {
+                  Get.offAllNamed(Routes.GROUP);
                 }
                 break;
               case "performance":
-                if (mode != "performance") {
-                  GetStorage().write('mode', "performance");
-                  changePage(7, setting!.page!);
+                if (mode == "performance") {
+                  Get.offAllNamed(Routes.PERFORMANCE);
                 }
                 break;
               case "pre_game":
-                if (mode != "pre_game") {
-                  GetStorage().write('mode', "pre_game");
-                  changePage(8, setting!.page!);
+                if (mode == "pre_game") {
+                  Get.offAllNamed(Routes.PRE_GAME_START);
                 }
                 break;
               case "go_to_theater":
-                if (mode != "go_to_theater") {
-                  GetStorage().write('mode', "go_to_theater");
-                  changePage(9, setting!.page!);
+                if (mode == "go_to_theater") {
+                  Get.offAllNamed(Routes.GO_THEATER);
                 }
                 break;
               case "intro":
-                if (mode != "intro") {
-                  GetStorage().write('mode', "intro");
-                  changePage(10, setting!.page!);
+                if (mode == "intro") {
+                  Get.offAllNamed(Routes.PRE_GAME_SPLASH);
+                }
+                break;
+              case "item":
+                if (mode == "item") {
+                  Get.offAllNamed(Routes.PRE_GAME_ITEMS);
                 }
                 break;
               case "game_descibel":
-                if (mode != "game_descibel") {
-                  GetStorage().write('mode', "game_descibel");
-                  changePage(11, setting!.page!);
+                if (mode == "game_descibel") {
+                  Get.offAllNamed(Routes.PRE_GAME_DESCIBEL_GAME);
                 }
                 break;
               case "game_music":
                 if (mode != "game_music") {
                   GetStorage().write('mode', "game_music");
-                  changePage(12, setting!.page!);
+                  Get.offAllNamed(Routes.PRE_GAME_MUSIC_GAME);
                 }
                 break;
               default:
                 if (mode != "intro") {
                   GetStorage().write('mode', "phone");
-                  changePage(1, setting!.page!);
+                  if (GetStorage().read('stage_id') != null &&
+                      GetStorage().read('stage_id').isNotEmpty) {
+                    Get.offAllNamed(Routes.START);
+                  } else {
+                    Get.offAllNamed(Routes.INTRODUCTION);
+                  }
                 }
                 break;
             }
@@ -162,64 +168,13 @@ class PageAllController extends GetxController {
     }
   }
 
-  void changePage(int index, String paging) async {
-    currentPage.value = paging;
-    pageIndex.value = index;
-    switch (index) {
-      case 1:
-        if (GetStorage().read('stage_id') != null &&
-            GetStorage().read('stage_id').isNotEmpty) {
-          Get.offAllNamed(Routes.START);
-        } else {
-          Get.offAllNamed(Routes.INTRODUCTION);
-        }
-        break;
-      case 2:
-        Get.offAllNamed(Routes.CLAP);
-        break;
-      case 3:
-        Get.offAllNamed(Routes.BLANK);
-        break;
-      case 4:
-        Get.offAllNamed(Routes.LIGHT);
-        break;
-      case 5:
-        Get.offAllNamed(Routes.NOTIFICATION);
-        break;
-      case 6:
-        Get.offAllNamed(Routes.GROUP);
-        break;
-      case 7:
-        Get.offAllNamed(Routes.PERFORMANCE);
-        break;
-      case 8:
-        Get.offAllNamed(Routes.INTRO);
-        break;
-      case 9:
-        Get.offAllNamed(Routes.GO_THEATER);
-        break;
-      case 10:
-        Get.offAllNamed(Routes.PRE_GAME_SPLASH);
-        break;
-      case 11:
-        Get.offAllNamed(Routes.PRE_GAME_DESCIBEL_GAME);
-        break;
-      case 11:
-        Get.offAllNamed(Routes.PRE_GAME_MUSIC_GAME);
-        break;
-      default:
-        Get.offAllNamed(Routes.START);
-        break;
-    }
-  }
-
   @override
   void onInit() {
     super.onInit();
     // membuat langganan
-    // sub = settingStream.listen((event) {
-    //   fetchDataFromApi();
-    // });
+    sub = settingStream.listen((event) {
+      fetchDataFromApi();
+    });
   }
 
   void showBonusDialog() {

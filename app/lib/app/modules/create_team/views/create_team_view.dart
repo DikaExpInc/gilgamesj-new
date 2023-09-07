@@ -21,8 +21,8 @@ class CreateTeamView extends GetView<CreateTeamController> {
           decoration: BoxDecoration(
             image: DecorationImage(
               colorFilter: ColorFilter.mode(
-                  Colors.black.withOpacity(0.3), BlendMode.srcOver),
-              image: AssetImage("assets/images/background.png"),
+                  Colors.black.withOpacity(0.0), BlendMode.srcOver),
+              image: AssetImage("assets/images/background3.png"),
               fit: BoxFit.cover,
             ),
           ),
@@ -34,13 +34,32 @@ class CreateTeamView extends GetView<CreateTeamController> {
                 Text(
                   "BEDENK EEN TEAM NAAM",
                   style: TextStyle(
-                    fontFamily: 'Centrion',
                     fontSize: 26,
                     fontWeight: FontWeight.w700,
-                    color: Colors.white,
+                    color: Colors.black,
                   ),
                 ),
-                controller.rotatingImage,
+                // controller.rotatingImage,
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'Schatten uit het',
+                      style: TextStyle(
+                        color: Color(0xff79684B),
+                        fontSize: 68,
+                      ),
+                    ),
+                    Text(
+                      'Oosten',
+                      style: TextStyle(
+                        color: Color(0xff79684B),
+                        fontSize: 128,
+                      ),
+                    ),
+                  ],
+                ),
                 Padding(
                   padding: const EdgeInsets.all(40.0),
                   child: Column(
@@ -53,8 +72,7 @@ class CreateTeamView extends GetView<CreateTeamController> {
                             child: Text(
                               'TEAM NAAM',
                               style: TextStyle(
-                                fontFamily: 'Centrion',
-                                color: Color(0xFFEFC77A),
+                                color: Color(0xFF79684B),
                                 fontSize: 20,
                               ),
                             ),
@@ -65,14 +83,14 @@ class CreateTeamView extends GetView<CreateTeamController> {
                               border: Border(
                                 bottom: BorderSide(
                                   color: Colors
-                                      .white, // Color of the bottom border
+                                      .black, // Color of the bottom border
                                   width: 2.0, // Width of the bottom border
                                 ),
                               ),
                             ),
                             child: TextField(
                               controller: controller.teamNameC,
-                              style: TextStyle(color: Colors.white),
+                              style: TextStyle(color: Colors.black),
                               onChanged: (value) {
                                 controller.isButtonVisible(value.isNotEmpty);
                               },
@@ -97,8 +115,7 @@ class CreateTeamView extends GetView<CreateTeamController> {
                             child: Text(
                               'SPELERS',
                               style: TextStyle(
-                                fontFamily: 'Centrion',
-                                color: Color(0xFFEFC77A),
+                                color: Color(0xFF79684B),
                                 fontSize: 20,
                               ),
                             ),
@@ -116,7 +133,7 @@ class CreateTeamView extends GetView<CreateTeamController> {
                                     width: mWidth / 6,
                                     decoration: BoxDecoration(
                                       border: Border.all(
-                                        color: Colors.white, // Border color
+                                        color: Colors.black, // Border color
                                         width: 2.0, // Border width
                                       ),
                                       borderRadius: BorderRadius.circular(
@@ -131,7 +148,7 @@ class CreateTeamView extends GetView<CreateTeamController> {
                                           "${controller.totalPlayer}",
                                           style: TextStyle(
                                             fontSize: 18,
-                                            color: Colors.white,
+                                            color: Colors.black,
                                           ),
                                         ),
                                       ),
@@ -211,7 +228,7 @@ class CreateTeamView extends GetView<CreateTeamController> {
                                       style: TextStyle(
                                         fontSize: 16,
                                         fontWeight: FontWeight.w700,
-                                        color: Colors.white,
+                                        color: Colors.black,
                                       ),
                                     ),
                                   ],

@@ -23,7 +23,7 @@ class ViewPlayerView extends GetView<ViewPlayerController> {
         width: mWidth,
         decoration: BoxDecoration(
           image: DecorationImage(
-            image: AssetImage("assets/images/background2.png"),
+            image: AssetImage("assets/images/background4.png"),
             fit: BoxFit.cover,
           ),
         ),
@@ -63,9 +63,8 @@ class ViewPlayerView extends GetView<ViewPlayerController> {
                       "WELKOM (${controller.box.read('teamName')})",
                       style: TextStyle(
                         fontSize: 48,
-                        color: Colors.white,
+                        color: Colors.black,
                         fontWeight: FontWeight.w700,
-                        fontFamily: 'Centrion',
                       ),
                     ),
                     Padding(
@@ -73,7 +72,7 @@ class ViewPlayerView extends GetView<ViewPlayerController> {
                       child: Container(
                         height: 3.0,
                         width: 80.0,
-                        color: Colors.white,
+                        color: Colors.black,
                       ),
                     ),
                     SizedBox(
@@ -83,7 +82,7 @@ class ViewPlayerView extends GetView<ViewPlayerController> {
                       "Voer je namen in.",
                       style: TextStyle(
                         fontSize: 20,
-                        color: Colors.white,
+                        color: Colors.black,
                         fontWeight: FontWeight.w700,
                       ),
                     ),

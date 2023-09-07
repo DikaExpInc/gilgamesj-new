@@ -38,7 +38,7 @@ class ItemsDialog extends GetView<PageAllController> {
           children: [
             Image.asset(
               "${image}",
-              height: 200,
+              height: 100,
             ),
             SizedBox(height: 16.0),
             Text(

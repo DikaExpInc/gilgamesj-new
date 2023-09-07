@@ -1,23 +1,35 @@
 import 'package:get/get.dart';
+import 'package:shake/shake.dart';
+import 'package:video_player/video_player.dart';
 
 class PreGameShakeGameController extends GetxController {
-  //TODO: Implement PreGameShakeGameController
+  ShakeDetector? shakeDetector;
+  VideoPlayerController? videocontroller;
+  RxBool isShaking = false.obs;
+  RxBool isDone = false.obs;
 
-  final count = 0.obs;
   @override
   void onInit() {
     super.onInit();
-  }
+    shakeDetector = ShakeDetector.autoStart(onPhoneShake: () {
+      if (!isShaking.value) {
+        videocontroller!.play();
+        isShaking.value = true;
+        Future.delayed(Duration(seconds: 2), () {
+          videocontroller!.pause();
+          isShaking.value = false;
+        });
+      }
+    });
+    videocontroller = VideoPlayerController.asset('assets/videos/sand.mp4');
+    videocontroller!.addListener(() {
+      if (videocontroller!.value.position >= videocontroller!.value.duration) {
+        isDone.value = true;
+      }
+    });
 
-  @override
-  void onReady() {
-    super.onReady();
+    videocontroller!.initialize().then((_) {
+      update();
+    });
   }
-
-  @override
-  void onClose() {
-    super.onClose();
-  }
-
-  void increment() => count.value++;
 }

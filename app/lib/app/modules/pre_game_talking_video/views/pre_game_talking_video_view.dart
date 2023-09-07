@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 
 import '../controllers/pre_game_talking_video_controller.dart';
 
@@ -13,6 +14,7 @@ class PreGameTalkingVideoView extends GetView<PreGameTalkingVideoController> {
   final GlobalKey webViewKey = GlobalKey();
   InAppWebViewController? webViewController;
   final Map<String, dynamic> arguments = Get.arguments;
+  bool hasNavigatedValue = false;
 
   @override
   Widget build(BuildContext context) {
@@ -51,48 +53,50 @@ class PreGameTalkingVideoView extends GetView<PreGameTalkingVideoController> {
                       action: PermissionRequestResponseAction.GRANT);
                 },
                 onConsoleMessage: (controllers, consoleMessage) {
-                  if (controller.hasNavigated.value &&
+                  if (!controller.hasNavigated.value &&
                       consoleMessage.message == "unityTargetFound marker 4") {
                     // Menandai bahwa navigasi sudah terjadi
 
-                    // Future.delayed(Duration(seconds: 3), () {
-                    //   // Setelah menunggu 3 detik, pindah ke halaman lain jika belum pernah navigasi
-                    //   if (!controller.hasNavigated.value) {
-                    //     Get.offAllNamed(Routes.PRE_GAME_AUDIO, arguments: {
-                    //       "id": arguments['id']
-                    //     }); // Ganti dengan nama rute halaman tujuan
-                    //   }
-                    // });
-                    controller.hasNavigated.value = false;
+                    Future.delayed(Duration(seconds: 15), () {
+                      // Setelah menunggu 3 detik, pindah ke halaman lain jika belum pernah navigasi
+                      if (!controller.hasNavigated.value) {
+                        Get.offAllNamed(Routes.PRE_GAME_AUDIO, arguments: {
+                          "id": arguments['id']
+                        }); // Ganti dengan nama rute halaman tujuan
+                      }
+                      controller.hasNavigated.value = true;
+                    });
                   }
                 },
               ),
             ),
-            !controller.hasNavigated.value
-                ? Positioned(
-                    bottom: 0,
-                    child: Container(
-                      width: mWidth,
-                      height: mHeight / 6,
-                      decoration: BoxDecoration(
-                        image: DecorationImage(
-                          colorFilter: ColorFilter.mode(
-                              Colors.black.withOpacity(0), BlendMode.srcOver),
-                          image: AssetImage("assets/images/bg_bottom.png"),
-                          fit: BoxFit.fill,
+            Obx(
+              () => controller.hasNavigated.value
+                  ? Positioned(
+                      bottom: 0,
+                      child: Container(
+                        width: mWidth,
+                        height: mHeight / 6,
+                        decoration: BoxDecoration(
+                          image: DecorationImage(
+                            colorFilter: ColorFilter.mode(
+                                Colors.black.withOpacity(0), BlendMode.srcOver),
+                            image: AssetImage("assets/images/bg_bottom.png"),
+                            fit: BoxFit.fill,
+                          ),
                         ),
-                      ),
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 40.0, vertical: 20.0),
-                        child: Center(
-                          child: Obx(
-                            () => InkWell(
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 40.0, vertical: 20.0),
+                          child: Center(
+                            child: InkWell(
                               onTap: () => {
                                 Get.offAllNamed(
                                   Routes.PRE_GAME_AUDIO,
                                   arguments: {"id": arguments['id']},
-                                )
+                                ),
+                                GetStorage().write('played_number',
+                                    GetStorage().read('played_number') + 1)
                               },
                               child: Container(
                                 width: 200,
@@ -123,9 +127,9 @@ class PreGameTalkingVideoView extends GetView<PreGameTalkingVideoController> {
                           ),
                         ),
                       ),
-                    ),
-                  )
-                : SizedBox(),
+                    )
+                  : SizedBox(),
+            ),
           ],
         ),
       ),

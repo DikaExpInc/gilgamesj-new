@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 class PreGameTalkingVideoController extends GetxController {
   //TODO: Implement PreGameTalkingVideoController
 
-  RxBool hasNavigated = true.obs;
+  RxBool hasNavigated = false.obs;
 
   @override
   void onInit() {

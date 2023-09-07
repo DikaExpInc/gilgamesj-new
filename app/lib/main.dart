@@ -71,6 +71,9 @@ Future<void> main() async {
         case "game_music":
           initialRoute = Routes.PRE_GAME_MUSIC_GAME;
           break;
+        case "game_shake":
+          initialRoute = Routes.PRE_GAME_SHAKE_GAME;
+          break;
         default:
       }
     }

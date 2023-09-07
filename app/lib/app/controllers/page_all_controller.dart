@@ -143,6 +143,12 @@ class PageAllController extends GetxController {
                   Get.offAllNamed(Routes.PRE_GAME_MUSIC_GAME);
                 }
                 break;
+              case "game_shake":
+                if (mode != "game_shake") {
+                  GetStorage().write('mode', "game_shake");
+                  Get.offAllNamed(Routes.PRE_GAME_SHAKE_GAME);
+                }
+                break;
               default:
                 if (mode != "intro") {
                   GetStorage().write('mode', "phone");

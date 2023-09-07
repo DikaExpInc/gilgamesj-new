@@ -124,6 +124,15 @@ server.on("message", async (msg) => {
           page: "game_music",
         }
       );
+    } else if (result["value"] == "game_shake") {
+      await Setting.findOneAndUpdate(
+        {
+          _id: "64de3fd2843badaf9efc006b",
+        },
+        {
+          page: "game_shake",
+        }
+      );
     }
   }
 });

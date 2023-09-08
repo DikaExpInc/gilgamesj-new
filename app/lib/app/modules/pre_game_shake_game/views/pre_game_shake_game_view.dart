@@ -29,9 +29,14 @@ class PreGameShakeGameView extends GetView<PreGameShakeGameController> {
                     Positioned(
                       child: Transform.rotate(
                         angle: 22 * 3.14 / -180,
-                        child: Image.asset(
-                          'assets/images/btn-shake-1.png',
-                          width: 200,
+                        child: InkWell(
+                          onTap: () {
+                            controller.increment(1);
+                          },
+                          child: Image.asset(
+                            'assets/images/btn-shake-1.png',
+                            width: 200,
+                          ),
                         ),
                       ),
                       top: MediaQuery.sizeOf(context).height / 7,
@@ -40,9 +45,14 @@ class PreGameShakeGameView extends GetView<PreGameShakeGameController> {
                     Positioned(
                       child: Transform.rotate(
                         angle: 35 * 3.14 / 180,
-                        child: Image.asset(
-                          'assets/images/btn-shake-1.png',
-                          width: 200,
+                        child: InkWell(
+                          onTap: () {
+                            controller.increment(2);
+                          },
+                          child: Image.asset(
+                            'assets/images/btn-shake-2.png',
+                            width: 200,
+                          ),
                         ),
                       ),
                       top: MediaQuery.sizeOf(context).height / 2.7,
@@ -51,9 +61,14 @@ class PreGameShakeGameView extends GetView<PreGameShakeGameController> {
                     Positioned(
                       child: Transform.rotate(
                         angle: 0 * 3.14 / 180,
-                        child: Image.asset(
-                          'assets/images/btn-shake-1.png',
-                          width: 200,
+                        child: InkWell(
+                          onTap: () {
+                            controller.increment(3);
+                          },
+                          child: Image.asset(
+                            'assets/images/btn-shake-3.png',
+                            width: 200,
+                          ),
                         ),
                       ),
                       top: MediaQuery.sizeOf(context).height / 1.75,
@@ -62,9 +77,14 @@ class PreGameShakeGameView extends GetView<PreGameShakeGameController> {
                     Positioned(
                       child: Transform.rotate(
                         angle: -20 * 3.14 / 180,
-                        child: Image.asset(
-                          'assets/images/btn-shake-1.png',
-                          width: 200,
+                        child: InkWell(
+                          onTap: () {
+                            controller.increment(4);
+                          },
+                          child: Image.asset(
+                            'assets/images/btn-shake-4.png',
+                            width: 200,
+                          ),
                         ),
                       ),
                       top: MediaQuery.sizeOf(context).height / 1.3,

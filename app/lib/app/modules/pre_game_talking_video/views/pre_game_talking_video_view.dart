@@ -57,24 +57,30 @@ class PreGameTalkingVideoView extends GetView<PreGameTalkingVideoController> {
                       consoleMessage.message == "unityTargetFound marker 4") {
                     // Menandai bahwa navigasi sudah terjadi
 
-                    Future.delayed(Duration(seconds: 3), () {
+                    Future.delayed(Duration(seconds: 15), () {
                       // Setelah menunggu 3 detik, pindah ke halaman lain jika belum pernah navigasi
                       if (!controller.hasNavigated.value) {
                         // print(
-                        // 'played_number = ${GetStorage().read('played_number')}');
+                        //     "played_number: ${GetStorage().read('totalPlayer')}");
+                        // print(
+                        //     'played_number = ${GetStorage().read('played_number')}');
+                        // GetStorage().write('played_number',
+                        //     GetStorage().read('played_number') + 1);
+                        // print(
+                        //     'played_number = ${GetStorage().read('played_number')}');
+
                         int playedNumber = GetStorage().read('played_number') ??
                             0; // Mengambil nilai played_number atau mengatur ke 0 jika tidak ada
 
-                        int totalPlayer = GetStorage().read('totalPlayer') ??
-                            0; // Mengambil nilai totalPlayer atau mengatur ke 0 jika tidak ada
+                        int totalPlayer = int.parse(
+                                GetStorage().read('totalPlayer')) ??
+                            0; // Mengambil nilai totalPlayer sebagai int atau mengatur ke 0 jika tidak ada
 
                         if (playedNumber + 1 >= totalPlayer) {
                           GetStorage().write('played_number', 0);
                         } else {
                           GetStorage().write('played_number', playedNumber + 1);
                         }
-                        // print(
-                        //     'played_number = ${GetStorage().read('played_number')}');
 
                         Get.offAllNamed(Routes.PRE_GAME_AUDIO, arguments: {
                           "id": arguments['id']
@@ -86,64 +92,66 @@ class PreGameTalkingVideoView extends GetView<PreGameTalkingVideoController> {
                 },
               ),
             ),
-            // Obx(
-            //   () => controller.hasNavigated.value
-            //       ? Positioned(
-            //           bottom: 0,
-            //           child: Container(
-            //             width: mWidth,
-            //             height: mHeight / 6,
-            //             decoration: BoxDecoration(
-            //               image: DecorationImage(
-            //                 colorFilter: ColorFilter.mode(
-            //                     Colors.black.withOpacity(0), BlendMode.srcOver),
-            //                 image: AssetImage("assets/images/bg_bottom.png"),
-            //                 fit: BoxFit.fill,
-            //               ),
-            //             ),
-            //             child: Padding(
-            //               padding: const EdgeInsets.symmetric(
-            //                   horizontal: 40.0, vertical: 20.0),
-            //               child: Center(
-            //                 child: InkWell(
-            //                   onTap: () => {
-            //                     Get.offAllNamed(
-            //                       Routes.PRE_GAME_AUDIO,
-            //                       arguments: {"id": arguments['id']},
-            //                     ),
-            //                   },
-            //                   child: Container(
-            //                     width: 200,
-            //                     height: 50,
-            //                     decoration: BoxDecoration(
-            //                       image: DecorationImage(
-            //                         image:
-            //                             AssetImage("assets/images/bg_btn.png"),
-            //                         fit: BoxFit.fill,
-            //                       ),
-            //                     ),
-            //                     child: Row(
-            //                       crossAxisAlignment: CrossAxisAlignment.center,
-            //                       mainAxisAlignment: MainAxisAlignment.center,
-            //                       children: [
-            //                         Text(
-            //                           "DOORGAAN",
-            //                           style: TextStyle(
-            //                             fontSize: 16,
-            //                             fontWeight: FontWeight.w700,
-            //                             color: Colors.white,
-            //                           ),
-            //                         ),
-            //                       ],
-            //                     ),
-            //                   ),
-            //                 ),
-            //               ),
-            //             ),
-            //           ),
-            //         )
-            //       : SizedBox(),
-            // ),
+            Obx(
+              () => controller.hasNavigated.value
+                  ? Positioned(
+                      bottom: 0,
+                      child: Container(
+                        width: mWidth,
+                        height: mHeight / 6,
+                        decoration: BoxDecoration(
+                          image: DecorationImage(
+                            colorFilter: ColorFilter.mode(
+                                Colors.black.withOpacity(0), BlendMode.srcOver),
+                            image: AssetImage("assets/images/bg_bottom.png"),
+                            fit: BoxFit.fill,
+                          ),
+                        ),
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 40.0, vertical: 20.0),
+                          child: Center(
+                            child: InkWell(
+                              onTap: () => {
+                                Get.offAllNamed(
+                                  Routes.PRE_GAME_AUDIO,
+                                  arguments: {"id": arguments['id']},
+                                ),
+                                GetStorage().write('played_number',
+                                    GetStorage().read('played_number') + 1)
+                              },
+                              child: Container(
+                                width: 200,
+                                height: 50,
+                                decoration: BoxDecoration(
+                                  image: DecorationImage(
+                                    image:
+                                        AssetImage("assets/images/bg_btn.png"),
+                                    fit: BoxFit.fill,
+                                  ),
+                                ),
+                                child: Row(
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Text(
+                                      "DOORGAAN",
+                                      style: TextStyle(
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.w700,
+                                        color: Colors.white,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    )
+                  : SizedBox(),
+            ),
           ],
         ),
       ),

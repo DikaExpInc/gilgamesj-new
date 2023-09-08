@@ -17,43 +17,7 @@ class BlankView extends GetView<BlankController> {
       width: mWidth,
       height: mHeight,
       decoration: BoxDecoration(
-        image: DecorationImage(
-          colorFilter: ColorFilter.mode(
-              Colors.blueAccent.withOpacity(0.5), BlendMode.srcOver),
-          image: AssetImage("assets/images/background2.png"),
-          fit: BoxFit.cover,
-        ),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Text(
-            "my name",
-            style: TextStyle(
-              fontSize: 24,
-              color: Colors.white,
-            ),
-          ),
-          SizedBox(
-            height: 32,
-          ),
-          Text(
-            "Group",
-            style: TextStyle(
-              fontSize: 64,
-              color: Colors.white,
-              fontWeight: FontWeight.w700,
-            ),
-          ),
-          Text(
-            "1",
-            style: TextStyle(
-              fontSize: 64,
-              color: Colors.white,
-            ),
-          ),
-        ],
+        color: Colors.black,
       ),
     ));
   }

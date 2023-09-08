@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:app/app/widgets/dialog/descibel_dialog.dart';
 import 'package:flutter/gestures.dart';
 import 'package:get/get.dart';
 import 'package:noise_meter/noise_meter.dart';
@@ -57,5 +58,14 @@ class PreGameDescibelGameController extends GetxController {
     } catch (err) {
       print(err);
     }
+  }
+
+  void showItemDialog({required String title, required String description}) {
+    Get.dialog(
+      DescibelDialog(
+        title: title,
+        description: description,
+      ),
+    );
   }
 }

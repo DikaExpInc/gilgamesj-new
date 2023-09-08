@@ -37,6 +37,39 @@ class PreGameShakeGameView extends GetView<PreGameShakeGameController> {
                       top: MediaQuery.sizeOf(context).height / 7,
                       left: 80,
                     ),
+                    Positioned(
+                      child: Transform.rotate(
+                        angle: 35 * 3.14 / 180,
+                        child: Image.asset(
+                          'assets/images/btn-shake-1.png',
+                          width: 200,
+                        ),
+                      ),
+                      top: MediaQuery.sizeOf(context).height / 2.7,
+                      right: 70,
+                    ),
+                    Positioned(
+                      child: Transform.rotate(
+                        angle: 0 * 3.14 / 180,
+                        child: Image.asset(
+                          'assets/images/btn-shake-1.png',
+                          width: 200,
+                        ),
+                      ),
+                      top: MediaQuery.sizeOf(context).height / 1.75,
+                      left: 70,
+                    ),
+                    Positioned(
+                      child: Transform.rotate(
+                        angle: -20 * 3.14 / 180,
+                        child: Image.asset(
+                          'assets/images/btn-shake-1.png',
+                          width: 200,
+                        ),
+                      ),
+                      top: MediaQuery.sizeOf(context).height / 1.3,
+                      right: 90,
+                    ),
                   ],
                 )
               : VideoPlayer(controller.videocontroller!),

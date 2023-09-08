@@ -1,264 +1,264 @@
-var createError = require("http-errors");
-var express = require("express");
-var path = require("path");
-var cookieParser = require("cookie-parser");
-var logger = require("morgan");
-const methodOverride = require("method-override");
-const session = require("express-session");
-const flash = require("connect-flash");
-var cors = require("cors");
-const { Client, Server } = require("node-osc");
-const Setting = require("./app/setting/model");
+var createError = require('http-errors')
+var express = require('express')
+var path = require('path')
+var cookieParser = require('cookie-parser')
+var logger = require('morgan')
+const methodOverride = require('method-override')
+const session = require('express-session')
+const flash = require('connect-flash')
+var cors = require('cors')
+const { Client, Server } = require('node-osc')
+const Setting = require('./app/setting/model')
 
-var server = new Server(53000, "192.168.1.14");
+var server = new Server(53001, '192.168.1.4')
 
-server.on("listening", () => {
-  console.log("OSC Server is listening.");
-});
+server.on('listening', () => {
+  console.log('OSC Server is listening.')
+})
 
-server.on("message", async (msg) => {
-  const [address, ...args] = msg;
+server.on('message', async (msg) => {
+  const [address, ...args] = msg
 
   const result = {
     url: address,
     value: args,
-  };
+  }
 
-  if (result["url"] == "/mode") {
-    if (result["value"] == "phone") {
+  if (result['url'] == '/mode') {
+    if (result['value'] == 'phone') {
       await Setting.findOneAndUpdate(
         {
-          _id: "64de3fd2843badaf9efc006b",
+          _id: '64de3fd2843badaf9efc006b',
         },
         {
-          page: "phone",
+          page: 'phone',
         }
-      );
-    } else if (result["value"] == "light") {
+      )
+    } else if (result['value'] == 'light') {
       await Setting.findOneAndUpdate(
         {
-          _id: "64de3fd2843badaf9efc006b",
+          _id: '64de3fd2843badaf9efc006b',
         },
         {
-          page: "light",
+          page: 'light',
         }
-      );
-    } else if (result["value"] == "notification") {
+      )
+    } else if (result['value'] == 'notification') {
       await Setting.findOneAndUpdate(
         {
-          _id: "64de3fd2843badaf9efc006b",
+          _id: '64de3fd2843badaf9efc006b',
         },
         {
-          page: "notification",
+          page: 'notification',
         }
-      );
-    } else if (result["value"] == "blank") {
+      )
+    } else if (result['value'] == 'blank') {
       await Setting.findOneAndUpdate(
         {
-          _id: "64de3fd2843badaf9efc006b",
+          _id: '64de3fd2843badaf9efc006b',
         },
         {
-          page: "blank",
+          page: 'blank',
         }
-      );
-    } else if (result["value"] == "clap") {
+      )
+    } else if (result['value'] == 'clap') {
       await Setting.findOneAndUpdate(
         {
-          _id: "64de3fd2843badaf9efc006b",
+          _id: '64de3fd2843badaf9efc006b',
         },
         {
-          page: "clap",
+          page: 'clap',
         }
-      );
-    } else if (result["value"] == "group") {
+      )
+    } else if (result['value'] == 'group') {
       await Setting.findOneAndUpdate(
         {
-          _id: "64de3fd2843badaf9efc006b",
+          _id: '64de3fd2843badaf9efc006b',
         },
         {
-          page: "group",
+          page: 'group',
         }
-      );
-    } else if (result["value"] == "performance") {
+      )
+    } else if (result['value'] == 'performance') {
       await Setting.findOneAndUpdate(
         {
-          _id: "64de3fd2843badaf9efc006b",
+          _id: '64de3fd2843badaf9efc006b',
         },
         {
-          page: "performance",
+          page: 'performance',
         }
-      );
-    } else if (result["value"] == "pre_game") {
+      )
+    } else if (result['value'] == 'pre_game') {
       await Setting.findOneAndUpdate(
         {
-          _id: "64de3fd2843badaf9efc006b",
+          _id: '64de3fd2843badaf9efc006b',
         },
         {
-          page: "pre_game",
+          page: 'pre_game',
         }
-      );
-    } else if (result["value"] == "go_to_theater") {
+      )
+    } else if (result['value'] == 'go_to_theater') {
       await Setting.findOneAndUpdate(
         {
-          _id: "64de3fd2843badaf9efc006b",
+          _id: '64de3fd2843badaf9efc006b',
         },
         {
-          page: "go_to_theater",
+          page: 'go_to_theater',
         }
-      );
-    } else if (result["value"] == "game_descibel") {
+      )
+    } else if (result['value'] == 'game_descibel') {
       await Setting.findOneAndUpdate(
         {
-          _id: "64de3fd2843badaf9efc006b",
+          _id: '64de3fd2843badaf9efc006b',
         },
         {
-          page: "game_descibel",
+          page: 'game_descibel',
         }
-      );
-    } else if (result["value"] == "game_music") {
+      )
+    } else if (result['value'] == 'game_music') {
       await Setting.findOneAndUpdate(
         {
-          _id: "64de3fd2843badaf9efc006b",
+          _id: '64de3fd2843badaf9efc006b',
         },
         {
-          page: "game_music",
+          page: 'game_music',
         }
-      );
-    } else if (result["value"] == "game_shake") {
+      )
+    } else if (result['value'] == 'game_shake') {
       await Setting.findOneAndUpdate(
         {
-          _id: "64de3fd2843badaf9efc006b",
+          _id: '64de3fd2843badaf9efc006b',
         },
         {
-          page: "game_shake",
+          page: 'game_shake',
         }
-      );
+      )
     }
   }
-});
+})
 
 // player API
-const authRouter = require("./app/auth/router");
-const browserRouter = require("./app/browser/router");
-const socialMediaRouter = require("./app/social_media/router");
-const socialMediaCommentRouter = require("./app/social_media_comment/router");
-const cameraRouter = require("./app/camera/router");
-const chatRouter = require("./app/chat/router");
-const chatDetailRouter = require("./app/chat_detail/router");
-const contactRouter = require("./app/contact/router");
-const phoneRouter = require("./app/phone/router");
-const galleryPhotoRouter = require("./app/gallery_photo/router");
-const galleryVideoRouter = require("./app/gallery_video/router");
-const mapRouter = require("./app/map/router");
-const stageRouter = require("./app/stage/router");
-const taskRouter = require("./app/task/router");
-const usersRouter = require("./app/users/router");
-const playerRouter = require("./app/player/router");
-const playerChatRouter = require("./app/player_chats/router");
-const lightRouter = require("./app/light/router");
-const settingRouter = require("./app/setting/router");
-const preGameRouter = require("./app/pregame/router");
+const authRouter = require('./app/auth/router')
+const browserRouter = require('./app/browser/router')
+const socialMediaRouter = require('./app/social_media/router')
+const socialMediaCommentRouter = require('./app/social_media_comment/router')
+const cameraRouter = require('./app/camera/router')
+const chatRouter = require('./app/chat/router')
+const chatDetailRouter = require('./app/chat_detail/router')
+const contactRouter = require('./app/contact/router')
+const phoneRouter = require('./app/phone/router')
+const galleryPhotoRouter = require('./app/gallery_photo/router')
+const galleryVideoRouter = require('./app/gallery_video/router')
+const mapRouter = require('./app/map/router')
+const stageRouter = require('./app/stage/router')
+const taskRouter = require('./app/task/router')
+const usersRouter = require('./app/users/router')
+const playerRouter = require('./app/player/router')
+const playerChatRouter = require('./app/player_chats/router')
+const lightRouter = require('./app/light/router')
+const settingRouter = require('./app/setting/router')
+const preGameRouter = require('./app/pregame/router')
 
 // Admin API
-const authAdminRouter = require("./app/auth/router.admin");
-const browserAdminRouter = require("./app/browser/router.admin");
-const socialMediaAdminRouter = require("./app/social_media/router.admin");
-const socialMediaCommentAdminRouter = require("./app/social_media_comment/router.admin");
-const cameraAdminRouter = require("./app/camera/router.admin");
-const chatAdminRouter = require("./app/chat/router.admin");
-const chatDetailAdminRouter = require("./app/chat_detail/router.admin");
-const contactAdminRouter = require("./app/contact/router.admin");
-const phoneAdminRouter = require("./app/phone/router.admin");
-const galleryPhotoAdminRouter = require("./app/gallery_photo/router.admin");
-const galleryVideoAdminRouter = require("./app/gallery_video/router.admin");
-const mapAdminRouter = require("./app/map/router.admin");
-const stageAdminRouter = require("./app/stage/router.admin");
-const taskAdminRouter = require("./app/task/router.admin");
-const usersAdminRouter = require("./app/users/router.admin");
-const playerAdminRouter = require("./app/player/router.admin");
-const playerAdminChatRouter = require("./app/player_chats/router.admin");
-const lightAdminRouter = require("./app/light/router.admin");
-const settingAdminRouter = require("./app/setting/router.admin");
-const preGameAdminRouter = require("./app/pregame/router.admin");
+const authAdminRouter = require('./app/auth/router.admin')
+const browserAdminRouter = require('./app/browser/router.admin')
+const socialMediaAdminRouter = require('./app/social_media/router.admin')
+const socialMediaCommentAdminRouter = require('./app/social_media_comment/router.admin')
+const cameraAdminRouter = require('./app/camera/router.admin')
+const chatAdminRouter = require('./app/chat/router.admin')
+const chatDetailAdminRouter = require('./app/chat_detail/router.admin')
+const contactAdminRouter = require('./app/contact/router.admin')
+const phoneAdminRouter = require('./app/phone/router.admin')
+const galleryPhotoAdminRouter = require('./app/gallery_photo/router.admin')
+const galleryVideoAdminRouter = require('./app/gallery_video/router.admin')
+const mapAdminRouter = require('./app/map/router.admin')
+const stageAdminRouter = require('./app/stage/router.admin')
+const taskAdminRouter = require('./app/task/router.admin')
+const usersAdminRouter = require('./app/users/router.admin')
+const playerAdminRouter = require('./app/player/router.admin')
+const playerAdminChatRouter = require('./app/player_chats/router.admin')
+const lightAdminRouter = require('./app/light/router.admin')
+const settingAdminRouter = require('./app/setting/router.admin')
+const preGameAdminRouter = require('./app/pregame/router.admin')
 
-const app = express();
-const URL = `/api/v1`;
-const URL_ADMIN = `/admin/api/v1`;
-app.use(cors());
+const app = express()
+const URL = `/api/v1`
+const URL_ADMIN = `/admin/api/v1`
+app.use(cors())
 
 app.use(
   session({
-    secret: "keyboard cat",
+    secret: 'keyboard cat',
     resave: false,
     saveUninitialized: true,
     cookie: {},
   })
-);
-app.use(flash());
-app.use(methodOverride("_method"));
-app.use(logger("dev"));
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser());
-app.use(express.static(path.join(__dirname, "public")));
+)
+app.use(flash())
+app.use(methodOverride('_method'))
+app.use(logger('dev'))
+app.use(express.json())
+app.use(express.urlencoded({ extended: false }))
+app.use(cookieParser())
+app.use(express.static(path.join(__dirname, 'public')))
 
 // player master
-app.use(`${URL}/browser`, browserRouter);
-app.use(`${URL}/socialmedia`, socialMediaRouter);
-app.use(`${URL}/socialmediacomment`, socialMediaCommentRouter);
-app.use(`${URL}/camera`, cameraRouter);
-app.use(`${URL}/chat`, chatRouter);
-app.use(`${URL}/chatdetail`, chatDetailRouter);
-app.use(`${URL}/contact`, contactRouter);
-app.use(`${URL}/phone`, phoneRouter);
-app.use(`${URL}/galleryphoto`, galleryPhotoRouter);
-app.use(`${URL}/galleryvideo`, galleryVideoRouter);
-app.use(`${URL}/map`, mapRouter);
-app.use(`${URL}/stage`, stageRouter);
-app.use(`${URL}/task`, taskRouter);
-app.use(`${URL}/users`, usersRouter);
-app.use(`${URL}/players`, playerRouter);
-app.use(`${URL}/playerchats`, playerChatRouter);
-app.use(`${URL}/auth`, authRouter);
-app.use(`${URL}/light`, lightRouter);
-app.use(`${URL}/setting`, settingRouter);
-app.use(`${URL}/pregame`, preGameRouter);
+app.use(`${URL}/browser`, browserRouter)
+app.use(`${URL}/socialmedia`, socialMediaRouter)
+app.use(`${URL}/socialmediacomment`, socialMediaCommentRouter)
+app.use(`${URL}/camera`, cameraRouter)
+app.use(`${URL}/chat`, chatRouter)
+app.use(`${URL}/chatdetail`, chatDetailRouter)
+app.use(`${URL}/contact`, contactRouter)
+app.use(`${URL}/phone`, phoneRouter)
+app.use(`${URL}/galleryphoto`, galleryPhotoRouter)
+app.use(`${URL}/galleryvideo`, galleryVideoRouter)
+app.use(`${URL}/map`, mapRouter)
+app.use(`${URL}/stage`, stageRouter)
+app.use(`${URL}/task`, taskRouter)
+app.use(`${URL}/users`, usersRouter)
+app.use(`${URL}/players`, playerRouter)
+app.use(`${URL}/playerchats`, playerChatRouter)
+app.use(`${URL}/auth`, authRouter)
+app.use(`${URL}/light`, lightRouter)
+app.use(`${URL}/setting`, settingRouter)
+app.use(`${URL}/pregame`, preGameRouter)
 
 // admin master
-app.use(`${URL_ADMIN}/browser`, browserAdminRouter);
-app.use(`${URL_ADMIN}/socialmedia`, socialMediaAdminRouter);
-app.use(`${URL_ADMIN}/socialmediacomment`, socialMediaCommentAdminRouter);
-app.use(`${URL_ADMIN}/camera`, cameraAdminRouter);
-app.use(`${URL_ADMIN}/chat`, chatAdminRouter);
-app.use(`${URL_ADMIN}/chatdetail`, chatDetailAdminRouter);
-app.use(`${URL_ADMIN}/contact`, contactAdminRouter);
-app.use(`${URL_ADMIN}/phone`, phoneAdminRouter);
-app.use(`${URL_ADMIN}/galleryphoto`, galleryPhotoAdminRouter);
-app.use(`${URL_ADMIN}/galleryvideo`, galleryVideoAdminRouter);
-app.use(`${URL_ADMIN}/map`, mapAdminRouter);
-app.use(`${URL_ADMIN}/stage`, stageAdminRouter);
-app.use(`${URL_ADMIN}/task`, taskAdminRouter);
-app.use(`${URL_ADMIN}/users`, usersAdminRouter);
-app.use(`${URL_ADMIN}/players`, playerAdminRouter);
-app.use(`${URL_ADMIN}/playerchats`, playerAdminChatRouter);
-app.use(`${URL_ADMIN}/auth`, authAdminRouter);
-app.use(`${URL_ADMIN}/light`, lightAdminRouter);
-app.use(`${URL_ADMIN}/setting`, settingAdminRouter);
-app.use(`${URL_ADMIN}/pregame`, preGameAdminRouter);
+app.use(`${URL_ADMIN}/browser`, browserAdminRouter)
+app.use(`${URL_ADMIN}/socialmedia`, socialMediaAdminRouter)
+app.use(`${URL_ADMIN}/socialmediacomment`, socialMediaCommentAdminRouter)
+app.use(`${URL_ADMIN}/camera`, cameraAdminRouter)
+app.use(`${URL_ADMIN}/chat`, chatAdminRouter)
+app.use(`${URL_ADMIN}/chatdetail`, chatDetailAdminRouter)
+app.use(`${URL_ADMIN}/contact`, contactAdminRouter)
+app.use(`${URL_ADMIN}/phone`, phoneAdminRouter)
+app.use(`${URL_ADMIN}/galleryphoto`, galleryPhotoAdminRouter)
+app.use(`${URL_ADMIN}/galleryvideo`, galleryVideoAdminRouter)
+app.use(`${URL_ADMIN}/map`, mapAdminRouter)
+app.use(`${URL_ADMIN}/stage`, stageAdminRouter)
+app.use(`${URL_ADMIN}/task`, taskAdminRouter)
+app.use(`${URL_ADMIN}/users`, usersAdminRouter)
+app.use(`${URL_ADMIN}/players`, playerAdminRouter)
+app.use(`${URL_ADMIN}/playerchats`, playerAdminChatRouter)
+app.use(`${URL_ADMIN}/auth`, authAdminRouter)
+app.use(`${URL_ADMIN}/light`, lightAdminRouter)
+app.use(`${URL_ADMIN}/setting`, settingAdminRouter)
+app.use(`${URL_ADMIN}/pregame`, preGameAdminRouter)
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
-  next(createError(404));
-});
+  next(createError(404))
+})
 
 // error handler
 app.use(function (err, req, res, next) {
   // set locals, only providing error in development
-  res.locals.message = err.message;
-  res.locals.error = req.app.get("env") === "development" ? err : {};
+  res.locals.message = err.message
+  res.locals.error = req.app.get('env') === 'development' ? err : {}
 
   // Send JSON response for the error
-  res.status(err.status || 500).json({ error: err.message });
-});
+  res.status(err.status || 500).json({ error: err.message })
+})
 
-module.exports = app;
+module.exports = app

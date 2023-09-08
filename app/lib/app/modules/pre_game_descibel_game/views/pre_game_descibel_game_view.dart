@@ -1,3 +1,4 @@
+import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animation_progress_bar/flutter_animation_progress_bar.dart';
 
@@ -71,9 +72,12 @@ class PreGameDescibelGameView extends GetView<PreGameDescibelGameController> {
             if (controller.isRecording.value) {
               controller.stop(); // Stop recording when long press ends
               if (controller.latestReading.value!.maxDecibel >= 80) {
-                print("Berhasil Pindah halaman");
+                controller.showItemDialog(
+                    title: 'Waauw', description: 'Het is je gelukt !!');
+                final AudioCache audioCache =
+                    AudioCache(prefix: 'assets/audios/');
+                audioCache.play('spirit_realms.mp3');
               } else {
-                print("Berhasil");
                 controller.latestReading.value = null;
               }
             }

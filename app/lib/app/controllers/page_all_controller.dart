@@ -72,8 +72,8 @@ class PageAllController extends GetxController {
             String? mode = GetStorage().read('mode');
             switch (setting!.page) {
               case "phone":
-                if (mode == "phone") {
-                  // GetStorage().write('mode', "phone");
+                if (mode != "phone") {
+                  GetStorage().write('mode', "phone");
                   if (GetStorage().read('stage_id') != null &&
                       GetStorage().read('stage_id').isNotEmpty) {
                     Get.offAllNamed(Routes.START);
@@ -83,57 +83,68 @@ class PageAllController extends GetxController {
                 }
                 break;
               case "clap":
-                if (mode == "clap") {
+                if (mode != "clap") {
+                  GetStorage().write('mode', "clap");
                   Get.offAllNamed(Routes.CLAP);
                 }
                 break;
               case "blank":
-                if (mode == "blank") {
+                if (mode != "blank") {
+                  GetStorage().write('mode', "blank");
                   Get.offAllNamed(Routes.BLANK);
                 }
                 break;
               case "light":
-                if (mode == "light") {
+                if (mode != "light") {
+                  GetStorage().write('mode', "light");
                   Get.offAllNamed(Routes.LIGHT);
                 }
                 break;
               case "notification":
-                if (mode == "notification") {
+                if (mode != "notification") {
+                  GetStorage().write('mode', "notification");
                   Get.offAllNamed(Routes.NOTIFICATION);
                 }
                 break;
               case "group":
-                if (mode == "group") {
+                if (mode != "group") {
+                  GetStorage().write('mode', "group");
                   Get.offAllNamed(Routes.GROUP);
                 }
                 break;
               case "performance":
-                if (mode == "performance") {
+                if (mode != "performance") {
+                  GetStorage().write('mode', "performance");
                   Get.offAllNamed(Routes.PERFORMANCE);
                 }
                 break;
               case "pre_game":
-                if (mode == "pre_game") {
+                if (mode != "pre_game" && mode != "item") {
+                  GetStorage().write('mode', "pre_game");
                   Get.offAllNamed(Routes.PRE_GAME_START);
                 }
                 break;
               case "go_to_theater":
-                if (mode == "go_to_theater") {
+                if (mode != "go_to_theater") {
+                  GetStorage().write('mode', "intro");
                   Get.offAllNamed(Routes.GO_THEATER);
                 }
                 break;
               case "intro":
-                if (mode == "intro") {
+                if (mode != "intro") {
+                  GetStorage().write('mode', "intro");
                   Get.offAllNamed(Routes.PRE_GAME_SPLASH);
                 }
                 break;
               case "item":
-                if (mode == "item") {
+                if (mode != "item") {
+                  GetStorage().write('mode', "item");
                   Get.offAllNamed(Routes.PRE_GAME_ITEMS);
                 }
                 break;
               case "game_descibel":
-                if (mode == "game_descibel") {
+                if (mode != "game_descibel") {
+                  GetStorage().write('mode', "game_descibel");
                   Get.offAllNamed(Routes.PRE_GAME_DESCIBEL_GAME);
                 }
                 break;

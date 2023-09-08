@@ -33,27 +33,6 @@ class ViewPlayerView extends GetView<ViewPlayerController> {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Align(
-                alignment: Alignment.centerRight,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      "made by",
-                      style: TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.w400,
-                        color: Colors.white,
-                      ),
-                    ),
-                    Container(
-                      width: 100,
-                      height: 50,
-                      child: Image.asset('assets/images/logo-1.png'),
-                    ),
-                  ],
-                ),
-              ),
               Container(
                 padding: EdgeInsets.symmetric(horizontal: 50),
                 child: Column(

@@ -28,6 +28,20 @@ class PreGameMusicGameView extends GetView<PreGameMusicGameController> {
             child: Stack(
               alignment: Alignment.center,
               children: [
+                // Positioned(
+                //   width: mWidth,
+                //   top: 50,
+                //   child: Obx(() => Center(
+                //           child: Text(
+                //         '${controller.key_tuts}',
+                //         style: TextStyle(
+                //           fontFamily: 'Centrion',
+                //           fontSize: 42,
+                //           color: Colors.white,
+                //           fontWeight: FontWeight.w500,
+                //         ),
+                //       ))),
+                // ),
                 // Kolom pertama
                 Positioned(
                   width: mWidth,
@@ -41,6 +55,7 @@ class PreGameMusicGameView extends GetView<PreGameMusicGameController> {
                           final AudioCache audioCache =
                               AudioCache(prefix: 'assets/audios/tuts/');
                           audioCache.play('7.mp3');
+                          controller.increment(7);
                         },
                         child: Image.asset(
                           'assets/images/bg_music_tap1.png', // Ganti dengan path gambar yang sesuai
@@ -53,6 +68,7 @@ class PreGameMusicGameView extends GetView<PreGameMusicGameController> {
                           final AudioCache audioCache =
                               AudioCache(prefix: 'assets/audios/tuts/');
                           audioCache.play('8.mp3');
+                          controller.increment(8);
                         },
                         child: Image.asset(
                           'assets/images/bg_music_tap1.png', // Ganti dengan path gambar yang sesuai
@@ -77,6 +93,7 @@ class PreGameMusicGameView extends GetView<PreGameMusicGameController> {
                           final AudioCache audioCache =
                               AudioCache(prefix: 'assets/audios/tuts/');
                           audioCache.play('3.mp3');
+                          controller.increment(3);
                         },
                         child: Image.asset(
                           'assets/images/bg_music_tap3.png', // Ganti dengan path gambar yang sesuai
@@ -89,6 +106,7 @@ class PreGameMusicGameView extends GetView<PreGameMusicGameController> {
                           final AudioCache audioCache =
                               AudioCache(prefix: 'assets/audios/tuts/');
                           audioCache.play('4.mp3');
+                          controller.increment(4);
                         },
                         child: Image.asset(
                           'assets/images/bg_music_tap2.png', // Ganti dengan path gambar yang sesuai
@@ -101,6 +119,7 @@ class PreGameMusicGameView extends GetView<PreGameMusicGameController> {
                           final AudioCache audioCache =
                               AudioCache(prefix: 'assets/audios/tuts/');
                           audioCache.play('5.mp3');
+                          controller.increment(5);
                         },
                         child: Image.asset(
                           'assets/images/bg_music_tap2.png', // Ganti dengan path gambar yang sesuai
@@ -113,6 +132,7 @@ class PreGameMusicGameView extends GetView<PreGameMusicGameController> {
                           final AudioCache audioCache =
                               AudioCache(prefix: 'assets/audios/tuts/');
                           audioCache.play('6.mp3');
+                          controller.increment(6);
                         },
                         child: Image.asset(
                           'assets/images/bg_music_tap3.png', // Ganti dengan path gambar yang sesuai
@@ -137,6 +157,7 @@ class PreGameMusicGameView extends GetView<PreGameMusicGameController> {
                           final AudioCache audioCache =
                               AudioCache(prefix: 'assets/audios/tuts/');
                           audioCache.play('1.mp3');
+                          controller.increment(1);
                         },
                         child: Image.asset(
                           'assets/images/bg_music_tap4.png', // Ganti dengan path gambar yang sesuai
@@ -152,6 +173,7 @@ class PreGameMusicGameView extends GetView<PreGameMusicGameController> {
                           final AudioCache audioCache =
                               AudioCache(prefix: 'assets/audios/tuts/');
                           audioCache.play('2.mp3');
+                          controller.increment(2);
                         },
                         child: Image.asset(
                           'assets/images/bg_music_tap4.png', // Ganti dengan path gambar yang sesuai

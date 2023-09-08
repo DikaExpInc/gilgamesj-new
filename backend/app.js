@@ -10,7 +10,7 @@ var cors = require("cors");
 const { Client, Server } = require("node-osc");
 const Setting = require("./app/setting/model");
 
-var server = new Server(53000, "192.168.1.16");
+var server = new Server(53000, "192.168.1.14");
 
 server.on("listening", () => {
   console.log("OSC Server is listening.");

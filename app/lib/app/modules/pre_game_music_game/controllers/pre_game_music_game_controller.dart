@@ -1,5 +1,6 @@
 import 'package:audioplayers/audioplayers.dart';
 import 'package:get/get.dart';
+import 'package:vibration/vibration.dart';
 
 import '../../../widgets/dialog/descibel_dialog.dart';
 
@@ -48,6 +49,7 @@ class PreGameMusicGameController extends GetxController {
   void onInit() {
     super.onInit();
     playAudioSequenceFromLockCode();
+    Vibration.vibrate(duration: 1000);
   }
 
   @override

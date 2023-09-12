@@ -128,7 +128,7 @@ class PreGameItemsArView extends GetView<PreGameItemsArController> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Text(
-                                "DOORGAN",
+                                "DOORGAAN",
                                 style: TextStyle(
                                   fontSize:
                                       MediaQuery.of(context).size.width > 600

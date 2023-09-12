@@ -31,57 +31,109 @@ class PreGameItemsView extends GetView<PreGameItemsController> {
         ),
         child: Stack(
           children: [
-            Positioned(
-              top: 40,
-              left: 40,
-              child: GestureDetector(
-                onTapDown: (_) => controller.toggleTap(1),
-                onTapUp: (_) => controller.toggleTap(1, isTapped: false),
-                child: SvgPicture.asset(
-                  "assets/icons/finger.svg",
-                  width: 100,
-                  height: 100,
-                ),
-              ),
+            Obx(
+              () => !controller.isPositionedVisible.value
+                  ? Positioned(
+                      top: 40,
+                      left: 40,
+                      child: Obx(
+                        () => GestureDetector(
+                          onTap: () => controller.toggleTap(1),
+                          onTapUp: (_) =>
+                              controller.toggleTap(1, isTapped: false),
+                          child: controller.tappedList[0]
+                              ? SvgPicture.asset(
+                                  "assets/icons/finger-active.svg",
+                                  width: 100,
+                                  height: 100,
+                                )
+                              : SvgPicture.asset(
+                                  "assets/icons/finger.svg",
+                                  width: 100,
+                                  height: 100,
+                                ),
+                        ),
+                      ),
+                    )
+                  : SizedBox(),
             ),
-            Positioned(
-              top: 40,
-              right: 40,
-              child: GestureDetector(
-                onTap: () => controller.toggleTap(2),
-                onTapUp: (_) => controller.toggleTap(2, isTapped: false),
-                child: SvgPicture.asset(
-                  "assets/icons/finger.svg",
-                  width: 100,
-                  height: 100,
-                ),
-              ),
+            Obx(
+              () => !controller.isPositionedVisible.value
+                  ? Positioned(
+                      top: 40,
+                      right: 40,
+                      child: Obx(
+                        () => GestureDetector(
+                          onTap: () => controller.toggleTap(2),
+                          onTapUp: (_) =>
+                              controller.toggleTap(2, isTapped: false),
+                          child: controller.tappedList[1]
+                              ? SvgPicture.asset(
+                                  "assets/icons/finger-active.svg",
+                                  width: 100,
+                                  height: 100,
+                                )
+                              : SvgPicture.asset(
+                                  "assets/icons/finger.svg",
+                                  width: 100,
+                                  height: 100,
+                                ),
+                        ),
+                      ),
+                    )
+                  : SizedBox(),
             ),
-            Positioned(
-              bottom: 40,
-              left: 40,
-              child: GestureDetector(
-                onTap: () => controller.toggleTap(3),
-                onTapUp: (_) => controller.toggleTap(3, isTapped: false),
-                child: SvgPicture.asset(
-                  "assets/icons/finger.svg",
-                  width: 100,
-                  height: 100,
-                ),
-              ),
+            Obx(
+              () => !controller.isPositionedVisible.value
+                  ? Positioned(
+                      bottom: 40,
+                      left: 40,
+                      child: Obx(
+                        () => GestureDetector(
+                          onTap: () => controller.toggleTap(3),
+                          onTapUp: (_) =>
+                              controller.toggleTap(3, isTapped: false),
+                          child: controller.tappedList[2]
+                              ? SvgPicture.asset(
+                                  "assets/icons/finger-active.svg",
+                                  width: 100,
+                                  height: 100,
+                                )
+                              : SvgPicture.asset(
+                                  "assets/icons/finger.svg",
+                                  width: 100,
+                                  height: 100,
+                                ),
+                        ),
+                      ),
+                    )
+                  : SizedBox(),
             ),
-            Positioned(
-              bottom: 40,
-              right: 40,
-              child: GestureDetector(
-                onTap: () => controller.toggleTap(4),
-                onTapUp: (_) => controller.toggleTap(4, isTapped: false),
-                child: SvgPicture.asset(
-                  "assets/icons/finger.svg",
-                  width: 100,
-                  height: 100,
-                ),
-              ),
+            Obx(
+              () => !controller.isPositionedVisible.value
+                  ? Positioned(
+                      bottom: 40,
+                      right: 40,
+                      child: Obx(
+                        () => GestureDetector(
+                          onTap: () => controller.toggleTap(4),
+                          onTapUp: (_) =>
+                              controller.toggleTap(4, isTapped: false),
+                          child: controller.tappedList[3]
+                              ? SvgPicture.asset(
+                                  "assets/icons/finger-active.svg",
+                                  width: 100,
+                                  height: 100,
+                                )
+                              : SvgPicture.asset(
+                                  "assets/icons/finger.svg",
+                                  width: 100,
+                                  height: 100,
+                                ),
+                        ),
+                      ),
+                    )
+                  : SizedBox(),
             ),
             Padding(
               padding: EdgeInsets.only(top: 80),
@@ -126,7 +178,7 @@ class PreGameItemsView extends GetView<PreGameItemsController> {
                                           "assets/images/tile${index + 1}.png",
                                       title: "Gate of Babylon",
                                       description:
-                                          "Is the 'Golden Capital' and the 'King's Treasury' of Gilgamesh, and moreover the golden key connected to it.[3] His main Noble Phantasm,",
+                                          "Dit is een prachtig museumstuk, Ga verder en kijk ook naar de rest van ons mooie museum",
                                     );
                                   } else if (index == 1) {
                                     controller.showItemDialog(
@@ -134,7 +186,7 @@ class PreGameItemsView extends GetView<PreGameItemsController> {
                                           "assets/images/tile${index + 1}.png",
                                       title: "Gate of Babylon",
                                       description:
-                                          "Is the 'Golden Capital' and the 'King's Treasury' of Gilgamesh, and moreover the golden key connected to it.[3] His main Noble Phantasm,",
+                                          "Dit is een prachtig museumstuk, Ga verder en kijk ook naar de rest van ons mooie museum",
                                     );
                                   } else if (index == 2) {
                                     controller.showItemDialog(
@@ -142,7 +194,7 @@ class PreGameItemsView extends GetView<PreGameItemsController> {
                                           "assets/images/tile${index + 1}.png",
                                       title: "Gate of Babylon",
                                       description:
-                                          "Is the 'Golden Capital' and the 'King's Treasury' of Gilgamesh, and moreover the golden key connected to it.[3] His main Noble Phantasm,",
+                                          "Dit is een prachtig museumstuk, Ga verder en kijk ook naar de rest van ons mooie museum",
                                     );
                                   } else if (index == 3) {
                                     controller.showItemDialog(
@@ -150,7 +202,7 @@ class PreGameItemsView extends GetView<PreGameItemsController> {
                                           "assets/images/tile${index + 1}.png",
                                       title: "Gate of Babylon",
                                       description:
-                                          "Is the 'Golden Capital' and the 'King's Treasury' of Gilgamesh, and moreover the golden key connected to it.[3] His main Noble Phantasm,",
+                                          "Dit is een prachtig museumstuk, Ga verder en kijk ook naar de rest van ons mooie museum",
                                     );
                                   } else if (index == 4) {
                                     controller.showItemDialog(
@@ -158,7 +210,7 @@ class PreGameItemsView extends GetView<PreGameItemsController> {
                                           "assets/images/tile${index + 1}.png",
                                       title: "Gate of Babylon",
                                       description:
-                                          "Is the 'Golden Capital' and the 'King's Treasury' of Gilgamesh, and moreover the golden key connected to it.[3] His main Noble Phantasm,",
+                                          "Dit is een prachtig museumstuk, Ga verder en kijk ook naar de rest van ons mooie museum",
                                     );
                                   } else if (index == 5) {
                                     controller.showItemDialog(
@@ -166,7 +218,7 @@ class PreGameItemsView extends GetView<PreGameItemsController> {
                                           "assets/images/tile${index + 1}.png",
                                       title: "Gate of Babylon",
                                       description:
-                                          "Is the 'Golden Capital' and the 'King's Treasury' of Gilgamesh, and moreover the golden key connected to it.[3] His main Noble Phantasm,",
+                                          "Dit is een prachtig museumstuk, Ga verder en kijk ook naar de rest van ons mooie museum",
                                     );
                                   } else if (index == 6) {
                                     controller.showItemDialog(
@@ -174,7 +226,7 @@ class PreGameItemsView extends GetView<PreGameItemsController> {
                                           "assets/images/tile${index + 1}.png",
                                       title: "Gate of Babylon",
                                       description:
-                                          "Is the 'Golden Capital' and the 'King's Treasury' of Gilgamesh, and moreover the golden key connected to it.[3] His main Noble Phantasm,",
+                                          "Dit is een prachtig museumstuk, Ga verder en kijk ook naar de rest van ons mooie museum",
                                     );
                                   } else if (index == 8) {
                                     controller.showItemDialog(
@@ -182,7 +234,7 @@ class PreGameItemsView extends GetView<PreGameItemsController> {
                                           "assets/images/tile${index + 1}.png",
                                       title: "Gate of Babylon",
                                       description:
-                                          "Is the 'Golden Capital' and the 'King's Treasury' of Gilgamesh, and moreover the golden key connected to it.[3] His main Noble Phantasm,",
+                                          "Dit is een prachtig museumstuk, Ga verder en kijk ook naar de rest van ons mooie museum",
                                     );
                                   }
                                 },

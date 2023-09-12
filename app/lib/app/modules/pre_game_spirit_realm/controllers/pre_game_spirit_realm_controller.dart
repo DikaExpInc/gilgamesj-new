@@ -1,6 +1,7 @@
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:vibration/vibration.dart';
 
 class PreGameSpiritRealmController extends GetxController
     with GetTickerProviderStateMixin {
@@ -11,6 +12,9 @@ class PreGameSpiritRealmController extends GetxController
   @override
   void onInit() {
     super.onInit();
+
+    Vibration.vibrate(duration: 1000);
+
     _controller = AnimationController(
       vsync: this,
       duration: Duration(seconds: 20),

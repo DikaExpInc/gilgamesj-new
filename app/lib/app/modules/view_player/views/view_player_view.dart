@@ -109,40 +109,47 @@ class ViewPlayerView extends GetView<ViewPlayerController> {
               Center(
                 child: Column(
                   children: [
-                    InkWell(
-                      onTap: () => {controller.onNext()},
-                      child: Container(
-                        width: mWidth / 4,
-                        padding: EdgeInsets.symmetric(
-                            vertical: 20.0,
-                            horizontal: MediaQuery.of(context).size.width > 600
-                                ? 50
-                                : 20),
-                        decoration: BoxDecoration(
-                          image: DecorationImage(
-                            image: AssetImage("assets/images/bg_btn.png"),
-                            fit: BoxFit.fill,
-                          ),
-                        ),
-                        child: Row(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(
-                              "DOORGAN",
-                              style: TextStyle(
-                                fontSize:
-                                    MediaQuery.of(context).size.width > 600
-                                        ? 16
-                                        : 12,
-                                fontWeight: FontWeight.w700,
-                                color: Colors.white,
+                    Obx(() {
+                      return controller.isButtonVisible.value
+                          ? InkWell(
+                              onTap: () => {controller.onNext()},
+                              child: Container(
+                                width: mWidth / 4,
+                                padding: EdgeInsets.symmetric(
+                                    vertical: 20.0,
+                                    horizontal:
+                                        MediaQuery.of(context).size.width > 600
+                                            ? 50
+                                            : 20),
+                                decoration: BoxDecoration(
+                                  image: DecorationImage(
+                                    image:
+                                        AssetImage("assets/images/bg_btn.png"),
+                                    fit: BoxFit.fill,
+                                  ),
+                                ),
+                                child: Row(
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Text(
+                                      "DOORGAAN",
+                                      style: TextStyle(
+                                        fontSize:
+                                            MediaQuery.of(context).size.width >
+                                                    600
+                                                ? 16
+                                                : 12,
+                                        fontWeight: FontWeight.w700,
+                                        color: Colors.white,
+                                      ),
+                                    ),
+                                  ],
+                                ),
                               ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
+                            )
+                          : SizedBox();
+                    }),
                     SizedBox(
                       height: 80,
                     ),

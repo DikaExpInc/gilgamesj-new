@@ -3,6 +3,7 @@ import 'package:audioplayers/audioplayers.dart';
 import 'package:get/get.dart';
 import 'package:shake/shake.dart';
 import 'package:video_player/video_player.dart';
+import 'package:vibration/vibration.dart';
 
 class PreGameShakeGameController extends GetxController {
   ShakeDetector? shakeDetector;
@@ -22,7 +23,7 @@ class PreGameShakeGameController extends GetxController {
       String lockCodeString = lockCode.toString();
       print("key_tuts : ${key_tuts.value}");
       print("lockCode : ${lockCodeString}");
-      if (lockCode.toString() == key_tuts.value) {
+      if (lockCodeString == key_tuts.value) {
         audioCache.play('spirit_realms.mp3');
         showItemDialog(title: 'Waauw', description: 'Het is je gelukt !!');
       } else {
@@ -48,6 +49,7 @@ class PreGameShakeGameController extends GetxController {
   @override
   void onInit() {
     super.onInit();
+    Vibration.vibrate(duration: 1000);
     shakeDetector = ShakeDetector.autoStart(onPhoneShake: () {
       if (!isShaking.value) {
         videocontroller!.play();

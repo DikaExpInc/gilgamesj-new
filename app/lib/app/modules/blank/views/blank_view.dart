@@ -13,12 +13,29 @@ class BlankView extends GetView<BlankController> {
     mWidth = MediaQuery.of(context).size.width;
     mHeight = MediaQuery.of(context).size.height;
     return Scaffold(
-        body: Container(
-      width: mWidth,
-      height: mHeight,
-      decoration: BoxDecoration(
-        color: Colors.black,
+      body: Container(
+        width: mWidth,
+        height: mHeight,
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage("assets/images/background2.png"),
+            fit: BoxFit.cover,
+          ),
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(
+              "Hier is niks te zien, kijk naar de voorstelling.",
+              style: TextStyle(
+                fontSize: 24,
+                color: Colors.white,
+              ),
+            ),
+          ],
+        ),
       ),
-    ));
+    );
   }
 }

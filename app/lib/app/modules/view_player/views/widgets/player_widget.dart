@@ -60,9 +60,17 @@ class PlayerWidget extends GetView<ViewPlayerController> {
                   child: TextField(
                     controller: nameController,
                     style: TextStyle(color: Colors.black),
+                    onChanged: (value) {
+                      // controller.isButtonVisible(value.isNotEmpty);
+                      // Periksa apakah semua TextField memiliki nilai
+                      // isAllTextFieldsFilled = ;
+                      controller.isButtonVisible(controller
+                          .playerNameControllers
+                          .every((controller) => controller.text.isNotEmpty));
+                    },
                     decoration: InputDecoration(
-                      hintText: 'VOER HIER JE NAAM IN',
-                      hintStyle: TextStyle(color: Colors.white54),
+                      // hintText: 'VOER HIER JE NAAM IN',
+                      // hintStyle: TextStyle(color: Colors.black),
                       border: InputBorder.none,
                       contentPadding: EdgeInsets.all(16.0),
                     ),

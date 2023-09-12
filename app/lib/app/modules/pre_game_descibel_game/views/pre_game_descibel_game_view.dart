@@ -62,35 +62,35 @@ class PreGameDescibelGameView extends GetView<PreGameDescibelGameController> {
             ],
           ),
         )),
-        floatingActionButton: GestureDetector(
-          onLongPress: () {
-            if (!controller.isRecording.value) {
-              controller.start(); // Start recording when long press begins
-            }
-          },
-          onLongPressEnd: (_) {
-            if (controller.isRecording.value) {
-              controller.stop(); // Stop recording when long press ends
-              if (controller.latestReading.value!.maxDecibel >= 80) {
-                controller.showItemDialog(
-                    title: 'Waauw', description: 'Het is je gelukt !!');
-                final AudioCache audioCache =
-                    AudioCache(prefix: 'assets/audios/');
-                audioCache.play('spirit_realms.mp3');
-              } else {
-                controller.latestReading.value = null;
-              }
-            }
-          },
-          child: FloatingActionButton(
-            backgroundColor:
-                controller.isRecording.value ? Colors.red : Colors.green,
-            onPressed: () {}, // Empty onPressed to prevent default behavior
-            child: controller.isRecording.value
-                ? Icon(Icons.stop)
-                : Icon(Icons.mic),
-          ),
-        ),
+        // floatingActionButton: GestureDetector(
+        //   onLongPress: () {
+        //     if (!controller.isRecording.value) {
+        //       controller.start(); // Start recording when long press begins
+        //     }
+        //   },
+        //   onLongPressEnd: (_) {
+        //     if (controller.isRecording.value) {
+        //       controller.stop(); // Stop recording when long press ends
+        //       if (controller.latestReading.value!.maxDecibel >= 80) {
+        //         controller.showItemDialog(
+        //             title: 'Waauw', description: 'Het is je gelukt !!');
+        //         final AudioCache audioCache =
+        //             AudioCache(prefix: 'assets/audios/');
+        //         audioCache.play('spirit_realms.mp3');
+        //       } else {
+        //         controller.latestReading.value = null;
+        //       }
+        //     }
+        //   },
+        //   child: FloatingActionButton(
+        //     backgroundColor:
+        //         controller.isRecording.value ? Colors.red : Colors.green,
+        //     onPressed: () {}, // Empty onPressed to prevent default behavior
+        //     child: controller.isRecording.value
+        //         ? Icon(Icons.stop)
+        //         : Icon(Icons.mic),
+        //   ),
+        // ),
       ),
     );
   }

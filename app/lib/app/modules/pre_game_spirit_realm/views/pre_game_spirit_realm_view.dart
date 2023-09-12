@@ -40,7 +40,7 @@ class PreGameSpiritRealmView extends GetView<PreGameSpiritRealmController> {
                     right: 10,
                     top: 10,
                     child: Text(
-                      "${GetStorage().read('played_name_${GetStorage().read('played_number')}')}",
+                      "de tablethouder is ${GetStorage().read('played_name_${GetStorage().read('played_number')}')}",
                       style: TextStyle(
                         fontFamily: 'Centrion',
                         fontSize: 42,
@@ -62,13 +62,11 @@ class PreGameSpiritRealmView extends GetView<PreGameSpiritRealmController> {
                     ),
                     child: AnimatedTextKit(
                       animatedTexts: [
-                        TyperAnimatedText('It is not enough to do your best,'),
-                        TyperAnimatedText('you must know what to do,'),
-                        TyperAnimatedText('and then do your best'),
-                        TyperAnimatedText('It is not enough to do your best,'),
-                        TyperAnimatedText('you must know what to do,'),
-                        TyperAnimatedText('and then do your best'),
-                        TyperAnimatedText(''),
+                        TyperAnimatedText(
+                            'Ga op zoek naar een verborgen schat,'),
+                        TyperAnimatedText(
+                            'gebruik daarvoor het oog van de museumstukken.'),
+                        TyperAnimatedText('Klik op verder om te starten'),
                       ],
                       isRepeatingAnimation: false,
                       onFinished: () {

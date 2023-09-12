@@ -34,13 +34,25 @@ class GoTheaterView extends GetView<GoTheaterController> {
               color: Colors.white,
             ),
           ),
-          Text(
-            "Go to the Theatre",
-            style: TextStyle(
-              fontSize: 64,
-              color: Colors.white,
-              fontWeight: FontWeight.w700,
-            ),
+          Column(
+            children: [
+              Text(
+                "Go to the Theatre",
+                style: TextStyle(
+                  fontSize: 64,
+                  color: Colors.white,
+                  fontWeight: FontWeight.w700,
+                ),
+              ),
+              Text(
+                'Ga naar je plek en ga zitten.\nVerberg je tablet. Zorg ervoor dat niemand hem ziet.\nMet deze tablet kun je de mensen op het podium helpen.\nPak de tablet pas weer als ze je hulp nodig hebben.',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 22,
+                ),
+                textAlign: TextAlign.center,
+              ),
+            ],
           ),
           Center(),
           // Center(

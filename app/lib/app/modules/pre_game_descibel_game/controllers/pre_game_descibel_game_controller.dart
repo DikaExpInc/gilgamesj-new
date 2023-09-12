@@ -1,9 +1,11 @@
 import 'dart:async';
 
 import 'package:app/app/widgets/dialog/descibel_dialog.dart';
+import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/gestures.dart';
 import 'package:get/get.dart';
 import 'package:noise_meter/noise_meter.dart';
+import 'package:vibration/vibration.dart';
 
 class PreGameDescibelGameController extends GetxController {
   //TODO: Implement PreGameDescibelGameController
@@ -20,7 +22,9 @@ class PreGameDescibelGameController extends GetxController {
   @override
   void onInit() {
     super.onInit();
+    Vibration.vibrate(duration: 1000);
     noiseMeter = NoiseMeter(onError);
+    start(); // Start recording when long press begins
   }
 
   @override
@@ -37,6 +41,12 @@ class PreGameDescibelGameController extends GetxController {
   void onData(NoiseReading noiseReading) {
     latestReading.value = noiseReading;
     if (!isRecording.value) isRecording.value = true;
+    if (latestReading.value!.maxDecibel >= 70) {
+      showItemDialog(title: 'Waauw', description: 'Het is je gelukt !!');
+      // final AudioCache audioCache = AudioCache(prefix: 'assets/audios/');
+      // audioCache.play('spirit_realms.mp3');
+      stop();
+    }
   }
 
   void onError(Object error) {

@@ -156,7 +156,7 @@ class ChangePlayerView extends GetView<ChangePlayerController> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Text(
-                              "DOORGAN",
+                              "DOORGAAN",
                               style: TextStyle(
                                 fontSize:
                                     MediaQuery.of(context).size.width > 600

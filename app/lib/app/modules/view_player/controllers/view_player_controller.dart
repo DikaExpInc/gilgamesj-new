@@ -14,6 +14,7 @@ class ViewPlayerController extends GetxController {
   RxBool isLoading = false.obs;
   PlayerListModel? playerListModel;
   var playerNameControllers = <TextEditingController>[].obs;
+  RxBool isButtonVisible = false.obs;
 
   Future<void> onNext() async {
     final changes = playerListModel?.items?.asMap().entries.map((entry) {
@@ -57,7 +58,7 @@ class ViewPlayerController extends GetxController {
       // Inisialisasi data pemain dan TextEditingController
       for (var i = 0; i < playerListModel!.items!.length; i++) {
         playerNameControllers.add(TextEditingController());
-        playerNameControllers[i].text = "${box.read('teamName')} ${i + 1}";
+        // playerNameControllers[i].text = "${box.read('teamName')} ${i + 1}";
       }
     } else if (playerListModel!.statusCode == 204) {
       print("Empty");

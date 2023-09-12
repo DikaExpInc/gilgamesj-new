@@ -126,7 +126,7 @@ class PageAllController extends GetxController {
                 break;
               case "go_to_theater":
                 if (mode != "go_to_theater") {
-                  GetStorage().write('mode', "intro");
+                  GetStorage().write('mode', "go_to_theater");
                   Get.offAllNamed(Routes.GO_THEATER);
                 }
                 break;

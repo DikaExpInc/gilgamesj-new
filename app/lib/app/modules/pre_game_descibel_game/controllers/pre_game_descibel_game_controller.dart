@@ -1,7 +1,7 @@
 import 'dart:async';
 
+import 'package:app/app/routes/app_pages.dart';
 import 'package:app/app/widgets/dialog/descibel_dialog.dart';
-import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/gestures.dart';
 import 'package:get/get.dart';
 import 'package:noise_meter/noise_meter.dart';
@@ -41,8 +41,9 @@ class PreGameDescibelGameController extends GetxController {
   void onData(NoiseReading noiseReading) {
     latestReading.value = noiseReading;
     if (!isRecording.value) isRecording.value = true;
-    if (latestReading.value!.maxDecibel >= 70) {
-      showItemDialog(title: 'Waauw', description: 'Het is je gelukt !!');
+    if (latestReading.value!.maxDecibel >= 80) {
+      Get.offNamed(Routes.PRE_GAME_SUCCESS);
+      // showItemDialog(title: 'Waauw', description: 'Het is je gelukt !!');
       // final AudioCache audioCache = AudioCache(prefix: 'assets/audios/');
       // audioCache.play('spirit_realms.mp3');
       stop();

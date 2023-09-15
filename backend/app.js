@@ -10,7 +10,7 @@ var cors = require('cors')
 const { Client, Server } = require('node-osc')
 const Setting = require('./app/setting/model')
 
-var server = new Server(53001, '192.168.1.4')
+var server = new Server(53001, '192.168.1.2')
 
 server.on('listening', () => {
   console.log('OSC Server is listening.')
@@ -122,6 +122,15 @@ server.on('message', async (msg) => {
         },
         {
           page: 'game_music',
+        }
+      )
+    } else if (result['value'] == 'game_music_theater') {
+      await Setting.findOneAndUpdate(
+        {
+          _id: '64de3fd2843badaf9efc006b',
+        },
+        {
+          page: 'game_music_theater',
         }
       )
     } else if (result['value'] == 'game_shake') {

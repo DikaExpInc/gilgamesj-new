@@ -76,6 +76,8 @@ import '../modules/pre_game_menu/bindings/pre_game_menu_binding.dart';
 import '../modules/pre_game_menu/views/pre_game_menu_view.dart';
 import '../modules/pre_game_music_game/bindings/pre_game_music_game_binding.dart';
 import '../modules/pre_game_music_game/views/pre_game_music_game_view.dart';
+import '../modules/pre_game_music_theater_game/bindings/pre_game_music_theater_game_binding.dart';
+import '../modules/pre_game_music_theater_game/views/pre_game_music_theater_game_view.dart';
 import '../modules/pre_game_rune/bindings/pre_game_rune_binding.dart';
 import '../modules/pre_game_rune/views/pre_game_rune_view.dart';
 import '../modules/pre_game_shake_game/bindings/pre_game_shake_game_binding.dart';
@@ -86,6 +88,8 @@ import '../modules/pre_game_splash/bindings/pre_game_splash_binding.dart';
 import '../modules/pre_game_splash/views/pre_game_splash_view.dart';
 import '../modules/pre_game_start/bindings/pre_game_start_binding.dart';
 import '../modules/pre_game_start/views/pre_game_start_view.dart';
+import '../modules/pre_game_success/bindings/pre_game_success_binding.dart';
+import '../modules/pre_game_success/views/pre_game_success_view.dart';
 import '../modules/pre_game_talking_video/bindings/pre_game_talking_video_binding.dart';
 import '../modules/pre_game_talking_video/views/pre_game_talking_video_view.dart';
 import '../modules/pre_game_tutorial/bindings/pre_game_tutorial_binding.dart';
@@ -351,6 +355,16 @@ class AppPages {
       name: _Paths.PRE_GAME_ITEMS_AR,
       page: () => PreGameItemsArView(),
       binding: PreGameItemsArBinding(),
+    ),
+    GetPage(
+      name: _Paths.PRE_GAME_SUCCESS,
+      page: () => PreGameSuccessView(),
+      binding: PreGameSuccessBinding(),
+    ),
+    GetPage(
+      name: _Paths.PRE_GAME_MUSIC_THEATER_GAME,
+      page: () => PreGameMusicTheaterGameView(),
+      binding: PreGameMusicTheaterGameBinding(),
     ),
   ];
 }

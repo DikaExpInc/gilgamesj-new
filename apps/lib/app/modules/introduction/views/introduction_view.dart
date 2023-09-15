@@ -71,7 +71,7 @@ class IntroductionView extends GetView<IntroductionController> {
               )),
           onDone: () => goToHome(context),
           showSkipButton: true,
-          skip: Text('Doorgang'),
+          skip: Text('DOORGAAN'),
           onSkip: () => goToHome(context),
           next: Container(
             width: 48,

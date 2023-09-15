@@ -1,4 +1,4 @@
-import 'package:app/app/widgets/dialog/descibel_dialog.dart';
+import 'package:app/app/routes/app_pages.dart';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:get/get.dart';
 import 'package:shake/shake.dart';
@@ -24,22 +24,14 @@ class PreGameShakeGameController extends GetxController {
       print("key_tuts : ${key_tuts.value}");
       print("lockCode : ${lockCodeString}");
       if (lockCodeString == key_tuts.value) {
-        audioCache.play('spirit_realms.mp3');
-        showItemDialog(title: 'Waauw', description: 'Het is je gelukt !!');
+        // audioCache.play('spirit_realms.mp3');
+        // showItemDialog(title: 'Waauw', description: 'Het is je gelukt !!');
+        Get.offNamed(Routes.PRE_GAME_SUCCESS);
       } else {
         audioCache.play('error-glitch.mp3');
       }
       reset();
     }
-  }
-
-  void showItemDialog({required String title, required String description}) {
-    Get.dialog(
-      DescibelDialog(
-        title: title,
-        description: description,
-      ),
-    );
   }
 
   void reset() {
@@ -50,16 +42,18 @@ class PreGameShakeGameController extends GetxController {
   void onInit() {
     super.onInit();
     Vibration.vibrate(duration: 1000);
-    shakeDetector = ShakeDetector.autoStart(onPhoneShake: () {
-      if (!isShaking.value) {
-        videocontroller!.play();
-        isShaking.value = true;
-        Future.delayed(Duration(seconds: 2), () {
-          videocontroller!.pause();
-          isShaking.value = false;
+    shakeDetector = ShakeDetector.autoStart(
+        shakeThresholdGravity: 1.5,
+        onPhoneShake: () {
+          if (!isShaking.value) {
+            videocontroller!.play();
+            isShaking.value = true;
+            Future.delayed(Duration(seconds: 2), () {
+              videocontroller!.pause();
+              isShaking.value = false;
+            });
+          }
         });
-      }
-    });
     videocontroller = VideoPlayerController.asset('assets/videos/sand.mp4');
     videocontroller!.addListener(() {
       if (videocontroller!.value.position >= videocontroller!.value.duration) {

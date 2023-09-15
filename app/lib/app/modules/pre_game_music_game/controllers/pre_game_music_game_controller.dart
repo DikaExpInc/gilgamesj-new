@@ -1,12 +1,9 @@
+import 'package:app/app/routes/app_pages.dart';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:get/get.dart';
 import 'package:vibration/vibration.dart';
 
-import '../../../widgets/dialog/descibel_dialog.dart';
-
 class PreGameMusicGameController extends GetxController {
-  //TODO: Implement PreGameMusicGameController
-
   final count = 0.obs;
   final AudioCache audioCache = AudioCache(prefix: 'assets/audios/');
   int lockCode = 1576;
@@ -23,22 +20,12 @@ class PreGameMusicGameController extends GetxController {
       print("key_tuts : ${key_tuts.value}");
       print("lockCode : ${lockCodeString}");
       if (lockCode.toString() == key_tuts.value) {
-        audioCache.play('spirit_realms.mp3');
-        showItemDialog(title: 'Waauw', description: 'Het is je gelukt !!');
+        Get.offNamed(Routes.PRE_GAME_SUCCESS);
       } else {
         audioCache.play('error-glitch.mp3');
       }
       reset();
     }
-  }
-
-  void showItemDialog({required String title, required String description}) {
-    Get.dialog(
-      DescibelDialog(
-        title: title,
-        description: description,
-      ),
-    );
   }
 
   void reset() {
@@ -50,16 +37,6 @@ class PreGameMusicGameController extends GetxController {
     super.onInit();
     playAudioSequenceFromLockCode();
     Vibration.vibrate(duration: 1000);
-  }
-
-  @override
-  void onReady() {
-    super.onReady();
-  }
-
-  @override
-  void onClose() {
-    super.onClose();
   }
 
   playAudioSequenceFromLockCode() async {

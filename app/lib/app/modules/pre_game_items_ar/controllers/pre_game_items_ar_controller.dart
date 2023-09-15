@@ -1,23 +1,30 @@
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class PreGameItemsArController extends GetxController {
+class PreGameItemsArController extends GetxController
+    with GetTickerProviderStateMixin {
   RxInt selectedItemIndex = 0.obs;
+  late AnimationController _controllerParticle;
 
-  final count = 0.obs;
   @override
   void onInit() {
     super.onInit();
-  }
-
-  @override
-  void onReady() {
-    super.onReady();
+    _controllerParticle = AnimationController(
+      vsync: this,
+      duration: Duration(seconds: 10),
+    )..repeat();
   }
 
   @override
   void onClose() {
     super.onClose();
+    // _controllerParticle.dispose();
   }
 
-  void increment() => count.value++;
+  Widget get rotatingParticle {
+    return RotationTransition(
+      turns: _controllerParticle,
+      child: Image.asset('assets/images/particle.png'),
+    );
+  }
 }

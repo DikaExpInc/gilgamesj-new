@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 
 import '../controllers/pre_game_music_game_controller.dart';
 
+// ignore: must_be_immutable
 class PreGameMusicGameView extends GetView<PreGameMusicGameController> {
   late double mWidth;
   late double mHeight;

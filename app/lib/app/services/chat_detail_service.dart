@@ -7,8 +7,6 @@ import '../utils/api.dart';
 import '../widgets/loading.dart';
 import 'package:http/http.dart' as http;
 
-import '../widgets/message/errorMessage.dart';
-
 class ChatDetailApi extends SharedApi {
   Future<ChatDetailListModel> getAnswerAPI(String chatId) async {
     try {

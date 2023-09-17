@@ -8,6 +8,7 @@ import 'package:get_storage/get_storage.dart';
 
 import '../controllers/pre_game_talking_video_controller.dart';
 
+// ignore: must_be_immutable
 class PreGameTalkingVideoView extends GetView<PreGameTalkingVideoController> {
   late double mWidth;
   late double mHeight;

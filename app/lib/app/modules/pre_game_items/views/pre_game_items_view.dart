@@ -2,9 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 import 'package:get/get.dart';
-import 'package:get_storage/get_storage.dart';
-
-import '../../../routes/app_pages.dart';
 import '../controllers/pre_game_items_controller.dart';
 
 // ignore: must_be_immutable

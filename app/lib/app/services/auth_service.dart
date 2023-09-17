@@ -6,7 +6,6 @@ import 'package:app/app/utils/api.dart';
 import 'package:app/app/widgets/loading.dart';
 import 'package:app/app/widgets/message/errorMessage.dart';
 import 'package:app/app/widgets/message/internetMessage.dart';
-import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
 class AuthApi extends SharedApi {

@@ -6,6 +6,7 @@ import 'package:get_storage/get_storage.dart';
 
 import '../controllers/pre_game_items_ar_controller.dart';
 
+// ignore: must_be_immutable
 class PreGameItemsArView extends GetView<PreGameItemsArController> {
   late double mWidth;
   late double mHeight;

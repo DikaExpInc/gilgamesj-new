@@ -1,5 +1,3 @@
-import 'package:animated_text_kit/animated_text_kit.dart';
-import 'package:app/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
@@ -7,6 +5,7 @@ import 'package:get_storage/get_storage.dart';
 
 import '../controllers/pre_game_success_controller.dart';
 
+// ignore: must_be_immutable
 class PreGameSuccessView extends GetView<PreGameSuccessController> {
   late double mWidth;
   late double mHeight;

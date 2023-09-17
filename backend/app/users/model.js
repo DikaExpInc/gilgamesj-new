@@ -36,6 +36,9 @@ let userSchema = mongoose.Schema(
     player_now: {
       type: String,
     },
+    group: {
+      type: Number,
+    },
   },
   { timestamps: true }
 )

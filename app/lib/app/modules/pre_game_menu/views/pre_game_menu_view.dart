@@ -61,6 +61,7 @@ class PreGameMenuView extends GetView<PreGameMenuController> {
                             style: TextStyle(
                               color: Color(0xff79684B),
                               fontSize: 68,
+                              fontWeight: FontWeight.w700,
                             ),
                           ),
                           Text(
@@ -68,6 +69,7 @@ class PreGameMenuView extends GetView<PreGameMenuController> {
                             style: TextStyle(
                               color: Color(0xff79684B),
                               fontSize: 128,
+                              fontWeight: FontWeight.w700,
                             ),
                           ),
                         ],

@@ -49,6 +49,7 @@ class CreateTeamView extends GetView<CreateTeamController> {
                       style: TextStyle(
                         color: Color(0xff79684B),
                         fontSize: 68,
+                        fontWeight: FontWeight.w700,
                       ),
                     ),
                     Text(
@@ -56,6 +57,7 @@ class CreateTeamView extends GetView<CreateTeamController> {
                       style: TextStyle(
                         color: Color(0xff79684B),
                         fontSize: 128,
+                        fontWeight: FontWeight.w700,
                       ),
                     ),
                   ],

@@ -6,7 +6,7 @@ import 'package:vibration/vibration.dart';
 class PreGameMusicGameController extends GetxController {
   final count = 0.obs;
   final AudioCache audioCache = AudioCache(prefix: 'assets/audios/');
-  int lockCode = 1576;
+  int lockCode = 1576; // do sol si la
 
   RxString key_tuts = ''.obs;
   int maxDigits = 4;

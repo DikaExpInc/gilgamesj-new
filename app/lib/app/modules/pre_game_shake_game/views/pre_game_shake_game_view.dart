@@ -6,9 +6,13 @@ import '../controllers/pre_game_shake_game_controller.dart';
 import 'package:video_player/video_player.dart';
 
 class PreGameShakeGameView extends GetView<PreGameShakeGameController> {
-  const PreGameShakeGameView({Key? key}) : super(key: key);
+  late double mWidth;
+  late double mHeight;
+
   @override
   Widget build(BuildContext context) {
+    mWidth = MediaQuery.of(context).size.width;
+    mHeight = MediaQuery.of(context).size.height;
     return Scaffold(
       body: Container(
         child: Obx(
@@ -35,7 +39,7 @@ class PreGameShakeGameView extends GetView<PreGameShakeGameController> {
                           },
                           child: Image.asset(
                             'assets/images/btn-shake-1.png',
-                            width: 200,
+                            width: mWidth / 2,
                           ),
                         ),
                       ),
@@ -51,7 +55,7 @@ class PreGameShakeGameView extends GetView<PreGameShakeGameController> {
                           },
                           child: Image.asset(
                             'assets/images/btn-shake-2.png',
-                            width: 200,
+                            width: mWidth / 2,
                           ),
                         ),
                       ),
@@ -67,7 +71,7 @@ class PreGameShakeGameView extends GetView<PreGameShakeGameController> {
                           },
                           child: Image.asset(
                             'assets/images/btn-shake-3.png',
-                            width: 200,
+                            width: mWidth / 2,
                           ),
                         ),
                       ),
@@ -83,7 +87,7 @@ class PreGameShakeGameView extends GetView<PreGameShakeGameController> {
                           },
                           child: Image.asset(
                             'assets/images/btn-shake-4.png',
-                            width: 200,
+                            width: mWidth / 2,
                           ),
                         ),
                       ),

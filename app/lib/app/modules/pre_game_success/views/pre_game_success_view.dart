@@ -35,10 +35,10 @@ class PreGameSuccessView extends GetView<PreGameSuccessController> {
                 children: [
                   controller.rotatingImage,
                   Positioned(
-                    right: 10,
+                    right: 20,
                     top: 10,
                     child: Text(
-                      "de tablethouder is ${GetStorage().read('played_name_${GetStorage().read('played_number')}')}",
+                      "${GetStorage().read('played_name_${GetStorage().read('played_number')}')}",
                       style: TextStyle(
                         fontFamily: 'Centrion',
                         fontSize: 42,
@@ -48,7 +48,7 @@ class PreGameSuccessView extends GetView<PreGameSuccessController> {
                     ),
                   ),
                   Positioned(
-                    right: mWidth / 3,
+                    right: mWidth / 2.8,
                     top: mHeight / 3.5,
                     child: Text(
                       "GEHAALD",

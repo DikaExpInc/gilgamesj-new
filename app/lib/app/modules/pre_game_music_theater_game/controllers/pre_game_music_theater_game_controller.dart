@@ -58,6 +58,7 @@ class PreGameMusicTheaterGameController extends GetxController
     // Hentikan timer saat controller dihapus
     audioTimer.cancel();
     _controllerDisk.dispose();
+    audioPlayer.stop();
     super.onClose();
   }
 

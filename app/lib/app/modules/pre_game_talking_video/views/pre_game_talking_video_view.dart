@@ -73,9 +73,8 @@ class PreGameTalkingVideoView extends GetView<PreGameTalkingVideoController> {
                         int playedNumber = GetStorage().read('played_number') ??
                             0; // Mengambil nilai played_number atau mengatur ke 0 jika tidak ada
 
-                        int totalPlayer = int.parse(
-                                GetStorage().read('totalPlayer')) ??
-                            0; // Mengambil nilai totalPlayer sebagai int atau mengatur ke 0 jika tidak ada
+                        int totalPlayer = int.parse(GetStorage().read(
+                            'totalPlayer')); // Mengambil nilai totalPlayer sebagai int atau mengatur ke 0 jika tidak ada
 
                         if (playedNumber + 1 >= totalPlayer) {
                           GetStorage().write('played_number', 0);

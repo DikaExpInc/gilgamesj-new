@@ -166,6 +166,60 @@ class PageAllController extends GetxController {
                   Get.offAllNamed(Routes.PRE_GAME_SHAKE_GAME);
                 }
                 break;
+              case "game_light":
+                if (mode != "game_light") {
+                  GetStorage().write('mode', "game_light");
+                  Get.offAllNamed(Routes.MINI_GAME_LIGHTNING_GAME);
+                }
+                break;
+              case "game_light_done":
+                if (mode != "game_light_done") {
+                  GetStorage().write('mode', "game_light_done");
+                  Get.offAllNamed(Routes.MINI_GAME_LIGHTNING_GAME_DONE);
+                }
+                break;
+              case "game_star":
+                if (mode != "game_star") {
+                  GetStorage().write('mode', "game_star");
+                  Get.offAllNamed(Routes.MINI_GAME_STAR_GAME);
+                }
+                break;
+              case "game_star_timer":
+                if (mode != "game_star_timer") {
+                  GetStorage().write('mode', "game_star_timer");
+                  Get.offAllNamed(Routes.MINI_GAME_STAR_TIMER_GAME);
+                }
+                break;
+              case "game_star_done":
+                if (mode != "game_star_done") {
+                  GetStorage().write('mode', "game_star_done");
+                  Get.offAllNamed(Routes.MINI_GAME_STAR_GAME_DONE);
+                }
+                break;
+              case "game_choice":
+                if (mode != "game_choice") {
+                  GetStorage().write('mode', "game_choice");
+                  Get.offAllNamed(Routes.MINI_GAME_CHOICE_GAME);
+                }
+                break;
+              case "game_music_shake":
+                if (mode != "game_music_shake") {
+                  GetStorage().write('mode', "game_music_shake");
+                  Get.offAllNamed(Routes.MINI_GAME_SHAKE_GAME);
+                }
+                break;
+              case "game_music_shake_done":
+                if (mode != "game_music_shake_done") {
+                  GetStorage().write('mode', "game_music_shake_done");
+                  Get.offAllNamed(Routes.MINI_GAME_SHAKE_GAME_DONE);
+                }
+                break;
+              case "game_chat":
+                if (mode != "game_chat") {
+                  GetStorage().write('mode', "game_chat");
+                  Get.offAllNamed(Routes.MINI_GAME_CHAT_GAME);
+                }
+                break;
               default:
                 if (mode != "intro") {
                   GetStorage().write('mode', "phone");

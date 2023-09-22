@@ -55,6 +55,18 @@ abstract class Routes {
   static const PRE_GAME_ITEMS_AR = _Paths.PRE_GAME_ITEMS_AR;
   static const PRE_GAME_SUCCESS = _Paths.PRE_GAME_SUCCESS;
   static const PRE_GAME_MUSIC_THEATER_GAME = _Paths.PRE_GAME_MUSIC_THEATER_GAME;
+  static const MINI_GAME_CHOICE_GAME = _Paths.MINI_GAME_CHOICE_GAME;
+  static const MINI_GAME_LIGHTNING_GAME = _Paths.MINI_GAME_LIGHTNING_GAME;
+  static const MINI_GAME_LIGHTNING_GAME_DONE =
+      _Paths.MINI_GAME_LIGHTNING_GAME_DONE;
+  static const MINI_GAME_STAR_GAME = _Paths.MINI_GAME_STAR_GAME;
+  static const MINI_GAME_STAR_GAME_DONE = _Paths.MINI_GAME_STAR_GAME_DONE;
+  static const MINI_GAME_STAR_TIMER_GAME = _Paths.MINI_GAME_STAR_TIMER_GAME;
+  static const MINI_GAME_CHOICE_GAME_DONE = _Paths.MINI_GAME_CHOICE_GAME_DONE;
+  static const MINI_GAME_CHAT_GAME = _Paths.MINI_GAME_CHAT_GAME;
+  static const MINI_GAME_CHAT_GAME_DONE = _Paths.MINI_GAME_CHAT_GAME_DONE;
+  static const MINI_GAME_SHAKE_GAME_DONE = _Paths.MINI_GAME_SHAKE_GAME_DONE;
+  static const MINI_GAME_SHAKE_GAME = _Paths.MINI_GAME_SHAKE_GAME;
 }
 
 abstract class _Paths {
@@ -111,4 +123,15 @@ abstract class _Paths {
   static const PRE_GAME_ITEMS_AR = '/pre-game-items-ar';
   static const PRE_GAME_SUCCESS = '/pre-game-success';
   static const PRE_GAME_MUSIC_THEATER_GAME = '/pre-game-music-theater-game';
+  static const MINI_GAME_CHOICE_GAME = '/mini-game-choice-game';
+  static const MINI_GAME_LIGHTNING_GAME = '/mini-game-lightning-game';
+  static const MINI_GAME_LIGHTNING_GAME_DONE = '/mini-game-lightning-game-done';
+  static const MINI_GAME_STAR_GAME = '/mini-game-star-game';
+  static const MINI_GAME_STAR_GAME_DONE = '/mini-game-star-game-done';
+  static const MINI_GAME_STAR_TIMER_GAME = '/mini-game-star-timer-game';
+  static const MINI_GAME_CHOICE_GAME_DONE = '/mini-game-choice-game-done';
+  static const MINI_GAME_CHAT_GAME = '/mini-game-chat-game';
+  static const MINI_GAME_CHAT_GAME_DONE = '/mini-game-chat-game-done';
+  static const MINI_GAME_SHAKE_GAME_DONE = '/mini-game-shake-game-done';
+  static const MINI_GAME_SHAKE_GAME = '/mini-game-shake-game';
 }

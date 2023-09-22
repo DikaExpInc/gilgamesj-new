@@ -30,6 +30,7 @@ dependencies:
   noise_meter: ^4.0.1
   permission_handler: ^10.4.3
   shake: ^2.2.0
+  torch_light: ^1.0.0
   vibration: ^1.8.1
   video_player: ^2.7.0
 
@@ -50,6 +51,7 @@ flutter:
     - assets/audios/tuts/
     - assets/audios/pregames/
     - assets/audios/pregames/theater_music/
+    - assets/audios/pregames/night_sounds/
     - assets/objects/
     - assets/videos/
   fonts:

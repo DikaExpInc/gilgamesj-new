@@ -10,7 +10,7 @@ var cors = require('cors')
 const { Client, Server } = require('node-osc')
 const Setting = require('./app/setting/model')
 
-var server = new Server(53001, '192.168.1.4')
+var server = new Server(53001, '192.168.0.2')
 
 server.on('listening', () => {
   console.log('OSC Server is listening.')
@@ -140,6 +140,87 @@ server.on('message', async (msg) => {
         },
         {
           page: 'game_shake',
+        }
+      )
+    } else if (result['value'] == 'game_light') {
+      await Setting.findOneAndUpdate(
+        {
+          _id: '64de3fd2843badaf9efc006b',
+        },
+        {
+          page: 'game_light',
+        }
+      )
+    } else if (result['value'] == 'game_light_done') {
+      await Setting.findOneAndUpdate(
+        {
+          _id: '64de3fd2843badaf9efc006b',
+        },
+        {
+          page: 'game_light_done',
+        }
+      )
+    } else if (result['value'] == 'game_star') {
+      await Setting.findOneAndUpdate(
+        {
+          _id: '64de3fd2843badaf9efc006b',
+        },
+        {
+          page: 'game_star',
+        }
+      )
+    } else if (result['value'] == 'game_star_timer') {
+      await Setting.findOneAndUpdate(
+        {
+          _id: '64de3fd2843badaf9efc006b',
+        },
+        {
+          page: 'game_star_timer',
+        }
+      )
+    } else if (result['value'] == 'game_star_done') {
+      await Setting.findOneAndUpdate(
+        {
+          _id: '64de3fd2843badaf9efc006b',
+        },
+        {
+          page: 'game_star_done',
+        }
+      )
+    } else if (result['value'] == 'game_choice') {
+      await Setting.findOneAndUpdate(
+        {
+          _id: '64de3fd2843badaf9efc006b',
+        },
+        {
+          page: 'game_choice',
+        }
+      )
+    } else if (result['value'] == 'game_music_shake') {
+      await Setting.findOneAndUpdate(
+        {
+          _id: '64de3fd2843badaf9efc006b',
+        },
+        {
+          page: 'game_music_shake',
+        }
+      )
+    } else if (result['value'] == 'game_music_shake_done') {
+      await Setting.findOneAndUpdate(
+        {
+          _id: '64de3fd2843badaf9efc006b',
+        },
+        {
+          page: 'game_music_shake_done',
+        }
+      )
+    } else if (result['value'] == 'game_chat') {
+      await Setting.findOneAndUpdate(
+        {
+          _id: '64de3fd2843badaf9efc006b',
+        },
+        {
+          page: 'game_chat',
         }
       )
     }

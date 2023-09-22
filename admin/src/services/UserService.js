@@ -2,10 +2,17 @@ import fetch from 'auth/FetchInterceptor'
 
 const userService = {}
 
-userService.getUserList = function (stageID) {
+userService.getUserList = function () {
   return fetch({
     url: `/users/player`,
     method: 'get',
+  })
+}
+
+userService.deletePlayer = function (id) {
+  return fetch({
+    url: `/users/player/${id}`,
+    method: 'delete',
   })
 }
 

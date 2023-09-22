@@ -1,5 +1,6 @@
 import {
   CREATE_USER,
+  DELETE_PLAYER,
   DELETE_USER,
   GET_ALL_USER,
   GET_USER,
@@ -32,6 +33,9 @@ function user(user = initialState, action) {
     case DELETE_USER:
       const filteredData = user.data.filter((data) => data.id !== payload.id)
       return { ...user, data: filteredData }
+    case DELETE_PLAYER:
+      const filteredPlayer = user.data.filter((data) => data.id !== payload.id)
+      return { ...user, data: filteredPlayer }
 
     default:
       return user

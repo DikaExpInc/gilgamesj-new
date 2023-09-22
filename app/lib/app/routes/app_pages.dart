@@ -50,6 +50,28 @@ import '../modules/lock_music/bindings/lock_music_binding.dart';
 import '../modules/lock_music/views/lock_music_view.dart';
 import '../modules/map/bindings/map_binding.dart';
 import '../modules/map/views/map_view.dart';
+import '../modules/mini_game_chat_game/bindings/mini_game_chat_game_binding.dart';
+import '../modules/mini_game_chat_game/views/mini_game_chat_game_view.dart';
+import '../modules/mini_game_chat_game_done/bindings/mini_game_chat_game_done_binding.dart';
+import '../modules/mini_game_chat_game_done/views/mini_game_chat_game_done_view.dart';
+import '../modules/mini_game_choice_game/bindings/mini_game_choice_game_binding.dart';
+import '../modules/mini_game_choice_game/views/mini_game_choice_game_view.dart';
+import '../modules/mini_game_choice_game_done/bindings/mini_game_choice_game_done_binding.dart';
+import '../modules/mini_game_choice_game_done/views/mini_game_choice_game_done_view.dart';
+import '../modules/mini_game_lightning_game/bindings/mini_game_lightning_game_binding.dart';
+import '../modules/mini_game_lightning_game/views/mini_game_lightning_game_view.dart';
+import '../modules/mini_game_lightning_game_done/bindings/mini_game_lightning_game_done_binding.dart';
+import '../modules/mini_game_lightning_game_done/views/mini_game_lightning_game_done_view.dart';
+import '../modules/mini_game_shake_game/bindings/mini_game_shake_game_binding.dart';
+import '../modules/mini_game_shake_game/views/mini_game_shake_game_view.dart';
+import '../modules/mini_game_shake_game_done/bindings/mini_game_shake_game_done_binding.dart';
+import '../modules/mini_game_shake_game_done/views/mini_game_shake_game_done_view.dart';
+import '../modules/mini_game_star_game/bindings/mini_game_star_game_binding.dart';
+import '../modules/mini_game_star_game/views/mini_game_star_game_view.dart';
+import '../modules/mini_game_star_game_done/bindings/mini_game_star_game_done_binding.dart';
+import '../modules/mini_game_star_game_done/views/mini_game_star_game_done_view.dart';
+import '../modules/mini_game_star_timer_game/bindings/mini_game_star_timer_game_binding.dart';
+import '../modules/mini_game_star_timer_game/views/mini_game_star_timer_game_view.dart';
 import '../modules/news_detail/bindings/news_detail_binding.dart';
 import '../modules/news_detail/views/news_detail_view.dart';
 import '../modules/notification/bindings/notification_binding.dart';
@@ -365,6 +387,61 @@ class AppPages {
       name: _Paths.PRE_GAME_MUSIC_THEATER_GAME,
       page: () => PreGameMusicTheaterGameView(),
       binding: PreGameMusicTheaterGameBinding(),
+    ),
+    GetPage(
+      name: _Paths.MINI_GAME_CHOICE_GAME,
+      page: () => MiniGameChoiceGameView(),
+      binding: MiniGameChoiceGameBinding(),
+    ),
+    GetPage(
+      name: _Paths.MINI_GAME_LIGHTNING_GAME,
+      page: () => MiniGameLightningGameView(),
+      binding: MiniGameLightningGameBinding(),
+    ),
+    GetPage(
+      name: _Paths.MINI_GAME_LIGHTNING_GAME_DONE,
+      page: () => MiniGameLightningGameDoneView(),
+      binding: MiniGameLightningGameDoneBinding(),
+    ),
+    GetPage(
+      name: _Paths.MINI_GAME_STAR_GAME,
+      page: () => MiniGameStarGameView(),
+      binding: MiniGameStarGameBinding(),
+    ),
+    GetPage(
+      name: _Paths.MINI_GAME_STAR_GAME_DONE,
+      page: () => MiniGameStarGameDoneView(),
+      binding: MiniGameStarGameDoneBinding(),
+    ),
+    GetPage(
+      name: _Paths.MINI_GAME_STAR_TIMER_GAME,
+      page: () => MiniGameStarTimerGameView(),
+      binding: MiniGameStarTimerGameBinding(),
+    ),
+    GetPage(
+      name: _Paths.MINI_GAME_CHOICE_GAME_DONE,
+      page: () => MiniGameChoiceGameDoneView(),
+      binding: MiniGameChoiceGameDoneBinding(),
+    ),
+    GetPage(
+      name: _Paths.MINI_GAME_CHAT_GAME,
+      page: () => MiniGameChatGameView(),
+      binding: MiniGameChatGameBinding(),
+    ),
+    GetPage(
+      name: _Paths.MINI_GAME_CHAT_GAME_DONE,
+      page: () => MiniGameChatGameDoneView(),
+      binding: MiniGameChatGameDoneBinding(),
+    ),
+    GetPage(
+      name: _Paths.MINI_GAME_SHAKE_GAME_DONE,
+      page: () => MiniGameShakeGameDoneView(),
+      binding: MiniGameShakeGameDoneBinding(),
+    ),
+    GetPage(
+      name: _Paths.MINI_GAME_SHAKE_GAME,
+      page: () => MiniGameShakeGameView(),
+      binding: MiniGameShakeGameBinding(),
     ),
   ];
 }

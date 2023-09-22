@@ -80,13 +80,13 @@ const UserList = () => {
     let data = list
     if (selectedRows.length > 1) {
       selectedRows.forEach((elm) => {
-        userService.deleteUser(elm._id)
+        userService.deletePlayer(elm._id)
         data = utils.deleteArrayRow(data, objKey, elm._id)
         setList(data)
         setSelectedRows([])
       })
     } else {
-      userService.deleteUser(row._id)
+      userService.deletePlayer(row._id)
       data = utils.deleteArrayRow(data, objKey, row._id)
       setList(data)
     }

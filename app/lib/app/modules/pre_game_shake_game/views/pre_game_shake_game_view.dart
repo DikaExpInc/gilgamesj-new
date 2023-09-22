@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import '../controllers/pre_game_shake_game_controller.dart';
 import 'package:video_player/video_player.dart';
 
+// ignore: must_be_immutable
 class PreGameShakeGameView extends GetView<PreGameShakeGameController> {
   late double mWidth;
   late double mHeight;

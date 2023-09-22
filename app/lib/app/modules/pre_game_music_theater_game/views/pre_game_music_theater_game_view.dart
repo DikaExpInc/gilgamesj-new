@@ -44,7 +44,7 @@ class PreGameMusicTheaterGameView
                     backgroundColor:
                         Colors.grey, // Warna latar belakang progress bar
                     valueColor: AlwaysStoppedAnimation<Color>(
-                        Colors.blue), // Warna progress bar
+                        Colors.white), // Warna progress bar
                   ),
                 );
               }),

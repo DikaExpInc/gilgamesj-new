@@ -8,6 +8,7 @@ import 'package:permission_handler/permission_handler.dart';
 
 import 'app/controllers/page_all_controller.dart';
 import 'app/routes/app_pages.dart';
+import 'package:flutter/services.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -77,6 +78,33 @@ Future<void> main() async {
         case "game_shake":
           initialRoute = Routes.PRE_GAME_SHAKE_GAME;
           break;
+        case "game_light":
+          initialRoute = Routes.MINI_GAME_LIGHTNING_GAME;
+          break;
+        case "game_light_done":
+          initialRoute = Routes.MINI_GAME_LIGHTNING_GAME_DONE;
+          break;
+        case "game_star":
+          initialRoute = Routes.MINI_GAME_STAR_GAME;
+          break;
+        case "game_star_timer":
+          initialRoute = Routes.MINI_GAME_STAR_TIMER_GAME;
+          break;
+        case "game_star_done":
+          initialRoute = Routes.MINI_GAME_STAR_GAME_DONE;
+          break;
+        case "game_choice":
+          initialRoute = Routes.MINI_GAME_CHOICE_GAME;
+          break;
+        case "game_music_shake":
+          initialRoute = Routes.MINI_GAME_SHAKE_GAME;
+          break;
+        case "game_music_shake_done":
+          initialRoute = Routes.MINI_GAME_SHAKE_GAME_DONE;
+          break;
+        case "game_chat":
+          initialRoute = Routes.MINI_GAME_CHAT_GAME;
+          break;
         default:
       }
     }
@@ -96,13 +124,16 @@ Future<void> main() async {
     }
   }
 
-  runApp(
-    GetMaterialApp(
-      title: "Application",
-      initialRoute: initialRoute,
-      getPages: AppPages.routes,
-      builder: BotToastInit(),
-      navigatorObservers: [BotToastNavigatorObserver()],
-    ),
-  );
+  SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp])
+      .then((_) {
+    runApp(
+      GetMaterialApp(
+        title: "Application",
+        initialRoute: initialRoute,
+        getPages: AppPages.routes,
+        builder: BotToastInit(),
+        navigatorObservers: [BotToastNavigatorObserver()],
+      ),
+    );
+  });
 }

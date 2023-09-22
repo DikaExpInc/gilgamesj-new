@@ -2,7 +2,7 @@ import 'package:app/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
-import 'package:get_storage/get_storage.dart';
+// import 'package:get_storage/get_storage.dart';
 
 import '../controllers/pre_game_items_ar_controller.dart';
 
@@ -66,14 +66,14 @@ class PreGameItemsArView extends GetView<PreGameItemsArController> {
                                 margin: EdgeInsets.all(20.0),
                               );
                             } else {
-                              final box = GetStorage();
+                              // final box = GetStorage();
 
                               final isSelected =
                                   index == controller.selectedItemIndex.value;
-                              final statusDone =
-                                  box.read('pregame_item_$index') != null
-                                      ? false
-                                      : true;
+                              // final statusDone =
+                              //     box.read('pregame_item_$index') != null
+                              //         ? false
+                              //         : true;
                               return GestureDetector(
                                 onTap: () {
                                   controller.selectedItemIndex.value =

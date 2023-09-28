@@ -39,6 +39,10 @@ let userSchema = mongoose.Schema(
     group: {
       type: Number,
     },
+    score: {
+      type: Number,
+      default: 0,
+    },
   },
   { timestamps: true }
 )

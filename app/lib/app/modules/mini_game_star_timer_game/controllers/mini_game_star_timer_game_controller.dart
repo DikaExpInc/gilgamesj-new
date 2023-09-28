@@ -18,7 +18,15 @@ class MiniGameStarTimerGameController extends GetxController {
 
     audioPlayer = await audioCache.play('Alarm.mp3');
     audioPlayer?.onPlayerCompletion.listen((event) async {
-      Get.offNamed(Routes.MINI_GAME_STAR_GAME_DONE);
+      if (selectedAction.value == "") {
+        audioPlayer = await audioCache.play('Alarm.mp3');
+      } else {
+        if (selectedAction.value == "Snooze") {
+          audioPlayer = await audioCache.play('Alarm.mp3');
+        } else {
+          Get.offNamed(Routes.MINI_GAME_STAR_GAME_DONE);
+        }
+      }
     });
   }
 

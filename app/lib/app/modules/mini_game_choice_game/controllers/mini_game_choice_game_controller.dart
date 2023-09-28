@@ -1,13 +1,17 @@
+import 'dart:async';
+
 import 'package:app/app/data/question_model.dart';
 import 'package:app/app/modules/mini_game_choice_game/views/screens/choice_game_message_screen.dart';
+import 'package:app/app/routes/app_pages.dart';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:shake/shake.dart';
 import 'package:vibration/vibration.dart';
 
 class MiniGameChoiceGameController extends GetxController
     with GetTickerProviderStateMixin {
+  RxDouble containerWidth = 1200.0.obs;
+  Timer? timer;
   late AnimationController _controller;
   late AnimationController _controllerParticle;
   RxBool isFinished = false.obs;
@@ -78,10 +82,34 @@ class MiniGameChoiceGameController extends GetxController
     super.onInit();
   }
 
+  void startAutomaticChange() {
+    timer = Timer.periodic(Duration(milliseconds: 200), (timer) {
+      toggleContainerWidth();
+    });
+  }
+
+  void stopAutomaticChange() {
+    if (timer != null && timer!.isActive) {
+      timer!.cancel(); // Membatalkan timer jika sedang berjalan
+    }
+  }
+
+  void toggleContainerWidth() {
+    containerWidth.value -= 10.0;
+    if (containerWidth.value < 0) {
+      containerWidth.value = 1200.0;
+      goToNextQuestion();
+    }
+  }
+
   void goToNextQuestion() {
     characterSelect.value = "";
     if (currentIndex.value < questions.length - 1) {
+      containerWidth.value = 1200.0;
       currentIndex.value++;
+    } else {
+      stopAutomaticChange();
+      Get.offNamed(Routes.MINI_GAME_CHOICE_GAME_DONE);
     }
   }
 

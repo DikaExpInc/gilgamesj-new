@@ -14,7 +14,9 @@ import 'package:app/app/data/setting_model.dart';
 import 'package:app/app/data/social_media_comment.dart';
 import 'package:app/app/data/social_media_model.dart';
 import 'package:app/app/data/task_model.dart';
+import 'package:app/app/data/user_model.dart';
 import 'package:app/app/routes/app_pages.dart';
+import 'package:app/app/services/auth_service.dart';
 import 'package:app/app/services/setting_service.dart';
 import 'package:app/app/widgets/dialog/bonus_dialog.dart';
 import 'package:app/app/widgets/dialog/bonus_skip_dialog.dart';
@@ -40,6 +42,8 @@ class PageAllController extends GetxController {
   SocialMediaCommentListModel? socialMediaComments;
   SettingModel? setting;
   RxString currentPage = "".obs;
+  final box = GetStorage();
+  UserModel? user;
 
   // timer
   RxString countdown = '00:00'.obs;
@@ -184,6 +188,12 @@ class PageAllController extends GetxController {
                   Get.offAllNamed(Routes.MINI_GAME_STAR_GAME);
                 }
                 break;
+              case "game_star_solving":
+                if (mode != "game_star_solving") {
+                  GetStorage().write('mode', "game_star_solving");
+                  Get.offAllNamed(Routes.MINI_GAME_STAR_GAME_SOLVING);
+                }
+                break;
               case "game_star_timer":
                 if (mode != "game_star_timer") {
                   GetStorage().write('mode', "game_star_timer");
@@ -218,6 +228,18 @@ class PageAllController extends GetxController {
                 if (mode != "game_chat") {
                   GetStorage().write('mode', "game_chat");
                   Get.offAllNamed(Routes.MINI_GAME_CHAT_GAME);
+                }
+                break;
+              case "game_call_humbaba":
+                if (mode != "game_call_humbaba") {
+                  GetStorage().write('mode', "game_call_humbaba");
+                  Get.offAllNamed(Routes.MINI_GAME_CALL_HUMBABA_GAME);
+                }
+                break;
+              case "game_chat_and_call":
+                if (mode != "game_chat_and_call") {
+                  GetStorage().write('mode', "game_chat_and_call");
+                  Get.offAllNamed(Routes.MINI_GAME_CHAT_AND_CALL_GAME);
                 }
                 break;
               default:
@@ -353,5 +375,20 @@ class PageAllController extends GetxController {
 
   void updatePlayerChat(PlayerChatListModel newPlayerChat) {
     playerChat = newPlayerChat;
+  }
+
+  autoLogin() async {
+    update();
+    if (box.hasData("token") == true) {
+      user = await AuthApi().checkTokenApi(box.read("token"));
+      if (user!.statusCode == 200) {
+      } else if (user!.statusCode == 404) {
+        update();
+      } else {
+        box.remove("token");
+        box.remove("teamName");
+        Get.offAndToNamed(Routes.PRE_GAME_START);
+      }
+    }
   }
 }

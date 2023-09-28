@@ -1,7 +1,6 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:app/app/modules/mini_game_chat_game/controllers/mini_game_chat_game_controller.dart';
 import 'package:app/app/modules/mini_game_chat_game/views/screens/chat_game_main_screen.dart';
-import 'package:app/app/modules/mini_game_shake_game/views/screens/music_shake_game_main_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -34,66 +33,43 @@ class ChatGameMessageScreen extends GetView<MiniGameChatGameController> {
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              Stack(
-                children: [
-                  controller.rotatingImage,
-                  // Positioned(
-                  //   right: 10,
-                  //   top: 10,
-                  //   child: Text(
-                  //     "de tablethouder is ${GetStorage().read('played_name_${GetStorage().read('played_number')}')}",
-                  //     style: TextStyle(
-                  //       fontFamily: 'Centrion',
-                  //       fontSize: 42,
-                  //       color: Colors.white,
-                  //       fontWeight: FontWeight.w500,
-                  //     ),
-                  //   ),
-                  // ),
-                ],
+              SizedBox(
+                height: 60,
               ),
-              Column(
-                children: [
-                  DefaultTextStyle(
-                    style: const TextStyle(
-                      fontFamily: 'Centrion',
-                      fontSize: 30,
-                      color: Colors.white,
-                      fontWeight: FontWeight.normal,
-                    ),
-                    child: AnimatedTextKit(
-                      animatedTexts: [
-                        TyperAnimatedText(
-                            'Pak de tablet ${GetStorage().read('played_name_${GetStorage().read('played_number')}')} Schudden, schudden mensenkudde.'),
-                      ],
-                      isRepeatingAnimation: false,
-                      onFinished: () {
-                        // Navigate to the next page here
-                        controller.isFinished.value = true;
-                      },
-                    ),
+              Center(
+                child: DefaultTextStyle(
+                  style: const TextStyle(
+                    fontFamily: 'Centrion',
+                    fontSize: 34,
+                    color: Colors.white,
+                    fontWeight: FontWeight.normal,
                   ),
-                  SizedBox(
-                    height: 60,
+                  child: AnimatedTextKit(
+                    animatedTexts: [
+                      TyperAnimatedText(
+                          'Pak de tablet ${GetStorage().read('played_name_${GetStorage().read('played_number')}')} Schudden,\nschudden mensenkudde.',
+                          textAlign: TextAlign.center),
+                    ],
+                    isRepeatingAnimation: false,
+                    onFinished: () {
+                      // Navigate to the next page here
+                      controller.isFinished.value = true;
+                    },
                   ),
-                  Obx(() {
-                    return controller.isFinished.value
-                        ? InkWell(
-                            onTap: () =>
-                                controller.setWidget(ChatGameMainScreen()),
-                            child: SvgPicture.asset(
-                              "assets/icons/finger.svg",
-                              width: 100,
-                              height: 100,
-                            ),
-                          )
-                        : SizedBox();
-                  }),
-                  SizedBox(
-                    height: 60,
-                  ),
-                ],
+                ),
               ),
+              Obx(() {
+                return controller.isFinished.value
+                    ? InkWell(
+                        onTap: () => controller.setWidget(ChatGameMainScreen()),
+                        child: SvgPicture.asset(
+                          "assets/icons/finger_real.svg",
+                          width: 100,
+                          height: 100,
+                        ),
+                      )
+                    : SizedBox();
+              }),
             ],
           ),
         ],

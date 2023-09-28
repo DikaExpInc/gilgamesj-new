@@ -50,6 +50,10 @@ import '../modules/lock_music/bindings/lock_music_binding.dart';
 import '../modules/lock_music/views/lock_music_view.dart';
 import '../modules/map/bindings/map_binding.dart';
 import '../modules/map/views/map_view.dart';
+import '../modules/mini_game_call_humbaba_game/bindings/mini_game_call_humbaba_game_binding.dart';
+import '../modules/mini_game_call_humbaba_game/views/mini_game_call_humbaba_game_view.dart';
+import '../modules/mini_game_chat_and_call_game/bindings/mini_game_chat_and_call_game_binding.dart';
+import '../modules/mini_game_chat_and_call_game/views/mini_game_chat_and_call_game_view.dart';
 import '../modules/mini_game_chat_game/bindings/mini_game_chat_game_binding.dart';
 import '../modules/mini_game_chat_game/views/mini_game_chat_game_view.dart';
 import '../modules/mini_game_chat_game_done/bindings/mini_game_chat_game_done_binding.dart';
@@ -70,6 +74,8 @@ import '../modules/mini_game_star_game/bindings/mini_game_star_game_binding.dart
 import '../modules/mini_game_star_game/views/mini_game_star_game_view.dart';
 import '../modules/mini_game_star_game_done/bindings/mini_game_star_game_done_binding.dart';
 import '../modules/mini_game_star_game_done/views/mini_game_star_game_done_view.dart';
+import '../modules/mini_game_star_game_solving/bindings/mini_game_star_game_solving_binding.dart';
+import '../modules/mini_game_star_game_solving/views/mini_game_star_game_solving_view.dart';
 import '../modules/mini_game_star_timer_game/bindings/mini_game_star_timer_game_binding.dart';
 import '../modules/mini_game_star_timer_game/views/mini_game_star_timer_game_view.dart';
 import '../modules/news_detail/bindings/news_detail_binding.dart';
@@ -442,6 +448,21 @@ class AppPages {
       name: _Paths.MINI_GAME_SHAKE_GAME,
       page: () => MiniGameShakeGameView(),
       binding: MiniGameShakeGameBinding(),
+    ),
+    GetPage(
+      name: _Paths.MINI_GAME_STAR_GAME_SOLVING,
+      page: () => MiniGameStarGameSolvingView(),
+      binding: MiniGameStarGameSolvingBinding(),
+    ),
+    GetPage(
+      name: _Paths.MINI_GAME_CHAT_AND_CALL_GAME,
+      page: () => MiniGameChatAndCallGameView(),
+      binding: MiniGameChatAndCallGameBinding(),
+    ),
+    GetPage(
+      name: _Paths.MINI_GAME_CALL_HUMBABA_GAME,
+      page: () => MiniGameCallHumbabaGameView(),
+      binding: MiniGameCallHumbabaGameBinding(),
     ),
   ];
 }

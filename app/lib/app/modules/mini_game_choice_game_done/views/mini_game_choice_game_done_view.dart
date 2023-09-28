@@ -6,6 +6,7 @@ import 'package:get_storage/get_storage.dart';
 
 import '../controllers/mini_game_choice_game_done_controller.dart';
 
+// ignore: must_be_immutable
 class MiniGameChoiceGameDoneView
     extends GetView<MiniGameChoiceGameDoneController> {
   late double mWidth;

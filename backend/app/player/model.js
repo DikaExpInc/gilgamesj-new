@@ -31,6 +31,7 @@ let playerSchema = mongoose.Schema(
       type: mongoose.Schema.Types.ObjectId,
       ref: "Stage",
     },
+    
     player_chats: [
       {
         type: mongoose.Schema.Types.ObjectId,

@@ -2,6 +2,7 @@ import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:app/app/modules/mini_game_choice_game/controllers/mini_game_choice_game_controller.dart';
 import 'package:app/app/modules/mini_game_choice_game/views/screens/choice_game_character_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
@@ -32,72 +33,47 @@ class ChoiceGameMessageScreen extends GetView<MiniGameChoiceGameController> {
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              Stack(
-                children: [
-                  controller.rotatingImage,
-                  // Positioned(
-                  //   right: 10,
-                  //   top: 10,
-                  //   child: Text(
-                  //     "de tablethouder is ${GetStorage().read('played_name_${GetStorage().read('played_number')}')}",
-                  //     style: TextStyle(
-                  //       fontFamily: 'Centrion',
-                  //       fontSize: 42,
-                  //       color: Colors.white,
-                  //       fontWeight: FontWeight.w500,
-                  //     ),
-                  //   ),
-                  // ),
-                ],
+              SizedBox(
+                height: 60,
               ),
-              Column(
-                children: [
-                  DefaultTextStyle(
-                    style: const TextStyle(
-                      fontFamily: 'Centrion',
-                      fontSize: 30,
-                      color: Colors.white,
-                      fontWeight: FontWeight.normal,
-                    ),
-                    child: AnimatedTextKit(
-                      animatedTexts: [
-                        TyperAnimatedText(
-                            'Hey ${GetStorage().read('played_name_${GetStorage().read('played_number')}')}'),
-                        TyperAnimatedText('ze willen bam klap slaan.'),
-                        TyperAnimatedText('Moeten ze daarmee doorgaan ?'),
-                      ],
-                      isRepeatingAnimation: false,
-                      onFinished: () {
-                        // Navigate to the next page here
-                        controller.isFinished.value = true;
-                      },
-                    ),
+              Center(
+                child: DefaultTextStyle(
+                  style: const TextStyle(
+                    fontFamily: 'Centrion',
+                    fontSize: 30,
+                    color: Colors.white,
+                    fontWeight: FontWeight.normal,
                   ),
-                  SizedBox(
-                    height: 60,
+                  child: AnimatedTextKit(
+                    animatedTexts: [
+                      TyperAnimatedText(
+                          'Hey ${GetStorage().read('played_name_${GetStorage().read('played_number')}')}'),
+                      TyperAnimatedText('wat moet Gilgamesj laten zien om'),
+                      TyperAnimatedText('indruk maken op zijn vriend Enkidu?'),
+                    ],
+                    isRepeatingAnimation: false,
+                    onFinished: () {
+                      // Navigate to the next page here
+                      controller.isFinished.value = true;
+                    },
                   ),
-                  Obx(() {
-                    return controller.isFinished.value
-                        ? InkWell(
-                            onTap: () => controller
-                                .setWidget(ChoiceGameCharacterScreen()),
-                            child: Text(
-                              'Doorgaan',
-                              style: TextStyle(
-                                fontFamily: 'Centrion',
-                                fontSize: 42,
-                                color: Colors.white,
-                                fontWeight: FontWeight.w500,
-                              ),
-                            ),
-                          )
-                        : SizedBox();
-                  }),
-                  SizedBox(
-                    height: 60,
-                  ),
-                ],
+                ),
               ),
+              Obx(() {
+                return controller.isFinished.value
+                    ? InkWell(
+                        onTap: () => {
+                          controller.setWidget(ChoiceGameCharacterScreen()),
+                          controller.startAutomaticChange(),
+                        },
+                        child: SvgPicture.asset(
+                          "assets/icons/finger_real.svg",
+                          width: 100,
+                          height: 100,
+                        ),
+                      )
+                    : SizedBox();
+              }),
             ],
           ),
         ],

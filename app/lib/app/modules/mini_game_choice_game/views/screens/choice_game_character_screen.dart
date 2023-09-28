@@ -1,5 +1,4 @@
 import 'package:app/app/modules/mini_game_choice_game/controllers/mini_game_choice_game_controller.dart';
-import 'package:app/app/modules/mini_game_lightning_game/views/screens/lightning_game_light_screen.dart';
 import 'package:app/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 
@@ -106,6 +105,29 @@ class ChoiceGameCharacterScreen extends GetView<MiniGameChoiceGameController> {
                 ),
               ),
             ),
+            Obx(() {
+              return Transform.rotate(
+                angle: 35 *
+                    3.14159265359 /
+                    180, // Mengonversi sudut dari derajat ke radian
+                child: AnimatedContainer(
+                  duration: Duration(milliseconds: 200),
+                  width: 20,
+                  height: controller.containerWidth.value,
+                  alignment: Alignment.center,
+                  decoration: BoxDecoration(
+                    color: Color(0xffD0891E),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Color(0xffD0891E),
+                        blurRadius: 10.0, // Jarak penyebaran efek glow
+                        spreadRadius: 5.0, // Jarak penyebaran efek glow
+                      ),
+                    ],
+                  ),
+                ),
+              );
+            }),
             Obx(
               () => controller.characterSelect == ""
                   ? Positioned(

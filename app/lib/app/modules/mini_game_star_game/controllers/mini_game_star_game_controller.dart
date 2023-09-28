@@ -36,7 +36,6 @@ class MiniGameStarGameController extends GetxController
   void onClose() {
     _controller.dispose();
     _controllerParticle.dispose();
-    audioTimer.cancel();
     audioPlayer.stop();
     super.onClose();
   }

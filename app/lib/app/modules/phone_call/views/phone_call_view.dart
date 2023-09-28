@@ -44,7 +44,7 @@ class PhoneCallView extends GetView<PhoneCallController> {
                                   fit: BoxFit.cover,
                                 )
                               : DecorationImage(
-                                  image: CachedNetworkImageProvider(
+                                  image: AssetImage(
                                     controller.contactData["profile_url"],
                                   ),
                                   fit: BoxFit.cover,
@@ -107,7 +107,7 @@ class PhoneCallView extends GetView<PhoneCallController> {
                                   fit: BoxFit.cover,
                                 )
                               : DecorationImage(
-                                  image: CachedNetworkImageProvider(
+                                  image: AssetImage(
                                     controller.contactData["profile_url"],
                                   ),
                                   fit: BoxFit.cover,

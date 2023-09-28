@@ -22,6 +22,8 @@ class MiniGameShakeGameController extends GetxController
   void onClose() {
     _controller.dispose();
     _controllerParticle.dispose();
+    shakeDetector!.stopListening();
+    audioPlayer.stop();
     super.onClose();
   }
 

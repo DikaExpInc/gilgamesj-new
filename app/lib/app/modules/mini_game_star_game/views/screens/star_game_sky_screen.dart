@@ -1,5 +1,3 @@
-import 'package:app/app/modules/mini_game_lightning_game/controllers/mini_game_lightning_game_controller.dart';
-import 'package:app/app/modules/mini_game_lightning_game/views/screens/lightning_game_light_screen.dart';
 import 'package:app/app/modules/mini_game_star_game/controllers/mini_game_star_game_controller.dart';
 import 'package:flutter/material.dart';
 
@@ -32,8 +30,8 @@ class StarGameSkyScreen extends GetView<MiniGameStarGameController> {
                 visible: controller.showButtons.value,
                 child: Positioned(
                   width: mWidth,
-                  bottom: mHeight /
-                      6, // Sesuaikan dengan posisi horizontal yang diinginkan
+                  top: mHeight /
+                      2.2, // Sesuaikan dengan posisi horizontal yang diinginkan
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
@@ -55,24 +53,6 @@ class StarGameSkyScreen extends GetView<MiniGameStarGameController> {
                           }),
                         ),
                       ),
-                      Container(
-                        margin: EdgeInsets.only(bottom: 40),
-                        child: InkWell(
-                          onTap: () {
-                            controller.playAudio("campfire.mp3");
-                            controller.selectedImageIndex.value = 1;
-                          },
-                          child: Obx(() {
-                            return Image.asset(
-                              controller.selectedImageIndex.value == 1
-                                  ? 'assets/images/star.png'
-                                  : 'assets/images/star1.png',
-                              width: mWidth / 5,
-                              height: mWidth / 5,
-                            );
-                          }),
-                        ),
-                      ),
                     ],
                   ),
                 ),
@@ -82,17 +62,32 @@ class StarGameSkyScreen extends GetView<MiniGameStarGameController> {
               () => Visibility(
                 visible: controller.showButtons.value,
                 child: Positioned(
-                  width: mWidth,
-                  bottom: mHeight /
-                      2, // Sesuaikan dengan posisi horizontal yang diinginkan
+                  width: mWidth / 1.2,
+                  top: mHeight / 3,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Container(
-                        margin: EdgeInsets.only(top: 40),
                         child: InkWell(
                           onTap: () {
                             controller.playAudio("gecko.mp3");
+                            controller.selectedImageIndex.value = 1;
+                          },
+                          child: Obx(() {
+                            return Image.asset(
+                              controller.selectedImageIndex.value == 1
+                                  ? 'assets/images/star.png'
+                                  : 'assets/images/star1.png',
+                              width: mWidth / 5,
+                              height: mWidth / 10,
+                            );
+                          }),
+                        ),
+                      ),
+                      Container(
+                        child: InkWell(
+                          onTap: () {
+                            controller.playAudio("cricket-sound-113945.mp3");
                             controller.selectedImageIndex.value = 2;
                           },
                           child: Obx(() {
@@ -106,11 +101,25 @@ class StarGameSkyScreen extends GetView<MiniGameStarGameController> {
                           }),
                         ),
                       ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+            Obx(
+              () => Visibility(
+                visible: controller.showButtons.value,
+                child: Positioned(
+                  width: mWidth / 1.2,
+                  top: mHeight /
+                      20, // Sesuaikan dengan posisi horizontal yang diinginkan
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
                       Container(
-                        margin: EdgeInsets.only(bottom: 40),
                         child: InkWell(
                           onTap: () {
-                            controller.playAudio("cricket-sound-113945.mp3");
+                            controller.playAudio("night-ambience.mp3");
                             controller.selectedImageIndex.value = 3;
                           },
                           child: Obx(() {
@@ -119,7 +128,24 @@ class StarGameSkyScreen extends GetView<MiniGameStarGameController> {
                                   ? 'assets/images/star.png'
                                   : 'assets/images/star1.png',
                               width: mWidth / 5,
-                              height: mWidth / 5,
+                              height: mWidth / 2,
+                            );
+                          }),
+                        ),
+                      ),
+                      Container(
+                        child: InkWell(
+                          onTap: () {
+                            controller.playAudio("night-woods.mp3");
+                            controller.selectedImageIndex.value = 4;
+                          },
+                          child: Obx(() {
+                            return Image.asset(
+                              controller.selectedImageIndex.value == 4
+                                  ? 'assets/images/star.png'
+                                  : 'assets/images/star1.png',
+                              width: mWidth / 5,
+                              height: mWidth / 2,
                             );
                           }),
                         ),
@@ -134,33 +160,16 @@ class StarGameSkyScreen extends GetView<MiniGameStarGameController> {
                 visible: controller.showButtons.value,
                 child: Positioned(
                   width: mWidth,
-                  top: 0, // Sesuaikan dengan posisi horizontal yang diinginkan
+                  top: mHeight /
+                      30, // Sesuaikan dengan posisi horizontal yang diinginkan
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       Container(
-                        margin: EdgeInsets.only(top: 40),
-                        child: InkWell(
-                          onTap: () {
-                            controller.playAudio("night-ambience.mp3");
-                            controller.selectedImageIndex.value = 4;
-                          },
-                          child: Obx(() {
-                            return Image.asset(
-                              controller.selectedImageIndex.value == 4
-                                  ? 'assets/images/star.png'
-                                  : 'assets/images/star1.png',
-                              width: mWidth / 5,
-                              height: mWidth / 5,
-                            );
-                          }),
-                        ),
-                      ),
-                      Container(
                         margin: EdgeInsets.only(bottom: 40),
                         child: InkWell(
                           onTap: () {
-                            controller.playAudio("night-woods.mp3");
+                            controller.playAudio("campfire.mp3");
                             controller.selectedImageIndex.value = 5;
                           },
                           child: Obx(() {

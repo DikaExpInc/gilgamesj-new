@@ -67,6 +67,10 @@ abstract class Routes {
   static const MINI_GAME_CHAT_GAME_DONE = _Paths.MINI_GAME_CHAT_GAME_DONE;
   static const MINI_GAME_SHAKE_GAME_DONE = _Paths.MINI_GAME_SHAKE_GAME_DONE;
   static const MINI_GAME_SHAKE_GAME = _Paths.MINI_GAME_SHAKE_GAME;
+  static const MINI_GAME_STAR_GAME_SOLVING = _Paths.MINI_GAME_STAR_GAME_SOLVING;
+  static const MINI_GAME_CHAT_AND_CALL_GAME =
+      _Paths.MINI_GAME_CHAT_AND_CALL_GAME;
+  static const MINI_GAME_CALL_HUMBABA_GAME = _Paths.MINI_GAME_CALL_HUMBABA_GAME;
 }
 
 abstract class _Paths {
@@ -134,4 +138,7 @@ abstract class _Paths {
   static const MINI_GAME_CHAT_GAME_DONE = '/mini-game-chat-game-done';
   static const MINI_GAME_SHAKE_GAME_DONE = '/mini-game-shake-game-done';
   static const MINI_GAME_SHAKE_GAME = '/mini-game-shake-game';
+  static const MINI_GAME_STAR_GAME_SOLVING = '/mini-game-star-game-solving';
+  static const MINI_GAME_CHAT_AND_CALL_GAME = '/mini-game-chat-and-call-game';
+  static const MINI_GAME_CALL_HUMBABA_GAME = '/mini-game-call-humbaba-game';
 }

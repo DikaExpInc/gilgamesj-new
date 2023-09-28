@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
-import 'package:introduction_screen/introduction_screen.dart';
 
 import '../controllers/mini_game_star_timer_game_controller.dart';
 
+// ignore: must_be_immutable
 class MiniGameStarTimerGameView
     extends GetView<MiniGameStarTimerGameController> {
   late double mWidth;

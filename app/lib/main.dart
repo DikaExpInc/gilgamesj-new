@@ -15,6 +15,8 @@ Future<void> main() async {
   await initializeDateFormatting('id_ID', null);
   await Permission.camera.request();
   await GetStorage.init();
+  // Buat instance controller
+  PageAllController pageAllController = PageAllController();
   Get.put(PageAllController(), permanent: true);
 
   String initialRoute =
@@ -25,6 +27,7 @@ Future<void> main() async {
 
   String? teamName = GetStorage().read('teamName');
   if (teamName != null && teamName.isNotEmpty) {
+    pageAllController.autoLogin();
     initialRoute =
         Routes.VIEW_PLAYER; // Ganti rute jika total player telah diisi
 
@@ -87,6 +90,9 @@ Future<void> main() async {
         case "game_star":
           initialRoute = Routes.MINI_GAME_STAR_GAME;
           break;
+        case "game_star_solving":
+          initialRoute = Routes.MINI_GAME_STAR_GAME_SOLVING;
+          break;
         case "game_star_timer":
           initialRoute = Routes.MINI_GAME_STAR_TIMER_GAME;
           break;
@@ -104,6 +110,12 @@ Future<void> main() async {
           break;
         case "game_chat":
           initialRoute = Routes.MINI_GAME_CHAT_GAME;
+          break;
+        case "game_call_humbaba":
+          initialRoute = Routes.MINI_GAME_CALL_HUMBABA_GAME;
+          break;
+        case "game_chat_and_call":
+          initialRoute = Routes.MINI_GAME_CHAT_AND_CALL_GAME;
           break;
         default:
       }

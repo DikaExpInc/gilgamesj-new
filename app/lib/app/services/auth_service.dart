@@ -16,26 +16,20 @@ class AuthApi extends SharedApi {
         "Authorization": "Bearer " + token,
       };
       var jsonData;
-      showLoading();
-      var data = await http.get(Uri.parse(baseUrl + 'user'), headers: headers);
-      stopLoading();
+      var data = await http.get(Uri.parse(baseUrl + 'users/profile'),
+          headers: headers);
       jsonData = json.decode(data.body);
-
       if (data.statusCode == 200) {
         jsonData['status_code'] = 200;
         jsonData['access_token'] = token;
         jsonData['token_type'] = "bearer";
         return UserModel.fromJson(jsonData);
       } else if (data.statusCode == 401) {
-        showErrorMessage(jsonData['message']);
         return UserModel.fromJson({"status_code": data.statusCode});
       } else {
-        showErrorMessage("Ada yang salah");
         return UserModel.fromJson({"status_code": data.statusCode});
       }
     } on Exception catch (_) {
-      stopLoading();
-      showInternetMessage("Please check the server");
       return UserModel.fromJson({"status_code": 404});
     }
   }

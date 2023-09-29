@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:vibration/vibration.dart';
 
-class MiniGameChoiceGameDoneController extends GetxController
+class MiniGameCallHumbabaGameDoneController extends GetxController
     with GetTickerProviderStateMixin {
   late AnimationController _controller;
   late AnimationController _controllerParticle;

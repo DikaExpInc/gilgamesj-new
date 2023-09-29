@@ -59,6 +59,10 @@ class MiniGameStarGameSolvingController extends GetxController
         if (currentCode == lockCode.toString()) {
           // Get.offNamed(Routes.PRE_GAME_SUCCESS);
           doneGame.value = true;
+          Future.delayed(Duration(seconds: 5), () {
+            audioPlayer.stop();
+            Get.offAllNamed(Routes.MINI_GAME_STAR_TIMER_GAME);
+          });
         }
       }
     } else {

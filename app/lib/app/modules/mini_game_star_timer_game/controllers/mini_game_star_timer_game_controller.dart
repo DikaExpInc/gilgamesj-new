@@ -1,6 +1,7 @@
 import 'package:app/app/routes/app_pages.dart';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:vibration/vibration.dart';
 
 class MiniGameStarTimerGameController extends GetxController {
@@ -28,6 +29,15 @@ class MiniGameStarTimerGameController extends GetxController {
         }
       }
     });
+
+    // Update player number
+    int playedNumber = GetStorage().read('played_number') ?? 0;
+    int totalPlayer = int.parse(GetStorage().read('totalPlayer'));
+    if (playedNumber + 1 >= totalPlayer) {
+      GetStorage().write('played_number', 0);
+    } else {
+      GetStorage().write('played_number', playedNumber + 1);
+    }
   }
 
   @override

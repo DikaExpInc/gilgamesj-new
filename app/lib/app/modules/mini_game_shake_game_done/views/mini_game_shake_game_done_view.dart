@@ -1,5 +1,7 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
+import 'package:app/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
@@ -32,38 +34,45 @@ class MiniGameShakeGameDoneView
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              Stack(
-                children: [
-                  controller.rotatingImage,
-                ],
+              SizedBox(
+                height: 60,
               ),
-              Column(
-                children: [
-                  DefaultTextStyle(
-                    style: const TextStyle(
-                      fontFamily: 'Centrion',
-                      fontSize: 30,
-                      color: Colors.white,
-                      fontWeight: FontWeight.normal,
-                    ),
-                    child: AnimatedTextKit(
-                      animatedTexts: [
-                        TyperAnimatedText('Het is gelukt grote goden'),
-                        TyperAnimatedText(
-                            'tablet aan ${GetStorage().read('played_name_${GetStorage().read('played_number')}')} aangeboden?'),
-                      ],
-                      isRepeatingAnimation: false,
-                      onFinished: () {
-                        // Navigate to the next page here
-                        controller.isFinished.value = true;
-                      },
-                    ),
+              Center(
+                child: DefaultTextStyle(
+                  style: const TextStyle(
+                    fontFamily: 'Centrion',
+                    fontSize: 30,
+                    color: Colors.white,
+                    fontWeight: FontWeight.normal,
                   ),
-                  SizedBox(
-                    height: 60,
+                  child: AnimatedTextKit(
+                    animatedTexts: [
+                      TyperAnimatedText(
+                          'Het is gelukt grote goden,\ntablet aan ${GetStorage().read('played_name_${GetStorage().read('played_number')}')} aangeboden?',
+                          textAlign: TextAlign.center),
+                    ],
+                    isRepeatingAnimation: false,
+                    onFinished: () {
+                      // Navigate to the next page here
+                      controller.isFinished.value = true;
+                    },
                   ),
-                ],
+                ),
               ),
+              Obx(() {
+                return controller.isFinished.value
+                    ? InkWell(
+                        onTap: () => {
+                          Get.toNamed(Routes.BLANK),
+                        },
+                        child: SvgPicture.asset(
+                          "assets/icons/finger_real.svg",
+                          width: 100,
+                          height: 100,
+                        ),
+                      )
+                    : SizedBox();
+              }),
             ],
           ),
         ],

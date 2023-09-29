@@ -215,25 +215,3 @@ class MiniGameStarGameSolvingView
     );
   }
 }
-
-class LinePainter extends CustomPainter {
-  @override
-  void paint(Canvas canvas, Size size) {
-    Paint paint = Paint()
-      ..color = Colors.white // Warna garis
-      ..strokeCap = StrokeCap.round
-      ..strokeWidth = 2.0;
-
-    // Titik awal dan akhir garis
-    Offset startPoint = Offset(0, size.height / 2);
-    Offset endPoint = Offset(size.width, size.height / 2);
-
-    // Menggambar garis dari titik awal ke titik akhir
-    canvas.drawLine(startPoint, endPoint, paint);
-  }
-
-  @override
-  bool shouldRepaint(CustomPainter oldDelegate) {
-    return false;
-  }
-}

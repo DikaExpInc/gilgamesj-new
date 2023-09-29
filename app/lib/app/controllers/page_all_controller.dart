@@ -230,10 +230,22 @@ class PageAllController extends GetxController {
                   Get.offAllNamed(Routes.MINI_GAME_CHAT_GAME);
                 }
                 break;
+              case "game_chat_done":
+                if (mode != "game_chat_done") {
+                  GetStorage().write('mode', "game_chat_done");
+                  Get.offAllNamed(Routes.MINI_GAME_CHAT_GAME_DONE);
+                }
+                break;
               case "game_call_humbaba":
                 if (mode != "game_call_humbaba") {
                   GetStorage().write('mode', "game_call_humbaba");
                   Get.offAllNamed(Routes.MINI_GAME_CALL_HUMBABA_GAME);
+                }
+                break;
+              case "game_call_humbaba_done":
+                if (mode != "game_call_humbaba_done") {
+                  GetStorage().write('mode', "game_call_humbaba_done");
+                  Get.offAllNamed(Routes.MINI_GAME_CALL_HUMBABA_GAME_DONE);
                 }
                 break;
               case "game_chat_and_call":

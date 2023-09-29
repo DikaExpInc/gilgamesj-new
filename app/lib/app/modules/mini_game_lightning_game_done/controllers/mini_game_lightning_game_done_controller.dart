@@ -1,6 +1,7 @@
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:vibration/vibration.dart';
 
 class MiniGameLightningGameDoneController extends GetxController
@@ -27,6 +28,15 @@ class MiniGameLightningGameDoneController extends GetxController
 
     final AudioCache audioCache = AudioCache(prefix: 'assets/audios/');
     audioCache.play('spirit_realms.mp3');
+
+    // Update player number
+    int playedNumber = GetStorage().read('played_number') ?? 0;
+    int totalPlayer = int.parse(GetStorage().read('totalPlayer'));
+    if (playedNumber + 1 >= totalPlayer) {
+      GetStorage().write('played_number', 0);
+    } else {
+      GetStorage().write('played_number', playedNumber + 1);
+    }
   }
 
   @override

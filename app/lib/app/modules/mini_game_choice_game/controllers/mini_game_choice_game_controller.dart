@@ -17,15 +17,16 @@ class MiniGameChoiceGameController extends GetxController
   RxBool isFinished = false.obs;
   RxString characterSelect = "".obs;
   RxBool isShaking = false.obs;
+  // final List<Question> questions = [
+  //   Question('assets/images/question1-1', 'assets/images/question1-2',
+  //       'Wringkle Bearers', 'Elderly'),
+  //   Question('assets/images/question2-1', 'assets/images/question2-2',
+  //       'Pinch Bottom', 'Remain Silent'),
+  //   Question('assets/images/question3-1', 'assets/images/question3-2',
+  //       'Friend Stealer', 'Sweethearts'),
   final List<Question> questions = [
-    Question('assets/images/question1-1', 'assets/images/question1-2',
-        'Wringkle Bearers', 'Elderly'),
-    Question('assets/images/question2-1', 'assets/images/question2-2',
-        'Pinch Bottom', 'Remain Silent'),
-    Question('assets/images/question3-1', 'assets/images/question3-2',
-        'Friend Stealer', 'Sweethearts'),
-
-    // Tambahkan pertanyaan lainnya sesuai kebutuhan
+    Question('assets/images/question-1', 'assets/images/question-2',
+        'Zijn zwaard', 'Zijn vieze onderbroeken'),
   ];
   final RxInt currentIndex = 0.obs;
 

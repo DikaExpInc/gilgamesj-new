@@ -10,8 +10,8 @@ var cors = require('cors')
 const { Client, Server } = require('node-osc')
 const Setting = require('./app/setting/model')
 
-var server = new Server(53001, '192.168.0.2')
-// var server = new Server(53001, '192.168.1.8')
+// var server = new Server(53001, '192.168.0.2')
+var server = new Server(53001, '192.168.107.220')
 
 server.on('listening', () => {
   console.log('OSC Server is listening.')
@@ -233,6 +233,15 @@ server.on('message', async (msg) => {
           page: 'game_chat',
         }
       )
+    } else if (result['value'] == 'game_chat_done') {
+      await Setting.findOneAndUpdate(
+        {
+          _id: '64de3fd2843badaf9efc006b',
+        },
+        {
+          page: 'game_chat_done',
+        }
+      )
     } else if (result['value'] == 'game_call_humbaba') {
       await Setting.findOneAndUpdate(
         {
@@ -240,6 +249,15 @@ server.on('message', async (msg) => {
         },
         {
           page: 'game_call_humbaba',
+        }
+      )
+    } else if (result['value'] == 'game_call_humbaba_done') {
+      await Setting.findOneAndUpdate(
+        {
+          _id: '64de3fd2843badaf9efc006b',
+        },
+        {
+          page: 'game_call_humbaba_done',
         }
       )
     } else if (result['value'] == 'game_chat_and_call') {

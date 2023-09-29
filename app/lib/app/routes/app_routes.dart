@@ -71,6 +71,8 @@ abstract class Routes {
   static const MINI_GAME_CHAT_AND_CALL_GAME =
       _Paths.MINI_GAME_CHAT_AND_CALL_GAME;
   static const MINI_GAME_CALL_HUMBABA_GAME = _Paths.MINI_GAME_CALL_HUMBABA_GAME;
+  static const MINI_GAME_CALL_HUMBABA_GAME_DONE =
+      _Paths.MINI_GAME_CALL_HUMBABA_GAME_DONE;
 }
 
 abstract class _Paths {
@@ -141,4 +143,6 @@ abstract class _Paths {
   static const MINI_GAME_STAR_GAME_SOLVING = '/mini-game-star-game-solving';
   static const MINI_GAME_CHAT_AND_CALL_GAME = '/mini-game-chat-and-call-game';
   static const MINI_GAME_CALL_HUMBABA_GAME = '/mini-game-call-humbaba-game';
+  static const MINI_GAME_CALL_HUMBABA_GAME_DONE =
+      '/mini-game-call-humbaba-game-done';
 }

@@ -111,8 +111,14 @@ Future<void> main() async {
         case "game_chat":
           initialRoute = Routes.MINI_GAME_CHAT_GAME;
           break;
+        case "game_chat_done":
+          initialRoute = Routes.MINI_GAME_CHAT_GAME_DONE;
+          break;
         case "game_call_humbaba":
           initialRoute = Routes.MINI_GAME_CALL_HUMBABA_GAME;
+          break;
+        case "game_call_humbaba_done":
+          initialRoute = Routes.MINI_GAME_CALL_HUMBABA_GAME_DONE;
           break;
         case "game_chat_and_call":
           initialRoute = Routes.MINI_GAME_CHAT_AND_CALL_GAME;

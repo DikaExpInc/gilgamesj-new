@@ -2,6 +2,7 @@ import 'package:app/app/modules/blank/controllers/blank_controller.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 
 // ignore: must_be_immutable
 class BlankView extends GetView<BlankController> {
@@ -27,9 +28,9 @@ class BlankView extends GetView<BlankController> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-              "Hier is niks te zien, kijk naar de voorstelling.",
+              "${GetStorage().read('played_name_${GetStorage().read('played_number')}')}",
               style: TextStyle(
-                fontSize: 24,
+                fontSize: 64,
                 color: Colors.white,
               ),
             ),

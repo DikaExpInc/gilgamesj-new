@@ -40,6 +40,7 @@ abstract class Routes {
   static const LIGHT = _Paths.LIGHT;
   static const NOTIFICATION = _Paths.NOTIFICATION;
   static const GROUP = _Paths.GROUP;
+
   static const CHANGE_PLAYER = _Paths.CHANGE_PLAYER;
   static const PRE_GAME_RUNE = _Paths.PRE_GAME_RUNE;
   static const PRE_GAME_SPLASH = _Paths.PRE_GAME_SPLASH;
@@ -48,31 +49,39 @@ abstract class Routes {
   static const PRE_GAME_TUTORIAL = _Paths.PRE_GAME_TUTORIAL;
   static const PRE_GAME_CREDIT = _Paths.PRE_GAME_CREDIT;
   static const PRE_GAME_SPIRIT_REALM = _Paths.PRE_GAME_SPIRIT_REALM;
-  static const PRE_GAME_MUSIC_GAME = _Paths.PRE_GAME_MUSIC_GAME;
-  static const PRE_GAME_DESCIBEL_GAME = _Paths.PRE_GAME_DESCIBEL_GAME;
-  static const PRE_GAME_SHAKE_GAME = _Paths.PRE_GAME_SHAKE_GAME;
   static const PRE_GAME_AUDIO = _Paths.PRE_GAME_AUDIO;
   static const PRE_GAME_ITEMS_AR = _Paths.PRE_GAME_ITEMS_AR;
   static const PRE_GAME_SUCCESS = _Paths.PRE_GAME_SUCCESS;
-  static const PRE_GAME_MUSIC_THEATER_GAME = _Paths.PRE_GAME_MUSIC_THEATER_GAME;
-  static const MINI_GAME_CHOICE_GAME = _Paths.MINI_GAME_CHOICE_GAME;
-  static const MINI_GAME_LIGHTNING_GAME = _Paths.MINI_GAME_LIGHTNING_GAME;
-  static const MINI_GAME_LIGHTNING_GAME_DONE =
-      _Paths.MINI_GAME_LIGHTNING_GAME_DONE;
-  static const MINI_GAME_STAR_GAME = _Paths.MINI_GAME_STAR_GAME;
-  static const MINI_GAME_STAR_GAME_DONE = _Paths.MINI_GAME_STAR_GAME_DONE;
-  static const MINI_GAME_STAR_TIMER_GAME = _Paths.MINI_GAME_STAR_TIMER_GAME;
-  static const MINI_GAME_CHOICE_GAME_DONE = _Paths.MINI_GAME_CHOICE_GAME_DONE;
-  static const MINI_GAME_CHAT_GAME = _Paths.MINI_GAME_CHAT_GAME;
-  static const MINI_GAME_CHAT_GAME_DONE = _Paths.MINI_GAME_CHAT_GAME_DONE;
-  static const MINI_GAME_SHAKE_GAME_DONE = _Paths.MINI_GAME_SHAKE_GAME_DONE;
+
+  static const MINI_GAME_MUSIC_GAME = _Paths.MINI_GAME_MUSIC_GAME;
+  static const MINI_GAME_MUSIC_THEATER_GAME =
+      _Paths.MINI_GAME_MUSIC_THEATER_GAME;
   static const MINI_GAME_SHAKE_GAME = _Paths.MINI_GAME_SHAKE_GAME;
-  static const MINI_GAME_STAR_GAME_SOLVING = _Paths.MINI_GAME_STAR_GAME_SOLVING;
-  static const MINI_GAME_CHAT_AND_CALL_GAME =
-      _Paths.MINI_GAME_CHAT_AND_CALL_GAME;
-  static const MINI_GAME_CALL_HUMBABA_GAME = _Paths.MINI_GAME_CALL_HUMBABA_GAME;
-  static const MINI_GAME_CALL_HUMBABA_GAME_DONE =
-      _Paths.MINI_GAME_CALL_HUMBABA_GAME_DONE;
+  static const MINI_GAME_DESCIBEL_GAME = _Paths.MINI_GAME_DESCIBEL_GAME;
+
+  static const THEATER_GAME_CHOICE_GAME = _Paths.THEATER_GAME_CHOICE_GAME;
+  static const THEATER_GAME_LIGHTNING_GAME = _Paths.THEATER_GAME_LIGHTNING_GAME;
+  static const THEATER_GAME_LIGHTNING_GAME_DONE =
+      _Paths.THEATER_GAME_LIGHTNING_GAME_DONE;
+  static const THEATER_GAME_STAR_GAME = _Paths.THEATER_GAME_STAR_GAME;
+  static const THEATER_GAME_STAR_GAME_DONE = _Paths.THEATER_GAME_STAR_GAME_DONE;
+  static const THEATER_GAME_STAR_TIMER_GAME =
+      _Paths.THEATER_GAME_STAR_TIMER_GAME;
+  static const THEATER_GAME_CHOICE_GAME_DONE =
+      _Paths.THEATER_GAME_CHOICE_GAME_DONE;
+  static const THEATER_GAME_CHAT_GAME = _Paths.THEATER_GAME_CHAT_GAME;
+  static const THEATER_GAME_CHAT_GAME_DONE = _Paths.THEATER_GAME_CHAT_GAME_DONE;
+  static const THEATER_GAME_SHAKE_GAME_DONE =
+      _Paths.THEATER_GAME_SHAKE_GAME_DONE;
+  static const THEATER_GAME_SHAKE_GAME = _Paths.THEATER_GAME_SHAKE_GAME;
+  static const THEATER_GAME_STAR_GAME_SOLVING =
+      _Paths.THEATER_GAME_STAR_GAME_SOLVING;
+  static const THEATER_GAME_CHAT_AND_CALL_GAME =
+      _Paths.THEATER_GAME_CHAT_AND_CALL_GAME;
+  static const THEATER_GAME_CALL_HUMBABA_GAME =
+      _Paths.THEATER_GAME_CALL_HUMBABA_GAME;
+  static const THEATER_GAME_CALL_HUMBABA_GAME_DONE =
+      _Paths.THEATER_GAME_CALL_HUMBABA_GAME_DONE;
 }
 
 abstract class _Paths {
@@ -122,27 +131,33 @@ abstract class _Paths {
   static const PRE_GAME_TUTORIAL = '/pre-game-tutorial';
   static const PRE_GAME_CREDIT = '/pre-game-credit';
   static const PRE_GAME_SPIRIT_REALM = '/pre-game-spirit-realm';
-  static const PRE_GAME_MUSIC_GAME = '/pre-game-music-game';
-  static const PRE_GAME_DESCIBEL_GAME = '/pre-game-descibel-game';
-  static const PRE_GAME_SHAKE_GAME = '/pre-game-shake-game';
   static const PRE_GAME_AUDIO = '/pre-game-audio';
   static const PRE_GAME_ITEMS_AR = '/pre-game-items-ar';
   static const PRE_GAME_SUCCESS = '/pre-game-success';
-  static const PRE_GAME_MUSIC_THEATER_GAME = '/pre-game-music-theater-game';
-  static const MINI_GAME_CHOICE_GAME = '/mini-game-choice-game';
-  static const MINI_GAME_LIGHTNING_GAME = '/mini-game-lightning-game';
-  static const MINI_GAME_LIGHTNING_GAME_DONE = '/mini-game-lightning-game-done';
-  static const MINI_GAME_STAR_GAME = '/mini-game-star-game';
-  static const MINI_GAME_STAR_GAME_DONE = '/mini-game-star-game-done';
-  static const MINI_GAME_STAR_TIMER_GAME = '/mini-game-star-timer-game';
-  static const MINI_GAME_CHOICE_GAME_DONE = '/mini-game-choice-game-done';
-  static const MINI_GAME_CHAT_GAME = '/mini-game-chat-game';
-  static const MINI_GAME_CHAT_GAME_DONE = '/mini-game-chat-game-done';
-  static const MINI_GAME_SHAKE_GAME_DONE = '/mini-game-shake-game-done';
+
+  static const MINI_GAME_MUSIC_GAME = '/mini-game-music-game';
+  static const MINI_GAME_MUSIC_THEATER_GAME = '/mini-game-music-theater-game';
   static const MINI_GAME_SHAKE_GAME = '/mini-game-shake-game';
-  static const MINI_GAME_STAR_GAME_SOLVING = '/mini-game-star-game-solving';
-  static const MINI_GAME_CHAT_AND_CALL_GAME = '/mini-game-chat-and-call-game';
-  static const MINI_GAME_CALL_HUMBABA_GAME = '/mini-game-call-humbaba-game';
-  static const MINI_GAME_CALL_HUMBABA_GAME_DONE =
-      '/mini-game-call-humbaba-game-done';
+  static const MINI_GAME_DESCIBEL_GAME = '/mini-game-descibel-game';
+
+  static const THEATER_GAME_CHOICE_GAME = '/theater-game-choice-game';
+  static const THEATER_GAME_LIGHTNING_GAME = '/theater-game-lightning-game';
+  static const THEATER_GAME_LIGHTNING_GAME_DONE =
+      '/theater-game-lightning-game-done';
+  static const THEATER_GAME_STAR_GAME = '/theater-game-star-game';
+  static const THEATER_GAME_STAR_GAME_DONE = '/theater-game-star-game-done';
+  static const THEATER_GAME_STAR_TIMER_GAME = '/theater-game-star-timer-game';
+  static const THEATER_GAME_CHOICE_GAME_DONE = '/theater-game-choice-game-done';
+  static const THEATER_GAME_CHAT_GAME = '/theater-game-chat-game';
+  static const THEATER_GAME_CHAT_GAME_DONE = '/theater-game-chat-game-done';
+  static const THEATER_GAME_SHAKE_GAME_DONE = '/theater-game-shake-game-done';
+  static const THEATER_GAME_SHAKE_GAME = '/theater-game-shake-game';
+  static const THEATER_GAME_STAR_GAME_SOLVING =
+      '/theater-game-star-game-solving';
+  static const THEATER_GAME_CHAT_AND_CALL_GAME =
+      '/theater-game-chat-and-call-game';
+  static const THEATER_GAME_CALL_HUMBABA_GAME =
+      '/theater-game-call-humbaba-game';
+  static const THEATER_GAME_CALL_HUMBABA_GAME_DONE =
+      '/theater-game-call-humbaba-game-done';
 }

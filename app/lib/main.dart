@@ -69,59 +69,65 @@ Future<void> main() async {
         case "go_to_theater":
           initialRoute = Routes.GO_THEATER;
           break;
+
+        // Mini Game
+
         case "game_descibel":
-          initialRoute = Routes.PRE_GAME_DESCIBEL_GAME;
+          initialRoute = Routes.MINI_GAME_DESCIBEL_GAME;
           break;
         case "game_music":
-          initialRoute = Routes.PRE_GAME_MUSIC_GAME;
+          initialRoute = Routes.MINI_GAME_MUSIC_GAME;
           break;
         case "game_music_theater":
-          initialRoute = Routes.PRE_GAME_MUSIC_THEATER_GAME;
+          initialRoute = Routes.MINI_GAME_MUSIC_THEATER_GAME;
           break;
         case "game_shake":
-          initialRoute = Routes.PRE_GAME_SHAKE_GAME;
-          break;
-        case "game_light":
-          initialRoute = Routes.MINI_GAME_LIGHTNING_GAME;
-          break;
-        case "game_light_done":
-          initialRoute = Routes.MINI_GAME_LIGHTNING_GAME_DONE;
-          break;
-        case "game_star":
-          initialRoute = Routes.MINI_GAME_STAR_GAME;
-          break;
-        case "game_star_solving":
-          initialRoute = Routes.MINI_GAME_STAR_GAME_SOLVING;
-          break;
-        case "game_star_timer":
-          initialRoute = Routes.MINI_GAME_STAR_TIMER_GAME;
-          break;
-        case "game_star_done":
-          initialRoute = Routes.MINI_GAME_STAR_GAME_DONE;
-          break;
-        case "game_choice":
-          initialRoute = Routes.MINI_GAME_CHOICE_GAME;
-          break;
-        case "game_music_shake":
           initialRoute = Routes.MINI_GAME_SHAKE_GAME;
           break;
+
+        // Theater Game
+
+        case "game_light":
+          initialRoute = Routes.THEATER_GAME_LIGHTNING_GAME;
+          break;
+        case "game_light_done":
+          initialRoute = Routes.THEATER_GAME_LIGHTNING_GAME_DONE;
+          break;
+        case "game_star":
+          initialRoute = Routes.THEATER_GAME_STAR_GAME;
+          break;
+        case "game_star_solving":
+          initialRoute = Routes.THEATER_GAME_STAR_GAME_SOLVING;
+          break;
+        case "game_star_timer":
+          initialRoute = Routes.THEATER_GAME_STAR_TIMER_GAME;
+          break;
+        case "game_star_done":
+          initialRoute = Routes.THEATER_GAME_STAR_GAME_DONE;
+          break;
+        case "game_choice":
+          initialRoute = Routes.THEATER_GAME_CHOICE_GAME;
+          break;
+        case "game_music_shake":
+          initialRoute = Routes.THEATER_GAME_SHAKE_GAME;
+          break;
         case "game_music_shake_done":
-          initialRoute = Routes.MINI_GAME_SHAKE_GAME_DONE;
+          initialRoute = Routes.THEATER_GAME_SHAKE_GAME_DONE;
           break;
         case "game_chat":
-          initialRoute = Routes.MINI_GAME_CHAT_GAME;
+          initialRoute = Routes.THEATER_GAME_CHAT_GAME;
           break;
         case "game_chat_done":
-          initialRoute = Routes.MINI_GAME_CHAT_GAME_DONE;
+          initialRoute = Routes.THEATER_GAME_CHAT_GAME_DONE;
           break;
         case "game_call_humbaba":
-          initialRoute = Routes.MINI_GAME_CALL_HUMBABA_GAME;
+          initialRoute = Routes.THEATER_GAME_CALL_HUMBABA_GAME;
           break;
         case "game_call_humbaba_done":
-          initialRoute = Routes.MINI_GAME_CALL_HUMBABA_GAME_DONE;
+          initialRoute = Routes.THEATER_GAME_CALL_HUMBABA_GAME_DONE;
           break;
         case "game_chat_and_call":
-          initialRoute = Routes.MINI_GAME_CHAT_AND_CALL_GAME;
+          initialRoute = Routes.THEATER_GAME_CHAT_AND_CALL_GAME;
           break;
         default:
       }

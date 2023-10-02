@@ -1,85 +1,68 @@
-import 'package:app/app/modules/mini_game_shake_game/views/screens/music_shake_game_message_screen.dart';
+import 'package:app/app/routes/app_pages.dart';
 import 'package:audioplayers/audioplayers.dart';
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shake/shake.dart';
+import 'package:video_player/video_player.dart';
 import 'package:vibration/vibration.dart';
 
-class MiniGameShakeGameController extends GetxController
-    with GetTickerProviderStateMixin {
+class MiniGameShakeGameController extends GetxController {
   ShakeDetector? shakeDetector;
-
-  late AnimationController _controller;
-  late AnimationController _controllerParticle;
-  RxBool isFinished = false.obs;
-  RxString characterSelect = "".obs;
+  VideoPlayerController? videocontroller;
   RxBool isShaking = false.obs;
-
+  RxBool isDone = false.obs;
+  int lockCode = 3142;
+  RxString key_tuts = ''.obs;
+  int maxDigits = 4;
   final AudioCache audioCache = AudioCache(prefix: 'assets/audios/');
-  AudioPlayer audioPlayer = AudioPlayer();
 
-  @override
-  void onClose() {
-    _controller.dispose();
-    _controllerParticle.dispose();
-    shakeDetector!.stopListening();
-    audioPlayer.stop();
-    super.onClose();
+  void increment(int inkWellIndex) {
+    if (key_tuts.value.length < maxDigits - 1) {
+      key_tuts.value = '${key_tuts.value}$inkWellIndex';
+    } else {
+      key_tuts.value = '${key_tuts.value}$inkWellIndex';
+      String lockCodeString = lockCode.toString();
+      print("key_tuts : ${key_tuts.value}");
+      print("lockCode : ${lockCodeString}");
+      if (lockCodeString == key_tuts.value) {
+        // audioCache.play('spirit_realms.mp3');
+        // showItemDialog(title: 'Waauw', description: 'Het is je gelukt !!');
+        Get.offNamed(Routes.PRE_GAME_SUCCESS);
+      } else {
+        audioCache.play('error-glitch.mp3');
+      }
+      reset();
+    }
   }
 
-  Widget get rotatingImage {
-    return RotationTransition(
-      turns: _controller,
-      child: Image.asset('assets/images/center_of_god.png'),
-    );
-  }
-
-  Widget get rotatingParticle {
-    return RotationTransition(
-      turns: _controllerParticle,
-      child: Image.asset('assets/images/particle.png'),
-    );
-  }
-
-  //TODO: Implement MiniGameLightningGameController
-  // Buat sebuah variabel yang akan menampung widget yang akan dipanggil
-  late Widget selectedWidget;
-
-  // Buat sebuah metode untuk mengatur widget yang akan dipanggil
-  void setWidget(Widget widget) {
-    selectedWidget = widget;
-    update(); // Memaksa pembaruan tampilan
+  void reset() {
+    key_tuts.value = '';
   }
 
   @override
   void onInit() {
-    // Di sini Anda dapat mengatur widget awal yang akan ditampilkan
-    setWidget(MusicShakeGameMessageScreen());
+    super.onInit();
     Vibration.vibrate(duration: 1000);
-
     shakeDetector = ShakeDetector.autoStart(
         shakeThresholdGravity: 1.5,
-        onPhoneShake: () async {
+        onPhoneShake: () {
           if (!isShaking.value) {
+            videocontroller!.play();
             isShaking.value = true;
-            audioPlayer = await audioCache.play('spirit_realms.mp3');
-            Future.delayed(Duration(milliseconds: 100), () async {
+            Future.delayed(Duration(seconds: 2), () {
+              videocontroller!.pause();
               isShaking.value = false;
             });
           }
         });
+    videocontroller = VideoPlayerController.asset('assets/videos/sand.mp4');
+    videocontroller!.addListener(() {
+      if (videocontroller!.value.position >= videocontroller!.value.duration) {
+        isDone.value = true;
+      }
+    });
 
-    _controller = AnimationController(
-      vsync: this,
-      duration: Duration(seconds: 20),
-    )..repeat();
-
-    _controllerParticle = AnimationController(
-      vsync: this,
-      duration: Duration(seconds: 10),
-    )..repeat();
-
-    audioCache.play('spirit_realms.mp3');
-    super.onInit();
+    videocontroller!.initialize().then((_) {
+      update();
+    });
   }
 }

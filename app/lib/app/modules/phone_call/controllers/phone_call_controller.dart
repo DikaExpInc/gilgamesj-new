@@ -8,7 +8,7 @@ class PhoneCallController extends GetxController
     with GetSingleTickerProviderStateMixin {
   RxString time = "00:00".obs;
   RxString idleTime = "00:00".obs;
-  RxBool isIdleTimerRunning = false.obs;
+  RxBool isIdleTimerRunning = true.obs;
   bool isRunning = false;
   AudioPlayer? audioPlayer;
   final AudioCache audioCache = AudioCache(
@@ -81,7 +81,7 @@ class PhoneCallController extends GetxController
 
   Future<void> startIdleTimer() async {
     audioPlayer = await audioCache.play('cell_phone_ringing.mp3');
-    if (isIdleTimerRunning.value) return;
+    if (!isIdleTimerRunning.value) return;
 
     isIdleTimerRunning.value = true;
     update();
@@ -120,7 +120,7 @@ class PhoneCallController extends GetxController
   }
 
   void resetIdleTimer() {
-    isIdleTimerRunning.value = false;
+    isIdleTimerRunning.value = true;
     idleTime.value = "00:00";
     update();
     startIdleTimer();

@@ -50,36 +50,36 @@ import '../modules/lock_music/bindings/lock_music_binding.dart';
 import '../modules/lock_music/views/lock_music_view.dart';
 import '../modules/map/bindings/map_binding.dart';
 import '../modules/map/views/map_view.dart';
-import '../modules/mini_game_call_humbaba_game/bindings/mini_game_call_humbaba_game_binding.dart';
-import '../modules/mini_game_call_humbaba_game/views/mini_game_call_humbaba_game_view.dart';
-import '../modules/mini_game_call_humbaba_game_done/bindings/mini_game_call_humbaba_game_done_binding.dart';
-import '../modules/mini_game_call_humbaba_game_done/views/mini_game_call_humbaba_game_done_view.dart';
-import '../modules/mini_game_chat_and_call_game/bindings/mini_game_chat_and_call_game_binding.dart';
-import '../modules/mini_game_chat_and_call_game/views/mini_game_chat_and_call_game_view.dart';
-import '../modules/mini_game_chat_game/bindings/mini_game_chat_game_binding.dart';
-import '../modules/mini_game_chat_game/views/mini_game_chat_game_view.dart';
-import '../modules/mini_game_chat_game_done/bindings/mini_game_chat_game_done_binding.dart';
-import '../modules/mini_game_chat_game_done/views/mini_game_chat_game_done_view.dart';
-import '../modules/mini_game_choice_game/bindings/mini_game_choice_game_binding.dart';
-import '../modules/mini_game_choice_game/views/mini_game_choice_game_view.dart';
-import '../modules/mini_game_choice_game_done/bindings/mini_game_choice_game_done_binding.dart';
-import '../modules/mini_game_choice_game_done/views/mini_game_choice_game_done_view.dart';
-import '../modules/mini_game_lightning_game/bindings/mini_game_lightning_game_binding.dart';
-import '../modules/mini_game_lightning_game/views/mini_game_lightning_game_view.dart';
-import '../modules/mini_game_lightning_game_done/bindings/mini_game_lightning_game_done_binding.dart';
-import '../modules/mini_game_lightning_game_done/views/mini_game_lightning_game_done_view.dart';
-import '../modules/mini_game_shake_game/bindings/mini_game_shake_game_binding.dart';
-import '../modules/mini_game_shake_game/views/mini_game_shake_game_view.dart';
-import '../modules/mini_game_shake_game_done/bindings/mini_game_shake_game_done_binding.dart';
-import '../modules/mini_game_shake_game_done/views/mini_game_shake_game_done_view.dart';
-import '../modules/mini_game_star_game/bindings/mini_game_star_game_binding.dart';
-import '../modules/mini_game_star_game/views/mini_game_star_game_view.dart';
-import '../modules/mini_game_star_game_done/bindings/mini_game_star_game_done_binding.dart';
-import '../modules/mini_game_star_game_done/views/mini_game_star_game_done_view.dart';
-import '../modules/mini_game_star_game_solving/bindings/mini_game_star_game_solving_binding.dart';
-import '../modules/mini_game_star_game_solving/views/mini_game_star_game_solving_view.dart';
-import '../modules/mini_game_star_timer_game/bindings/mini_game_star_timer_game_binding.dart';
-import '../modules/mini_game_star_timer_game/views/mini_game_star_timer_game_view.dart';
+import '../modules/theater_game_call_humbaba_game/bindings/theater_game_call_humbaba_game_binding.dart';
+import '../modules/theater_game_call_humbaba_game/views/theater_game_call_humbaba_game_view.dart';
+import '../modules/theater_game_call_humbaba_game_done/bindings/theater_game_call_humbaba_game_done_binding.dart';
+import '../modules/theater_game_call_humbaba_game_done/views/theater_game_call_humbaba_game_done_view.dart';
+import '../modules/theater_game_chat_and_call_game/bindings/theater_game_chat_and_call_game_binding.dart';
+import '../modules/theater_game_chat_and_call_game/views/theater_game_chat_and_call_game_view.dart';
+import '../modules/theater_game_chat_game/bindings/theater_game_chat_game_binding.dart';
+import '../modules/theater_game_chat_game/views/theater_game_chat_game_view.dart';
+import '../modules/theater_game_chat_game_done/bindings/theater_game_chat_game_done_binding.dart';
+import '../modules/theater_game_chat_game_done/views/theater_game_chat_game_done_view.dart';
+import '../modules/theater_game_choice_game/bindings/theater_game_choice_game_binding.dart';
+import '../modules/theater_game_choice_game/views/theater_game_choice_game_view.dart';
+import '../modules/theater_game_choice_game_done/bindings/theater_game_choice_game_done_binding.dart';
+import '../modules/theater_game_choice_game_done/views/theater_game_choice_game_done_view.dart';
+import '../modules/theater_game_lightning_game/bindings/theater_game_lightning_game_binding.dart';
+import '../modules/theater_game_lightning_game/views/theater_game_lightning_game_view.dart';
+import '../modules/theater_game_lightning_game_done/bindings/theater_game_lightning_game_done_binding.dart';
+import '../modules/theater_game_lightning_game_done/views/thater_game_lightning_game_done_view.dart';
+import '../modules/theater_game_shake_game/bindings/theater_game_shake_game_binding.dart';
+import '../modules/theater_game_shake_game/views/theater_game_shake_game_view.dart';
+import '../modules/theater_game_shake_game_done/bindings/theater_game_shake_game_done_binding.dart';
+import '../modules/theater_game_shake_game_done/views/theater_game_shake_game_done_view.dart';
+import '../modules/theater_game_star_game/bindings/theater_game_star_game_binding.dart';
+import '../modules/theater_game_star_game/views/theater_game_star_game_view.dart';
+import '../modules/theater_game_star_game_done/bindings/theater_game_star_game_done_binding.dart';
+import '../modules/theater_game_star_game_done/views/theater_game_star_game_done_view.dart';
+import '../modules/theater_game_star_game_solving/bindings/theater_game_star_game_solving_binding.dart';
+import '../modules/theater_game_star_game_solving/views/theater_game_star_game_solving_view.dart';
+import '../modules/theater_game_star_timer_game/bindings/theater_game_star_timer_game_binding.dart';
+import '../modules/theater_game_star_timer_game/views/theater_game_star_timer_game_view.dart';
 import '../modules/news_detail/bindings/news_detail_binding.dart';
 import '../modules/news_detail/views/news_detail_view.dart';
 import '../modules/notification/bindings/notification_binding.dart';
@@ -96,22 +96,22 @@ import '../modules/pre_game_audio/bindings/pre_game_audio_binding.dart';
 import '../modules/pre_game_audio/views/pre_game_audio_view.dart';
 import '../modules/pre_game_credit/bindings/pre_game_credit_binding.dart';
 import '../modules/pre_game_credit/views/pre_game_credit_view.dart';
-import '../modules/pre_game_descibel_game/bindings/pre_game_descibel_game_binding.dart';
-import '../modules/pre_game_descibel_game/views/pre_game_descibel_game_view.dart';
+import '../modules/mini_game_descibel_game/bindings/mini_game_descibel_game_binding.dart';
+import '../modules/mini_game_descibel_game/views/mini_game_descibel_game_view.dart';
 import '../modules/pre_game_items/bindings/pre_game_items_binding.dart';
 import '../modules/pre_game_items/views/pre_game_items_view.dart';
 import '../modules/pre_game_items_ar/bindings/pre_game_items_ar_binding.dart';
 import '../modules/pre_game_items_ar/views/pre_game_items_ar_view.dart';
 import '../modules/pre_game_menu/bindings/pre_game_menu_binding.dart';
 import '../modules/pre_game_menu/views/pre_game_menu_view.dart';
-import '../modules/pre_game_music_game/bindings/pre_game_music_game_binding.dart';
-import '../modules/pre_game_music_game/views/pre_game_music_game_view.dart';
-import '../modules/pre_game_music_theater_game/bindings/pre_game_music_theater_game_binding.dart';
-import '../modules/pre_game_music_theater_game/views/pre_game_music_theater_game_view.dart';
+import '../modules/mini_game_music_game/bindings/mini_game_music_game_binding.dart';
+import '../modules/mini_game_music_game/views/mini_game_music_game_view.dart';
+import '../modules/mini_game_music_theater_game/bindings/mini_game_music_theater_game_binding.dart';
+import '../modules/mini_game_music_theater_game/views/mini_game_music_theater_game_view.dart';
 import '../modules/pre_game_rune/bindings/pre_game_rune_binding.dart';
 import '../modules/pre_game_rune/views/pre_game_rune_view.dart';
-import '../modules/pre_game_shake_game/bindings/pre_game_shake_game_binding.dart';
-import '../modules/pre_game_shake_game/views/pre_game_shake_game_view.dart';
+import '../modules/mini_game_shake_game/bindings/mini_game_shake_game_binding.dart';
+import '../modules/mini_game_shake_game/views/mini_game_shake_game_view.dart';
 import '../modules/pre_game_spirit_realm/bindings/pre_game_spirit_realm_binding.dart';
 import '../modules/pre_game_spirit_realm/views/pre_game_spirit_realm_view.dart';
 import '../modules/pre_game_splash/bindings/pre_game_splash_binding.dart';
@@ -362,21 +362,6 @@ class AppPages {
       binding: PreGameSpiritRealmBinding(),
     ),
     GetPage(
-      name: _Paths.PRE_GAME_MUSIC_GAME,
-      page: () => PreGameMusicGameView(),
-      binding: PreGameMusicGameBinding(),
-    ),
-    GetPage(
-      name: _Paths.PRE_GAME_DESCIBEL_GAME,
-      page: () => PreGameDescibelGameView(),
-      binding: PreGameDescibelGameBinding(),
-    ),
-    GetPage(
-      name: _Paths.PRE_GAME_SHAKE_GAME,
-      page: () => PreGameShakeGameView(),
-      binding: PreGameShakeGameBinding(),
-    ),
-    GetPage(
       name: _Paths.PRE_GAME_AUDIO,
       page: () => PreGameAudioView(),
       binding: PreGameAudioBinding(),
@@ -392,59 +377,14 @@ class AppPages {
       binding: PreGameSuccessBinding(),
     ),
     GetPage(
-      name: _Paths.PRE_GAME_MUSIC_THEATER_GAME,
-      page: () => PreGameMusicTheaterGameView(),
-      binding: PreGameMusicTheaterGameBinding(),
+      name: _Paths.MINI_GAME_MUSIC_GAME,
+      page: () => MiniGameMusicGameView(),
+      binding: MiniGameMusicGameBinding(),
     ),
     GetPage(
-      name: _Paths.MINI_GAME_CHOICE_GAME,
-      page: () => MiniGameChoiceGameView(),
-      binding: MiniGameChoiceGameBinding(),
-    ),
-    GetPage(
-      name: _Paths.MINI_GAME_LIGHTNING_GAME,
-      page: () => MiniGameLightningGameView(),
-      binding: MiniGameLightningGameBinding(),
-    ),
-    GetPage(
-      name: _Paths.MINI_GAME_LIGHTNING_GAME_DONE,
-      page: () => MiniGameLightningGameDoneView(),
-      binding: MiniGameLightningGameDoneBinding(),
-    ),
-    GetPage(
-      name: _Paths.MINI_GAME_STAR_GAME,
-      page: () => MiniGameStarGameView(),
-      binding: MiniGameStarGameBinding(),
-    ),
-    GetPage(
-      name: _Paths.MINI_GAME_STAR_GAME_DONE,
-      page: () => MiniGameStarGameDoneView(),
-      binding: MiniGameStarGameDoneBinding(),
-    ),
-    GetPage(
-      name: _Paths.MINI_GAME_STAR_TIMER_GAME,
-      page: () => MiniGameStarTimerGameView(),
-      binding: MiniGameStarTimerGameBinding(),
-    ),
-    GetPage(
-      name: _Paths.MINI_GAME_CHOICE_GAME_DONE,
-      page: () => MiniGameChoiceGameDoneView(),
-      binding: MiniGameChoiceGameDoneBinding(),
-    ),
-    GetPage(
-      name: _Paths.MINI_GAME_CHAT_GAME,
-      page: () => MiniGameChatGameView(),
-      binding: MiniGameChatGameBinding(),
-    ),
-    GetPage(
-      name: _Paths.MINI_GAME_CHAT_GAME_DONE,
-      page: () => MiniGameChatGameDoneView(),
-      binding: MiniGameChatGameDoneBinding(),
-    ),
-    GetPage(
-      name: _Paths.MINI_GAME_SHAKE_GAME_DONE,
-      page: () => MiniGameShakeGameDoneView(),
-      binding: MiniGameShakeGameDoneBinding(),
+      name: _Paths.MINI_GAME_DESCIBEL_GAME,
+      page: () => MiniGameDescibelGameView(),
+      binding: MiniGameDescibelGameBinding(),
     ),
     GetPage(
       name: _Paths.MINI_GAME_SHAKE_GAME,
@@ -452,24 +392,84 @@ class AppPages {
       binding: MiniGameShakeGameBinding(),
     ),
     GetPage(
-      name: _Paths.MINI_GAME_STAR_GAME_SOLVING,
-      page: () => MiniGameStarGameSolvingView(),
-      binding: MiniGameStarGameSolvingBinding(),
+      name: _Paths.MINI_GAME_MUSIC_THEATER_GAME,
+      page: () => MiniGameMusicTheaterGameView(),
+      binding: MiniGameMusicTheaterGameBinding(),
     ),
     GetPage(
-      name: _Paths.MINI_GAME_CHAT_AND_CALL_GAME,
-      page: () => MiniGameChatAndCallGameView(),
-      binding: MiniGameChatAndCallGameBinding(),
+      name: _Paths.THEATER_GAME_CHOICE_GAME,
+      page: () => TheaterGameChoiceGameView(),
+      binding: TheaterGameChoiceGameBinding(),
     ),
     GetPage(
-      name: _Paths.MINI_GAME_CALL_HUMBABA_GAME,
-      page: () => MiniGameCallHumbabaGameView(),
-      binding: MiniGameCallHumbabaGameBinding(),
+      name: _Paths.THEATER_GAME_LIGHTNING_GAME,
+      page: () => TheaterGameLightningGameView(),
+      binding: TheaterGameLightningGameBinding(),
     ),
     GetPage(
-      name: _Paths.MINI_GAME_CALL_HUMBABA_GAME_DONE,
-      page: () => MiniGameCallHumbabaGameDoneView(),
-      binding: MiniGameCallHumbabaGameDoneBinding(),
+      name: _Paths.THEATER_GAME_LIGHTNING_GAME_DONE,
+      page: () => TheaterGameLightningGameDoneView(),
+      binding: TheaterGameLightningGameDoneBinding(),
+    ),
+    GetPage(
+      name: _Paths.THEATER_GAME_STAR_GAME,
+      page: () => TheaterGameStarGameView(),
+      binding: TheaterGameStarGameBinding(),
+    ),
+    GetPage(
+      name: _Paths.THEATER_GAME_STAR_GAME_DONE,
+      page: () => TheaterGameStarGameDoneView(),
+      binding: TheaterGameStarGameDoneBinding(),
+    ),
+    GetPage(
+      name: _Paths.THEATER_GAME_STAR_TIMER_GAME,
+      page: () => TheaterGameStarTimerGameView(),
+      binding: TheaterGameStarTimerGameBinding(),
+    ),
+    GetPage(
+      name: _Paths.THEATER_GAME_CHOICE_GAME_DONE,
+      page: () => TheaterGameChoiceGameDoneView(),
+      binding: TheaterGameChoiceGameDoneBinding(),
+    ),
+    GetPage(
+      name: _Paths.THEATER_GAME_CHAT_GAME,
+      page: () => TheaterGameChatGameView(),
+      binding: TheaterGameChatGameBinding(),
+    ),
+    GetPage(
+      name: _Paths.THEATER_GAME_CHAT_GAME_DONE,
+      page: () => TheaterGameChatGameDoneView(),
+      binding: TheaterGameChatGameDoneBinding(),
+    ),
+    GetPage(
+      name: _Paths.THEATER_GAME_SHAKE_GAME_DONE,
+      page: () => TheaterGameShakeGameDoneView(),
+      binding: TheaterGameShakeGameDoneBinding(),
+    ),
+    GetPage(
+      name: _Paths.THEATER_GAME_SHAKE_GAME,
+      page: () => TheaterGameShakeGameView(),
+      binding: TheaterGameShakeGameBinding(),
+    ),
+    GetPage(
+      name: _Paths.THEATER_GAME_STAR_GAME_SOLVING,
+      page: () => TheaterGameStarGameSolvingView(),
+      binding: TheaterGameStarGameSolvingBinding(),
+    ),
+    GetPage(
+      name: _Paths.THEATER_GAME_CHAT_AND_CALL_GAME,
+      page: () => TheaterGameChatAndCallGameView(),
+      binding: TheaterGameChatAndCallGameBinding(),
+    ),
+    GetPage(
+      name: _Paths.THEATER_GAME_CALL_HUMBABA_GAME,
+      page: () => TheaterGameCallHumbabaGameView(),
+      binding: TheaterGameCallHumbabaGameBinding(),
+    ),
+    GetPage(
+      name: _Paths.THEATER_GAME_CALL_HUMBABA_GAME_DONE,
+      page: () => TheaterGameCallHumbabaGameDoneView(),
+      binding: TheaterGameCallHumbabaGameDoneBinding(),
     ),
   ];
 }

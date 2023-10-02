@@ -87,6 +87,7 @@ class ViewPlayerView extends GetView<ViewPlayerController> {
                                   final textController =
                                       controller.playerNameControllers[index];
                                   return PlayerWidget(
+                                    autoFocus: index == 0,
                                     nameController: textController,
                                     status: controller.playerListModel!
                                                 .items![index].statusPlay ==

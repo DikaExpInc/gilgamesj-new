@@ -146,112 +146,118 @@ class PageAllController extends GetxController {
                   Get.offAllNamed(Routes.PRE_GAME_ITEMS);
                 }
                 break;
+
+              // Mini Game
+
               case "game_descibel":
                 if (mode != "game_descibel") {
                   GetStorage().write('mode', "game_descibel");
-                  Get.offAllNamed(Routes.PRE_GAME_DESCIBEL_GAME);
+                  Get.offAllNamed(Routes.MINI_GAME_DESCIBEL_GAME);
                 }
                 break;
               case "game_music":
                 if (mode != "game_music") {
                   GetStorage().write('mode', "game_music");
-                  Get.offAllNamed(Routes.PRE_GAME_MUSIC_GAME);
+                  Get.offAllNamed(Routes.MINI_GAME_MUSIC_GAME);
                 }
                 break;
               case "game_music_theater":
                 if (mode != "game_music_theater") {
                   GetStorage().write('mode', "game_music_theater");
-                  Get.offAllNamed(Routes.PRE_GAME_MUSIC_THEATER_GAME);
+                  Get.offAllNamed(Routes.MINI_GAME_MUSIC_THEATER_GAME);
                 }
                 break;
               case "game_shake":
                 if (mode != "game_shake") {
                   GetStorage().write('mode', "game_shake");
-                  Get.offAllNamed(Routes.PRE_GAME_SHAKE_GAME);
+                  Get.offAllNamed(Routes.MINI_GAME_SHAKE_GAME);
                 }
                 break;
+
+              // Theater Game
+
               case "game_light":
                 if (mode != "game_light") {
                   GetStorage().write('mode', "game_light");
-                  Get.offAllNamed(Routes.MINI_GAME_LIGHTNING_GAME);
+                  Get.offAllNamed(Routes.THEATER_GAME_LIGHTNING_GAME);
                 }
                 break;
               case "game_light_done":
                 if (mode != "game_light_done") {
                   GetStorage().write('mode', "game_light_done");
-                  Get.offAllNamed(Routes.MINI_GAME_LIGHTNING_GAME_DONE);
+                  Get.offAllNamed(Routes.THEATER_GAME_LIGHTNING_GAME_DONE);
                 }
                 break;
               case "game_star":
                 if (mode != "game_star") {
                   GetStorage().write('mode', "game_star");
-                  Get.offAllNamed(Routes.MINI_GAME_STAR_GAME);
+                  Get.offAllNamed(Routes.THEATER_GAME_STAR_GAME);
                 }
                 break;
               case "game_star_solving":
                 if (mode != "game_star_solving") {
                   GetStorage().write('mode', "game_star_solving");
-                  Get.offAllNamed(Routes.MINI_GAME_STAR_GAME_SOLVING);
+                  Get.offAllNamed(Routes.THEATER_GAME_STAR_GAME_SOLVING);
                 }
                 break;
               case "game_star_timer":
                 if (mode != "game_star_timer") {
                   GetStorage().write('mode', "game_star_timer");
-                  Get.offAllNamed(Routes.MINI_GAME_STAR_TIMER_GAME);
+                  Get.offAllNamed(Routes.THEATER_GAME_STAR_TIMER_GAME);
                 }
                 break;
               case "game_star_done":
                 if (mode != "game_star_done") {
                   GetStorage().write('mode', "game_star_done");
-                  Get.offAllNamed(Routes.MINI_GAME_STAR_GAME_DONE);
+                  Get.offAllNamed(Routes.THEATER_GAME_STAR_GAME_DONE);
                 }
                 break;
               case "game_choice":
                 if (mode != "game_choice") {
                   GetStorage().write('mode', "game_choice");
-                  Get.offAllNamed(Routes.MINI_GAME_CHOICE_GAME);
+                  Get.offAllNamed(Routes.THEATER_GAME_CHOICE_GAME);
                 }
                 break;
               case "game_music_shake":
                 if (mode != "game_music_shake") {
                   GetStorage().write('mode', "game_music_shake");
-                  Get.offAllNamed(Routes.MINI_GAME_SHAKE_GAME);
+                  Get.offAllNamed(Routes.THEATER_GAME_SHAKE_GAME);
                 }
                 break;
               case "game_music_shake_done":
                 if (mode != "game_music_shake_done") {
                   GetStorage().write('mode', "game_music_shake_done");
-                  Get.offAllNamed(Routes.MINI_GAME_SHAKE_GAME_DONE);
+                  Get.offAllNamed(Routes.THEATER_GAME_SHAKE_GAME_DONE);
                 }
                 break;
               case "game_chat":
                 if (mode != "game_chat") {
                   GetStorage().write('mode', "game_chat");
-                  Get.offAllNamed(Routes.MINI_GAME_CHAT_GAME);
+                  Get.offAllNamed(Routes.THEATER_GAME_CHAT_GAME);
                 }
                 break;
               case "game_chat_done":
                 if (mode != "game_chat_done") {
                   GetStorage().write('mode', "game_chat_done");
-                  Get.offAllNamed(Routes.MINI_GAME_CHAT_GAME_DONE);
+                  Get.offAllNamed(Routes.THEATER_GAME_CHAT_GAME_DONE);
                 }
                 break;
               case "game_call_humbaba":
                 if (mode != "game_call_humbaba") {
                   GetStorage().write('mode', "game_call_humbaba");
-                  Get.offAllNamed(Routes.MINI_GAME_CALL_HUMBABA_GAME);
+                  Get.offAllNamed(Routes.THEATER_GAME_CALL_HUMBABA_GAME);
                 }
                 break;
               case "game_call_humbaba_done":
                 if (mode != "game_call_humbaba_done") {
                   GetStorage().write('mode', "game_call_humbaba_done");
-                  Get.offAllNamed(Routes.MINI_GAME_CALL_HUMBABA_GAME_DONE);
+                  Get.offAllNamed(Routes.THEATER_GAME_CALL_HUMBABA_GAME_DONE);
                 }
                 break;
               case "game_chat_and_call":
                 if (mode != "game_chat_and_call") {
                   GetStorage().write('mode', "game_chat_and_call");
-                  Get.offAllNamed(Routes.MINI_GAME_CHAT_AND_CALL_GAME);
+                  Get.offAllNamed(Routes.THEATER_GAME_CHAT_AND_CALL_GAME);
                 }
                 break;
               default:

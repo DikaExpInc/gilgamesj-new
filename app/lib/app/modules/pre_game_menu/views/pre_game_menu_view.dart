@@ -114,19 +114,6 @@ class PreGameMenuView extends GetView<PreGameMenuController> {
                           // SizedBox(
                           //   height: 40,
                           // ),
-                          InkWell(
-                            onTap: () {
-                              Get.toNamed(Routes.PRE_GAME_CREDIT);
-                            },
-                            child: Text(
-                              'OVER',
-                              style: TextStyle(
-                                color: Colors.black,
-                                fontSize: 38,
-                                fontWeight: FontWeight.w800,
-                              ),
-                            ),
-                          ),
                         ],
                       ),
                     ],

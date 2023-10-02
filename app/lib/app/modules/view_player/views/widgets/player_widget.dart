@@ -6,12 +6,14 @@ class PlayerWidget extends GetView<ViewPlayerController> {
   final TextEditingController nameController;
   final String status;
   final int index;
+  final bool autoFocus;
 
   const PlayerWidget({
     Key? key,
     required this.nameController,
     required this.status,
     required this.index,
+    required this.autoFocus,
   }) : super(key: key);
 
   Orientation getScreenOrientation(BuildContext context) {
@@ -58,6 +60,7 @@ class PlayerWidget extends GetView<ViewPlayerController> {
                 Container(
                   width: mWidth / 3,
                   child: TextField(
+                    autofocus: autoFocus,
                     controller: nameController,
                     style: TextStyle(color: Colors.black),
                     onChanged: (value) {

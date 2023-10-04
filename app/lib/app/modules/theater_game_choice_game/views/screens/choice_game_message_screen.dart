@@ -61,15 +61,48 @@ class ChoiceGameMessageScreen extends GetView<TheaterGameChoiceGameController> {
               ),
               Obx(() {
                 return controller.isFinished.value
-                    ? InkWell(
-                        onTap: () => {
-                          controller.setWidget(ChoiceGameCharacterScreen()),
-                          controller.startAutomaticChange(),
+                    ? GestureDetector(
+                        behavior: HitTestBehavior.opaque,
+                        onLongPressDown: (details) {
+                          print('terprint');
+                          controller.tapStatus.value = true;
+                          controller.startTapLoading();
                         },
-                        child: SvgPicture.asset(
-                          "assets/icons/finger_real.svg",
-                          width: 100,
-                          height: 100,
+                        onLongPressUp: () {
+                          print('terlepas');
+                          controller.stopTapLoading();
+                        },
+                        onVerticalDragEnd: (details) => {
+                          print('terlepas1'),
+                          controller.stopTapLoading(),
+                        },
+                        onHorizontalDragEnd: (details) => {
+                          print('terlepas2'),
+                          controller.stopTapLoading(),
+                        },
+                        onTapUp: (details) => {
+                          print('terlepas3'),
+                          controller.stopTapLoading(),
+                        },
+                        child: Stack(
+                          alignment: Alignment.center,
+                          children: [
+                            SvgPicture.asset(
+                              "assets/icons/finger_real.svg",
+                              width: 100,
+                              height: 100,
+                            ),
+                            Container(
+                              width: 150,
+                              height: 150,
+                              child: Obx(
+                                () => CircularProgressIndicator(
+                                  color: Colors.white,
+                                  value: controller.tapValue / 100,
+                                ),
+                              ),
+                            ),
+                          ],
                         ),
                       )
                     : SizedBox();

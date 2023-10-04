@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:app/app/modules/theater_game_shake_game/views/screens/music_shake_game_main_screen.dart';
 import 'package:app/app/modules/theater_game_shake_game/views/screens/music_shake_game_message_screen.dart';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
@@ -25,6 +26,10 @@ class TheaterGameShakeGameController extends GetxController
   final AudioCache audioCache = AudioCache(prefix: 'assets/audios/');
   AudioPlayer audioPlayer = AudioPlayer();
 
+  // onTap Loading
+  final RxDouble tapValue = 0.0.obs;
+  RxBool tapStatus = false.obs;
+
   @override
   void onClose() {
     _controller.dispose();
@@ -32,6 +37,25 @@ class TheaterGameShakeGameController extends GetxController
     shakeDetector!.stopListening();
     audioPlayer.stop();
     super.onClose();
+  }
+
+  void startTapLoading() async {
+    while (tapStatus.value) {
+      await Future.delayed(Duration(milliseconds: 100));
+      tapValue.value += 5;
+      if (tapValue.value >= 100.0) {
+        return nextStepAfterMessage();
+      }
+    }
+  }
+
+  void nextStepAfterMessage() {
+    setWidget(MusicShakeGameMainScreen());
+  }
+
+  void stopTapLoading() {
+    tapStatus.value = false;
+    tapValue.value = 0;
   }
 
   Widget get rotatingImage {

@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:math';
 
+import 'package:app/app/modules/theater_game_lightning_game/views/screens/lightning_game_character_screen.dart';
 import 'package:app/app/modules/theater_game_lightning_game/views/screens/lightning_game_light_screen.dart';
 import 'package:app/app/modules/theater_game_lightning_game/views/screens/lightning_game_message_screen.dart';
 import 'package:audioplayers/audioplayers.dart';
@@ -23,6 +24,10 @@ class TheaterGameLightningGameController extends GetxController
   RxString characterSelect = "".obs;
   // RxBool isShaking = false.obs;
 
+  // onTap Loading
+  final RxDouble tapValue = 0.0.obs;
+  RxBool tapStatus = false.obs;
+
   // animation text
   late final AnimationController _controllerText;
   late final Animation<double> _animationText;
@@ -34,6 +39,26 @@ class TheaterGameLightningGameController extends GetxController
     _controllerText.dispose();
     // shakeDetector!.stopListening();
     super.onClose();
+  }
+
+  void startTapLoading() async {
+    while (tapStatus.value) {
+      await Future.delayed(Duration(milliseconds: 100));
+      tapValue.value += 5;
+      if (tapValue.value >= 100.0) {
+        return nextStepAfterMessage();
+      }
+    }
+  }
+
+  void nextStepAfterMessage() {
+    setWidget(LightningGameCharacterScreen());
+    startAutomaticChange();
+  }
+
+  void stopTapLoading() {
+    tapStatus.value = false;
+    tapValue.value = 0;
   }
 
   Widget get rotatingImage {

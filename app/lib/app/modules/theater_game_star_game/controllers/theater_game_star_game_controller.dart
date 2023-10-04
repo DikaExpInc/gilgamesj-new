@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:app/app/modules/theater_game_star_game/views/screens/star_game_message_screen.dart';
+import 'package:app/app/modules/theater_game_star_game/views/screens/star_game_sky_screen.dart';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -26,6 +27,10 @@ class TheaterGameStarGameController extends GetxController
   RxString audio2 = RxString("");
   RxString audio3 = RxString("");
 
+  // onTap Loading
+  final RxDouble tapValue = 0.0.obs;
+  RxBool tapStatus = false.obs;
+
   // Method untuk memainkan audio
   Future<void> playAudio(String audioFileName) async {
     audioPlayer.stop();
@@ -38,6 +43,25 @@ class TheaterGameStarGameController extends GetxController
     _controllerParticle.dispose();
     audioPlayer.stop();
     super.onClose();
+  }
+
+  void startTapLoading() async {
+    while (tapStatus.value) {
+      await Future.delayed(Duration(milliseconds: 100));
+      tapValue.value += 5;
+      if (tapValue.value >= 100.0) {
+        return nextStepAfterMessage();
+      }
+    }
+  }
+
+  void nextStepAfterMessage() {
+    setWidget(StarGameSkyScreen());
+  }
+
+  void stopTapLoading() {
+    tapStatus.value = false;
+    tapValue.value = 0;
   }
 
   Widget get rotatingImage {

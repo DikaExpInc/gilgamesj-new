@@ -1,3 +1,4 @@
+import 'package:app/app/modules/theater_game_call_humbaba_game/views/screens/call_humbaba_game_call_screen.dart';
 import 'package:app/app/modules/theater_game_call_humbaba_game/views/screens/call_humbaba_game_message_screen.dart';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
@@ -10,11 +11,34 @@ class TheaterGameCallHumbabaGameController extends GetxController
   late AnimationController _controllerParticle;
   RxBool isFinished = false.obs;
 
+  // onTap Loading
+  final RxDouble tapValue = 0.0.obs;
+  RxBool tapStatus = false.obs;
+
   @override
   void onClose() {
     _controller.dispose();
     _controllerParticle.dispose();
     super.onClose();
+  }
+
+  void startTapLoading() async {
+    while (tapStatus.value) {
+      await Future.delayed(Duration(milliseconds: 100));
+      tapValue.value += 5;
+      if (tapValue.value >= 100.0) {
+        return nextStepAfterMessage();
+      }
+    }
+  }
+
+  void nextStepAfterMessage() {
+    setWidget(CallHumbabaGameCallScreen());
+  }
+
+  void stopTapLoading() {
+    tapStatus.value = false;
+    tapValue.value = 0;
   }
 
   Widget get rotatingImage {

@@ -38,17 +38,15 @@ class StarGameSkyScreen extends GetView<TheaterGameStarGameController> {
                         controller.playAudio("frog.mp3");
                         controller.selectedImageIndex.value = 0;
                       },
-                      child: Obx(() {
-                        return Text(
-                          'maak het geluid in de nacht',
-                          style: const TextStyle(
-                            fontFamily: 'Centrion',
-                            fontSize: 30,
-                            color: Colors.white,
-                            fontWeight: FontWeight.normal,
-                          ),
-                        );
-                      }),
+                      child: Text(
+                        'maak het geluid in de nacht',
+                        style: const TextStyle(
+                          fontFamily: 'Centrion',
+                          fontSize: 30,
+                          color: Colors.white,
+                          fontWeight: FontWeight.normal,
+                        ),
+                      ),
                     ),
                   ),
                 ],

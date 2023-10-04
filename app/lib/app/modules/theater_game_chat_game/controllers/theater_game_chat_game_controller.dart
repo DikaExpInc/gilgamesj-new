@@ -1,3 +1,4 @@
+import 'package:app/app/modules/theater_game_chat_game/views/screens/chat_game_main_screen.dart';
 import 'package:app/app/modules/theater_game_chat_game/views/screens/chat_game_message_screen.dart';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
@@ -14,12 +15,46 @@ class TheaterGameChatGameController extends GetxController
 
   final AudioCache audioCache = AudioCache(prefix: 'assets/audios/');
   AudioPlayer audioPlayer = AudioPlayer();
+  final RxDouble _progressValue = 0.0.obs;
+  double get progressValue => _progressValue.value;
+
+  // onTap Loading
+  final RxDouble tapValue = 0.0.obs;
+  RxBool tapStatus = false.obs;
 
   @override
   void onClose() {
     _controller.dispose();
     _controllerParticle.dispose();
     super.onClose();
+  }
+
+  void startLoading() async {
+    for (double i = 0.0; i <= 100.0; i++) {
+      await Future.delayed(Duration(milliseconds: 100));
+      _progressValue.value = i;
+    }
+    _progressValue.value = 0;
+    startLoading();
+  }
+
+  void startTapLoading() async {
+    while (tapStatus.value) {
+      await Future.delayed(Duration(milliseconds: 100));
+      tapValue.value += 5;
+      if (tapValue.value >= 100.0) {
+        return nextStepAfterMessage();
+      }
+    }
+  }
+
+  void nextStepAfterMessage() {
+    setWidget(ChatGameMainScreen());
+  }
+
+  void stopTapLoading() {
+    tapStatus.value = false;
+    tapValue.value = 0;
   }
 
   Widget get rotatingImage {

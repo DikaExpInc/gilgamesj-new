@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:app/app/modules/theater_game_chat_and_call_game/views/screens/chat_and_call_game_call_screen.dart';
 import 'package:app/app/modules/theater_game_chat_and_call_game/views/screens/chat_and_call_game_message_screen.dart';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
@@ -21,11 +22,35 @@ class TheaterGameChatAndCallGameController extends GetxController
     prefix: 'assets/audios/',
   );
 
+  // onTap Loading
+  final RxDouble tapValue = 0.0.obs;
+  RxBool tapStatus = false.obs;
+
   @override
   void onClose() {
     _controller.dispose();
     _controllerParticle.dispose();
     super.onClose();
+  }
+
+  void startTapLoading() async {
+    while (tapStatus.value) {
+      await Future.delayed(Duration(milliseconds: 100));
+      tapValue.value += 5;
+      if (tapValue.value >= 100.0) {
+        return nextStepAfterMessage();
+      }
+    }
+  }
+
+  void nextStepAfterMessage() {
+    setWidget(ChatAndCallGameCallScreen());
+    startIdleTimer();
+  }
+
+  void stopTapLoading() {
+    tapStatus.value = false;
+    tapValue.value = 0;
   }
 
   Widget get rotatingImage {

@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:app/app/routes/app_pages.dart';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
@@ -94,7 +95,7 @@ class PhoneCallController extends GetxController
         audioPlayer?.onPlayerCompletion.listen((event) async {
           audioPlayer = await audioCache.play('call_phone_reject.mp3');
           audioPlayer?.onPlayerCompletion.listen((event) async {
-            Get.back();
+            Get.offNamed(Routes.THEATER_GAME_CHOICE_GAME_DONE);
           });
         });
       }

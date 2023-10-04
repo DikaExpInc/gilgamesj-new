@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:app/app/data/question_model.dart';
+import 'package:app/app/modules/theater_game_choice_game/views/screens/choice_game_character_screen.dart';
 import 'package:app/app/modules/theater_game_choice_game/views/screens/choice_game_message_screen.dart';
 import 'package:app/app/routes/app_pages.dart';
 import 'package:audioplayers/audioplayers.dart';
@@ -30,12 +31,35 @@ class TheaterGameChoiceGameController extends GetxController
   ];
   final RxInt currentIndex = 0.obs;
   final AudioCache audioCache = AudioCache(prefix: 'assets/audios/');
+  // onTap Loading
+  final RxDouble tapValue = 0.0.obs;
+  RxBool tapStatus = false.obs;
 
   @override
   void onClose() {
     _controller.dispose();
     _controllerParticle.dispose();
     super.onClose();
+  }
+
+  void startTapLoading() async {
+    while (tapStatus.value) {
+      await Future.delayed(Duration(milliseconds: 100));
+      tapValue.value += 5;
+      if (tapValue.value >= 100.0) {
+        return nextStepAfterMessage();
+      }
+    }
+  }
+
+  void nextStepAfterMessage() {
+    setWidget(ChoiceGameCharacterScreen());
+    startAutomaticChange();
+  }
+
+  void stopTapLoading() {
+    tapStatus.value = false;
+    tapValue.value = 0;
   }
 
   Widget get rotatingImage {

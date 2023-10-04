@@ -86,8 +86,6 @@ class TheaterGameShakeGameController extends GetxController
       duration: Duration(seconds: 10),
     )..repeat();
 
-    audioCache.play('spirit_realms.mp3');
-
     // Atur timer dengan interval 13 detik
     const timerDuration = Duration(seconds: 1);
     audioTimer = Timer.periodic(timerDuration, (timer) async {

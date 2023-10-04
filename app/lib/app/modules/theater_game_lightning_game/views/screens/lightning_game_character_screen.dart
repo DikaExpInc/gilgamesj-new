@@ -26,7 +26,7 @@ class LightningGameCharacterScreen
               top: 0,
               child: Obx(
                 () => AnimatedSwitcher(
-                  duration: Duration(seconds: 1),
+                  duration: Duration(milliseconds: 100),
                   child: controller.characterSelect.value == "Gilgamesj"
                       ? Image.asset(
                           'assets/images/gilgamesj-active.png',
@@ -43,7 +43,7 @@ class LightningGameCharacterScreen
               bottom: 0,
               child: Obx(
                 () => AnimatedSwitcher(
-                  duration: Duration(seconds: 1),
+                  duration: Duration(milliseconds: 100),
                   child: controller.characterSelect.value == "Enkidu"
                       ? Image.asset(
                           "assets/images/enkidu-active.png",
@@ -102,6 +102,7 @@ class LightningGameCharacterScreen
                   if (isPointInsidePainterBottom(tapPosition)) {
                     controller.characterSelect.value = "Enkidu";
                   }
+                  controller.audioCache.play('select.mp3');
                 },
                 child: CustomPaint(
                   painter:
@@ -123,6 +124,7 @@ class LightningGameCharacterScreen
                   if (isPointInsidePainterBottom(tapPosition)) {
                     controller.characterSelect.value = "Enkidu";
                   }
+                  controller.audioCache.play('select.mp3');
                 },
                 child: CustomPaint(
                   painter:
@@ -172,8 +174,11 @@ class LightningGameCharacterScreen
                   : Positioned(
                       top: mHeight / 2,
                       child: InkWell(
-                          onTap: () =>
-                              controller.setWidget(LightningGameLightScreen()),
+                          onTap: () => {
+                                controller.audioCache.play('confirm.mp3'),
+                                controller
+                                    .setWidget(LightningGameLightScreen()),
+                              },
                           child: Image.asset('assets/images/oke_button.png'))),
             ),
           ],

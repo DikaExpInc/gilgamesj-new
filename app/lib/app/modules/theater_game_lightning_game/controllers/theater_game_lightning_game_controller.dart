@@ -15,6 +15,7 @@ class TheaterGameLightningGameController extends GetxController
   ShakeDetector? shakeDetector;
   RxDouble containerWidth = 1200.0.obs;
   Timer? timer;
+  final AudioCache audioCache = AudioCache(prefix: 'assets/audios/');
 
   late AnimationController _controller;
   late AnimationController _controllerParticle;
@@ -123,8 +124,6 @@ class TheaterGameLightningGameController extends GetxController
 
     _animationText = Tween<double>(begin: 300, end: 0).animate(_controllerText);
 
-    final AudioCache audioCache = AudioCache(prefix: 'assets/audios/');
-    audioCache.play('spirit_realms.mp3');
     super.onInit();
   }
 

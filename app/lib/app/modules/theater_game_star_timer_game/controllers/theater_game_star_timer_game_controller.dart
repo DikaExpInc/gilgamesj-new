@@ -17,18 +17,7 @@ class TheaterGameStarTimerGameController extends GetxController {
     super.onInit();
     Vibration.vibrate(duration: 1000);
 
-    audioPlayer = await audioCache.play('Alarm.mp3');
-    audioPlayer?.onPlayerCompletion.listen((event) async {
-      if (selectedAction.value == "") {
-        audioPlayer = await audioCache.play('Alarm.mp3');
-      } else {
-        if (selectedAction.value == "Snooze") {
-          audioPlayer = await audioCache.play('Alarm.mp3');
-        } else {
-          Get.offNamed(Routes.THEATER_GAME_STAR_GAME_DONE);
-        }
-      }
-    });
+    initializeAudioPlayer();
 
     // Update player number
     int playedNumber = GetStorage().read('played_number') ?? 0;
@@ -47,6 +36,23 @@ class TheaterGameStarTimerGameController extends GetxController {
 
   @override
   void onClose() {
+    audioPlayer?.stop();
     super.onClose();
+  }
+
+  // Fungsi untuk inisialisasi audio player
+  Future<void> initializeAudioPlayer() async {
+    audioPlayer = await audioCache.play('Alarm.mp3');
+    audioPlayer?.onPlayerCompletion.listen((event) async {
+      if (selectedAction.value == "") {
+        initializeAudioPlayer();
+      } else {
+        if (selectedAction.value == "Snooze") {
+          initializeAudioPlayer();
+        } else {
+          Get.offNamed(Routes.THEATER_GAME_STAR_GAME_DONE);
+        }
+      }
+    });
   }
 }

@@ -25,6 +25,35 @@ class StarGameSkyScreen extends GetView<TheaterGameStarGameController> {
         child: Stack(
           alignment: Alignment.center,
           children: [
+            Positioned(
+              width: mWidth,
+              top: 0,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  Container(
+                    margin: EdgeInsets.only(top: 40),
+                    child: InkWell(
+                      onTap: () {
+                        controller.playAudio("frog.mp3");
+                        controller.selectedImageIndex.value = 0;
+                      },
+                      child: Obx(() {
+                        return Text(
+                          'maak het geluid in de nacht',
+                          style: const TextStyle(
+                            fontFamily: 'Centrion',
+                            fontSize: 30,
+                            color: Colors.white,
+                            fontWeight: FontWeight.normal,
+                          ),
+                        );
+                      }),
+                    ),
+                  ),
+                ],
+              ),
+            ),
             Obx(
               () => Visibility(
                 visible: controller.showButtons.value,

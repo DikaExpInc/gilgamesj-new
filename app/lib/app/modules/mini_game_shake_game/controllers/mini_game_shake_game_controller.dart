@@ -16,21 +16,21 @@ class MiniGameShakeGameController extends GetxController {
   final AudioCache audioCache = AudioCache(prefix: 'assets/audios/');
 
   void increment(int inkWellIndex) {
-    if (key_tuts.value.length < maxDigits - 1) {
-      key_tuts.value = '${key_tuts.value}$inkWellIndex';
-    } else {
-      key_tuts.value = '${key_tuts.value}$inkWellIndex';
-      String lockCodeString = lockCode.toString();
-      print("key_tuts : ${key_tuts.value}");
-      print("lockCode : ${lockCodeString}");
-      if (lockCodeString == key_tuts.value) {
-        // audioCache.play('spirit_realms.mp3');
-        // showItemDialog(title: 'Waauw', description: 'Het is je gelukt !!');
-        Get.offNamed(Routes.PRE_GAME_SUCCESS);
+    String currentCode = '${key_tuts.value}$inkWellIndex';
+    if (lockCode.toString().startsWith(currentCode)) {
+      audioCache.play('sparkle.mp3');
+      if (key_tuts.value.length == 0) {
+        key_tuts.value = '$inkWellIndex'; // Pertama kali input
       } else {
-        audioCache.play('error-glitch.mp3');
+        // Input yang sesuai dengan kode
+        key_tuts.value = currentCode;
+        if (currentCode == lockCode.toString()) {
+          Get.offNamed(Routes.PRE_GAME_SUCCESS);
+        }
       }
-      reset();
+    } else {
+      key_tuts.value = '';
+      audioCache.play('error-glitch.mp3');
     }
   }
 
@@ -64,5 +64,10 @@ class MiniGameShakeGameController extends GetxController {
     videocontroller!.initialize().then((_) {
       update();
     });
+  }
+
+  bool isNumberPresentInString(int numberToCheck) {
+    List<String> digits = key_tuts.value.split('');
+    return digits.contains(numberToCheck.toString());
   }
 }

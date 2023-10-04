@@ -18,9 +18,6 @@ class IntroController extends GetxController with GetTickerProviderStateMixin {
       vsync: this,
       duration: Duration(seconds: 10),
     )..repeat();
-
-    final AudioCache audioCache = AudioCache(prefix: 'assets/audios/');
-    audioCache.play('spirit_realms.mp3');
   }
 
   @override

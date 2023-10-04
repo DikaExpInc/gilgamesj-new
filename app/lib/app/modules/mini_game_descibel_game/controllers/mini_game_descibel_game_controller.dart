@@ -43,9 +43,6 @@ class MiniGameDescibelGameController extends GetxController {
     if (!isRecording.value) isRecording.value = true;
     if (latestReading.value!.maxDecibel >= 90) {
       Get.offNamed(Routes.PRE_GAME_SUCCESS);
-      // showItemDialog(title: 'Waauw', description: 'Het is je gelukt !!');
-      // final AudioCache audioCache = AudioCache(prefix: 'assets/audios/');
-      // audioCache.play('spirit_realms.mp3');
       stop();
     }
   }

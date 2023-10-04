@@ -26,7 +26,7 @@ class ChoiceGameCharacterScreen
               top: 0,
               child: Obx(
                 () => AnimatedSwitcher(
-                  duration: Duration(seconds: 1),
+                  duration: Duration(milliseconds: 100),
                   child: controller.characterSelect.value ==
                           controller
                               .questions[controller.currentIndex.value].title1
@@ -45,7 +45,7 @@ class ChoiceGameCharacterScreen
               bottom: 0,
               child: Obx(
                 () => AnimatedSwitcher(
-                  duration: Duration(seconds: 1),
+                  duration: Duration(milliseconds: 100),
                   child: controller.characterSelect.value ==
                           controller
                               .questions[controller.currentIndex.value].title2
@@ -112,6 +112,7 @@ class ChoiceGameCharacterScreen
                     controller.characterSelect.value =
                         "${controller.questions[controller.currentIndex.value].title2}";
                   }
+                  controller.audioCache.play('select.mp3');
                 },
                 child: CustomPaint(
                   painter:
@@ -135,6 +136,7 @@ class ChoiceGameCharacterScreen
                     controller.characterSelect.value =
                         "${controller.questions[controller.currentIndex.value].title2}";
                   }
+                  controller.audioCache.play('select.mp3');
                 },
                 child: CustomPaint(
                   painter:
@@ -184,11 +186,14 @@ class ChoiceGameCharacterScreen
                   : Positioned(
                       top: mHeight / 2,
                       child: InkWell(
-                          onTap: () => controller.currentIndex.value ==
-                                  controller.questions.length - 1
-                              ? Get.offNamed(
-                                  Routes.THEATER_GAME_CHOICE_GAME_DONE)
-                              : controller.goToNextQuestion(),
+                          onTap: () => {
+                                controller.audioCache.play('confirm.mp3'),
+                                controller.currentIndex.value ==
+                                        controller.questions.length - 1
+                                    ? Get.offNamed(
+                                        Routes.THEATER_GAME_CHOICE_GAME_DONE)
+                                    : controller.goToNextQuestion()
+                              },
                           child: Image.asset('assets/images/oke_button.png'))),
             ),
           ],

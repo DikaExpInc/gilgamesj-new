@@ -32,15 +32,24 @@ class MiniGameShakeGameView extends GetView<MiniGameShakeGameController> {
                       height: MediaQuery.sizeOf(context).height,
                     ),
                     Positioned(
-                      child: Transform.rotate(
-                        angle: 22 * 3.14 / -180,
-                        child: InkWell(
-                          onTap: () {
-                            controller.increment(1);
-                          },
-                          child: Image.asset(
-                            'assets/images/btn-shake-1.png',
-                            width: mWidth / 2,
+                      child: InkWell(
+                        onTap: () {
+                          controller.increment(1);
+                        },
+                        child: Obx(
+                          () => AnimatedSwitcher(
+                            duration: Duration(milliseconds: 100),
+                            child: controller.isNumberPresentInString(1)
+                                ? Image.asset(
+                                    'assets/images/btn-shake-1-active.png',
+                                    key: ValueKey<int>(1),
+                                    width: mWidth / 1.7,
+                                  )
+                                : Image.asset(
+                                    "assets/images/btn-shake-1.png",
+                                    key: ValueKey<int>(2),
+                                    width: mWidth / 1.7,
+                                  ),
                           ),
                         ),
                       ),
@@ -48,15 +57,24 @@ class MiniGameShakeGameView extends GetView<MiniGameShakeGameController> {
                       left: 80,
                     ),
                     Positioned(
-                      child: Transform.rotate(
-                        angle: 35 * 3.14 / 180,
-                        child: InkWell(
-                          onTap: () {
-                            controller.increment(2);
-                          },
-                          child: Image.asset(
-                            'assets/images/btn-shake-2.png',
-                            width: mWidth / 2,
+                      child: InkWell(
+                        onTap: () {
+                          controller.increment(2);
+                        },
+                        child: Obx(
+                          () => AnimatedSwitcher(
+                            duration: Duration(milliseconds: 100),
+                            child: controller.isNumberPresentInString(2)
+                                ? Image.asset(
+                                    'assets/images/btn-shake-2-active.png',
+                                    key: ValueKey<int>(1),
+                                    width: mWidth / 1.7,
+                                  )
+                                : Image.asset(
+                                    "assets/images/btn-shake-2.png",
+                                    key: ValueKey<int>(2),
+                                    width: mWidth / 1.7,
+                                  ),
                           ),
                         ),
                       ),
@@ -64,15 +82,24 @@ class MiniGameShakeGameView extends GetView<MiniGameShakeGameController> {
                       right: 70,
                     ),
                     Positioned(
-                      child: Transform.rotate(
-                        angle: 0 * 3.14 / 180,
-                        child: InkWell(
-                          onTap: () {
-                            controller.increment(3);
-                          },
-                          child: Image.asset(
-                            'assets/images/btn-shake-3.png',
-                            width: mWidth / 2,
+                      child: InkWell(
+                        onTap: () {
+                          controller.increment(3);
+                        },
+                        child: Obx(
+                          () => AnimatedSwitcher(
+                            duration: Duration(milliseconds: 100),
+                            child: controller.isNumberPresentInString(3)
+                                ? Image.asset(
+                                    'assets/images/btn-shake-3-active.png',
+                                    key: ValueKey<int>(1),
+                                    width: mWidth / 1.7,
+                                  )
+                                : Image.asset(
+                                    "assets/images/btn-shake-3.png",
+                                    key: ValueKey<int>(2),
+                                    width: mWidth / 1.7,
+                                  ),
                           ),
                         ),
                       ),
@@ -80,15 +107,24 @@ class MiniGameShakeGameView extends GetView<MiniGameShakeGameController> {
                       left: 70,
                     ),
                     Positioned(
-                      child: Transform.rotate(
-                        angle: -20 * 3.14 / 180,
-                        child: InkWell(
-                          onTap: () {
-                            controller.increment(4);
-                          },
-                          child: Image.asset(
-                            'assets/images/btn-shake-4.png',
-                            width: mWidth / 2,
+                      child: InkWell(
+                        onTap: () {
+                          controller.increment(4);
+                        },
+                        child: Obx(
+                          () => AnimatedSwitcher(
+                            duration: Duration(milliseconds: 100),
+                            child: controller.isNumberPresentInString(4)
+                                ? Image.asset(
+                                    'assets/images/btn-shake-4-active.png',
+                                    key: ValueKey<int>(1),
+                                    width: mWidth / 1.7,
+                                  )
+                                : Image.asset(
+                                    "assets/images/btn-shake-4.png",
+                                    key: ValueKey<int>(2),
+                                    width: mWidth / 1.7,
+                                  ),
                           ),
                         ),
                       ),

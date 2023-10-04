@@ -29,6 +29,7 @@ class TheaterGameChoiceGameController extends GetxController
         'Zijn zwaard', 'Zijn vieze onderbroeken'),
   ];
   final RxInt currentIndex = 0.obs;
+  final AudioCache audioCache = AudioCache(prefix: 'assets/audios/');
 
   @override
   void onClose() {
@@ -76,9 +77,6 @@ class TheaterGameChoiceGameController extends GetxController
       vsync: this,
       duration: Duration(seconds: 10),
     )..repeat();
-
-    final AudioCache audioCache = AudioCache(prefix: 'assets/audios/');
-    audioCache.play('spirit_realms.mp3');
 
     super.onInit();
   }

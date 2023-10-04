@@ -61,8 +61,5 @@ class TheaterGameChatGameController extends GetxController
       vsync: this,
       duration: Duration(seconds: 10),
     )..repeat();
-
-    audioCache.play('spirit_realms.mp3');
-    super.onInit();
   }
 }

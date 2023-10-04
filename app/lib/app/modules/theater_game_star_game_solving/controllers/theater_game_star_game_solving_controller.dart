@@ -17,6 +17,13 @@ class TheaterGameStarGameSolvingController extends GetxController
   int maxDigits = 6;
   RxBool doneGame = false.obs;
 
+  RxBool scrollBg = false.obs;
+  RxBool openTreeLeft = false.obs;
+  RxBool openTreeRight = false.obs;
+  RxBool showBeast = false.obs;
+  RxBool blackScreen = false.obs;
+  RxBool playAnimation = false.obs;
+
   Rx<int> currentTimer = Rx<int>(0);
   RxInt selectedImageIndex = RxInt(-1);
   int tickCount = 0;
@@ -41,10 +48,6 @@ class TheaterGameStarGameSolvingController extends GetxController
   void onInit() {
     // Di sini Anda dapat mengatur widget awal yang akan ditampilkan
     Vibration.vibrate(duration: 1000);
-
-    // final AudioCache audioCache = AudioCache(prefix: 'assets/audios/');
-    // audioCache.play('spirit_realms.mp3');
-
     super.onInit();
   }
 
@@ -57,11 +60,9 @@ class TheaterGameStarGameSolvingController extends GetxController
         // Input yang sesuai dengan kode
         key_tuts.value = currentCode;
         if (currentCode == lockCode.toString()) {
-          // Get.offNamed(Routes.PRE_GAME_SUCCESS);
           doneGame.value = true;
-          Future.delayed(Duration(seconds: 5), () {
-            audioPlayer.stop();
-            Get.offAllNamed(Routes.THEATER_GAME_STAR_TIMER_GAME);
+          Future.delayed(Duration(seconds: 3), () {
+            scrollBg.value = true;
           });
         }
       }
@@ -70,12 +71,23 @@ class TheaterGameStarGameSolvingController extends GetxController
     }
   }
 
-  void reset() {
-    key_tuts.value = '';
-  }
-
   bool isNumberPresentInString(int numberToCheck) {
     List<String> digits = key_tuts.value.split('');
     return digits.contains(numberToCheck.toString());
+  }
+
+  void startAnimation() {
+    Future.delayed(Duration(seconds: 2), () {
+      showBeast.value = true;
+      Future.delayed(Duration(seconds: 3), () {
+        blackScreen.value = true;
+        audioCache.play("fang.mp3");
+        Future.delayed(Duration(seconds: 5), () {
+          Get.offNamed(
+            Routes.THEATER_GAME_STAR_TIMER_GAME,
+          );
+        });
+      });
+    });
   }
 }

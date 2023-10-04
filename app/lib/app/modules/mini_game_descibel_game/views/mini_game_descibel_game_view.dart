@@ -66,7 +66,7 @@ class MiniGameDescibelGameView extends GetView<MiniGameDescibelGameController> {
                                 alignment: Alignment.bottomCenter,
                                 decoration: BoxDecoration(
                                   image: DecorationImage(
-                                    image: AssetImage("assets/images/wave.png"),
+                                    image: AssetImage("assets/images/wave.gif"),
                                     fit: BoxFit.fitWidth,
                                     alignment: Alignment.topCenter,
                                   ),

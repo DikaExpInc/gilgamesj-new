@@ -109,14 +109,14 @@ class CallHumbabaGameCallScreen
                             arguments: {
                               "name": 'Hemelstier',
                               "profile_url":
-                                  'assets/images/ic_profile_humbaba.png',
+                                  'assets/images/ic_profile_hemelstier.png',
                               "audio": 'voice-humbaba.wav',
                               "status": "real"
                             },
                           )
                         },
                         name: 'Hemelstier',
-                        images: 'assets/images/ic_profile_humbaba.png',
+                        images: 'assets/images/ic_profile_hemelstier.png',
                       ),
                       ProfileAbjad(title: 'I'),
                       ContactWidget(

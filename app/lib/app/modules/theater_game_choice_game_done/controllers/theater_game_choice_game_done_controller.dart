@@ -26,9 +26,6 @@ class TheaterGameChoiceGameDoneController extends GetxController
       duration: Duration(seconds: 10),
     )..repeat();
 
-    final AudioCache audioCache = AudioCache(prefix: 'assets/audios/');
-    audioCache.play('spirit_realms.mp3');
-
     // Update player number
     int playedNumber = GetStorage().read('played_number') ?? 0;
     int totalPlayer = int.parse(GetStorage().read('totalPlayer'));

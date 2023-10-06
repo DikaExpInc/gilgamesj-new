@@ -45,7 +45,27 @@ class TicketView extends GetView<TicketController> {
                     color: Colors.white,
                     fontSize: 20,
                   ),
-                )
+                ),
+                SizedBox(
+                  height: 50,
+                ),
+                Obx(
+                  () => controller.isVisible.value
+                      ? Text(
+                          'Please standy on this screen',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 36,
+                          ),
+                        )
+                      : Text(
+                          'Please standy on this screen',
+                          style: TextStyle(
+                            color: Colors.transparent,
+                            fontSize: 36,
+                          ),
+                        ), // Teks tidak terlihat
+                ),
               ],
             ),
             Container(

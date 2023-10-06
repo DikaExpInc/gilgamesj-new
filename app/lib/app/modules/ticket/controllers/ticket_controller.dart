@@ -6,6 +6,7 @@ class TicketController extends GetxController {
 
   @override
   void onInit() {
+    _startBlinking();
     super.onInit();
   }
 
@@ -17,5 +18,18 @@ class TicketController extends GetxController {
   @override
   void onClose() {
     super.onClose();
+  }
+
+  final RxBool isVisible = true.obs;
+
+  void toggleVisibility() {
+    isVisible.value = !isVisible.value;
+  }
+
+  void _startBlinking() {
+    Future.delayed(Duration(milliseconds: 500), () {
+      toggleVisibility(); // Mengubah visibilitas teks
+      _startBlinking(); // Membuat loop kedip
+    });
   }
 }

@@ -18,10 +18,7 @@ class TheaterGameShakeGameController extends GetxController
   RxString characterSelect = "".obs;
   RxBool isShaking = false.obs;
 
-  late Timer audioTimer;
   Rx<String> audioFile = Rx<String>("");
-  int tickCount = 0;
-  Rx<int> currentTimer = Rx<int>(0);
 
   final AudioCache audioCache = AudioCache(prefix: 'assets/audios/');
   AudioPlayer audioPlayer = AudioPlayer();
@@ -83,7 +80,7 @@ class TheaterGameShakeGameController extends GetxController
   }
 
   @override
-  void onInit() {
+  Future<void> onInit() async {
     // Di sini Anda dapat mengatur widget awal yang akan ditampilkan
     setWidget(MusicShakeGameMessageScreen());
     Vibration.vibrate(duration: 1000);
@@ -93,10 +90,11 @@ class TheaterGameShakeGameController extends GetxController
         onPhoneShake: () async {
           if (!isShaking.value) {
             isShaking.value = true;
-            audioFile.value = 'song-game-1-shake-phone.wav';
-            // Future.delayed(Duration(milliseconds: 100), () async {
-            //   isShaking.value = false;
-            // });
+            audioPlayer.setVolume(1);
+            Future.delayed(Duration(milliseconds: 2000), () async {
+              audioPlayer.setVolume(0.0);
+              isShaking.value = false;
+            });
           }
         });
 
@@ -111,19 +109,9 @@ class TheaterGameShakeGameController extends GetxController
     )..repeat();
 
     // Atur timer dengan interval 13 detik
-    const timerDuration = Duration(seconds: 1);
-    audioTimer = Timer.periodic(timerDuration, (timer) async {
-      // Tambah tickCount dan atur ulang ke 0 jika mencapai 13
-      tickCount = (tickCount + 1) % 14;
-
-      // Kirim nilai ke Rx variable
-      currentTimer.value = tickCount;
-      if (currentTimer.value == 0 &&
-          audioFile.value == "song-game-1-shake-phone.wav") {
-        audioPlayer = await audioCache.loop(audioFile.value);
-        audioFile.value = "";
-      }
-    });
+    audioFile.value = 'song-game-1-shake-phone.wav';
+    audioPlayer = await audioCache.loop(audioFile.value);
+    audioPlayer.setVolume(0.0);
 
     super.onInit();
   }

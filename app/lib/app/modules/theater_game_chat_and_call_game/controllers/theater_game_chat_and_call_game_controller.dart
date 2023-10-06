@@ -30,6 +30,7 @@ class TheaterGameChatAndCallGameController extends GetxController
   void onClose() {
     _controller.dispose();
     _controllerParticle.dispose();
+    audioPlayer!.stop();
     super.onClose();
   }
 

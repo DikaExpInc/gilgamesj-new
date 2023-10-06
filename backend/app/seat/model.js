@@ -2,11 +2,18 @@ const mongoose = require('mongoose')
 
 let seatSchema = mongoose.Schema(
   {
-    name: {
+    seatNumber: {
       type: String,
-      required: [true, 'Name must be filled'],
+      required: [true, 'Seat number must be filled'],
     },
-    
+    isOccupied: {
+      type: Boolean,
+      default: false,
+    },
+    player_id: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Player',
+    },
   },
   { timestamps: true }
 )

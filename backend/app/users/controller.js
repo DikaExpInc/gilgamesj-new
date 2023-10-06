@@ -69,6 +69,7 @@ module.exports = {
         username: req.user.username,
         email: req.user.email,
         role: req.user.role,
+        userType: req.user.userType,
         status: req.user.status,
         players: req.user.players,
       }

@@ -39,6 +39,12 @@ let userSchema = mongoose.Schema(
     group: {
       type: Number,
     },
+    user_type: {
+      type: String,
+      enum: ['children', 'parent', 'disability'],
+      default: 'children',
+      required: [true, 'User type must be filled'],
+    },
     score: {
       type: Number,
       default: 0,

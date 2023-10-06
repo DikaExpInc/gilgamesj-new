@@ -35,6 +35,12 @@ Future<void> main() async {
     String? mode = GetStorage().read('mode');
     if (mode != null && mode.isNotEmpty) {
       switch (mode) {
+        case 'start':
+          initialRoute = Routes.CHOICE_ROLE;
+          break;
+        case 'ticket':
+          initialRoute = Routes.TICKET;
+          break;
         case 'phone':
           initialRoute = Routes.INTRODUCTION;
           break;
@@ -57,11 +63,10 @@ Future<void> main() async {
           initialRoute = Routes.PERFORMANCE;
           break;
         case "pre_game":
-          // initialRoute = Routes.INTRO;
-          initialRoute = Routes.PRE_GAME_START;
-          break;
-        case "item":
           initialRoute = Routes.PRE_GAME_ITEMS;
+          break;
+        case "choice_role":
+          initialRoute = Routes.CHOICE_ROLE;
           break;
         case "intro":
           initialRoute = Routes.PRE_GAME_SPLASH;
@@ -136,15 +141,18 @@ Future<void> main() async {
     String? mode = GetStorage().read('mode');
     if (mode != null && mode.isNotEmpty) {
       switch (mode) {
-        case 'phone':
-          initialRoute = Routes.INTRODUCTION;
+        case 'ticket':
+          initialRoute = Routes.TICKET;
+          break;
+        case 'start':
+          initialRoute = Routes.CHOICE_ROLE;
           break;
         default:
-          initialRoute = Routes.PRE_GAME_START;
+          initialRoute = Routes.CHOICE_ROLE;
           break;
       }
     } else {
-      initialRoute = Routes.PRE_GAME_START;
+      initialRoute = Routes.CHOICE_ROLE;
     }
   }
 

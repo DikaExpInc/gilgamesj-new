@@ -16,10 +16,14 @@ import '../modules/camera/bindings/camera_binding.dart';
 import '../modules/camera/views/camera_view.dart';
 import '../modules/change_player/bindings/change_player_binding.dart';
 import '../modules/change_player/views/change_player_view.dart';
+import '../modules/change_seat/bindings/change_seat_binding.dart';
+import '../modules/change_seat/views/change_seat_view.dart';
 import '../modules/chat/bindings/chat_binding.dart';
 import '../modules/chat/views/chat_view.dart';
 import '../modules/chat_detail/bindings/chat_detail_binding.dart';
 import '../modules/chat_detail/views/chat_detail_view.dart';
+import '../modules/choice_role/bindings/choice_role_binding.dart';
+import '../modules/choice_role/views/choice_role_view.dart';
 import '../modules/clap/bindings/clap_binding.dart';
 import '../modules/clap/views/clap_view.dart';
 import '../modules/comment/bindings/comment_binding.dart';
@@ -50,6 +54,56 @@ import '../modules/lock_music/bindings/lock_music_binding.dart';
 import '../modules/lock_music/views/lock_music_view.dart';
 import '../modules/map/bindings/map_binding.dart';
 import '../modules/map/views/map_view.dart';
+import '../modules/mini_game_descibel_game/bindings/mini_game_descibel_game_binding.dart';
+import '../modules/mini_game_descibel_game/views/mini_game_descibel_game_view.dart';
+import '../modules/mini_game_music_game/bindings/mini_game_music_game_binding.dart';
+import '../modules/mini_game_music_game/views/mini_game_music_game_view.dart';
+import '../modules/mini_game_music_theater_game/bindings/mini_game_music_theater_game_binding.dart';
+import '../modules/mini_game_music_theater_game/views/mini_game_music_theater_game_view.dart';
+import '../modules/mini_game_shake_game/bindings/mini_game_shake_game_binding.dart';
+import '../modules/mini_game_shake_game/views/mini_game_shake_game_view.dart';
+import '../modules/news_detail/bindings/news_detail_binding.dart';
+import '../modules/news_detail/views/news_detail_view.dart';
+import '../modules/notification/bindings/notification_binding.dart';
+import '../modules/notification/views/notification_view.dart';
+import '../modules/objective_detail/bindings/objective_detail_binding.dart';
+import '../modules/objective_detail/views/objective_detail_view.dart';
+import '../modules/performance/bindings/performance_binding.dart';
+import '../modules/performance/views/performance_view.dart';
+import '../modules/phone/bindings/phone_binding.dart';
+import '../modules/phone/views/phone_view.dart';
+import '../modules/phone_call/bindings/phone_call_binding.dart';
+import '../modules/phone_call/views/phone_call_view.dart';
+import '../modules/pre_game_audio/bindings/pre_game_audio_binding.dart';
+import '../modules/pre_game_audio/views/pre_game_audio_view.dart';
+import '../modules/pre_game_credit/bindings/pre_game_credit_binding.dart';
+import '../modules/pre_game_credit/views/pre_game_credit_view.dart';
+import '../modules/pre_game_items/bindings/pre_game_items_binding.dart';
+import '../modules/pre_game_items/views/pre_game_items_view.dart';
+import '../modules/pre_game_items_ar/bindings/pre_game_items_ar_binding.dart';
+import '../modules/pre_game_items_ar/views/pre_game_items_ar_view.dart';
+import '../modules/pre_game_menu/bindings/pre_game_menu_binding.dart';
+import '../modules/pre_game_menu/views/pre_game_menu_view.dart';
+import '../modules/pre_game_rune/bindings/pre_game_rune_binding.dart';
+import '../modules/pre_game_rune/views/pre_game_rune_view.dart';
+import '../modules/pre_game_spirit_realm/bindings/pre_game_spirit_realm_binding.dart';
+import '../modules/pre_game_spirit_realm/views/pre_game_spirit_realm_view.dart';
+import '../modules/pre_game_splash/bindings/pre_game_splash_binding.dart';
+import '../modules/pre_game_splash/views/pre_game_splash_view.dart';
+import '../modules/pre_game_start/bindings/pre_game_start_binding.dart';
+import '../modules/pre_game_start/views/pre_game_start_view.dart';
+import '../modules/pre_game_success/bindings/pre_game_success_binding.dart';
+import '../modules/pre_game_success/views/pre_game_success_view.dart';
+import '../modules/pre_game_talking_video/bindings/pre_game_talking_video_binding.dart';
+import '../modules/pre_game_talking_video/views/pre_game_talking_video_view.dart';
+import '../modules/pre_game_tutorial/bindings/pre_game_tutorial_binding.dart';
+import '../modules/pre_game_tutorial/views/pre_game_tutorial_view.dart';
+import '../modules/rules/bindings/rules_binding.dart';
+import '../modules/rules/views/rules_view.dart';
+import '../modules/social_media/bindings/social_media_binding.dart';
+import '../modules/social_media/views/social_media_view.dart';
+import '../modules/start/bindings/start_binding.dart';
+import '../modules/start/views/start_view.dart';
 import '../modules/theater_game_call_humbaba_game/bindings/theater_game_call_humbaba_game_binding.dart';
 import '../modules/theater_game_call_humbaba_game/views/theater_game_call_humbaba_game_view.dart';
 import '../modules/theater_game_call_humbaba_game_done/bindings/theater_game_call_humbaba_game_done_binding.dart';
@@ -80,56 +134,8 @@ import '../modules/theater_game_star_game_solving/bindings/theater_game_star_gam
 import '../modules/theater_game_star_game_solving/views/theater_game_star_game_solving_view.dart';
 import '../modules/theater_game_star_timer_game/bindings/theater_game_star_timer_game_binding.dart';
 import '../modules/theater_game_star_timer_game/views/theater_game_star_timer_game_view.dart';
-import '../modules/news_detail/bindings/news_detail_binding.dart';
-import '../modules/news_detail/views/news_detail_view.dart';
-import '../modules/notification/bindings/notification_binding.dart';
-import '../modules/notification/views/notification_view.dart';
-import '../modules/objective_detail/bindings/objective_detail_binding.dart';
-import '../modules/objective_detail/views/objective_detail_view.dart';
-import '../modules/performance/bindings/performance_binding.dart';
-import '../modules/performance/views/performance_view.dart';
-import '../modules/phone/bindings/phone_binding.dart';
-import '../modules/phone/views/phone_view.dart';
-import '../modules/phone_call/bindings/phone_call_binding.dart';
-import '../modules/phone_call/views/phone_call_view.dart';
-import '../modules/pre_game_audio/bindings/pre_game_audio_binding.dart';
-import '../modules/pre_game_audio/views/pre_game_audio_view.dart';
-import '../modules/pre_game_credit/bindings/pre_game_credit_binding.dart';
-import '../modules/pre_game_credit/views/pre_game_credit_view.dart';
-import '../modules/mini_game_descibel_game/bindings/mini_game_descibel_game_binding.dart';
-import '../modules/mini_game_descibel_game/views/mini_game_descibel_game_view.dart';
-import '../modules/pre_game_items/bindings/pre_game_items_binding.dart';
-import '../modules/pre_game_items/views/pre_game_items_view.dart';
-import '../modules/pre_game_items_ar/bindings/pre_game_items_ar_binding.dart';
-import '../modules/pre_game_items_ar/views/pre_game_items_ar_view.dart';
-import '../modules/pre_game_menu/bindings/pre_game_menu_binding.dart';
-import '../modules/pre_game_menu/views/pre_game_menu_view.dart';
-import '../modules/mini_game_music_game/bindings/mini_game_music_game_binding.dart';
-import '../modules/mini_game_music_game/views/mini_game_music_game_view.dart';
-import '../modules/mini_game_music_theater_game/bindings/mini_game_music_theater_game_binding.dart';
-import '../modules/mini_game_music_theater_game/views/mini_game_music_theater_game_view.dart';
-import '../modules/pre_game_rune/bindings/pre_game_rune_binding.dart';
-import '../modules/pre_game_rune/views/pre_game_rune_view.dart';
-import '../modules/mini_game_shake_game/bindings/mini_game_shake_game_binding.dart';
-import '../modules/mini_game_shake_game/views/mini_game_shake_game_view.dart';
-import '../modules/pre_game_spirit_realm/bindings/pre_game_spirit_realm_binding.dart';
-import '../modules/pre_game_spirit_realm/views/pre_game_spirit_realm_view.dart';
-import '../modules/pre_game_splash/bindings/pre_game_splash_binding.dart';
-import '../modules/pre_game_splash/views/pre_game_splash_view.dart';
-import '../modules/pre_game_start/bindings/pre_game_start_binding.dart';
-import '../modules/pre_game_start/views/pre_game_start_view.dart';
-import '../modules/pre_game_success/bindings/pre_game_success_binding.dart';
-import '../modules/pre_game_success/views/pre_game_success_view.dart';
-import '../modules/pre_game_talking_video/bindings/pre_game_talking_video_binding.dart';
-import '../modules/pre_game_talking_video/views/pre_game_talking_video_view.dart';
-import '../modules/pre_game_tutorial/bindings/pre_game_tutorial_binding.dart';
-import '../modules/pre_game_tutorial/views/pre_game_tutorial_view.dart';
-import '../modules/rules/bindings/rules_binding.dart';
-import '../modules/rules/views/rules_view.dart';
-import '../modules/social_media/bindings/social_media_binding.dart';
-import '../modules/social_media/views/social_media_view.dart';
-import '../modules/start/bindings/start_binding.dart';
-import '../modules/start/views/start_view.dart';
+import '../modules/ticket/bindings/ticket_binding.dart';
+import '../modules/ticket/views/ticket_view.dart';
 import '../modules/view_player/bindings/view_player_binding.dart';
 import '../modules/view_player/views/view_player_view.dart';
 
@@ -470,6 +476,21 @@ class AppPages {
       name: _Paths.THEATER_GAME_CALL_HUMBABA_GAME_DONE,
       page: () => TheaterGameCallHumbabaGameDoneView(),
       binding: TheaterGameCallHumbabaGameDoneBinding(),
+    ),
+    GetPage(
+      name: _Paths.TICKET,
+      page: () => TicketView(),
+      binding: TicketBinding(),
+    ),
+    GetPage(
+      name: _Paths.CHANGE_SEAT,
+      page: () => ChangeSeatView(),
+      binding: ChangeSeatBinding(),
+    ),
+    GetPage(
+      name: _Paths.CHOICE_ROLE,
+      page: () => ChoiceRoleView(),
+      binding: ChoiceRoleBinding(),
     ),
   ];
 }

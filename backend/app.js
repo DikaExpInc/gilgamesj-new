@@ -10,8 +10,8 @@ var cors = require('cors')
 const { Client, Server } = require('node-osc')
 const Setting = require('./app/setting/model')
 
-// var server = new Server(53001, '192.168.0.2')
-var server = new Server(53001, '192.168.107.220')
+var server = new Server(53001, '192.168.0.2')
+// var server = new Server(53001, '192.168.107.220')
 
 server.on('listening', () => {
   console.log('OSC Server is listening.')
@@ -26,7 +26,16 @@ server.on('message', async (msg) => {
   }
 
   if (result['url'] == '/mode') {
-    if (result['value'] == 'phone') {
+    if (result['value'] == 'start') {
+      await Setting.findOneAndUpdate(
+        {
+          _id: '64de3fd2843badaf9efc006b',
+        },
+        {
+          page: 'start',
+        }
+      )
+    } else if (result['value'] == 'phone') {
       await Setting.findOneAndUpdate(
         {
           _id: '64de3fd2843badaf9efc006b',
@@ -295,6 +304,7 @@ const lightRouter = require('./app/light/router')
 const settingRouter = require('./app/setting/router')
 const preGameRouter = require('./app/pregame/router')
 const arCameraRouter = require('./app/ar_camera/router')
+const seatRouter = require('./app/seat/router')
 
 // Admin API
 const authAdminRouter = require('./app/auth/router.admin')
@@ -318,6 +328,7 @@ const lightAdminRouter = require('./app/light/router.admin')
 const settingAdminRouter = require('./app/setting/router.admin')
 const preGameAdminRouter = require('./app/pregame/router.admin')
 const arCameraAdminRouter = require('./app/ar_camera/router.admin')
+const seatAdminRouter = require('./app/seat/router.admin')
 
 const app = express()
 const URL = `/api/v1`
@@ -362,6 +373,7 @@ app.use(`${URL}/light`, lightRouter)
 app.use(`${URL}/setting`, settingRouter)
 app.use(`${URL}/pregame`, preGameRouter)
 app.use(`${URL}/arcamera`, arCameraRouter)
+app.use(`${URL}/seat`, seatRouter)
 
 // admin master
 app.use(`${URL_ADMIN}/browser`, browserAdminRouter)
@@ -385,6 +397,7 @@ app.use(`${URL_ADMIN}/light`, lightAdminRouter)
 app.use(`${URL_ADMIN}/setting`, settingAdminRouter)
 app.use(`${URL_ADMIN}/pregame`, preGameAdminRouter)
 app.use(`${URL_ADMIN}/arcamera`, arCameraAdminRouter)
+app.use(`${URL_ADMIN}/seat`, seatAdminRouter)
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

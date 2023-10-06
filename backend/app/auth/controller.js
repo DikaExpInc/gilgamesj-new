@@ -1,9 +1,145 @@
 const Player = require('../player/model')
 const User = require('../users/model')
 const Stage = require('../stage/model')
+const Seat = require('../seat/model')
 const config = require('../../config')
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
+
+// Fungsi untuk mengambil tempat duduk yang tersedia dengan pola zigzag
+const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+const rows = 17
+const cols = 11
+
+async function getNextSeatChildren() {
+  let currentRow = 1
+  let currentCol = 0
+  let isForward = true
+
+  while (currentCol < cols) {
+    const query = {
+      seatNumber: `${alphabet[currentCol]}${currentRow}`,
+      isOccupied: false,
+    }
+
+    const seat = await Seat.findOneAndUpdate(query, {
+      $set: { isOccupied: true },
+    })
+
+    if (seat) {
+      return { seat, currentRow, currentCol } // Mengembalikan seat serta nilai currentRow dan currentCol yang telah diupdate
+    } else {
+      // Mengatur perpindahan berikutnya sesuai dengan pola zigzag
+      if (isForward) {
+        if (currentRow < rows) {
+          currentRow++
+        } else {
+          currentCol++
+          isForward = false
+        }
+      } else {
+        if (currentRow > 1) {
+          currentRow--
+        } else {
+          currentCol++
+          isForward = true
+        }
+      }
+    }
+  }
+
+  return null // Mengembalikan null jika semua tempat duduk sudah terisi
+}
+
+async function getNextSeatParent() {
+  let currentRow = 1
+  let currentCol = alphabet.indexOf('G') // Mulai dari kolom G
+  let isForward = true
+
+  // Pastikan currentCol berada dalam rentang yang valid
+  if (currentCol < 0) {
+    currentCol = 0
+  }
+
+  while (currentCol < cols) {
+    const query = {
+      seatNumber: `${alphabet[currentCol]}${currentRow}`,
+      isOccupied: false,
+    }
+
+    const seat = await Seat.findOneAndUpdate(query, {
+      $set: { isOccupied: true },
+    })
+
+    if (seat) {
+      return { seat, currentRow, currentCol } // Mengembalikan seat serta nilai currentRow dan currentCol yang telah diupdate
+    } else {
+      // Mengatur perpindahan berikutnya sesuai dengan pola zigzag
+      if (isForward) {
+        if (currentRow < rows) {
+          currentRow++
+        } else {
+          currentCol++
+          isForward = false
+        }
+      } else {
+        if (currentRow > 1) {
+          currentRow--
+        } else {
+          currentCol++
+          isForward = true
+        }
+      }
+    }
+  }
+
+  return null // Mengembalikan null jika semua tempat duduk sudah terisi
+}
+
+async function getNextSeatDisability() {
+  let currentRow = 1
+  let currentCol = alphabet.indexOf('K') // Mulai dari kolom G
+  let isForward = true
+
+  // Pastikan currentCol berada dalam rentang yang valid
+  if (currentCol < 0) {
+    currentCol = 0
+  }
+
+  while (currentCol < cols) {
+    const query = {
+      seatNumber: `${alphabet[currentCol]}${currentRow}`,
+      isOccupied: false,
+    }
+
+    const seat = await Seat.findOneAndUpdate(query, {
+      $set: { isOccupied: true },
+    })
+
+    if (seat) {
+      return { seat, currentRow, currentCol } // Mengembalikan seat serta nilai currentRow dan currentCol yang telah diupdate
+    } else {
+      // Mengatur perpindahan berikutnya sesuai dengan pola zigzag
+      if (isForward) {
+        if (currentRow < rows) {
+          currentRow++
+        } else {
+          currentCol++
+          isForward = false
+        }
+      } else {
+        if (currentRow > 1) {
+          currentRow--
+        } else {
+          currentCol++
+          isForward = true
+        }
+      }
+    }
+  }
+
+  return null // Mengembalikan null jika semua tempat duduk sudah terisi
+}
 
 module.exports = {
   signup: async (req, res, next) => {
@@ -13,7 +149,7 @@ module.exports = {
       const userCount = await User.countDocuments()
 
       // Hitung grup berdasarkan modulus jumlah pengguna
-      const group = (userCount % 4) + 1
+      const group = userCount
 
       payload.group = group
 
@@ -57,6 +193,17 @@ module.exports = {
           player_num <= payload.total_player;
           player_num++
         ) {
+          let seat
+          if (user.user_type == 'children') {
+            seat = await getNextSeatChildren()
+          } else if (user.user_type == 'parent') {
+            seat = await getNextSeatParent()
+          } else if (user.user_type == 'disability') {
+            seat = await getNextSeatDisability()
+          } else {
+            seat = await getNextSeatChildren()
+          }
+
           let player
           if (player_num == 1) {
             player = new Player({
@@ -65,6 +212,8 @@ module.exports = {
               stage_id: stage._id,
               user_id: user.id,
               status_play: 'Y',
+              seat_id: seat.seat._id,
+              seat: seat.seat.seatNumber,
             })
             await User.findByIdAndUpdate(user.id, {
               $set: { player_now: player_num },
@@ -75,9 +224,12 @@ module.exports = {
               player_num: player_num,
               stage_id: stage._id,
               user_id: user.id,
+              seat_id: seat.seat._id,
+              seat: seat.seat.seatNumber,
             })
           }
-
+          seat.seat.player_id = player._id
+          await seat.seat.save()
           await player.save()
 
           await User.findByIdAndUpdate(user.id, {

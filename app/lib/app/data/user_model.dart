@@ -3,6 +3,7 @@ import 'package:app/app/data/player_model.dart';
 class UserModel {
   final int? statusCode;
   final String? role;
+  final String? userType;
   final String? status;
   final List<PlayerModel>? players;
   final String? sId;
@@ -16,6 +17,7 @@ class UserModel {
   UserModel({
     this.statusCode,
     this.role,
+    this.userType,
     this.status,
     this.players,
     this.sId,
@@ -36,6 +38,7 @@ class UserModel {
     }
     return UserModel(
       role: jsonData['role'] != null ? jsonData['role'] : "",
+      userType: jsonData['user_type'] != null ? jsonData['user_type'] : "",
       statusCode:
           jsonData['status_code'] != null ? jsonData['status_code'] : "",
       status: jsonData['status'] != null ? jsonData['status'] : "",

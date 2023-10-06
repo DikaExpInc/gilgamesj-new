@@ -7,6 +7,8 @@ class PlayerModel {
   final String? statusPlay;
   final String? statusDone;
   final String? userId;
+  final String? seatId;
+  final String? seat;
   final String? stageId;
 
   PlayerModel({
@@ -18,6 +20,8 @@ class PlayerModel {
     this.statusPlay,
     this.statusDone,
     this.userId,
+    this.seatId,
+    this.seat,
     this.stageId,
   });
 
@@ -33,6 +37,8 @@ class PlayerModel {
       statusDone:
           jsonData['status_done'] != null ? jsonData['status_done'] : "",
       userId: jsonData['user_id'] != null ? jsonData['user_id'] : "",
+      seatId: jsonData['seat_id'] != null ? jsonData['seat_id'] : "",
+      seat: jsonData['seat'] != null ? jsonData['seat'] : "",
       stageId: jsonData['stage_id'] != null ? jsonData['stage_id'] : "",
     );
   }

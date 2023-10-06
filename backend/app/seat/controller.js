@@ -33,13 +33,26 @@ module.exports = {
 
   actionCreate: async (req, res) => {
     try {
-      const { code, name, url } = req.body
-
+      const { seatNumber } = req.body
       let seat = new Seat({
-        name: name,
+        seatNumber: seatNumber,
       })
-
       await seat.save()
+
+      // const rows = 17
+      // const cols = 11
+      // const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+
+      // // Inisialisasi tempat duduk
+      // for (let i = 0; i < rows; i++) {
+      //   for (let j = 0; j < cols; j++) {
+      //     const seatNumber = alphabet[j] + (i + 1)
+      //     let seat = new Seat({
+      //       seatNumber: seatNumber,
+      //     })
+      //     await seat.save()
+      //   }
+      // }
 
       res.status(201).json({
         message: 'Successfully create seat',
@@ -58,14 +71,14 @@ module.exports = {
   actionEdit: async (req, res) => {
     try {
       const { id } = req.params
-      const { code, name, url } = req.body
+      const { seatNumber } = req.body
 
       await Seat.findOneAndUpdate(
         {
           _id: id,
         },
         {
-          name: name,
+          seatNumber: seatNumber,
         }
       )
       res.status(200).json({

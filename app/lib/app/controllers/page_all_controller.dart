@@ -75,6 +75,12 @@ class PageAllController extends GetxController {
           if (setting!.page!.toString() != currentPage.toString()) {
             String? mode = GetStorage().read('mode');
             switch (setting!.page) {
+              case "start":
+                if (mode != "start" && mode != "ticket") {
+                  GetStorage().write('mode', "start");
+                  Get.offAllNamed(Routes.CHOICE_ROLE);
+                }
+                break;
               case "phone":
                 if (mode != "phone") {
                   GetStorage().write('mode', "phone");
@@ -125,7 +131,7 @@ class PageAllController extends GetxController {
               case "pre_game":
                 if (mode != "pre_game" && mode != "item") {
                   GetStorage().write('mode', "pre_game");
-                  Get.offAllNamed(Routes.PRE_GAME_START);
+                  Get.offAllNamed(Routes.PRE_GAME_ITEMS);
                 }
                 break;
               case "go_to_theater":

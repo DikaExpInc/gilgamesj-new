@@ -20,10 +20,10 @@ class ViewPlayerController extends GetxController {
     final changes = playerListModel?.items?.asMap().entries.map((entry) {
       final player = entry.value;
       final playerName = playerNameControllers[entry.key].text;
-
       return {
         "player_id": player.sId,
         "playerName": playerName,
+        "seat": player.seat,
       };
     }).toList();
 
@@ -33,13 +33,16 @@ class ViewPlayerController extends GetxController {
 
     box.write('totalPlayer', playerListModel?.items?.length.toString());
     playerListModel?.items?.asMap().entries.map((entry) {
+      final player = entry.value;
       final playerName = playerNameControllers[entry.key].text;
       box.write('played_name_${entry.key}', playerName);
+      box.write('seat_id_${entry.key}', player.seatId);
+      box.write('seat_${entry.key}', player.seat);
     }).toList();
     box.write('played_number', 0);
-    box.write('mode', "item");
+    box.write('mode', "ticket");
 
-    Get.toNamed(Routes.PRE_GAME_ITEMS);
+    Get.toNamed(Routes.TICKET);
   }
 
   @override

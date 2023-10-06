@@ -62,7 +62,8 @@ class CreateTeamController extends GetxController
 
   createTeamName() async {
     update();
-    user = await AuthApi().registerAPI(teamNameC.text, totalPlayer.toString());
+    user = await AuthApi()
+        .registerAPI(teamNameC.text, totalPlayer.toString(), box.read('role'));
     if (user!.statusCode == 201) {
       box.write("token", user!.accessToken);
       box.write("teamName", teamNameC.text);

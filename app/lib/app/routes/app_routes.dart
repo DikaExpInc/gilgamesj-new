@@ -85,6 +85,17 @@ abstract class Routes {
   static const TICKET = _Paths.TICKET;
   static const CHANGE_SEAT = _Paths.CHANGE_SEAT;
   static const CHOICE_ROLE = _Paths.CHOICE_ROLE;
+  static const TABLET_HOLDER = _Paths.TABLET_HOLDER;
+  static const MOVEMENT_PAGE = _Paths.MOVEMENT_PAGE;
+  static const GIVE_TABLET = _Paths.GIVE_TABLET;
+  static const THEATER_GAME_LIGHTNING_GAME_CUSTOM =
+      _Paths.THEATER_GAME_LIGHTNING_GAME_CUSTOM;
+  static const THEATER_GAME_SHOW_HUMBABA = _Paths.THEATER_GAME_SHOW_HUMBABA;
+  static const THEATER_GAME_CHOOSE_YOUR_CHARACTER =
+      _Paths.THEATER_GAME_CHOOSE_YOUR_CHARACTER;
+  static const THEATER_GAME_TABLET_DIES = _Paths.THEATER_GAME_TABLET_DIES;
+  static const THEATER_GAME_REVIVING = _Paths.THEATER_GAME_REVIVING;
+  static const BRING_TABLET_BACK = _Paths.BRING_TABLET_BACK;
 }
 
 abstract class _Paths {
@@ -166,4 +177,15 @@ abstract class _Paths {
   static const TICKET = '/ticket';
   static const CHANGE_SEAT = '/change-seat';
   static const CHOICE_ROLE = '/choice-role';
+  static const TABLET_HOLDER = '/tablet-holder';
+  static const MOVEMENT_PAGE = '/movement-page';
+  static const GIVE_TABLET = '/give-tablet';
+  static const THEATER_GAME_LIGHTNING_GAME_CUSTOM =
+      '/theater-game-lightning-game-custom';
+  static const THEATER_GAME_SHOW_HUMBABA = '/theater-game-show-humbaba';
+  static const THEATER_GAME_CHOOSE_YOUR_CHARACTER =
+      '/theater-game-choose-your-character';
+  static const THEATER_GAME_TABLET_DIES = '/theater-game-tablet-dies';
+  static const THEATER_GAME_REVIVING = '/theater-game-reviving';
+  static const BRING_TABLET_BACK = '/bring-tablet-back';
 }

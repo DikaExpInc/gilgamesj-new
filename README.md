@@ -6,7 +6,7 @@
 
 - npm i -g yarn
 - yarn install
-- yarn start
+- yarn start-mac
 
 ### backend gilgamesj
 
@@ -19,3 +19,8 @@
 ### flutter gilgamesj
 
 -
+
+
+
+### how to run if all installed
+- 

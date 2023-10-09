@@ -3,8 +3,9 @@ const mongoose = require('mongoose')
 let settingSchema = mongoose.Schema(
   {
     page: {
-      enum: ['stage', 'light', 'notification', 'bonus', 'blank'],
-      default: 'stage',
+      type: String,
+    },
+    player: {
       type: String,
     },
     stage_id: {

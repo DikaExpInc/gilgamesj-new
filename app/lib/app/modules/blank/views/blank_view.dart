@@ -17,25 +17,7 @@ class BlankView extends GetView<BlankController> {
       body: Container(
         width: mWidth,
         height: mHeight,
-        decoration: BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage("assets/images/background2.png"),
-            fit: BoxFit.cover,
-          ),
-        ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(
-              "${GetStorage().read('played_name_${GetStorage().read('played_number')}')}",
-              style: TextStyle(
-                fontSize: 64,
-                color: Colors.white,
-              ),
-            ),
-          ],
-        ),
+        color: Colors.black,
       ),
     );
   }

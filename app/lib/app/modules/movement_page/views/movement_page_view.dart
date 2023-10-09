@@ -2,10 +2,9 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 
-import '../controllers/go_theater_controller.dart';
+import '../controllers/movement_page_controller.dart';
 
-// ignore: must_be_immutable
-class GoTheaterView extends GetView<GoTheaterController> {
+class MovementPageView extends GetView<MovementPageController> {
   late double mWidth;
   late double mHeight;
 
@@ -17,6 +16,7 @@ class GoTheaterView extends GetView<GoTheaterController> {
         body: Container(
       width: mWidth,
       height: mHeight,
+      padding: EdgeInsets.all(40),
       decoration: BoxDecoration(
         image: DecorationImage(
           image: AssetImage("assets/images/background.png"),
@@ -31,15 +31,19 @@ class GoTheaterView extends GetView<GoTheaterController> {
           Column(
             children: [
               Text(
-                "Ga naar het theater",
+                "${controller.arguments['title']}",
                 style: TextStyle(
                   fontSize: 64,
                   color: Colors.white,
                   fontWeight: FontWeight.w700,
                 ),
+                textAlign: TextAlign.center,
+              ),
+              SizedBox(
+                height: 40,
               ),
               Text(
-                'Jullie mogen zitten op\nRij [row nr] Stoelen [chair numbers]',
+                '${controller.arguments['description']}',
                 style: TextStyle(
                   color: Colors.white,
                   fontSize: 22,

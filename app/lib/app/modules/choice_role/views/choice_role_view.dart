@@ -31,34 +31,54 @@ class ChoiceRoleView extends GetView<ChoiceRoleController> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
-            Align(
-              alignment: Alignment.centerRight,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    "made by",
-                    style: TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.w400,
-                      color: Colors.black,
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Align(
+                  alignment: Alignment.centerLeft,
+                  child: InkWell(
+                    onTap: () => {controller.chooseRole('late')},
+                    child: Obx(
+                      () => Text(
+                        'late',
+                        style: TextStyle(
+                            fontWeight: controller.selectedRole.value == "late"
+                                ? FontWeight.bold
+                                : FontWeight.normal),
+                      ),
                     ),
                   ),
-                  Container(
-                    width: 100,
-                    height: 50,
-                    child: Image.asset('assets/images/logo_color.png'),
+                ),
+                Align(
+                  alignment: Alignment.centerRight,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        "made by",
+                        style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.w400,
+                          color: Colors.black,
+                        ),
+                      ),
+                      Container(
+                        width: 100,
+                        height: 50,
+                        child: Image.asset('assets/images/logo_color.png'),
+                      ),
+                      Text(
+                        "www.expinc.io",
+                        style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.w400,
+                          color: Colors.black,
+                        ),
+                      ),
+                    ],
                   ),
-                  Text(
-                    "www.expinc.io",
-                    style: TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.w400,
-                      color: Colors.black,
-                    ),
-                  ),
-                ],
-              ),
+                ),
+              ],
             ),
             Text(
               'Select Category',

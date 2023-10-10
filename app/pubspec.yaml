@@ -54,6 +54,7 @@ flutter:
     - assets/audios/pregames/night_sounds/
     - assets/objects/
     - assets/videos/
+    - assets/json/
   fonts:
     - family: Centrion
       fonts:

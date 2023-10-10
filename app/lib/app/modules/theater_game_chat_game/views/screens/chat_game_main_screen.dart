@@ -3,6 +3,7 @@ import 'package:app/app/modules/theater_game_chat_game/views/widgets/answer_widg
 import 'package:app/app/modules/theater_game_chat_game/views/widgets/chat_widget.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 import 'package:get/get.dart';
 
@@ -12,12 +13,13 @@ class ChatGameMainScreen extends GetView<TheaterGameChatGameController> {
 
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
   final TextEditingController textController = TextEditingController();
+  final ScrollController _scrollController = ScrollController();
 
   @override
   Widget build(BuildContext context) {
     mWidth = MediaQuery.of(context).size.width;
     mHeight = MediaQuery.of(context).size.height;
-    num getHeight = 2 > 2 ? 4 : 4;
+    num getHeight = 2 > 2 ? 4 : 5;
 
     return Scaffold(
       body: SingleChildScrollView(
@@ -52,7 +54,7 @@ class ChatGameMainScreen extends GetView<TheaterGameChatGameController> {
                               crossAxisAlignment: CrossAxisAlignment.end,
                               children: [
                                 Text(
-                                  'test',
+                                  '${controller.arguments['name']}',
                                   style: TextStyle(
                                     color: Colors.white,
                                     fontSize: 20,
@@ -103,50 +105,132 @@ class ChatGameMainScreen extends GetView<TheaterGameChatGameController> {
                 ),
               ),
               Expanded(
-                  child: ListView(
-                children: [
-                  ChatWidget(
-                    chat: "Hello heroes, Here is your God Ishtar.",
-                    type: "left",
+                child: Obx(
+                  () => ListView.builder(
+                    controller: _scrollController,
+                    itemCount: controller.chatData.length,
+                    itemBuilder: (context, index) {
+                      final chat = controller.chatData[index];
+                      final pesan = chat['pesan'] as String;
+                      final position = chat['position'] as String;
+                      // Tampilkan pesan chat
+                      return ChatWidget(
+                        chat: pesan,
+                        type: position, // Atur sesuai kebutuhan
+                      );
+                    },
                   ),
-                  ChatWidget(
-                    chat:
-                        "that arogan King in trouble, I call you from other world and give second live for a reason,",
-                    type: "left",
-                  ),
-                  ChatWidget(
-                    chat: "Ahhh Helo ",
-                    type: "right",
-                  ),
-                ],
-              )),
+                ),
+              ),
               Container(
                 width: mWidth,
                 height: mHeight / getHeight,
                 child: Padding(
                   padding: const EdgeInsets.symmetric(
                       horizontal: 40.0, vertical: 20.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      SizedBox(
-                        height: 20,
-                      ),
-                      AnswerWidget(title: 'test', position: true, press: () {}),
-                      Center(
-                        child: Obx(
-                          () => CircularProgressIndicator(
-                            color: Colors.white,
-                            value: controller.progressValue / 100,
-                          ),
-                        ),
-                      ),
-                      AnswerWidget(
-                          title: 'test', position: false, press: () {}),
-                    ],
+                  child: Obx(
+                    () {
+                      final currentChat = controller.chatData.isNotEmpty
+                          ? controller.chatData.last
+                          : null;
+
+                      if (controller.isChoosingAnswer.value &&
+                          currentChat != null) {
+                        final jawaban = currentChat['jawaban']
+                            as List<dynamic>?; // Ubah tipe ke List<dynamic>
+                        if (jawaban != null) {
+                          return Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              for (int i = 0; i < jawaban.length; i++)
+                                i == 0
+                                    ? AnswerWidget(
+                                        title: jawaban[i]
+                                            as String, // Cast setiap jawaban menjadi String
+                                        position:
+                                            true, // Sesuaikan dengan posisi yang sesuai
+                                        press: () {
+                                          controller.chooseAnswer(i);
+                                          _scrollController.animateTo(
+                                            _scrollController
+                                                .position.maxScrollExtent,
+                                            duration:
+                                                Duration(milliseconds: 300),
+                                            curve: Curves.easeOut,
+                                          );
+                                        },
+                                      )
+                                    : AnswerWidget(
+                                        title: jawaban[i]
+                                            as String, // Cast setiap jawaban menjadi String
+                                        position:
+                                            false, // Sesuaikan dengan posisi yang sesuai
+                                        press: () {
+                                          controller.chooseAnswer(i);
+                                          _scrollController.animateTo(
+                                            _scrollController
+                                                .position.maxScrollExtent,
+                                            duration:
+                                                Duration(milliseconds: 300),
+                                            curve: Curves.easeOut,
+                                          );
+                                        },
+                                      ),
+                            ],
+                          );
+                        }
+                      }
+                      return Column();
+                    },
                   ),
                 ),
-              )
+              ),
+              Obx(() {
+                return controller.isDone.value
+                    ? GestureDetector(
+                        behavior: HitTestBehavior.opaque,
+                        onLongPressDown: (details) {
+                          controller.startTapFinish();
+                        },
+                        onLongPressUp: () {
+                          print('terlepas');
+                          controller.stopTapLoading();
+                        },
+                        onVerticalDragEnd: (details) => {
+                          print('terlepas1'),
+                          controller.stopTapLoading(),
+                        },
+                        onHorizontalDragEnd: (details) => {
+                          print('terlepas2'),
+                          controller.stopTapLoading(),
+                        },
+                        onTapUp: (details) => {
+                          print('terlepas3'),
+                          controller.stopTapLoading(),
+                        },
+                        child: Stack(
+                          alignment: Alignment.center,
+                          children: [
+                            SvgPicture.asset(
+                              "assets/icons/finger_real.svg",
+                              width: 100,
+                              height: 100,
+                            ),
+                            Container(
+                              width: 150,
+                              height: 150,
+                              child: Obx(
+                                () => CircularProgressIndicator(
+                                  color: Colors.white,
+                                  value: controller.tapValue / 100,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      )
+                    : SizedBox();
+              }),
             ],
           ),
         ),

@@ -11,6 +11,8 @@ import 'package:vibration/vibration.dart';
 
 class TheaterGameChoiceGameController extends GetxController
     with GetTickerProviderStateMixin {
+  final Map<String, dynamic> arguments = Get.arguments;
+
   RxDouble containerWidth = 1200.0.obs;
   Timer? timer;
   late AnimationController _controller;
@@ -25,10 +27,8 @@ class TheaterGameChoiceGameController extends GetxController
   //       'Pinch Bottom', 'Remain Silent'),
   //   Question('assets/images/question3-1', 'assets/images/question3-2',
   //       'Friend Stealer', 'Sweethearts'),
-  final List<Question> questions = [
-    Question('assets/images/question-1', 'assets/images/question-2',
-        'Zijn zwaard', 'Zijn vieze onderbroeken'),
-  ];
+  final List<Question> questions = [];
+
   final RxInt currentIndex = 0.obs;
   final AudioCache audioCache = AudioCache(prefix: 'assets/audios/');
   // onTap Loading
@@ -101,6 +101,23 @@ class TheaterGameChoiceGameController extends GetxController
       vsync: this,
       duration: Duration(seconds: 10),
     )..repeat();
+
+    if (arguments['game'] == 'underwear') {
+      questions.add(Question(
+        'assets/images/question-1',
+        'assets/images/question-2',
+        'Zijn zwaard',
+        'Zijn vieze onderbroeken',
+      ));
+    }
+    if (arguments['game'] == 'sick') {
+      questions.add(Question(
+        'assets/images/sick-enkidu-yes',
+        'assets/images/sick-enkidu-no',
+        'Yes',
+        'No',
+      ));
+    }
 
     super.onInit();
   }

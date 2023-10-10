@@ -40,9 +40,9 @@ class ViewPlayerController extends GetxController {
       box.write('seat_${entry.key}', player.seat);
     }).toList();
     box.write('played_number', 0);
-    box.write('mode', "ticket");
+    box.write('mode', "item");
 
-    Get.toNamed(Routes.TICKET);
+    Get.toNamed(Routes.PRE_GAME_ITEMS);
   }
 
   @override

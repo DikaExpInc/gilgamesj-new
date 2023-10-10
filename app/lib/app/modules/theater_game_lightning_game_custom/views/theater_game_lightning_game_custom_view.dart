@@ -9,17 +9,10 @@ class TheaterGameLightningGameCustomView
   const TheaterGameLightningGameCustomView({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('TheaterGameLightningGameCustomView'),
-        centerTitle: true,
-      ),
-      body: const Center(
-        child: Text(
-          'TheaterGameLightningGameCustomView is working',
-          style: TextStyle(fontSize: 20),
-        ),
-      ),
+    return GetBuilder<TheaterGameLightningGameCustomController>(
+      builder: (controller) {
+        return controller.selectedWidget;
+      },
     );
   }
 }

@@ -66,6 +66,7 @@ class ChatGameMessageScreen extends GetView<TheaterGameChatGameController> {
                           print('terprint');
                           controller.tapStatus.value = true;
                           controller.startTapLoading();
+                          
                         },
                         onLongPressUp: () {
                           print('terlepas');

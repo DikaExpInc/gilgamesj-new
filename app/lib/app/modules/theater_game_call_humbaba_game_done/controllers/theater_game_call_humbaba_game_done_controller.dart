@@ -59,7 +59,7 @@ class TheaterGameCallHumbabaGameDoneController extends GetxController
   }
 
   void nextStepAfterMessage() {
-    Get.toNamed(Routes.BLANK);
+    Get.toNamed(Routes.TABLET_HOLDER);
   }
 
   void stopTapLoading() {

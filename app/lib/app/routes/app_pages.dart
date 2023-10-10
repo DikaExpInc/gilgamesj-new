@@ -118,6 +118,8 @@ import '../modules/theater_game_call_humbaba_game_done/bindings/theater_game_cal
 import '../modules/theater_game_call_humbaba_game_done/views/theater_game_call_humbaba_game_done_view.dart';
 import '../modules/theater_game_chat_and_call_game/bindings/theater_game_chat_and_call_game_binding.dart';
 import '../modules/theater_game_chat_and_call_game/views/theater_game_chat_and_call_game_view.dart';
+import '../modules/theater_game_chat_and_call_game_done/bindings/theater_game_chat_and_call_game_done_binding.dart';
+import '../modules/theater_game_chat_and_call_game_done/views/theater_game_chat_and_call_game_done_view.dart';
 import '../modules/theater_game_chat_game/bindings/theater_game_chat_game_binding.dart';
 import '../modules/theater_game_chat_game/views/theater_game_chat_game_view.dart';
 import '../modules/theater_game_chat_game_done/bindings/theater_game_chat_game_done_binding.dart';
@@ -128,6 +130,8 @@ import '../modules/theater_game_choice_game_done/bindings/theater_game_choice_ga
 import '../modules/theater_game_choice_game_done/views/theater_game_choice_game_done_view.dart';
 import '../modules/theater_game_choose_your_character/bindings/theater_game_choose_your_character_binding.dart';
 import '../modules/theater_game_choose_your_character/views/theater_game_choose_your_character_view.dart';
+import '../modules/theater_game_choose_your_character_done/bindings/theater_game_choose_your_character_done_binding.dart';
+import '../modules/theater_game_choose_your_character_done/views/theater_game_choose_your_character_done_view.dart';
 import '../modules/theater_game_lightning_game/bindings/theater_game_lightning_game_binding.dart';
 import '../modules/theater_game_lightning_game/views/theater_game_lightning_game_view.dart';
 import '../modules/theater_game_lightning_game_custom/bindings/theater_game_lightning_game_custom_binding.dart';
@@ -522,38 +526,48 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.GIVE_TABLET,
-      page: () => const GiveTabletView(),
+      page: () => GiveTabletView(),
       binding: GiveTabletBinding(),
     ),
     GetPage(
       name: _Paths.THEATER_GAME_LIGHTNING_GAME_CUSTOM,
-      page: () => const TheaterGameLightningGameCustomView(),
+      page: () => TheaterGameLightningGameCustomView(),
       binding: TheaterGameLightningGameCustomBinding(),
     ),
     GetPage(
       name: _Paths.THEATER_GAME_SHOW_HUMBABA,
-      page: () => const TheaterGameShowHumbabaView(),
+      page: () => TheaterGameShowHumbabaView(),
       binding: TheaterGameShowHumbabaBinding(),
     ),
     GetPage(
       name: _Paths.THEATER_GAME_CHOOSE_YOUR_CHARACTER,
-      page: () => const TheaterGameChooseYourCharacterView(),
+      page: () => TheaterGameChooseYourCharacterView(),
       binding: TheaterGameChooseYourCharacterBinding(),
     ),
     GetPage(
       name: _Paths.THEATER_GAME_TABLET_DIES,
-      page: () => const TheaterGameTabletDiesView(),
+      page: () => TheaterGameTabletDiesView(),
       binding: TheaterGameTabletDiesBinding(),
     ),
     GetPage(
       name: _Paths.THEATER_GAME_REVIVING,
-      page: () => const TheaterGameRevivingView(),
+      page: () => TheaterGameRevivingView(),
       binding: TheaterGameRevivingBinding(),
     ),
     GetPage(
       name: _Paths.BRING_TABLET_BACK,
-      page: () => const BringTabletBackView(),
+      page: () => BringTabletBackView(),
       binding: BringTabletBackBinding(),
+    ),
+    GetPage(
+      name: _Paths.THEATER_GAME_CHAT_AND_CALL_GAME_DONE,
+      page: () => TheaterGameChatAndCallGameDoneView(),
+      binding: TheaterGameChatAndCallGameDoneBinding(),
+    ),
+    GetPage(
+      name: _Paths.THEATER_GAME_CHOOSE_YOUR_CHARACTER_DONE,
+      page: () => TheaterGameChooseYourCharacterDoneView(),
+      binding: TheaterGameChooseYourCharacterDoneBinding(),
     ),
   ];
 }

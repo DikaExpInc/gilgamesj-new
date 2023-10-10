@@ -1,0 +1,44 @@
+[
+  {
+    "tipe": "normal",
+    "pesan": "Willen jullie Sama helpen bij haar vertaling?"
+  },
+  {
+    "tipe": "normal",
+    "pesan": "Dan moeten jullie iets doen"
+  },
+  {
+    "tipe": "ask",
+    "pesan": "De hele zaal gaat straks naar jullie luisteren, durf je dat?",
+    "jawaban": ["ja, natuurlijk", "misschien, wat moeten we doen?"]
+  },
+  {
+    "tipe": "normal",
+    "pesan": "Jullie moeten een opdracht ontdekken"
+  },
+  {
+    "tipe": "normal",
+    "pesan": "Die iedereen straks moet doen met z’n tablet"
+  },
+  {
+    "tipe": "ask",
+    "pesan": "Vind de opdracht onder de kaart van Uruk",
+    "jawaban": [
+      "Ik ga naar de kaart zoeken",
+      "Bedoel je die grote kaart op de grond?"
+    ]
+  },
+  {
+    "tipe": "normal",
+    "pesan": "Ja! Ga maar snel en zachtjes"
+  },
+  {
+    "tipe": "ask",
+    "pesan": "Laat het me weten als je de opdracht gevonden hebt",
+    "jawaban": ["Ik ga nu zoeken, doei!", "ik heb de boodschap gevonden"]
+  },
+  {
+    "tipe": "normal",
+    "pesan": "Ga dan nu op PLEK NOG MAKEN staan tot je een signaal krijgt op de tablet en vertel daarna aan de hele zaal wat ze moeten doen!"
+  }
+]

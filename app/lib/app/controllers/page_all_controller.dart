@@ -216,7 +216,8 @@ class PageAllController extends GetxController {
                   if (mode != "chat_game_wie_is_ut") {
                     GetStorage().write('mode', "chat_game_wie_is_ut");
                     GetStorage().write('player', "all");
-                    Get.offAllNamed(Routes.THEATER_GAME_CHAT_GAME);
+                    Get.offAllNamed(Routes.THEATER_GAME_CHAT_GAME,
+                        arguments: {'game': 'wie_is_ut', 'name': 'Samas'});
                   }
                 }
                 break;
@@ -225,7 +226,8 @@ class PageAllController extends GetxController {
                   if (mode != "chat_game_finding_enkidu") {
                     GetStorage().write('mode', "chat_game_finding_enkidu");
                     GetStorage().write('player', "museum1,museum2");
-                    Get.offAllNamed(Routes.THEATER_GAME_CHAT_GAME);
+                    Get.offAllNamed(Routes.THEATER_GAME_CHAT_GAME,
+                        arguments: {'game': 'find_enkidu', 'name': 'Enkidu'});
                   }
                 }
                 break;
@@ -234,7 +236,8 @@ class PageAllController extends GetxController {
                   if (mode != "chat_game_find_humbaba") {
                     GetStorage().write('mode', "chat_game_find_humbaba");
                     GetStorage().write('player', "museum1");
-                    Get.offAllNamed(Routes.THEATER_GAME_CHAT_GAME);
+                    Get.offAllNamed(Routes.THEATER_GAME_CHAT_GAME,
+                        arguments: {'game': 'find_humbaba', 'name': 'Humbaba'});
                   }
                 }
                 break;
@@ -243,7 +246,8 @@ class PageAllController extends GetxController {
                   if (mode != "chat_game_find_spear") {
                     GetStorage().write('mode', "chat_game_find_spear");
                     GetStorage().write('player', "museum2");
-                    Get.offAllNamed(Routes.THEATER_GAME_CHAT_GAME);
+                    Get.offAllNamed(Routes.THEATER_GAME_CHAT_GAME,
+                        arguments: {'game': 'find_spear', 'name': 'Spear'});
                   }
                 }
                 break;
@@ -340,7 +344,8 @@ class PageAllController extends GetxController {
                   if (mode != "light_game_gilgamesj") {
                     GetStorage().write('mode', "light_game_gilgamesj");
                     GetStorage().write('player', "side_seats");
-                    Get.offAllNamed(Routes.THEATER_GAME_LIGHTNING_GAME_CUSTOM);
+                    Get.offAllNamed(Routes.THEATER_GAME_LIGHTNING_GAME_CUSTOM,
+                        arguments: {"name": "gilgamesj"});
                   }
                 }
                 break;
@@ -349,7 +354,8 @@ class PageAllController extends GetxController {
                   if (mode != "light_game_enkidu") {
                     GetStorage().write('mode', "light_game_enkidu");
                     GetStorage().write('player', "7,8,9,10,11");
-                    Get.offAllNamed(Routes.THEATER_GAME_LIGHTNING_GAME_CUSTOM);
+                    Get.offAllNamed(Routes.THEATER_GAME_LIGHTNING_GAME_CUSTOM,
+                        arguments: {"name": "enkidu"});
                   }
                 }
                 break;
@@ -379,7 +385,8 @@ class PageAllController extends GetxController {
                   if (mode != "choice_game_underwear") {
                     GetStorage().write('mode', "choice_game_underwear");
                     GetStorage().write('player', "all");
-                    Get.offAllNamed(Routes.THEATER_GAME_CHOICE_GAME);
+                    Get.offAllNamed(Routes.THEATER_GAME_CHOICE_GAME,
+                        arguments: {"game": "underwear"});
                   }
                 }
                 break;
@@ -388,7 +395,8 @@ class PageAllController extends GetxController {
                   if (mode != "choice_game_sick") {
                     GetStorage().write('mode', "choice_game_sick");
                     GetStorage().write('player', "museum1");
-                    Get.offAllNamed(Routes.THEATER_GAME_CHOICE_GAME);
+                    Get.offAllNamed(Routes.THEATER_GAME_CHOICE_GAME,
+                        arguments: {"game": "sick"});
                   }
                 }
                 break;

@@ -96,6 +96,10 @@ abstract class Routes {
   static const THEATER_GAME_TABLET_DIES = _Paths.THEATER_GAME_TABLET_DIES;
   static const THEATER_GAME_REVIVING = _Paths.THEATER_GAME_REVIVING;
   static const BRING_TABLET_BACK = _Paths.BRING_TABLET_BACK;
+  static const THEATER_GAME_CHAT_AND_CALL_GAME_DONE =
+      _Paths.THEATER_GAME_CHAT_AND_CALL_GAME_DONE;
+  static const THEATER_GAME_CHOOSE_YOUR_CHARACTER_DONE =
+      _Paths.THEATER_GAME_CHOOSE_YOUR_CHARACTER_DONE;
 }
 
 abstract class _Paths {
@@ -188,4 +192,8 @@ abstract class _Paths {
   static const THEATER_GAME_TABLET_DIES = '/theater-game-tablet-dies';
   static const THEATER_GAME_REVIVING = '/theater-game-reviving';
   static const BRING_TABLET_BACK = '/bring-tablet-back';
+  static const THEATER_GAME_CHAT_AND_CALL_GAME_DONE =
+      '/theater-game-chat-and-call-game-done';
+  static const THEATER_GAME_CHOOSE_YOUR_CHARACTER_DONE =
+      '/theater-game-choose-your-character-done';
 }

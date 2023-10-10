@@ -1,0 +1,37 @@
+[
+  {
+    "tipe": "normal",
+    "pesan": "hAllO?…. hoe wErkT dit?"
+  },
+  {
+    "tipe": "ask",
+    "pesan": "hAllOOOO. HELLUP! iK mOet zoooooo BAMklapPen",
+    "jawaban": ["ik kom helpen", "wie ben jij?"]
+  },
+  {
+    "tipe": "normal",
+    "pesan": "Ikke hEet Enkidu mEnsdiEren"
+  },
+  {
+    "tipe": "normal",
+    "pesan": "Ikke ben Half diEr half mens en oOk hAlfgOd!"
+  },
+  {
+    "tipe": "normal",
+    "pesan": "Ikke zoek nAar Koning Gilgamesj."
+  },
+  {
+    "tipe": "ask",
+    "pesan": "Ik moEt hEm BamKlaP geVen",
+    "jawaban": ["We weten waar hij is", "nog nooit van gehoord"]
+  },
+  {
+    "tipe": "normal",
+    "pesan": "Maar KunNen jullie miJ zoeken?"
+  },
+  {
+    "tipe": "ask",
+    "pesan": "Ik sta ergens bij de plaspleKken. eR zijN allEmaal bEelden als een sOort Bos. Maar dAn mEt stEnen.",
+    "jawaban": ["We komen je halen"]
+  }
+]

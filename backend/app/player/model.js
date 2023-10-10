@@ -38,6 +38,9 @@ let playerSchema = mongoose.Schema(
     seat: {
       type: String,
     },
+    status_seat: {
+      type: String,
+    },
     player_chats: [
       {
         type: mongoose.Schema.Types.ObjectId,

@@ -1,5 +1,4 @@
 import 'package:app/app/routes/app_pages.dart';
-import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
@@ -59,7 +58,7 @@ class TheaterGameChoiceGameDoneController extends GetxController
   }
 
   void nextStepAfterMessage() {
-    Get.toNamed(Routes.BLANK);
+    Get.toNamed(Routes.TABLET_HOLDER);
   }
 
   void stopTapLoading() {

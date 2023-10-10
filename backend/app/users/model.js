@@ -36,15 +36,20 @@ let userSchema = mongoose.Schema(
     player_now: {
       type: String,
     },
-    group: {
-      type: Number,
-    },
-    user_type: {
-      type: String,
-      enum: ['children', 'parent', 'disability'],
-      default: 'children',
-      required: [true, 'User type must be filled'],
-    },
+    groups: [
+      {
+        group: {
+          type: Number,
+          required: true,
+        },
+        userType: {
+          type: String,
+          enum: ['children', 'parent', 'disability'],
+          default: 'children',
+          required: true,
+        },
+      },
+    ],
     score: {
       type: Number,
       default: 0,

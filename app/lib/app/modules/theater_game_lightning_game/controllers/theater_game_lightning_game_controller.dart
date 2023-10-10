@@ -9,7 +9,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shake/shake.dart';
 import 'package:vibration/vibration.dart';
-import 'package:torch_light/torch_light.dart';
 
 class TheaterGameLightningGameController extends GetxController
     with GetTickerProviderStateMixin {
@@ -22,7 +21,7 @@ class TheaterGameLightningGameController extends GetxController
   late AnimationController _controllerParticle;
   RxBool isFinished = false.obs;
   RxString characterSelect = "".obs;
-  // RxBool isShaking = false.obs;
+  RxBool isShaking = false.obs;
 
   // onTap Loading
   final RxDouble tapValue = 0.0.obs;
@@ -97,40 +96,40 @@ class TheaterGameLightningGameController extends GetxController
       changeBackgroundColor();
     });
 
-    // shakeDetector = ShakeDetector.autoStart(
-    //     shakeThresholdGravity: 1.5,
-    //     onPhoneShake: () async {
-    //       if (!isShaking.value) {
-    //         isShaking.value = true;
-    //         try {
-    //           await TorchLight.enableTorch();
-    //         } on EnableTorchExistentUserException catch (e) {
-    //           //camera in use
-    //           print("camera in use");
-    //         } on EnableTorchNotAvailableException catch (e) {
-    //           //torch not available
-    //           print("torch not available");
-    //         } on EnableTorchException catch (e) {
-    //           //something went wrong
-    //           print("something went wrong");
-    //         }
-    //         Future.delayed(Duration(milliseconds: 100), () async {
-    //           isShaking.value = false;
-    //           try {
-    //             await TorchLight.disableTorch();
-    //           } on DisableTorchExistentUserException catch (e) {
-    //             //camera in use
-    //             print("camera in use");
-    //           } on DisableTorchNotAvailableException catch (e) {
-    //             //torch not available
-    //             print("torch not available");
-    //           } on DisableTorchException catch (e) {
-    //             //something went wrong
-    //             print("something went wrong");
-    //           }
-    //         });
-    //       }
-    //     });
+    shakeDetector = ShakeDetector.autoStart(
+        shakeThresholdGravity: 1.5,
+        onPhoneShake: () async {
+          if (!isShaking.value) {
+            isShaking.value = true;
+            // try {
+            //   await TorchLight.enableTorch();
+            // } on EnableTorchExistentUserException catch (e) {
+            //   //camera in use
+            //   print("camera in use");
+            // } on EnableTorchNotAvailableException catch (e) {
+            //   //torch not available
+            //   print("torch not available");
+            // } on EnableTorchException catch (e) {
+            //   //something went wrong
+            //   print("something went wrong");
+            // }
+            Future.delayed(Duration(milliseconds: 1000), () async {
+              isShaking.value = false;
+              // try {
+              //   await TorchLight.disableTorch();
+              // } on DisableTorchExistentUserException catch (e) {
+              //   //camera in use
+              //   print("camera in use");
+              // } on DisableTorchNotAvailableException catch (e) {
+              //   //torch not available
+              //   print("torch not available");
+              // } on DisableTorchException catch (e) {
+              //   //something went wrong
+              //   print("something went wrong");
+              // }
+            });
+          }
+        });
 
     _controller = AnimationController(
       vsync: this,

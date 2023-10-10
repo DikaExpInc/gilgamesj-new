@@ -10,8 +10,10 @@ const jwt = require('jsonwebtoken')
 const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
 const rows = 17
 const cols = 11
+// const rows = 6
+// const cols = 11
 
-async function getNextSeatChildren() {
+async function getNextSeat() {
   let currentRow = 1
   let currentCol = 0
   let isForward = true
@@ -51,95 +53,156 @@ async function getNextSeatChildren() {
   return null // Mengembalikan null jika semua tempat duduk sudah terisi
 }
 
-async function getNextSeatParent() {
+async function assignSeats(players) {
   let currentRow = 1
-  let currentCol = alphabet.indexOf('G') // Mulai dari kolom G
+  let currentCol = 1 // Mulai dari kolom 1
   let isForward = true
 
-  // Pastikan currentCol berada dalam rentang yang valid
-  if (currentCol < 0) {
-    currentCol = 0
-  }
+  const assignedSeats = []
 
-  while (currentCol < cols) {
-    const query = {
-      seatNumber: `${alphabet[currentCol]}${currentRow}`,
-      isOccupied: false,
-    }
+  let prevRole = null // Menyimpan peran sebelumnya
 
-    const seat = await Seat.findOneAndUpdate(query, {
-      $set: { isOccupied: true },
-    })
+  for (const player of players) {
+    while (true) {
+      const query = {
+        seatNumber: `${alphabet[currentCol - 1]}${currentRow}`,
+        isOccupied: false,
+      }
 
-    if (seat) {
-      return { seat, currentRow, currentCol } // Mengembalikan seat serta nilai currentRow dan currentCol yang telah diupdate
-    } else {
-      // Mengatur perpindahan berikutnya sesuai dengan pola zigzag
-      if (isForward) {
-        if (currentRow < rows) {
-          currentRow++
-        } else {
-          currentCol++
-          isForward = false
-        }
+      const seat = await Seat.findOneAndUpdate(query, {
+        $set: { isOccupied: true },
+      })
+
+      if (seat) {
+        assignedSeats.push({ player, seat })
+        break // Keluar dari loop jika kursi sudah ditemukan
       } else {
-        if (currentRow > 1) {
-          currentRow--
+        // Mengatur perpindahan berikutnya sesuai dengan pola zigzag
+        if (isForward) {
+          if (currentRow < rows) {
+            currentRow++
+          } else {
+            currentCol++
+            isForward = false
+          }
         } else {
-          currentCol++
-          isForward = true
+          if (currentRow > 1) {
+            currentRow--
+          } else {
+            currentCol++
+            isForward = true
+          }
         }
+
+        // Jika kolom melebihi 8 (atau angka kolom maksimal yang Anda inginkan), maka kembali ke kolom awal dan naikkan baris
+        if (currentCol > 8) {
+          currentCol = 1
+          currentRow++
+        }
+      }
+
+      // Memeriksa peran sebelumnya dan peran saat ini
+      const currentRole = player.user_type
+      if (prevRole !== currentRole) {
+        // Jika peran saat ini berbeda dengan peran sebelumnya, reset kolom ke 1
+        currentCol = 1
+        prevRole = currentRole
       }
     }
   }
 
-  return null // Mengembalikan null jika semua tempat duduk sudah terisi
+  return assignedSeats
 }
 
-async function getNextSeatDisability() {
-  let currentRow = 1
-  let currentCol = alphabet.indexOf('K') // Mulai dari kolom G
-  let isForward = true
+// async function getNextSeatParent() {
+//   let currentRow = 1
+//   let currentCol = alphabet.indexOf('G') // Mulai dari kolom G
+//   let isForward = true
 
-  // Pastikan currentCol berada dalam rentang yang valid
-  if (currentCol < 0) {
-    currentCol = 0
-  }
+//   // Pastikan currentCol berada dalam rentang yang valid
+//   if (currentCol < 0) {
+//     currentCol = 0
+//   }
 
-  while (currentCol < cols) {
-    const query = {
-      seatNumber: `${alphabet[currentCol]}${currentRow}`,
-      isOccupied: false,
-    }
+//   while (currentCol < cols) {
+//     const query = {
+//       seatNumber: `${alphabet[currentCol]}${currentRow}`,
+//       isOccupied: false,
+//     }
 
-    const seat = await Seat.findOneAndUpdate(query, {
-      $set: { isOccupied: true },
-    })
+//     const seat = await Seat.findOneAndUpdate(query, {
+//       $set: { isOccupied: true },
+//     })
 
-    if (seat) {
-      return { seat, currentRow, currentCol } // Mengembalikan seat serta nilai currentRow dan currentCol yang telah diupdate
-    } else {
-      // Mengatur perpindahan berikutnya sesuai dengan pola zigzag
-      if (isForward) {
-        if (currentRow < rows) {
-          currentRow++
-        } else {
-          currentCol++
-          isForward = false
-        }
-      } else {
-        if (currentRow > 1) {
-          currentRow--
-        } else {
-          currentCol++
-          isForward = true
-        }
-      }
-    }
-  }
+//     if (seat) {
+//       return { seat, currentRow, currentCol } // Mengembalikan seat serta nilai currentRow dan currentCol yang telah diupdate
+//     } else {
+//       // Mengatur perpindahan berikutnya sesuai dengan pola zigzag
+//       if (isForward) {
+//         if (currentRow < rows) {
+//           currentRow++
+//         } else {
+//           currentCol++
+//           isForward = false
+//         }
+//       } else {
+//         if (currentRow > 1) {
+//           currentRow--
+//         } else {
+//           currentCol++
+//           isForward = true
+//         }
+//       }
+//     }
+//   }
 
-  return null // Mengembalikan null jika semua tempat duduk sudah terisi
-}
+//   return null // Mengembalikan null jika semua tempat duduk sudah terisi
+// }
+
+// async function getNextSeatDisability() {
+//   let currentRow = 1
+//   let currentCol = alphabet.indexOf('K') // Mulai dari kolom G
+//   let isForward = true
+
+//   // Pastikan currentCol berada dalam rentang yang valid
+//   if (currentCol < 0) {
+//     currentCol = 0
+//   }
+
+//   while (currentCol < cols) {
+//     const query = {
+//       seatNumber: `${alphabet[currentCol]}${currentRow}`,
+//       isOccupied: false,
+//     }
+
+//     const seat = await Seat.findOneAndUpdate(query, {
+//       $set: { isOccupied: true },
+//     })
+
+//     if (seat) {
+//       return { seat, currentRow, currentCol } // Mengembalikan seat serta nilai currentRow dan currentCol yang telah diupdate
+//     } else {
+//       // Mengatur perpindahan berikutnya sesuai dengan pola zigzag
+//       if (isForward) {
+//         if (currentRow < rows) {
+//           currentRow++
+//         } else {
+//           currentCol++
+//           isForward = false
+//         }
+//       } else {
+//         if (currentRow > 1) {
+//           currentRow--
+//         } else {
+//           currentCol++
+//           isForward = true
+//         }
+//       }
+//     }
+//   }
+
+//   return null // Mengembalikan null jika semua tempat duduk sudah terisi
+// }
 
 module.exports = {
   signup: async (req, res, next) => {
@@ -193,17 +256,6 @@ module.exports = {
           player_num <= payload.total_player;
           player_num++
         ) {
-          let seat
-          if (user.user_type == 'children') {
-            seat = await getNextSeatChildren()
-          } else if (user.user_type == 'parent') {
-            seat = await getNextSeatParent()
-          } else if (user.user_type == 'disability') {
-            seat = await getNextSeatDisability()
-          } else {
-            seat = await getNextSeatChildren()
-          }
-
           let player
           if (player_num == 1) {
             player = new Player({
@@ -212,8 +264,6 @@ module.exports = {
               stage_id: stage._id,
               user_id: user.id,
               status_play: 'Y',
-              seat_id: seat.seat._id,
-              seat: seat.seat.seatNumber,
             })
             await User.findByIdAndUpdate(user.id, {
               $set: { player_now: player_num },
@@ -224,12 +274,9 @@ module.exports = {
               player_num: player_num,
               stage_id: stage._id,
               user_id: user.id,
-              seat_id: seat.seat._id,
-              seat: seat.seat.seatNumber,
             })
           }
-          seat.seat.player_id = player._id
-          await seat.seat.save()
+
           await player.save()
 
           await User.findByIdAndUpdate(user.id, {
@@ -272,6 +319,47 @@ module.exports = {
           data: { user, token, type: 'Bearer' },
         })
       }
+    } catch (err) {
+      return res.status(422).json({
+        error: 1,
+        message: err.message,
+        fields: err.errors,
+      })
+    }
+  },
+
+  getSeats: async (req, res, next) => {
+    try {
+      const players = await Player.find({})
+
+      // Memisahkan pemain menjadi tiga array berdasarkan user_type
+      const childrenPlayers = players.filter(
+        (player) => player.user_type === 'children'
+      )
+      const parentPlayers = players.filter(
+        (player) => player.user_type === 'parent'
+      )
+      const disabilityPlayers = players.filter(
+        (player) => player.user_type === 'disability'
+      )
+
+      // Menggabungkan kembali array pemain dalam urutan yang diinginkan
+      const sortedPlayers = [
+        ...childrenPlayers,
+        ...parentPlayers,
+        ...disabilityPlayers,
+      ]
+
+      // Memberikan tempat duduk sesuai urutan
+      const assignedSeats = await assignSeats(sortedPlayers)
+
+      // Menyimpan hasil tempat duduk ke dalam database atau lainnya sesuai kebutuhan
+
+      res.status(200).json({
+        message: `Successfully get seats`,
+        status: 'success',
+        assignedSeats,
+      })
     } catch (err) {
       return res.status(422).json({
         error: 1,

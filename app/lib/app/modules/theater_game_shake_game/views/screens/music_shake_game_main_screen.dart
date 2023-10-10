@@ -26,21 +26,7 @@ class MusicShakeGameMainScreen extends GetView<TheaterGameShakeGameController> {
         ),
         child: Stack(
           alignment: Alignment.center,
-          children: [
-            Positioned(
-              top: mHeight / 20,
-              child: Text(
-                "Schudden",
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  fontFamily: 'Centrion',
-                  fontSize: 42,
-                  color: Colors.white,
-                  fontWeight: FontWeight.w500,
-                ),
-              ),
-            ),
-          ],
+          children: [],
         ),
       ),
     );

@@ -1,0 +1,42 @@
+[
+  {
+    "tipe": "ask",
+    "pesan": "Humbaba!",
+    "jawaban": ["hallo?", "ben jij die reus?"]
+  },
+  {
+    "tipe": "normal",
+    "pesan": "Ik kan niets zien door mijn grote hoofd!"
+  },
+  {
+    "tipe": "ask",
+    "pesan": "Kom Humbaba maar helpen!",
+    "jawaban": ["ja, natuurlijk", "misschien, wat moeten we doen?"]
+  },
+  {
+    "tipe": "normal",
+    "pesan": "Ik ben Humbaba, maar in dit donkere theater zie ik niks."
+  },
+  {
+    "tipe": "normal",
+    "pesan": "Kunnen jullie me helpen?"
+  },
+  {
+    "tipe": "ask",
+    "pesan": "Zoek mij met mijn grote hoofd!",
+    "jawaban": ["we gaan je helpen", "alleen als je ons niet opeet"]
+  },
+  {
+    "tipe": "normal",
+    "pesan": "Humbaba eet niemand op!"
+  },
+  {
+    "tipe": "ask",
+    "pesan": "Laat me weten of je me gevonden hebt.",
+    "jawaban": ["Ja, we gaan nu aan de slag", "Ja, je bent gevonden"]
+  },
+  {
+    "tipe": "normal",
+    "pesan": "Help Humbaba op zijn PLEK NOG MAKEN staan tot hij naar binnen kan."
+  }
+]

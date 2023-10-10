@@ -12,7 +12,11 @@ class ChoiceRoleController extends GetxController {
   }
 
   void nextStep() {
-    GetStorage().write('role', selectedRole.value);
+    if (selectedRole.value == "late") {
+      GetStorage().write('role', 'disability');
+    } else {
+      GetStorage().write('role', selectedRole.value);
+    }
     Get.offNamed(Routes.PRE_GAME_START);
   }
 

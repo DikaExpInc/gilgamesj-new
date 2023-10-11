@@ -83,7 +83,9 @@ class TheaterGameChatAndCallGameController extends GetxController
   @override
   void onInit() {
     // Di sini Anda dapat mengatur widget awal yang akan ditampilkan
-    setWidget(ChatandCallGameMessageScreen());
+    // setWidget(ChatandCallGameMessageScreen());
+    setWidget(ChatAndCallGameCallScreen());
+    startIdleTimer();
     Vibration.vibrate(duration: 1000);
 
     _controller = AnimationController(
@@ -127,9 +129,9 @@ class TheaterGameChatAndCallGameController extends GetxController
       audioPlayer = await audioCache.play('phonecall-ishtar.mp3');
       audioPlayer?.onPlayerCompletion.listen((event) async {
         audioPlayer = await audioCache.play('call_phone_reject.mp3');
-        audioPlayer?.onPlayerCompletion.listen((event) async {
-          Get.offNamed(Routes.THEATER_GAME_CHAT_AND_CALL_GAME_DONE);
-        });
+        // audioPlayer?.onPlayerCompletion.listen((event) async {
+        //   Get.offNamed(Routes.THEATER_GAME_CHAT_AND_CALL_GAME_DONE);
+        // });
       });
       idleTime.value = "00:00";
       startTimer();

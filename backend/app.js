@@ -533,6 +533,8 @@ const settingRouter = require('./app/setting/router')
 const preGameRouter = require('./app/pregame/router')
 const arCameraRouter = require('./app/ar_camera/router')
 const seatRouter = require('./app/seat/router')
+const game2Router = require('./app/game_2/router')
+const game5Router = require('./app/game_5/router')
 
 // Admin API
 const authAdminRouter = require('./app/auth/router.admin')
@@ -557,6 +559,8 @@ const settingAdminRouter = require('./app/setting/router.admin')
 const preGameAdminRouter = require('./app/pregame/router.admin')
 const arCameraAdminRouter = require('./app/ar_camera/router.admin')
 const seatAdminRouter = require('./app/seat/router.admin')
+const game2AdminRouter = require('./app/game_2/router.admin')
+const game5AdminRouter = require('./app/game_5/router.admin')
 
 const app = express()
 const URL = `/api/v1`
@@ -602,6 +606,8 @@ app.use(`${URL}/setting`, settingRouter)
 app.use(`${URL}/pregame`, preGameRouter)
 app.use(`${URL}/arcamera`, arCameraRouter)
 app.use(`${URL}/seat`, seatRouter)
+app.use(`${URL}/game2`, game2Router)
+app.use(`${URL}/game5`, game5Router)
 
 // admin master
 app.use(`${URL_ADMIN}/browser`, browserAdminRouter)
@@ -626,6 +632,8 @@ app.use(`${URL_ADMIN}/setting`, settingAdminRouter)
 app.use(`${URL_ADMIN}/pregame`, preGameAdminRouter)
 app.use(`${URL_ADMIN}/arcamera`, arCameraAdminRouter)
 app.use(`${URL_ADMIN}/seat`, seatAdminRouter)
+app.use(`${URL_ADMIN}/game2`, game2AdminRouter)
+app.use(`${URL_ADMIN}/game5`, game5AdminRouter)
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

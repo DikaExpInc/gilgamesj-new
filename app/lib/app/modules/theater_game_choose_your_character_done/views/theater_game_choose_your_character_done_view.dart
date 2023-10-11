@@ -17,99 +17,88 @@ class TheaterGameChooseYourCharacterDoneView
     mWidth = MediaQuery.of(context).size.width;
     mHeight = MediaQuery.of(context).size.height;
     return Scaffold(
-        body: Container(
-      width: mWidth,
-      height: mHeight,
-      decoration: BoxDecoration(
-        image: DecorationImage(
-          image: AssetImage("assets/images/background.png"),
-          fit: BoxFit.cover,
+      body: Container(
+        width: mWidth,
+        height: mHeight,
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage("assets/images/bg-resultaat-game2.png"),
+            fit: BoxFit.cover,
+          ),
         ),
-      ),
-      child: Stack(
-        children: [
-          controller.rotatingParticle,
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              SizedBox(
-                height: 60,
-              ),
-              Center(
-                child: DefaultTextStyle(
-                  style: const TextStyle(
-                    fontFamily: 'Centrion',
-                    fontSize: 30,
-                    color: Colors.white,
-                    fontWeight: FontWeight.normal,
-                  ),
-                  child: AnimatedTextKit(
-                    animatedTexts: [
-                      TyperAnimatedText('Hmmm… let op je keuzes komen uit '),
-                      TyperAnimatedText(
-                          'Geef de tablet aan ${GetStorage().read('played_name_${GetStorage().read('played_number')}')}'),
-                    ],
-                    isRepeatingAnimation: false,
-                    onFinished: () {
-                      // Navigate to the next page here
-                      controller.isFinished.value = true;
-                    },
-                  ),
-                ),
-              ),
-              Obx(() {
-                return controller.isFinished.value
-                    ? GestureDetector(
-                        behavior: HitTestBehavior.opaque,
-                        onLongPressDown: (details) {
-                          print('terprint');
-                          controller.tapStatus.value = true;
-                          controller.startTapLoading();
-                        },
-                        onLongPressUp: () {
-                          print('terlepas');
-                          controller.stopTapLoading();
-                        },
-                        onVerticalDragEnd: (details) => {
-                          print('terlepas1'),
-                          controller.stopTapLoading(),
-                        },
-                        onHorizontalDragEnd: (details) => {
-                          print('terlepas2'),
-                          controller.stopTapLoading(),
-                        },
-                        onTapUp: (details) => {
-                          print('terlepas3'),
-                          controller.stopTapLoading(),
-                        },
-                        child: Stack(
-                          alignment: Alignment.center,
-                          children: [
-                            SvgPicture.asset(
-                              "assets/icons/finger_real.svg",
-                              width: 100,
-                              height: 100,
-                            ),
-                            Container(
-                              width: 150,
-                              height: 150,
-                              child: Obx(
-                                () => CircularProgressIndicator(
-                                  color: Colors.white,
-                                  value: controller.tapValue / 100,
-                                ),
-                              ),
-                            ),
-                          ],
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            controller.arguments['selected'] == "ishtar"
+                ? Column(
+                    children: [
+                      Image.asset(
+                        'assets/images/ishtar_bg.png',
+                        width: 400,
+                      ),
+                      SizedBox(
+                        height: 40,
+                      ),
+                      Text(
+                        'Ishtar',
+                        style: TextStyle(
+                          fontFamily: 'Centrion',
+                          fontSize: 52,
+                          color: Colors.white,
+                          fontWeight: FontWeight.w500,
                         ),
                       )
-                    : SizedBox();
-              }),
-            ],
-          ),
-        ],
+                    ],
+                  )
+                : Column(),
+            controller.arguments['selected'] == "gilgamesj"
+                ? Column(
+                    children: [
+                      Image.asset(
+                        'assets/images/gilgamesj-bg.png',
+                        width: 400,
+                      ),
+                      SizedBox(
+                        height: 40,
+                      ),
+                      Text(
+                        'Gilgamesj',
+                        style: TextStyle(
+                          fontFamily: 'Centrion',
+                          fontSize: 52,
+                          color: Colors.white,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      )
+                    ],
+                  )
+                : Column(),
+            controller.arguments['selected'] == "hemelstier"
+                ? Column(
+                    children: [
+                      Image.asset(
+                        'assets/images/hemelstier-bg.png',
+                        width: 400,
+                      ),
+                      SizedBox(
+                        height: 40,
+                      ),
+                      Text(
+                        'Hemelstier',
+                        style: TextStyle(
+                          fontFamily: 'Centrion',
+                          fontSize: 52,
+                          color: Colors.white,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      )
+                    ],
+                  )
+                : Column(),
+          ],
+        ),
       ),
-    ));
+    );
   }
 }

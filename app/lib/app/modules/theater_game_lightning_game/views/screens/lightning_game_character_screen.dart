@@ -161,14 +161,27 @@ class LightningGameCharacterScreen
               () => controller.characterSelect == ""
                   ? Positioned(
                       top: mHeight / 2,
-                      child: Text(
-                        'Wie kies jij?',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          fontSize: 42,
-                          color: Colors.white,
-                          fontWeight: FontWeight.w900,
-                        ),
+                      child: Column(
+                        children: [
+                          Text(
+                            'Wie kies jij?',
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              fontSize: 62,
+                              color: Colors.white,
+                              fontWeight: FontWeight.w900,
+                            ),
+                          ),
+                          Text(
+                            'Druk om te kiezen',
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              fontSize: 34,
+                              color: Colors.white,
+                              fontWeight: FontWeight.w200,
+                            ),
+                          ),
+                        ],
                       ),
                     )
                   : Positioned(

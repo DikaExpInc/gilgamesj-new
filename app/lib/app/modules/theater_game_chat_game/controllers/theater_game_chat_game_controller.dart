@@ -38,7 +38,7 @@ class TheaterGameChatGameController extends GetxController
   void onClose() {
     _controller.dispose();
     _controllerParticle.dispose();
-    
+
     super.onClose();
   }
 
@@ -115,7 +115,12 @@ class TheaterGameChatGameController extends GetxController
   @override
   void onInit() {
     // Di sini Anda dapat mengatur widget awal yang akan ditampilkan
-    setWidget(ChatGameMessageScreen());
+    // setWidget(ChatGameMessageScreen());
+    loadNextChat();
+    startLoading();
+    fetchData();
+    tapValue.value = 0;
+    setWidget(ChatGameMainScreen());
     Vibration.vibrate(duration: 1000);
 
     _controller = AnimationController(

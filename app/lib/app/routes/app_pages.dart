@@ -591,17 +591,17 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.THEATER_GAME_REBUS,
-      page: () => const TheaterGameRebusView(),
+      page: () => TheaterGameRebusView(),
       binding: TheaterGameRebusBinding(),
     ),
     GetPage(
       name: _Paths.THEATER_GAME_HUMBABA,
-      page: () => const TheaterGameHumbabaView(),
+      page: () => TheaterGameHumbabaView(),
       binding: TheaterGameHumbabaBinding(),
     ),
     GetPage(
       name: _Paths.THEATER_GAME_CONTACT_CHAT,
-      page: () => const TheaterGameContactChatView(),
+      page: () => TheaterGameContactChatView(),
       binding: TheaterGameContactChatBinding(),
     ),
   ];

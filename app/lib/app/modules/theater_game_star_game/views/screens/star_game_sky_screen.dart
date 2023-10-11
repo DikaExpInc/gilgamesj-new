@@ -97,7 +97,7 @@ class StarGameSkyScreen extends GetView<TheaterGameStarGameController> {
                       Container(
                         child: InkWell(
                           onTap: () {
-                            controller.playAudio("gecko.mp3");
+                            controller.playAudio("cricket-sound-113945.mp3");
                             controller.selectedImageIndex.value = 1;
                           },
                           child: Obx(() {
@@ -114,7 +114,7 @@ class StarGameSkyScreen extends GetView<TheaterGameStarGameController> {
                       Container(
                         child: InkWell(
                           onTap: () {
-                            controller.playAudio("cricket-sound-113945.mp3");
+                            controller.playAudio("night-ambience.mp3");
                             controller.selectedImageIndex.value = 2;
                           },
                           child: Obx(() {
@@ -146,7 +146,7 @@ class StarGameSkyScreen extends GetView<TheaterGameStarGameController> {
                       Container(
                         child: InkWell(
                           onTap: () {
-                            controller.playAudio("night-ambience.mp3");
+                            controller.playAudio("cricket-sound-113945.mp3");
                             controller.selectedImageIndex.value = 3;
                           },
                           child: Obx(() {

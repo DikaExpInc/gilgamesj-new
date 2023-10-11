@@ -141,8 +141,12 @@ class TheaterGameChooseCharacterScreen
                       child: InkWell(
                           onTap: () => {
                                 controller.audioCache.play('confirm.mp3'),
-                                Get.offAllNamed(Routes
-                                    .THEATER_GAME_CHOOSE_YOUR_CHARACTER_DONE),
+                                Get.offNamed(
+                                    Routes
+                                        .THEATER_GAME_CHOOSE_YOUR_CHARACTER_DONE,
+                                    arguments: {
+                                      "selected": controller.characterSelect
+                                    }),
                               },
                           child: Image.asset('assets/images/oke_button.png'))),
             ),

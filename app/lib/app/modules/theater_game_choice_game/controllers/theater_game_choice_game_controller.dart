@@ -89,7 +89,10 @@ class TheaterGameChoiceGameController extends GetxController
   @override
   void onInit() {
     // Di sini Anda dapat mengatur widget awal yang akan ditampilkan
-    setWidget(ChoiceGameMessageScreen());
+    // setWidget(ChoiceGameMessageScreen());
+    setWidget(ChoiceGameCharacterScreen());
+    startAutomaticChange();
+
     Vibration.vibrate(duration: 1000);
 
     _controller = AnimationController(

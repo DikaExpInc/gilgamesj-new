@@ -87,7 +87,9 @@ class TheaterGameChooseYourCharacterController extends GetxController
   @override
   void onInit() {
     // Di sini Anda dapat mengatur widget awal yang akan ditampilkan
-    setWidget(TheaterGameChooseYourCharMessageScreen());
+    // setWidget(TheaterGameChooseYourCharMessageScreen());
+    setWidget(TheaterGameChooseCharacterScreen());
+
     Vibration.vibrate(duration: 1000);
 
     sub = settingStream.listen((event) {
@@ -131,7 +133,8 @@ class TheaterGameChooseYourCharacterController extends GetxController
     if (containerWidth.value < 0) {
       containerWidth.value = 1200.0;
       selectRandomCharacter();
-      Get.offNamed(Routes.THEATER_GAME_CHOOSE_YOUR_CHARACTER_DONE);
+      Get.offNamed(Routes.THEATER_GAME_CHOOSE_YOUR_CHARACTER_DONE,
+          arguments: {"selected": characterSelect});
     }
   }
 

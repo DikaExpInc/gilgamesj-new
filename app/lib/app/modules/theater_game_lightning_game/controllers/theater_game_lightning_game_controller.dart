@@ -4,6 +4,7 @@ import 'dart:math';
 import 'package:app/app/modules/theater_game_lightning_game/views/screens/lightning_game_character_screen.dart';
 import 'package:app/app/modules/theater_game_lightning_game/views/screens/lightning_game_light_screen.dart';
 import 'package:app/app/modules/theater_game_lightning_game/views/screens/lightning_game_message_screen.dart';
+import 'package:app/app/routes/app_pages.dart';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -51,7 +52,8 @@ class TheaterGameLightningGameController extends GetxController
   }
 
   void nextStepAfterMessage() {
-    setWidget(LightningGameCharacterScreen());
+    Get.offNamed(Routes.THEATER_GAME_LIGHTNING_GAME_DONE);
+    // setWidget(LightningGameCharacterScreen());
     startAutomaticChange();
   }
 
@@ -170,7 +172,8 @@ class TheaterGameLightningGameController extends GetxController
     if (containerWidth.value < 0) {
       containerWidth.value = 1200.0;
       selectRandomCharacter();
-      setWidget(LightningGameLightScreen());
+      // setWidget(LightningGameLightScreen());
+      Get.toNamed(Routes.THEATER_GAME_LIGHTNING_GAME_DONE);
     }
   }
 

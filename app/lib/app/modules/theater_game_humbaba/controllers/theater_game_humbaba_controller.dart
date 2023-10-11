@@ -14,14 +14,14 @@ class TheaterGameHumbabaController extends GetxController
   RxString key_tuts = ''.obs;
   int lockCode = 123456;
   int maxDigits = 6;
-  RxBool doneGame = false.obs;
-
-  RxBool scrollBg = false.obs;
+  RxBool doneGame = true.obs;
+  RxBool scrollBg = true.obs;
   RxBool openTreeLeft = false.obs;
   RxBool openTreeRight = false.obs;
   RxBool showBeast = false.obs;
   RxBool blackScreen = false.obs;
   RxBool playAnimation = false.obs;
+  RxBool isStartAnimation = false.obs;
 
   Rx<int> currentTimer = Rx<int>(0);
   RxInt selectedImageIndex = RxInt(-1);
@@ -40,6 +40,8 @@ class TheaterGameHumbabaController extends GetxController
   @override
   void onClose() {
     audioPlayer.stop();
+    audioCache.fixedPlayer?.stop();
+    audioPlayer.dispose();
     super.onClose();
   }
 
@@ -47,6 +49,8 @@ class TheaterGameHumbabaController extends GetxController
   void onInit() {
     // Di sini Anda dapat mengatur widget awal yang akan ditampilkan
     Vibration.vibrate(duration: 1000);
+    audioCache.play("1. hoembaba stem.wav");
+
     super.onInit();
   }
 
@@ -76,12 +80,15 @@ class TheaterGameHumbabaController extends GetxController
   }
 
   void startAnimation() {
-    Future.delayed(Duration(seconds: 2), () {
-      showBeast.value = true;
-      Future.delayed(Duration(seconds: 3), () {
-        blackScreen.value = true;
-        audioCache.play("fang.mp3");
+    if (!isStartAnimation.value) {
+      isStartAnimation.value = true;
+      Future.delayed(Duration(seconds: 2), () {
+        showBeast.value = true;
+        Future.delayed(Duration(seconds: 3), () {
+          blackScreen.value = true;
+          audioCache.play("hoembaba-lange-toon.wav");
+        });
       });
-    });
+    }
   }
 }

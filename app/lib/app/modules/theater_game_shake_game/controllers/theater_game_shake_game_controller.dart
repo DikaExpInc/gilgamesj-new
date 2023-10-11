@@ -82,7 +82,8 @@ class TheaterGameShakeGameController extends GetxController
   @override
   Future<void> onInit() async {
     // Di sini Anda dapat mengatur widget awal yang akan ditampilkan
-    setWidget(MusicShakeGameMessageScreen());
+    // setWidget(MusicShakeGameMessageScreen());
+    setWidget(MusicShakeGameMainScreen());
     Vibration.vibrate(duration: 1000);
 
     shakeDetector = ShakeDetector.autoStart(
@@ -109,7 +110,7 @@ class TheaterGameShakeGameController extends GetxController
     )..repeat();
 
     // Atur timer dengan interval 13 detik
-    audioFile.value = 'song-game-1-shake-phone.wav';
+    audioFile.value = '3. stadsgeluiden (schudden schudden).wav';
     audioPlayer = await audioCache.loop(audioFile.value);
     audioPlayer.setVolume(0.0);
 

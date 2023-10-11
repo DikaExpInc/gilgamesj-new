@@ -47,9 +47,7 @@ class LightningGameCustomMessageScreen
                   child: AnimatedTextKit(
                     animatedTexts: [
                       TyperAnimatedText(
-                          controller.arguments['name'] == "enkidu"
-                              ? 'Ik heb een geheime missie voor jou.\nEnkidu komt straks over de tribuna naar\nbeneden. Schijn licht op Enkidu zodat hij\nzijn weg vindt.'
-                              : "Ik heb een geheime missie voor jou.\nOp het podium zie je een kleed, daar moet je\nop gaan staan, zonder je groepje. Druk\nmet je duim als je het aandurft. ",
+                          "Ik heb een geheime missie voor jou.\nOp het podium zie je een kleed, daar moet je\nop gaan staan, zonder je groepje. Druk\nmet je duim als je het aandurft. ",
                           textAlign: TextAlign.center),
                     ],
                     isRepeatingAnimation: false,

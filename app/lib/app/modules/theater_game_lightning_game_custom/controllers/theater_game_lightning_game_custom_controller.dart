@@ -14,7 +14,7 @@ class TheaterGameLightningGameCustomController extends GetxController
   ShakeDetector? shakeDetector;
   RxDouble containerWidth = 1200.0.obs;
   Timer? timer;
-  final Map<String, dynamic> arguments = Get.arguments;
+  // final Map<String, dynamic> arguments = Get.arguments;
   final AudioCache audioCache = AudioCache(prefix: 'assets/audios/');
 
   late AnimationController _controller;
@@ -88,7 +88,7 @@ class TheaterGameLightningGameCustomController extends GetxController
   @override
   void onInit() {
     // Di sini Anda dapat mengatur widget awal yang akan ditampilkan
-    setWidget(LightningGameCustomMessageScreen());
+    setWidget(LightningGameCustomLightScreen());
     Vibration.vibrate(duration: 1000);
 
     sub = settingStream.listen((event) {

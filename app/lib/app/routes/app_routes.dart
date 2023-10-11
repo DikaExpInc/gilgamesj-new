@@ -100,6 +100,11 @@ abstract class Routes {
       _Paths.THEATER_GAME_CHAT_AND_CALL_GAME_DONE;
   static const THEATER_GAME_CHOOSE_YOUR_CHARACTER_DONE =
       _Paths.THEATER_GAME_CHOOSE_YOUR_CHARACTER_DONE;
+  static const SCAN_AR = _Paths.SCAN_AR;
+  static const LIGHTNING = _Paths.LIGHTNING;
+  static const THEATER_GAME_REBUS = _Paths.THEATER_GAME_REBUS;
+  static const THEATER_GAME_HUMBABA = _Paths.THEATER_GAME_HUMBABA;
+  static const THEATER_GAME_CONTACT_CHAT = _Paths.THEATER_GAME_CONTACT_CHAT;
 }
 
 abstract class _Paths {
@@ -196,4 +201,9 @@ abstract class _Paths {
       '/theater-game-chat-and-call-game-done';
   static const THEATER_GAME_CHOOSE_YOUR_CHARACTER_DONE =
       '/theater-game-choose-your-character-done';
+  static const SCAN_AR = '/scan-ar';
+  static const LIGHTNING = '/lightning';
+  static const THEATER_GAME_REBUS = '/theater-game-rebus';
+  static const THEATER_GAME_HUMBABA = '/theater-game-humbaba';
+  static const THEATER_GAME_CONTACT_CHAT = '/theater-game-contact-chat';
 }

@@ -40,7 +40,7 @@ class ChoiceRoleView extends GetView<ChoiceRoleController> {
                     onTap: () => {controller.chooseRole('late')},
                     child: Obx(
                       () => Text(
-                        'late',
+                        'Late Comers',
                         style: TextStyle(
                             fontWeight: controller.selectedRole.value == "late"
                                 ? FontWeight.bold
@@ -81,7 +81,7 @@ class ChoiceRoleView extends GetView<ChoiceRoleController> {
               ],
             ),
             Text(
-              'Select Category',
+              'Kinderen',
               textAlign: TextAlign.center,
               style: TextStyle(
                 color: Colors.black,

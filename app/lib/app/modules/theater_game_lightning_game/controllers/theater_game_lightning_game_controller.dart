@@ -89,7 +89,9 @@ class TheaterGameLightningGameController extends GetxController
   @override
   void onInit() {
     // Di sini Anda dapat mengatur widget awal yang akan ditampilkan
-    setWidget(LightningGameMessageScreen());
+    // setWidget(LightningGameMessageScreen());
+    setWidget(LightningGameCharacterScreen());
+    // startAutomaticChange();
     Vibration.vibrate(duration: 1000);
 
     sub = settingStream.listen((event) {

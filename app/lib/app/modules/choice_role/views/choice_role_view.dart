@@ -175,7 +175,7 @@ class ChoiceRoleView extends GetView<ChoiceRoleController> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Text(
-                                "DOORGAN",
+                                "DOORGAAN",
                                 style: TextStyle(
                                   fontSize:
                                       MediaQuery.of(context).size.width > 600

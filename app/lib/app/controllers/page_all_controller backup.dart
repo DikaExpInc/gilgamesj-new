@@ -24,7 +24,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
-class PageAllController extends GetxController {
+class PageAllControllerBackup extends GetxController {
   RxInt pageIndex = 0.obs;
   RxInt lengthNow = 0.obs;
   TaskListModel? tasks;
@@ -62,6 +62,7 @@ class PageAllController extends GetxController {
     // Cek apakah data team name telah diisi
     // GetStorage().write('mode', "test");
     String? teamName = GetStorage().read('teamName');
+    print(teamName);
     if (teamName != null && teamName.isNotEmpty) {
       String? totalPlayer = GetStorage().read('totalPlayer');
       if (totalPlayer != null && totalPlayer.isNotEmpty) {

@@ -5,6 +5,7 @@ import 'package:get_storage/get_storage.dart';
 
 import '../controllers/give_tablet_controller.dart';
 
+// ignore: must_be_immutable
 class GiveTabletView extends GetView<GiveTabletController> {
   late double mWidth;
   late double mHeight;

@@ -2,12 +2,10 @@ import 'package:audioplayers/audioplayers.dart';
 import 'package:get/get.dart';
 import 'package:vibration/vibration.dart';
 
-class TheaterGameHumbabaController extends GetxController
-    with GetTickerProviderStateMixin {
+class TheaterGameHumbabaController extends GetxController {
   RxBool isFinished = false.obs;
   final AudioCache audioCache =
       AudioCache(prefix: 'assets/audios/pregames/night_sounds/');
-  // final AudioCache audioCache2 = AudioCache(prefix: 'assets/audios/');
   AudioPlayer audioPlayer = AudioPlayer();
   Rx<String> audioFile = Rx<String>("");
   RxBool showButtons = true.obs;
@@ -31,18 +29,17 @@ class TheaterGameHumbabaController extends GetxController
   RxString audio2 = RxString("");
   RxString audio3 = RxString("");
 
-  // Method untuk memainkan audio
+  @override
+  void onClose() {
+    print('terpanggil ah');
+    audioPlayer.stop();
+    Get.delete<TheaterGameHumbabaController>();
+    super.onClose();
+  }
+
   Future<void> playAudio(String audioFileName) async {
     audioPlayer.stop();
     audioPlayer = await audioCache.loop(audioFileName);
-  }
-
-  @override
-  void onClose() {
-    audioPlayer.stop();
-    audioCache.fixedPlayer?.stop();
-    audioPlayer.dispose();
-    super.onClose();
   }
 
   @override
@@ -54,39 +51,14 @@ class TheaterGameHumbabaController extends GetxController
     super.onInit();
   }
 
-  void increment(int inkWellIndex) {
-    String currentCode = '${key_tuts.value}$inkWellIndex';
-    if (lockCode.toString().startsWith(currentCode)) {
-      if (key_tuts.value.length == 0) {
-        key_tuts.value = '$inkWellIndex'; // Pertama kali input
-      } else {
-        // Input yang sesuai dengan kode
-        key_tuts.value = currentCode;
-        if (currentCode == lockCode.toString()) {
-          doneGame.value = true;
-          Future.delayed(Duration(seconds: 3), () {
-            scrollBg.value = true;
-          });
-        }
-      }
-    } else {
-      key_tuts.value = '';
-    }
-  }
-
-  bool isNumberPresentInString(int numberToCheck) {
-    List<String> digits = key_tuts.value.split('');
-    return digits.contains(numberToCheck.toString());
-  }
-
   void startAnimation() {
     if (!isStartAnimation.value) {
       isStartAnimation.value = true;
       Future.delayed(Duration(seconds: 2), () {
         showBeast.value = true;
-        Future.delayed(Duration(seconds: 3), () {
+        Future.delayed(Duration(seconds: 3), () async {
           blackScreen.value = true;
-          audioCache.play("hoembaba-lange-toon.wav");
+          playAudio("hoembaba-lange-toon.wav");
         });
       });
     }

@@ -39,7 +39,7 @@ class ViewPlayerView extends GetView<ViewPlayerController> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      "WELKOM (${controller.box.read('teamName')})",
+                      "WELKOM",
                       style: TextStyle(
                         fontSize: 48,
                         color: Colors.black,

@@ -1,12 +1,18 @@
+import 'package:app/app/data/player_model.dart';
+import 'package:app/app/data/user_model.dart';
+import 'package:app/app/services/auth_service.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
 class TicketController extends GetxController {
   //TODO: Implement TicketController
+  PlayerListModel? playerListModel;
+  final box = GetStorage();
 
   @override
   void onInit() {
     _startBlinking();
+    loadSeat();
     super.onInit();
   }
 
@@ -31,5 +37,41 @@ class TicketController extends GetxController {
       toggleVisibility(); // Mengubah visibilitas teks
       _startBlinking(); // Membuat loop kedip
     });
+  }
+
+  loadSeat() async {
+    update();
+    String getSeat = await AuthApi().getSeatsAPI();
+    if (getSeat == "done") {
+      loadPlayers();
+    }
+  }
+
+  loadPlayers() async {
+    update();
+    playerListModel = await AuthApi().loadAllPlayerAPI();
+    update();
+    if (playerListModel?.statusCode == 200) {
+      // Inisialisasi data pemain dan TextEditingController
+      playerListModel?.items?.asMap().entries.map((entry) {
+        final player = entry.value;
+        box.write('seat_${entry.key}', player.seat);
+        box.write('position_${entry.key}', player.seat);
+        box.write('status_seat_${entry.key}', player.status_seat);
+        box.write('stoel_${entry.key}', player.stoel);
+        box.write('rij_${entry.key}', player.rij);
+      }).toList();
+      box.write('rij_tablet', playerListModel?.items?[0].rij);
+      box.write('stoel_tablet', playerListModel?.items?[0].stoel);
+      box.write('position_tablet', playerListModel?.items?[0].position);
+      box.write('status_seat_tablet', playerListModel?.items?[0].status_seat);
+    } else if (playerListModel!.statusCode == 204) {
+      print("Empty");
+    } else if (playerListModel!.statusCode == 404) {
+      update();
+    } else if (playerListModel!.statusCode == 401) {
+    } else {
+      print("someting wrong 400");
+    }
   }
 }

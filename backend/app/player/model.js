@@ -35,11 +35,26 @@ let playerSchema = mongoose.Schema(
       type: mongoose.Schema.Types.ObjectId,
       ref: 'Seat',
     },
+    stoel: {
+      type: String,
+    },
+    rij: {
+      type: String,
+    },
     seat: {
       type: String,
     },
     status_seat: {
       type: String,
+    },
+    position: {
+      type: String,
+    },
+    user_type: {
+      type: String,
+      enum: ['children', 'parent', 'disability'],
+      default: 'children',
+      required: true,
     },
     player_chats: [
       {

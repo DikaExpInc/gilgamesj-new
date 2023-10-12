@@ -2,11 +2,11 @@ import 'dart:async';
 import 'dart:math';
 
 import 'package:app/app/modules/theater_game_choose_your_character/views/screens/choose_game_character_screen.dart';
-import 'package:app/app/modules/theater_game_choose_your_character/views/screens/choose_game_message_screen.dart';
 import 'package:app/app/routes/app_pages.dart';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:vibration/vibration.dart';
 
 class TheaterGameChooseYourCharacterController extends GetxController
@@ -89,6 +89,7 @@ class TheaterGameChooseYourCharacterController extends GetxController
     // Di sini Anda dapat mengatur widget awal yang akan ditampilkan
     // setWidget(TheaterGameChooseYourCharMessageScreen());
     setWidget(TheaterGameChooseCharacterScreen());
+    startAutomaticChange();
 
     Vibration.vibrate(duration: 1000);
 
@@ -133,6 +134,9 @@ class TheaterGameChooseYourCharacterController extends GetxController
     if (containerWidth.value < 0) {
       containerWidth.value = 1200.0;
       selectRandomCharacter();
+      stopAutomaticChange();
+      GetStorage().write('status_seat_tablet', characterSelect);
+
       Get.offNamed(Routes.THEATER_GAME_CHOOSE_YOUR_CHARACTER_DONE,
           arguments: {"selected": characterSelect});
     }
@@ -160,5 +164,13 @@ class TheaterGameChooseYourCharacterController extends GetxController
   void changeBackgroundColor() {
     currentColorIndex.value =
         (currentColorIndex.value + 1) % backgroundColors.length;
+  }
+
+  Future<void> onSubmit() async {
+    audioCache.play('confirm.mp3');
+    stopAutomaticChange();
+    GetStorage().write('status_seat_tablet', characterSelect);
+    Get.offNamed(Routes.THEATER_GAME_CHOOSE_YOUR_CHARACTER_DONE,
+        arguments: {"selected": characterSelect});
   }
 }

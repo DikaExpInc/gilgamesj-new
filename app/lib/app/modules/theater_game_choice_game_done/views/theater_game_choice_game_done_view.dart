@@ -18,100 +18,118 @@ class TheaterGameChoiceGameDoneView
   Widget build(BuildContext context) {
     mWidth = MediaQuery.of(context).size.width;
     mHeight = MediaQuery.of(context).size.height;
-    return Scaffold(
-        body: Container(
-      width: mWidth,
-      height: mHeight,
-      decoration: BoxDecoration(
-        image: DecorationImage(
-          image: AssetImage("assets/images/background.png"),
-          fit: BoxFit.cover,
-        ),
-      ),
-      child: Stack(
-        children: [
-          controller.rotatingParticle,
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              SizedBox(
-                height: 60,
-              ),
-              Center(
-                child: DefaultTextStyle(
-                  style: const TextStyle(
-                    fontFamily: 'Centrion',
-                    fontSize: 30,
-                    color: Colors.white,
-                    fontWeight: FontWeight.normal,
-                  ),
-                  child: AnimatedTextKit(
-                    animatedTexts: [
-                      TyperAnimatedText('Hmmm… let op je keuzes komen uit '),
-                      TyperAnimatedText(
-                          'Geef de tablet aan ${GetStorage().read('played_name_${GetStorage().read('played_number')}')}'),
-                    ],
-                    isRepeatingAnimation: false,
-                    onFinished: () {
-                      // Navigate to the next page here
-                      controller.isFinished.value = true;
-                    },
-                  ),
+    return GetBuilder<TheaterGameChoiceGameDoneController>(
+        builder: (controller) {
+      return Scaffold(
+          body: Container(
+              width: mWidth,
+              height: mHeight,
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                  image: AssetImage("assets/images/bg-resultaat-game2.png"),
+                  fit: BoxFit.cover,
                 ),
               ),
-              Obx(() {
-                return controller.isFinished.value
-                    ? GestureDetector(
-                        behavior: HitTestBehavior.opaque,
-                        onLongPressDown: (details) {
-                          print('terprint');
-                          controller.tapStatus.value = true;
-                          controller.startTapLoading();
-                        },
-                        onLongPressUp: () {
-                          print('terlepas');
-                          controller.stopTapLoading();
-                        },
-                        onVerticalDragEnd: (details) => {
-                          print('terlepas1'),
-                          controller.stopTapLoading(),
-                        },
-                        onHorizontalDragEnd: (details) => {
-                          print('terlepas2'),
-                          controller.stopTapLoading(),
-                        },
-                        onTapUp: (details) => {
-                          print('terlepas3'),
-                          controller.stopTapLoading(),
-                        },
-                        child: Stack(
-                          alignment: Alignment.center,
-                          children: [
-                            SvgPicture.asset(
-                              "assets/icons/finger_real.svg",
-                              width: 100,
-                              height: 100,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  Text(
+                    'RESULTAAT',
+                    style: TextStyle(
+                      fontSize: 48,
+                      fontWeight: FontWeight.w700,
+                      color: Colors.white,
+                    ),
+                  ),
+                  Column(
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          Text(
+                            'Zijn zwaard',
+                            style: TextStyle(
+                              fontFamily: 'Centrion',
+                              fontSize: 42,
+                              color: Colors.white,
                             ),
-                            Container(
-                              width: 150,
-                              height: 150,
-                              child: Obx(
-                                () => CircularProgressIndicator(
-                                  color: Colors.white,
-                                  value: controller.tapValue / 100,
-                                ),
-                              ),
+                          ),
+                          Text(
+                            'Zijn vieze\nonderbroeken',
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              fontFamily: 'Centrion',
+                              fontSize: 42,
+                              color: Colors.white,
                             ),
-                          ],
-                        ),
-                      )
-                    : SizedBox();
-              }),
-            ],
-          ),
-        ],
-      ),
-    ));
+                          ),
+                        ],
+                      ),
+                      Row(
+                        children: [
+                          Column(
+                            children: [
+                              Stack(
+                                alignment: Alignment.bottomCenter,
+                                children: [
+                                  Image.asset(
+                                    'assets/images/sword-score.png',
+                                    width: 400,
+                                  ),
+                                  Center(
+                                    child: Container(
+                                      margin: EdgeInsets.only(bottom: 48),
+                                      child: Positioned(
+                                        child: Text(
+                                          '${controller.game5?.items![0].iV == null ? 0 : controller.game5?.items![0].iV} Spelers',
+                                          style: TextStyle(
+                                            fontFamily: 'Centrion',
+                                            fontSize: 36,
+                                            color: Colors.white,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              )
+                            ],
+                          ),
+                          Column(
+                            children: [
+                              Stack(
+                                alignment: Alignment.bottomCenter,
+                                children: [
+                                  Image.asset(
+                                    'assets/images/underwear-score.png',
+                                    width: 400,
+                                  ),
+                                  Center(
+                                    child: Container(
+                                      margin: EdgeInsets.only(bottom: 48),
+                                      child: Positioned(
+                                        child: Text(
+                                          '${controller.game5?.items![1].iV == null ? 0 : controller.game5?.items![1].iV} Spelers',
+                                          style: TextStyle(
+                                            fontFamily: 'Centrion',
+                                            fontSize: 36,
+                                            color: Colors.white,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              )
+                            ],
+                          )
+                        ],
+                      ),
+                    ],
+                  ),
+                  SizedBox()
+                ],
+              )));
+    });
   }
 }

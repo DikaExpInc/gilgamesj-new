@@ -4,6 +4,7 @@ import 'package:app/app/data/question_model.dart';
 import 'package:app/app/modules/theater_game_choice_game/views/screens/choice_game_character_screen.dart';
 import 'package:app/app/modules/theater_game_choice_game/views/screens/choice_game_message_screen.dart';
 import 'package:app/app/routes/app_pages.dart';
+import 'package:app/app/services/game5_service.dart';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -152,11 +153,25 @@ class TheaterGameChoiceGameController extends GetxController
       currentIndex.value++;
     } else {
       stopAutomaticChange();
-      Get.offNamed(Routes.THEATER_GAME_CHOICE_GAME_DONE);
+      onSubmit();
     }
   }
 
   bool isLastQuestion() {
     return currentIndex.value == questions.length - 1;
+  }
+
+  Future<void> onSubmit() async {
+    String id = "";
+    if (characterSelect == "Zijn vieze onderbroeken") {
+      id = "65274e4d596123a74cb5dec1";
+    } else {
+      id = "65274e6c596123a74cb5dec2";
+    }
+    audioCache.play('confirm.mp3');
+    String choice = await Game5Api().voteAPI(id);
+    if (choice == "done") {
+      Get.toNamed(Routes.THEATER_GAME_CHOICE_GAME_DONE);
+    }
   }
 }

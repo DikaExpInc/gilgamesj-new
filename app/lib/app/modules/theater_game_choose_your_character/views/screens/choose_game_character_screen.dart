@@ -4,6 +4,7 @@ import 'package:app/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 
 // ignore: must_be_immutable
 class TheaterGameChooseCharacterScreen
@@ -139,15 +140,7 @@ class TheaterGameChooseCharacterScreen
                   : Positioned(
                       top: mHeight / 2,
                       child: InkWell(
-                          onTap: () => {
-                                controller.audioCache.play('confirm.mp3'),
-                                Get.offNamed(
-                                    Routes
-                                        .THEATER_GAME_CHOOSE_YOUR_CHARACTER_DONE,
-                                    arguments: {
-                                      "selected": controller.characterSelect
-                                    }),
-                              },
+                          onTap: () => {controller.onSubmit()},
                           child: Image.asset('assets/images/oke_button.png'))),
             ),
           ],

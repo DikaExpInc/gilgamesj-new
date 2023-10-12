@@ -1,82 +1,55 @@
-import 'package:app/app/routes/app_pages.dart';
-import 'package:flutter/material.dart';
+import 'dart:async';
+
+import 'package:app/app/data/game5_model.dart';
+import 'package:app/app/services/game5_service.dart';
 import 'package:get/get.dart';
-import 'package:get_storage/get_storage.dart';
 import 'package:vibration/vibration.dart';
 
-class TheaterGameChoiceGameDoneController extends GetxController
-    with GetTickerProviderStateMixin {
-  late AnimationController _controller;
-  late AnimationController _controllerParticle;
+class TheaterGameChoiceGameDoneController extends GetxController {
   RxBool isFinished = false.obs;
+  Game5ListModel? game5;
 
   // onTap Loading
   final RxDouble tapValue = 0.0.obs;
   RxBool tapStatus = false.obs;
 
+  final Stream game5Stream =
+      Stream.periodic(const Duration(seconds: 2), (int count) {
+    return count;
+  });
+  late StreamSubscription sub;
+
   @override
   void onInit() {
     super.onInit();
-
-    Vibration.vibrate(duration: 1000);
-
-    _controller = AnimationController(
-      vsync: this,
-      duration: Duration(seconds: 20),
-    )..repeat();
-
-    _controllerParticle = AnimationController(
-      vsync: this,
-      duration: Duration(seconds: 10),
-    )..repeat();
-
-    // Update player number
-    int playedNumber = GetStorage().read('played_number') ?? 0;
-    int totalPlayer = int.parse(GetStorage().read('totalPlayer'));
-    if (playedNumber + 1 >= totalPlayer) {
-      GetStorage().write('played_number', 0);
-    } else {
-      GetStorage().write('played_number', playedNumber + 1);
-    }
+    print('harusnya jalan');
+    // membuat langganan
+    sub = game5Stream.listen((event) {
+      loadGame5();
+      print('ini stream data');
+    });
   }
 
   @override
   void onClose() {
-    _controller.dispose();
-    _controllerParticle.dispose();
     super.onClose();
+    sub.cancel();
   }
 
-  void startTapLoading() async {
-    while (tapStatus.value) {
-      await Future.delayed(Duration(milliseconds: 100));
-      tapValue.value += 5;
-      if (tapValue.value >= 100.0) {
-        return nextStepAfterMessage();
-      }
+  loadGame5() async {
+    update();
+    // showLoading();
+    game5 = await Game5Api().loadGame5API();
+    update();
+    // stopLoading();
+    if (game5?.statusCode == 200) {
+    } else if (game5?.statusCode == 204) {
+      print("Empty");
+    } else if (game5?.statusCode == 404) {
+      update();
+    } else if (game5?.statusCode == 401) {
+    } else {
+      print("someting wrong 400");
     }
-  }
-
-  void nextStepAfterMessage() {
-    Get.toNamed(Routes.TABLET_HOLDER);
-  }
-
-  void stopTapLoading() {
-    tapStatus.value = false;
-    tapValue.value = 0;
-  }
-
-  Widget get rotatingImage {
-    return RotationTransition(
-      turns: _controller,
-      child: Image.asset('assets/images/center_of_god.png'),
-    );
-  }
-
-  Widget get rotatingParticle {
-    return RotationTransition(
-      turns: _controllerParticle,
-      child: Image.asset('assets/images/particle.png'),
-    );
   }
 }

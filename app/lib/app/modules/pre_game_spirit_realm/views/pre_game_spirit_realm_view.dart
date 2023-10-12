@@ -18,6 +18,7 @@ class PreGameSpiritRealmView extends GetView<PreGameSpiritRealmController> {
     mHeight = MediaQuery.of(context).size.height;
     return Scaffold(
         body: Container(
+      padding: EdgeInsets.all(40),
       width: mWidth,
       height: mHeight,
       decoration: BoxDecoration(
@@ -30,74 +31,57 @@ class PreGameSpiritRealmView extends GetView<PreGameSpiritRealmController> {
         children: [
           controller.rotatingParticle,
           Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.end,
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              Stack(
-                children: [
-                  controller.rotatingImage,
-                  Positioned(
-                    right: 10,
-                    top: 10,
-                    child: Text(
-                      "de tablethouder is ${GetStorage().read('played_name_${GetStorage().read('played_number')}')}",
-                      style: TextStyle(
-                        fontFamily: 'Centrion',
-                        fontSize: 42,
-                        color: Colors.white,
-                        fontWeight: FontWeight.w500,
-                      ),
-                    ),
-                  ),
-                ],
+              Text(
+                "de tablethouder is ${GetStorage().read('played_name_${GetStorage().read('played_number')}')}",
+                style: TextStyle(
+                  fontFamily: 'Centrion',
+                  fontSize: 42,
+                  color: Colors.white,
+                  fontWeight: FontWeight.w500,
+                ),
               ),
-              Column(
-                children: [
-                  DefaultTextStyle(
-                    style: const TextStyle(
-                      fontFamily: 'Centrion',
-                      fontSize: 30,
-                      color: Colors.white,
-                      fontWeight: FontWeight.normal,
-                    ),
-                    child: AnimatedTextKit(
-                      animatedTexts: [
-                        TyperAnimatedText(
-                            'Ga op zoek naar een verborgen schat,'),
-                        TyperAnimatedText(
-                            'gebruik daarvoor het oog van de museumstukken.'),
-                        TyperAnimatedText('Klik op verder om te starten'),
-                      ],
-                      isRepeatingAnimation: false,
-                      onFinished: () {
-                        // Navigate to the next page here
-                        controller.isFinished.value = true;
-                      },
-                    ),
+              Center(
+                child: DefaultTextStyle(
+                  style: const TextStyle(
+                    fontFamily: 'Centrion',
+                    fontSize: 30,
+                    color: Colors.white,
+                    fontWeight: FontWeight.normal,
                   ),
-                  SizedBox(
-                    height: 60,
+                  child: AnimatedTextKit(
+                    animatedTexts: [
+                      TyperAnimatedText(
+                          'Ga op zoek naar een verborgen schat,\ngebruik daarvoor het oog van de museumstukken.\nKlik op verder om te starten',
+                          textAlign: TextAlign.center),
+                    ],
+                    isRepeatingAnimation: false,
+                    onFinished: () {
+                      // Navigate to the next page here
+                      controller.isFinished.value = true;
+                    },
                   ),
-                  Obx(() {
-                    return controller.isFinished.value
-                        ? InkWell(
-                            onTap: () => Get.toNamed(Routes.PRE_GAME_ITEMS_AR),
-                            child: Text(
-                              'Doorgaan',
-                              style: TextStyle(
-                                fontFamily: 'Centrion',
-                                fontSize: 42,
-                                color: Colors.white,
-                                fontWeight: FontWeight.w500,
-                              ),
+                ),
+              ),
+              Center(
+                child: Obx(() {
+                  return controller.isFinished.value
+                      ? InkWell(
+                          onTap: () => Get.toNamed(Routes.PRE_GAME_ITEMS_AR),
+                          child: Text(
+                            'Doorgaan',
+                            style: TextStyle(
+                              fontFamily: 'Centrion',
+                              fontSize: 42,
+                              color: Colors.white,
+                              fontWeight: FontWeight.w500,
                             ),
-                          )
-                        : SizedBox();
-                  }),
-                  SizedBox(
-                    height: 60,
-                  ),
-                ],
+                          ),
+                        )
+                      : SizedBox();
+                }),
               ),
             ],
           ),

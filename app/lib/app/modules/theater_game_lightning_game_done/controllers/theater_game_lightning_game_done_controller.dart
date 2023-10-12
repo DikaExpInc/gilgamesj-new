@@ -1,83 +1,54 @@
-import 'package:app/app/routes/app_pages.dart';
-import 'package:audioplayers/audioplayers.dart';
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:get_storage/get_storage.dart';
-import 'package:vibration/vibration.dart';
+import 'dart:async';
 
-class TheaterGameLightningGameDoneController extends GetxController
-    with GetTickerProviderStateMixin {
-  late AnimationController _controller;
-  late AnimationController _controllerParticle;
+import 'package:app/app/data/game2_model.dart';
+import 'package:app/app/services/game2_service.dart';
+import 'package:get/get.dart';
+
+class TheaterGameLightningGameDoneController extends GetxController {
   RxBool isFinished = false.obs;
+  Game2ListModel? game2;
 
   // onTap Loading
   final RxDouble tapValue = 0.0.obs;
   RxBool tapStatus = false.obs;
 
+  final Stream game2Stream =
+      Stream.periodic(const Duration(seconds: 2), (int count) {
+    return count;
+  });
+  late StreamSubscription sub;
+
   @override
   void onInit() {
     super.onInit();
-
-    Vibration.vibrate(duration: 1000);
-
-    _controller = AnimationController(
-      vsync: this,
-      duration: Duration(seconds: 20),
-    )..repeat();
-
-    _controllerParticle = AnimationController(
-      vsync: this,
-      duration: Duration(seconds: 10),
-    )..repeat();
-
-    // Update player number
-    int playedNumber = GetStorage().read('played_number') ?? 0;
-    int totalPlayer = int.parse(GetStorage().read('totalPlayer'));
-    if (playedNumber + 1 >= totalPlayer) {
-      GetStorage().write('played_number', 0);
-    } else {
-      GetStorage().write('played_number', playedNumber + 1);
-    }
+    print('harusnya jalan');
+    // membuat langganan
+    sub = game2Stream.listen((event) {
+      loadGame2();
+      print('ini stream data');
+    });
   }
 
   @override
   void onClose() {
-    _controller.dispose();
-    _controllerParticle.dispose();
     super.onClose();
+    sub.cancel();
   }
 
-  void startTapLoading() async {
-    while (tapStatus.value) {
-      await Future.delayed(Duration(milliseconds: 100));
-      tapValue.value += 5;
-      if (tapValue.value >= 100.0) {
-        return nextStepAfterMessage();
-      }
+  loadGame2() async {
+    update();
+    // showLoading();
+    game2 = await Game2Api().loadGame2API();
+    update();
+    // stopLoading();
+    if (game2?.statusCode == 200) {
+    } else if (game2?.statusCode == 204) {
+      print("Empty");
+    } else if (game2?.statusCode == 404) {
+      update();
+    } else if (game2?.statusCode == 401) {
+    } else {
+      print("someting wrong 400");
     }
-  }
-
-  void nextStepAfterMessage() {
-    Get.toNamed(Routes.TABLET_HOLDER);
-  }
-
-  void stopTapLoading() {
-    tapStatus.value = false;
-    tapValue.value = 0;
-  }
-
-  Widget get rotatingImage {
-    return RotationTransition(
-      turns: _controller,
-      child: Image.asset('assets/images/center_of_god.png'),
-    );
-  }
-
-  Widget get rotatingParticle {
-    return RotationTransition(
-      turns: _controllerParticle,
-      child: Image.asset('assets/images/particle.png'),
-    );
   }
 }

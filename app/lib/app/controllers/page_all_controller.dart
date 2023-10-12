@@ -79,6 +79,11 @@ class PageAllController extends GetxController {
           if (setting!.page!.toString() != currentPage.toString()) {
             String? mode = GetStorage().read('mode');
             String? player = GetStorage().read('player');
+            String? status_seat_tablet =
+                GetStorage().read('status_seat_tablet');
+            String? position_tablet = GetStorage().read('position_tablet');
+            String? rij_tablet = GetStorage().read('rij_tablet');
+
             switch (setting!.control) {
               case "volume-tablet-up":
                 increaseVolume();
@@ -97,7 +102,8 @@ class PageAllController extends GetxController {
                     Get.offAllNamed(Routes.LIGHTNING);
                   }
                 }
-                if (setting!.player == "all-museum1") {
+                if (setting!.player == "all-museum1" &&
+                    status_seat_tablet != "museum1") {
                   if (mode != "lightning") {
                     GetStorage().write('mode', "lightning");
                     Get.offAllNamed(Routes.LIGHTNING);
@@ -108,6 +114,7 @@ class PageAllController extends GetxController {
                 if (setting!.player == "all") {
                   if (mode != "panic") {
                     GetStorage().write('mode', "panic");
+                    Get.offAllNamed(Routes.BLANK);
                     Get.offAllNamed(Routes.BLANK);
                   }
                 }
@@ -125,10 +132,11 @@ class PageAllController extends GetxController {
                 if (setting!.player == "all") {
                   if (mode != "go-to-theater") {
                     GetStorage().write('mode', "go-to-theater");
-                    Get.offAllNamed(Routes.GO_THEATER);
+                    Get.offAllNamed(Routes.TICKET);
                   }
                 }
-                if (setting!.player == "group-hemelstier") {
+                if (setting!.player == "group-hemelstier" &&
+                    status_seat_tablet == "hemelstier") {
                   if (mode != "go-to-theater") {
                     GetStorage().write('mode', "go-to-theater");
                     Get.offAllNamed(Routes.GO_THEATER);
@@ -136,9 +144,10 @@ class PageAllController extends GetxController {
                 }
                 break;
               case "go-to-museum1":
-                if (setting!.player == "row1") {
+                if (setting!.player == "row1" && status_seat_tablet == "row1") {
                   if (mode != "go-to-museum1") {
                     GetStorage().write('mode', "go-to-museum1");
+                    GetStorage().write('status_seat_tablet', "museum1");
                     Get.offAllNamed(Routes.MOVEMENT_PAGE, arguments: {
                       "title": "Jullie zijn uitgekozen!",
                       "description":
@@ -146,9 +155,12 @@ class PageAllController extends GetxController {
                     });
                   }
                 }
-                if (setting!.player == "row2-left-side") {
+                if (setting!.player == "row2-left-side" &&
+                    status_seat_tablet == "row2" &&
+                    position_tablet == "left") {
                   if (mode != "go-to-museum1") {
                     GetStorage().write('mode', "go-to-museum1");
+                    GetStorage().write('status_seat_tablet', "museum1");
                     Get.offAllNamed(Routes.MOVEMENT_PAGE, arguments: {
                       "title":
                           "Jullie hebben een geheime missie. Sta op en loop naar het museum",
@@ -157,9 +169,11 @@ class PageAllController extends GetxController {
                     });
                   }
                 }
-                if (setting!.player == "group-ishtar") {
+                if (setting!.player == "group-ishtar" &&
+                    status_seat_tablet == "ishtar") {
                   if (mode != "go-to-museum1") {
                     GetStorage().write('mode', "go-to-museum1");
+                    GetStorage().write('status_seat_tablet', "museum1");
                     Get.offAllNamed(Routes.MOVEMENT_PAGE, arguments: {
                       "title": "Verzamel je nu bij Ishtar",
                       "description":
@@ -169,9 +183,12 @@ class PageAllController extends GetxController {
                 }
                 break;
               case "go-to-museum2":
-                if (setting!.player == "row2-right-side") {
+                if (setting!.player == "row2-right-side" &&
+                    status_seat_tablet == "row2" &&
+                    position_tablet == "right") {
                   if (mode != "go-to-museum2") {
                     GetStorage().write('mode', "go-to-museum2");
+                    GetStorage().write('status_seat_tablet', "museum2");
                     Get.offAllNamed(Routes.MOVEMENT_PAGE, arguments: {
                       "title":
                           "Jullie hebben een geheime missie. Sta op en loop naar het museum",
@@ -180,9 +197,11 @@ class PageAllController extends GetxController {
                     });
                   }
                 }
-                if (setting!.player == "group-gilgamesj") {
+                if (setting!.player == "group-gilgamesj" &&
+                    status_seat_tablet == "gilgamesj") {
                   if (mode != "go-to-museum2") {
                     GetStorage().write('mode', "go-to-museum2");
+                    GetStorage().write('status_seat_tablet', "museum2");
                     Get.offAllNamed(Routes.MOVEMENT_PAGE, arguments: {
                       "title": "Verzamel je nu bij Gilgamesj",
                       "description":
@@ -204,29 +223,38 @@ class PageAllController extends GetxController {
                   if (mode != "give-the-tablet") {
                     GetStorage().write('mode', "give-the-tablet");
                     Get.offAllNamed(Routes.GIVE_TABLET);
+                    Get.offAllNamed(Routes.GIVE_TABLET);
                   }
                 }
                 if (setting!.player == "all+parent&mobility") {
                   if (mode != "give-the-tablet") {
                     GetStorage().write('mode', "give-the-tablet");
                     Get.offAllNamed(Routes.GIVE_TABLET);
-                  }
-                }
-                if (setting!.player == "all-museum1+2") {
-                  if (mode != "give-the-tablet") {
-                    GetStorage().write('mode', "give-the-tablet");
                     Get.offAllNamed(Routes.GIVE_TABLET);
                   }
                 }
-                if (setting!.player == "museum1") {
+                if (setting!.player == "all-museum1+2" &&
+                    status_seat_tablet != "museum1" &&
+                    status_seat_tablet != "museum2") {
                   if (mode != "give-the-tablet") {
                     GetStorage().write('mode', "give-the-tablet");
                     Get.offAllNamed(Routes.GIVE_TABLET);
+                    Get.offAllNamed(Routes.GIVE_TABLET);
                   }
                 }
-                if (setting!.player == "museum2") {
+                if (setting!.player == "museum1" &&
+                    status_seat_tablet == "museum1") {
                   if (mode != "give-the-tablet") {
                     GetStorage().write('mode', "give-the-tablet");
+                    Get.offAllNamed(Routes.GIVE_TABLET);
+                    Get.offAllNamed(Routes.GIVE_TABLET);
+                  }
+                }
+                if (setting!.player == "museum2" &&
+                    status_seat_tablet == "museum2") {
+                  if (mode != "give-the-tablet") {
+                    GetStorage().write('mode', "give-the-tablet");
+                    Get.offAllNamed(Routes.GIVE_TABLET);
                     Get.offAllNamed(Routes.GIVE_TABLET);
                   }
                 }
@@ -236,29 +264,39 @@ class PageAllController extends GetxController {
                   if (mode != "blank") {
                     GetStorage().write('mode', "blank");
                     Get.offAllNamed(Routes.BLANK);
-                  }
-                }
-                if (setting!.player == "all-podium") {
-                  if (mode != "blank") {
-                    GetStorage().write('mode', "blank");
                     Get.offAllNamed(Routes.BLANK);
                   }
                 }
-                if (setting!.player == "all-museum1+2") {
+                if (setting!.player == "all-podium" &&
+                    status_seat_tablet != "podium") {
                   if (mode != "blank") {
                     GetStorage().write('mode', "blank");
                     Get.offAllNamed(Routes.BLANK);
-                  }
-                }
-                if (setting!.player == "museum1") {
-                  if (mode != "blank") {
-                    GetStorage().write('mode', "blank");
                     Get.offAllNamed(Routes.BLANK);
                   }
                 }
-                if (setting!.player == "museum2") {
+                if (setting!.player == "all-museum1+2" &&
+                    status_seat_tablet != "museum1" &&
+                    status_seat_tablet != "museum2") {
                   if (mode != "blank") {
                     GetStorage().write('mode', "blank");
+                    Get.offAllNamed(Routes.BLANK);
+                    Get.offAllNamed(Routes.BLANK);
+                  }
+                }
+                if (setting!.player == "museum1" &&
+                    status_seat_tablet == "museum1") {
+                  if (mode != "blank") {
+                    GetStorage().write('mode', "blank");
+                    Get.offAllNamed(Routes.BLANK);
+                    Get.offAllNamed(Routes.BLANK);
+                  }
+                }
+                if (setting!.player == "museum2" &&
+                    status_seat_tablet == "museum2") {
+                  if (mode != "blank") {
+                    GetStorage().write('mode', "blank");
+                    Get.offAllNamed(Routes.BLANK);
                     Get.offAllNamed(Routes.BLANK);
                   }
                 }
@@ -297,7 +335,8 @@ class PageAllController extends GetxController {
                 }
                 break;
               case "chat-find-humbaba":
-                if (setting!.player == "museum1") {
+                if (setting!.player == "museum1" &&
+                    status_seat_tablet == "museum1") {
                   if (mode != "chat-find-humbaba") {
                     GetStorage().write('mode', "chat-find-humbaba");
                     Get.offAllNamed(Routes.THEATER_GAME_CHAT_GAME,
@@ -306,7 +345,8 @@ class PageAllController extends GetxController {
                 }
                 break;
               case "chat-find-spear":
-                if (setting!.player == "museum2") {
+                if (setting!.player == "museum2" &&
+                    status_seat_tablet == "museum2") {
                   if (mode != "chat-find-spear") {
                     GetStorage().write('mode', "chat-find-spear");
                     Get.offAllNamed(Routes.THEATER_GAME_CHAT_GAME,
@@ -315,7 +355,9 @@ class PageAllController extends GetxController {
                 }
                 break;
               case "star-game":
-                if (setting!.player == "all-museum1+2") {
+                if (setting!.player == "all-museum1+2" &&
+                    status_seat_tablet != "museum1" &&
+                    status_seat_tablet != "museum2") {
                   if (mode != "star-game") {
                     GetStorage().write('mode', "star-game");
                     Get.offAllNamed(Routes.THEATER_GAME_STAR_GAME);
@@ -323,7 +365,9 @@ class PageAllController extends GetxController {
                 }
                 break;
               case "game4-humbaba":
-                if (setting!.player == "all-museum1+2") {
+                if (setting!.player == "all-museum1+2" &&
+                    status_seat_tablet != "museum1" &&
+                    status_seat_tablet != "museum2") {
                   if (mode != "game4-humbaba") {
                     GetStorage().write('mode', "game4-humbaba");
                     Get.offAllNamed(Routes.THEATER_GAME_HUMBABA);
@@ -331,15 +375,20 @@ class PageAllController extends GetxController {
                 }
                 break;
               case "show-humbaba":
-                if (setting!.player == "museum1") {
+                if (setting!.player == "museum1" &&
+                    status_seat_tablet == "museum1") {
                   if (mode != "show-humbaba") {
                     GetStorage().write('mode', "show-humbaba");
-                    Get.offAllNamed(Routes.THEATER_GAME_SHOW_HUMBABA);
+                    Get.offAllNamed(Routes.MOVEMENT_PAGE, arguments: {
+                      "title": "Humbaba tonen",
+                      "description": "Neem Humbaba mee de zaal in"
+                    });
                   }
                 }
                 break;
               case "give-spear":
-                if (setting!.player == "museum2") {
+                if (setting!.player == "museum2" &&
+                    status_seat_tablet == "museum2") {
                   if (mode != "give-spear") {
                     GetStorage().write('mode', "give-spear");
                     Get.offAllNamed(Routes.MOVEMENT_PAGE, arguments: {
@@ -350,7 +399,9 @@ class PageAllController extends GetxController {
                 }
                 break;
               case "ishtar-calling":
-                if (setting!.player == "random-row5") {
+                if (setting!.player == "random-row5" &&
+                    status_seat_tablet == "row5" &&
+                    rij_tablet == "3") {
                   if (mode != "ishtar-calling") {
                     GetStorage().write('mode', "ishtar-calling");
                     Get.offAllNamed(Routes.THEATER_GAME_CHAT_AND_CALL_GAME);
@@ -385,7 +436,12 @@ class PageAllController extends GetxController {
                 if (setting!.player == "all") {
                   if (mode != "give-tablet-back") {
                     GetStorage().write('mode', "give-tablet-back");
-                    Get.offAllNamed(Routes.BRING_TABLET_BACK);
+                    // Get.offAllNamed(Routes.BRING_TABLET_BACK);
+                    Get.offAllNamed(Routes.MOVEMENT_PAGE, arguments: {
+                      "title": "Tablet Terugbrengen",
+                      "description":
+                          "Neem de tablet mee en geef hem aan een medewerker"
+                    });
                   }
                 }
                 break;
@@ -554,7 +610,7 @@ class PageAllController extends GetxController {
       } else {
         box.remove("token");
         box.remove("teamName");
-        Get.offAndToNamed(Routes.PRE_GAME_START);
+        Get.offAndToNamed(Routes.CHOICE_ROLE);
       }
     }
   }

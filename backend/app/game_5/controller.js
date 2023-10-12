@@ -1,4 +1,5 @@
 const Game5 = require('./model')
+const Player = require('../player/model')
 
 module.exports = {
   index: async (req, res) => {
@@ -34,7 +35,6 @@ module.exports = {
   actionVote: async (req, res) => {
     try {
       const { id } = req.params
-      const { code, name, url } = req.body
 
       // Dapatkan pemain yang sedang masuk (sesuaikan ini dengan sistem otentikasi Anda)
       const loggedInPlayerId = req.player._id

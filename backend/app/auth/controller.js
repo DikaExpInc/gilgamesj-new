@@ -59,13 +59,12 @@ async function assignSeats(players) {
   let isForward = true
 
   const assignedSeats = []
-
   let prevRole = null // Menyimpan peran sebelumnya
 
   for (const player of players) {
     while (true) {
       const query = {
-        seatNumber: `${alphabet[currentCol - 1]}${currentRow}`,
+        seatNumber: `${currentCol}-${currentRow}`,
         isOccupied: false,
       }
 
@@ -74,6 +73,23 @@ async function assignSeats(players) {
       })
 
       if (seat) {
+        // Hitung setengah jumlah baris
+        const halfRows = Math.ceil(rows / 2) // Pembulatan ke atas jika jumlah baris ganjil
+
+        // Misalkan currentRow adalah posisi saat ini
+        let position = 'left' // Defaultnya adalah kiri
+        if (currentRow > halfRows) {
+          position = 'right' // Jika currentRow di atas setengah jumlah baris, maka di sebelah kanan
+        }
+        await Player.findByIdAndUpdate(player._id, {
+          $set: {
+            seat: seat.seatNumber,
+            status_seat: `row${currentCol}`,
+            position,
+            stoel: currentCol,
+            rij: currentRow,
+          },
+        })
         assignedSeats.push({ player, seat })
         break // Keluar dari loop jika kursi sudah ditemukan
       } else {
@@ -215,6 +231,9 @@ module.exports = {
       const group = userCount
 
       payload.group = group
+      payload.username = 'gilgamesj-' + group
+      payload.name = 'gilgamesj' + group
+      payload.email = 'gilgamesj' + group + '@gilgamesj.io'
 
       if (payload.role == undefined) {
         let user = new User(payload)
@@ -264,6 +283,7 @@ module.exports = {
               stage_id: stage._id,
               user_id: user.id,
               status_play: 'Y',
+              user_type: user.user_type,
             })
             await User.findByIdAndUpdate(user.id, {
               $set: { player_now: player_num },
@@ -350,8 +370,10 @@ module.exports = {
         ...disabilityPlayers,
       ]
 
+      await Seat.updateMany({}, { $set: { isOccupied: false } })
       // Memberikan tempat duduk sesuai urutan
       const assignedSeats = await assignSeats(sortedPlayers)
+      console.log(assignedSeats)
 
       // Menyimpan hasil tempat duduk ke dalam database atau lainnya sesuai kebutuhan
 

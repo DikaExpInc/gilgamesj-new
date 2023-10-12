@@ -5,6 +5,7 @@ import 'package:app/app/modules/theater_game_lightning_game/views/screens/lightn
 import 'package:app/app/modules/theater_game_lightning_game/views/screens/lightning_game_light_screen.dart';
 import 'package:app/app/modules/theater_game_lightning_game/views/screens/lightning_game_message_screen.dart';
 import 'package:app/app/routes/app_pages.dart';
+import 'package:app/app/services/game2_service.dart';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -37,7 +38,7 @@ class TheaterGameLightningGameController extends GetxController
     _controller.dispose();
     _controllerParticle.dispose();
     _controllerText.dispose();
-    // shakeDetector!.stopListening();
+    stopAutomaticChange();
     super.onClose();
   }
 
@@ -52,8 +53,8 @@ class TheaterGameLightningGameController extends GetxController
   }
 
   void nextStepAfterMessage() {
-    Get.offNamed(Routes.THEATER_GAME_LIGHTNING_GAME_DONE);
     // setWidget(LightningGameCharacterScreen());
+    Get.offNamed(Routes.THEATER_GAME_LIGHTNING_GAME_DONE);
     startAutomaticChange();
   }
 
@@ -93,7 +94,7 @@ class TheaterGameLightningGameController extends GetxController
     // Di sini Anda dapat mengatur widget awal yang akan ditampilkan
     // setWidget(LightningGameMessageScreen());
     setWidget(LightningGameCharacterScreen());
-    // startAutomaticChange();
+    startAutomaticChange();
     Vibration.vibrate(duration: 1000);
 
     sub = settingStream.listen((event) {
@@ -172,8 +173,8 @@ class TheaterGameLightningGameController extends GetxController
     if (containerWidth.value < 0) {
       containerWidth.value = 1200.0;
       selectRandomCharacter();
-      // setWidget(LightningGameLightScreen());
-      Get.toNamed(Routes.THEATER_GAME_LIGHTNING_GAME_DONE);
+      stopAutomaticChange();
+      onSubmit();
     }
   }
 
@@ -199,5 +200,19 @@ class TheaterGameLightningGameController extends GetxController
   void changeBackgroundColor() {
     currentColorIndex.value =
         (currentColorIndex.value + 1) % backgroundColors.length;
+  }
+
+  Future<void> onSubmit() async {
+    String id = "";
+    if (characterSelect == "Enkidu") {
+      id = "65273ad7596123a74cb5debb";
+    } else {
+      id = "65273ac6596123a74cb5deba";
+    }
+    audioCache.play('confirm.mp3');
+    String choice = await Game2Api().voteAPI(id);
+    if (choice == "done") {
+      Get.toNamed(Routes.THEATER_GAME_LIGHTNING_GAME_DONE);
+    }
   }
 }

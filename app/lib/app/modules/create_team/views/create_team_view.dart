@@ -41,8 +41,8 @@ class CreateTeamView extends GetView<CreateTeamController> {
                 ),
                 // controller.rotatingImage,
                 Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Text(
                       'Schatten uit het',
@@ -66,105 +66,115 @@ class CreateTeamView extends GetView<CreateTeamController> {
                   padding: const EdgeInsets.all(40.0),
                   child: Column(
                     children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.only(right: 40),
-                            child: Text(
-                              'TEAM NAAM',
-                              style: TextStyle(
-                                color: Color(0xFF79684B),
-                                fontSize: 20,
-                              ),
-                            ),
-                          ),
-                          Container(
-                            width: mWidth / 1.8,
-                            decoration: BoxDecoration(
-                              border: Border(
-                                bottom: BorderSide(
-                                  color: Colors
-                                      .black, // Color of the bottom border
-                                  width: 2.0, // Width of the bottom border
-                                ),
-                              ),
-                            ),
-                            child: TextField(
-                              controller: controller.teamNameC,
-                              style: TextStyle(color: Colors.black),
-                              onChanged: (value) {
-                                controller.isButtonVisible(value.isNotEmpty);
-                              },
-                              decoration: InputDecoration(
-                                hintText: 'VOER HIER JE NAAM IN',
-                                hintStyle: TextStyle(color: Colors.white54),
-                                border: InputBorder.none,
-                                contentPadding: EdgeInsets.all(16.0),
-                              ),
-                            ),
-                          ),
-                        ],
+                      Text(
+                        'AANTAL SPELERS',
+                        style: TextStyle(
+                          color: Color(0xff79684B),
+                          fontSize: 28,
+                          fontWeight: FontWeight.w700,
+                        ),
                       ),
                       SizedBox(
-                        height: 40,
+                        height: 80,
                       ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.only(right: 60),
+                      Obx(
+                        () => Container(
+                          margin: EdgeInsets.only(bottom: 10),
+                          width: 400,
+                          height: 60, // Atur lebar sesuai yang Anda inginkan
+                          child: ElevatedButton(
+                            onPressed: () {
+                              controller.onSelectedTotalTeam(2);
+                            },
+                            style: ElevatedButton.styleFrom(
+                              primary: controller.totalPlayer == 2
+                                  ? Color(0xff79684B)
+                                  : Color.fromARGB(99, 149, 149, 149),
+                              onPrimary: controller.totalPlayer == 2
+                                  ? Colors.white
+                                  : Colors.black,
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: 20, vertical: 12),
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(10),
+                                  side: BorderSide(
+                                      color: Colors.white, width: 2)),
+                              elevation: 0,
+                            ),
                             child: Text(
-                              'SPELERS',
+                              '2 SPELERS',
                               style: TextStyle(
-                                color: Color(0xFF79684B),
-                                fontSize: 20,
+                                fontSize: 18,
                               ),
                             ),
                           ),
-                          Row(
-                            children: [
-                              InkWell(
-                                onTap: controller.subsPlayer,
-                                child: SvgPicture.asset(
-                                  "assets/icons/subtract.svg",
-                                ),
+                        ),
+                      ),
+                      Obx(
+                        () => Container(
+                          margin: EdgeInsets.only(bottom: 10),
+                          width: 400,
+                          height: 60, // Atur lebar sesuai yang Anda inginkan
+                          child: ElevatedButton(
+                            onPressed: () {
+                              controller.onSelectedTotalTeam(3);
+                            },
+                            style: ElevatedButton.styleFrom(
+                              primary: controller.totalPlayer == 3
+                                  ? Color(0xff79684B)
+                                  : Color.fromARGB(99, 149, 149, 149),
+                              onPrimary: controller.totalPlayer == 3
+                                  ? Colors.white
+                                  : Colors.black,
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: 20, vertical: 12),
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(10),
+                                  side: BorderSide(
+                                      color: Colors.white, width: 2)),
+                              elevation: 0,
+                            ),
+                            child: Text(
+                              '3 SPELERS',
+                              style: TextStyle(
+                                fontSize: 18,
                               ),
-                              Obx(
-                                () => Container(
-                                    width: mWidth / 6,
-                                    decoration: BoxDecoration(
-                                      border: Border.all(
-                                        color: Colors.black, // Border color
-                                        width: 2.0, // Border width
-                                      ),
-                                      borderRadius: BorderRadius.circular(
-                                          10.0), // Border radius
-                                    ),
-                                    margin:
-                                        EdgeInsets.symmetric(horizontal: 20),
-                                    child: Center(
-                                      child: Padding(
-                                        padding: const EdgeInsets.all(12.0),
-                                        child: Text(
-                                          "${controller.totalPlayer}",
-                                          style: TextStyle(
-                                            fontSize: 18,
-                                            color: Colors.black,
-                                          ),
-                                        ),
-                                      ),
-                                    )),
-                              ),
-                              InkWell(
-                                onTap: controller.addPlayer,
-                                child: SvgPicture.asset(
-                                  "assets/icons/plus.svg",
-                                ),
-                              ),
-                            ],
+                            ),
                           ),
-                        ],
+                        ),
+                      ),
+                      Obx(
+                        () => Container(
+                          margin: EdgeInsets.only(bottom: 10),
+                          width: 400,
+                          height: 60, // Atur lebar sesuai yang Anda inginkan
+                          child: ElevatedButton(
+                            onPressed: () {
+                              controller.onSelectedTotalTeam(4);
+                            },
+                            style: ElevatedButton.styleFrom(
+                              primary: controller.totalPlayer == 4
+                                  ? Color(0xff79684B)
+                                  : Color.fromARGB(99, 149, 149, 149),
+                              onPrimary: controller.totalPlayer == 4
+                                  ? Colors.white
+                                  : Colors.black,
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: 20, vertical: 12),
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(10),
+                                  side: BorderSide(
+                                      color: Colors.white, width: 2)),
+                              elevation: 0,
+                            ),
+                            child: Text(
+                              '4 SPELERS',
+                              style: TextStyle(
+                                fontSize: 18,
+                              ),
+                            ),
+                          ),
+                        ),
                       ),
                     ],
                   ),

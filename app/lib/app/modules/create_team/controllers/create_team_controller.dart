@@ -22,7 +22,7 @@ class CreateTeamController extends GetxController
   RxBool isLoading = false.obs;
   RxBool isLoadingCreatePegawai = false.obs;
   RxBool isButtonVisible = false.obs;
-  RxInt totalPlayer = 2.obs;
+  RxInt totalPlayer = 1.obs;
 
   TextEditingController teamNameC = TextEditingController();
 
@@ -40,17 +40,22 @@ class CreateTeamController extends GetxController
     )..repeat();
   }
 
+  void onSelectedTotalTeam(int totalTeam) {
+    isButtonVisible.value = true;
+    totalPlayer.value = totalTeam;
+  }
+
   Future<void> addTeamName() async {
-    if (teamNameC.text.isNotEmpty) {
-      isLoading.value = true;
-      if (isLoadingCreatePegawai.isFalse) {
-        await createTeamName();
-        isLoading.value = false;
-      }
-    } else {
+    // if (teamNameC.text.isNotEmpty) {
+    isLoading.value = true;
+    if (isLoadingCreatePegawai.isFalse) {
+      await createTeamName();
       isLoading.value = false;
-      CustomToast.errorToast('Error', 'you need to fill all form');
     }
+    // } else {
+    //   isLoading.value = false;
+    //   CustomToast.errorToast('Error', 'you need to fill all form');
+    // }
   }
 
   Widget get rotatingImage {
@@ -62,11 +67,11 @@ class CreateTeamController extends GetxController
 
   createTeamName() async {
     update();
-    user = await AuthApi()
-        .registerAPI(teamNameC.text, totalPlayer.toString(), box.read('role'));
+    user =
+        await AuthApi().registerAPI(totalPlayer.toString(), box.read('role'));
     if (user!.statusCode == 201) {
       box.write("token", user!.accessToken);
-      box.write("teamName", teamNameC.text);
+      box.write("teamName", user!.username);
       update();
       Get.offAndToNamed(Routes.VIEW_PLAYER);
     } else if (user!.statusCode == 404) {

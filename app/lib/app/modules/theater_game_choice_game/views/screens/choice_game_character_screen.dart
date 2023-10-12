@@ -188,11 +188,7 @@ class ChoiceGameCharacterScreen
                       child: InkWell(
                           onTap: () => {
                                 controller.audioCache.play('confirm.mp3'),
-                                controller.currentIndex.value ==
-                                        controller.questions.length - 1
-                                    ? Get.offNamed(
-                                        Routes.THEATER_GAME_CHOICE_GAME_DONE)
-                                    : controller.goToNextQuestion()
+                                controller.goToNextQuestion()
                               },
                           child: Image.asset('assets/images/oke_button.png'))),
             ),

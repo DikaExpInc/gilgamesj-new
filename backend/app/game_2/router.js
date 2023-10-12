@@ -5,12 +5,12 @@ const { index, getById, actionVote } = require('./controller')
 const multer = require('multer')
 const os = require('os')
 
-const { isLoginUser } = require('../middleware/auth')
+const { isLoginPlayer } = require('../middleware/auth')
 
-router.use(isLoginUser)
+router.use(isLoginPlayer)
 router.get('/', index)
 router.get('/:id', getById)
-router.put(
+router.post(
   '/vote/:id',
   multer({ dest: os.tmpdir() }).single('image'),
   actionVote

@@ -19,6 +19,7 @@ class AuthApi extends SharedApi {
       var data = await http.get(Uri.parse(baseUrl + 'users/profile'),
           headers: headers);
       jsonData = json.decode(data.body);
+      print(jsonData);
       if (data.statusCode == 200) {
         jsonData['status_code'] = 200;
         jsonData['access_token'] = token;
@@ -35,17 +36,13 @@ class AuthApi extends SharedApi {
   }
 
   // Register API
-  Future<UserModel?> registerAPI(
-      String name, String totalPlayer, String role) async {
+  Future<UserModel?> registerAPI(String totalPlayer, String role) async {
     try {
       var jsonData;
       showLoading();
       var data = await http.post(
         Uri.parse(baseUrl + 'auth/signup'),
         body: {
-          'username': name,
-          'name': name,
-          'email': name + '@gilgamesj.io',
           'password': 'password',
           'total_player': totalPlayer,
           'user_type': role,
@@ -67,6 +64,25 @@ class AuthApi extends SharedApi {
       stopLoading();
       showInternetMessage("Please check your connection");
       return UserModel.fromJson({"status_code": 404});
+    }
+  }
+
+  Future<String> getSeatsAPI() async {
+    try {
+      // showLoading();
+      var data = await http.post(
+        Uri.parse(baseUrl + 'auth/getSeats'),
+        headers: getToken(),
+      );
+      // stopLoading();
+      if (data.statusCode == 200) {
+        return "done";
+      } else {
+        return "error";
+      }
+    } on Exception catch (_) {
+      stopLoading();
+      return "error";
     }
   }
 

@@ -24,7 +24,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
-class PageAllController extends GetxController {
+class PageAllControllerV1 extends GetxController {
   RxInt pageIndex = 0.obs;
   RxInt lengthNow = 0.obs;
   TaskListModel? tasks;

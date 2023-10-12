@@ -188,9 +188,7 @@ class LightningGameCharacterScreen
                       top: mHeight / 2,
                       child: InkWell(
                           onTap: () => {
-                                controller.audioCache.play('confirm.mp3'),
-                                controller
-                                    .setWidget(LightningGameLightScreen()),
+                                controller.onSubmit(),
                               },
                           child: Image.asset('assets/images/oke_button.png'))),
             ),

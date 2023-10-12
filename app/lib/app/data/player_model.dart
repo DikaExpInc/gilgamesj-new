@@ -9,6 +9,10 @@ class PlayerModel {
   final String? userId;
   final String? seatId;
   final String? seat;
+  final String? status_seat;
+  final String? position;
+  final String? stoel;
+  final String? rij;
   final String? stageId;
 
   PlayerModel({
@@ -22,6 +26,10 @@ class PlayerModel {
     this.userId,
     this.seatId,
     this.seat,
+    this.status_seat,
+    this.position,
+    this.stoel,
+    this.rij,
     this.stageId,
   });
 
@@ -39,6 +47,11 @@ class PlayerModel {
       userId: jsonData['user_id'] != null ? jsonData['user_id'] : "",
       seatId: jsonData['seat_id'] != null ? jsonData['seat_id'] : "",
       seat: jsonData['seat'] != null ? jsonData['seat'] : "",
+      status_seat:
+          jsonData['status_seat'] != null ? jsonData['status_seat'] : "",
+      position: jsonData['position'] != null ? jsonData['position'] : "",
+      stoel: jsonData['stoel'] != null ? jsonData['stoel'] : "",
+      rij: jsonData['rij'] != null ? jsonData['rij'] : "",
       stageId: jsonData['stage_id'] != null ? jsonData['stage_id'] : "",
     );
   }

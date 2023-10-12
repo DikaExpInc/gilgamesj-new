@@ -23,7 +23,7 @@ import 'package:app/app/widgets/dialog/bonus_skip_dialog.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:volume_controller/volume_controller.dart';
+import 'package:perfect_volume_control/perfect_volume_control.dart';
 
 class PageAllController extends GetxController {
   RxInt pageIndex = 0.obs;
@@ -53,7 +53,6 @@ class PageAllController extends GetxController {
   Duration? duration;
   Duration? remainingTime;
 
-  final VolumeController volumeControl = VolumeController();
   RxDouble currentVolume = 0.5.obs;
 
   final Stream settingStream =
@@ -84,6 +83,7 @@ class PageAllController extends GetxController {
             String? position_tablet = GetStorage().read('position_tablet');
             String? rij_tablet = GetStorage().read('rij_tablet');
 
+            print(setting!.control);
             switch (setting!.control) {
               case "volume-tablet-up":
                 increaseVolume();
@@ -483,7 +483,9 @@ class PageAllController extends GetxController {
   // Fungsi untuk memperbarui volume sistem
   Future<void> _updateSystemVolume(double volume) async {
     try {
-      volumeControl.setVolume(volume);
+      if (volume <= 1.0 && volume >= 0.0) {
+        PerfectVolumeControl.setVolume(volume);
+      }
     } catch (e) {
       print('Gagal mengubah volume: $e');
     }

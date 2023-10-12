@@ -8,6 +8,9 @@ let settingSchema = mongoose.Schema(
     player: {
       type: String,
     },
+    control: {
+      type: String,
+    },
     stage_id: {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'Stage',

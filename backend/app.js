@@ -62,6 +62,17 @@ server.on('message', async (msg) => {
           control: 'volume-tablet-up',
         }
       )
+      setTimeout(async () => {
+        await Setting.findOneAndUpdate(
+          {
+            _id: '64de3fd2843badaf9efc006b',
+          },
+          {
+            player: 'all',
+            control: '',
+          }
+        )
+      }, 2000)
     }
   }
   if (result['url'] == '/control/volume-tablet-down') {
@@ -75,6 +86,17 @@ server.on('message', async (msg) => {
           control: 'volume-tablet-down',
         }
       )
+      setTimeout(async () => {
+        await Setting.findOneAndUpdate(
+          {
+            _id: '64de3fd2843badaf9efc006b',
+          },
+          {
+            player: 'all',
+            control: '',
+          }
+        )
+      }, 2000)
     }
   }
   if (result['url'] == '/control/panic') {

@@ -105,6 +105,11 @@ abstract class Routes {
   static const THEATER_GAME_REBUS = _Paths.THEATER_GAME_REBUS;
   static const THEATER_GAME_HUMBABA = _Paths.THEATER_GAME_HUMBABA;
   static const THEATER_GAME_CONTACT_CHAT = _Paths.THEATER_GAME_CONTACT_CHAT;
+  static const THEATER_GAME_CONTACT_CHAT_DETAIL =
+      _Paths.THEATER_GAME_CONTACT_CHAT_DETAIL;
+  static const SCAN_QR = _Paths.SCAN_QR;
+  static const PRE_GAME_PHOTO = _Paths.PRE_GAME_PHOTO;
+  static const PRE_GAME_GUESS = _Paths.PRE_GAME_GUESS;
 }
 
 abstract class _Paths {
@@ -206,4 +211,9 @@ abstract class _Paths {
   static const THEATER_GAME_REBUS = '/theater-game-rebus';
   static const THEATER_GAME_HUMBABA = '/theater-game-humbaba';
   static const THEATER_GAME_CONTACT_CHAT = '/theater-game-contact-chat';
+  static const THEATER_GAME_CONTACT_CHAT_DETAIL =
+      '/theater-game-contact-chat-detail';
+  static const SCAN_QR = '/scan-qr';
+  static const PRE_GAME_PHOTO = '/pre-game-photo';
+  static const PRE_GAME_GUESS = '/pre-game-guess';
 }

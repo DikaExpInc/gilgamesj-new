@@ -6,10 +6,19 @@ import 'package:vibration/vibration.dart';
 class MiniGameMusicGameController extends GetxController {
   final count = 0.obs;
   final AudioCache audioCache = AudioCache(prefix: 'assets/audios/');
-  int lockCode = 1576; // do sol si la
+  int lockCode = 0; // do sol si la
+  final Map<String, dynamic> arguments = Get.arguments;
 
   RxString key_tuts = ''.obs;
   int maxDigits = 4;
+
+  @override
+  void onInit() {
+    super.onInit();
+    lockCode = arguments['lock_code'];
+    playAudioSequenceFromLockCode();
+    Vibration.vibrate(duration: 1000);
+  }
 
   void increment(int inkWellIndex) {
     if (key_tuts.value.length < maxDigits - 1) {
@@ -20,7 +29,7 @@ class MiniGameMusicGameController extends GetxController {
       print("key_tuts : ${key_tuts.value}");
       print("lockCode : ${lockCodeString}");
       if (lockCode.toString() == key_tuts.value) {
-        Get.offNamed(Routes.PRE_GAME_SUCCESS);
+        Get.offAllNamed(Routes.PRE_GAME_ITEMS);
       } else {
         audioCache.play('error-glitch.mp3');
       }
@@ -30,13 +39,6 @@ class MiniGameMusicGameController extends GetxController {
 
   void reset() {
     key_tuts.value = '';
-  }
-
-  @override
-  void onInit() {
-    super.onInit();
-    playAudioSequenceFromLockCode();
-    Vibration.vibrate(duration: 1000);
   }
 
   playAudioSequenceFromLockCode() async {

@@ -86,12 +86,16 @@ import '../modules/pre_game_audio/bindings/pre_game_audio_binding.dart';
 import '../modules/pre_game_audio/views/pre_game_audio_view.dart';
 import '../modules/pre_game_credit/bindings/pre_game_credit_binding.dart';
 import '../modules/pre_game_credit/views/pre_game_credit_view.dart';
+import '../modules/pre_game_guess/bindings/pre_game_guess_binding.dart';
+import '../modules/pre_game_guess/views/pre_game_guess_view.dart';
 import '../modules/pre_game_items/bindings/pre_game_items_binding.dart';
 import '../modules/pre_game_items/views/pre_game_items_view.dart';
 import '../modules/pre_game_items_ar/bindings/pre_game_items_ar_binding.dart';
 import '../modules/pre_game_items_ar/views/pre_game_items_ar_view.dart';
 import '../modules/pre_game_menu/bindings/pre_game_menu_binding.dart';
 import '../modules/pre_game_menu/views/pre_game_menu_view.dart';
+import '../modules/pre_game_photo/bindings/pre_game_photo_binding.dart';
+import '../modules/pre_game_photo/views/pre_game_photo_view.dart';
 import '../modules/pre_game_rune/bindings/pre_game_rune_binding.dart';
 import '../modules/pre_game_rune/views/pre_game_rune_view.dart';
 import '../modules/pre_game_spirit_realm/bindings/pre_game_spirit_realm_binding.dart';
@@ -110,6 +114,8 @@ import '../modules/rules/bindings/rules_binding.dart';
 import '../modules/rules/views/rules_view.dart';
 import '../modules/scan_ar/bindings/scan_ar_binding.dart';
 import '../modules/scan_ar/views/scan_ar_view.dart';
+import '../modules/scan_qr/bindings/scan_qr_binding.dart';
+import '../modules/scan_qr/views/scan_qr_view.dart';
 import '../modules/social_media/bindings/social_media_binding.dart';
 import '../modules/social_media/views/social_media_view.dart';
 import '../modules/start/bindings/start_binding.dart';
@@ -138,6 +144,8 @@ import '../modules/theater_game_choose_your_character_done/bindings/theater_game
 import '../modules/theater_game_choose_your_character_done/views/theater_game_choose_your_character_done_view.dart';
 import '../modules/theater_game_contact_chat/bindings/theater_game_contact_chat_binding.dart';
 import '../modules/theater_game_contact_chat/views/theater_game_contact_chat_view.dart';
+import '../modules/theater_game_contact_chat_detail/bindings/theater_game_contact_chat_detail_binding.dart';
+import '../modules/theater_game_contact_chat_detail/views/theater_game_contact_chat_detail_view.dart';
 import '../modules/theater_game_humbaba/bindings/theater_game_humbaba_binding.dart';
 import '../modules/theater_game_humbaba/views/theater_game_humbaba_view.dart';
 import '../modules/theater_game_lightning_game/bindings/theater_game_lightning_game_binding.dart';
@@ -603,6 +611,26 @@ class AppPages {
       name: _Paths.THEATER_GAME_CONTACT_CHAT,
       page: () => TheaterGameContactChatView(),
       binding: TheaterGameContactChatBinding(),
+    ),
+    GetPage(
+      name: _Paths.THEATER_GAME_CONTACT_CHAT_DETAIL,
+      page: () => TheaterGameContactChatDetailView(),
+      binding: TheaterGameContactChatDetailBinding(),
+    ),
+    GetPage(
+      name: _Paths.SCAN_QR,
+      page: () => ScanQrView(),
+      binding: ScanQrBinding(),
+    ),
+    GetPage(
+      name: _Paths.PRE_GAME_PHOTO,
+      page: () => const PreGamePhotoView(),
+      binding: PreGamePhotoBinding(),
+    ),
+    GetPage(
+      name: _Paths.PRE_GAME_GUESS,
+      page: () => const PreGameGuessView(),
+      binding: PreGameGuessBinding(),
     ),
   ];
 }

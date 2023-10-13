@@ -95,6 +95,7 @@ class TheaterGameLightningGameController extends GetxController
     // setWidget(LightningGameMessageScreen());
     setWidget(LightningGameCharacterScreen());
     startAutomaticChange();
+    firstInit();
     Vibration.vibrate(duration: 1000);
 
     sub = settingStream.listen((event) {
@@ -173,7 +174,6 @@ class TheaterGameLightningGameController extends GetxController
     if (containerWidth.value < 0) {
       containerWidth.value = 1200.0;
       selectRandomCharacter();
-      stopAutomaticChange();
       onSubmit();
     }
   }
@@ -203,6 +203,7 @@ class TheaterGameLightningGameController extends GetxController
   }
 
   Future<void> onSubmit() async {
+    stopAutomaticChange();
     String id = "";
     if (characterSelect == "Enkidu") {
       id = "65273ad7596123a74cb5debb";
@@ -214,5 +215,9 @@ class TheaterGameLightningGameController extends GetxController
     if (choice == "done") {
       Get.toNamed(Routes.THEATER_GAME_LIGHTNING_GAME_DONE);
     }
+  }
+
+  Future<void> firstInit() async {
+    await Game2Api().resetAPI();
   }
 }

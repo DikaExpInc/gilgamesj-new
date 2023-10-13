@@ -47,11 +47,11 @@ module.exports = {
         return res.status(404).json({ message: 'Game2 not found' })
       }
 
-      if (game2.players.includes(loggedInPlayerId)) {
-        return res.status(403).json({
-          message: 'You have already voted. You cannot vote again.',
-        })
-      }
+      // if (game2.players.includes(loggedInPlayerId)) {
+      //   return res.status(403).json({
+      //     message: 'You have already voted. You cannot vote again.',
+      //   })
+      // }
 
       // Tambahkan pemain ke dalam array players pada model Game2
       game2.players.push(loggedInPlayerId)
@@ -69,6 +69,27 @@ module.exports = {
         message: 'Successfully voted for game2',
         status: 'success',
         data: [],
+      })
+    } catch (err) {
+      return res.status(422).json({
+        error: 1,
+        message: err.message,
+        fields: err.errors,
+      })
+    }
+  },
+  resetVote: async (req, res) => {
+    try {
+      const result = await Game2.updateMany(
+        {},
+        { $set: { __v: 0, players: [] } }
+      )
+
+      res.status(200).json({
+        message:
+          'Successfully reset __v and players to 0 for all Game2 documents',
+        status: 'success',
+        data: result, // Mengembalikan hasil perubahan
       })
     } catch (err) {
       return res.status(422).json({

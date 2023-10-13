@@ -161,96 +161,117 @@ class PreGameItemsView extends GetView<PreGameItemsController> {
                         child: GridView.count(
                           crossAxisCount: 3,
                           // Generate 100 widgets that display their index in the List.
-                          children: List.generate(9, (index) {
-                            if (index == 7) {
-                              return Container(
-                                margin: EdgeInsets.all(20.0),
-                              );
-                            } else {
-                              return GestureDetector(
-                                onTap: () {
-                                  if (index == 0) {
-                                    controller.showItemDialog(
-                                      image:
-                                          "assets/images/tile${index + 1}.png",
-                                      title: "Gate of Babylon",
-                                      description:
-                                          "Dit is een prachtig museumstuk, Ga verder en kijk ook naar de rest van ons mooie museum",
-                                    );
-                                  } else if (index == 1) {
-                                    controller.showItemDialog(
-                                      image:
-                                          "assets/images/tile${index + 1}.png",
-                                      title: "Gate of Babylon",
-                                      description:
-                                          "Dit is een prachtig museumstuk, Ga verder en kijk ook naar de rest van ons mooie museum",
-                                    );
-                                  } else if (index == 2) {
-                                    controller.showItemDialog(
-                                      image:
-                                          "assets/images/tile${index + 1}.png",
-                                      title: "Gate of Babylon",
-                                      description:
-                                          "Dit is een prachtig museumstuk, Ga verder en kijk ook naar de rest van ons mooie museum",
-                                    );
-                                  } else if (index == 3) {
-                                    controller.showItemDialog(
-                                      image:
-                                          "assets/images/tile${index + 1}.png",
-                                      title: "Gate of Babylon",
-                                      description:
-                                          "Dit is een prachtig museumstuk, Ga verder en kijk ook naar de rest van ons mooie museum",
-                                    );
-                                  } else if (index == 4) {
-                                    controller.showItemDialog(
-                                      image:
-                                          "assets/images/tile${index + 1}.png",
-                                      title: "Gate of Babylon",
-                                      description:
-                                          "Dit is een prachtig museumstuk, Ga verder en kijk ook naar de rest van ons mooie museum",
-                                    );
-                                  } else if (index == 5) {
-                                    controller.showItemDialog(
-                                      image:
-                                          "assets/images/tile${index + 1}.png",
-                                      title: "Gate of Babylon",
-                                      description:
-                                          "Dit is een prachtig museumstuk, Ga verder en kijk ook naar de rest van ons mooie museum",
-                                    );
-                                  } else if (index == 6) {
-                                    controller.showItemDialog(
-                                      image:
-                                          "assets/images/tile${index + 1}.png",
-                                      title: "Gate of Babylon",
-                                      description:
-                                          "Dit is een prachtig museumstuk, Ga verder en kijk ook naar de rest van ons mooie museum",
-                                    );
-                                  } else if (index == 8) {
-                                    controller.showItemDialog(
-                                      image:
-                                          "assets/images/tile${index + 1}.png",
-                                      title: "Gate of Babylon",
-                                      description:
-                                          "Dit is een prachtig museumstuk, Ga verder en kijk ook naar de rest van ons mooie museum",
-                                    );
-                                  }
-                                },
-                                child: Container(
-                                    margin: EdgeInsets.all(mWidth / 40.0),
-                                    decoration: BoxDecoration(
-                                      border: Border.all(
-                                        color: Colors.transparent,
-                                        width: 2.0,
-                                      ),
-                                      borderRadius: BorderRadius.all(
-                                        Radius.circular(10),
-                                      ),
+                          children: List.generate(12, (index) {
+                            return GestureDetector(
+                              onTap: () {
+                                if (index == 0) {
+                                  controller.showItemDialog(
+                                    image: "assets/images/tile${index + 1}.png",
+                                    title: "Gate of Babylon",
+                                    description:
+                                        "Dit is een prachtig museumstuk, Ga verder en kijk ook naar de rest van ons mooie museum",
+                                  );
+                                } else if (index == 1) {
+                                  controller.showItemDialog(
+                                    image: "assets/images/tile${index + 1}.png",
+                                    title: "Gate of Babylon",
+                                    description:
+                                        "Dit is een prachtig museumstuk, Ga verder en kijk ook naar de rest van ons mooie museum",
+                                  );
+                                } else if (index == 2) {
+                                  controller.showItemDialog(
+                                    image: "assets/images/tile${index + 1}.png",
+                                    title: "Gate of Babylon",
+                                    description:
+                                        "Dit is een prachtig museumstuk, Ga verder en kijk ook naar de rest van ons mooie museum",
+                                  );
+                                } else if (index == 3) {
+                                  controller.showItemDialog(
+                                    image: "assets/images/tile${index + 1}.png",
+                                    title: "Gate of Babylon",
+                                    description:
+                                        "Dit is een prachtig museumstuk, Ga verder en kijk ook naar de rest van ons mooie museum",
+                                  );
+                                } else if (index == 4) {
+                                  controller.showItemDialog(
+                                    image: "assets/images/tile${index + 1}.png",
+                                    title: "Gate of Babylon",
+                                    description:
+                                        "Dit is een prachtig museumstuk, Ga verder en kijk ook naar de rest van ons mooie museum",
+                                  );
+                                } else if (index == 5) {
+                                  controller.showItemDialog(
+                                    image: "assets/images/tile${index + 1}.png",
+                                    title: "Gate of Babylon",
+                                    description:
+                                        "Dit is een prachtig museumstuk, Ga verder en kijk ook naar de rest van ons mooie museum",
+                                  );
+                                } else if (index == 6) {
+                                  controller.showItemDialog(
+                                    image: "assets/images/tile${index + 1}.png",
+                                    title: "Gate of Babylon",
+                                    description:
+                                        "Dit is een prachtig museumstuk, Ga verder en kijk ook naar de rest van ons mooie museum",
+                                  );
+                                } else if (index == 7) {
+                                  controller.showItemDialog(
+                                    image: "assets/images/tile${index + 1}.png",
+                                    title: "Gate of Babylon",
+                                    description:
+                                        "Dit is een prachtig museumstuk, Ga verder en kijk ook naar de rest van ons mooie museum",
+                                  );
+                                } else if (index == 8) {
+                                  controller.showItemDialog(
+                                    image: "assets/images/tile${index + 1}.png",
+                                    title: "Gate of Babylon",
+                                    description:
+                                        "Dit is een prachtig museumstuk, Ga verder en kijk ook naar de rest van ons mooie museum",
+                                  );
+                                } else if (index == 9) {
+                                  controller.showItemDialog(
+                                    image: "assets/images/tile${index + 1}.png",
+                                    title: "Gate of Babylon",
+                                    description:
+                                        "Dit is een prachtig museumstuk, Ga verder en kijk ook naar de rest van ons mooie museum",
+                                  );
+                                } else if (index == 10) {
+                                  controller.showItemDialog(
+                                    image: "assets/images/tile${index + 1}.png",
+                                    title: "Gate of Babylon",
+                                    description:
+                                        "Dit is een prachtig museumstuk, Ga verder en kijk ook naar de rest van ons mooie museum",
+                                  );
+                                } else if (index == 11) {
+                                  controller.showItemDialog(
+                                    image: "assets/images/tile${index + 1}.png",
+                                    title: "Gate of Babylon",
+                                    description:
+                                        "Dit is een prachtig museumstuk, Ga verder en kijk ook naar de rest van ons mooie museum",
+                                  );
+                                } else if (index == 12) {
+                                  controller.showItemDialog(
+                                    image: "assets/images/tile${index + 1}.png",
+                                    title: "Gate of Babylon",
+                                    description:
+                                        "Dit is een prachtig museumstuk, Ga verder en kijk ook naar de rest van ons mooie museum",
+                                  );
+                                }
+                              },
+                              child: Container(
+                                  margin: EdgeInsets.all(mWidth / 40.0),
+                                  decoration: BoxDecoration(
+                                    border: Border.all(
+                                      color: Colors.transparent,
+                                      width: 2.0,
                                     ),
-                                    child: Image.asset(
-                                      "assets/images/tile${index + 1}.png",
-                                    )),
-                              );
-                            }
+                                    borderRadius: BorderRadius.all(
+                                      Radius.circular(10),
+                                    ),
+                                  ),
+                                  child: Image.asset(
+                                    "assets/images/tile${index + 1}.png",
+                                  )),
+                            );
                           }),
                         ),
                       ),

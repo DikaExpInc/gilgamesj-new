@@ -173,14 +173,27 @@ class ChoiceGameCharacterScreen
               () => controller.characterSelect == ""
                   ? Positioned(
                       top: mHeight / 2,
-                      child: Text(
-                        'CHOICE THIS ONE',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          fontSize: 42,
-                          color: Colors.white,
-                          fontWeight: FontWeight.w500,
-                        ),
+                      child: Column(
+                        children: [
+                          Text(
+                            'Indruk maken',
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              fontSize: 62,
+                              color: Colors.white,
+                              fontWeight: FontWeight.w900,
+                            ),
+                          ),
+                          Text(
+                            'Druk om te kiezen',
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              fontSize: 34,
+                              color: Colors.white,
+                              fontWeight: FontWeight.w200,
+                            ),
+                          ),
+                        ],
                       ),
                     )
                   : Positioned(

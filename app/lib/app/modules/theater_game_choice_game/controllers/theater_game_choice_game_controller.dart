@@ -93,6 +93,7 @@ class TheaterGameChoiceGameController extends GetxController
     // setWidget(ChoiceGameMessageScreen());
     setWidget(ChoiceGameCharacterScreen());
     startAutomaticChange();
+    firstInit();
 
     Vibration.vibrate(duration: 1000);
 
@@ -152,7 +153,6 @@ class TheaterGameChoiceGameController extends GetxController
       containerWidth.value = 1200.0;
       currentIndex.value++;
     } else {
-      stopAutomaticChange();
       onSubmit();
     }
   }
@@ -162,6 +162,7 @@ class TheaterGameChoiceGameController extends GetxController
   }
 
   Future<void> onSubmit() async {
+    stopAutomaticChange();
     String id = "";
     if (characterSelect == "Zijn vieze onderbroeken") {
       id = "65274e4d596123a74cb5dec1";
@@ -173,5 +174,9 @@ class TheaterGameChoiceGameController extends GetxController
     if (choice == "done") {
       Get.toNamed(Routes.THEATER_GAME_CHOICE_GAME_DONE);
     }
+  }
+
+  Future<void> firstInit() async {
+    await Game5Api().resetAPI();
   }
 }

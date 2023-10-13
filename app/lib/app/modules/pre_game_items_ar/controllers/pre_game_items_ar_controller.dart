@@ -1,3 +1,4 @@
+import 'package:app/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -26,5 +27,11 @@ class PreGameItemsArController extends GetxController
       turns: _controllerParticle,
       child: Image.asset('assets/images/particle.png'),
     );
+  }
+
+  void onSubmit() {
+    Get.toNamed(Routes.SCAN_QR, arguments: {
+      "id": selectedItemIndex.value,
+    });
   }
 }

@@ -79,9 +79,9 @@ class PageAllController extends GetxController {
             String? mode = GetStorage().read('mode');
             String? player = GetStorage().read('player');
             String? status_seat_tablet =
-                GetStorage().read('status_seat_tablet');
-            String? position_tablet = GetStorage().read('position_tablet');
-            String? rij_tablet = GetStorage().read('rij_tablet');
+                GetStorage().read('status_seat_tablet'); // row1, museum1
+            String? position_tablet = GetStorage().read('position_tablet'); // left, right
+            String? rij_tablet = GetStorage().read('rij_tablet'); // rij tablet
 
             print(setting!.control);
             switch (setting!.control) {
@@ -400,7 +400,7 @@ class PageAllController extends GetxController {
                 break;
               case "ishtar-calling":
                 if (setting!.player == "random-row5" &&
-                    status_seat_tablet == "row5" &&
+                    status_seat_tablet == "row2" &&
                     rij_tablet == "3") {
                   if (mode != "ishtar-calling") {
                     GetStorage().write('mode', "ishtar-calling");

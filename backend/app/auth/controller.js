@@ -59,7 +59,7 @@ async function assignSeats(players) {
   let isForward = true
 
   const assignedSeats = []
-  let prevRole = null // Menyimpan peran sebelumnya
+  let prevRole = 'children' // Menyimpan peran sebelumnya
 
   for (const player of players) {
     while (true) {
@@ -119,9 +119,11 @@ async function assignSeats(players) {
 
       // Memeriksa peran sebelumnya dan peran saat ini
       const currentRole = player.user_type
+      console.log(prevRole)
       if (prevRole !== currentRole) {
         // Jika peran saat ini berbeda dengan peran sebelumnya, reset kolom ke 1
-        currentCol = 1
+        currentCol += 1
+        currentRow = 1
         prevRole = currentRole
       }
     }
@@ -373,8 +375,6 @@ module.exports = {
       await Seat.updateMany({}, { $set: { isOccupied: false } })
       // Memberikan tempat duduk sesuai urutan
       const assignedSeats = await assignSeats(sortedPlayers)
-      console.log(assignedSeats)
-
       // Menyimpan hasil tempat duduk ke dalam database atau lainnya sesuai kebutuhan
 
       res.status(200).json({

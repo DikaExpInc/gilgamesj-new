@@ -38,7 +38,7 @@ Future<void> main() async {
         case 'start':
           initialRoute = Routes.CHOICE_ROLE;
           break;
-        
+
         default:
       }
     }
@@ -70,6 +70,7 @@ Future<void> main() async {
         getPages: AppPages.routes,
         builder: BotToastInit(),
         navigatorObservers: [BotToastNavigatorObserver()],
+        debugShowCheckedModeBanner: false,  
       ),
     );
   });

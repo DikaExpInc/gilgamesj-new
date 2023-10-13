@@ -1,0 +1,21 @@
+[
+  {
+    "tipe": "ask",
+    "pesan": "....",
+    "jawaban": ["Hemelstier, je moet NU komen"]
+  },
+  {
+    "tipe": "ask",
+    "pesan": "Nee, ik heb geen tijd",
+    "jawaban": ["Alsjeblieft, kom!!"]
+  },
+  {
+    "tipe": "ask",
+    "pesan": "Nee, ben bezig",
+    "jawaban": ["Anders wordt Ishtar boos!"]
+  },
+  {
+    "tipe": "normal",
+    "pesan": "Oké ik kom er aan!"
+  }
+]

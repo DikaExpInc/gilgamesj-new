@@ -31,6 +31,29 @@ class Game5Api extends SharedApi {
     }
   }
 
+  Future<String> resetAPI() async {
+    try {
+      var jsonData;
+      showLoading();
+      var data = await http.post(
+        Uri.parse(baseUrl + 'game5/reset'),
+        headers: getToken(),
+      );
+      stopLoading();
+      jsonData = json.decode(data.body);
+      print("data : " + jsonData.toString());
+      if (data.statusCode == 200) {
+        return "done";
+      } else {
+        return "error";
+      }
+    } on Exception catch (_) {
+      stopLoading();
+      showInternetMessage("Please check your connection");
+      return "error";
+    }
+  }
+
   Future<Game5ListModel> loadGame5API() async {
     try {
       // showLoading();

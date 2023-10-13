@@ -1,13 +1,11 @@
 import 'dart:convert';
 
 import 'package:app/app/modules/theater_game_chat_game/views/screens/chat_game_main_screen.dart';
-import 'package:app/app/modules/theater_game_chat_game/views/screens/chat_game_message_screen.dart';
 import 'package:app/app/routes/app_pages.dart';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
-import 'package:get_storage/get_storage.dart';
 import 'package:vibration/vibration.dart';
 
 class TheaterGameChatGameController extends GetxController

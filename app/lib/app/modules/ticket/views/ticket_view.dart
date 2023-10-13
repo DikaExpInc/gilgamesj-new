@@ -28,10 +28,17 @@ class TicketView extends GetView<TicketController> {
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
+              Text(
+                '${GetStorage().read('status_seat_tablet')}',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 36,
+                ),
+              ),
               Container(
-                width: mWidth / 1.1,
-                height: mHeight / 2,
                 padding: EdgeInsets.all(20),
+                margin: EdgeInsets.all(40),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(20.0), // Radius border
                   border: Border.all(
@@ -77,27 +84,21 @@ class TicketView extends GetView<TicketController> {
                             SizedBox(
                               height: 40,
                             ),
-                            Container(
-                              height: mHeight / 5,
-                              width: mWidth / 2,
-                              child: Expanded(
-                                child: ListView.builder(
-                                  itemCount: int.parse(
-                                      GetStorage().read('totalPlayer')),
-                                  itemBuilder: (context, index) {
-                                    return Text(
-                                      '${GetStorage().read('played_name_${index}')}',
-                                      style: TextStyle(
-                                        color: Colors.white,
-                                        fontSize: 36,
-                                      ),
-                                    );
-                                  },
+                            Column(
+                              children: List.generate(
+                                int.parse(GetStorage().read('totalPlayer')),
+                                (index) => Text(
+                                  '${GetStorage().read('played_name_$index')}',
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 36,
+                                  ),
                                 ),
                               ),
                             )
                           ],
                         ),
+                        Row(),
                         Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           crossAxisAlignment: CrossAxisAlignment.center,
@@ -112,26 +113,19 @@ class TicketView extends GetView<TicketController> {
                             SizedBox(
                               height: 40,
                             ),
-                            Container(
-                              height: mHeight / 6,
-                              width: mWidth / 7,
-                              child: Expanded(
-                                child: ListView.builder(
-                                  itemCount: int.parse(
-                                      GetStorage().read('totalPlayer')),
-                                  itemBuilder: (context, index) {
-                                    return Text(
-                                      '${GetStorage().read('stoel_${index}')}',
-                                      style: TextStyle(
-                                        color: Colors.white,
-                                        fontSize: 36,
-                                      ),
-                                      textAlign: TextAlign.center,
-                                    );
-                                  },
+                            Column(
+                              children: List.generate(
+                                int.parse(GetStorage().read('totalPlayer')),
+                                (index) => Text(
+                                  '${GetStorage().read('stoel_$index')}',
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 36,
+                                  ),
+                                  textAlign: TextAlign.center,
                                 ),
                               ),
-                            )
+                            ),
                           ],
                         ),
                         Column(
@@ -148,26 +142,19 @@ class TicketView extends GetView<TicketController> {
                             SizedBox(
                               height: 40,
                             ),
-                            Container(
-                              height: mHeight / 6,
-                              width: mWidth / 7,
-                              child: Expanded(
-                                child: ListView.builder(
-                                  itemCount: int.parse(
-                                      GetStorage().read('totalPlayer')),
-                                  itemBuilder: (context, index) {
-                                    return Text(
-                                      '${GetStorage().read('rij_${index}')}',
-                                      style: TextStyle(
-                                        color: Colors.white,
-                                        fontSize: 36,
-                                      ),
-                                      textAlign: TextAlign.center,
-                                    );
-                                  },
+                            Column(
+                              children: List.generate(
+                                int.parse(GetStorage().read('totalPlayer')),
+                                (index) => Text(
+                                  '${GetStorage().read('rij_$index')}',
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 36,
+                                  ),
+                                  textAlign: TextAlign.center,
                                 ),
                               ),
-                            )
+                            ),
                           ],
                         ),
                       ],

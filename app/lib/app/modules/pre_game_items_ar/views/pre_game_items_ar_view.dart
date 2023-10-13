@@ -59,44 +59,37 @@ class PreGameItemsArView extends GetView<PreGameItemsArController> {
                       child: Obx(
                         () => GridView.count(
                           crossAxisCount: 3,
-                          // Generate 100 widgets that display their index in the List.
-                          children: List.generate(9, (index) {
-                            if (index == 7) {
-                              return Container(
-                                margin: EdgeInsets.all(20.0),
-                              );
-                            } else {
-                              // final box = GetStorage();
+                          children: List.generate(12, (index) {
+                            // final box = GetStorage();
 
-                              final isSelected =
-                                  index == controller.selectedItemIndex.value;
-                              // final statusDone =
-                              //     box.read('pregame_item_$index') != null
-                              //         ? false
-                              //         : true;
-                              return GestureDetector(
-                                onTap: () {
-                                  controller.selectedItemIndex.value =
-                                      isSelected ? -1 : index;
-                                },
-                                child: Container(
-                                    margin: EdgeInsets.all(mWidth / 40.0),
-                                    decoration: BoxDecoration(
-                                      border: Border.all(
-                                        color: isSelected
-                                            ? Colors.blue.shade400
-                                            : Colors.transparent,
-                                        width: 2.0,
-                                      ),
-                                      borderRadius: BorderRadius.all(
-                                        Radius.circular(10),
-                                      ),
+                            final isSelected =
+                                index == controller.selectedItemIndex.value;
+                            // final statusDone =
+                            //     box.read('pregame_item_$index') != null
+                            //         ? false
+                            //         : true;
+                            return GestureDetector(
+                              onTap: () {
+                                controller.selectedItemIndex.value =
+                                    isSelected ? -1 : index;
+                              },
+                              child: Container(
+                                  margin: EdgeInsets.all(mWidth / 40.0),
+                                  decoration: BoxDecoration(
+                                    border: Border.all(
+                                      color: isSelected
+                                          ? Colors.blue.shade400
+                                          : Colors.transparent,
+                                      width: 2.0,
                                     ),
-                                    child: Image.asset(
-                                      "assets/images/tile${index + 1}-complete.png",
-                                    )),
-                              );
-                            }
+                                    borderRadius: BorderRadius.all(
+                                      Radius.circular(10),
+                                    ),
+                                  ),
+                                  child: Image.asset(
+                                    "assets/images/tile${index + 1}-complete.png",
+                                  )),
+                            );
                           }),
                         ),
                       ),
@@ -106,12 +99,7 @@ class PreGameItemsArView extends GetView<PreGameItemsArController> {
                     child: Column(
                       children: [
                         InkWell(
-                          onTap: () => {
-                            Get.toNamed(Routes.PRE_GAME_TALKING_VIDEO,
-                                arguments: {
-                                  "id": controller.selectedItemIndex.value
-                                }),
-                          },
+                          onTap: () => {controller.onSubmit()},
                           child: Container(
                             width: mWidth / 4,
                             padding: EdgeInsets.symmetric(

@@ -1,6 +1,6 @@
 var express = require('express')
 var router = express.Router()
-const { index, getById, actionVote } = require('./controller')
+const { index, getById, actionVote, resetVote } = require('./controller')
 
 const multer = require('multer')
 const os = require('os')
@@ -15,5 +15,6 @@ router.post(
   multer({ dest: os.tmpdir() }).single('image'),
   actionVote
 )
+router.post('/reset', multer({ dest: os.tmpdir() }).single('image'), resetVote)
 
 module.exports = router

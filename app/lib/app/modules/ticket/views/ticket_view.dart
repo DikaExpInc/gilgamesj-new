@@ -75,7 +75,7 @@ class TicketView extends GetView<TicketController> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              '${GetStorage().read('teamName')}',
+                              '',
                               style: TextStyle(
                                 color: Colors.white,
                                 fontSize: 36,
@@ -104,7 +104,7 @@ class TicketView extends GetView<TicketController> {
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             const Text(
-                              'Stoel',
+                              'Rij',
                               style: TextStyle(
                                 color: Colors.white,
                                 fontSize: 36,
@@ -133,7 +133,7 @@ class TicketView extends GetView<TicketController> {
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             const Text(
-                              'Rij',
+                              'Stoel',
                               style: TextStyle(
                                 color: Colors.white,
                                 fontSize: 36,

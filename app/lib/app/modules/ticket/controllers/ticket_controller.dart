@@ -15,7 +15,7 @@ class TicketController extends GetxController {
   @override
   void onInit() {
     _startBlinking();
-    loadSeat();
+    loadPlayers();
     loadSeatRowCol();
     super.onInit();
   }
@@ -41,14 +41,6 @@ class TicketController extends GetxController {
       toggleVisibility(); // Mengubah visibilitas teks
       _startBlinking(); // Membuat loop kedip
     });
-  }
-
-  loadSeat() async {
-    update();
-    String getSeat = await AuthApi().getSeatsAPI();
-    if (getSeat == "done") {
-      loadPlayers();
-    }
   }
 
   loadPlayers() async {

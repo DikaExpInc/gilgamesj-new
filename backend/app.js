@@ -9,6 +9,8 @@ const flash = require('connect-flash')
 var cors = require('cors')
 const { Client, Server } = require('node-osc')
 const Setting = require('./app/setting/model')
+const Player = require('./app/player/model')
+const Seat = require('./app/seat/model')
 
 var server = new Server(53001, '192.168.0.2')
 // var server = new Server(53001, '192.168.107.220')
@@ -127,6 +129,30 @@ server.on('message', async (msg) => {
   }
   if (result['url'] == '/movement/go-to-theater') {
     if (result['value'] == 'all') {
+      const players = await Player.find({})
+
+      // Memisahkan pemain menjadi tiga array berdasarkan user_type
+      const childrenPlayers = players.filter(
+        (player) => player.user_type === 'children'
+      )
+      const parentPlayers = players.filter(
+        (player) => player.user_type === 'parent'
+      )
+      const disabilityPlayers = players.filter(
+        (player) => player.user_type === 'disability'
+      )
+
+      // Menggabungkan kembali array pemain dalam urutan yang diinginkan
+      const sortedPlayers = [
+        ...childrenPlayers,
+        ...parentPlayers,
+        ...disabilityPlayers,
+      ]
+
+      await Seat.updateMany({}, { $set: { isOccupied: false } })
+      // Memberikan tempat duduk sesuai urutan
+      await assignSeats(sortedPlayers)
+
       await Setting.findOneAndUpdate(
         {
           _id: '64de3fd2843badaf9efc006b',
@@ -583,6 +609,7 @@ const arCameraAdminRouter = require('./app/ar_camera/router.admin')
 const seatAdminRouter = require('./app/seat/router.admin')
 const game2AdminRouter = require('./app/game_2/router.admin')
 const game5AdminRouter = require('./app/game_5/router.admin')
+const { getSeats, assignSeats } = require('./app/auth/controller')
 
 const app = express()
 const URL = `/api/v1`

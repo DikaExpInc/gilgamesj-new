@@ -53,84 +53,7 @@ async function getNextSeat() {
   return null // Mengembalikan null jika semua tempat duduk sudah terisi
 }
 
-async function assignSeats(players) {
-  let currentRow = 1
-  let currentCol = 1 // Mulai dari kolom 1
-  let isForward = true
 
-  const assignedSeats = []
-  let prevRole = 'children' // Menyimpan peran sebelumnya
-
-  for (const player of players) {
-    while (true) {
-      const query = {
-        seatNumber: `${currentCol}-${currentRow}`,
-        isOccupied: false,
-      }
-
-      const seat = await Seat.findOneAndUpdate(query, {
-        $set: { isOccupied: true },
-      })
-
-      if (seat) {
-        // Hitung setengah jumlah baris
-        const halfRows = Math.ceil(rows / 2) // Pembulatan ke atas jika jumlah baris ganjil
-
-        // Misalkan currentRow adalah posisi saat ini
-        let position = 'left' // Defaultnya adalah kiri
-        if (currentRow > halfRows) {
-          position = 'right' // Jika currentRow di atas setengah jumlah baris, maka di sebelah kanan
-        }
-        await Player.findByIdAndUpdate(player._id, {
-          $set: {
-            seat: seat.seatNumber,
-            status_seat: `row${currentCol}`,
-            position,
-            stoel: currentCol,
-            rij: currentRow,
-          },
-        })
-        assignedSeats.push({ player, seat })
-        break // Keluar dari loop jika kursi sudah ditemukan
-      } else {
-        // Mengatur perpindahan berikutnya sesuai dengan pola zigzag
-        if (isForward) {
-          if (currentRow < rows) {
-            currentRow++
-          } else {
-            currentCol++
-            isForward = false
-          }
-        } else {
-          if (currentRow > 1) {
-            currentRow--
-          } else {
-            currentCol++
-            isForward = true
-          }
-        }
-
-        // Jika kolom melebihi 8 (atau angka kolom maksimal yang Anda inginkan), maka kembali ke kolom awal dan naikkan baris
-        if (currentCol > 8) {
-          currentCol = 1
-          currentRow++
-        }
-      }
-
-      // Memeriksa peran sebelumnya dan peran saat ini
-      const currentRole = player.user_type
-      console.log(prevRole)
-      if (prevRole !== currentRole) {
-        // Jika peran saat ini berbeda dengan peran sebelumnya, reset kolom ke 1
-        currentCol += 1
-        currentRow = 1
-        prevRole = currentRole
-      }
-    }
-  }
-
-  return assignedSeats
-}
 
 // async function getNextSeatParent() {
 //   let currentRow = 1
@@ -223,6 +146,84 @@ async function assignSeats(players) {
 // }
 
 module.exports = {
+  assignSeats: async function (players) {
+    let currentRow = 1
+    let currentCol = 1 // Mulai dari kolom 1
+    let isForward = true
+
+    const assignedSeats = []
+    let prevRole = 'children' // Menyimpan peran sebelumnya
+
+    for (const player of players) {
+      while (true) {
+        const query = {
+          seatNumber: `${currentCol}-${currentRow}`,
+          isOccupied: false,
+        }
+
+        const seat = await Seat.findOneAndUpdate(query, {
+          $set: { isOccupied: true },
+        })
+
+        if (seat) {
+          // Hitung setengah jumlah baris
+          const halfRows = Math.ceil(rows / 2) // Pembulatan ke atas jika jumlah baris ganjil
+
+          // Misalkan currentRow adalah posisi saat ini
+          let position = 'left' // Defaultnya adalah kiri
+          if (currentRow > halfRows) {
+            position = 'right' // Jika currentRow di atas setengah jumlah baris, maka di sebelah kanan
+          }
+          await Player.findByIdAndUpdate(player._id, {
+            $set: {
+              seat: seat.seatNumber,
+              status_seat: `row${currentCol}`,
+              position,
+              stoel: currentCol,
+              rij: currentRow,
+            },
+          })
+          assignedSeats.push({ player, seat })
+          break // Keluar dari loop jika kursi sudah ditemukan
+        } else {
+          // Mengatur perpindahan berikutnya sesuai dengan pola zigzag
+          if (isForward) {
+            if (currentRow < rows) {
+              currentRow++
+            } else {
+              currentCol++
+              isForward = false
+            }
+          } else {
+            if (currentRow > 1) {
+              currentRow--
+            } else {
+              currentCol++
+              isForward = true
+            }
+          }
+
+          // Jika kolom melebihi 8 (atau angka kolom maksimal yang Anda inginkan), maka kembali ke kolom awal dan naikkan baris
+          if (currentCol > 8) {
+            currentCol = 1
+            currentRow++
+          }
+        }
+
+        // Memeriksa peran sebelumnya dan peran saat ini
+        const currentRole = player.user_type
+        console.log(prevRole)
+        if (prevRole !== currentRole) {
+          // Jika peran saat ini berbeda dengan peran sebelumnya, reset kolom ke 1
+          currentCol += 1
+          currentRow = 1
+          prevRole = currentRole
+        }
+      }
+    }
+
+    return assignedSeats
+  },
   signup: async (req, res, next) => {
     try {
       const payload = req.body

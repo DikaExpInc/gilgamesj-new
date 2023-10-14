@@ -56,22 +56,20 @@ class TheaterGameLightningGameDoneView
                           Stack(
                             alignment: Alignment.bottomCenter,
                             children: [
-                              Image.asset(
-                                'assets/images/gilgamesj-score.png',
-                                width: 400,
+                              Positioned(
+                                child: Image.asset(
+                                  'assets/images/gilgamesj-score.png',
+                                  width: 400,
+                                ),
                               ),
-                              Center(
-                                child: Container(
-                                  margin: EdgeInsets.only(bottom: 48),
-                                  child: Positioned(
-                                    child: Text(
-                                      '${controller.game2?.items![0].iV == null ? 0 : controller.game2?.items![0].iV} Spelers',
-                                      style: TextStyle(
-                                        fontFamily: 'Centrion',
-                                        fontSize: 36,
-                                        color: Colors.white,
-                                      ),
-                                    ),
+                              Positioned(
+                                bottom: 50,
+                                child: Text(
+                                  '${controller.game2?.items![0].iV == null ? 0 : controller.game2?.items![0].iV} Spelers',
+                                  style: TextStyle(
+                                    fontFamily: 'Centrion',
+                                    fontSize: 36,
+                                    color: Colors.white,
                                   ),
                                 ),
                               ),
@@ -92,22 +90,20 @@ class TheaterGameLightningGameDoneView
                           Stack(
                             alignment: Alignment.bottomCenter,
                             children: [
-                              Image.asset(
-                                'assets/images/enkidu-score.png',
-                                width: 400,
+                              Positioned(
+                                child: Image.asset(
+                                  'assets/images/enkidu-score.png',
+                                  width: 400,
+                                ),
                               ),
-                              Center(
-                                child: Container(
-                                  margin: EdgeInsets.only(bottom: 48),
-                                  child: Positioned(
-                                    child: Text(
-                                      '${controller.game2?.items![1].iV == null ? 0 : controller.game2?.items![1].iV} Spelers',
-                                      style: TextStyle(
-                                        fontFamily: 'Centrion',
-                                        fontSize: 36,
-                                        color: Colors.white,
-                                      ),
-                                    ),
+                              Positioned(
+                                bottom: 50,
+                                child: Text(
+                                  '${controller.game2?.items![1].iV == null ? 0 : controller.game2?.items![1].iV} Spelers',
+                                  style: TextStyle(
+                                    fontFamily: 'Centrion',
+                                    fontSize: 36,
+                                    color: Colors.white,
                                   ),
                                 ),
                               ),

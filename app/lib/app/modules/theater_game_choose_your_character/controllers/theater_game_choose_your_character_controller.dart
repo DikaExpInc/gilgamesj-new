@@ -12,7 +12,6 @@ import 'package:vibration/vibration.dart';
 class TheaterGameChooseYourCharacterController extends GetxController
     with GetTickerProviderStateMixin {
   RxDouble containerWidth = 1200.0.obs;
-  Timer? timer;
   final AudioCache audioCache = AudioCache(prefix: 'assets/audios/');
 
   late AnimationController _controller;
@@ -50,7 +49,6 @@ class TheaterGameChooseYourCharacterController extends GetxController
 
   void nextStepAfterMessage() {
     setWidget(TheaterGameChooseCharacterScreen());
-    // startAutomaticChange();
   }
 
   void stopTapLoading() {
@@ -89,7 +87,6 @@ class TheaterGameChooseYourCharacterController extends GetxController
     // Di sini Anda dapat mengatur widget awal yang akan ditampilkan
     // setWidget(TheaterGameChooseYourCharMessageScreen());
     setWidget(TheaterGameChooseCharacterScreen());
-    startAutomaticChange();
 
     Vibration.vibrate(duration: 1000);
 
@@ -117,28 +114,15 @@ class TheaterGameChooseYourCharacterController extends GetxController
     super.onInit();
   }
 
-  void startAutomaticChange() {
-    timer = Timer.periodic(Duration(milliseconds: 200), (timer) {
-      toggleContainerWidth();
-    });
-  }
-
-  void stopAutomaticChange() {
-    if (timer != null && timer!.isActive) {
-      timer!.cancel(); // Membatalkan timer jika sedang berjalan
-    }
-  }
-
   void toggleContainerWidth() {
     containerWidth.value -= 10.0;
     if (containerWidth.value < 0) {
       containerWidth.value = 1200.0;
       selectRandomCharacter();
-      stopAutomaticChange();
-      GetStorage().write('status_seat_tablet', characterSelect);
+      GetStorage().write('status_seat_tablet', characterSelect.value);
 
       Get.offNamed(Routes.THEATER_GAME_CHOOSE_YOUR_CHARACTER_DONE,
-          arguments: {"selected": characterSelect});
+          arguments: {"selected": characterSelect.value});
     }
   }
 
@@ -168,8 +152,7 @@ class TheaterGameChooseYourCharacterController extends GetxController
 
   Future<void> onSubmit() async {
     audioCache.play('confirm.mp3');
-    stopAutomaticChange();
-    GetStorage().write('status_seat_tablet', characterSelect);
+    GetStorage().write('status_seat_tablet', characterSelect.value);
     Get.offNamed(Routes.THEATER_GAME_CHOOSE_YOUR_CHARACTER_DONE,
         arguments: {"selected": characterSelect});
   }

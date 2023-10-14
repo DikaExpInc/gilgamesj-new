@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:app/app/data/player_model.dart';
+import 'package:app/app/data/seat_model.dart';
 import 'package:app/app/data/user_model.dart';
 import 'package:app/app/utils/api.dart';
 import 'package:app/app/widgets/loading.dart';
@@ -83,6 +84,28 @@ class AuthApi extends SharedApi {
     } on Exception catch (_) {
       stopLoading();
       return "error";
+    }
+  }
+
+  Future<SeatModel?> loadSeatColRow() async {
+    try {
+      var jsonData;
+      var data = await http.get(
+        Uri.parse(baseUrl + 'auth/getrowcol'),
+        headers: getToken(),
+      );
+      jsonData = json.decode(data.body);
+      print(jsonData);
+      if (data.statusCode == 200) {
+        jsonData['status_code'] = 200;
+        return SeatModel.fromJson(jsonData);
+      } else if (data.statusCode == 401) {
+        return SeatModel.fromJson({"status_code": data.statusCode});
+      } else {
+        return SeatModel.fromJson({"status_code": data.statusCode});
+      }
+    } on Exception catch (_) {
+      return SeatModel.fromJson({"status_code": 404});
     }
   }
 

@@ -29,24 +29,15 @@ class TheaterGameHumbabaController extends GetxController {
   RxString audio2 = RxString("");
   RxString audio3 = RxString("");
 
-  @override
-  void onClose() {
-    print('terpanggil ah');
-    audioPlayer.stop();
-    Get.delete<TheaterGameHumbabaController>();
-    super.onClose();
-  }
-
   Future<void> playAudio(String audioFileName) async {
-    audioPlayer.stop();
-    audioPlayer = await audioCache.loop(audioFileName);
+    audioPlayer = await audioCache.play(audioFileName);
   }
 
   @override
   void onInit() {
     // Di sini Anda dapat mengatur widget awal yang akan ditampilkan
     Vibration.vibrate(duration: 1000);
-    audioCache.play("1. hoembaba stem.wav");
+    playAudio("1. hoembaba stem.wav");
 
     super.onInit();
   }
@@ -62,5 +53,12 @@ class TheaterGameHumbabaController extends GetxController {
         });
       });
     }
+  }
+
+  @override
+  void onClose() {
+    print('deleted');
+    audioPlayer.stop();
+    super.onClose();
   }
 }

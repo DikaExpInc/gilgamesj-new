@@ -391,6 +391,23 @@ module.exports = {
     }
   },
 
+  getRowCol: async (req, res, next) => {
+    try {
+      res.status(200).json({
+        message: `Successfully get seats`,
+        status: 'success',
+        row: rows,
+        col: cols,
+      })
+    } catch (err) {
+      return res.status(422).json({
+        error: 1,
+        message: err.message,
+        fields: err.errors,
+      })
+    }
+  },
+
   signin: (req, res, next) => {
     const { email, password } = req.body
     User.findOne({ email: email })

@@ -4,23 +4,15 @@ import 'package:video_player/video_player.dart';
 
 class LightningController extends GetxController {
   VideoPlayerController? videocontroller;
-  RxBool isDone = false.obs;
 
   @override
   void onInit() {
     super.onInit();
     Vibration.vibrate(duration: 1000);
-
     videocontroller =
         VideoPlayerController.asset('assets/videos/thundercloud.mp4');
-
-    videocontroller!.addListener(() {
-      if (videocontroller!.value.position >= videocontroller!.value.duration) {
-        isDone.value = true;
-      }
-    });
-
-    videocontroller!.initialize().then((_) {
+    videocontroller?.setLooping(true); // This will make the video loop
+    videocontroller?.initialize().then((_) {
       videocontroller!.play();
       update();
     });
@@ -33,7 +25,7 @@ class LightningController extends GetxController {
 
   @override
   void onClose() {
-    videocontroller!.pause();
+    videocontroller?.dispose();
     super.onClose();
   }
 }

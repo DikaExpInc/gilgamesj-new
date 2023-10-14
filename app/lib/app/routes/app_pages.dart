@@ -595,7 +595,7 @@ class AppPages {
     GetPage(
       name: _Paths.LIGHTNING,
       page: () => LightningView(),
-      binding: LightningBinding(),
+      // binding: LightningBinding(),
     ),
     GetPage(
       name: _Paths.THEATER_GAME_REBUS,

@@ -67,62 +67,50 @@ class TheaterGameChoiceGameDoneView
                       ),
                       Row(
                         children: [
-                          Column(
+                          Stack(
+                            alignment: Alignment.bottomCenter,
                             children: [
-                              Stack(
-                                alignment: Alignment.bottomCenter,
-                                children: [
-                                  Image.asset(
-                                    'assets/images/sword-score.png',
-                                    width: 400,
+                              Positioned(
+                                child: Image.asset(
+                                  'assets/images/sword-score.png',
+                                  width: 400,
+                                ),
+                              ),
+                              Positioned(
+                                bottom: 50,
+                                child: Text(
+                                  '${controller.game5?.items![1].iV == null ? 0 : controller.game5?.items![1].iV} Spelers',
+                                  style: TextStyle(
+                                    fontFamily: 'Centrion',
+                                    fontSize: 36,
+                                    color: Colors.white,
                                   ),
-                                  Center(
-                                    child: Container(
-                                      margin: EdgeInsets.only(bottom: 48),
-                                      child: Positioned(
-                                        child: Text(
-                                          '${controller.game5?.items![0].iV == null ? 0 : controller.game5?.items![0].iV} Spelers',
-                                          style: TextStyle(
-                                            fontFamily: 'Centrion',
-                                            fontSize: 36,
-                                            color: Colors.white,
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              )
+                                ),
+                              ),
                             ],
                           ),
-                          Column(
+                          Stack(
+                            alignment: Alignment.bottomCenter,
                             children: [
-                              Stack(
-                                alignment: Alignment.bottomCenter,
-                                children: [
-                                  Image.asset(
-                                    'assets/images/underwear-score.png',
-                                    width: 400,
+                              Positioned(
+                                child: Image.asset(
+                                  'assets/images/underwear-score.png',
+                                  width: 400,
+                                ),
+                              ),
+                              Positioned(
+                                bottom: 50,
+                                child: Text(
+                                  '${controller.game5?.items![0].iV == null ? 0 : controller.game5?.items![0].iV} Spelers',
+                                  style: TextStyle(
+                                    fontFamily: 'Centrion',
+                                    fontSize: 36,
+                                    color: Colors.white,
                                   ),
-                                  Center(
-                                    child: Container(
-                                      margin: EdgeInsets.only(bottom: 48),
-                                      child: Positioned(
-                                        child: Text(
-                                          '${controller.game5?.items![1].iV == null ? 0 : controller.game5?.items![1].iV} Spelers',
-                                          style: TextStyle(
-                                            fontFamily: 'Centrion',
-                                            fontSize: 36,
-                                            color: Colors.white,
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              )
+                                ),
+                              ),
                             ],
-                          )
+                          ),
                         ],
                       ),
                     ],

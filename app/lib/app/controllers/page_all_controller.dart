@@ -15,6 +15,7 @@ import 'package:app/app/data/social_media_comment.dart';
 import 'package:app/app/data/social_media_model.dart';
 import 'package:app/app/data/task_model.dart';
 import 'package:app/app/data/user_model.dart';
+import 'package:app/app/modules/lightning/controllers/lightning_controller.dart';
 import 'package:app/app/routes/app_pages.dart';
 import 'package:app/app/services/auth_service.dart';
 import 'package:app/app/services/setting_service.dart';
@@ -80,7 +81,8 @@ class PageAllController extends GetxController {
             String? player = GetStorage().read('player');
             String? status_seat_tablet =
                 GetStorage().read('status_seat_tablet'); // row1, museum1
-            String? position_tablet = GetStorage().read('position_tablet'); // left, right
+            String? position_tablet =
+                GetStorage().read('position_tablet'); // left, right
             String? rij_tablet = GetStorage().read('rij_tablet'); // rij tablet
 
             print(setting!.control);
@@ -223,13 +225,11 @@ class PageAllController extends GetxController {
                   if (mode != "give-the-tablet") {
                     GetStorage().write('mode', "give-the-tablet");
                     Get.offAllNamed(Routes.GIVE_TABLET);
-                    Get.offAllNamed(Routes.GIVE_TABLET);
                   }
                 }
                 if (setting!.player == "all+parent&mobility") {
                   if (mode != "give-the-tablet") {
                     GetStorage().write('mode', "give-the-tablet");
-                    Get.offAllNamed(Routes.GIVE_TABLET);
                     Get.offAllNamed(Routes.GIVE_TABLET);
                   }
                 }
@@ -239,7 +239,6 @@ class PageAllController extends GetxController {
                   if (mode != "give-the-tablet") {
                     GetStorage().write('mode', "give-the-tablet");
                     Get.offAllNamed(Routes.GIVE_TABLET);
-                    Get.offAllNamed(Routes.GIVE_TABLET);
                   }
                 }
                 if (setting!.player == "museum1" &&
@@ -247,14 +246,12 @@ class PageAllController extends GetxController {
                   if (mode != "give-the-tablet") {
                     GetStorage().write('mode', "give-the-tablet");
                     Get.offAllNamed(Routes.GIVE_TABLET);
-                    Get.offAllNamed(Routes.GIVE_TABLET);
                   }
                 }
                 if (setting!.player == "museum2" &&
                     status_seat_tablet == "museum2") {
                   if (mode != "give-the-tablet") {
                     GetStorage().write('mode', "give-the-tablet");
-                    Get.offAllNamed(Routes.GIVE_TABLET);
                     Get.offAllNamed(Routes.GIVE_TABLET);
                   }
                 }
@@ -264,14 +261,12 @@ class PageAllController extends GetxController {
                   if (mode != "blank") {
                     GetStorage().write('mode', "blank");
                     Get.offAllNamed(Routes.BLANK);
-                    Get.offAllNamed(Routes.BLANK);
                   }
                 }
                 if (setting!.player == "all-podium" &&
                     status_seat_tablet != "podium") {
                   if (mode != "blank") {
                     GetStorage().write('mode', "blank");
-                    Get.offAllNamed(Routes.BLANK);
                     Get.offAllNamed(Routes.BLANK);
                   }
                 }
@@ -281,7 +276,6 @@ class PageAllController extends GetxController {
                   if (mode != "blank") {
                     GetStorage().write('mode', "blank");
                     Get.offAllNamed(Routes.BLANK);
-                    Get.offAllNamed(Routes.BLANK);
                   }
                 }
                 if (setting!.player == "museum1" &&
@@ -289,14 +283,12 @@ class PageAllController extends GetxController {
                   if (mode != "blank") {
                     GetStorage().write('mode', "blank");
                     Get.offAllNamed(Routes.BLANK);
-                    Get.offAllNamed(Routes.BLANK);
                   }
                 }
                 if (setting!.player == "museum2" &&
                     status_seat_tablet == "museum2") {
                   if (mode != "blank") {
                     GetStorage().write('mode', "blank");
-                    Get.offAllNamed(Routes.BLANK);
                     Get.offAllNamed(Routes.BLANK);
                   }
                 }

@@ -162,10 +162,49 @@ class TicketView extends GetView<TicketController> {
                   ],
                 ),
               ),
+              Obx(
+                () => Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: List.generate(controller.col.value, (indexA) {
+                    return Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: List.generate(
+                        controller.row.value,
+                        (indexB) {
+                          return buildSeat(indexA + 1, indexB + 1);
+                        },
+                      ),
+                    );
+                  }),
+                ),
+              )
             ],
           ),
         ),
       );
     });
+  }
+
+  Widget buildSeat(int rows, int cols) {
+    bool isActive = false;
+    for (var i = 0; i < int.parse(GetStorage().read('totalPlayer')); i++) {
+      String? colFromStorage = GetStorage().read('rij_$i');
+      String? rowFromStorage = GetStorage().read('stoel_$i');
+      if (rowFromStorage == rows.toString() &&
+          colFromStorage == cols.toString()) {
+        isActive = true;
+      }
+    }
+
+    return Padding(
+      padding: EdgeInsets.all(1),
+      child: Image.asset(
+        isActive ? 'assets/images/seat-active.png' : 'assets/images/seat.png',
+        width: 40,
+        height: 40,
+      ),
+    );
   }
 }

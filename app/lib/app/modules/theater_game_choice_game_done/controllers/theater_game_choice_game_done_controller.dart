@@ -3,7 +3,6 @@ import 'dart:async';
 import 'package:app/app/data/game5_model.dart';
 import 'package:app/app/services/game5_service.dart';
 import 'package:get/get.dart';
-import 'package:vibration/vibration.dart';
 
 class TheaterGameChoiceGameDoneController extends GetxController {
   RxBool isFinished = false.obs;

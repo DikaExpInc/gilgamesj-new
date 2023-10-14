@@ -1,3 +1,4 @@
+import 'package:app/app/modules/lightning/controllers/lightning_controller.dart';
 import 'package:get/get.dart';
 
 class BlankController extends GetxController {

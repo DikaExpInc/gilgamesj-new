@@ -148,8 +148,8 @@ class TheaterGameChoiceGameController extends GetxController
   }
 
   void goToNextQuestion() {
-    characterSelect.value = "";
     if (currentIndex.value < questions.length - 1) {
+      characterSelect.value = "";
       containerWidth.value = 1200.0;
       currentIndex.value++;
     } else {
@@ -164,7 +164,8 @@ class TheaterGameChoiceGameController extends GetxController
   Future<void> onSubmit() async {
     stopAutomaticChange();
     String id = "";
-    if (characterSelect == "Zijn vieze onderbroeken") {
+    print(characterSelect.value);
+    if (characterSelect.value == "Zijn vieze onderbroeken") {
       id = "65274e4d596123a74cb5dec1";
     } else {
       id = "65274e6c596123a74cb5dec2";

@@ -10,7 +10,7 @@ import {
   FundOutlined,
   MessageOutlined,
   SettingOutlined,
-  CheckSquareFilled,
+  CheckSquareFilled,  
   CameraOutlined,
   LinkOutlined,
 } from '@ant-design/icons'

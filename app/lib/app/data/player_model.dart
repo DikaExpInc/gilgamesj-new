@@ -37,7 +37,7 @@ class PlayerModel {
     return PlayerModel(
       statusCode: jsonData['status_code'],
       sId: jsonData['_id'] != null ? jsonData['_id'] : "",
-      username: jsonData['username'] != null ? jsonData['status_code'] : "",
+      username: jsonData['username'] != null ? jsonData['username'] : "",
       playerNum: jsonData['player_num'] != null ? jsonData['player_num'] : 0,
       time: jsonData['time'] != null ? jsonData['time'] : 0,
       statusPlay:

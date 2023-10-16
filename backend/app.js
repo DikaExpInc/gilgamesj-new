@@ -101,6 +101,246 @@ server.on('message', async (msg) => {
       }, 2000)
     }
   }
+  if (result['url'] == '/control/volume-tablet-0') {
+    if (result['value'] == 'all') {
+      await Setting.findOneAndUpdate(
+        {
+          _id: '64de3fd2843badaf9efc006b',
+        },
+        {
+          player: 'all',
+          control: 'volume-tablet-0',
+        }
+      )
+      setTimeout(async () => {
+        await Setting.findOneAndUpdate(
+          {
+            _id: '64de3fd2843badaf9efc006b',
+          },
+          {
+            player: 'all',
+            control: '',
+          }
+        )
+      }, 2000)
+    }
+  }
+  if (result['url'] == '/control/volume-tablet-25') {
+    if (result['value'] == 'all') {
+      await Setting.findOneAndUpdate(
+        {
+          _id: '64de3fd2843badaf9efc006b',
+        },
+        {
+          player: 'all',
+          control: 'volume-tablet-25',
+        }
+      )
+      setTimeout(async () => {
+        await Setting.findOneAndUpdate(
+          {
+            _id: '64de3fd2843badaf9efc006b',
+          },
+          {
+            player: 'all',
+            control: '',
+          }
+        )
+      }, 2000)
+    }
+  }
+  if (result['url'] == '/control/volume-tablet-50') {
+    if (result['value'] == 'all') {
+      await Setting.findOneAndUpdate(
+        {
+          _id: '64de3fd2843badaf9efc006b',
+        },
+        {
+          player: 'all',
+          control: 'volume-tablet-50',
+        }
+      )
+      setTimeout(async () => {
+        await Setting.findOneAndUpdate(
+          {
+            _id: '64de3fd2843badaf9efc006b',
+          },
+          {
+            player: 'all',
+            control: '',
+          }
+        )
+      }, 2000)
+    }
+  }
+  if (result['url'] == '/control/volume-tablet-75') {
+    if (result['value'] == 'all') {
+      await Setting.findOneAndUpdate(
+        {
+          _id: '64de3fd2843badaf9efc006b',
+        },
+        {
+          player: 'all',
+          control: 'volume-tablet-75',
+        }
+      )
+      setTimeout(async () => {
+        await Setting.findOneAndUpdate(
+          {
+            _id: '64de3fd2843badaf9efc006b',
+          },
+          {
+            player: 'all',
+            control: '',
+          }
+        )
+      }, 2000)
+    }
+  }
+  if (result['url'] == '/control/volume-tablet-100') {
+    if (result['value'] == 'all') {
+      await Setting.findOneAndUpdate(
+        {
+          _id: '64de3fd2843badaf9efc006b',
+        },
+        {
+          player: 'all',
+          control: 'volume-tablet-100',
+        }
+      )
+      setTimeout(async () => {
+        await Setting.findOneAndUpdate(
+          {
+            _id: '64de3fd2843badaf9efc006b',
+          },
+          {
+            player: 'all',
+            control: '',
+          }
+        )
+      }, 2000)
+    }
+  }
+  if (result['url'] == '/control/brightness-tablet-0') {
+    if (result['value'] == 'all') {
+      await Setting.findOneAndUpdate(
+        {
+          _id: '64de3fd2843badaf9efc006b',
+        },
+        {
+          player: 'all',
+          control: 'brightness-tablet-0',
+        }
+      )
+      setTimeout(async () => {
+        await Setting.findOneAndUpdate(
+          {
+            _id: '64de3fd2843badaf9efc006b',
+          },
+          {
+            player: 'all',
+            control: '',
+          }
+        )
+      }, 2000)
+    }
+  }
+  if (result['url'] == '/control/brightness-tablet-25') {
+    if (result['value'] == 'all') {
+      await Setting.findOneAndUpdate(
+        {
+          _id: '64de3fd2843badaf9efc006b',
+        },
+        {
+          player: 'all',
+          control: 'brightness-tablet-25',
+        }
+      )
+      setTimeout(async () => {
+        await Setting.findOneAndUpdate(
+          {
+            _id: '64de3fd2843badaf9efc006b',
+          },
+          {
+            player: 'all',
+            control: '',
+          }
+        )
+      }, 2000)
+    }
+  }
+  if (result['url'] == '/control/brightness-tablet-50') {
+    if (result['value'] == 'all') {
+      await Setting.findOneAndUpdate(
+        {
+          _id: '64de3fd2843badaf9efc006b',
+        },
+        {
+          player: 'all',
+          control: 'brightness-tablet-50',
+        }
+      )
+      setTimeout(async () => {
+        await Setting.findOneAndUpdate(
+          {
+            _id: '64de3fd2843badaf9efc006b',
+          },
+          {
+            player: 'all',
+            control: '',
+          }
+        )
+      }, 2000)
+    }
+  }
+  if (result['url'] == '/control/brightness-tablet-75') {
+    if (result['value'] == 'all') {
+      await Setting.findOneAndUpdate(
+        {
+          _id: '64de3fd2843badaf9efc006b',
+        },
+        {
+          player: 'all',
+          control: 'brightness-tablet-75',
+        }
+      )
+      setTimeout(async () => {
+        await Setting.findOneAndUpdate(
+          {
+            _id: '64de3fd2843badaf9efc006b',
+          },
+          {
+            player: 'all',
+            control: '',
+          }
+        )
+      }, 2000)
+    }
+  }
+  if (result['url'] == '/control/brightness-tablet-100') {
+    if (result['value'] == 'all') {
+      await Setting.findOneAndUpdate(
+        {
+          _id: '64de3fd2843badaf9efc006b',
+        },
+        {
+          player: 'all',
+          control: 'brightness-tablet-100',
+        }
+      )
+      setTimeout(async () => {
+        await Setting.findOneAndUpdate(
+          {
+            _id: '64de3fd2843badaf9efc006b',
+          },
+          {
+            player: 'all',
+            control: '',
+          }
+        )
+      }, 2000)
+    }
+  }
   if (result['url'] == '/control/panic') {
     if (result['value'] == 'all') {
       await Setting.findOneAndUpdate(

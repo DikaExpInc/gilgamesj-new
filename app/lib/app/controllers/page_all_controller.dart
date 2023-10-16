@@ -15,7 +15,6 @@ import 'package:app/app/data/social_media_comment.dart';
 import 'package:app/app/data/social_media_model.dart';
 import 'package:app/app/data/task_model.dart';
 import 'package:app/app/data/user_model.dart';
-import 'package:app/app/modules/lightning/controllers/lightning_controller.dart';
 import 'package:app/app/routes/app_pages.dart';
 import 'package:app/app/services/auth_service.dart';
 import 'package:app/app/services/setting_service.dart';
@@ -25,6 +24,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:perfect_volume_control/perfect_volume_control.dart';
+import 'package:screen_brightness/screen_brightness.dart';
 
 class PageAllController extends GetxController {
   RxInt pageIndex = 0.obs;
@@ -84,14 +84,42 @@ class PageAllController extends GetxController {
             String? position_tablet =
                 GetStorage().read('position_tablet'); // left, right
             String? rij_tablet = GetStorage().read('rij_tablet'); // rij tablet
-
-            print(setting!.control);
             switch (setting!.control) {
               case "volume-tablet-up":
                 increaseVolume();
                 break;
               case "volume-tablet-down":
                 decreaseVolume();
+                break;
+              case "volume-tablet-0":
+                _updateSystemVolume(0.0);
+                break;
+              case "volume-tablet-25":
+                _updateSystemVolume(0.25);
+                break;
+              case "volume-tablet-50":
+                _updateSystemVolume(0.50);
+                break;
+              case "volume-tablet-75":
+                _updateSystemVolume(0.75);
+                break;
+              case "volume-tablet-100":
+                _updateSystemVolume(1.0);
+                break;
+              case "brightness-tablet-0":
+                _updateBrightness(0.0);
+                break;
+              case "brightness-tablet-25":
+                _updateBrightness(0.25);
+                break;
+              case "brightness-tablet-50":
+                _updateBrightness(0.50);
+                break;
+              case "brightness-tablet-75":
+                _updateBrightness(0.75);
+                break;
+              case "brightness-tablet-100":
+                _updateBrightness(1.0);
                 break;
               default:
                 break;
@@ -141,7 +169,9 @@ class PageAllController extends GetxController {
                     status_seat_tablet == "hemelstier") {
                   if (mode != "go-to-theater") {
                     GetStorage().write('mode', "go-to-theater");
-                    Get.offAllNamed(Routes.GO_THEATER);
+                    Get.offAllNamed(Routes.MOVEMENT_PAGE, arguments: {
+                      "title": "Blijf zitten bij de hemelstier",
+                    });
                   }
                 }
                 break;
@@ -480,6 +510,15 @@ class PageAllController extends GetxController {
       }
     } catch (e) {
       print('Gagal mengubah volume: $e');
+    }
+  }
+
+  Future<void> _updateBrightness(double brightness) async {
+    try {
+      await ScreenBrightness().setScreenBrightness(brightness);
+    } catch (e) {
+      print(e);
+      throw 'Failed to set brightness';
     }
   }
 

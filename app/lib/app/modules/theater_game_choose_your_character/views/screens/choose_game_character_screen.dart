@@ -123,20 +123,48 @@ class TheaterGameChooseCharacterScreen
             //     ),
             //   );
             // }),
+            Positioned(
+              top: mHeight / 10,
+              child: Column(
+                children: [
+                  Text(
+                    'WIE KIES JIJ?',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontSize: 42,
+                      color: Colors.white,
+                      fontWeight: FontWeight.w900,
+                    ),
+                  ),
+                  Text(
+                    'Druk om te kiezen',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontSize: 30,
+                      color: Colors.white,
+                      fontWeight: FontWeight.w200,
+                    ),
+                  ),
+                  SizedBox(
+                    height: 40,
+                  ),
+                  Container(
+                    width: 70,
+                    height: 70,
+                    child: Obx(
+                      () => CircularProgressIndicator(
+                        strokeWidth: 10,
+                        color: Colors.white,
+                        value: controller.containerWidth.value,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
             Obx(
               () => controller.characterSelect == ""
-                  ? Positioned(
-                      top: mHeight / 2,
-                      child: Text(
-                        'Wie kies jij?',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          fontSize: 42,
-                          color: Colors.white,
-                          fontWeight: FontWeight.w900,
-                        ),
-                      ),
-                    )
+                  ? Container()
                   : Positioned(
                       top: mHeight / 2,
                       child: InkWell(

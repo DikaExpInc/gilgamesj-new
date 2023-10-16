@@ -11,13 +11,14 @@ import 'package:vibration/vibration.dart';
 
 class TheaterGameChooseYourCharacterController extends GetxController
     with GetTickerProviderStateMixin {
-  RxDouble containerWidth = 1200.0.obs;
+  RxDouble containerWidth = 0.0.obs;
   final AudioCache audioCache = AudioCache(prefix: 'assets/audios/');
 
   late AnimationController _controller;
   late AnimationController _controllerParticle;
   RxBool isFinished = false.obs;
   RxString characterSelect = "".obs;
+  Timer? timer;
   // RxBool isShaking = false.obs;
 
   // onTap Loading
@@ -49,6 +50,18 @@ class TheaterGameChooseYourCharacterController extends GetxController
 
   void nextStepAfterMessage() {
     setWidget(TheaterGameChooseCharacterScreen());
+  }
+
+  void startAutomaticChange() {
+    timer = Timer.periodic(Duration(milliseconds: 200), (timer) {
+      toggleContainerWidth();
+    });
+  }
+
+  void stopAutomaticChange() {
+    if (timer != null && timer!.isActive) {
+      timer!.cancel(); // Membatalkan timer jika sedang berjalan
+    }
   }
 
   void stopTapLoading() {
@@ -87,6 +100,7 @@ class TheaterGameChooseYourCharacterController extends GetxController
     // Di sini Anda dapat mengatur widget awal yang akan ditampilkan
     // setWidget(TheaterGameChooseYourCharMessageScreen());
     setWidget(TheaterGameChooseCharacterScreen());
+    startAutomaticChange();
 
     Vibration.vibrate(duration: 1000);
 
@@ -115,19 +129,15 @@ class TheaterGameChooseYourCharacterController extends GetxController
   }
 
   void toggleContainerWidth() {
-    containerWidth.value -= 10.0;
-    if (containerWidth.value < 0) {
-      containerWidth.value = 1200.0;
+    containerWidth.value += 0.01;
+    if (containerWidth.value >= 1.0) {
       selectRandomCharacter();
-      GetStorage().write('status_seat_tablet', characterSelect.value);
-
-      Get.offNamed(Routes.THEATER_GAME_CHOOSE_YOUR_CHARACTER_DONE,
-          arguments: {"selected": characterSelect.value});
+      onSubmit();
     }
   }
 
   void selectRandomCharacter() {
-    final List<String> characters = ["Gilgamesh", "Enkidu"];
+    final List<String> characters = ["hemelstier"];
     final Random random = Random();
     final int randomIndex = random.nextInt(characters.length);
     characterSelect.value = characters[randomIndex];
@@ -151,6 +161,7 @@ class TheaterGameChooseYourCharacterController extends GetxController
   }
 
   Future<void> onSubmit() async {
+    stopAutomaticChange();
     audioCache.play('confirm.mp3');
     GetStorage().write('status_seat_tablet', characterSelect.value);
     Get.offNamed(Routes.THEATER_GAME_CHOOSE_YOUR_CHARACTER_DONE,

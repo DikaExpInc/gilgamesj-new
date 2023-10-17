@@ -22,9 +22,9 @@
 
 ### how to run if all installed
 
-- install pm2
+- install pm2 (just only first install)
   `sudo npm install -g pm2`
-- open terminal with bash (in VS Code) and run this command
+- open the folder gilgamesj-new terminal and run this command
   `./run_app.sh`
-- do this if the progam cannot run  
+- do this if the progam cannot run (just only first install)
   `chmod +x start_services.sh`

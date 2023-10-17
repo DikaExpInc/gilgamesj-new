@@ -20,7 +20,10 @@
 
 -
 
-
-
 ### how to run if all installed
-- 
+
+- open terminal with bash (in VS Code) and run this command
+  `./run_app.sh`
+
+- do this if the progam cannot run  
+  `chmod +x start_services.sh`

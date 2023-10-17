@@ -22,8 +22,9 @@
 
 ### how to run if all installed
 
+- install pm2
+  `sudo npm install -g pm2`
 - open terminal with bash (in VS Code) and run this command
   `./run_app.sh`
-
 - do this if the progam cannot run  
   `chmod +x start_services.sh`

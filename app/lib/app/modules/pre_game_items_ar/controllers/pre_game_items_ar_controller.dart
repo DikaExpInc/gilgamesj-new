@@ -18,8 +18,8 @@ class PreGameItemsArController extends GetxController
 
   @override
   void onClose() {
-    super.onClose();
     _controllerParticle.dispose();
+    super.onClose();
   }
 
   Widget get rotatingParticle {

@@ -32,25 +32,34 @@ class MiniGameMusicGameView extends GetView<MiniGameMusicGameController> {
               child: Stack(
                 alignment: Alignment.center,
                 children: [
-                  // Positioned(
-                  //   width: mWidth,
-                  //   top: 50,
-                  //   child: Obx(() => Center(
-                  //           child: Text(
-                  //         '${controller.key_tuts}',
-                  //         style: TextStyle(
-                  //           fontFamily: 'Centrion',
-                  //           fontSize: 42,
-                  //           color: Colors.white,
-                  //           fontWeight: FontWeight.w500,
-                  //         ),
-                  //       ))),
-                  // ),
                   Positioned(
                     width: mWidth,
                     top: 50,
+                    child: InkWell(
+                      onTap: () {
+                        controller.playAudioSequenceFromLockCode();
+                      },
+                      child: Center(
+                        child: Image.asset(
+                          'assets/images/play_icon.png',
+                          width: 100,
+                        ),
+                      ),
+                    ),
+                  ),
+                  Positioned(
+                    width: mWidth,
+                    top: 200,
                     child: Obx(() => Center(
-                            child: Image.asset(''))),
+                            child: Text(
+                          '${controller.key_tuts}',
+                          style: TextStyle(
+                            fontFamily: 'Centrion',
+                            fontSize: 42,
+                            color: Colors.white,
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ))),
                   ),
                   // Kolom pertama
                   Positioned(

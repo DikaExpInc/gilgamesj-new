@@ -1,6 +1,7 @@
 import 'package:app/app/routes/app_pages.dart';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:vibration/vibration.dart';
 
 class MiniGameMusicGameController extends GetxController {
@@ -29,6 +30,13 @@ class MiniGameMusicGameController extends GetxController {
       print("key_tuts : ${key_tuts.value}");
       print("lockCode : ${lockCodeString}");
       if (lockCode.toString() == key_tuts.value) {
+        int playedNumber = GetStorage().read('played_number') ?? 0;
+        int totalPlayer = int.parse(GetStorage().read('totalPlayer'));
+        if (playedNumber + 1 >= totalPlayer) {
+          GetStorage().write('played_number', 0);
+        } else {
+          GetStorage().write('played_number', playedNumber + 1);
+        }
         Get.offAllNamed(Routes.PRE_GAME_ITEMS);
       } else {
         audioCache.play('error-glitch.mp3');

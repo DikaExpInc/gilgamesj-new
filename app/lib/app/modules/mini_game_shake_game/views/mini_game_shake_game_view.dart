@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
+import 'package:introduction_screen/introduction_screen.dart';
 
 import '../controllers/mini_game_shake_game_controller.dart';
 import 'package:video_player/video_player.dart';
@@ -133,7 +134,13 @@ class MiniGameShakeGameView extends GetView<MiniGameShakeGameController> {
                     ),
                   ],
                 )
-              : VideoPlayer(controller.videocontroller!),
+              : Stack(
+                  children: [
+                    VideoPlayer(
+                      controller.videocontroller!,
+                    ),
+                  ],
+                ),
         ),
       ),
     );

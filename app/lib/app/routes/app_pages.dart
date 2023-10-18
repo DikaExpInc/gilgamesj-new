@@ -624,12 +624,12 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.PRE_GAME_PHOTO,
-      page: () => const PreGamePhotoView(),
+      page: () =>  PreGamePhotoView(),
       binding: PreGamePhotoBinding(),
     ),
     GetPage(
       name: _Paths.PRE_GAME_GUESS,
-      page: () => const PreGameGuessView(),
+      page: () => PreGameGuessView(),
       binding: PreGameGuessBinding(),
     ),
   ];

@@ -62,3 +62,6 @@ flutter:
     - family: Centrion
       fonts:
         - asset: assets/fonts/centrion/CentrionVariable.ttf
+    - family: Abel
+      fonts:
+        - asset: assets/fonts/abel/abel-regular.ttf

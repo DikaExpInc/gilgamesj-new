@@ -8,17 +8,10 @@ class PreGameGuessView extends GetView<PreGameGuessController> {
   const PreGameGuessView({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('PreGameGuessView'),
-        centerTitle: true,
-      ),
-      body: const Center(
-        child: Text(
-          'PreGameGuessView is working',
-          style: TextStyle(fontSize: 20),
-        ),
-      ),
+    return GetBuilder<PreGameGuessController>(
+      builder: (controller) {
+        return controller.selectedWidget;
+      },
     );
   }
 }

@@ -29,7 +29,7 @@ Future<void> main() async {
   if (teamName != null && teamName.isNotEmpty) {
     pageAllController.autoLogin();
     initialRoute =
-        Routes.VIEW_PLAYER; // Ganti rute jika total player telah diisi
+        Routes.PRE_GAME_ITEMS; // Ganti rute jika total player telah diisi
 
     // Cek apakah data stage telah diisi
     String? mode = GetStorage().read('mode');
@@ -70,7 +70,7 @@ Future<void> main() async {
         getPages: AppPages.routes,
         builder: BotToastInit(),
         navigatorObservers: [BotToastNavigatorObserver()],
-        debugShowCheckedModeBanner: false,  
+        debugShowCheckedModeBanner: false,
       ),
     );
   });

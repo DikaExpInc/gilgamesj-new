@@ -1,9 +1,8 @@
 import 'package:get/get.dart';
 
 class ScanArController extends GetxController {
-  //TODO: Implement ScanArController
+  RxBool hasNavigated = false.obs;
 
-  final count = 0.obs;
   @override
   void onInit() {
     super.onInit();
@@ -19,5 +18,5 @@ class ScanArController extends GetxController {
     super.onClose();
   }
 
-  void increment() => count.value++;
+  Map<String, dynamic> arguments = Get.arguments;
 }

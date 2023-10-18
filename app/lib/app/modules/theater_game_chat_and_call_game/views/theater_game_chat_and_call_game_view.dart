@@ -8,7 +8,6 @@ class TheaterGameChatAndCallGameView
     extends GetView<TheaterGameChatAndCallGameController> {
   const TheaterGameChatAndCallGameView({Key? key}) : super(key: key);
   @override
-  @override
   Widget build(BuildContext context) {
     return GetBuilder<TheaterGameChatAndCallGameController>(
       builder: (controller) {

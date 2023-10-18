@@ -1,11 +1,13 @@
 import 'package:app/app/routes/app_pages.dart';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:shake/shake.dart';
 import 'package:video_player/video_player.dart';
 import 'package:vibration/vibration.dart';
 
 class MiniGameShakeGameController extends GetxController {
+  Map<String, dynamic> arguments = Get.arguments;
   ShakeDetector? shakeDetector;
   VideoPlayerController? videocontroller;
   RxBool isShaking = false.obs;
@@ -54,10 +56,38 @@ class MiniGameShakeGameController extends GetxController {
             });
           }
         });
-    videocontroller = VideoPlayerController.asset('assets/videos/sand.mp4');
+    if (arguments['game'] == "rule" && arguments['type'] == "rule1") {
+      videocontroller =
+          VideoPlayerController.asset('assets/videos/sand_spelregel1.mp4');
+    } else if (arguments['game'] == "rule" && arguments['type'] == "rule2") {
+      videocontroller =
+          VideoPlayerController.asset('assets/videos/sand_spelregel2.mp4');
+    } else if (arguments['game'] == "rule" && arguments['type'] == "rule3") {
+      videocontroller =
+          VideoPlayerController.asset('assets/videos/sand_spelregel3.mp4');
+    } else if (arguments['game'] == "rule" && arguments['type'] == "rule4") {
+      videocontroller =
+          VideoPlayerController.asset('assets/videos/sand_spelregel4.mp4');
+    } else if (arguments['game'] == "rule" && arguments['type'] == "rule5") {
+      videocontroller =
+          VideoPlayerController.asset('assets/videos/sand_spelregel5.mp4');
+    } else {
+      videocontroller = VideoPlayerController.asset('assets/videos/sand.mp4');
+    }
     videocontroller!.addListener(() {
       if (videocontroller!.value.position >= videocontroller!.value.duration) {
-        isDone.value = true;
+        if (arguments['game'] != "rule") {
+          isDone.value = true;
+        } else {
+          int playedNumber = GetStorage().read('played_number') ?? 0;
+          int totalPlayer = int.parse(GetStorage().read('totalPlayer'));
+          if (playedNumber + 1 >= totalPlayer) {
+            GetStorage().write('played_number', 0);
+          } else {
+            GetStorage().write('played_number', playedNumber + 1);
+          }
+          Get.offAllNamed(Routes.PRE_GAME_ITEMS);
+        }
       }
     });
 

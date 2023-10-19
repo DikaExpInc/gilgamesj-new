@@ -1,4 +1,5 @@
 import 'package:app/app/routes/app_pages.dart';
+import 'package:app/app/utils/app_config.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
@@ -191,6 +192,13 @@ class ChoiceRoleView extends GetView<ChoiceRoleController> {
                       ),
                     )
                   : Container(),
+            ),
+            Text(
+              'Version ${AppConfig().version}',
+              style: TextStyle(
+                  fontWeight: controller.selectedRole.value == "late"
+                      ? FontWeight.bold
+                      : FontWeight.normal),
             ),
           ],
         ),

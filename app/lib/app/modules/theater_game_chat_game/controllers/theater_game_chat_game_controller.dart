@@ -11,6 +11,9 @@ import 'package:vibration/vibration.dart';
 class TheaterGameChatGameController extends GetxController
     with GetTickerProviderStateMixin {
   Map<String, dynamic> arguments = Get.arguments;
+  num getHeight() {
+    return isDone.value ? 15 : 5;
+  }
 
   final RxList<Map<String, dynamic>> chatDataAll = <Map<String, dynamic>>[].obs;
   final RxList<Map<String, dynamic>> chatData = <Map<String, dynamic>>[].obs;

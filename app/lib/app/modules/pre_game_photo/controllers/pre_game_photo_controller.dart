@@ -1,11 +1,10 @@
 import 'package:get/get.dart';
+import 'package:image_picker/image_picker.dart';
 
 class PreGamePhotoController extends GetxController {
-  //TODO: Implement PreGamePhotoController
-
-  final count = 0.obs;
   @override
   void onInit() {
+    takePhoto();
     super.onInit();
   }
 
@@ -19,5 +18,14 @@ class PreGamePhotoController extends GetxController {
     super.onClose();
   }
 
-  void increment() => count.value++;
+  var imageFile = Rx<XFile?>(null);
+
+  final ImagePicker _picker = ImagePicker();
+
+  Future<void> takePhoto() async {
+    XFile? photo = await _picker.pickImage(source: ImageSource.camera);
+    if (photo != null) {
+      imageFile.value = photo;
+    }
+  }
 }

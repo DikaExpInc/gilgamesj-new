@@ -110,6 +110,7 @@ abstract class Routes {
   static const SCAN_QR = _Paths.SCAN_QR;
   static const PRE_GAME_PHOTO = _Paths.PRE_GAME_PHOTO;
   static const PRE_GAME_GUESS = _Paths.PRE_GAME_GUESS;
+  static const DIES_TABLET_VIDEO = _Paths.DIES_TABLET_VIDEO;
 }
 
 abstract class _Paths {
@@ -216,4 +217,5 @@ abstract class _Paths {
   static const SCAN_QR = '/scan-qr';
   static const PRE_GAME_PHOTO = '/pre-game-photo';
   static const PRE_GAME_GUESS = '/pre-game-guess';
+  static const DIES_TABLET_VIDEO = '/dies-tablet-video';
 }

@@ -34,6 +34,8 @@ import '../modules/connection/bindings/connection_binding.dart';
 import '../modules/connection/views/connection_view.dart';
 import '../modules/create_team/bindings/create_team_binding.dart';
 import '../modules/create_team/views/create_team_view.dart';
+import '../modules/dies_tablet_video/bindings/dies_tablet_video_binding.dart';
+import '../modules/dies_tablet_video/views/dies_tablet_video_view.dart';
 import '../modules/gallery/bindings/gallery_binding.dart';
 import '../modules/gallery/views/gallery_view.dart';
 import '../modules/gallery_image_detail/bindings/gallery_image_detail_binding.dart';
@@ -589,7 +591,7 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.SCAN_AR,
-      page: () => const ScanArView(),
+      page: () => ScanArView(),
       binding: ScanArBinding(),
     ),
     GetPage(
@@ -624,13 +626,18 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.PRE_GAME_PHOTO,
-      page: () =>  PreGamePhotoView(),
+      page: () => PreGamePhotoView(),
       binding: PreGamePhotoBinding(),
     ),
     GetPage(
       name: _Paths.PRE_GAME_GUESS,
       page: () => PreGameGuessView(),
       binding: PreGameGuessBinding(),
+    ),
+    GetPage(
+      name: _Paths.DIES_TABLET_VIDEO,
+      page: () => DiesTabletVideoView(),
+      binding: DiesTabletVideoBinding(),
     ),
   ];
 }

@@ -171,6 +171,7 @@ class PageAllController extends GetxController {
                     GetStorage().write('mode', "go-to-theater");
                     Get.offAllNamed(Routes.MOVEMENT_PAGE, arguments: {
                       "title": "Blijf zitten bij de hemelstier",
+                      "description": "",
                     });
                   }
                 }
@@ -421,9 +422,10 @@ class PageAllController extends GetxController {
                 }
                 break;
               case "ishtar-calling":
-                if (setting!.player == "random-row5" &&
-                    status_seat_tablet == "row2" &&
-                    rij_tablet == "3") {
+                bool isPlayer = checkPlayerData(
+                    setting!.ishtarRows!, setting!.ishtarColumns!);
+
+                if (setting!.player == "random" && isPlayer) {
                   if (mode != "ishtar-calling") {
                     GetStorage().write('mode', "ishtar-calling");
                     Get.offAllNamed(Routes.THEATER_GAME_CHAT_AND_CALL_GAME);
@@ -490,6 +492,33 @@ class PageAllController extends GetxController {
         }
       }
     }
+  }
+
+  bool checkPlayerData(int ishtarRows, int ishtarColumns) {
+    final box = GetStorage();
+    String? totalPlayer = box.read('totalPlayer');
+
+    // pastikan totalPlayer bukan null sebelum melanjutkan
+    if (totalPlayer != null) {
+      // konversi string ke integer
+      int? total = int.tryParse(totalPlayer);
+
+      // pastikan konversi berhasil
+      if (total != null) {
+        for (int i = 0; i < total; i++) {
+          var seat = box.read('seat_$i');
+          var position = box.read('position_$i');
+          var statusSeat = box.read('status_seat_$i');
+          var stoel = box.read('stoel_$i');
+          var rij = box.read('rij_$i');
+
+          if (rij == '${ishtarColumns}' && stoel == '${ishtarRows}') {
+            return true;
+          }
+        }
+      }
+    }
+    return false;
   }
 
   void increaseVolume() {

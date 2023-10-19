@@ -6,7 +6,7 @@
   },
   {
     "tipe": "normal",
-    "pesan": "Ik kan niets zien door mijn grote hoofd!"
+    "pesan": "Ik kan niets zien mijn hoofd is weg!"
   },
   {
     "tipe": "ask",
@@ -15,15 +15,15 @@
   },
   {
     "tipe": "normal",
-    "pesan": "Ik ben Humbaba, maar in dit donkere theater zie ik niks."
+    "pesan": "Jullie moeten mijn hoofd vinden."
   },
   {
     "tipe": "normal",
-    "pesan": "Kunnen jullie me helpen?"
+    "pesan": "Daar heb je een speciale zaklamp voor nodig. "
   },
   {
     "tipe": "ask",
-    "pesan": "Zoek mij met mijn grote hoofd!",
+    "pesan": "Die heeft iemand wel voor je, willen jullie helpen?",
     "jawaban": ["we gaan je helpen", "alleen als je ons niet opeet"]
   },
   {
@@ -31,12 +31,7 @@
     "pesan": "Humbaba eet niemand op!"
   },
   {
-    "tipe": "ask",
-    "pesan": "Laat me weten of je me gevonden hebt.",
-    "jawaban": ["Ja, we gaan nu aan de slag", "Ja, je bent gevonden"]
-  },
-  {
     "tipe": "normal",
-    "pesan": "Help Humbaba op zijn PLEK NOG MAKEN staan tot hij naar binnen kan."
+    "pesan": "Laat me weten of je me gevonden hebt."
   }
 ]

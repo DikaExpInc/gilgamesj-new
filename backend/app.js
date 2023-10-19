@@ -732,14 +732,15 @@ server.on('message', async (msg) => {
     }
   }
   if (result['url'] == '/game/ishtar-calling') {
-    if (result['value'] == 'random-row5') {
+    if (result['value'] == 'random') {
+      await updateIshtarCall()
       await Setting.findOneAndUpdate(
         {
           _id: '64de3fd2843badaf9efc006b',
         },
         {
           page: 'ishtar-calling',
-          player: 'random-row5',
+          player: 'random',
         }
       )
     }
@@ -849,7 +850,11 @@ const arCameraAdminRouter = require('./app/ar_camera/router.admin')
 const seatAdminRouter = require('./app/seat/router.admin')
 const game2AdminRouter = require('./app/game_2/router.admin')
 const game5AdminRouter = require('./app/game_5/router.admin')
-const { getSeats, assignSeats } = require('./app/auth/controller')
+const {
+  getSeats,
+  assignSeats,
+  updateIshtarCall,
+} = require('./app/auth/controller')
 
 const app = express()
 const URL = `/api/v1`

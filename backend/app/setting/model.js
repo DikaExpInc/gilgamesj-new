@@ -18,6 +18,18 @@ let settingSchema = mongoose.Schema(
     notification: {
       type: String,
     },
+    rows: {
+      type: Number,
+    },
+    columns: {
+      type: Number,
+    },
+    ishtarRows: {
+      type: Number,
+    },
+    ishtarColumns: {
+      type: Number,
+    },
   },
   { timestamps: true }
 )

@@ -10,7 +10,7 @@ import {
   FundOutlined,
   MessageOutlined,
   SettingOutlined,
-  CheckSquareFilled,  
+  CheckSquareFilled,
   CameraOutlined,
   LinkOutlined,
 } from '@ant-design/icons'
@@ -130,14 +130,14 @@ const dashBoardNavTree = [
   //   breadcrumb: false,
   //   submenu: [],
   // },
-  // {
-  //   key: "setting",
-  //   path: `${APP_PREFIX_PATH}/settings`,
-  //   title: "Setting",
-  //   icon: SettingOutlined,
-  //   breadcrumb: false,
-  //   submenu: [],
-  // },
+  {
+    key: 'setting',
+    path: `${APP_PREFIX_PATH}/settings`,
+    title: 'Setting',
+    icon: SettingOutlined,
+    breadcrumb: false,
+    submenu: [],
+  },
 ]
 
 const navigationConfig = [...dashBoardNavTree]

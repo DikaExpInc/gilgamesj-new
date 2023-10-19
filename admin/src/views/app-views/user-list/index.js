@@ -26,6 +26,7 @@ const UserList = () => {
         querySnapshot.data.forEach((doc) => {
           listData.push({ ...doc, id: doc._id })
         })
+
         dispatch(getAllUser(listData))
         setList(listData)
       })

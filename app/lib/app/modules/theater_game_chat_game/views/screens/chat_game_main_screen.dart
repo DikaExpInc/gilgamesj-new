@@ -19,7 +19,6 @@ class ChatGameMainScreen extends GetView<TheaterGameChatGameController> {
   Widget build(BuildContext context) {
     mWidth = MediaQuery.of(context).size.width;
     mHeight = MediaQuery.of(context).size.height;
-    num getHeight = 2 > 2 ? 4 : 5;
 
     return Scaffold(
       body: SingleChildScrollView(
@@ -122,115 +121,117 @@ class ChatGameMainScreen extends GetView<TheaterGameChatGameController> {
                   ),
                 ),
               ),
-              Container(
-                width: mWidth,
-                height: mHeight / getHeight,
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(
-                      horizontal: 40.0, vertical: 20.0),
-                  child: Obx(
-                    () {
-                      final currentChat = controller.chatData.isNotEmpty
-                          ? controller.chatData.last
-                          : null;
+              Obx(
+                () => Container(
+                  width: mWidth,
+                  height: mHeight / (controller.isDone.value ? 15 : 5),
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 40.0, vertical: 20.0),
+                    child: Obx(
+                      () {
+                        final currentChat = controller.chatData.isNotEmpty
+                            ? controller.chatData.last
+                            : null;
 
-                      if (controller.isChoosingAnswer.value &&
-                          currentChat != null) {
-                        final jawaban = currentChat['jawaban']
-                            as List<dynamic>?; // Ubah tipe ke List<dynamic>
-                        if (jawaban != null) {
-                          return Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              for (int i = 0; i < jawaban.length; i++)
-                                i == 0
-                                    ? AnswerWidget(
-                                        title: jawaban[i]
-                                            as String, // Cast setiap jawaban menjadi String
-                                        position:
-                                            true, // Sesuaikan dengan posisi yang sesuai
-                                        press: () {
-                                          controller.chooseAnswer(i);
-                                          _scrollController.animateTo(
-                                            _scrollController
-                                                .position.maxScrollExtent,
-                                            duration:
-                                                Duration(milliseconds: 300),
-                                            curve: Curves.easeOut,
-                                          );
-                                        },
-                                      )
-                                    : AnswerWidget(
-                                        title: jawaban[i]
-                                            as String, // Cast setiap jawaban menjadi String
-                                        position:
-                                            false, // Sesuaikan dengan posisi yang sesuai
-                                        press: () {
-                                          controller.chooseAnswer(i);
-                                          _scrollController.animateTo(
-                                            _scrollController
-                                                .position.maxScrollExtent,
-                                            duration:
-                                                Duration(milliseconds: 300),
-                                            curve: Curves.easeOut,
-                                          );
-                                        },
-                                      ),
-                            ],
-                          );
+                        if (controller.isChoosingAnswer.value &&
+                            currentChat != null) {
+                          final jawaban = currentChat['jawaban']
+                              as List<dynamic>?; // Ubah tipe ke List<dynamic>
+                          if (jawaban != null) {
+                            return Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                for (int i = 0; i < jawaban.length; i++)
+                                  i == 0
+                                      ? AnswerWidget(
+                                          title: jawaban[i]
+                                              as String, // Cast setiap jawaban menjadi String
+                                          position:
+                                              true, // Sesuaikan dengan posisi yang sesuai
+                                          press: () {
+                                            controller.chooseAnswer(i);
+                                            _scrollController.animateTo(
+                                              _scrollController
+                                                  .position.maxScrollExtent,
+                                              duration:
+                                                  Duration(milliseconds: 300),
+                                              curve: Curves.easeOut,
+                                            );
+                                          },
+                                        )
+                                      : AnswerWidget(
+                                          title: jawaban[i]
+                                              as String, // Cast setiap jawaban menjadi String
+                                          position:
+                                              false, // Sesuaikan dengan posisi yang sesuai
+                                          press: () {
+                                            controller.chooseAnswer(i);
+                                            _scrollController.animateTo(
+                                              _scrollController
+                                                  .position.maxScrollExtent,
+                                              duration:
+                                                  Duration(milliseconds: 300),
+                                              curve: Curves.easeOut,
+                                            );
+                                          },
+                                        ),
+                              ],
+                            );
+                          }
                         }
-                      }
-                      return Column();
-                    },
+                        return Column();
+                      },
+                    ),
                   ),
                 ),
               ),
-              Obx(() {
-                return controller.isDone.value
-                    ? GestureDetector(
-                        behavior: HitTestBehavior.opaque,
-                        onLongPressDown: (details) {
-                          controller.startTapFinish();
-                        },
-                        onLongPressUp: () {
-                          print('terlepas');
-                          controller.stopTapLoading();
-                        },
-                        onVerticalDragEnd: (details) => {
-                          print('terlepas1'),
-                          controller.stopTapLoading(),
-                        },
-                        onHorizontalDragEnd: (details) => {
-                          print('terlepas2'),
-                          controller.stopTapLoading(),
-                        },
-                        onTapUp: (details) => {
-                          print('terlepas3'),
-                          controller.stopTapLoading(),
-                        },
-                        child: Stack(
-                          alignment: Alignment.center,
-                          children: [
-                            SvgPicture.asset(
-                              "assets/icons/finger_real.svg",
-                              width: 100,
-                              height: 100,
-                            ),
-                            Container(
-                              width: 150,
-                              height: 150,
-                              child: Obx(
-                                () => CircularProgressIndicator(
-                                  color: Colors.white,
-                                  value: controller.tapValue / 100,
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      )
-                    : SizedBox();
-              }),
+              // Obx(() {
+              //   return controller.isDone.value
+              //       ? GestureDetector(
+              //           behavior: HitTestBehavior.opaque,
+              //           onLongPressDown: (details) {
+              //             controller.startTapFinish();
+              //           },
+              //           onLongPressUp: () {
+              //             print('terlepas');
+              //             controller.stopTapLoading();
+              //           },
+              //           onVerticalDragEnd: (details) => {
+              //             print('terlepas1'),
+              //             controller.stopTapLoading(),
+              //           },
+              //           onHorizontalDragEnd: (details) => {
+              //             print('terlepas2'),
+              //             controller.stopTapLoading(),
+              //           },
+              //           onTapUp: (details) => {
+              //             print('terlepas3'),
+              //             controller.stopTapLoading(),
+              //           },
+              //           child: Stack(
+              //             alignment: Alignment.center,
+              //             children: [
+              //               SvgPicture.asset(
+              //                 "assets/icons/finger_real.svg",
+              //                 width: 100,
+              //                 height: 100,
+              //               ),
+              //               Container(
+              //                 width: 150,
+              //                 height: 150,
+              //                 child: Obx(
+              //                   () => CircularProgressIndicator(
+              //                     color: Colors.white,
+              //                     value: controller.tapValue / 100,
+              //                   ),
+              //                 ),
+              //               ),
+              //             ],
+              //           ),
+              //         )
+              //       : SizedBox();
+              // }),
             ],
           ),
         ),

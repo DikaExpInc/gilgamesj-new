@@ -7,14 +7,16 @@ const {
   actionEdit,
   actionDelete,
   actionAddNotification,
+  actionEditSeats,
+  actionEditIshtarCall,
 } = require('./controller')
 
 const multer = require('multer')
 const os = require('os')
 
-const { isLoginAdmin } = require('../middleware/auth')
+// const { isLoginAdmin } = require('../middleware/auth')
 
-// router.use(isLoginAdmin);
+// router.use(isLoginAdmin)
 router.get('/', index)
 router.get('/:id', getById)
 router.post(
@@ -26,6 +28,16 @@ router.put(
   '/edit/:id',
   multer({ dest: os.tmpdir() }).single('image'),
   actionEdit
+)
+router.put(
+  '/editseat/:id',
+  multer({ dest: os.tmpdir() }).single('image'),
+  actionEditSeats
+)
+router.put(
+  '/editishtarcall/:id',
+  multer({ dest: os.tmpdir() }).single('image'),
+  actionEditIshtarCall
 )
 router.put(
   '/shownotification/:id',

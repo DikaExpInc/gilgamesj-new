@@ -18,7 +18,7 @@ class TheaterGameChoiceGameDoneView
   Widget build(BuildContext context) {
     double _calculateProgressValue(int index) {
       num itemValue = controller.game5?.items?[index].iV ?? 0.0;
-      return (itemValue * controller.totalPlayer.value) / 10;
+      return (itemValue * (controller.totalPlayer.value - 1)) / 10;
     }
 
     mWidth = MediaQuery.of(context).size.width;

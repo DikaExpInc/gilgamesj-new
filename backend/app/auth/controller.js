@@ -167,7 +167,7 @@ module.exports = {
     let isForward = true
 
     const assignedSeats = []
-    let prevRole = 'children' // Menyimpan peran sebelumnya
+    let prevRole = '' // Menyimpan peran sebelumnya
 
     const setting = await Setting.findOne({ _id: '64de3fd2843badaf9efc006b' })
 
@@ -238,6 +238,9 @@ module.exports = {
 
         // Memeriksa peran sebelumnya dan peran saat ini
         const currentRole = player.user_type
+        if (prevRole == '') {
+          prevRole = currentRole
+        }
         if (prevRole !== currentRole) {
           // Jika peran saat ini berbeda dengan peran sebelumnya, reset kolom ke 1
           currentCol += 1

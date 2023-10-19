@@ -322,6 +322,7 @@ module.exports = {
               player_num: player_num,
               stage_id: stage._id,
               user_id: user.id,
+              user_type: user.user_type,
             })
           }
 

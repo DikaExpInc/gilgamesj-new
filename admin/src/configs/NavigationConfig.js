@@ -33,6 +33,14 @@ const dashBoardNavTree = [
     breadcrumb: false,
     submenu: [],
   },
+  {
+    key: 'player',
+    path: `${APP_PREFIX_PATH}/players`,
+    title: 'Player',
+    icon: UserOutlined,
+    breadcrumb: false,
+    submenu: [],
+  },
   // {
   //   key: "news",
   //   path: `${APP_PREFIX_PATH}/news`,

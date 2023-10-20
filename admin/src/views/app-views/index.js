@@ -1,7 +1,7 @@
-import React, { lazy, Suspense } from "react";
-import { Switch, Route, Redirect } from "react-router-dom";
-import Loading from "components/shared-components/Loading";
-import { APP_PREFIX_PATH } from "configs/AppConfig";
+import React, { lazy, Suspense } from 'react'
+import { Switch, Route, Redirect } from 'react-router-dom'
+import Loading from 'components/shared-components/Loading'
+import { APP_PREFIX_PATH } from 'configs/AppConfig'
 // import { signOut } from 'redux/sagas/Auth'
 
 export const AppViews = () => {
@@ -23,6 +23,10 @@ export const AppViews = () => {
         <Route
           path={`${APP_PREFIX_PATH}/users`}
           component={lazy(() => import(`./user-list`))}
+        />
+        <Route
+          path={`${APP_PREFIX_PATH}/players`}
+          component={lazy(() => import(`./player-list`))}
         />
         <Route
           path={`${APP_PREFIX_PATH}/news`}
@@ -82,7 +86,7 @@ export const AppViews = () => {
         />
       </Switch>
     </Suspense>
-  );
-};
+  )
+}
 
-export default React.memo(AppViews);
+export default React.memo(AppViews)

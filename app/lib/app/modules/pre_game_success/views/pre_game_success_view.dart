@@ -30,7 +30,6 @@ class PreGameSuccessView extends GetView<PreGameSuccessController> {
         ),
         child: Stack(
           children: [
-            controller.rotatingParticle,
             Column(
               crossAxisAlignment: CrossAxisAlignment.end,
               mainAxisAlignment: MainAxisAlignment.spaceAround,

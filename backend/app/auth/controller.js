@@ -629,6 +629,23 @@ module.exports = {
     }
   },
 
+  getAllPlayers: async (req, res, next) => {
+    try {
+      const player = await Player.find({})
+      res.status(200).json({
+        message: `Successfully get players`,
+        status: 'success',
+        data: player,
+      })
+    } catch (err) {
+      return res.status(422).json({
+        error: 1,
+        message: err.message,
+        fields: err.errors,
+      })
+    }
+  },
+
   changePlayer: async (req, res, next) => {
     try {
       if (req.body.player_now != undefined) {

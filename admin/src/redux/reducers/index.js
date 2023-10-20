@@ -1,23 +1,24 @@
-import { combineReducers } from "redux";
-import Auth from "./Auth";
-import Theme from "./Theme";
-import News from "./News";
-import Maps from "./Maps";
-import SocialMedia from "./SocialMedia";
-import SocialMediaComment from "./SocialMediaComment";
-import GalleryPhoto from "./GalleryPhoto";
-import GalleryVideo from "./GalleryVideo";
-import Chat from "./Chat";
-import ChatDetail from "./ChatDetail";
-import Camera from "./Camera";
-import Phone from "./Phone";
-import Contact from "./Contact";
-import Stage from "./Stage";
-import Task from "./Task";
-import Setting from "./Setting";
-import User from "./User";
-import Light from "./Light";
-import PreGame from "./PreGame";
+import { combineReducers } from 'redux'
+import Auth from './Auth'
+import Theme from './Theme'
+import News from './News'
+import Maps from './Maps'
+import SocialMedia from './SocialMedia'
+import SocialMediaComment from './SocialMediaComment'
+import GalleryPhoto from './GalleryPhoto'
+import GalleryVideo from './GalleryVideo'
+import Chat from './Chat'
+import ChatDetail from './ChatDetail'
+import Camera from './Camera'
+import Phone from './Phone'
+import Contact from './Contact'
+import Stage from './Stage'
+import Task from './Task'
+import Setting from './Setting'
+import User from './User'
+import Player from './Player'
+import Light from './Light'
+import PreGame from './PreGame'
 
 const reducers = combineReducers({
   theme: Theme,
@@ -38,8 +39,9 @@ const reducers = combineReducers({
   task: Task,
   setting: Setting,
   user: User,
+  player: Player,
   light: Light,
   preGame: PreGame,
-});
+})
 
-export default reducers;
+export default reducers

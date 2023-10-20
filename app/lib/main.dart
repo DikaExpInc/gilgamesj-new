@@ -38,7 +38,6 @@ Future<void> main() async {
         case 'start':
           initialRoute = Routes.CHOICE_ROLE;
           break;
-
         default:
       }
     }

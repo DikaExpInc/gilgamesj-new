@@ -10,6 +10,7 @@ const {
   getSeats,
   getRowCol,
   updateIshtarCall,
+  getAllPlayers,
 } = require('./controller')
 const { isLoginUser } = require('../middleware/auth')
 

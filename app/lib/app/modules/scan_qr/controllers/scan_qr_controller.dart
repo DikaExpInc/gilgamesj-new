@@ -29,7 +29,7 @@ class ScanQrController extends GetxController
           if (scanData.code == "192302") {
             Get.toNamed(Routes.SCAN_AR, arguments: {
               "type": "boat",
-              "link": "/gilgamesj/ship",
+              "link": "/gilgamesj/boat",
             });
           } else {
             isWrong.value = true;

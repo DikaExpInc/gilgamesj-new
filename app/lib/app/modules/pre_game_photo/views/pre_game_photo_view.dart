@@ -38,7 +38,13 @@ class PreGamePhotoView extends StatelessWidget {
               ElevatedButton(
                 onPressed: () => {},
                 child: Text('Upload Photo'),
-              )
+              ),
+              ElevatedButton(
+                onPressed: () {
+                  controller.takePhoto();
+                },
+                child: Text('Take Photo Again'),
+              ),
             ],
           ),
         ),

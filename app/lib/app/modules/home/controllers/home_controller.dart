@@ -15,17 +15,12 @@ class HomeController extends GetxController with WidgetsBindingObserver {
   AudioPlayer? audioPlayer;
   RxBool isLoading = false.obs;
   final PageAllController pageAllController = Get.find<PageAllController>();
-  
+
   @override
   void onInit() async {
     super.onInit();
     WidgetsBinding.instance.addObserver(this);
     loadTasks();
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
   }
 
   @override

@@ -4,6 +4,7 @@ import 'package:app/app/data/game5_model.dart';
 import 'package:app/app/services/auth_service.dart';
 import 'package:app/app/services/game5_service.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 
 class TheaterGameChoiceGameDoneController extends GetxController {
   RxBool isFinished = false.obs;
@@ -42,6 +43,8 @@ class TheaterGameChoiceGameDoneController extends GetxController {
     update();
     // showLoading();
     game5 = await Game5Api().loadGame5API();
+    GetStorage().write('game5-1', game5?.items?[0].iV ?? 0);
+    GetStorage().write('game5-2', game5?.items?[1].iV ?? 0);
     update();
     // stopLoading();
     if (game5?.statusCode == 200) {

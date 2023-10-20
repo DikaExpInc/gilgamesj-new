@@ -140,6 +140,15 @@ class PageAllController extends GetxController {
                   }
                 }
                 break;
+              case "error":
+                if (setting!.player == "all") {
+                  if (mode != "error") {
+                    GetStorage().write('mode', "error");
+                    Get.offAllNamed(Routes.ERROR);
+                    Get.offAllNamed(Routes.ERROR);
+                  }
+                }
+                break;
               case "panic":
                 if (setting!.player == "all") {
                   if (mode != "panic") {
@@ -348,11 +357,28 @@ class PageAllController extends GetxController {
                   }
                 }
                 break;
+              case "game2-gilgamesj-winner":
+                if (setting!.player == "all") {
+                  if (mode != "game2-gilgamesj-winner") {
+                    GetStorage().write('mode', "game2-gilgamesj-winner");
+                    Get.offAllNamed(Routes.THEATER_GAME_LIGHTNING_GAME_WINNER);
+                  }
+                }
+                break;
               case "game5-choice-underwear":
                 if (setting!.player == "all") {
                   if (mode != "game5-choice-underwear") {
                     GetStorage().write('mode', "game5-choice-underwear");
                     Get.offAllNamed(Routes.THEATER_GAME_CHOICE_GAME,
+                        arguments: {"game": "underwear"});
+                  }
+                }
+                break;
+              case "game5-choice-underwear-winner":
+                if (setting!.player == "all") {
+                  if (mode != "game5-choice-underwear-winner") {
+                    GetStorage().write('mode', "game5-choice-underwear-winner");
+                    Get.offAllNamed(Routes.THEATER_GAME_CHOICE_GAME_WINNER,
                         arguments: {"game": "underwear"});
                   }
                 }

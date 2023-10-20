@@ -42,7 +42,7 @@ class ViewPlayerController extends GetxController {
     box.write('played_number', 0);
     box.write('mode', "item");
 
-    Get.toNamed(Routes.PRE_GAME_ITEMS);
+    Get.toNamed(Routes.PRE_GAME_SPIRIT_REALM);
   }
 
   @override

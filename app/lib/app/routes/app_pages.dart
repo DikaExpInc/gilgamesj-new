@@ -36,6 +36,8 @@ import '../modules/create_team/bindings/create_team_binding.dart';
 import '../modules/create_team/views/create_team_view.dart';
 import '../modules/dies_tablet_video/bindings/dies_tablet_video_binding.dart';
 import '../modules/dies_tablet_video/views/dies_tablet_video_view.dart';
+import '../modules/error/bindings/error_binding.dart';
+import '../modules/error/views/error_view.dart';
 import '../modules/gallery/bindings/gallery_binding.dart';
 import '../modules/gallery/views/gallery_view.dart';
 import '../modules/gallery_image_detail/bindings/gallery_image_detail_binding.dart';
@@ -140,6 +142,8 @@ import '../modules/theater_game_choice_game/bindings/theater_game_choice_game_bi
 import '../modules/theater_game_choice_game/views/theater_game_choice_game_view.dart';
 import '../modules/theater_game_choice_game_done/bindings/theater_game_choice_game_done_binding.dart';
 import '../modules/theater_game_choice_game_done/views/theater_game_choice_game_done_view.dart';
+import '../modules/theater_game_choice_game_winner/bindings/theater_game_choice_game_winner_binding.dart';
+import '../modules/theater_game_choice_game_winner/views/theater_game_choice_game_winner_view.dart';
 import '../modules/theater_game_choose_your_character/bindings/theater_game_choose_your_character_binding.dart';
 import '../modules/theater_game_choose_your_character/views/theater_game_choose_your_character_view.dart';
 import '../modules/theater_game_choose_your_character_done/bindings/theater_game_choose_your_character_done_binding.dart';
@@ -156,6 +160,8 @@ import '../modules/theater_game_lightning_game_custom/bindings/theater_game_ligh
 import '../modules/theater_game_lightning_game_custom/views/theater_game_lightning_game_custom_view.dart';
 import '../modules/theater_game_lightning_game_done/bindings/theater_game_lightning_game_done_binding.dart';
 import '../modules/theater_game_lightning_game_done/views/thater_game_lightning_game_done_view.dart';
+import '../modules/theater_game_lightning_game_winner/bindings/theater_game_lightning_game_winner_binding.dart';
+import '../modules/theater_game_lightning_game_winner/views/theater_game_lightning_game_winner_view.dart';
 import '../modules/theater_game_rebus/bindings/theater_game_rebus_binding.dart';
 import '../modules/theater_game_rebus/views/theater_game_rebus_view.dart';
 import '../modules/theater_game_reviving/bindings/theater_game_reviving_binding.dart';
@@ -638,6 +644,21 @@ class AppPages {
       name: _Paths.DIES_TABLET_VIDEO,
       page: () => DiesTabletVideoView(),
       binding: DiesTabletVideoBinding(),
+    ),
+    GetPage(
+      name: _Paths.ERROR,
+      page: () => ErrorView(),
+      binding: ErrorBinding(),
+    ),
+    GetPage(
+      name: _Paths.THEATER_GAME_LIGHTNING_GAME_WINNER,
+      page: () => TheaterGameLightningGameWinnerView(),
+      binding: TheaterGameLightningGameWinnerBinding(),
+    ),
+    GetPage(
+      name: _Paths.THEATER_GAME_CHOICE_GAME_WINNER,
+      page: () => TheaterGameChoiceGameWinnerView(),
+      binding: TheaterGameChoiceGameWinnerBinding(),
     ),
   ];
 }

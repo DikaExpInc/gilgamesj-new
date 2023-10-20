@@ -31,31 +31,18 @@ class TheaterGameHumbabaView extends StatelessWidget {
                   Obx(() => AnimatedSwitcher(
                         duration: Duration(seconds: 5),
                         child: controller.doneGame.value
-                            ? controller.scrollBg.value
-                                ? Container(
-                                    width: mWidth,
-                                    height: mHeight,
-                                    decoration: BoxDecoration(
-                                      image: DecorationImage(
-                                        image: AssetImage(
-                                            "assets/images/bg-night.png"),
-                                        fit: BoxFit.cover,
-                                      ),
-                                    ),
-                                    key: ValueKey<int>(1),
-                                  )
-                                : Container(
-                                    width: mWidth,
-                                    height: mHeight,
-                                    decoration: BoxDecoration(
-                                      image: DecorationImage(
-                                        image: AssetImage(
-                                            "assets/images/sunrise_bg.png"),
-                                        fit: BoxFit.cover,
-                                      ),
-                                    ),
-                                    key: ValueKey<int>(2),
-                                  )
+                            ? Container(
+                                width: mWidth,
+                                height: mHeight,
+                                decoration: BoxDecoration(
+                                  image: DecorationImage(
+                                    image: AssetImage(
+                                        "assets/images/bg-night.png"),
+                                    fit: BoxFit.cover,
+                                  ),
+                                ),
+                                key: ValueKey<int>(1),
+                              )
                             : Container(
                                 width: mWidth,
                                 height: mHeight,
@@ -168,6 +155,22 @@ class TheaterGameHumbabaView extends StatelessWidget {
                             ),
                           )
                         : Positioned(child: Container()),
+                  ),
+                  Obx(
+                    () => !controller.blackScreen.value
+                        ? Positioned(
+                            top: 40,
+                            child: Text(
+                              'Swipe en zoek Humbaba',
+                              style: TextStyle(
+                                  fontFamily: 'Abel',
+                                  fontSize: 40,
+                                  color: Colors.white),
+                            ),
+                          )
+                        : Positioned(
+                            child: Container(),
+                          ),
                   ),
                 ],
               ),

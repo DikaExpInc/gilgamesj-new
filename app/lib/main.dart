@@ -28,8 +28,8 @@ Future<void> main() async {
   String? teamName = GetStorage().read('teamName');
   if (teamName != null && teamName.isNotEmpty) {
     pageAllController.autoLogin();
-    initialRoute =
-        Routes.PRE_GAME_ITEMS; // Ganti rute jika total player telah diisi
+    initialRoute = Routes
+        .PRE_GAME_SPIRIT_REALM; // Ganti rute jika total player telah diisi
 
     // Cek apakah data stage telah diisi
     String? mode = GetStorage().read('mode');
@@ -61,6 +61,7 @@ Future<void> main() async {
     }
   }
 
+  SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: []);
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp])
       .then((_) {
     runApp(

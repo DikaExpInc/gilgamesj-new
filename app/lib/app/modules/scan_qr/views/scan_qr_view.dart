@@ -1,123 +1,70 @@
+import 'package:app/app/modules/scan_qr/views/tabs/fill_qr_tab.dart';
+import 'package:app/app/modules/scan_qr/views/tabs/scan_qr_tab.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:qr_code_scanner/qr_code_scanner.dart';
 
 import '../controllers/scan_qr_controller.dart';
 
 class ScanQrView extends GetView<ScanQrController> {
-  final GlobalKey qrKey = GlobalKey(debugLabel: 'QR');
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Stack(
-        children: [
-          Positioned(child: _buildQrView(context)),
-          Center(
-            child: Positioned(
-                child: Container(
-              margin: EdgeInsets.only(bottom: 500),
-              child: Text(
-                'Scan QR Code',
-                style: TextStyle(color: Colors.white, fontSize: 36),
-              ),
-            )),
+      appBar: AppBar(
+        title: Center(
+            child: Text(
+          "Scan de code of vulHem in.",
+          style: TextStyle(
+            fontFamily: 'Abel',
+            color: Colors.black,
+            fontSize: 36,
           ),
-          Obx(
-            () => controller.isWrong.value
-                ? Center(
-                    child: Positioned(
-                        child: Container(
-                      padding: EdgeInsets.all(40),
-                      height: MediaQuery.sizeOf(context).height / 4,
-                      decoration: BoxDecoration(
-                        color: Color.fromARGB(230, 0, 0, 0),
-                        border: Border.all(
-                            color: Colors.white,
-                            width: 2.0), // Mengatur border putih
-                        borderRadius:
-                            BorderRadius.circular(20.0), // Memberikan radius
-                      ),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            'Oeps! Je scant de verkeerde QR,\nProbeer het opnieuw',
-                            style: TextStyle(color: Colors.white, fontSize: 36),
-                            textAlign: TextAlign.center,
-                          ),
-                          InkWell(
-                            onTap: () => {
-                              controller.isWrong.value = false,
-                            },
-                            child: Container(
-                              width: MediaQuery.sizeOf(context).width / 4,
-                              padding: EdgeInsets.symmetric(
-                                  vertical: 20.0,
-                                  horizontal:
-                                      MediaQuery.of(context).size.width > 600
-                                          ? 50
-                                          : 20),
-                              decoration: BoxDecoration(
-                                image: DecorationImage(
-                                  image: AssetImage("assets/images/bg_btn.png"),
-                                  fit: BoxFit.fill,
-                                ),
-                              ),
-                              child: Row(
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Text(
-                                    "DOORGAAN",
-                                    style: TextStyle(
-                                      fontSize:
-                                          MediaQuery.of(context).size.width >
-                                                  600
-                                              ? 16
-                                              : 12,
-                                      fontWeight: FontWeight.w700,
-                                      color: Colors.white,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    )),
-                  )
-                : SizedBox(),
+        )),
+        automaticallyImplyLeading: false,
+        flexibleSpace: Stack(
+          fit: StackFit.expand,
+          children: [
+            Image.asset(
+              'assets/images/background4.png',
+              fit: BoxFit.cover,
+            ),
+          ],
+        ),
+        toolbarHeight: 200,
+        bottom: TabBar(
+          controller: controller.tabController,
+          indicator: UnderlineTabIndicator(
+            borderSide: BorderSide(
+              width: 4.0,
+              color: Color(0xff79684B),
+            ), // Mengatur tebal dan warna border
+            insets: EdgeInsets.symmetric(
+                horizontal: 16.0), // Jarak horizontal dari border
           ),
+          labelColor: Color(0xff79684B),
+          labelStyle: TextStyle(
+            fontFamily: 'Abel',
+            fontWeight: FontWeight.bold,
+            fontSize: 32.0,
+          ),
+          unselectedLabelStyle: TextStyle(
+            fontFamily: 'Abel',
+            fontWeight: FontWeight.normal,
+            fontSize: 32.0,
+          ),
+          unselectedLabelColor: Colors.grey[600],
+          tabs: [
+            Tab(text: "Scan QR"),
+            Tab(text: "Code invoeren"),
+          ],
+        ),
+      ),
+      body: new TabBarView(
+        controller: controller.tabController,
+        children: <Widget>[
+          ScanQrTab(),
+          FillQrTab(),
         ],
       ),
     );
-  }
-
-  Widget _buildQrView(BuildContext context) {
-    var scanArea = (MediaQuery.of(context).size.width < 400 ||
-            MediaQuery.of(context).size.height < 400)
-        ? 150.0
-        : 300.0;
-    return QRView(
-      key: qrKey,
-      onQRViewCreated: controller.onQRViewCreated,
-      overlay: QrScannerOverlayShape(
-        borderColor: Colors.white,
-        borderRadius: 10,
-        borderLength: 30,
-        borderWidth: 10,
-        cutOutSize: scanArea,
-      ),
-      onPermissionSet: (ctrl, p) => _onPermissionSet(context, ctrl, p),
-    );
-  }
-
-  void _onPermissionSet(BuildContext context, QRViewController ctrl, bool p) {
-    if (!p) {
-      ScaffoldMessenger.of(context)
-          .showSnackBar(const SnackBar(content: Text('no Permission')));
-    }
   }
 }

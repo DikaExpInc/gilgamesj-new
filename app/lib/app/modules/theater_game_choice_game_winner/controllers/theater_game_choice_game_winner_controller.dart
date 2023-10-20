@@ -1,11 +1,13 @@
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 
 class TheaterGameChoiceGameWinnerController extends GetxController {
-  //TODO: Implement TheaterGameChoiceGameWinnerController
-
-  final count = 0.obs;
+  RxBool indexWinner = false.obs;
   @override
   void onInit() {
+    if (GetStorage().read('game5-1') > GetStorage().read('game5-2')) {
+      indexWinner.value = true;
+    }
     super.onInit();
   }
 
@@ -18,6 +20,4 @@ class TheaterGameChoiceGameWinnerController extends GetxController {
   void onClose() {
     super.onClose();
   }
-
-  void increment() => count.value++;
 }

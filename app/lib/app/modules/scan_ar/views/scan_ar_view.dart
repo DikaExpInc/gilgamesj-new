@@ -55,7 +55,10 @@ class ScanArView extends GetView<ScanArController> {
                 },
                 onConsoleMessage: (controllers, consoleMessage) {
                   if (!controller.hasNavigated.value &&
-                      consoleMessage.message == "unityTargetFound marker 4") {
+                      consoleMessage.message ==
+                          (controller.arguments['type'] == "boat"
+                              ? "unityTargetFound Marker-Zwarteee"
+                              : "unityTargetFound Marker-Uruk")) {
                     Future.delayed(const Duration(seconds: 15), () {
                       if (!controller.hasNavigated.value) {
                         int playedNumber =
@@ -70,7 +73,7 @@ class ScanArView extends GetView<ScanArController> {
                           GetStorage().write('played_number', playedNumber + 1);
                         }
 
-                        Get.offAllNamed(Routes.PRE_GAME_AUDIO, arguments: {
+                        Get.offAllNamed(Routes.PRE_GAME_SUCCESS, arguments: {
                           "id": arguments['id']
                         }); // Ganti dengan nama rute halaman tujuan
                       }

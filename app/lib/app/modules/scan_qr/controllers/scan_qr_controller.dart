@@ -166,7 +166,7 @@ class ScanQrController extends GetxController
       if (inputCodeController.text == "192302") {
         Get.toNamed(Routes.SCAN_AR, arguments: {
           "type": "boat",
-          "link": "/gilgamesj/ship",
+          "link": "/gilgamesj/boat",
         });
       } else {
         isWrongFill.value = true;

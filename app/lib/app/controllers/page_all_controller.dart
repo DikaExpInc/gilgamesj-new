@@ -376,7 +376,7 @@ class PageAllController extends GetxController {
                 break;
               case "game5-choice-underwear-winner":
                 if (setting!.player == "all") {
-                  if (mode != "game5-choice-underwear") {
+                  if (mode != "game5-choice-underwear-winner") {
                     GetStorage().write('mode', "game5-choice-underwear-winner");
                     Get.offAllNamed(Routes.THEATER_GAME_CHOICE_GAME_WINNER,
                         arguments: {"game": "underwear"});

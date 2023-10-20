@@ -100,7 +100,7 @@ class TheaterGameChooseYourCharacterController extends GetxController
     // Di sini Anda dapat mengatur widget awal yang akan ditampilkan
     // setWidget(TheaterGameChooseYourCharMessageScreen());
     setWidget(TheaterGameChooseCharacterScreen());
-    // startAutomaticChange();
+    startAutomaticChange();
 
     Vibration.vibrate(duration: 1000);
 

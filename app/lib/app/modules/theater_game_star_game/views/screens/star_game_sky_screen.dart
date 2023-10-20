@@ -33,19 +33,13 @@ class StarGameSkyScreen extends GetView<TheaterGameStarGameController> {
                 children: [
                   Container(
                     margin: EdgeInsets.only(top: 40),
-                    child: InkWell(
-                      onTap: () {
-                        controller.playAudio("frog.mp3");
-                        controller.selectedImageIndex.value = 0;
-                      },
-                      child: Text(
-                        'maak het geluid in de nacht',
-                        style: const TextStyle(
-                          fontFamily: 'Centrion',
-                          fontSize: 30,
-                          color: Colors.white,
-                          fontWeight: FontWeight.normal,
-                        ),
+                    child: Text(
+                      'maak het geluid in de nacht',
+                      style: const TextStyle(
+                        fontFamily: 'Centrion',
+                        fontSize: 30,
+                        color: Colors.white,
+                        fontWeight: FontWeight.normal,
                       ),
                     ),
                   ),
@@ -66,7 +60,7 @@ class StarGameSkyScreen extends GetView<TheaterGameStarGameController> {
                         margin: EdgeInsets.only(top: 40),
                         child: InkWell(
                           onTap: () {
-                            controller.playAudio("frog.mp3");
+                            controller.playAudio("diertje.wav");
                             controller.selectedImageIndex.value = 0;
                           },
                           child: Obx(() {
@@ -97,7 +91,7 @@ class StarGameSkyScreen extends GetView<TheaterGameStarGameController> {
                       Container(
                         child: InkWell(
                           onTap: () {
-                            controller.playAudio("cricket-sound-113945.mp3");
+                            controller.playAudio("kikkers.wav");
                             controller.selectedImageIndex.value = 1;
                           },
                           child: Obx(() {
@@ -114,7 +108,7 @@ class StarGameSkyScreen extends GetView<TheaterGameStarGameController> {
                       Container(
                         child: InkWell(
                           onTap: () {
-                            controller.playAudio("night-ambience.mp3");
+                            controller.playAudio("krekels.wav");
                             controller.selectedImageIndex.value = 2;
                           },
                           child: Obx(() {
@@ -146,7 +140,7 @@ class StarGameSkyScreen extends GetView<TheaterGameStarGameController> {
                       Container(
                         child: InkWell(
                           onTap: () {
-                            controller.playAudio("cricket-sound-113945.mp3");
+                            controller.playAudio("takjes geruis.wav");
                             controller.selectedImageIndex.value = 3;
                           },
                           child: Obx(() {
@@ -163,7 +157,7 @@ class StarGameSkyScreen extends GetView<TheaterGameStarGameController> {
                       Container(
                         child: InkWell(
                           onTap: () {
-                            controller.playAudio("night-woods.mp3");
+                            controller.playAudio("uil.wav");
                             controller.selectedImageIndex.value = 4;
                           },
                           child: Obx(() {
@@ -196,7 +190,7 @@ class StarGameSkyScreen extends GetView<TheaterGameStarGameController> {
                         margin: EdgeInsets.only(bottom: 40),
                         child: InkWell(
                           onTap: () {
-                            controller.playAudio("campfire.mp3");
+                            controller.playAudio("vogels.wav");
                             controller.selectedImageIndex.value = 5;
                           },
                           child: Obx(() {

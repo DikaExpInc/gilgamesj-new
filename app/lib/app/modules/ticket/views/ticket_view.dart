@@ -38,7 +38,7 @@ class TicketView extends GetView<TicketController> {
               ),
               Container(
                 padding: EdgeInsets.all(20),
-                margin: EdgeInsets.all(40),
+                margin: EdgeInsets.symmetric(horizontal: 40),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(20.0), // Radius border
                   border: Border.all(
@@ -60,7 +60,7 @@ class TicketView extends GetView<TicketController> {
                       ),
                     ),
                     SizedBox(
-                      height: 40,
+                      height: 20,
                     ),
                     Divider(
                       color: Colors.white, // Warna putih
@@ -82,7 +82,7 @@ class TicketView extends GetView<TicketController> {
                               ),
                             ),
                             SizedBox(
-                              height: 40,
+                              height: 20,
                             ),
                             Column(
                               children: List.generate(
@@ -111,7 +111,7 @@ class TicketView extends GetView<TicketController> {
                               ),
                             ),
                             SizedBox(
-                              height: 40,
+                              height: 20,
                             ),
                             Column(
                               children: List.generate(
@@ -140,7 +140,7 @@ class TicketView extends GetView<TicketController> {
                               ),
                             ),
                             SizedBox(
-                              height: 40,
+                              height: 20,
                             ),
                             Column(
                               children: List.generate(
@@ -162,6 +162,7 @@ class TicketView extends GetView<TicketController> {
                   ],
                 ),
               ),
+              Image.asset('assets/images/podium.png'),
               Obx(
                 () => Column(
                   mainAxisAlignment: MainAxisAlignment.center,

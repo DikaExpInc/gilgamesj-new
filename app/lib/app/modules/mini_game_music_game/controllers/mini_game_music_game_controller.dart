@@ -37,9 +37,9 @@ class MiniGameMusicGameController extends GetxController {
         } else {
           GetStorage().write('played_number', playedNumber + 1);
         }
-        Get.offAllNamed(Routes.PRE_GAME_ITEMS);
+        Get.offAllNamed(Routes.PRE_GAME_SUCCESS);
       } else {
-        audioCache.play('error-glitch.mp3');
+        audioCache.play('wrong-answer.mp3');
       }
       reset();
     }

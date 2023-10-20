@@ -45,7 +45,7 @@ class PreGameItemsController extends GetxController {
       tappedList[1] = false;
       tappedList[2] = false;
       tappedList[3] = false;
-      Get.toNamed(Routes.PRE_GAME_SPIRIT_REALM);
+      Get.toNamed(Routes.PRE_GAME_ITEMS_AR);
     }
   }
 

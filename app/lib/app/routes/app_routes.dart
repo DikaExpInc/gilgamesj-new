@@ -111,6 +111,11 @@ abstract class Routes {
   static const PRE_GAME_PHOTO = _Paths.PRE_GAME_PHOTO;
   static const PRE_GAME_GUESS = _Paths.PRE_GAME_GUESS;
   static const DIES_TABLET_VIDEO = _Paths.DIES_TABLET_VIDEO;
+  static const ERROR = _Paths.ERROR;
+  static const THEATER_GAME_LIGHTNING_GAME_WINNER =
+      _Paths.THEATER_GAME_LIGHTNING_GAME_WINNER;
+  static const THEATER_GAME_CHOICE_GAME_WINNER =
+      _Paths.THEATER_GAME_CHOICE_GAME_WINNER;
 }
 
 abstract class _Paths {
@@ -218,4 +223,9 @@ abstract class _Paths {
   static const PRE_GAME_PHOTO = '/pre-game-photo';
   static const PRE_GAME_GUESS = '/pre-game-guess';
   static const DIES_TABLET_VIDEO = '/dies-tablet-video';
+  static const ERROR = '/error';
+  static const THEATER_GAME_LIGHTNING_GAME_WINNER =
+      '/theater-game-lightning-game-winner';
+  static const THEATER_GAME_CHOICE_GAME_WINNER =
+      '/theater-game-choice-game-winner';
 }

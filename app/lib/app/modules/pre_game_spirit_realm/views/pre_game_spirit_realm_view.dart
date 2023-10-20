@@ -23,7 +23,7 @@ class PreGameSpiritRealmView extends GetView<PreGameSpiritRealmController> {
       height: mHeight,
       decoration: BoxDecoration(
         image: DecorationImage(
-          image: AssetImage("assets/images/background.png"),
+          image: AssetImage("assets/images/background4.png"),
           fit: BoxFit.cover,
         ),
       ),
@@ -34,27 +34,19 @@ class PreGameSpiritRealmView extends GetView<PreGameSpiritRealmController> {
             crossAxisAlignment: CrossAxisAlignment.end,
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              Text(
-                "de tablethouder is ${GetStorage().read('played_name_${GetStorage().read('played_number')}')}",
-                style: TextStyle(
-                  fontFamily: 'Centrion',
-                  fontSize: 42,
-                  color: Colors.white,
-                  fontWeight: FontWeight.w500,
-                ),
-              ),
+              SizedBox(),
               Center(
                 child: DefaultTextStyle(
                   style: const TextStyle(
-                    fontFamily: 'Centrion',
+                    fontFamily: 'Abel',
                     fontSize: 30,
-                    color: Colors.white,
+                    color: Colors.black,
                     fontWeight: FontWeight.normal,
                   ),
                   child: AnimatedTextKit(
                     animatedTexts: [
                       TyperAnimatedText(
-                          'Ga op zoek naar een verborgen schat,\ngebruik daarvoor het oog van de museumstukken.\nKlik op verder om te starten',
+                          'Richt de camera op de QR-code / AR-object.',
                           textAlign: TextAlign.center),
                     ],
                     isRepeatingAnimation: false,
@@ -69,13 +61,13 @@ class PreGameSpiritRealmView extends GetView<PreGameSpiritRealmController> {
                 child: Obx(() {
                   return controller.isFinished.value
                       ? InkWell(
-                          onTap: () => Get.toNamed(Routes.PRE_GAME_ITEMS_AR),
+                          onTap: () => Get.toNamed(Routes.PRE_GAME_ITEMS),
                           child: Text(
                             'Doorgaan',
                             style: TextStyle(
-                              fontFamily: 'Centrion',
+                              fontFamily: 'Abel',
                               fontSize: 42,
-                              color: Colors.white,
+                              color: Colors.black,
                               fontWeight: FontWeight.w500,
                             ),
                           ),

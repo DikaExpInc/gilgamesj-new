@@ -100,7 +100,7 @@ class PreGameGuessController extends GetxController {
   }
 
   void goToNextQuestion() {
-    audioCache.play('confirm.mp3');
+    audioCache.play('select2.mp3');
     if (currentIndex.value < questions.length - 1) {
       characterSelect.value = "";
       currentIndex.value++;

@@ -22,15 +22,17 @@ class MiniGameShakeGameView extends GetView<MiniGameShakeGameController> {
               ? Stack(
                   alignment: Alignment.bottomCenter,
                   children: <Widget>[
-                    Container(
-                      decoration: BoxDecoration(
-                        image: DecorationImage(
-                          image: AssetImage('assets/images/bg-shake.png'),
-                          fit: BoxFit.cover,
+                    Positioned(
+                      child: Container(
+                        decoration: BoxDecoration(
+                          image: DecorationImage(
+                            image: AssetImage('assets/images/bg-shake.png'),
+                            fit: BoxFit.cover,
+                          ),
                         ),
+                        width: MediaQuery.sizeOf(context).width,
+                        height: MediaQuery.sizeOf(context).height,
                       ),
-                      width: MediaQuery.sizeOf(context).width,
-                      height: MediaQuery.sizeOf(context).height,
                     ),
                     Positioned(
                       child: InkWell(
@@ -136,9 +138,25 @@ class MiniGameShakeGameView extends GetView<MiniGameShakeGameController> {
                 )
               : Stack(
                   children: [
-                    VideoPlayer(
-                      controller.videocontroller!,
+                    Positioned(
+                      child: VideoPlayer(
+                        controller.videocontroller!,
+                      ),
                     ),
+                    Positioned(
+                        top: 40,
+                        child: Container(
+                          width: MediaQuery.sizeOf(context).width,
+                          child: Text(
+                            'Schudden schudden mensenkudde',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 36,
+                              fontFamily: 'Abel',
+                            ),
+                            textAlign: TextAlign.center,
+                          ),
+                        ))
                   ],
                 ),
         ),

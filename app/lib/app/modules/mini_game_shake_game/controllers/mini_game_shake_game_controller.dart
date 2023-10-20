@@ -32,7 +32,7 @@ class MiniGameShakeGameController extends GetxController {
       }
     } else {
       key_tuts.value = '';
-      audioCache.play('error-glitch.mp3');
+      audioCache.play('wrong-answer.mp3');
     }
   }
 
@@ -45,7 +45,7 @@ class MiniGameShakeGameController extends GetxController {
     super.onInit();
     Vibration.vibrate(duration: 1000);
     shakeDetector = ShakeDetector.autoStart(
-        shakeThresholdGravity: 1.5,
+        shakeThresholdGravity: 0.5,
         onPhoneShake: () {
           if (!isShaking.value) {
             videocontroller!.play();
@@ -86,7 +86,7 @@ class MiniGameShakeGameController extends GetxController {
           } else {
             GetStorage().write('played_number', playedNumber + 1);
           }
-          Get.offAllNamed(Routes.PRE_GAME_ITEMS);
+          Get.offAllNamed(Routes.PRE_GAME_SUCCESS);
         }
       }
     });

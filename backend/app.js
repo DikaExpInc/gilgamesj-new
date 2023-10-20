@@ -341,6 +341,19 @@ server.on('message', async (msg) => {
       }, 2000)
     }
   }
+  if (result['url'] == '/signaling/error') {
+    if (result['value'] == 'all') {
+      await Setting.findOneAndUpdate(
+        {
+          _id: '64de3fd2843badaf9efc006b',
+        },
+        {
+          page: 'error',
+          player: 'all',
+        }
+      )
+    }
+  }
   if (result['url'] == '/control/panic') {
     if (result['value'] == 'all') {
       await Setting.findOneAndUpdate(
@@ -640,6 +653,19 @@ server.on('message', async (msg) => {
       )
     }
   }
+  if (result['url'] == '/game/game2-gilgamesj-winner') {
+    if (result['value'] == 'all') {
+      await Setting.findOneAndUpdate(
+        {
+          _id: '64de3fd2843badaf9efc006b',
+        },
+        {
+          page: 'game2-gilgamesj-winner',
+          player: 'all',
+        }
+      )
+    }
+  }
   if (result['url'] == '/game/game5-choice-underwear') {
     if (result['value'] == 'all') {
       await Setting.findOneAndUpdate(
@@ -648,6 +674,19 @@ server.on('message', async (msg) => {
         },
         {
           page: 'game5-choice-underwear',
+          player: 'all',
+        }
+      )
+    }
+  }
+  if (result['url'] == '/game/game5-choice-underwear-winner') {
+    if (result['value'] == 'all') {
+      await Setting.findOneAndUpdate(
+        {
+          _id: '64de3fd2843badaf9efc006b',
+        },
+        {
+          page: 'game5-choice-underwear-winner',
           player: 'all',
         }
       )

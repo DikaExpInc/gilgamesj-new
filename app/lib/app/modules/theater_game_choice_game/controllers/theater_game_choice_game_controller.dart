@@ -40,6 +40,7 @@ class TheaterGameChoiceGameController extends GetxController
   void onClose() {
     _controller.dispose();
     _controllerParticle.dispose();
+    stopAutomaticChange();
     super.onClose();
   }
 

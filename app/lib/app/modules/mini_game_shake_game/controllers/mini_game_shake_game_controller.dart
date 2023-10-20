@@ -96,6 +96,12 @@ class MiniGameShakeGameController extends GetxController {
     });
   }
 
+  @override
+  void onClose() {
+    shakeDetector!.stopListening();
+    super.onClose();
+  }
+
   bool isNumberPresentInString(int numberToCheck) {
     List<String> digits = key_tuts.value.split('');
     return digits.contains(numberToCheck.toString());

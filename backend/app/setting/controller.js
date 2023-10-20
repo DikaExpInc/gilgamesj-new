@@ -84,6 +84,61 @@ module.exports = {
     }
   },
 
+  actionEditSeats: async (req, res) => {
+    try {
+      const { id } = req.params
+      const { rows, columns } = req.body
+
+      await Setting.findOneAndUpdate(
+        {
+          _id: id,
+        },
+        {
+          rows: rows,
+          columns: columns,
+        }
+      )
+      res.status(200).json({
+        message: 'Successfully update setting',
+        status: 'success',
+        data: [],
+      })
+    } catch (err) {
+      return res.status(422).json({
+        error: 1,
+        message: err.message,
+        fields: err.errors,
+      })
+    }
+  },
+
+  actionEditIshtarCall: async (req, res) => {
+    try {
+      const { id } = req.params
+      const { rows } = req.body
+
+      await Setting.findOneAndUpdate(
+        {
+          _id: id,
+        },
+        {
+          ishtarRows: rows,
+        }
+      )
+      res.status(200).json({
+        message: 'Successfully update setting',
+        status: 'success',
+        data: [],
+      })
+    } catch (err) {
+      return res.status(422).json({
+        error: 1,
+        message: err.message,
+        fields: err.errors,
+      })
+    }
+  },
+
   actionAddNotification: async (req, res) => {
     try {
       const { id } = req.params

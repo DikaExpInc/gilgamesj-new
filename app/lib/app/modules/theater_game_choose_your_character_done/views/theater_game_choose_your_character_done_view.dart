@@ -34,7 +34,7 @@ class TheaterGameChooseYourCharacterDoneView
                 ? Column(
                     children: [
                       Image.asset(
-                        'assets/images/ishtar_bg.png',
+                        'assets/images/ishtar1-bg.png',
                         width: 400,
                       ),
                       SizedBox(

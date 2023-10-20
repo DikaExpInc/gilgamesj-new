@@ -112,7 +112,7 @@ class TheaterGameChoiceGameController extends GetxController
         'assets/images/question-1',
         'assets/images/question-2',
         'Zijn zwaard',
-        'Zijn vieze onderbroeken',
+        'Zijn little pony',
       ));
     }
     if (arguments['game'] == 'sick') {
@@ -164,15 +164,18 @@ class TheaterGameChoiceGameController extends GetxController
   Future<void> onSubmit() async {
     stopAutomaticChange();
     String id = "";
-    print(characterSelect.value);
-    if (characterSelect.value == "Zijn vieze onderbroeken") {
-      id = "65274e4d596123a74cb5dec1";
+    if (characterSelect.value != "") {
+      if (characterSelect.value == "Zijn little pony") {
+        id = "65274e4d596123a74cb5dec1";
+      } else {
+        id = "65274e6c596123a74cb5dec2";
+      }
+      audioCache.play('confirm.mp3');
+      String choice = await Game5Api().voteAPI(id);
+      if (choice == "done") {
+        Get.toNamed(Routes.THEATER_GAME_CHOICE_GAME_DONE);
+      }
     } else {
-      id = "65274e6c596123a74cb5dec2";
-    }
-    audioCache.play('confirm.mp3');
-    String choice = await Game5Api().voteAPI(id);
-    if (choice == "done") {
       Get.toNamed(Routes.THEATER_GAME_CHOICE_GAME_DONE);
     }
   }

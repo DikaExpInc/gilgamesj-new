@@ -56,9 +56,7 @@ class TicketController extends GetxController {
         box.write('status_seat_${entry.key}', player.status_seat);
         box.write('stoel_${entry.key}', player.stoel);
         box.write('rij_${entry.key}', player.rij);
-        print(player.rij);
       }).toList();
-      print(playerListModel?.items?[0].rij);
       box.write('rij_tablet', playerListModel?.items?[0].rij);
       box.write('stoel_tablet', playerListModel?.items?[0].stoel);
       box.write('position_tablet', playerListModel?.items?[0].position);

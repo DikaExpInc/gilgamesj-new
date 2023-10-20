@@ -1,4 +1,5 @@
 const Player = require('../player/model')
+const Setting = require('../setting/model')
 const User = require('../users/model')
 const Stage = require('../stage/model')
 const Seat = require('../seat/model')
@@ -8,15 +9,26 @@ const jwt = require('jsonwebtoken')
 
 // Fungsi untuk mengambil tempat duduk yang tersedia dengan pola zigzag
 const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
-const rows = 17
-const cols = 11
-// const rows = 6
+// const rows = 17
 // const cols = 11
 
 async function getNextSeat() {
   let currentRow = 1
   let currentCol = 0
   let isForward = true
+
+  const setting = await Setting.findOne({ _id: '64de3fd2843badaf9efc006b' })
+
+  if (!setting) {
+    return res.status(404).json({
+      message: 'Setting not found',
+      status: 'error',
+    })
+  }
+
+  const { rows, columns } = setting
+
+  let cols = columns
 
   while (currentCol < cols) {
     const query = {
@@ -53,7 +65,10 @@ async function getNextSeat() {
   return null // Mengembalikan null jika semua tempat duduk sudah terisi
 }
 
-
+// Function to generate random Columns
+function generateRandomColumns(totalColumns) {
+  return Math.floor(Math.random() * totalColumns) + 1
+}
 
 // async function getNextSeatParent() {
 //   let currentRow = 1
@@ -152,7 +167,19 @@ module.exports = {
     let isForward = true
 
     const assignedSeats = []
-    let prevRole = 'children' // Menyimpan peran sebelumnya
+    let prevRole = '' // Menyimpan peran sebelumnya
+
+    const setting = await Setting.findOne({ _id: '64de3fd2843badaf9efc006b' })
+
+    if (!setting) {
+      return res.status(404).json({
+        message: 'Setting not found',
+        status: 'error',
+      })
+    }
+
+    const { rows, columns } = setting
+    let cols = columns
 
     for (const player of players) {
       while (true) {
@@ -203,8 +230,7 @@ module.exports = {
             }
           }
 
-          // Jika kolom melebihi 8 (atau angka kolom maksimal yang Anda inginkan), maka kembali ke kolom awal dan naikkan baris
-          if (currentCol > 8) {
+          if (currentCol > cols) {
             currentCol = 1
             currentRow++
           }
@@ -212,7 +238,9 @@ module.exports = {
 
         // Memeriksa peran sebelumnya dan peran saat ini
         const currentRole = player.user_type
-        console.log(prevRole)
+        if (prevRole == '') {
+          prevRole = currentRole
+        }
         if (prevRole !== currentRole) {
           // Jika peran saat ini berbeda dengan peran sebelumnya, reset kolom ke 1
           currentCol += 1
@@ -297,6 +325,7 @@ module.exports = {
               player_num: player_num,
               stage_id: stage._id,
               user_id: user.id,
+              user_type: user.user_type,
             })
           }
 
@@ -394,19 +423,48 @@ module.exports = {
 
   getRowCol: async (req, res, next) => {
     try {
+      const setting = await Setting.findOne({ _id: '64de3fd2843badaf9efc006b' })
+
+      if (!setting) {
+        return res.status(404).json({
+          message: 'Setting not found',
+          status: 'error',
+        })
+      }
+
+      const { rows, columns } = setting
+
       res.status(200).json({
-        message: `Successfully get seats`,
+        message: 'Successfully get seats',
         status: 'success',
         row: rows,
-        col: cols,
+        col: columns,
       })
     } catch (err) {
-      return res.status(422).json({
+      return res.status(500).json({
         error: 1,
         message: err.message,
         fields: err.errors,
       })
     }
+  },
+
+  updateIshtarCall: async () => {
+    try {
+      const setting = await Setting.findOne({ _id: '64de3fd2843badaf9efc006b' })
+      const { columns } = setting
+      // Buat urutan kolom acak
+      const randomColumns = generateRandomColumns(columns)
+
+      await Setting.findOneAndUpdate(
+        {
+          _id: '64de3fd2843badaf9efc006b',
+        },
+        {
+          ishtarColumns: randomColumns,
+        }
+      )
+    } catch (err) {}
   },
 
   signin: (req, res, next) => {

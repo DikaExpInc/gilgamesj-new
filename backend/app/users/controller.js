@@ -62,6 +62,42 @@ module.exports = {
       })
     }
   },
+  // Delete all player
+  actionDeleteAllPlayer: async (req, res) => {
+    const { userId } = req.params
+
+    try {
+      const user = await User.findById(userId)
+      if (!user) {
+        return res.status(404).json({ message: 'User not found' })
+      }
+
+      // Assuming user.players is an array of player IDs
+      const playerIds = user.players
+
+      // Use Promise.all to delete all players in parallel
+      await Promise.all(
+        playerIds.map(async (playerId) => {
+          const deletedPlayer = await Player.findByIdAndRemove(playerId)
+          if (!deletedPlayer) {
+            console.log(`Player with ID ${playerId} not found`)
+          }
+        })
+      )
+
+      // Now that all players are deleted, you can delete the user
+      await User.findByIdAndRemove(userId)
+
+      res.status(200).json({
+        message: 'Successfully deleted user and player(s)',
+        status: 'success',
+      })
+    } catch (err) {
+      res.status(500).json({
+        message: err.message || 'Internal server error',
+      })
+    }
+  },
   profile: async (req, res) => {
     try {
       const user = {

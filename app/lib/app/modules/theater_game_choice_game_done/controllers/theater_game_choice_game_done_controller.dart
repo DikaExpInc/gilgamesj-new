@@ -1,12 +1,14 @@
 import 'dart:async';
 
 import 'package:app/app/data/game5_model.dart';
+import 'package:app/app/services/auth_service.dart';
 import 'package:app/app/services/game5_service.dart';
 import 'package:get/get.dart';
 
 class TheaterGameChoiceGameDoneController extends GetxController {
   RxBool isFinished = false.obs;
   Game5ListModel? game5;
+  RxInt totalPlayer = 0.obs;
 
   // onTap Loading
   final RxDouble tapValue = 0.0.obs;
@@ -22,6 +24,7 @@ class TheaterGameChoiceGameDoneController extends GetxController {
   void onInit() {
     super.onInit();
     print('harusnya jalan');
+    loadPlayer();
     // membuat langganan
     sub = game5Stream.listen((event) {
       loadGame5();
@@ -50,5 +53,11 @@ class TheaterGameChoiceGameDoneController extends GetxController {
     } else {
       print("someting wrong 400");
     }
+  }
+
+  loadPlayer() async {
+    update();
+    totalPlayer.value = await AuthApi().getUsersAPI();
+    update();
   }
 }

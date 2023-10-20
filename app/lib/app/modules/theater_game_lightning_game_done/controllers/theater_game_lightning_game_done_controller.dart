@@ -1,12 +1,14 @@
 import 'dart:async';
 
 import 'package:app/app/data/game2_model.dart';
+import 'package:app/app/services/auth_service.dart';
 import 'package:app/app/services/game2_service.dart';
 import 'package:get/get.dart';
 
 class TheaterGameLightningGameDoneController extends GetxController {
   RxBool isFinished = false.obs;
   Game2ListModel? game2;
+  RxInt totalPlayer = 0.obs;
 
   // onTap Loading
   final RxDouble tapValue = 0.0.obs;
@@ -21,7 +23,7 @@ class TheaterGameLightningGameDoneController extends GetxController {
   @override
   void onInit() {
     super.onInit();
-    print('harusnya jalan');
+    loadPlayer();
     // membuat langganan
     sub = game2Stream.listen((event) {
       loadGame2();
@@ -50,5 +52,11 @@ class TheaterGameLightningGameDoneController extends GetxController {
     } else {
       print("someting wrong 400");
     }
+  }
+
+  loadPlayer() async {
+    update();
+    totalPlayer.value = await AuthApi().getUsersAPI();
+    update();
   }
 }

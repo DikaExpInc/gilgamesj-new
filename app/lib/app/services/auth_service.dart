@@ -181,4 +181,22 @@ class AuthApi extends SharedApi {
       showInternetMessage("Please check your connection");
     }
   }
+
+  Future<int> getUsersAPI() async {
+    try {
+      var data = await http.get(
+        Uri.parse(baseUrl + 'users/all'),
+        headers: getToken(),
+      );
+      if (data.statusCode == 200) {
+        final jsonData = json.decode(data.body);
+        return jsonData['data'].length;
+      } else {
+        return 0;
+      }
+    } on Exception catch (_) {
+      stopLoading();
+      return 0;
+    }
+  }
 }

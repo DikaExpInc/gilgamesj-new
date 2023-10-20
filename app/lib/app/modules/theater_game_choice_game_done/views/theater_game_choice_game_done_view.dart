@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 import 'package:get/get.dart';
-import 'package:get_storage/get_storage.dart';
+import 'package:liquid_progress_indicator_v2/liquid_progress_indicator.dart';
 
 import '../controllers/theater_game_choice_game_done_controller.dart';
 
@@ -16,6 +16,11 @@ class TheaterGameChoiceGameDoneView
 
   @override
   Widget build(BuildContext context) {
+    double _calculateProgressValue(int index) {
+      num itemValue = controller.game5?.items?[index].iV ?? 0.0;
+      return (itemValue * (controller.totalPlayer.value - 1)) / 10;
+    }
+
     mWidth = MediaQuery.of(context).size.width;
     mHeight = MediaQuery.of(context).size.height;
     return GetBuilder<TheaterGameChoiceGameDoneController>(
@@ -55,7 +60,7 @@ class TheaterGameChoiceGameDoneView
                             ),
                           ),
                           Text(
-                            'Zijn vieze\nonderbroeken',
+                            'Zijn little pony',
                             textAlign: TextAlign.center,
                             style: TextStyle(
                               fontFamily: 'Centrion',
@@ -87,6 +92,24 @@ class TheaterGameChoiceGameDoneView
                                   ),
                                 ),
                               ),
+                              Positioned(
+                                bottom: 0,
+                                child: Container(
+                                  width: 380,
+                                  height: 30,
+                                  child: LiquidLinearProgressIndicator(
+                                    value: _calculateProgressValue(1),
+                                    valueColor: AlwaysStoppedAnimation(Colors
+                                        .white), // Defaults to the current Theme's accentColor.
+                                    backgroundColor: Colors
+                                        .grey, // Defaults to the current Theme's backgroundColor.
+                                    borderColor: Colors.white,
+                                    borderWidth: 2.0,
+                                    borderRadius: 11.0,
+                                    direction: Axis.horizontal,
+                                  ),
+                                ),
+                              ),
                             ],
                           ),
                           Stack(
@@ -106,6 +129,24 @@ class TheaterGameChoiceGameDoneView
                                     fontFamily: 'Centrion',
                                     fontSize: 36,
                                     color: Colors.white,
+                                  ),
+                                ),
+                              ),
+                              Positioned(
+                                bottom: 0,
+                                child: Container(
+                                  width: 380,
+                                  height: 30,
+                                  child: LiquidLinearProgressIndicator(
+                                    value: _calculateProgressValue(0),
+                                    valueColor: AlwaysStoppedAnimation(Colors
+                                        .white), // Defaults to the current Theme's accentColor.
+                                    backgroundColor: Colors
+                                        .grey, // Defaults to the current Theme's backgroundColor.
+                                    borderColor: Colors.white,
+                                    borderWidth: 2.0,
+                                    borderRadius: 11.0,
+                                    direction: Axis.horizontal,
                                   ),
                                 ),
                               ),

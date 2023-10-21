@@ -91,6 +91,7 @@ module.exports = {
           {
             player: 'all',
             control: 'pre-game',
+            page: 'pre-game',
           }
         )
       }, 2000)

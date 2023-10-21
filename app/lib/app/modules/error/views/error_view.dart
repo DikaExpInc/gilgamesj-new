@@ -19,34 +19,34 @@ class ErrorView extends GetView<ErrorController> {
       padding: EdgeInsets.all(40),
       decoration: BoxDecoration(
         image: DecorationImage(
-          image: AssetImage("assets/images/background.png"),
+          image: AssetImage("assets/gif/error-tablet.gif"),
           fit: BoxFit.cover,
         ),
       ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
-        children: [
-          SizedBox(),
-          Column(
-            children: [
-              Text(
-                "Tablet error, leg onder je stoel.",
-                style: TextStyle(
-                  fontSize: 64,
-                  color: Colors.white,
-                  fontWeight: FontWeight.w700,
-                ),
-                textAlign: TextAlign.center,
-              ),
-              SizedBox(
-                height: 40,
-              ),
-            ],
-          ),
-          Center(),
-        ],
-      ),
+      // child: Column(
+      //   crossAxisAlignment: CrossAxisAlignment.center,
+      //   mainAxisAlignment: MainAxisAlignment.spaceAround,
+      //   children: [
+      //     SizedBox(),
+      //     Column(
+      //       children: [
+      //         Text(
+      //           "Tablet error, leg onder je stoel.",
+      //           style: TextStyle(
+      //             fontSize: 64,
+      //             color: Colors.white,
+      //             fontWeight: FontWeight.w700,
+      //           ),
+      //           textAlign: TextAlign.center,
+      //         ),
+      //         SizedBox(
+      //           height: 40,
+      //         ),
+      //       ],
+      //     ),
+      //     Center(),
+      //   ],
+      // ),
     ));
   }
 }

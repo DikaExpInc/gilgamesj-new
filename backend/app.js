@@ -416,6 +416,28 @@ server.on('message', async (msg) => {
         }
       )
     }
+    if (result['value'] == 'museum1') {
+      await Setting.findOneAndUpdate(
+        {
+          _id: '64de3fd2843badaf9efc006b',
+        },
+        {
+          page: 'go-to-theater',
+          player: 'museum1',
+        }
+      )
+    }
+    if (result['value'] == 'museum1+museum2') {
+      await Setting.findOneAndUpdate(
+        {
+          _id: '64de3fd2843badaf9efc006b',
+        },
+        {
+          page: 'go-to-theater',
+          player: 'museum1+museum2',
+        }
+      )
+    }
     if (result['value'] == 'group-hemelstier') {
       await Setting.findOneAndUpdate(
         {

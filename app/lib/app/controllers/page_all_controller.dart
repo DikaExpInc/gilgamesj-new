@@ -83,7 +83,7 @@ class PageAllController extends GetxController {
                 GetStorage().read('status_seat_tablet'); // row1, museum1
             String? position_tablet =
                 GetStorage().read('position_tablet'); // left, right
-            String? rij_tablet = GetStorage().read('rij_tablet'); // rij tablet
+            String? rij_tablet = GetStorage().read('stoel_tablet');
             switch (setting!.control) {
               case "volume-tablet-up":
                 increaseVolume();
@@ -171,7 +171,7 @@ class PageAllController extends GetxController {
                 if (setting!.player == "all") {
                   if (mode != "pre-game" && mode != "item") {
                     GetStorage().write('mode', "pre-game");
-                    GetStorage().write('player', "all");  
+                    GetStorage().write('player', "all");
                     Get.offAllNamed(Routes.PRE_GAME_SPIRIT_REALM);
                   }
                 }
@@ -191,6 +191,25 @@ class PageAllController extends GetxController {
                       "title": "Blijf zitten bij de hemelstier",
                       "description": "",
                     });
+                  }
+                }
+                if (setting!.player == "museum1" &&
+                    status_seat_tablet == "museum1") {
+                  if (mode != "go-to-theater") {
+                    GetStorage()
+                        .write('status_seat_tablet', "row${rij_tablet}");
+                    GetStorage().write('mode', "go-to-theater");
+                    Get.offAllNamed(Routes.TICKET);
+                  }
+                }
+                if (setting!.player == "museum1+museum2" &&
+                    (status_seat_tablet == "museum1" ||
+                        status_seat_tablet == "museum2")) {
+                  if (mode != "go-to-theater") {
+                    GetStorage()
+                        .write('status_seat_tablet', "row${rij_tablet}");
+                    GetStorage().write('mode', "go-to-theater");
+                    Get.offAllNamed(Routes.TICKET);
                   }
                 }
                 break;

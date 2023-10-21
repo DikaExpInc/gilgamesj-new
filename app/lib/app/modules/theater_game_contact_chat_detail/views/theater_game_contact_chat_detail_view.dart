@@ -1,5 +1,6 @@
 import 'package:app/app/modules/theater_game_chat_game/views/widgets/answer_widget.dart';
 import 'package:app/app/modules/theater_game_contact_chat_detail/views/widgets/chat_widget.dart';
+import 'package:app/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -48,10 +49,13 @@ class TheaterGameContactChatDetailView
                   children: [
                     InkWell(
                         onTap: () {
-                          Get.back();
+                          Get.offAllNamed(Routes.THEATER_GAME_CONTACT_CHAT);
                         },
-                        child: SvgPicture.asset(
-                            'assets/icons/arrow-left-white.svg')),
+                        child: Padding(
+                          padding: const EdgeInsets.all(20.0),
+                          child: SvgPicture.asset(
+                              'assets/icons/arrow-left-white.svg'),
+                        )),
                     Column(
                       children: [
                         Row(

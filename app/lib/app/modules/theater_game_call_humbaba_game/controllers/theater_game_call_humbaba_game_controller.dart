@@ -1,6 +1,5 @@
 import 'package:app/app/modules/theater_game_call_humbaba_game/views/screens/call_humbaba_game_call_screen.dart';
 import 'package:app/app/modules/theater_game_call_humbaba_game/views/screens/call_humbaba_game_message_screen.dart';
-import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:vibration/vibration.dart';

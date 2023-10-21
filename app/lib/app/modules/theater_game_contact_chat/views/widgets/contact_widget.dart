@@ -14,13 +14,10 @@ class ContactWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      onTap: onClick,
-      child: Padding(
-        padding: const EdgeInsets.symmetric(
-          vertical: 12,
-          horizontal: 64.0,
-        ),
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 42, vertical: 24),
+      child: InkWell(
+        onTap: onClick,
         child: Row(
           children: [
             Container(

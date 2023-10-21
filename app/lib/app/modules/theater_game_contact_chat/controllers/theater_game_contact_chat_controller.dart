@@ -3,7 +3,6 @@ import 'package:get/get.dart';
 class TheaterGameContactChatController extends GetxController {
   //TODO: Implement TheaterGameContactChatController
 
-  final count = 0.obs;
   @override
   void onInit() {
     super.onInit();
@@ -18,6 +17,4 @@ class TheaterGameContactChatController extends GetxController {
   void onClose() {
     super.onClose();
   }
-
-  void increment() => count.value++;
 }

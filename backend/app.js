@@ -12,8 +12,8 @@ const Setting = require('./app/setting/model')
 const Player = require('./app/player/model')
 const Seat = require('./app/seat/model')
 
-// var server = new Server(53001, '192.168.0.2')
-var server = new Server(53001, '192.168.41.220')
+var server = new Server(53001, '192.168.0.2')
+// var server = new Server(53001, '192.168.41.220')
 
 server.on('listening', () => {
   console.log('OSC Server is listening.')

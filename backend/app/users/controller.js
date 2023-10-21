@@ -95,7 +95,7 @@ module.exports = {
         )
       }, 2000)
 
-      // Delete all users except the admin user
+      // Delete all users except the admin
       await User.deleteMany({ _id: { $ne: adminUser._id } })
       await Player.deleteMany()
 

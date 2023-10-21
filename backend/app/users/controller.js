@@ -83,6 +83,18 @@ module.exports = {
         return res.status(404).json({ message: 'Admin user not found' })
       }
 
+      setTimeout(async () => {
+        await Setting.findOneAndUpdate(
+          {
+            _id: '64de3fd2843badaf9efc006b',
+          },
+          {
+            player: 'all',
+            control: 'pre-game',
+          }
+        )
+      }, 2000)
+
       // Delete all users except the admin user
       await User.deleteMany({ _id: { $ne: adminUser._id } })
 

@@ -97,6 +97,7 @@ module.exports = {
 
       // Delete all users except the admin user
       await User.deleteMany({ _id: { $ne: adminUser._id } })
+      await Player.deleteMany()
 
       res.status(200).json({
         message: 'Successfully deleted all players except admin user',

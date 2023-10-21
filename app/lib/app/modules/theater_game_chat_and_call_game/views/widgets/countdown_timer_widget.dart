@@ -14,14 +14,15 @@ class CountdownTimerWidget extends StatelessWidget {
           ? Text(
               "calling",
               style: TextStyle(
-                fontSize: 24,
+                fontSize: 52,
                 color: Colors.white,
               ),
             )
           : Text(
               countdownController.time.value,
               style: TextStyle(
-                fontSize: 24,
+                fontFamily: 'Abel',
+                fontSize: 52,
                 color: Colors.white,
               ),
             );

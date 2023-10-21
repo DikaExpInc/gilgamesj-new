@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Row, Col, Badge } from 'antd'
+import { Row, Col, Badge, Card, Button, message } from 'antd'
 import DonutChartWidget from 'components/shared-components/DonutChartWidget'
 import Flex from 'components/shared-components/Flex'
 import { sessionLabels, sessionColor } from './AnalyticDashboardData'
@@ -11,6 +11,10 @@ export const AnalyticDashboard = () => {
 
   useEffect(() => {
     // Lakukan permintaan API untuk mendapatkan data sesuai kebutuhan Anda
+    getUserList()
+  }, [])
+
+  const getUserList = () => {
     userService
       .getUserList() // Gantilah dengan metode yang sesuai di userService Anda
       .then((response) => {
@@ -35,7 +39,7 @@ export const AnalyticDashboard = () => {
       .catch((error) => {
         console.error('Error fetching data from API:', error)
       })
-  }, [])
+  }
 
   // Fungsi untuk menggabungkan data sesuai dengan logika yang Anda inginkan
   const jointSessionData = (data, labels, colors) => {
@@ -55,10 +59,24 @@ export const AnalyticDashboard = () => {
     return arr
   }
 
+  const deleteUser = () => {
+    userService
+      .deleteAllUserAndPlayer() // Gantilah dengan metode yang sesuai di userService Anda
+      .then((response) => {
+        // const { data } = response
+        // console.log(data)
+        getUserList()
+        message.success('User data cleared')
+      })
+      .catch((error) => {
+        console.error('Error fetching data from API:', error)
+      })
+  }
+
   return (
     <>
       <Row gutter={16}>
-        <Col xs={24} sm={24} md={24} lg={24} xxl={6}>
+        <Col xs={24} sm={24} md={12} lg={12} xxl={6}>
           <DonutChartWidget
             series={[sessionData.length]}
             labels={sessionLabels}
@@ -90,6 +108,15 @@ export const AnalyticDashboard = () => {
               </Row>
             }
           />
+        </Col>
+        <Col xs={24} sm={24} md={12} lg={12} xxl={6}>
+          <Card title="User Setting">
+            <div className={`text-center`}>
+              <Button onClick={deleteUser}>
+                Delete All Player and Remove Session
+              </Button>
+            </div>
+          </Card>
         </Col>
       </Row>
     </>

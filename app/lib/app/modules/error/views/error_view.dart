@@ -31,7 +31,7 @@ class ErrorView extends GetView<ErrorController> {
           Column(
             children: [
               Text(
-                "Tablet is fout, leg onder je stoel",
+                "Tablet error, leg onder je stoel.",
                 style: TextStyle(
                   fontSize: 64,
                   color: Colors.white,

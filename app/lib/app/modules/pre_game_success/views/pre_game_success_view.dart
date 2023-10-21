@@ -45,7 +45,7 @@ class PreGameSuccessView extends GetView<PreGameSuccessController> {
                     ),
                     child: AnimatedTextKit(
                       animatedTexts: [
-                        TyperAnimatedText('Felicitatie!\nSpel Voltooid!',
+                        TyperAnimatedText('Lekker bezig!\nSpel Voltooid!',
                             textAlign: TextAlign.center),
                       ],
                       isRepeatingAnimation: false,
@@ -60,7 +60,7 @@ class PreGameSuccessView extends GetView<PreGameSuccessController> {
                   child: Obx(() {
                     return controller.isFinished.value
                         ? InkWell(
-                            onTap: () => Get.toNamed(Routes.PRE_GAME_ITEMS),
+                            onTap: () => Get.toNamed(Routes.PRE_GAME_ITEMS_AR),
                             child: Container(
                               child: Text(
                                 'Bevestigen',

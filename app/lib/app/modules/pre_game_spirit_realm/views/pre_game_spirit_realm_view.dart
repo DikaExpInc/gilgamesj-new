@@ -61,7 +61,7 @@ class PreGameSpiritRealmView extends GetView<PreGameSpiritRealmController> {
                 child: Obx(() {
                   return controller.isFinished.value
                       ? InkWell(
-                          onTap: () => Get.toNamed(Routes.PRE_GAME_ITEMS),
+                          onTap: () => Get.toNamed(Routes.PRE_GAME_ITEMS_AR),
                           child: Text(
                             'Doorgaan',
                             style: TextStyle(

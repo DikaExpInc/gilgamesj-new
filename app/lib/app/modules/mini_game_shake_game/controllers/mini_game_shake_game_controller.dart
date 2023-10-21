@@ -45,7 +45,7 @@ class MiniGameShakeGameController extends GetxController {
     super.onInit();
     Vibration.vibrate(duration: 1000);
     shakeDetector = ShakeDetector.autoStart(
-        shakeThresholdGravity: 0.5,
+        shakeThresholdGravity: 1.0,
         onPhoneShake: () {
           if (!isShaking.value) {
             videocontroller!.play();
@@ -86,6 +86,7 @@ class MiniGameShakeGameController extends GetxController {
           } else {
             GetStorage().write('played_number', playedNumber + 1);
           }
+          GetStorage().write('pre-game-${arguments['id']}', 'ada');
           Get.offAllNamed(Routes.PRE_GAME_SUCCESS);
         }
       }

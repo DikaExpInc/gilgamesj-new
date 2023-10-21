@@ -87,12 +87,12 @@ class TheaterGameShakeGameController extends GetxController
     Vibration.vibrate(duration: 1000);
 
     shakeDetector = ShakeDetector.autoStart(
-        shakeThresholdGravity: 1.5,
+        shakeThresholdGravity: 1.0,
         onPhoneShake: () async {
           if (!isShaking.value) {
             isShaking.value = true;
             audioPlayer.setVolume(1);
-            Future.delayed(Duration(milliseconds: 2000), () async {
+            Future.delayed(Duration(milliseconds: 4000), () async {
               audioPlayer.setVolume(0.0);
               isShaking.value = false;
             });

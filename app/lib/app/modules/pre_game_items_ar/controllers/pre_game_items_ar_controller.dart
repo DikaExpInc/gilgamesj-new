@@ -1,6 +1,7 @@
 import 'package:app/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 
 class PreGameItemsArController extends GetxController
     with GetTickerProviderStateMixin {
@@ -33,5 +34,9 @@ class PreGameItemsArController extends GetxController
     Get.toNamed(Routes.SCAN_QR, arguments: {
       "id": selectedItemIndex.value,
     });
+  }
+
+  bool isKeyExistsInGetStorage(String key) {
+    return GetStorage().hasData(key);
   }
 }

@@ -125,6 +125,15 @@ class PageAllController extends GetxController {
                 break;
             }
             switch (setting!.page) {
+              case "clearCache":
+                if (setting!.player == "all") {
+                  if (mode != "clearCache") {
+                    GetStorage().erase();
+                    GetStorage().write('mode', "clearCache");
+                    Get.offAllNamed(Routes.CHOICE_ROLE);
+                  }
+                }
+                break;
               case "lightning":
                 if (setting!.player == "all") {
                   if (mode != "lightning") {
@@ -162,8 +171,8 @@ class PageAllController extends GetxController {
                 if (setting!.player == "all") {
                   if (mode != "pre-game" && mode != "item") {
                     GetStorage().write('mode', "pre-game");
-                    GetStorage().write('player', "all");
-                    Get.offAllNamed(Routes.CHOICE_ROLE);
+                    GetStorage().write('player', "all");  
+                    Get.offAllNamed(Routes.PRE_GAME_SPIRIT_REALM);
                   }
                 }
                 break;

@@ -38,6 +38,13 @@ userService.deleteUser = function (stageID, id) {
   })
 }
 
+userService.deleteAllUserAndPlayer = function (stageID, id) {
+  return fetch({
+    url: `/users/deleteall`,
+    method: 'delete',
+  })
+}
+
 userService.updateUser = function (stageID, id, data) {
   return fetch({
     url: `/users/${stageID}/edit/${id}`,

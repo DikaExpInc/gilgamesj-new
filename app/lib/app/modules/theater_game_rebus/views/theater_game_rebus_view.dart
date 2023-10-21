@@ -19,8 +19,9 @@ class TheaterGameRebusView extends GetView<TheaterGameRebusController> {
         decoration: BoxDecoration(
           image: DecorationImage(
             image: AssetImage("assets/images/rebus-bg-game.png"),
-            fit: BoxFit.cover,
+            fit: BoxFit.fitWidth,
           ),
+          color: Colors.black,
         ),
       ),
     );

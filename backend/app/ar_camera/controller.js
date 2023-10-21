@@ -36,9 +36,7 @@ module.exports = {
 
   actionCreate: async (req, res) => {
     try {
-      const cameraImageFile = req.files['profile']
-        ? req.files['profile'][0]
-        : null
+      const cameraImageFile = req.files['image'] ? req.files['image'][0] : null
 
       if (!cameraImageFile) {
         return res.status(422).json({
@@ -46,15 +44,6 @@ module.exports = {
           message: 'Image Camera files are required.',
         })
       }
-
-      if (!['image/jpeg', 'image/png'].includes(cameraImageFile.mimetype)) {
-        return res.status(422).json({
-          error: 1,
-          message:
-            'Invalid profile image type. Only JPEG and PNG images are allowed.',
-        })
-      }
-
       // Move profile image to the destination folder
       const cameraImagePath = path.resolve(
         config.rootPath,

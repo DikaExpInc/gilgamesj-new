@@ -131,12 +131,7 @@ class TheaterGameTabletDiesView
                           controller.isGlitch.value = false;
                         }
                         if (isPointInsidePainterBottom(tapPosition)) {
-                          controller.characterSelect.value =
-                              "${controller.questions[controller.currentIndex.value].title2}";
-                          controller.isGlitch.value = true;
-                          controller.audioCache.play('glitch-sound.mp3');
-                          await Future.delayed(Duration(seconds: 1));
-                          controller.isGlitch.value = false;
+                          controller.clickNoChoice();
                         }
                       },
                       child: CustomPaint(
@@ -164,12 +159,7 @@ class TheaterGameTabletDiesView
                           controller.isGlitch.value = false;
                         }
                         if (isPointInsidePainterBottom(tapPosition)) {
-                          controller.characterSelect.value =
-                              "${controller.questions[controller.currentIndex.value].title2}";
-                          controller.isGlitch.value = true;
-                          controller.audioCache.play('glitch-sound.mp3');
-                          await Future.delayed(Duration(seconds: 1));
-                          controller.isGlitch.value = false;
+                          controller.clickNoChoice();
                         }
                       },
                       child: CustomPaint(

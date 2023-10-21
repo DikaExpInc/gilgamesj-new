@@ -37,6 +37,7 @@ class MiniGameMusicGameController extends GetxController {
         } else {
           GetStorage().write('played_number', playedNumber + 1);
         }
+        GetStorage().write('pre-game-${arguments['id']}', 'ada');
         Get.offAllNamed(Routes.PRE_GAME_SUCCESS);
       } else {
         audioCache.play('wrong-answer.mp3');

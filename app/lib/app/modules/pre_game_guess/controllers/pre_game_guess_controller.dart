@@ -117,6 +117,7 @@ class PreGameGuessController extends GetxController {
   }
 
   Future<void> onSubmit() async {
-    Get.offAllNamed(Routes.PRE_GAME_ITEMS);
+    GetStorage().write('pre-game-${arguments['id']}', 'ada');
+    Get.offAllNamed(Routes.PRE_GAME_SUCCESS);
   }
 }

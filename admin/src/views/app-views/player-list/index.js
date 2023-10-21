@@ -106,12 +106,12 @@ const PlayerList = () => {
       sorter: (a, b) => utils.antdTableSorter(a, b, 'position'),
     },
     {
-      title: 'Rij',
+      title: 'Stoel',
       dataIndex: 'rij',
       sorter: (a, b) => utils.antdTableSorter(a, b, 'rij'),
     },
     {
-      title: 'Stoel',
+      title: 'Rij',
       dataIndex: 'stoel',
       sorter: (a, b) => utils.antdTableSorter(a, b, 'stoel'),
     },

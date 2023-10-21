@@ -1,7 +1,7 @@
 [
   {
     "tipe": "normal",
-    "pesan": "Er komt een gevaarlijk reus!"
+    "pesan": "Er komt een gevaarlijke reus!"
   },
   {
     "tipe": "ask",
@@ -18,25 +18,12 @@
   },
   {
     "tipe": "ask",
-    "pesan": "Ga op zoek naar het wapen",
+    "pesan": "Gaan julie op zoek naar het wapen?",
     "jawaban": ["Welk wapen", "Waar kan ik het vinden?"]
   },
   {
-    "tipe": "normal",
-    "pesan": "Dat weet ik niet, Maar ik heb wel een code"
-  },
-  {
     "tipe": "ask",
-    "pesan": "5654 kunnen jullie het wapen vinden?",
+    "pesan": "Dat weet ik niet, Maar ik weet wel dat je een speciale zaklamp nodig hebt. Die krijg je van iemand.",
     "jawaban": ["Ja, we gaan nu aan de slag"]
-  },
-  {
-    "tipe": "ask",
-    "pesan": "Laat het weten als je hem gevonden hebt",
-    "jawaban": ["Ja, we gaan nu aan de slag"]
-  },
-  {
-    "tipe": "normal",
-    "pesan": "Super ga dan nu op PLEK NOG MAKEN staan tot Koning Gilgamesj het zwaard nodig heeft."
   }
 ]

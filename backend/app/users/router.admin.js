@@ -6,6 +6,7 @@ const {
   getAll,
   getAllPlayer,
   actionDeletePlayer,
+  actionDeleteAllUsersAndPlayers,
 } = require('./controller')
 const { isLoginUser } = require('../middleware/auth')
 
@@ -14,4 +15,5 @@ router.get('/player', isLoginUser, getAllPlayer)
 router.delete('/player/:userId', isLoginUser, actionDeletePlayer)
 router.get('/profile', isLoginUser, profile)
 router.get('/logout', actionLogout)
+router.delete('/deleteall', actionDeleteAllUsersAndPlayers)
 module.exports = router

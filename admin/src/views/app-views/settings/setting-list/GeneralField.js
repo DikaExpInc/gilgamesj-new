@@ -59,10 +59,10 @@ const GeneralField = (props) => {
             <Col>
               <Form.Item
                 name="seatsRows"
-                label="Columns Theater (Seats max: 16)"
+                label="Columns Theater (Seats max: 18)"
                 onChange={(e) => setSeatsRows(e.target.value)}
               >
-                <InputNumber placeholder="Rows theater" max={16} min={1} />
+                <InputNumber placeholder="Rows theater" max={18} min={1} />
               </Form.Item>
             </Col>
             <Col>

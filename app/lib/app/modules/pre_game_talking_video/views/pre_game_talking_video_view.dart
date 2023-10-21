@@ -82,9 +82,11 @@ class PreGameTalkingVideoView extends GetView<PreGameTalkingVideoController> {
                           GetStorage().write('played_number', playedNumber + 1);
                         }
 
-                        Get.offAllNamed(Routes.PRE_GAME_AUDIO, arguments: {
-                          "id": arguments['id']
-                        }); // Ganti dengan nama rute halaman tujuan
+                        GetStorage()
+                            .write('pre-game-${arguments['id']}', 'ada');
+
+                        Get.offAllNamed(Routes
+                            .PRE_GAME_SUCCESS); // Ganti dengan nama rute halaman tujuan
                       }
                       controller.hasNavigated.value = true;
                     });

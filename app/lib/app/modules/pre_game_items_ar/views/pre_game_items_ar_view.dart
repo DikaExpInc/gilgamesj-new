@@ -34,21 +34,27 @@ class PreGameItemsArView extends GetView<PreGameItemsArController> {
             child: Stack(children: [
               controller.rotatingParticle,
               Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  Row(
+                  Column(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      Padding(
-                        padding: EdgeInsets.only(left: mWidth / 3),
-                        child: Text(
-                          "DE MUSEUMSTUKKEN",
-                          style: TextStyle(
-                            fontSize: 32,
-                            color: Colors.white,
-                            fontWeight: FontWeight.w700,
-                          ),
+                      Text(
+                        "DE MUSEUMSTUKKEN",
+                        style: TextStyle(
+                          fontSize: 32,
+                          color: Colors.white,
+                          fontWeight: FontWeight.w700,
+                        ),
+                      ),
+                      Text(
+                        "Richt de camera op de QR-code / AR-object.",
+                        style: TextStyle(
+                          fontFamily: 'Abel',
+                          fontSize: 32,
+                          color: Colors.white,
                         ),
                       ),
                     ],
@@ -74,21 +80,27 @@ class PreGameItemsArView extends GetView<PreGameItemsArController> {
                                     isSelected ? -1 : index;
                               },
                               child: Container(
-                                  margin: EdgeInsets.all(mWidth / 40.0),
-                                  decoration: BoxDecoration(
-                                    border: Border.all(
-                                      color: isSelected
-                                          ? Colors.blue.shade400
-                                          : Colors.transparent,
-                                      width: 2.0,
-                                    ),
-                                    borderRadius: BorderRadius.all(
-                                      Radius.circular(10),
-                                    ),
+                                margin: EdgeInsets.all(mWidth / 40.0),
+                                decoration: BoxDecoration(
+                                  border: Border.all(
+                                    color: isSelected
+                                        ? Colors.blue.shade400
+                                        : Colors.transparent,
+                                    width: 2.0,
                                   ),
-                                  child: Image.asset(
-                                    "assets/images/tile${index + 1}-complete.png",
-                                  )),
+                                  borderRadius: BorderRadius.all(
+                                    Radius.circular(10),
+                                  ),
+                                ),
+                                child: controller.isKeyExistsInGetStorage(
+                                        "pre-game-${index + 1}")
+                                    ? Image.asset(
+                                        "assets/images/tile${index + 1}-complete.png",
+                                      )
+                                    : Image.asset(
+                                        "assets/images/tile${index + 1}.png",
+                                      ),
+                              ),
                             );
                           }),
                         ),

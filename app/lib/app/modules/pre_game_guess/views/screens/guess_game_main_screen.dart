@@ -49,7 +49,7 @@ class GuessGameMainScreen extends GetView<PreGameGuessController> {
           Column(
             children: [
               Text(
-                'wat zou je doen als?',
+                'Wat zou je doen als?',
                 style: TextStyle(
                   color: Colors.white,
                   fontSize: 36,

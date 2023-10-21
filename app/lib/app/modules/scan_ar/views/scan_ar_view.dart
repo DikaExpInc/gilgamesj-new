@@ -73,6 +73,9 @@ class ScanArView extends GetView<ScanArController> {
                           GetStorage().write('played_number', playedNumber + 1);
                         }
 
+                        GetStorage()
+                            .write('pre-game-${arguments['id']}', 'ada');
+
                         Get.offAllNamed(Routes
                             .PRE_GAME_SUCCESS); // Ganti dengan nama rute halaman tujuan
                       }

@@ -51,7 +51,7 @@ class GuessGameQuestionScreen extends GetView<PreGameGuessController> {
           Column(
             children: [
               Text(
-                'wat zou je doen als?',
+                'Wat zou je doen?',
                 style: TextStyle(
                   color: Colors.white,
                   fontSize: 36,

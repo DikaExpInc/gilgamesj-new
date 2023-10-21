@@ -15,7 +15,7 @@ class ScanQrView extends GetView<ScanQrController> {
           "Scan de code of vulHem in.",
           style: TextStyle(
             fontFamily: 'Abel',
-            color: Colors.black,
+            color: Colors.white,
             fontSize: 36,
           ),
         )),
@@ -24,7 +24,7 @@ class ScanQrView extends GetView<ScanQrController> {
           fit: StackFit.expand,
           children: [
             Image.asset(
-              'assets/images/background4.png',
+              'assets/images/background.png',
               fit: BoxFit.cover,
             ),
           ],
@@ -35,12 +35,12 @@ class ScanQrView extends GetView<ScanQrController> {
           indicator: UnderlineTabIndicator(
             borderSide: BorderSide(
               width: 4.0,
-              color: Color(0xff79684B),
+              color: Color(0xffEFB523),
             ), // Mengatur tebal dan warna border
             insets: EdgeInsets.symmetric(
                 horizontal: 16.0), // Jarak horizontal dari border
           ),
-          labelColor: Color(0xff79684B),
+          labelColor: Color(0xffEFB523),
           labelStyle: TextStyle(
             fontFamily: 'Abel',
             fontWeight: FontWeight.bold,

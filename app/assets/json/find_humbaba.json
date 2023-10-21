@@ -25,13 +25,5 @@
     "tipe": "ask",
     "pesan": "Die heeft iemand wel voor je, willen jullie helpen?",
     "jawaban": ["we gaan je helpen", "alleen als je ons niet opeet"]
-  },
-  {
-    "tipe": "normal",
-    "pesan": "Humbaba eet niemand op!"
-  },
-  {
-    "tipe": "normal",
-    "pesan": "Laat me weten of je me gevonden hebt."
   }
 ]

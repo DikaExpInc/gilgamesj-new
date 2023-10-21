@@ -28,14 +28,6 @@ class TicketView extends GetView<TicketController> {
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              Text(
-                '${GetStorage().read('status_seat_tablet')}',
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 36,
-                ),
-              ),
               Container(
                 padding: EdgeInsets.all(20),
                 margin: EdgeInsets.symmetric(horizontal: 40),

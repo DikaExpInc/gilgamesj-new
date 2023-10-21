@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:app/app/modules/theater_game_chat_and_call_game/views/screens/chat_and_call_game_call_screen.dart';
-import 'package:app/app/modules/theater_game_chat_and_call_game/views/screens/chat_and_call_game_message_screen.dart';
 import 'package:app/app/routes/app_pages.dart';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
@@ -22,6 +21,8 @@ class TheaterGameChatAndCallGameController extends GetxController
   final AudioCache audioCache = AudioCache(
     prefix: 'assets/audios/',
   );
+  RxBool isCall = false.obs;
+  RxBool isGlitch = false.obs;
 
   // onTap Loading
   final RxDouble tapValue = 0.0.obs;
@@ -122,21 +123,23 @@ class TheaterGameChatAndCallGameController extends GetxController
   }
 
   Future<void> startIdleTimer() async {
-    audioPlayer = await audioCache.play('cell_phone_ringing.mp3');
+    audioPlayer = await audioCache.loop('cell_phone_ringing.mp3');
     update();
-    Future.delayed(Duration(seconds: 5), () async {
-      audioPlayer?.stop();
-      audioPlayer = await audioCache.play('phonecall-ishtar.mp3');
+  }
+
+  Future<void> callPhone() async {
+    isCall.value = true;
+    audioPlayer?.stop();
+    audioPlayer = await audioCache.play('phonecall-ishtar.mp3');
+    audioPlayer?.onPlayerCompletion.listen((event) async {
+      audioPlayer = await audioCache.play('call_phone_reject.mp3');
       audioPlayer?.onPlayerCompletion.listen((event) async {
-        audioPlayer = await audioCache.play('call_phone_reject.mp3');
-        // audioPlayer?.onPlayerCompletion.listen((event) async {
-        //   Get.offNamed(Routes.THEATER_GAME_CHAT_AND_CALL_GAME_DONE);
-        // });
+        Get.offNamed(Routes.BLANK);
       });
-      idleTime.value = "00:00";
-      startTimer();
-      update();
     });
+    idleTime.value = "00:00";
+    startTimer();
+    update();
 
     Duration initialTime = Duration(seconds: 0);
     Timer.periodic(Duration(seconds: 1), (timer) {
@@ -154,8 +157,10 @@ class TheaterGameChatAndCallGameController extends GetxController
     });
   }
 
-  Future<void> callPhone() async {
-    isIdleTimerRunning.value = false;
-    audioPlayer?.stop();
+  void dissCallPhone() {
+    isGlitch.value = true;
+    Future.delayed(Duration(seconds: 1)).then(
+      (value) => isGlitch.value = false,
+    );
   }
 }

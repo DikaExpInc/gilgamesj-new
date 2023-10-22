@@ -858,6 +858,19 @@ server.on('message', async (msg) => {
       )
     }
   }
+  if (result['url'] == '/signaling/show-version') {
+    if (result['value'] == 'all') {
+      await Setting.findOneAndUpdate(
+        {
+          _id: '64de3fd2843badaf9efc006b',
+        },
+        {
+          page: 'show-version',
+          player: 'all',
+        }
+      )
+    }
+  }
 })
 
 // player API

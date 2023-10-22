@@ -19,7 +19,6 @@ class ScanQrView extends GetView<ScanQrController> {
             fontSize: 36,
           ),
         )),
-        automaticallyImplyLeading: false,
         flexibleSpace: Stack(
           fit: StackFit.expand,
           children: [

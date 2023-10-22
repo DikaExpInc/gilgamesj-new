@@ -79,15 +79,18 @@ class MiniGameShakeGameController extends GetxController {
         if (arguments['game'] != "rule") {
           isDone.value = true;
         } else {
-          int playedNumber = GetStorage().read('played_number') ?? 0;
-          int totalPlayer = int.parse(GetStorage().read('totalPlayer'));
-          if (playedNumber + 1 >= totalPlayer) {
-            GetStorage().write('played_number', 0);
-          } else {
-            GetStorage().write('played_number', playedNumber + 1);
-          }
-          GetStorage().write('pre-game-${arguments['id']}', 'ada');
-          Get.offAllNamed(Routes.PRE_GAME_SUCCESS);
+          videocontroller!.pause();
+          Future.delayed(Duration(seconds: 5), () {
+            int playedNumber = GetStorage().read('played_number') ?? 0;
+            int totalPlayer = int.parse(GetStorage().read('totalPlayer'));
+            if (playedNumber + 1 >= totalPlayer) {
+              GetStorage().write('played_number', 0);
+            } else {
+              GetStorage().write('played_number', playedNumber + 1);
+            }
+            GetStorage().write('pre-game-${arguments['id']}', 'ada');
+            Get.offAllNamed(Routes.PRE_GAME_SUCCESS);
+          });
         }
       }
     });

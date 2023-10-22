@@ -523,6 +523,14 @@ class PageAllController extends GetxController {
                   }
                 }
                 break;
+              case "show-version":
+                if (setting!.player == "all") {
+                  if (mode != "show-version") {
+                    GetStorage().write('mode', "show-version");
+                    Get.offAllNamed(Routes.SHOW_VERSION);
+                  }
+                }
+                break;
               default:
                 if (mode != "intro") {
                   GetStorage().write('mode', "phone");

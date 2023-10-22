@@ -120,6 +120,8 @@ import '../modules/scan_ar/bindings/scan_ar_binding.dart';
 import '../modules/scan_ar/views/scan_ar_view.dart';
 import '../modules/scan_qr/bindings/scan_qr_binding.dart';
 import '../modules/scan_qr/views/scan_qr_view.dart';
+import '../modules/show_version/bindings/show_version_binding.dart';
+import '../modules/show_version/views/show_version_view.dart';
 import '../modules/social_media/bindings/social_media_binding.dart';
 import '../modules/social_media/views/social_media_view.dart';
 import '../modules/start/bindings/start_binding.dart';
@@ -659,6 +661,11 @@ class AppPages {
       name: _Paths.THEATER_GAME_CHOICE_GAME_WINNER,
       page: () => TheaterGameChoiceGameWinnerView(),
       binding: TheaterGameChoiceGameWinnerBinding(),
+    ),
+    GetPage(
+      name: _Paths.SHOW_VERSION,
+      page: () => ShowVersionView(),
+      binding: ShowVersionBinding(),
     ),
   ];
 }

@@ -116,6 +116,7 @@ abstract class Routes {
       _Paths.THEATER_GAME_LIGHTNING_GAME_WINNER;
   static const THEATER_GAME_CHOICE_GAME_WINNER =
       _Paths.THEATER_GAME_CHOICE_GAME_WINNER;
+  static const SHOW_VERSION = _Paths.SHOW_VERSION;
 }
 
 abstract class _Paths {
@@ -228,4 +229,5 @@ abstract class _Paths {
       '/theater-game-lightning-game-winner';
   static const THEATER_GAME_CHOICE_GAME_WINNER =
       '/theater-game-choice-game-winner';
+  static const SHOW_VERSION = '/show-version';
 }

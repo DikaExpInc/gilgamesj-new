@@ -1,0 +1,29 @@
+[
+  {
+    "tipe": "normal",
+    "pesan": "Er komt een gevaarlijke reus!"
+  },
+  {
+    "tipe": "ask",
+    "pesan": "Help je Gilgamesj en Enkidu om de reus te verslaan?",
+    "jawaban": ["ja, natuurlijk", "misschien, wat moeten we doen?"]
+  },
+  {
+    "tipe": "normal",
+    "pesan": "De reus heet humbaba"
+  },
+  {
+    "tipe": "normal",
+    "pesan": "Er is een wapen nodig om het wezen te verslaan"
+  },
+  {
+    "tipe": "ask",
+    "pesan": "Gaan julie op zoek naar het wapen?",
+    "jawaban": ["Welk wapen", "Waar kan ik het vinden?"]
+  },
+  {
+    "tipe": "ask",
+    "pesan": "Dat weet ik niet, Maar ik weet wel dat je een speciale zaklamp nodig hebt. Die krijg je van iemand.",
+    "jawaban": ["Ja, we gaan nu aan de slag"]
+  }
+]

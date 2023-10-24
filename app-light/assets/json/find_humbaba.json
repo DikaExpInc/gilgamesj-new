@@ -1,0 +1,29 @@
+[
+  {
+    "tipe": "ask",
+    "pesan": "Humbaba!",
+    "jawaban": ["hallo?", "ben jij die reus?"]
+  },
+  {
+    "tipe": "normal",
+    "pesan": "Ik kan niets zien mijn hoofd is weg!"
+  },
+  {
+    "tipe": "ask",
+    "pesan": "Kom Humbaba maar helpen!",
+    "jawaban": ["ja, natuurlijk", "misschien, wat moeten we doen?"]
+  },
+  {
+    "tipe": "normal",
+    "pesan": "Jullie moeten mijn hoofd vinden."
+  },
+  {
+    "tipe": "normal",
+    "pesan": "Daar heb je een speciale zaklamp voor nodig. "
+  },
+  {
+    "tipe": "ask",
+    "pesan": "Die heeft iemand wel voor je, willen jullie helpen?",
+    "jawaban": ["we gaan je helpen", "alleen als je ons niet opeet"]
+  }
+]

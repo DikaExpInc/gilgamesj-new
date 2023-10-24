@@ -13,14 +13,14 @@ const GeneralField = (props) => {
     [props]
   )
 
-	return (
+  return (
     <>
       <Row gutter={16}>
         <Col xs={24} sm={24} md={24}>
-					<Card title='Theater Information'>
-						<Form.Item name='name' label='Theater Name'>
+          <Card title='Theater Information'>
+            <Form.Item name='name' label='Theater Name'>
               <Input placeholder='Theater Name' />
-						</Form.Item>
+            </Form.Item>
 
             <Form.Item name='description' label='Description'>
               <Input placeholder='Description' />
@@ -29,11 +29,11 @@ const GeneralField = (props) => {
             <Form.Item name='totalSeatRows' label='Seat Rows'>
               <Input placeholder='Seat Rows' type='number' />
             </Form.Item>
-					</Card>
-				</Col>
-			</Row>
-		</>
-	)
+          </Card>
+        </Col>
+      </Row>
+    </>
+  )
 }
 
 export default GeneralField

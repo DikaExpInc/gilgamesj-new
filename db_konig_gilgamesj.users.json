@@ -1,0 +1,88 @@
+[{
+  "_id": {
+    "$oid": "64da37ce2a06d77a0fed3395"
+  },
+  "role": "admin",
+  "status": "Y",
+  "players": [],
+  "username": "admin",
+  "email": "admin@gmail.com",
+  "password": "$2a$10$15g5UcDFQxqdfFohgGenkOYMk6gadeHesB4eo/U8nCtD1RPqqix4i",
+  "createdAt": {
+    "$date": "2023-08-14T14:18:54.832Z"
+  },
+  "updatedAt": {
+    "$date": "2023-08-14T14:18:54.832Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6533a4adb779ea4ae2606798"
+  },
+  "role": "player",
+  "status": "Y",
+  "players": [
+    {
+      "$oid": "6533a4adb779ea4ae260679c"
+    },
+    {
+      "$oid": "6533a4adb779ea4ae26067a0"
+    },
+    {
+      "$oid": "6533a4adb779ea4ae26067a3"
+    },
+    {
+      "$oid": "6533a4adb779ea4ae26067a6"
+    }
+  ],
+  "user_type": "children",
+  "score": 0,
+  "password": "$2a$10$DQB2Qj3Yvxut3dLRqEfKSOtXue6Uu3LhXSa1UBuTADNliig1jhBvi",
+  "group": 1,
+  "username": "gilgamesj-1",
+  "email": "gilgamesj1@gilgamesj.io",
+  "createdAt": {
+    "$date": "2023-10-21T10:15:09.745Z"
+  },
+  "updatedAt": {
+    "$date": "2023-10-21T10:15:09.912Z"
+  },
+  "__v": 0,
+  "player_now": "1"
+},
+{
+  "_id": {
+    "$oid": "6533a60cb779ea4ae260682d"
+  },
+  "role": "player",
+  "status": "Y",
+  "players": [
+    {
+      "$oid": "6533a60cb779ea4ae2606831"
+    },
+    {
+      "$oid": "6533a60cb779ea4ae2606835"
+    },
+    {
+      "$oid": "6533a60cb779ea4ae2606838"
+    },
+    {
+      "$oid": "6533a60cb779ea4ae260683b"
+    }
+  ],
+  "user_type": "children",
+  "score": 0,
+  "password": "$2a$10$A2KQvrqr20hYl1QRvp.Fl./dWXtaSy0FKOCFhJ0Cs6TOXIwv2Jyyy",
+  "group": 2,
+  "username": "gilgamesj-2",
+  "email": "gilgamesj2@gilgamesj.io",
+  "createdAt": {
+    "$date": "2023-10-21T10:21:00.714Z"
+  },
+  "updatedAt": {
+    "$date": "2023-10-21T10:21:00.877Z"
+  },
+  "__v": 0,
+  "player_now": "1"
+}]

@@ -950,6 +950,7 @@ const game5AdminRouter = require('./app/game_5/router.admin')
 
 // New Admin API
 const theaterAdminRouter = require('./app/theater/router.admin')
+const theaterSeatAdminRouter = require('./app/theater_seat/router.admin')
 
 const {
   getSeats,
@@ -1034,6 +1035,7 @@ app.use(`${URL_ADMIN}/game5`, game5AdminRouter)
 
 // New Admin Master
 app.use(`${URL_ADMIN}/theater`, theaterAdminRouter)
+app.use(`${URL_ADMIN}/theaterseat`, theaterSeatAdminRouter)
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

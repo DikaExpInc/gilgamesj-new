@@ -3,7 +3,9 @@ const TheaterSeat = require('./model')
 module.exports = {
   index: async (req, res) => {
     try {
-      const theaterSeat = await TheaterSeat.find()
+      const theaterSeat = await TheaterSeat.find({
+        theater_id: req.params.idTheater,
+      })
       res.status(200).json({
         data: theaterSeat,
       })
@@ -87,18 +89,46 @@ module.exports = {
     try {
       const { id } = req.params
 
-      await TheaterSeat.findOneAndRemove({
+      // Find and delete the seat
+      const deletedSeat = await TheaterSeat.findOneAndRemove({
         _id: id,
       })
 
+      if (!deletedSeat) {
+        res.status(404).json({
+          message: 'Theater seat not found',
+          status: 'error',
+        })
+        return
+      }
+
+      // Extract the row and seat number from the deleted seat
+      const [row, seatNum] = deletedSeat.seatNumber.split('-')
+
+      // Find and update the remaining seats within the same row with seat numbers greater than the deleted seat
+      const seatsToBeUpdated = await TheaterSeat.find({
+        seatNumber: { $gt: `${row}-${seatNum}` },
+      })
+
+      const updatePromises = seatsToBeUpdated.map(async (seat) => {
+        const [currentRow, currentSeatNum] = seat.seatNumber.split('-')
+        if (currentSeatNum > 1) {
+          const updatedSeatNum = `${currentRow}-${parseInt(currentSeatNum) - 1}`
+          seat.seatNumber = updatedSeatNum
+          return seat.save()
+        }
+      })
+
+      await Promise.all(updatePromises)
+
       res.status(200).json({
-        message: 'Successfully delete theaterSeat',
+        message: 'Successfully deleted theater seat and re-ordered seats',
         status: 'success',
         data: [],
       })
     } catch (err) {
       res.status(500).json({
-        message: err.message || `Internal server error`,
+        message: err.message || 'Internal server error',
       })
     }
   },

@@ -94,18 +94,29 @@ const SeatFiled = (props) => {
 
       const newCol = col + 1
 
-      const resp = await theaterService.addSeat(
-        {
-          name: `${row}-${newCol}`,
-          position: selectedStatus,
-        },
-        id
-      )
+      if (selectedStatus != 'default') {
+        const resp = await theaterService.addSeat(
+          {
+            name: '1-empty',
+            position: selectedStatus,
+          },
+          id
+        )
+      } else {
+        const resp = await theaterService.addSeat(
+          {
+            name: `${row}-${newCol}`,
+            position: selectedStatus,
+          },
+          id
+        )
+      }
+
       fetchSeats()
+      setActivePopover(null)
       setTimeout(() => {
         setSubmitLoading(false)
         message.success(`Seats created`)
-        setActivePopover(null)
       }, 1000)
     } catch (error) {
       message.error(`Failed to create theater`)

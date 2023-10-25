@@ -13,6 +13,7 @@ import {
   CheckSquareFilled,
   CameraOutlined,
   LinkOutlined,
+  HomeOutlined,
 } from '@ant-design/icons'
 import { APP_PREFIX_PATH } from 'configs/AppConfig'
 
@@ -38,6 +39,14 @@ const dashBoardNavTree = [
     path: `${APP_PREFIX_PATH}/players`,
     title: 'Player',
     icon: UserOutlined,
+    breadcrumb: false,
+    submenu: [],
+  },
+  {
+    key: 'theater',
+    path: `${APP_PREFIX_PATH}/theaters`,
+    title: 'Theater',
+    icon: HomeOutlined,
     breadcrumb: false,
     submenu: [],
   },

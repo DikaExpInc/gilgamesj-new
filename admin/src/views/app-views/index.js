@@ -80,6 +80,10 @@ export const AppViews = () => {
           path={`${APP_PREFIX_PATH}/settings`}
           component={lazy(() => import(`./settings`))}
         />
+        <Route
+          path={`${APP_PREFIX_PATH}/theaters`}
+          component={lazy(() => import(`./theaters`))}
+        />
         <Redirect
           from={`${APP_PREFIX_PATH}`}
           to={`${APP_PREFIX_PATH}/dashboard`}

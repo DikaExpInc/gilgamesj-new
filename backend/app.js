@@ -947,6 +947,11 @@ const arCameraAdminRouter = require('./app/ar_camera/router.admin')
 const seatAdminRouter = require('./app/seat/router.admin')
 const game2AdminRouter = require('./app/game_2/router.admin')
 const game5AdminRouter = require('./app/game_5/router.admin')
+
+// New Admin API
+const theaterAdminRouter = require('./app/theater/router.admin')
+const theaterSeatAdminRouter = require('./app/theater_seat/router.admin')
+
 const {
   getSeats,
   assignSeats,
@@ -1027,6 +1032,10 @@ app.use(`${URL_ADMIN}/arcamera`, arCameraAdminRouter)
 app.use(`${URL_ADMIN}/seat`, seatAdminRouter)
 app.use(`${URL_ADMIN}/game2`, game2AdminRouter)
 app.use(`${URL_ADMIN}/game5`, game5AdminRouter)
+
+// New Admin Master
+app.use(`${URL_ADMIN}/theater`, theaterAdminRouter)
+app.use(`${URL_ADMIN}/theaterseat`, theaterSeatAdminRouter)
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

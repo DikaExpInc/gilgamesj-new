@@ -117,9 +117,6 @@ const SeatFiled = (props) => {
 
       // Use nextSeatNumber to assign the new seat number
       const newSeatNumber = `${row}-${nextSeatNumber}`;
-      // console.log(newSeatNumber);
-      // return
-      // let newCol = col + 1
      
 
       if (selectedStatus != 'default') {

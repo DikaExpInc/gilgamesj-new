@@ -1,0 +1,5 @@
+export const CREATE_LIGHT = 'CREATE_LIGHT'
+export const GET_LIGHT = 'GET_LIGHT'
+export const UPDATE_LIGHT = 'UPDATE_LIGHT'
+export const DELETE_LIGHT = 'DELETE_LIGHT'
+export const GET_ALL_LIGHT = 'GET_ALL_LIGHT'

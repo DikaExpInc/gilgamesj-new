@@ -1,0 +1,5 @@
+export const CREATE_THEATER = "CREATE_THEATER";
+export const GET_THEATER = "GET_THEATER";
+export const UPDATE_THEATER = "UPDATE_THEATER";
+export const DELETE_THEATER = "DELETE_THEATER";
+export const GET_ALL_THEATER = "GET_ALL_THEATER";

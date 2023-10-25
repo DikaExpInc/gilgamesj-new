@@ -1,0 +1,5 @@
+export const CREATE_PRE_GAME = "CREATE_PRE_GAME";
+export const GET_PRE_GAME = "GET_PRE_GAME";
+export const UPDATE_PRE_GAME = "UPDATE_PRE_GAME";
+export const DELETE_PRE_GAME = "DELETE_PRE_GAME";
+export const GET_ALL_PRE_GAME = "GET_ALL_PRE_GAME";

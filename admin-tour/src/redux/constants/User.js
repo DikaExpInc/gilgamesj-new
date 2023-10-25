@@ -1,0 +1,6 @@
+export const CREATE_USER = 'CREATE_USER'
+export const GET_USER = 'GET_USER'
+export const UPDATE_USER = 'UPDATE_USER'
+export const DELETE_USER = 'DELETE_USER'
+export const DELETE_PLAYER = 'DELETE_PLAYER'
+export const GET_ALL_USER = 'GET_ALL_USER'

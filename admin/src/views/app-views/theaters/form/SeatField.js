@@ -92,12 +92,37 @@ const SeatFiled = (props) => {
 
       const [row, col] = seat.seatNumber.split('-').map(Number) // Mengkonversi setiap elemen menjadi number
 
-      const newCol = col + 1
+      // let _seatTheater = seatTheater?.filter(seat => parseInt(seat?.seatNumber?.split('-')[0]) === row)
+
+      // _seatTheater?.map((seat) => {
+      //   let isEmpty = seat?.position === 'empty'
+        
+      // })
+      const seatsInSameRow = seatTheater.filter((seat) => {
+        const [rowNum] = seat?.seatNumber?.split('-');
+        return parseInt(rowNum) === row;
+      });
+
+      // Find the first available seat number in the same row
+      let nextSeatNumber = 1;
+      for (let i = 0; i < seatsInSameRow.length; i++) {
+        const [currentRow, currentSeatNum] = seatsInSameRow[i]?.seatNumber?.split('-');
+        const seatNum = parseInt(currentSeatNum);
+        if (seatNum === nextSeatNumber) {
+          nextSeatNumber++;
+        } else {
+          break; // Found a gap, use the current number
+        }
+      }
+
+      // Use nextSeatNumber to assign the new seat number
+      const newSeatNumber = `${row}-${nextSeatNumber}`;
+     
 
       if (selectedStatus != 'default') {
         const resp = await theaterService.addSeat(
           {
-            name: '1-empty',
+            name: `${row}-empty`,
             position: selectedStatus,
           },
           id
@@ -105,7 +130,7 @@ const SeatFiled = (props) => {
       } else {
         const resp = await theaterService.addSeat(
           {
-            name: `${row}-${newCol}`,
+            name: newSeatNumber,
             position: selectedStatus,
           },
           id

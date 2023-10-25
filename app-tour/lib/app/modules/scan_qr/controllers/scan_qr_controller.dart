@@ -45,7 +45,7 @@ class ScanQrController extends GetxController
           if (scanData.code == "172389") {
             Get.toNamed(Routes.PRE_GAME_GUESS, arguments: {
               "id": 6,
-              "game": "game5",
+              "game": "game6",
               "type": "hemelstier",
             });
           } else {

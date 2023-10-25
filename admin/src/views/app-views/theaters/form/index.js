@@ -24,6 +24,7 @@ const FormComponent = (props) => {
   const [submitLoading, setSubmitLoading] = useState(false)
   const [loadingData, setLoadingData] = useState(true)
   const [status_stage, setStatus_stage] = useState(true)
+  const [rows, setRows] = useState(0)
 
   const onDiscard = () => {
     history.goBack()
@@ -41,6 +42,7 @@ const FormComponent = (props) => {
             description: data.description,
             totalSeatRows: data.totalSeatRows,
           })
+          setRows(data.totalSeatRows)
           setLoadingData(false)
         })
         .catch((error) => {
@@ -70,7 +72,6 @@ const FormComponent = (props) => {
           history.push(`/app/theaters/list`)
         }, 1000)
       }
-
     } catch (error) {
       message.error(`Failed to create theater`)
     }
@@ -79,25 +80,27 @@ const FormComponent = (props) => {
   return (
     <>
       <Form
-        layout='vertical'
+        layout="vertical"
         form={form}
-        name='advanced_search'
-        className='ant-advanced-search-form'
+        name="advanced_search"
+        className="ant-advanced-search-form"
         initialValues={{
           status: status_stage,
         }}
       >
-        <PageHeaderAlt className='border-bottom' overlap>
-          <div className='container'>
+        <PageHeaderAlt className="border-bottom" overlap>
+          <div className="container">
             <Flex
-              className='py-2'
+              className="py-2"
               mobileFlex={false}
-              justifyContent='between'
-              alignItems='center'
+              justifyContent="between"
+              alignItems="center"
             >
-              <h2 className='mb-3'>{mode === 'ADD' ? 'Add Stage' : `Edit Stage`} </h2>
-              <div className='mb-3'>
-                <Button className='mr-2' onClick={() => onDiscard()}>
+              <h2 className="mb-3">
+                {mode === 'ADD' ? 'Add Stage' : `Edit Stage`}{' '}
+              </h2>
+              <div className="mb-3">
+                <Button className="mr-2" onClick={() => onDiscard()}>
                   Cancel
                 </Button>
                 <Button
@@ -107,7 +110,7 @@ const FormComponent = (props) => {
                     border: 'none',
                   }}
                   onClick={handleSave}
-                  htmlType='submit'
+                  htmlType="submit"
                   loading={submitLoading}
                 >
                   {mode === 'ADD' ? 'Add' : `Save`}
@@ -116,16 +119,16 @@ const FormComponent = (props) => {
             </Flex>
           </div>
         </PageHeaderAlt>
-        <div className='container'>
-          <Tabs defaultActiveKey='1' style={{ marginTop: 30 }}>
-            <TabPane tab='General' key='1'>
-              {loadingData && <Spin size='large' tip='Please Wait' />}
+        <div className="container">
+          <Tabs defaultActiveKey="1" style={{ marginTop: 30 }}>
+            <TabPane tab="General" key="1">
+              {loadingData && <Spin size="large" tip="Please Wait" />}
               {!loadingData && <GeneralField />}
             </TabPane>
             {mode === 'EDIT' && (
-              <TabPane tab='Seat' key='2'>
-                {loadingData && <Spin size='large' tip='Please Wait' />}
-                {!loadingData && <SeatFiled />}
+              <TabPane tab="Seat" key="2">
+                {loadingData && <Spin size="large" tip="Please Wait" />}
+                {!loadingData && <SeatFiled rows={rows} />}
               </TabPane>
             )}
           </Tabs>

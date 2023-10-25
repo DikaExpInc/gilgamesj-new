@@ -14,18 +14,18 @@ const os = require('os')
 const { isLoginUser } = require('../middleware/auth')
 
 router.use(isLoginUser)
-router.get('/', index)
-router.get('/:id', getById)
+router.get('/:idTheater/', index)
+router.get('/:idTheater/:id', getById)
 router.post(
-  '/create',
+  '/:idTheater/create',
   multer({ dest: os.tmpdir() }).single('image'),
   actionCreate
 )
 router.put(
-  '/edit/:id',
+  '/:idTheater/edit/:id',
   multer({ dest: os.tmpdir() }).single('image'),
   actionEdit
 )
-router.delete('/delete/:id', actionDelete)
+router.delete('/:idTheater/delete/:id', actionDelete)
 
 module.exports = router

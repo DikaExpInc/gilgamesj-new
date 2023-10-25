@@ -73,6 +73,29 @@ class PreGameGuessController extends GetxController {
         'je begraaft het beest netjes, en zingt een lied',
       ));
     }
+    if (arguments['game'] == 'game6') {
+      titleGame.value =
+          "Je gaat naar een bos met een reusachtig, angstaanjagend wezen";
+      imageGame.value = "assets/images/pregame5-main.png";
+      questions.add(Guess(
+        'assets/images/pregame5-q1.png',
+        'Het beest met je wil vechten?',
+        'vechten met woorden',
+        'vechten met wapens',
+      ));
+      questions.add(Guess(
+        'assets/images/pregame5-q2.png',
+        'Je beste vriend is ineens heel bang is?',
+        'alleen vechten',
+        'je beste vriend overtuigen mee te doen',
+      ));
+      questions.add(Guess(
+        'assets/images/pregame5-q3.png',
+        'Je  het angstaanjagende beest vermoord.',
+        'je spiest zijn hoofd op een stok en rent ermee rond',
+        'je begraaft het beest netjes, en zingt een lied',
+      ));
+    }
     if (arguments['game'] == 'game7') {
       titleGame.value =
           "Je bent het stoerste kind ter wereld en je beste vriend wordt smoorverliefd op je.";

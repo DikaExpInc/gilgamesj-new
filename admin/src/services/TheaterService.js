@@ -39,4 +39,26 @@ theaterService.updateTheater = function (id, data) {
   })
 }
 
+theaterService.getTheaterSeatList = function (idTheater) {
+  return fetch({
+    url: `/theaterseat/${idTheater}`,
+    method: 'get',
+  })
+}
+
+theaterService.deleteTheaterSeat = function (id, idTheater) {
+  return fetch({
+    url: `/theaterseat/${idTheater}/delete/${id}`,
+    method: 'delete',
+  })
+}
+
+theaterService.addSeat = function (data, idTheater) {
+  return fetch({
+    url: `/theaterseat/${idTheater}/create`,
+    method: 'post',
+    data: data,
+  })
+}
+
 export default theaterService

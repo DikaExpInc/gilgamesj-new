@@ -56,24 +56,7 @@ class MiniGameShakeGameController extends GetxController {
             });
           }
         });
-    if (arguments['game'] == "rule" && arguments['type'] == "rule1") {
-      videocontroller =
-          VideoPlayerController.asset('assets/videos/sand_spelregel1.mp4');
-    } else if (arguments['game'] == "rule" && arguments['type'] == "rule2") {
-      videocontroller =
-          VideoPlayerController.asset('assets/videos/sand_spelregel2.mp4');
-    } else if (arguments['game'] == "rule" && arguments['type'] == "rule3") {
-      videocontroller =
-          VideoPlayerController.asset('assets/videos/sand_spelregel3.mp4');
-    } else if (arguments['game'] == "rule" && arguments['type'] == "rule4") {
-      videocontroller =
-          VideoPlayerController.asset('assets/videos/sand_spelregel4.mp4');
-    } else if (arguments['game'] == "rule" && arguments['type'] == "rule5") {
-      videocontroller =
-          VideoPlayerController.asset('assets/videos/sand_spelregel5.mp4');
-    } else {
-      videocontroller = VideoPlayerController.asset('assets/videos/sand.mp4');
-    }
+    videocontroller = VideoPlayerController.asset('assets/videos/sand.mp4');
     videocontroller!.addListener(() {
       if (videocontroller!.value.position >= videocontroller!.value.duration) {
         if (arguments['game'] != "rule") {

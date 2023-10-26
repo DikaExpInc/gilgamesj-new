@@ -601,6 +601,29 @@ server.on('message', async (msg) => {
   }
   if (result['url'] == '/game/ishtar-calling') {
     if (result['value'] == 'random') {
+      const players = await Player.find({})
+
+      // Memisahkan pemain menjadi tiga array berdasarkan user_type
+      const childrenPlayers = players.filter(
+        (player) => player.user_type === 'children'
+      )
+      const parentPlayers = players.filter(
+        (player) => player.user_type === 'parent'
+      )
+      const disabilityPlayers = players.filter(
+        (player) => player.user_type === 'disability'
+      )
+
+      // Menggabungkan kembali array pemain dalam urutan yang diinginkan
+      const sortedPlayers = [
+        ...childrenPlayers,
+        ...parentPlayers,
+        ...disabilityPlayers,
+      ]
+
+      await TheaterSeat.updateMany({}, { $set: { isOccupied: false } })
+      // Memberikan tempat duduk sesuai urutan
+      await assignSeats(sortedPlayers)
       await updateIshtarCall()
       await Setting.findOneAndUpdate(
         {

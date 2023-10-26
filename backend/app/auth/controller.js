@@ -1,5 +1,7 @@
 const Player = require('../player/model')
 const Setting = require('../setting/model')
+const Theater = require('../theater/model')
+const TheaterSeat = require('../theater_seat/model')
 const User = require('../users/model')
 const Seat = require('../seat/model')
 const config = require('../../config')
@@ -24,8 +26,6 @@ async function getNextSeat() {
       status: 'error',
     })
   }
-
-  const { rows, columns } = setting
 
   let cols = columns
 
@@ -65,7 +65,7 @@ async function getNextSeat() {
 }
 
 // Function to generate random Columns
-function generateRandomColumns(totalColumns) {
+function generateRandomColumnsRow(totalColumns) {
   return Math.floor(Math.random() * totalColumns) + 1
 }
 
@@ -177,19 +177,54 @@ module.exports = {
       })
     }
 
-    const { rows, columns } = setting
-    let cols = columns
+    // const { rows, columns } = setting
+    const { theater_id } = setting
+
+    const theater = await Theater.findOne({ _id: theater_id })
+
+    if (!theater) {
+      return res.status(404).json({
+        message: 'Theater not found',
+        status: 'error',
+      })
+    }
+
+    const theaterSeat = await TheaterSeat.find({ theater_id: theater_id })
+
+    if (!theaterSeat) {
+      return res.status(404).json({
+        message: 'Theater Seat not found',
+        status: 'error',
+      })
+    }
+
+    // Compute the number of columns for each row based on the seats in the theater
+    const seatsInRows = {}
+    for (const seat of theaterSeat) {
+      const [rowNum, colNum] = seat.seatNumber.split('-').map(Number)
+      if (!seatsInRows[rowNum]) {
+        seatsInRows[rowNum] = []
+      }
+      if (!seat.seatNumber.includes('empty')) {
+        seatsInRows[rowNum].push(colNum)
+      }
+    }
+
+    let rows = seatsInRows.length
 
     for (const player of players) {
       while (true) {
         const query = {
           seatNumber: `${currentCol}-${currentRow}`,
           isOccupied: false,
+          theater_id: theater_id,
         }
 
-        const seat = await Seat.findOneAndUpdate(query, {
+        const seat = await TheaterSeat.findOneAndUpdate(query, {
           $set: { isOccupied: true },
         })
+
+        let cols = seatsInRows[currentRow].length
 
         if (seat) {
           // Hitung setengah jumlah baris
@@ -205,8 +240,8 @@ module.exports = {
               seat: seat.seatNumber,
               status_seat: `row${currentCol}`,
               position,
-              stoel: currentCol,
-              rij: currentRow,
+              stoel: currentRow,
+              rij: currentCol,
             },
           })
           assignedSeats.push({ player, seat })
@@ -365,7 +400,6 @@ module.exports = {
       })
     }
   },
-
   getSeats: async (req, res, next) => {
     try {
       const players = await Player.find({})
@@ -406,7 +440,6 @@ module.exports = {
       })
     }
   },
-
   getRowCol: async (req, res, next) => {
     try {
       const setting = await Setting.findOne({ _id: '64de3fd2843badaf9efc006b' })
@@ -434,25 +467,49 @@ module.exports = {
       })
     }
   },
-
   updateIshtarCall: async () => {
     try {
-      const setting = await Setting.findOne({ _id: '64de3fd2843badaf9efc006b' })
-      const { columns } = setting
+      const player = await Player.find({})
+      const rijValues = player
+        .map((item) => parseInt(item.stoel))
+        .filter((value) => !isNaN(value)) // Filter nilai NaN
+
+      // Mencari nilai maksimal dari array rijValues
+      const maxRij = Math.max(...rijValues)
+
       // Buat urutan kolom acak
-      const randomColumns = generateRandomColumns(columns)
+      const randomRow = generateRandomColumnsRow(maxRij)
+
+      // Membuat objek untuk menyimpan jumlah kolom pada setiap row
+      const columnCounts = {}
+
+      // Mengelompokkan data berdasarkan nilai rij (row)
+      player.forEach((item) => {
+        const rij = item.stoel
+        if (!columnCounts[rij]) {
+          columnCounts[rij] = 0
+        }
+        columnCounts[rij]++
+      })
+
+      // Mengakses jumlah kolom untuk row tertentu (misalnya row 1)
+      const rowToRetrieve = randomRow
+      const jumlahKolomRow1 = columnCounts[rowToRetrieve] || 0
+
+      // Buat urutan kolom acak
+      const randomCol = generateRandomColumnsRow(jumlahKolomRow1)
 
       await Setting.findOneAndUpdate(
         {
           _id: '64de3fd2843badaf9efc006b',
         },
         {
-          ishtarColumns: randomColumns,
+          ishtarColumns: randomCol,
+          istharRows: randomRow,
         }
       )
     } catch (err) {}
   },
-
   signin: (req, res, next) => {
     const { email, password } = req.body
     User.findOne({ email: email })
@@ -491,7 +548,6 @@ module.exports = {
         })
       })
   },
-
   signinAdmin: (req, res, next) => {
     const { email, password } = req.body
     User.findOne({ email: email })
@@ -536,7 +592,6 @@ module.exports = {
         })
       })
   },
-
   addPlayer: async (req, res, next) => {
     try {
       const { total_player } = req.body
@@ -584,7 +639,6 @@ module.exports = {
       })
     }
   },
-
   getPlayers: async (req, res, next) => {
     try {
       const player = await Player.find({ user_id: req.user.id })
@@ -601,7 +655,6 @@ module.exports = {
       })
     }
   },
-
   getAllPlayers: async (req, res, next) => {
     try {
       const player = await Player.find({})
@@ -618,7 +671,6 @@ module.exports = {
       })
     }
   },
-
   changePlayer: async (req, res, next) => {
     try {
       if (req.body.player_now != undefined) {
@@ -648,7 +700,6 @@ module.exports = {
       })
     }
   },
-
   changeNamePlayer: async (req, res, next) => {
     try {
       const data = req.body

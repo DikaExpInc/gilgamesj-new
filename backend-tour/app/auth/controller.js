@@ -400,7 +400,6 @@ module.exports = {
       })
     }
   },
-
   getSeats: async (req, res, next) => {
     try {
       const players = await Player.find({})
@@ -441,7 +440,6 @@ module.exports = {
       })
     }
   },
-
   getRowCol: async (req, res, next) => {
     try {
       const setting = await Setting.findOne({ _id: '64de3fd2843badaf9efc006b' })
@@ -469,7 +467,6 @@ module.exports = {
       })
     }
   },
-
   updateIshtarCall: async () => {
     try {
       const player = await Player.find({})
@@ -513,7 +510,6 @@ module.exports = {
       )
     } catch (err) {}
   },
-
   signin: (req, res, next) => {
     const { email, password } = req.body
     User.findOne({ email: email })
@@ -552,7 +548,6 @@ module.exports = {
         })
       })
   },
-
   signinAdmin: (req, res, next) => {
     const { email, password } = req.body
     User.findOne({ email: email })
@@ -597,7 +592,6 @@ module.exports = {
         })
       })
   },
-
   addPlayer: async (req, res, next) => {
     try {
       const { total_player } = req.body
@@ -645,7 +639,6 @@ module.exports = {
       })
     }
   },
-
   getPlayers: async (req, res, next) => {
     try {
       const player = await Player.find({ user_id: req.user.id })
@@ -662,7 +655,6 @@ module.exports = {
       })
     }
   },
-
   getAllPlayers: async (req, res, next) => {
     try {
       const player = await Player.find({})
@@ -679,7 +671,6 @@ module.exports = {
       })
     }
   },
-
   changePlayer: async (req, res, next) => {
     try {
       if (req.body.player_now != undefined) {
@@ -709,7 +700,6 @@ module.exports = {
       })
     }
   },
-
   changeNamePlayer: async (req, res, next) => {
     try {
       const data = req.body

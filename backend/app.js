@@ -11,6 +11,7 @@ const { Client, Server } = require('node-osc')
 const Setting = require('./app/setting/model')
 const Player = require('./app/player/model')
 const Seat = require('./app/seat/model')
+const TheaterSeat = require('./app/theater_seat/model')
 
 var server = new Server(53001, '192.168.0.2')
 // var server = new Server(53001, '192.168.41.220')
@@ -376,7 +377,7 @@ server.on('message', async (msg) => {
         ...disabilityPlayers,
       ]
 
-      await Seat.updateMany({}, { $set: { isOccupied: false } })
+      await TheaterSeat.updateMany({}, { $set: { isOccupied: false } })
       // Memberikan tempat duduk sesuai urutan
       await assignSeats(sortedPlayers)
       await Setting.findOneAndUpdate(
@@ -425,7 +426,7 @@ server.on('message', async (msg) => {
         ...disabilityPlayers,
       ]
 
-      await Seat.updateMany({}, { $set: { isOccupied: false } })
+      await TheaterSeat.updateMany({}, { $set: { isOccupied: false } })
       // Memberikan tempat duduk sesuai urutan
       await assignSeats(sortedPlayers)
 

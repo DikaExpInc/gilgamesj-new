@@ -45,7 +45,7 @@ class MiniGameShakeGameController extends GetxController {
     super.onInit();
     Vibration.vibrate(duration: 1000);
     shakeDetector = ShakeDetector.autoStart(
-        shakeThresholdGravity: 1.0,
+        shakeThresholdGravity: 1.3,
         onPhoneShake: () {
           if (!isShaking.value) {
             videocontroller!.play();

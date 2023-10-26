@@ -34,13 +34,14 @@ class StarGameSkyScreen extends GetView<TheaterGameStarGameController> {
                   Container(
                     margin: EdgeInsets.only(top: 40),
                     child: Text(
-                      'maak het geluid in de nacht',
+                      'Maak nachtgeluiden\ndoor op de sterren te drukken.',
                       style: const TextStyle(
                         fontFamily: 'Centrion',
                         fontSize: 30,
                         color: Colors.white,
                         fontWeight: FontWeight.normal,
                       ),
+                      textAlign: TextAlign.center,
                     ),
                   ),
                 ],
@@ -52,7 +53,7 @@ class StarGameSkyScreen extends GetView<TheaterGameStarGameController> {
                 child: Positioned(
                   width: mWidth,
                   top: mHeight /
-                      2.2, // Sesuaikan dengan posisi horizontal yang diinginkan
+                      2, // Sesuaikan dengan posisi horizontal yang diinginkan
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
@@ -84,7 +85,7 @@ class StarGameSkyScreen extends GetView<TheaterGameStarGameController> {
                 visible: controller.showButtons.value,
                 child: Positioned(
                   width: mWidth / 1.2,
-                  top: mHeight / 3,
+                  top: mHeight / 2.5,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -133,7 +134,7 @@ class StarGameSkyScreen extends GetView<TheaterGameStarGameController> {
                 child: Positioned(
                   width: mWidth / 1.2,
                   top: mHeight /
-                      20, // Sesuaikan dengan posisi horizontal yang diinginkan
+                      8, // Sesuaikan dengan posisi horizontal yang diinginkan
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -182,12 +183,12 @@ class StarGameSkyScreen extends GetView<TheaterGameStarGameController> {
                 child: Positioned(
                   width: mWidth,
                   top: mHeight /
-                      30, // Sesuaikan dengan posisi horizontal yang diinginkan
+                      10, // Sesuaikan dengan posisi horizontal yang diinginkan
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       Container(
-                        margin: EdgeInsets.only(bottom: 40),
+                        margin: EdgeInsets.only(bottom: 80),
                         child: InkWell(
                           onTap: () {
                             controller.playAudio("vogels.wav");

@@ -32,9 +32,11 @@ class TheaterGameStarGameController extends GetxController
   RxBool tapStatus = false.obs;
 
   // Method untuk memainkan audio
-  Future<void> playAudio(String audioFileName) async {
+  void playAudio(String audioFileName) {
     audioPlayer.stop();
-    audioPlayer = await audioCache.loop(audioFileName);
+    Future.delayed(Duration(seconds: 1), () async {
+      audioPlayer = await audioCache.loop(audioFileName);
+    });
   }
 
   @override

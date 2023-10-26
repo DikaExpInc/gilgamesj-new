@@ -62,6 +62,7 @@ class MiniGameShakeGameController extends GetxController {
         if (arguments['game'] != "rule") {
           isDone.value = true;
         } else {
+          shakeDetector!.stopListening();
           videocontroller!.pause();
           Future.delayed(Duration(seconds: 5), () {
             int playedNumber = GetStorage().read('played_number') ?? 0;

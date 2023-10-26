@@ -120,59 +120,59 @@ class TicketView extends GetView<TicketController> {
                             ),
                           ],
                         ),
-                        Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            const Text(
-                              'Stoel',
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 36,
-                              ),
-                            ),
-                            SizedBox(
-                              height: 20,
-                            ),
-                            Column(
-                              children: List.generate(
-                                int.parse(GetStorage().read('totalPlayer')),
-                                (index) => Text(
-                                  '${GetStorage().read('rij_$index')}',
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 36,
-                                  ),
-                                  textAlign: TextAlign.center,
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
+                        // Column(
+                        //   mainAxisAlignment: MainAxisAlignment.center,
+                        //   crossAxisAlignment: CrossAxisAlignment.center,
+                        //   children: [
+                        //     const Text(
+                        //       'Stoel',
+                        //       style: TextStyle(
+                        //         color: Colors.white,
+                        //         fontSize: 36,
+                        //       ),
+                        //     ),
+                        //     SizedBox(
+                        //       height: 20,
+                        //     ),
+                        //     Column(
+                        //       children: List.generate(
+                        //         int.parse(GetStorage().read('totalPlayer')),
+                        //         (index) => Text(
+                        //           '${GetStorage().read('rij_$index')}',
+                        //           style: TextStyle(
+                        //             color: Colors.white,
+                        //             fontSize: 36,
+                        //           ),
+                        //           textAlign: TextAlign.center,
+                        //         ),
+                        //       ),
+                        //     ),
+                        //   ],
+                        // ),
                       ],
                     ),
                   ],
                 ),
               ),
-              Image.asset('assets/images/podium.png'),
-              Obx(
-                () => Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: List.generate(controller.col.value, (indexA) {
-                    return Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: List.generate(
-                        controller.row.value,
-                        (indexB) {
-                          return buildSeat(indexA + 1, indexB + 1);
-                        },
-                      ),
-                    );
-                  }),
-                ),
-              )
+              // Image.asset('assets/images/podium.png'),
+              // Obx(
+              //   () => Column(
+              //     mainAxisAlignment: MainAxisAlignment.center,
+              //     crossAxisAlignment: CrossAxisAlignment.center,
+              //     children: List.generate(controller.col.value, (indexA) {
+              //       return Row(
+              //         mainAxisAlignment: MainAxisAlignment.center,
+              //         crossAxisAlignment: CrossAxisAlignment.center,
+              //         children: List.generate(
+              //           controller.row.value,
+              //           (indexB) {
+              //             return buildSeat(indexA + 1, indexB + 1);
+              //           },
+              //         ),
+              //       );
+              //     }),
+              //   ),
+              // )
             ],
           ),
         ),

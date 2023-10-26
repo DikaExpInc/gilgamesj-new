@@ -63,7 +63,7 @@ class PreGameItemsArView extends GetView<PreGameItemsArController> {
                       child: Obx(
                         () => GridView.count(
                           crossAxisCount: 3,
-                          children: List.generate(5, (index) {
+                          children: List.generate(4, (index) {
                             // final box = GetStorage();
                             switch (index) {
                               case 0:
@@ -76,9 +76,6 @@ class PreGameItemsArView extends GetView<PreGameItemsArController> {
                                 index = 5;
                                 break;
                               case 3:
-                                index = 6;
-                                break;
-                              case 4:
                                 index = 7;
                                 break;
                               default:

@@ -1,20 +1,21 @@
 import 'dart:async';
 import 'dart:math';
 
+import 'package:app/app/data/game2_model.dart';
 import 'package:app/app/modules/theater_game_lightning_game/views/screens/lightning_game_character_screen.dart';
-import 'package:app/app/modules/theater_game_lightning_game/views/screens/lightning_game_light_screen.dart';
-import 'package:app/app/modules/theater_game_lightning_game/views/screens/lightning_game_message_screen.dart';
 import 'package:app/app/routes/app_pages.dart';
 import 'package:app/app/services/game2_service.dart';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:shake/shake.dart';
 import 'package:vibration/vibration.dart';
 
 class TheaterGameLightningGameController extends GetxController
     with GetTickerProviderStateMixin {
   ShakeDetector? shakeDetector;
+  Game2ListModel? game2;
   RxDouble containerWidth = 1200.0.obs;
   Timer? timer;
   final AudioCache audioCache = AudioCache(prefix: 'assets/audios/');
@@ -33,12 +34,19 @@ class TheaterGameLightningGameController extends GetxController
   late final AnimationController _controllerText;
   late final Animation<double> _animationText;
 
+  final Stream game2Stream =
+      Stream.periodic(const Duration(seconds: 2), (int count) {
+    return count;
+  });
+
   @override
   void onClose() {
     _controller.dispose();
     _controllerParticle.dispose();
     _controllerText.dispose();
     stopAutomaticChange();
+    sub.cancel();
+    sub2.cancel();
     super.onClose();
   }
 
@@ -91,15 +99,16 @@ class TheaterGameLightningGameController extends GetxController
 
   @override
   void onInit() {
-    // Di sini Anda dapat mengatur widget awal yang akan ditampilkan
-    // setWidget(LightningGameMessageScreen());
     setWidget(LightningGameCharacterScreen());
     startAutomaticChange();
     firstInit();
     Vibration.vibrate(duration: 1000);
-
     sub = settingStream.listen((event) {
       changeBackgroundColor();
+    });
+    loadGame2();
+    sub2 = game2Stream.listen((event) {
+      loadGame2();
     });
 
     shakeDetector = ShakeDetector.autoStart(
@@ -163,7 +172,7 @@ class TheaterGameLightningGameController extends GetxController
     });
   }
 
-  void stopAutomaticChange() {
+  Future<void> stopAutomaticChange() async {
     if (timer != null && timer!.isActive) {
       timer!.cancel(); // Membatalkan timer jika sedang berjalan
     }
@@ -190,6 +199,7 @@ class TheaterGameLightningGameController extends GetxController
     return count;
   });
   late StreamSubscription sub;
+  late StreamSubscription sub2;
 
   final List<Color> backgroundColors = [
     Colors.white,
@@ -219,5 +229,24 @@ class TheaterGameLightningGameController extends GetxController
 
   Future<void> firstInit() async {
     await Game2Api().resetAPI();
+  }
+
+  loadGame2() async {
+    update();
+    // showLoading();
+    game2 = await Game2Api().loadGame2API();
+    GetStorage().write('game2-1', game2?.items?[0].iV ?? 0);
+    GetStorage().write('game2-2', game2?.items?[1].iV ?? 0);
+    update();
+    // stopLoading();
+    if (game2?.statusCode == 200) {
+    } else if (game2?.statusCode == 204) {
+      print("Empty");
+    } else if (game2?.statusCode == 404) {
+      update();
+    } else if (game2?.statusCode == 401) {
+    } else {
+      print("someting wrong 400");
+    }
   }
 }

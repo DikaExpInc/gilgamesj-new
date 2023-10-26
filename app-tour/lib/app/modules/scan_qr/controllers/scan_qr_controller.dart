@@ -42,7 +42,7 @@ class ScanQrController extends GetxController
           }
         }
         if (arguments['id'] == 5) {
-          if (scanData.code == "172389") {
+          if (scanData.code == "578341") {
             Get.toNamed(Routes.PRE_GAME_GUESS, arguments: {
               "id": 6,
               "game": "game6",
@@ -52,17 +52,17 @@ class ScanQrController extends GetxController
             isWrong.value = true;
           }
         }
-        if (arguments['id'] == 6) {
-          if (scanData.code == "123887") {
-            Get.toNamed(Routes.PRE_GAME_GUESS, arguments: {
-              "id": 7,
-              "game": "game7",
-              "type": "ishtar",
-            });
-          } else {
-            isWrong.value = true;
-          }
-        }
+        // if (arguments['id'] == 6) {
+        //   if (scanData.code == "123887") {
+        //     Get.toNamed(Routes.PRE_GAME_GUESS, arguments: {
+        //       "id": 7,
+        //       "game": "game7",
+        //       "type": "ishtar",
+        //     });
+        //   } else {
+        //     isWrong.value = true;
+        //   }
+        // }
         if (arguments['id'] == 7) {
           if (scanData.code == "282302") {
             Get.toNamed(Routes.MINI_GAME_SHAKE_GAME, arguments: {
@@ -92,37 +92,6 @@ class ScanQrController extends GetxController
   }
 
   void onSubmit() {
-    if (arguments['id'] == 0) {
-      if (inputCodeController.text == "172836") {
-        Get.toNamed(Routes.PRE_GAME_PHOTO, arguments: {
-          "id": 1,
-        });
-      } else {
-        isWrongFill.value = true;
-      }
-    }
-    if (arguments['id'] == 1) {
-      if (inputCodeController.text == "192302") {
-        Get.toNamed(Routes.SCAN_AR, arguments: {
-          "id": 2,
-          "type": "boat",
-          "link": "/gilgamesj/boat",
-        });
-      } else {
-        isWrongFill.value = true;
-      }
-    }
-    if (arguments['id'] == 2) {
-      if (inputCodeController.text == "829361") {
-        Get.toNamed(Routes.SCAN_AR, arguments: {
-          "id": 3,
-          "type": "wall",
-          "link": "/gilgamesj/wall",
-        });
-      } else {
-        isWrongFill.value = true;
-      }
-    }
     if (arguments['id'] == 3) {
       if (inputCodeController.text == "129371") {
         Get.toNamed(Routes.MINI_GAME_MUSIC_GAME, arguments: {
@@ -147,78 +116,33 @@ class ScanQrController extends GetxController
       }
     }
     if (arguments['id'] == 5) {
-      if (inputCodeController.text == "172389") {
-        Get.toNamed(Routes.MINI_GAME_MUSIC_GAME, arguments: {
-          "id": 6,
-          "type": "anu",
-          "lock_code": 1234,
-          "bg": "assets/images/annu-bg.png",
-        });
-      } else {
-        isWrongFill.value = true;
-      }
-    }
-    if (arguments['id'] == 6) {
-      if (inputCodeController.text == "123887") {
+      if (inputCodeController.text == "578341") {
         Get.toNamed(Routes.PRE_GAME_GUESS, arguments: {
-          "id": 7,
-          "game": "game7",
-          "type": "ishtar",
+          "id": 6,
+          "game": "game6",
+          "type": "hemelstier",
         });
       } else {
         isWrongFill.value = true;
       }
     }
+    // if (arguments['id'] == 6) {
+    //   if (inputCodeController.text == "123887") {
+    //     Get.toNamed(Routes.PRE_GAME_GUESS, arguments: {
+    //       "id": 7,
+    //       "game": "game7",
+    //       "type": "ishtar",
+    //     });
+    //   } else {
+    //     isWrongFill.value = true;
+    //   }
+    // }
     if (arguments['id'] == 7) {
       if (inputCodeController.text == "282302") {
         Get.toNamed(Routes.MINI_GAME_SHAKE_GAME, arguments: {
           "id": 8,
           "game": "rule",
           "type": "rule1",
-        });
-      } else {
-        isWrongFill.value = true;
-      }
-    }
-    if (arguments['id'] == 8) {
-      if (inputCodeController.text == "281293") {
-        Get.toNamed(Routes.MINI_GAME_SHAKE_GAME, arguments: {
-          "id": 9,
-          "game": "rule",
-          "type": "rule2",
-        });
-      } else {
-        isWrongFill.value = true;
-      }
-    }
-    if (arguments['id'] == 9) {
-      if (inputCodeController.text == "490127") {
-        Get.toNamed(Routes.MINI_GAME_SHAKE_GAME, arguments: {
-          "id": 10,
-          "game": "rule",
-          "type": "rule3",
-        });
-      } else {
-        isWrongFill.value = true;
-      }
-    }
-    if (arguments['id'] == 10) {
-      if (inputCodeController.text == "760293") {
-        Get.toNamed(Routes.MINI_GAME_SHAKE_GAME, arguments: {
-          "id": 11,
-          "game": "rule",
-          "type": "rule4",
-        });
-      } else {
-        isWrongFill.value = true;
-      }
-    }
-    if (arguments['id'] == 11) {
-      if (inputCodeController.text == "937260") {
-        Get.toNamed(Routes.MINI_GAME_SHAKE_GAME, arguments: {
-          "id": 12,
-          "game": "rule",
-          "type": "rule5",
         });
       } else {
         isWrongFill.value = true;

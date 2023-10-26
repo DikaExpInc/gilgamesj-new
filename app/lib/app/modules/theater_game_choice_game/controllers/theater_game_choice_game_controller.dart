@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:app/app/data/game5_model.dart';
 import 'package:app/app/data/question_model.dart';
 import 'package:app/app/modules/theater_game_choice_game/views/screens/choice_game_character_screen.dart';
 import 'package:app/app/modules/theater_game_choice_game/views/screens/choice_game_message_screen.dart';
@@ -8,11 +9,18 @@ import 'package:app/app/services/game5_service.dart';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:vibration/vibration.dart';
 
 class TheaterGameChoiceGameController extends GetxController
     with GetTickerProviderStateMixin {
   final Map<String, dynamic> arguments = Get.arguments;
+  Game5ListModel? game5;
+  final Stream game5Stream =
+      Stream.periodic(const Duration(seconds: 2), (int count) {
+    return count;
+  });
+  late StreamSubscription sub;
 
   RxDouble containerWidth = 1200.0.obs;
   Timer? timer;
@@ -41,6 +49,7 @@ class TheaterGameChoiceGameController extends GetxController
     _controller.dispose();
     _controllerParticle.dispose();
     stopAutomaticChange();
+    sub.cancel();
     super.onClose();
   }
 
@@ -95,6 +104,13 @@ class TheaterGameChoiceGameController extends GetxController
     setWidget(ChoiceGameCharacterScreen());
     startAutomaticChange();
     firstInit();
+    // membuat langganan
+    loadGame5();
+
+    sub = game5Stream.listen((event) {
+      loadGame5();
+      print('ini stream data');
+    });
 
     Vibration.vibrate(duration: 1000);
 
@@ -183,5 +199,24 @@ class TheaterGameChoiceGameController extends GetxController
 
   Future<void> firstInit() async {
     await Game5Api().resetAPI();
+  }
+
+  loadGame5() async {
+    update();
+    // showLoading();
+    game5 = await Game5Api().loadGame5API();
+    GetStorage().write('game5-1', game5?.items?[0].iV ?? 0);
+    GetStorage().write('game5-2', game5?.items?[1].iV ?? 0);
+    update();
+    // stopLoading();
+    if (game5?.statusCode == 200) {
+    } else if (game5?.statusCode == 204) {
+      print("Empty");
+    } else if (game5?.statusCode == 404) {
+      update();
+    } else if (game5?.statusCode == 401) {
+    } else {
+      print("someting wrong 400");
+    }
   }
 }

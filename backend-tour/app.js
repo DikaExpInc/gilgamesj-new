@@ -42,17 +42,6 @@ server.on('message', async (msg) => {
         }
       )
     }
-    if (result['value'] == 'all-museum1') {
-      await Setting.findOneAndUpdate(
-        {
-          _id: '64de3fd2843badaf9efc006b',
-        },
-        {
-          page: 'lightning',
-          player: 'all-museum1',
-        }
-      )
-    }
   }
   if (result['url'] == '/control/volume-tablet-up') {
     if (result['value'] == 'all') {
@@ -440,98 +429,6 @@ server.on('message', async (msg) => {
         }
       )
     }
-    if (result['value'] == 'museum1') {
-      await Setting.findOneAndUpdate(
-        {
-          _id: '64de3fd2843badaf9efc006b',
-        },
-        {
-          page: 'go-to-theater',
-          player: 'museum1',
-        }
-      )
-    }
-    if (result['value'] == 'museum1+museum2') {
-      await Setting.findOneAndUpdate(
-        {
-          _id: '64de3fd2843badaf9efc006b',
-        },
-        {
-          page: 'go-to-theater',
-          player: 'museum1+museum2',
-        }
-      )
-    }
-    if (result['value'] == 'group-hemelstier') {
-      await Setting.findOneAndUpdate(
-        {
-          _id: '64de3fd2843badaf9efc006b',
-        },
-        {
-          page: 'go-to-theater',
-          player: 'group-hemelstier',
-        }
-      )
-    }
-  }
-  if (result['url'] == '/movement/go-to-museum1') {
-    if (result['value'] == 'row1') {
-      await Setting.findOneAndUpdate(
-        {
-          _id: '64de3fd2843badaf9efc006b',
-        },
-        {
-          page: 'go-to-museum1',
-          player: 'row1',
-        }
-      )
-    }
-    if (result['value'] == 'row2-left-side') {
-      await Setting.findOneAndUpdate(
-        {
-          _id: '64de3fd2843badaf9efc006b',
-        },
-        {
-          page: 'go-to-museum1',
-          player: 'row2-left-side',
-        }
-      )
-    }
-    if (result['value'] == 'group-ishtar') {
-      await Setting.findOneAndUpdate(
-        {
-          _id: '64de3fd2843badaf9efc006b',
-        },
-        {
-          page: 'go-to-museum1',
-          player: 'group-ishtar',
-        }
-      )
-    }
-  }
-  if (result['url'] == '/movement/go-to-museum2') {
-    if (result['value'] == 'row2-right-side') {
-      await Setting.findOneAndUpdate(
-        {
-          _id: '64de3fd2843badaf9efc006b',
-        },
-        {
-          page: 'go-to-museum2',
-          player: 'row2-right-side',
-        }
-      )
-    }
-    if (result['value'] == 'group-gilgamesj') {
-      await Setting.findOneAndUpdate(
-        {
-          _id: '64de3fd2843badaf9efc006b',
-        },
-        {
-          page: 'go-to-museum2',
-          player: 'group-gilgamesj',
-        }
-      )
-    }
   }
   if (result['url'] == '/game/game11-rebus') {
     if (result['value'] == 'all') {
@@ -558,50 +455,6 @@ server.on('message', async (msg) => {
         }
       )
     }
-    if (result['value'] == 'all+parent&mobility') {
-      await Setting.findOneAndUpdate(
-        {
-          _id: '64de3fd2843badaf9efc006b',
-        },
-        {
-          page: 'give-the-tablet',
-          player: 'all+parent&mobility',
-        }
-      )
-    }
-    if (result['value'] == 'all-museum1+2') {
-      await Setting.findOneAndUpdate(
-        {
-          _id: '64de3fd2843badaf9efc006b',
-        },
-        {
-          page: 'give-the-tablet',
-          player: 'all-museum1+2',
-        }
-      )
-    }
-    if (result['value'] == 'museum1') {
-      await Setting.findOneAndUpdate(
-        {
-          _id: '64de3fd2843badaf9efc006b',
-        },
-        {
-          page: 'give-the-tablet',
-          player: 'museum1',
-        }
-      )
-    }
-    if (result['value'] == 'museum2') {
-      await Setting.findOneAndUpdate(
-        {
-          _id: '64de3fd2843badaf9efc006b',
-        },
-        {
-          page: 'give-the-tablet',
-          player: 'museum2',
-        }
-      )
-    }
   }
   if (result['url'] == '/signaling/blank') {
     if (result['value'] == 'all') {
@@ -612,50 +465,6 @@ server.on('message', async (msg) => {
         {
           page: 'blank',
           player: 'all',
-        }
-      )
-    }
-    if (result['value'] == 'all-podium') {
-      await Setting.findOneAndUpdate(
-        {
-          _id: '64de3fd2843badaf9efc006b',
-        },
-        {
-          page: 'blank',
-          player: 'all-podium',
-        }
-      )
-    }
-    if (result['value'] == 'all-museum1+2') {
-      await Setting.findOneAndUpdate(
-        {
-          _id: '64de3fd2843badaf9efc006b',
-        },
-        {
-          page: 'blank',
-          player: 'all-museum1+2',
-        }
-      )
-    }
-    if (result['value'] == 'museum1') {
-      await Setting.findOneAndUpdate(
-        {
-          _id: '64de3fd2843badaf9efc006b',
-        },
-        {
-          page: 'blank',
-          player: 'museum1',
-        }
-      )
-    }
-    if (result['value'] == 'museum2') {
-      await Setting.findOneAndUpdate(
-        {
-          _id: '64de3fd2843badaf9efc006b',
-        },
-        {
-          page: 'blank',
-          player: 'museum2',
         }
       )
     }
@@ -738,80 +547,54 @@ server.on('message', async (msg) => {
       )
     }
   }
-  if (result['url'] == '/game/chat-find-humbaba') {
-    if (result['value'] == 'museum1') {
-      await Setting.findOneAndUpdate(
-        {
-          _id: '64de3fd2843badaf9efc006b',
-        },
-        {
-          page: 'chat-find-humbaba',
-          player: 'museum1',
-        }
-      )
-    }
-  }
-  if (result['url'] == '/game/chat-find-spear') {
-    if (result['value'] == 'museum2') {
-      await Setting.findOneAndUpdate(
-        {
-          _id: '64de3fd2843badaf9efc006b',
-        },
-        {
-          page: 'chat-find-spear',
-          player: 'museum2',
-        }
-      )
-    }
-  }
   if (result['url'] == '/game/star-game') {
-    if (result['value'] == 'all-museum1+2') {
+    if (result['value'] == 'all') {
       await Setting.findOneAndUpdate(
         {
           _id: '64de3fd2843badaf9efc006b',
         },
         {
           page: 'star-game',
-          player: 'all-museum1+2',
+          player: 'all',
         }
       )
     }
   }
   if (result['url'] == '/game/game4-humbaba') {
-    if (result['value'] == 'all-museum1+2') {
+    if (result['value'] == 'all') {
       await Setting.findOneAndUpdate(
         {
           _id: '64de3fd2843badaf9efc006b',
         },
         {
           page: 'game4-humbaba',
-          player: 'all-museum1+2',
+          player: 'all',
         }
       )
     }
   }
   if (result['url'] == '/movement/show-humbaba') {
-    if (result['value'] == 'museum1') {
+    if (result['value'] == 'all') {
       await Setting.findOneAndUpdate(
         {
           _id: '64de3fd2843badaf9efc006b',
         },
         {
           page: 'show-humbaba',
-          player: 'museum1',
+          player: 'all',
         }
       )
     }
   }
   if (result['url'] == '/signaling/give-spear') {
-    if (result['value'] == 'museum2') {
+    if (result['value'] == 'all') {
       await Setting.findOneAndUpdate(
         {
           _id: '64de3fd2843badaf9efc006b',
         },
         {
           page: 'give-spear',
-          player: 'museum2',
+          player: 'all',
         }
       )
     }
@@ -844,14 +627,14 @@ server.on('message', async (msg) => {
     }
   }
   if (result['url'] == '/game/choose-your-character') {
-    if (result['value'] == 'all+parent') {
+    if (result['value'] == 'all') {
       await Setting.findOneAndUpdate(
         {
           _id: '64de3fd2843badaf9efc006b',
         },
         {
           page: 'choose-your-character',
-          player: 'all+parent',
+          player: 'all',
         }
       )
     }

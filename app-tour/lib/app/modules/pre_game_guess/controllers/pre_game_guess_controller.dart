@@ -57,43 +57,43 @@ class PreGameGuessController extends GetxController {
       questions.add(Guess(
         'assets/images/pregame5-q1.png',
         'Het beest met je wil vechten?',
-        'vechten met woorden',
-        'vechten met wapens',
+        'Ik zou vechten met woorden',
+        'Ik zou vechten met wapens',
       ));
       questions.add(Guess(
         'assets/images/pregame5-q2.png',
-        'Je beste vriend is ineens heel bang is?',
-        'alleen vechten',
-        'je beste vriend overtuigen mee te doen',
+        'Je beste vriend ineens heel bang is?',
+        'Ik zou alleen vechten',
+        'Ik zou mijn beste vriend overtuigen om mee te vechten',
       ));
       questions.add(Guess(
         'assets/images/pregame5-q3.png',
-        'Je  het angstaanjagende beest vermoord.',
-        'je spiest zijn hoofd op een stok en rent ermee rond',
-        'je begraaft het beest netjes, en zingt een lied',
+        'Je het angstaanjagende beest vermoord?',
+        'Ik zou zijn hoofd op een stok spiezen en ermee rondrennen',
+        'Ik zou het beest begraven en een lied zingen',
       ));
     }
     if (arguments['game'] == 'game6') {
       titleGame.value =
-          "Je gaat naar een bos met een reusachtig, angstaanjagend wezen";
-      imageGame.value = "assets/images/pregame5-main.png";
+          "Je bent het stoerste kind ter wereld en je beste vriend wordt smoorverliefd op je. ";
+      imageGame.value = "assets/images/pregame7-main.png";
       questions.add(Guess(
-        'assets/images/pregame5-q1.png',
-        'Het beest met je wil vechten?',
-        'vechten met woorden',
-        'vechten met wapens',
+        'assets/images/pregame7-q1.png',
+        'Je voelt dat je beste vriend verliefd op je is',
+        'Ik zou zeggen dat ik dat voel',
+        'Ik zou net doen alsof er niets aan de hand is',
       ));
       questions.add(Guess(
-        'assets/images/pregame5-q2.png',
-        'Je beste vriend is ineens heel bang is?',
-        'alleen vechten',
-        'je beste vriend overtuigen mee te doen',
+        'assets/images/pregame7-q2.png',
+        'Je beste vriend je een kus wil geven',
+        'Ik zou wegrennen',
+        'Ik zou een kus terug geven',
       ));
       questions.add(Guess(
-        'assets/images/pregame5-q3.png',
-        'Je  het angstaanjagende beest vermoord.',
-        'je spiest zijn hoofd op een stok en rent ermee rond',
-        'je begraaft het beest netjes, en zingt een lied',
+        'assets/images/pregame7-q3.png',
+        'Je beste vriend boos is omdat jij niet wil',
+        'Ik zou diegene troosten',
+        'Ik zou mijn schouders ophalen',
       ));
     }
     if (arguments['game'] == 'game7') {

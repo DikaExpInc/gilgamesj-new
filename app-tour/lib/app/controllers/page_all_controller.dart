@@ -141,13 +141,6 @@ class PageAllController extends GetxController {
                     Get.offAllNamed(Routes.LIGHTNING);
                   }
                 }
-                if (setting!.player == "all-museum1" &&
-                    status_seat_tablet != "museum1") {
-                  if (mode != "lightning") {
-                    GetStorage().write('mode', "lightning");
-                    Get.offAllNamed(Routes.LIGHTNING);
-                  }
-                }
                 break;
               case "error":
                 if (setting!.player == "all") {
@@ -183,102 +176,6 @@ class PageAllController extends GetxController {
                     Get.offAllNamed(Routes.TICKET);
                   }
                 }
-                if (setting!.player == "group-hemelstier" &&
-                    status_seat_tablet == "hemelstier") {
-                  if (mode != "go-to-theater") {
-                    GetStorage().write('mode', "go-to-theater");
-                    Get.offAllNamed(Routes.MOVEMENT_PAGE, arguments: {
-                      "title": "Blijf zitten bij de hemelstier",
-                      "description": "",
-                    });
-                  }
-                }
-                if (setting!.player == "museum1" &&
-                    status_seat_tablet == "museum1") {
-                  if (mode != "go-to-theater") {
-                    GetStorage()
-                        .write('status_seat_tablet', "row${rij_tablet}");
-                    GetStorage().write('mode', "go-to-theater");
-                    Get.offAllNamed(Routes.TICKET);
-                  }
-                }
-                if (setting!.player == "museum1+museum2" &&
-                    (status_seat_tablet == "museum1" ||
-                        status_seat_tablet == "museum2")) {
-                  if (mode != "go-to-theater") {
-                    GetStorage()
-                        .write('status_seat_tablet', "row${rij_tablet}");
-                    GetStorage().write('mode', "go-to-theater");
-                    Get.offAllNamed(Routes.TICKET);
-                  }
-                }
-                break;
-              case "go-to-museum1":
-                if (setting!.player == "row1" && status_seat_tablet == "row1") {
-                  if (mode != "go-to-museum1") {
-                    GetStorage().write('mode', "go-to-museum1");
-                    GetStorage().write('status_seat_tablet', "museum1");
-                    Get.offAllNamed(Routes.MOVEMENT_PAGE, arguments: {
-                      "title": "Jullie zijn uitgekozen!",
-                      "description":
-                          "Sta op, ga naar het museum en zoek Enkidu."
-                    });
-                  }
-                }
-                if (setting!.player == "row2-left-side" &&
-                    status_seat_tablet == "row2" &&
-                    position_tablet == "left") {
-                  if (mode != "go-to-museum1") {
-                    GetStorage().write('mode', "go-to-museum1");
-                    GetStorage().write('status_seat_tablet', "museum1");
-                    Get.offAllNamed(Routes.MOVEMENT_PAGE, arguments: {
-                      "title":
-                          "Jullie hebben een geheime missie. Sta op en loop naar het museum",
-                      "description":
-                          "Geheime opdracht: Ga aan de linkerkant de zaal uit richting het museum. Neem je groepje mee!"
-                    });
-                  }
-                }
-                if (setting!.player == "group-ishtar" &&
-                    status_seat_tablet == "ishtar") {
-                  if (mode != "go-to-museum1") {
-                    GetStorage().write('mode', "go-to-museum1");
-                    GetStorage().write('status_seat_tablet', "museum1");
-                    Get.offAllNamed(Routes.MOVEMENT_PAGE, arguments: {
-                      "title": "Verzamel je nu bij Ishtar",
-                      "description":
-                          "Ga met je groepje via de linkerkant naar het museum toe en wacht daar op Ishtar."
-                    });
-                  }
-                }
-                break;
-              case "go-to-museum2":
-                if (setting!.player == "row2-right-side" &&
-                    status_seat_tablet == "row2" &&
-                    position_tablet == "right") {
-                  if (mode != "go-to-museum2") {
-                    GetStorage().write('mode', "go-to-museum2");
-                    GetStorage().write('status_seat_tablet', "museum2");
-                    Get.offAllNamed(Routes.MOVEMENT_PAGE, arguments: {
-                      "title":
-                          "Jullie hebben een geheime missie. Sta op en loop naar het museum",
-                      "description":
-                          "Geheime opdracht: Ga aan de rechterkant de zaal uit richting het museum. Neem je groepje mee!"
-                    });
-                  }
-                }
-                if (setting!.player == "group-gilgamesj" &&
-                    status_seat_tablet == "gilgamesj") {
-                  if (mode != "go-to-museum2") {
-                    GetStorage().write('mode', "go-to-museum2");
-                    GetStorage().write('status_seat_tablet', "museum2");
-                    Get.offAllNamed(Routes.MOVEMENT_PAGE, arguments: {
-                      "title": "Verzamel je nu bij Gilgamesj",
-                      "description":
-                          "Geheime opdracht: Ga aan de rechterkant de zaal uit richting het museum. Neem je groepje mee!"
-                    });
-                  }
-                }
                 break;
               case "game11-rebus":
                 if (setting!.player == "all") {
@@ -295,66 +192,9 @@ class PageAllController extends GetxController {
                     Get.offAllNamed(Routes.GIVE_TABLET);
                   }
                 }
-                if (setting!.player == "all+parent&mobility") {
-                  if (mode != "give-the-tablet") {
-                    GetStorage().write('mode', "give-the-tablet");
-                    Get.offAllNamed(Routes.GIVE_TABLET);
-                  }
-                }
-                if (setting!.player == "all-museum1+2" &&
-                    status_seat_tablet != "museum1" &&
-                    status_seat_tablet != "museum2") {
-                  if (mode != "give-the-tablet") {
-                    GetStorage().write('mode', "give-the-tablet");
-                    Get.offAllNamed(Routes.GIVE_TABLET);
-                  }
-                }
-                if (setting!.player == "museum1" &&
-                    status_seat_tablet == "museum1") {
-                  if (mode != "give-the-tablet") {
-                    GetStorage().write('mode', "give-the-tablet");
-                    Get.offAllNamed(Routes.GIVE_TABLET);
-                  }
-                }
-                if (setting!.player == "museum2" &&
-                    status_seat_tablet == "museum2") {
-                  if (mode != "give-the-tablet") {
-                    GetStorage().write('mode', "give-the-tablet");
-                    Get.offAllNamed(Routes.GIVE_TABLET);
-                  }
-                }
                 break;
               case "blank":
                 if (setting!.player == "all") {
-                  if (mode != "blank") {
-                    GetStorage().write('mode', "blank");
-                    Get.offAllNamed(Routes.BLANK);
-                  }
-                }
-                if (setting!.player == "all-podium" &&
-                    status_seat_tablet != "podium") {
-                  if (mode != "blank") {
-                    GetStorage().write('mode', "blank");
-                    Get.offAllNamed(Routes.BLANK);
-                  }
-                }
-                if (setting!.player == "all-museum1+2" &&
-                    status_seat_tablet != "museum1" &&
-                    status_seat_tablet != "museum2") {
-                  if (mode != "blank") {
-                    GetStorage().write('mode', "blank");
-                    Get.offAllNamed(Routes.BLANK);
-                  }
-                }
-                if (setting!.player == "museum1" &&
-                    status_seat_tablet == "museum1") {
-                  if (mode != "blank") {
-                    GetStorage().write('mode', "blank");
-                    Get.offAllNamed(Routes.BLANK);
-                  }
-                }
-                if (setting!.player == "museum2" &&
-                    status_seat_tablet == "museum2") {
                   if (mode != "blank") {
                     GetStorage().write('mode', "blank");
                     Get.offAllNamed(Routes.BLANK);
@@ -411,30 +251,8 @@ class PageAllController extends GetxController {
                   }
                 }
                 break;
-              case "chat-find-humbaba":
-                if (setting!.player == "museum1" &&
-                    status_seat_tablet == "museum1") {
-                  if (mode != "chat-find-humbaba") {
-                    GetStorage().write('mode', "chat-find-humbaba");
-                    Get.offAllNamed(Routes.THEATER_GAME_CHAT_GAME,
-                        arguments: {'game': 'find_humbaba', 'name': 'Humbaba'});
-                  }
-                }
-                break;
-              case "chat-find-spear":
-                if (setting!.player == "museum2" &&
-                    status_seat_tablet == "museum2") {
-                  if (mode != "chat-find-spear") {
-                    GetStorage().write('mode', "chat-find-spear");
-                    Get.offAllNamed(Routes.THEATER_GAME_CHAT_GAME,
-                        arguments: {'game': 'find_spear', 'name': 'Spear'});
-                  }
-                }
-                break;
               case "star-game":
-                if (setting!.player == "all-museum1+2" &&
-                    status_seat_tablet != "museum1" &&
-                    status_seat_tablet != "museum2") {
+                if (setting!.player == "all") {
                   if (mode != "star-game") {
                     GetStorage().write('mode', "star-game");
                     Get.offAllNamed(Routes.THEATER_GAME_STAR_GAME);
@@ -442,9 +260,7 @@ class PageAllController extends GetxController {
                 }
                 break;
               case "game4-humbaba":
-                if (setting!.player == "all-museum1+2" &&
-                    status_seat_tablet != "museum1" &&
-                    status_seat_tablet != "museum2") {
+                if (setting!.player == "all") {
                   if (mode != "game4-humbaba") {
                     GetStorage().write('mode', "game4-humbaba");
                     Get.offAllNamed(Routes.THEATER_GAME_HUMBABA);
@@ -452,8 +268,7 @@ class PageAllController extends GetxController {
                 }
                 break;
               case "show-humbaba":
-                if (setting!.player == "museum1" &&
-                    status_seat_tablet == "museum1") {
+                if (setting!.player == "all") {
                   if (mode != "show-humbaba") {
                     GetStorage().write('mode', "show-humbaba");
                     Get.offAllNamed(Routes.MOVEMENT_PAGE, arguments: {
@@ -464,8 +279,7 @@ class PageAllController extends GetxController {
                 }
                 break;
               case "give-spear":
-                if (setting!.player == "museum2" &&
-                    status_seat_tablet == "museum2") {
+                if (setting!.player == "all") {
                   if (mode != "give-spear") {
                     GetStorage().write('mode', "give-spear");
                     Get.offAllNamed(Routes.MOVEMENT_PAGE, arguments: {
@@ -495,7 +309,7 @@ class PageAllController extends GetxController {
                 }
                 break;
               case "choose-your-character":
-                if (setting!.player == "all+parent") {
+                if (setting!.player == "all") {
                   if (mode != "choose-your-character") {
                     GetStorage().write('mode', "choose-your-character");
                     Get.offAllNamed(Routes.THEATER_GAME_CHOOSE_YOUR_CHARACTER);

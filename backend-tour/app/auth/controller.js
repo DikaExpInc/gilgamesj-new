@@ -65,7 +65,7 @@ async function getNextSeat() {
 }
 
 // Function to generate random Columns
-function generateRandomColumns(totalColumns) {
+function generateRandomColumnsRow(totalColumns) {
   return Math.floor(Math.random() * totalColumns) + 1
 }
 
@@ -472,17 +472,43 @@ module.exports = {
 
   updateIshtarCall: async () => {
     try {
-      const setting = await Setting.findOne({ _id: '64de3fd2843badaf9efc006b' })
-      const { columns } = setting
+      const player = await Player.find({})
+      const rijValues = player
+        .map((item) => parseInt(item.stoel))
+        .filter((value) => !isNaN(value)) // Filter nilai NaN
+
+      // Mencari nilai maksimal dari array rijValues
+      const maxRij = Math.max(...rijValues)
+
       // Buat urutan kolom acak
-      const randomColumns = generateRandomColumns(columns)
+      const randomRow = generateRandomColumnsRow(maxRij)
+
+      // Membuat objek untuk menyimpan jumlah kolom pada setiap row
+      const columnCounts = {}
+
+      // Mengelompokkan data berdasarkan nilai rij (row)
+      player.forEach((item) => {
+        const rij = item.stoel
+        if (!columnCounts[rij]) {
+          columnCounts[rij] = 0
+        }
+        columnCounts[rij]++
+      })
+
+      // Mengakses jumlah kolom untuk row tertentu (misalnya row 1)
+      const rowToRetrieve = randomRow
+      const jumlahKolomRow1 = columnCounts[rowToRetrieve] || 0
+
+      // Buat urutan kolom acak
+      const randomCol = generateRandomColumnsRow(jumlahKolomRow1)
 
       await Setting.findOneAndUpdate(
         {
           _id: '64de3fd2843badaf9efc006b',
         },
         {
-          ishtarColumns: randomColumns,
+          ishtarColumns: randomCol,
+          istharRows: randomRow,
         }
       )
     } catch (err) {}

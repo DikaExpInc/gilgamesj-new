@@ -1,5 +1,6 @@
 import 'package:app/app/data/player_model.dart';
 import 'package:app/app/data/seat_model.dart';
+import 'package:app/app/data/theater_seat_model.dart';
 import 'package:app/app/services/auth_service.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
@@ -7,7 +8,7 @@ import 'package:get_storage/get_storage.dart';
 class TicketController extends GetxController {
   //TODO: Implement TicketController
   PlayerListModel? playerListModel;
-  SeatModel? seatModel;
+  TheaterSeatModel? seatModel;
   final box = GetStorage();
   RxInt col = 0.obs;
   RxInt row = 0.obs;
@@ -73,10 +74,10 @@ class TicketController extends GetxController {
 
   loadSeatRowCol() async {
     update();
-    seatModel = await AuthApi().loadSeatColRow();
+    seatModel = await AuthApi().loadTheaterSeatColRow();
+    update();
     if (seatModel?.statusCode == 200) {
-      col.value = seatModel!.col!;
-      row.value = seatModel!.row!;
+      print(seatModel);
     } else if (seatModel!.statusCode == 204) {
       print("Empty");
     } else if (seatModel!.statusCode == 404) {

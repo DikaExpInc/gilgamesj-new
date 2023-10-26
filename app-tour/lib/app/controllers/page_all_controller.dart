@@ -324,6 +324,14 @@ class PageAllController extends GetxController {
                   }
                 }
                 break;
+              case "game10-die-tablet-video":
+                if (setting!.player == "all") {
+                  if (mode != "game10-die-tablet-video") {
+                    GetStorage().write('mode', "game10-die-tablet-video");
+                    Get.offAllNamed(Routes.DIES_TABLET_VIDEO);
+                  }
+                }
+                break;
               case "give-tablet-back":
                 if (setting!.player == "all") {
                   if (mode != "give-tablet-back") {
@@ -387,6 +395,8 @@ class PageAllController extends GetxController {
           var statusSeat = box.read('status_seat_$i');
           var stoel = box.read('stoel_$i');
           var rij = box.read('rij_$i');
+
+          print(rij);
 
           if (rij == '${ishtarColumns}' && stoel == '${ishtarRows}') {
             return true;

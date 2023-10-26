@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
@@ -155,24 +157,24 @@ class TicketView extends GetView<TicketController> {
                 ),
               ),
               Image.asset('assets/images/podium.png'),
-              Obx(
-                () => Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: List.generate(controller.col.value, (indexA) {
-                    return Row(
+              controller.seatModel?.dataJson != null
+                  ? Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.center,
-                      children: List.generate(
-                        controller.row.value,
-                        (indexB) {
-                          return buildSeat(indexA + 1, indexB + 1);
-                        },
-                      ),
-                    );
-                  }),
-                ),
-              )
+                      children: controller.seatModel!.dataJson!.keys
+                          .map<Widget>((rowKey) {
+                        final cols = List<int>.from(
+                            controller.seatModel!.dataJson![rowKey]);
+                        return Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: cols.map((colNum) {
+                            return buildSeat(int.parse(rowKey), colNum);
+                          }).toList(),
+                        );
+                      }).toList(),
+                    )
+                  : Container(),
             ],
           ),
         ),

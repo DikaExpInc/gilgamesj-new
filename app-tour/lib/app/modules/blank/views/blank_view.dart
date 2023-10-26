@@ -12,12 +12,14 @@ class BlankView extends GetView<BlankController> {
   Widget build(BuildContext context) {
     mWidth = MediaQuery.of(context).size.width;
     mHeight = MediaQuery.of(context).size.height;
-    return Scaffold(
-      body: Container(
-        width: mWidth,
-        height: mHeight,
-        color: Colors.black,
-      ),
-    );
+    return GetBuilder<BlankController>(builder: (controller) {
+      return Scaffold(
+        body: Container(
+          width: mWidth,
+          height: mHeight,
+          color: Colors.black,
+        ),
+      );
+    });
   }
 }

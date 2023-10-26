@@ -923,6 +923,9 @@ const seatRouter = require('./app/seat/router')
 const game2Router = require('./app/game_2/router')
 const game5Router = require('./app/game_5/router')
 
+const theaterRouter = require('./app/theater/router')
+const theaterSeatRouter = require('./app/theater_seat/router')
+
 // Admin API
 const authAdminRouter = require('./app/auth/router.admin')
 const browserAdminRouter = require('./app/browser/router.admin')
@@ -1006,6 +1009,8 @@ app.use(`${URL}/arcamera`, arCameraRouter)
 app.use(`${URL}/seat`, seatRouter)
 app.use(`${URL}/game2`, game2Router)
 app.use(`${URL}/game5`, game5Router)
+app.use(`${URL}/theater`, theaterRouter)
+app.use(`${URL}/theaterseat`, theaterSeatRouter)
 
 // admin master
 app.use(`${URL_ADMIN}/browser`, browserAdminRouter)

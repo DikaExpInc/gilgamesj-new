@@ -57,8 +57,8 @@ class TheaterGameHumbabaController extends GetxController {
 
   @override
   void onClose() {
-    print('deleted');
     audioPlayer.stop();
+    audioPlayer.dispose();
     super.onClose();
   }
 }

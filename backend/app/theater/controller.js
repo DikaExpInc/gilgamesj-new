@@ -1,5 +1,6 @@
 const Theater = require('./model')
 const TheaterSeat = require('../theater_seat/model')
+const Setting = require('../setting/model')
 
 module.exports = {
   index: async (req, res) => {
@@ -24,6 +25,57 @@ module.exports = {
       }
       res.status(200).json({
         data: theater,
+      })
+    } catch (err) {
+      res.status(500).json({
+        message: err.message || `Internal server error`,
+      })
+    }
+  },
+
+  getTheaterSeatsRowCol: async (req, res) => {
+    try {
+      const setting = await Setting.findOne({ _id: '64de3fd2843badaf9efc006b' })
+
+      if (!setting) {
+        return res.status(404).json({
+          message: 'Setting not found',
+          status: 'error',
+        })
+      }
+
+      // const { rows, columns } = setting
+      const { theater_id } = setting
+
+      const theater = await Theater.findOne({ _id: theater_id })
+
+      if (!theater) {
+        return res.status(404).json({
+          message: 'Theater not found',
+          status: 'error',
+        })
+      }
+
+      const theaterSeat = await TheaterSeat.find({ theater_id: theater_id })
+      if (!theaterSeat) {
+        return res.status(404).json({ message: 'Theater seat not found' })
+      }
+
+      const seatsInRows = {}
+      for (const seat of theaterSeat) {
+        const [rowNum, colNum] = seat.seatNumber.split('-').map(Number)
+        if (!seatsInRows[rowNum]) {
+          seatsInRows[rowNum] = []
+        }
+        if (!seat.seatNumber.includes('empty')) {
+          seatsInRows[rowNum].push(colNum)
+        }
+      }
+
+      console.log(seatsInRows)
+
+      res.status(200).json({
+        data: seatsInRows,
       })
     } catch (err) {
       res.status(500).json({

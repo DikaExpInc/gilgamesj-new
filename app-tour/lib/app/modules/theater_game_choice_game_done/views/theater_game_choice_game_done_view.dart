@@ -53,12 +53,13 @@ class TheaterGameChoiceGameDoneView
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
                           Text(
-                            'Zijn zwaard',
+                            'Zijn vieze\nonderbroeken',
                             style: TextStyle(
                               fontFamily: 'Centrion',
                               fontSize: 42,
                               color: Colors.white,
                             ),
+                            textAlign: TextAlign.center,
                           ),
                           Text(
                             'Zijn little pony',

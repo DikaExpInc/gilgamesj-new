@@ -3,7 +3,6 @@ import 'dart:async';
 import 'package:app/app/data/game5_model.dart';
 import 'package:app/app/data/question_model.dart';
 import 'package:app/app/modules/theater_game_choice_game/views/screens/choice_game_character_screen.dart';
-import 'package:app/app/modules/theater_game_choice_game/views/screens/choice_game_message_screen.dart';
 import 'package:app/app/routes/app_pages.dart';
 import 'package:app/app/services/game5_service.dart';
 import 'package:audioplayers/audioplayers.dart';
@@ -128,7 +127,7 @@ class TheaterGameChoiceGameController extends GetxController
       questions.add(Question(
         'assets/images/question-1',
         'assets/images/question-2',
-        'Zijn zwaard',
+        'Zijn vieze\nonderbroeken',
         'Zijn little pony',
       ));
     }
@@ -193,6 +192,7 @@ class TheaterGameChoiceGameController extends GetxController
         Get.toNamed(Routes.THEATER_GAME_CHOICE_GAME_DONE);
       }
     } else {
+      audioCache.play('confirm.mp3');
       Get.toNamed(Routes.THEATER_GAME_CHOICE_GAME_DONE);
     }
   }

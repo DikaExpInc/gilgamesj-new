@@ -36,7 +36,7 @@ class TheaterGameContactChatView
                 ),
                 Center(
                   child: Text(
-                    'Contactent',
+                    'Contacten',
                     style: const TextStyle(
                       fontFamily: 'Centrion',
                       fontSize: 46,

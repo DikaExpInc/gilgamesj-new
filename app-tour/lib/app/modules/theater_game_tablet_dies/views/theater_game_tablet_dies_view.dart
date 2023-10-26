@@ -122,13 +122,14 @@ class TheaterGameTabletDiesView
                         final tapPosition = details.localPosition;
                         // Mengecek apakah titik yang diklik berada di dalam path segitiga.
                         if (isPointInsidePainterTop(tapPosition)) {
-                          controller.characterSelect.value =
-                              "${controller.questions[controller.currentIndex.value].title1}";
-                          controller.isGlitch.value = true;
-                          controller.audioCache.play('glitch-sound.mp3');
-                          await Future.delayed(Duration(seconds: 1));
-                          Get.offAllNamed(Routes.DIES_TABLET_VIDEO);
-                          controller.isGlitch.value = false;
+                          // controller.characterSelect.value =
+                          //     "${controller.questions[controller.currentIndex.value].title1}";
+                          // controller.isGlitch.value = true;
+                          // controller.audioCache.play('glitch-sound.mp3');
+                          // await Future.delayed(Duration(seconds: 1));
+                          // Get.offAllNamed(Routes.DIES_TABLET_VIDEO);
+                          // controller.isGlitch.value = false;
+                          controller.clickNoChoice();
                         }
                         if (isPointInsidePainterBottom(tapPosition)) {
                           controller.clickNoChoice();
@@ -149,14 +150,15 @@ class TheaterGameTabletDiesView
                         final tapPosition = details.localPosition;
                         // Mengecek apakah titik yang diklik berada di dalam path segitiga.
                         if (isPointInsidePainterTop(tapPosition)) {
-                          controller.characterSelect.value =
-                              "${controller.questions[controller.currentIndex.value].title1}";
-                          controller.isGlitch.value = true;
-                          controller.audioCache.play('glitch-sound.mp3');
-                          await Future.delayed(Duration(seconds: 1));
-                          Get.offAllNamed(Routes.DIES_TABLET_VIDEO);
-                          print('ini pindah');
-                          controller.isGlitch.value = false;
+                          // controller.characterSelect.value =
+                          //     "${controller.questions[controller.currentIndex.value].title1}";
+                          // controller.isGlitch.value = true;
+                          // controller.audioCache.play('glitch-sound.mp3');
+                          // await Future.delayed(Duration(seconds: 1));
+                          // Get.offAllNamed(Routes.DIES_TABLET_VIDEO);
+                          // print('ini pindah');
+                          // controller.isGlitch.value = false;
+                          controller.clickNoChoice();
                         }
                         if (isPointInsidePainterBottom(tapPosition)) {
                           controller.clickNoChoice();

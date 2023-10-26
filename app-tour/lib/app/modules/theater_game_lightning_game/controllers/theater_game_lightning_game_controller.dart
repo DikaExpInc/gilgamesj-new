@@ -46,7 +46,6 @@ class TheaterGameLightningGameController extends GetxController
     _controllerText.dispose();
     stopAutomaticChange();
     sub.cancel();
-    sub2.cancel();
     super.onClose();
   }
 
@@ -103,11 +102,8 @@ class TheaterGameLightningGameController extends GetxController
     startAutomaticChange();
     firstInit();
     Vibration.vibrate(duration: 1000);
-    sub = settingStream.listen((event) {
-      changeBackgroundColor();
-    });
     loadGame2();
-    sub2 = game2Stream.listen((event) {
+    sub = game2Stream.listen((event) {
       loadGame2();
     });
 
@@ -182,13 +178,13 @@ class TheaterGameLightningGameController extends GetxController
     containerWidth.value -= 10.0;
     if (containerWidth.value < 0) {
       containerWidth.value = 1200.0;
-      selectRandomCharacter();
+      // selectRandomCharacter();
       onSubmit();
     }
   }
 
   void selectRandomCharacter() {
-    final List<String> characters = ["Gilgamesh", "Enkidu"];
+    final List<String> characters = ["Gilgamesj", "Enkidu"];
     final Random random = Random();
     final int randomIndex = random.nextInt(characters.length);
     characterSelect.value = characters[randomIndex];
@@ -199,7 +195,6 @@ class TheaterGameLightningGameController extends GetxController
     return count;
   });
   late StreamSubscription sub;
-  late StreamSubscription sub2;
 
   final List<Color> backgroundColors = [
     Colors.white,
@@ -215,14 +210,20 @@ class TheaterGameLightningGameController extends GetxController
   Future<void> onSubmit() async {
     stopAutomaticChange();
     String id = "";
+    print(characterSelect);
+
     if (characterSelect == "Enkidu") {
       id = "65273ad7596123a74cb5debb";
-    } else {
+    } else if (characterSelect == "Gilgamesj") {
       id = "65273ac6596123a74cb5deba";
     }
     audioCache.play('confirm.mp3');
-    String choice = await Game2Api().voteAPI(id);
-    if (choice == "done") {
+    if (id != "") {
+      String choice = await Game2Api().voteAPI(id);
+      if (choice == "done") {
+        Get.toNamed(Routes.THEATER_GAME_LIGHTNING_GAME_DONE);
+      }
+    } else {
       Get.toNamed(Routes.THEATER_GAME_LIGHTNING_GAME_DONE);
     }
   }
@@ -235,6 +236,7 @@ class TheaterGameLightningGameController extends GetxController
     update();
     // showLoading();
     game2 = await Game2Api().loadGame2API();
+    print(game2);
     GetStorage().write('game2-1', game2?.items?[0].iV ?? 0);
     GetStorage().write('game2-2', game2?.items?[1].iV ?? 0);
     update();

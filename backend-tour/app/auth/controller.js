@@ -215,7 +215,7 @@ module.exports = {
     for (const player of players) {
       while (true) {
         const query = {
-          seatNumber: `${currentCol}-${currentRow}`,
+          seatNumber: `${currentRow}-${currentCol}`,
           isOccupied: false,
           theater_id: theater_id,
         }
@@ -228,11 +228,11 @@ module.exports = {
 
         if (seat) {
           // Hitung setengah jumlah baris
-          const halfRows = Math.ceil(rows / 2) // Pembulatan ke atas jika jumlah baris ganjil
+          const halfRows = Math.ceil(cols / 2) // Pembulatan ke atas jika jumlah baris ganjil
 
           // Misalkan currentRow adalah posisi saat ini
           let position = 'left' // Defaultnya adalah kiri
-          if (currentRow > halfRows) {
+          if (currentCol > halfRows) {
             position = 'right' // Jika currentRow di atas setengah jumlah baris, maka di sebelah kanan
           }
           await Player.findByIdAndUpdate(player._id, {
@@ -247,26 +247,20 @@ module.exports = {
           assignedSeats.push({ player, seat })
           break // Keluar dari loop jika kursi sudah ditemukan
         } else {
-          // Mengatur perpindahan berikutnya sesuai dengan pola zigzag
           if (isForward) {
-            if (currentRow < rows) {
+            currentCol++
+            if (currentCol > cols) {
               currentRow++
-            } else {
-              currentCol++
+              currentCol = cols // Jika mencapai kolom terakhir, tetap di kolom terakhir
               isForward = false
             }
           } else {
-            if (currentRow > 1) {
-              currentRow--
-            } else {
-              currentCol++
+            currentCol--
+            if (currentCol < 1) {
+              currentRow++
+              currentCol = 1 // Jika mencapai kolom pertama, tetap di kolom pertama
               isForward = true
             }
-          }
-
-          if (currentCol > cols) {
-            currentCol = 1
-            currentRow++
           }
         }
 

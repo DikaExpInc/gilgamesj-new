@@ -128,7 +128,7 @@ class TheaterGameChoiceGameController extends GetxController
       questions.add(Question(
         'assets/images/question-1',
         'assets/images/question-2',
-        'Zijn zwaard',
+        'Zijn vieze onderbroeken',
         'Zijn little pony',
       ));
     }

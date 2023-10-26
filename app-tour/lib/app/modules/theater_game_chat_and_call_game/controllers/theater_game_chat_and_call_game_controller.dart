@@ -130,13 +130,13 @@ class TheaterGameChatAndCallGameController extends GetxController
   Future<void> callPhone() async {
     isCall.value = true;
     audioPlayer?.stop();
-    audioPlayer = await audioCache.play('phonecall-ishtar.mp3');
-    audioPlayer?.onPlayerCompletion.listen((event) async {
-      audioPlayer = await audioCache.play('call_phone_reject.mp3');
-      audioPlayer?.onPlayerCompletion.listen((event) async {
-        Get.offNamed(Routes.BLANK);
-      });
-    });
+    // audioPlayer = await audioCache.play('phonecall-ishtar.mp3');
+    // audioPlayer?.onPlayerCompletion.listen((event) async {
+    //   audioPlayer = await audioCache.play('call_phone_reject.mp3');
+    //   audioPlayer?.onPlayerCompletion.listen((event) async {
+    //     Get.offNamed(Routes.BLANK);
+    //   });
+    // });
     idleTime.value = "00:00";
     startTimer();
     update();

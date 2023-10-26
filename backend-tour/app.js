@@ -458,6 +458,29 @@ server.on('message', async (msg) => {
   }
   if (result['url'] == '/signaling/blank') {
     if (result['value'] == 'all') {
+      const players = await Player.find({})
+
+      // Memisahkan pemain menjadi tiga array berdasarkan user_type
+      const childrenPlayers = players.filter(
+        (player) => player.user_type === 'children'
+      )
+      const parentPlayers = players.filter(
+        (player) => player.user_type === 'parent'
+      )
+      const disabilityPlayers = players.filter(
+        (player) => player.user_type === 'disability'
+      )
+
+      // Menggabungkan kembali array pemain dalam urutan yang diinginkan
+      const sortedPlayers = [
+        ...childrenPlayers,
+        ...parentPlayers,
+        ...disabilityPlayers,
+      ]
+
+      await TheaterSeat.updateMany({}, { $set: { isOccupied: false } })
+      // Memberikan tempat duduk sesuai urutan
+      await assignSeats(sortedPlayers)
       await Setting.findOneAndUpdate(
         {
           _id: '64de3fd2843badaf9efc006b',
@@ -601,29 +624,6 @@ server.on('message', async (msg) => {
   }
   if (result['url'] == '/game/ishtar-calling') {
     if (result['value'] == 'random') {
-      const players = await Player.find({})
-
-      // Memisahkan pemain menjadi tiga array berdasarkan user_type
-      const childrenPlayers = players.filter(
-        (player) => player.user_type === 'children'
-      )
-      const parentPlayers = players.filter(
-        (player) => player.user_type === 'parent'
-      )
-      const disabilityPlayers = players.filter(
-        (player) => player.user_type === 'disability'
-      )
-
-      // Menggabungkan kembali array pemain dalam urutan yang diinginkan
-      const sortedPlayers = [
-        ...childrenPlayers,
-        ...parentPlayers,
-        ...disabilityPlayers,
-      ]
-
-      await TheaterSeat.updateMany({}, { $set: { isOccupied: false } })
-      // Memberikan tempat duduk sesuai urutan
-      await assignSeats(sortedPlayers)
       await updateIshtarCall()
       await Setting.findOneAndUpdate(
         {
@@ -670,6 +670,19 @@ server.on('message', async (msg) => {
         },
         {
           page: 'game10-die-tablet',
+          player: 'all',
+        }
+      )
+    }
+  }
+  if (result['url'] == '/game/game10-die-tablet-video') {
+    if (result['value'] == 'all') {
+      await Setting.findOneAndUpdate(
+        {
+          _id: '64de3fd2843badaf9efc006b',
+        },
+        {
+          page: 'game10-die-tablet-video',
           player: 'all',
         }
       )

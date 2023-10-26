@@ -53,7 +53,7 @@ class TheaterGameChoiceGameDoneView
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
                           Text(
-                            'Zijn zwaard',
+                            'Zijn vieze onderbroeken',
                             style: TextStyle(
                               fontFamily: 'Centrion',
                               fontSize: 42,

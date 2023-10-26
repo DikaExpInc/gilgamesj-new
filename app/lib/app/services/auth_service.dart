@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:app/app/data/player_model.dart';
 import 'package:app/app/data/seat_model.dart';
+import 'package:app/app/data/theater_seat_model.dart';
 import 'package:app/app/data/user_model.dart';
 import 'package:app/app/utils/api.dart';
 import 'package:app/app/widgets/loading.dart';
@@ -106,6 +107,28 @@ class AuthApi extends SharedApi {
       }
     } on Exception catch (_) {
       return SeatModel.fromJson({"status_code": 404});
+    }
+  }
+
+  Future<TheaterSeatModel?> loadTheaterSeatColRow() async {
+    try {
+      var jsonData;
+      var data = await http.post(
+        Uri.parse(baseUrl + 'theater/seat'),
+        headers: getToken(),
+      );
+      jsonData = json.decode(data.body);
+      if (data.statusCode == 200) {
+        jsonData['status_code'] = 200;
+
+        return TheaterSeatModel.fromJson(jsonData);
+      } else if (data.statusCode == 401) {
+        return TheaterSeatModel.fromJson({"status_code": data.statusCode});
+      } else {
+        return TheaterSeatModel.fromJson({"status_code": data.statusCode});
+      }
+    } on Exception catch (_) {
+      return TheaterSeatModel.fromJson({"status_code": 404});
     }
   }
 

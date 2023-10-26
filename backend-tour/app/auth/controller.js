@@ -1,7 +1,8 @@
 const Player = require('../player/model')
 const Setting = require('../setting/model')
+const Theater = require('../theater/model')
+const TheaterSeat = require('../theater_seat/model')
 const User = require('../users/model')
-const Stage = require('../stage/model')
 const Seat = require('../seat/model')
 const config = require('../../config')
 const bcrypt = require('bcryptjs')
@@ -25,8 +26,6 @@ async function getNextSeat() {
       status: 'error',
     })
   }
-
-  const { rows, columns } = setting
 
   let cols = columns
 
@@ -178,19 +177,54 @@ module.exports = {
       })
     }
 
-    const { rows, columns } = setting
-    let cols = columns
+    // const { rows, columns } = setting
+    const { theater_id } = setting
+
+    const theater = await Theater.findOne({ _id: theater_id })
+
+    if (!theater) {
+      return res.status(404).json({
+        message: 'Theater not found',
+        status: 'error',
+      })
+    }
+
+    const theaterSeat = await TheaterSeat.find({ theater_id: theater_id })
+
+    if (!theaterSeat) {
+      return res.status(404).json({
+        message: 'Theater Seat not found',
+        status: 'error',
+      })
+    }
+
+    // Compute the number of columns for each row based on the seats in the theater
+    const seatsInRows = {}
+    for (const seat of theaterSeat) {
+      const [rowNum, colNum] = seat.seatNumber.split('-').map(Number)
+      if (!seatsInRows[rowNum]) {
+        seatsInRows[rowNum] = []
+      }
+      if (!seat.seatNumber.includes('empty')) {
+        seatsInRows[rowNum].push(colNum)
+      }
+    }
+
+    let rows = seatsInRows.length
 
     for (const player of players) {
       while (true) {
         const query = {
           seatNumber: `${currentCol}-${currentRow}`,
           isOccupied: false,
+          theater_id: theater_id,
         }
 
-        const seat = await Seat.findOneAndUpdate(query, {
+        const seat = await TheaterSeat.findOneAndUpdate(query, {
           $set: { isOccupied: true },
         })
+
+        let cols = seatsInRows[currentRow].length
 
         if (seat) {
           // Hitung setengah jumlah baris
@@ -206,8 +240,8 @@ module.exports = {
               seat: seat.seatNumber,
               status_seat: `row${currentCol}`,
               position,
-              stoel: currentCol,
-              rij: currentRow,
+              stoel: currentRow,
+              rij: currentCol,
             },
           })
           assignedSeats.push({ player, seat })
@@ -290,17 +324,6 @@ module.exports = {
           config.jwtKey
         )
 
-        const stage = await Stage.findOne({
-          $or: [{ order_number: 1 }],
-        })
-
-        if (!stage) {
-          return res.status(404).json({
-            error: 1,
-            message: 'Stage not found',
-          })
-        }
-
         for (
           let player_num = 1;
           player_num <= payload.total_player;
@@ -311,7 +334,6 @@ module.exports = {
             player = new Player({
               username: `${user.username}-${player_num}`,
               player_num: player_num,
-              stage_id: stage._id,
               user_id: user.id,
               status_play: 'Y',
               user_type: user.user_type,
@@ -323,7 +345,6 @@ module.exports = {
             player = new Player({
               username: `${user.username}-${player_num}`,
               player_num: player_num,
-              stage_id: stage._id,
               user_id: user.id,
               user_type: user.user_type,
             })
@@ -559,24 +580,12 @@ module.exports = {
         return res.status(400).json({ error: 'Invalid total player value' })
       }
 
-      const stage = await Stage.findOne({
-        $or: [{ order_number: 1 }],
-      })
-
-      if (!stage) {
-        return res.status(404).json({
-          error: 1,
-          message: 'Stage not found',
-        })
-      }
-
       for (let player_num = 1; player_num <= total_player; player_num++) {
         let player
         if (player_num == 1) {
           player = new Player({
             username: `${req.user.username}-${player_num}`,
             player_num: player_num,
-            stage_id: stage._id,
             user_id: req.user.id,
             status_play: 'Y',
           })
@@ -587,7 +596,6 @@ module.exports = {
           player = new Player({
             username: `${req.user.username}-${player_num}`,
             player_num: player_num,
-            stage_id: stage._id,
             user_id: req.user.id,
           })
         }

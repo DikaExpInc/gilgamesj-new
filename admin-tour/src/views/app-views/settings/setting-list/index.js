@@ -34,6 +34,7 @@ const SettingForm = (props) => {
           seatsRows: querySnapshot.data.rows,
           seatsColumns: querySnapshot.data.columns,
           ishtarRows: querySnapshot.data.ishtarRows,
+          theater: querySnapshot.data.theater_id,
         })
 
         // Sekarang setelah form.setFieldsValue, kita set nilai state

@@ -27,10 +27,6 @@ let playerSchema = mongoose.Schema(
       type: mongoose.Schema.Types.ObjectId,
       ref: 'User',
     },
-    stage_id: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'Stage',
-    },
     seat_id: {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'Seat',

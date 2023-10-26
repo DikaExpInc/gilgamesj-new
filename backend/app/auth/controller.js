@@ -1,7 +1,6 @@
 const Player = require('../player/model')
 const Setting = require('../setting/model')
 const User = require('../users/model')
-const Stage = require('../stage/model')
 const Seat = require('../seat/model')
 const config = require('../../config')
 const bcrypt = require('bcryptjs')
@@ -290,17 +289,6 @@ module.exports = {
           config.jwtKey
         )
 
-        const stage = await Stage.findOne({
-          $or: [{ order_number: 1 }],
-        })
-
-        if (!stage) {
-          return res.status(404).json({
-            error: 1,
-            message: 'Stage not found',
-          })
-        }
-
         for (
           let player_num = 1;
           player_num <= payload.total_player;
@@ -311,7 +299,6 @@ module.exports = {
             player = new Player({
               username: `${user.username}-${player_num}`,
               player_num: player_num,
-              stage_id: stage._id,
               user_id: user.id,
               status_play: 'Y',
               user_type: user.user_type,
@@ -323,7 +310,6 @@ module.exports = {
             player = new Player({
               username: `${user.username}-${player_num}`,
               player_num: player_num,
-              stage_id: stage._id,
               user_id: user.id,
               user_type: user.user_type,
             })
@@ -559,24 +545,12 @@ module.exports = {
         return res.status(400).json({ error: 'Invalid total player value' })
       }
 
-      const stage = await Stage.findOne({
-        $or: [{ order_number: 1 }],
-      })
-
-      if (!stage) {
-        return res.status(404).json({
-          error: 1,
-          message: 'Stage not found',
-        })
-      }
-
       for (let player_num = 1; player_num <= total_player; player_num++) {
         let player
         if (player_num == 1) {
           player = new Player({
             username: `${req.user.username}-${player_num}`,
             player_num: player_num,
-            stage_id: stage._id,
             user_id: req.user.id,
             status_play: 'Y',
           })
@@ -587,7 +561,6 @@ module.exports = {
           player = new Player({
             username: `${req.user.username}-${player_num}`,
             player_num: player_num,
-            stage_id: stage._id,
             user_id: req.user.id,
           })
         }

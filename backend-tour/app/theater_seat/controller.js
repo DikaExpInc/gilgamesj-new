@@ -103,20 +103,21 @@ module.exports = {
       }
 
       // Extract the row and seat number from the deleted seat
-      const [row, seatNum] = deletedSeat.seatNumber.split('-')
+      const [deletedRow, deletedSeatNum] = deletedSeat.seatNumber.split('-')
 
       // Find and update the remaining seats within the same row with seat numbers greater than the deleted seat
       const seatsToBeUpdated = await TheaterSeat.find({
-        seatNumber: { $gt: `${row}-${seatNum}` },
-      })
+        seatNumber: {
+          $regex: `^${deletedRow}-`,
+          $gt: `${deletedRow}-${deletedSeatNum}`,
+        },
+      }).sort({ seatNumber: 1 })
 
       const updatePromises = seatsToBeUpdated.map(async (seat) => {
         const [currentRow, currentSeatNum] = seat.seatNumber.split('-')
-        if (currentSeatNum > 1) {
-          const updatedSeatNum = `${currentRow}-${parseInt(currentSeatNum) - 1}`
-          seat.seatNumber = updatedSeatNum
-          return seat.save()
-        }
+        const updatedSeatNum = `${currentRow}-${parseInt(currentSeatNum) - 1}`
+        seat.seatNumber = updatedSeatNum
+        return seat.save()
       })
 
       await Promise.all(updatePromises)

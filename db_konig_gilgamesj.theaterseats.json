@@ -1,0 +1,3438 @@
+[{
+  "_id": {
+    "$oid": "6538f2d3433cd17f5cd34412"
+  },
+  "isOccupied": false,
+  "seatNumber": "1-1",
+  "position": "default",
+  "theater_id": {
+    "$oid": "6538f2d3433cd17f5cd34410"
+  },
+  "createdAt": {
+    "$date": "2023-10-25T10:49:55.725Z"
+  },
+  "updatedAt": {
+    "$date": "2023-10-25T10:49:55.725Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6538f2d3433cd17f5cd34414"
+  },
+  "isOccupied": false,
+  "seatNumber": "2-NaN",
+  "position": "default",
+  "theater_id": {
+    "$oid": "6538f2d3433cd17f5cd34410"
+  },
+  "createdAt": {
+    "$date": "2023-10-25T10:49:55.756Z"
+  },
+  "updatedAt": {
+    "$date": "2023-10-25T10:55:05.526Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6538f2d3433cd17f5cd34416"
+  },
+  "isOccupied": false,
+  "seatNumber": "3-NaN",
+  "position": "default",
+  "theater_id": {
+    "$oid": "6538f2d3433cd17f5cd34410"
+  },
+  "createdAt": {
+    "$date": "2023-10-25T10:49:55.758Z"
+  },
+  "updatedAt": {
+    "$date": "2023-10-25T10:55:05.526Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6538f2d3433cd17f5cd34418"
+  },
+  "isOccupied": false,
+  "seatNumber": "4-NaN",
+  "position": "default",
+  "theater_id": {
+    "$oid": "6538f2d3433cd17f5cd34410"
+  },
+  "createdAt": {
+    "$date": "2023-10-25T10:49:55.762Z"
+  },
+  "updatedAt": {
+    "$date": "2023-10-25T10:55:05.526Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6538f2d3433cd17f5cd3441a"
+  },
+  "isOccupied": false,
+  "seatNumber": "5-NaN",
+  "position": "default",
+  "theater_id": {
+    "$oid": "6538f2d3433cd17f5cd34410"
+  },
+  "createdAt": {
+    "$date": "2023-10-25T10:49:55.769Z"
+  },
+  "updatedAt": {
+    "$date": "2023-10-25T10:55:05.526Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6538f2d3433cd17f5cd3441c"
+  },
+  "isOccupied": false,
+  "seatNumber": "6-NaN",
+  "position": "default",
+  "theater_id": {
+    "$oid": "6538f2d3433cd17f5cd34410"
+  },
+  "createdAt": {
+    "$date": "2023-10-25T10:49:55.772Z"
+  },
+  "updatedAt": {
+    "$date": "2023-10-25T10:55:05.527Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6538f2d3433cd17f5cd3441e"
+  },
+  "isOccupied": false,
+  "seatNumber": "7-NaN",
+  "position": "default",
+  "theater_id": {
+    "$oid": "6538f2d3433cd17f5cd34410"
+  },
+  "createdAt": {
+    "$date": "2023-10-25T10:49:55.775Z"
+  },
+  "updatedAt": {
+    "$date": "2023-10-25T10:55:05.527Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6538f496f5844384a247e06c"
+  },
+  "isOccupied": false,
+  "seatNumber": "1-1",
+  "position": "default",
+  "theater_id": {
+    "$oid": "6538f2d3433cd17f5cd34410"
+  },
+  "createdAt": {
+    "$date": "2023-10-25T10:57:26.187Z"
+  },
+  "updatedAt": {
+    "$date": "2023-10-25T14:22:04.830Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6538f498f5844384a247e071"
+  },
+  "isOccupied": false,
+  "seatNumber": "1-1",
+  "position": "default",
+  "theater_id": {
+    "$oid": "6538f2d3433cd17f5cd34410"
+  },
+  "createdAt": {
+    "$date": "2023-10-25T10:57:28.763Z"
+  },
+  "updatedAt": {
+    "$date": "2023-10-25T14:22:04.830Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6538f49bf5844384a247e083"
+  },
+  "isOccupied": false,
+  "seatNumber": "2-NaN",
+  "position": "default",
+  "theater_id": {
+    "$oid": "6538f2d3433cd17f5cd34410"
+  },
+  "createdAt": {
+    "$date": "2023-10-25T10:57:31.448Z"
+  },
+  "updatedAt": {
+    "$date": "2023-10-25T10:57:31.448Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6538f4a7f5844384a247e08e"
+  },
+  "isOccupied": false,
+  "seatNumber": "1-1",
+  "position": "default",
+  "theater_id": {
+    "$oid": "6538f4a7f5844384a247e08c"
+  },
+  "createdAt": {
+    "$date": "2023-10-25T10:57:43.837Z"
+  },
+  "updatedAt": {
+    "$date": "2023-10-25T10:57:43.837Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6538f4a7f5844384a247e090"
+  },
+  "isOccupied": false,
+  "seatNumber": "2-0",
+  "position": "default",
+  "theater_id": {
+    "$oid": "6538f4a7f5844384a247e08c"
+  },
+  "createdAt": {
+    "$date": "2023-10-25T10:57:43.839Z"
+  },
+  "updatedAt": {
+    "$date": "2023-10-25T11:00:59.181Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6538f4a7f5844384a247e092"
+  },
+  "isOccupied": false,
+  "seatNumber": "3--1",
+  "position": "default",
+  "theater_id": {
+    "$oid": "6538f4a7f5844384a247e08c"
+  },
+  "createdAt": {
+    "$date": "2023-10-25T10:57:43.842Z"
+  },
+  "updatedAt": {
+    "$date": "2023-10-25T11:00:59.181Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6538f4a7f5844384a247e094"
+  },
+  "isOccupied": false,
+  "seatNumber": "4--1",
+  "position": "default",
+  "theater_id": {
+    "$oid": "6538f4a7f5844384a247e08c"
+  },
+  "createdAt": {
+    "$date": "2023-10-25T10:57:43.846Z"
+  },
+  "updatedAt": {
+    "$date": "2023-10-25T11:00:59.182Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6538f4a7f5844384a247e096"
+  },
+  "isOccupied": false,
+  "seatNumber": "5--1",
+  "position": "default",
+  "theater_id": {
+    "$oid": "6538f4a7f5844384a247e08c"
+  },
+  "createdAt": {
+    "$date": "2023-10-25T10:57:43.847Z"
+  },
+  "updatedAt": {
+    "$date": "2023-10-25T11:00:59.182Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6538f4a7f5844384a247e098"
+  },
+  "isOccupied": false,
+  "seatNumber": "6--1",
+  "position": "default",
+  "theater_id": {
+    "$oid": "6538f4a7f5844384a247e08c"
+  },
+  "createdAt": {
+    "$date": "2023-10-25T10:57:43.850Z"
+  },
+  "updatedAt": {
+    "$date": "2023-10-25T11:00:59.182Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6538f4a7f5844384a247e09a"
+  },
+  "isOccupied": false,
+  "seatNumber": "7--1",
+  "position": "default",
+  "theater_id": {
+    "$oid": "6538f4a7f5844384a247e08c"
+  },
+  "createdAt": {
+    "$date": "2023-10-25T10:57:43.852Z"
+  },
+  "updatedAt": {
+    "$date": "2023-10-25T11:00:59.182Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6538f51139f67000c6c9ed2c"
+  },
+  "isOccupied": false,
+  "seatNumber": "1-1",
+  "position": "default",
+  "theater_id": {
+    "$oid": "6538f4a7f5844384a247e08c"
+  },
+  "createdAt": {
+    "$date": "2023-10-25T10:59:29.459Z"
+  },
+  "updatedAt": {
+    "$date": "2023-10-25T14:22:04.830Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6538f51239f67000c6c9ed31"
+  },
+  "isOccupied": false,
+  "seatNumber": "1-1",
+  "position": "default",
+  "theater_id": {
+    "$oid": "6538f4a7f5844384a247e08c"
+  },
+  "createdAt": {
+    "$date": "2023-10-25T10:59:30.426Z"
+  },
+  "updatedAt": {
+    "$date": "2023-10-25T14:22:04.830Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6538f51439f67000c6c9ed36"
+  },
+  "isOccupied": false,
+  "seatNumber": "2-1",
+  "position": "default",
+  "theater_id": {
+    "$oid": "6538f4a7f5844384a247e08c"
+  },
+  "createdAt": {
+    "$date": "2023-10-25T10:59:32.864Z"
+  },
+  "updatedAt": {
+    "$date": "2023-10-25T11:00:59.182Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6538f52639f67000c6c9ed46"
+  },
+  "isOccupied": false,
+  "seatNumber": "2-1",
+  "position": "default",
+  "theater_id": {
+    "$oid": "6538f4a7f5844384a247e08c"
+  },
+  "createdAt": {
+    "$date": "2023-10-25T10:59:50.943Z"
+  },
+  "updatedAt": {
+    "$date": "2023-10-25T11:01:49.161Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6538f52839f67000c6c9ed4b"
+  },
+  "isOccupied": false,
+  "seatNumber": "2-1",
+  "position": "default",
+  "theater_id": {
+    "$oid": "6538f4a7f5844384a247e08c"
+  },
+  "createdAt": {
+    "$date": "2023-10-25T10:59:52.047Z"
+  },
+  "updatedAt": {
+    "$date": "2023-10-25T11:02:10.483Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6538f52a39f67000c6c9ed50"
+  },
+  "isOccupied": false,
+  "seatNumber": "5-0",
+  "position": "default",
+  "theater_id": {
+    "$oid": "6538f4a7f5844384a247e08c"
+  },
+  "createdAt": {
+    "$date": "2023-10-25T10:59:54.793Z"
+  },
+  "updatedAt": {
+    "$date": "2023-10-25T11:00:59.182Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6538f52c39f67000c6c9ed55"
+  },
+  "isOccupied": false,
+  "seatNumber": "5-1",
+  "position": "default",
+  "theater_id": {
+    "$oid": "6538f4a7f5844384a247e08c"
+  },
+  "createdAt": {
+    "$date": "2023-10-25T10:59:56.430Z"
+  },
+  "updatedAt": {
+    "$date": "2023-10-25T11:00:59.182Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6538f5624073bd02d45358ee"
+  },
+  "isOccupied": false,
+  "seatNumber": "1-1",
+  "position": "default",
+  "theater_id": {
+    "$oid": "6538f5624073bd02d45358ec"
+  },
+  "createdAt": {
+    "$date": "2023-10-25T11:00:50.759Z"
+  },
+  "updatedAt": {
+    "$date": "2023-10-25T11:00:50.759Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6538f5624073bd02d45358f0"
+  },
+  "isOccupied": false,
+  "seatNumber": "2-0",
+  "position": "default",
+  "theater_id": {
+    "$oid": "6538f5624073bd02d45358ec"
+  },
+  "createdAt": {
+    "$date": "2023-10-25T11:00:50.762Z"
+  },
+  "updatedAt": {
+    "$date": "2023-10-25T11:00:59.182Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6538f5624073bd02d45358f2"
+  },
+  "isOccupied": false,
+  "seatNumber": "3-0",
+  "position": "default",
+  "theater_id": {
+    "$oid": "6538f5624073bd02d45358ec"
+  },
+  "createdAt": {
+    "$date": "2023-10-25T11:00:50.764Z"
+  },
+  "updatedAt": {
+    "$date": "2023-10-25T11:00:59.182Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6538f5624073bd02d45358f4"
+  },
+  "isOccupied": false,
+  "seatNumber": "4-0",
+  "position": "default",
+  "theater_id": {
+    "$oid": "6538f5624073bd02d45358ec"
+  },
+  "createdAt": {
+    "$date": "2023-10-25T11:00:50.766Z"
+  },
+  "updatedAt": {
+    "$date": "2023-10-25T11:00:59.182Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6538f5624073bd02d45358f6"
+  },
+  "isOccupied": false,
+  "seatNumber": "5-0",
+  "position": "default",
+  "theater_id": {
+    "$oid": "6538f5624073bd02d45358ec"
+  },
+  "createdAt": {
+    "$date": "2023-10-25T11:00:50.768Z"
+  },
+  "updatedAt": {
+    "$date": "2023-10-25T11:00:59.183Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6538f5624073bd02d45358f8"
+  },
+  "isOccupied": false,
+  "seatNumber": "6-0",
+  "position": "default",
+  "theater_id": {
+    "$oid": "6538f5624073bd02d45358ec"
+  },
+  "createdAt": {
+    "$date": "2023-10-25T11:00:50.771Z"
+  },
+  "updatedAt": {
+    "$date": "2023-10-25T11:00:59.183Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6538f5624073bd02d45358fa"
+  },
+  "isOccupied": false,
+  "seatNumber": "7-0",
+  "position": "default",
+  "theater_id": {
+    "$oid": "6538f5624073bd02d45358ec"
+  },
+  "createdAt": {
+    "$date": "2023-10-25T11:00:50.773Z"
+  },
+  "updatedAt": {
+    "$date": "2023-10-25T11:00:59.183Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6538f5694073bd02d4535908"
+  },
+  "isOccupied": false,
+  "seatNumber": "1-1",
+  "position": "default",
+  "theater_id": {
+    "$oid": "6538f5624073bd02d45358ec"
+  },
+  "createdAt": {
+    "$date": "2023-10-25T11:00:57.700Z"
+  },
+  "updatedAt": {
+    "$date": "2023-10-25T14:22:04.830Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6538f5929061ff03a8f10858"
+  },
+  "isOccupied": false,
+  "seatNumber": "1-1",
+  "position": "default",
+  "theater_id": {
+    "$oid": "6538f5929061ff03a8f10856"
+  },
+  "createdAt": {
+    "$date": "2023-10-25T11:01:38.739Z"
+  },
+  "updatedAt": {
+    "$date": "2023-10-25T11:01:38.739Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6538f5929061ff03a8f1085a"
+  },
+  "isOccupied": false,
+  "seatNumber": "2-1",
+  "position": "default",
+  "theater_id": {
+    "$oid": "6538f5929061ff03a8f10856"
+  },
+  "createdAt": {
+    "$date": "2023-10-25T11:01:38.742Z"
+  },
+  "updatedAt": {
+    "$date": "2023-10-25T11:01:38.742Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6538f5929061ff03a8f1085c"
+  },
+  "isOccupied": false,
+  "seatNumber": "3-1",
+  "position": "default",
+  "theater_id": {
+    "$oid": "6538f5929061ff03a8f10856"
+  },
+  "createdAt": {
+    "$date": "2023-10-25T11:01:38.745Z"
+  },
+  "updatedAt": {
+    "$date": "2023-10-25T11:01:38.745Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6538f5929061ff03a8f1085e"
+  },
+  "isOccupied": false,
+  "seatNumber": "4-1",
+  "position": "default",
+  "theater_id": {
+    "$oid": "6538f5929061ff03a8f10856"
+  },
+  "createdAt": {
+    "$date": "2023-10-25T11:01:38.747Z"
+  },
+  "updatedAt": {
+    "$date": "2023-10-25T11:01:38.747Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6538f5929061ff03a8f10860"
+  },
+  "isOccupied": false,
+  "seatNumber": "5-1",
+  "position": "default",
+  "theater_id": {
+    "$oid": "6538f5929061ff03a8f10856"
+  },
+  "createdAt": {
+    "$date": "2023-10-25T11:01:38.749Z"
+  },
+  "updatedAt": {
+    "$date": "2023-10-25T11:01:38.749Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6538f94f9061ff03a8f10921"
+  },
+  "isOccupied": false,
+  "seatNumber": "1-1",
+  "position": "default",
+  "theater_id": {
+    "$oid": "6538f94f9061ff03a8f1091f"
+  },
+  "createdAt": {
+    "$date": "2023-10-25T11:17:35.901Z"
+  },
+  "updatedAt": {
+    "$date": "2023-10-25T11:17:35.901Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6538f94f9061ff03a8f10925"
+  },
+  "isOccupied": false,
+  "seatNumber": "3-1",
+  "position": "default",
+  "theater_id": {
+    "$oid": "6538f94f9061ff03a8f1091f"
+  },
+  "createdAt": {
+    "$date": "2023-10-25T11:17:35.904Z"
+  },
+  "updatedAt": {
+    "$date": "2023-10-25T11:17:35.904Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6538f94f9061ff03a8f10927"
+  },
+  "isOccupied": false,
+  "seatNumber": "4-1",
+  "position": "default",
+  "theater_id": {
+    "$oid": "6538f94f9061ff03a8f1091f"
+  },
+  "createdAt": {
+    "$date": "2023-10-25T11:17:35.905Z"
+  },
+  "updatedAt": {
+    "$date": "2023-10-25T11:17:35.905Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6538f94f9061ff03a8f10929"
+  },
+  "isOccupied": false,
+  "seatNumber": "5-1",
+  "position": "default",
+  "theater_id": {
+    "$oid": "6538f94f9061ff03a8f1091f"
+  },
+  "createdAt": {
+    "$date": "2023-10-25T11:17:35.906Z"
+  },
+  "updatedAt": {
+    "$date": "2023-10-25T11:17:35.906Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6538f94f9061ff03a8f1092b"
+  },
+  "isOccupied": false,
+  "seatNumber": "6-1",
+  "position": "default",
+  "theater_id": {
+    "$oid": "6538f94f9061ff03a8f1091f"
+  },
+  "createdAt": {
+    "$date": "2023-10-25T11:17:35.907Z"
+  },
+  "updatedAt": {
+    "$date": "2023-10-25T11:17:35.907Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6538f94f9061ff03a8f1092d"
+  },
+  "isOccupied": false,
+  "seatNumber": "7-1",
+  "position": "default",
+  "theater_id": {
+    "$oid": "6538f94f9061ff03a8f1091f"
+  },
+  "createdAt": {
+    "$date": "2023-10-25T11:17:35.908Z"
+  },
+  "updatedAt": {
+    "$date": "2023-10-25T11:17:35.908Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6538f9599061ff03a8f10936"
+  },
+  "isOccupied": false,
+  "seatNumber": "1-1",
+  "position": "default",
+  "theater_id": {
+    "$oid": "6538f94f9061ff03a8f1091f"
+  },
+  "createdAt": {
+    "$date": "2023-10-25T11:17:45.216Z"
+  },
+  "updatedAt": {
+    "$date": "2023-10-25T14:22:04.830Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6538f95a9061ff03a8f1093b"
+  },
+  "isOccupied": false,
+  "seatNumber": "1-1",
+  "position": "default",
+  "theater_id": {
+    "$oid": "6538f94f9061ff03a8f1091f"
+  },
+  "createdAt": {
+    "$date": "2023-10-25T11:17:46.340Z"
+  },
+  "updatedAt": {
+    "$date": "2023-10-25T14:34:22.238Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6538f95c9061ff03a8f1094a"
+  },
+  "isOccupied": false,
+  "seatNumber": "1-1",
+  "position": "default",
+  "theater_id": {
+    "$oid": "6538f94f9061ff03a8f1091f"
+  },
+  "createdAt": {
+    "$date": "2023-10-25T11:17:48.959Z"
+  },
+  "updatedAt": {
+    "$date": "2023-10-25T14:34:22.238Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "653923148754fc7d821919b3"
+  },
+  "isOccupied": false,
+  "seatNumber": "2-1",
+  "position": "default",
+  "theater_id": {
+    "$oid": "6538f94f9061ff03a8f1091f"
+  },
+  "createdAt": {
+    "$date": "2023-10-25T14:15:48.870Z"
+  },
+  "updatedAt": {
+    "$date": "2023-10-25T14:15:52.616Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "653923bd9dca887f760beae8"
+  },
+  "isOccupied": false,
+  "seatNumber": "1-1",
+  "position": "default",
+  "theater_id": {
+    "$oid": "6538f94f9061ff03a8f1091f"
+  },
+  "createdAt": {
+    "$date": "2023-10-25T14:18:37.476Z"
+  },
+  "updatedAt": {
+    "$date": "2023-10-25T14:34:22.238Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "653923c19dca887f760beaf5"
+  },
+  "isOccupied": false,
+  "seatNumber": "1-1",
+  "position": "default",
+  "theater_id": {
+    "$oid": "6538f94f9061ff03a8f1091f"
+  },
+  "createdAt": {
+    "$date": "2023-10-25T14:18:41.143Z"
+  },
+  "updatedAt": {
+    "$date": "2023-10-25T14:58:07.288Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "653923c39dca887f760beaff"
+  },
+  "isOccupied": false,
+  "seatNumber": "2-1",
+  "position": "default",
+  "theater_id": {
+    "$oid": "6538f94f9061ff03a8f1091f"
+  },
+  "createdAt": {
+    "$date": "2023-10-25T14:18:43.776Z"
+  },
+  "updatedAt": {
+    "$date": "2023-10-25T14:34:17.512Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "653923cd9dca887f760beb1b"
+  },
+  "isOccupied": false,
+  "seatNumber": "1-1",
+  "position": "default",
+  "theater_id": {
+    "$oid": "6538f94f9061ff03a8f1091f"
+  },
+  "createdAt": {
+    "$date": "2023-10-25T14:18:53.676Z"
+  },
+  "updatedAt": {
+    "$date": "2023-10-25T14:58:11.034Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "653923cf9dca887f760beb20"
+  },
+  "isOccupied": false,
+  "seatNumber": "2-2",
+  "position": "default",
+  "theater_id": {
+    "$oid": "6538f94f9061ff03a8f1091f"
+  },
+  "createdAt": {
+    "$date": "2023-10-25T14:18:55.829Z"
+  },
+  "updatedAt": {
+    "$date": "2023-10-25T14:34:17.512Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "653923da9dca887f760beb2f"
+  },
+  "isOccupied": false,
+  "seatNumber": "1-1",
+  "position": "default",
+  "theater_id": {
+    "$oid": "6538f94f9061ff03a8f1091f"
+  },
+  "createdAt": {
+    "$date": "2023-10-25T14:19:06.342Z"
+  },
+  "updatedAt": {
+    "$date": "2023-10-25T14:59:09.814Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "653923db9dca887f760beb34"
+  },
+  "isOccupied": false,
+  "seatNumber": "1-1",
+  "position": "default",
+  "theater_id": {
+    "$oid": "6538f94f9061ff03a8f1091f"
+  },
+  "createdAt": {
+    "$date": "2023-10-25T14:19:07.387Z"
+  },
+  "updatedAt": {
+    "$date": "2023-10-25T14:59:09.814Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "653923e09dca887f760beb3e"
+  },
+  "isOccupied": false,
+  "seatNumber": "3-2",
+  "position": "default",
+  "theater_id": {
+    "$oid": "6538f94f9061ff03a8f1091f"
+  },
+  "createdAt": {
+    "$date": "2023-10-25T14:19:12.075Z"
+  },
+  "updatedAt": {
+    "$date": "2023-10-25T14:19:12.075Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "653923e19dca887f760beb43"
+  },
+  "isOccupied": false,
+  "seatNumber": "3-3",
+  "position": "default",
+  "theater_id": {
+    "$oid": "6538f94f9061ff03a8f1091f"
+  },
+  "createdAt": {
+    "$date": "2023-10-25T14:19:13.734Z"
+  },
+  "updatedAt": {
+    "$date": "2023-10-25T14:19:13.734Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "653923e29dca887f760beb48"
+  },
+  "isOccupied": false,
+  "seatNumber": "3-4",
+  "position": "default",
+  "theater_id": {
+    "$oid": "6538f94f9061ff03a8f1091f"
+  },
+  "createdAt": {
+    "$date": "2023-10-25T14:19:14.829Z"
+  },
+  "updatedAt": {
+    "$date": "2023-10-25T14:19:14.829Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "653923e39dca887f760beb4d"
+  },
+  "isOccupied": false,
+  "seatNumber": "3-5",
+  "position": "default",
+  "theater_id": {
+    "$oid": "6538f94f9061ff03a8f1091f"
+  },
+  "createdAt": {
+    "$date": "2023-10-25T14:19:15.751Z"
+  },
+  "updatedAt": {
+    "$date": "2023-10-25T14:19:15.751Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6539242e9dca887f760beb5a"
+  },
+  "isOccupied": false,
+  "seatNumber": "1-1",
+  "position": "default",
+  "theater_id": {
+    "$oid": "6538f94f9061ff03a8f1091f"
+  },
+  "createdAt": {
+    "$date": "2023-10-25T14:20:30.743Z"
+  },
+  "updatedAt": {
+    "$date": "2023-10-25T14:59:09.814Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "653924309dca887f760beb5f"
+  },
+  "isOccupied": false,
+  "seatNumber": "1-8",
+  "position": "default",
+  "theater_id": {
+    "$oid": "6538f94f9061ff03a8f1091f"
+  },
+  "createdAt": {
+    "$date": "2023-10-25T14:20:32.878Z"
+  },
+  "updatedAt": {
+    "$date": "2023-10-25T14:59:11.770Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "653924329dca887f760beb64"
+  },
+  "isOccupied": false,
+  "seatNumber": "2-2",
+  "position": "default",
+  "theater_id": {
+    "$oid": "6538f94f9061ff03a8f1091f"
+  },
+  "createdAt": {
+    "$date": "2023-10-25T14:20:34.248Z"
+  },
+  "updatedAt": {
+    "$date": "2023-10-25T22:55:59.739Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "653924339dca887f760beb69"
+  },
+  "isOccupied": false,
+  "seatNumber": "2-3",
+  "position": "default",
+  "theater_id": {
+    "$oid": "6538f94f9061ff03a8f1091f"
+  },
+  "createdAt": {
+    "$date": "2023-10-25T14:20:35.665Z"
+  },
+  "updatedAt": {
+    "$date": "2023-10-25T22:55:59.739Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "653924349dca887f760beb6e"
+  },
+  "isOccupied": false,
+  "seatNumber": "2-4",
+  "position": "default",
+  "theater_id": {
+    "$oid": "6538f94f9061ff03a8f1091f"
+  },
+  "createdAt": {
+    "$date": "2023-10-25T14:20:36.842Z"
+  },
+  "updatedAt": {
+    "$date": "2023-10-25T22:55:59.739Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "653924369dca887f760beb73"
+  },
+  "isOccupied": false,
+  "seatNumber": "2-5",
+  "position": "default",
+  "theater_id": {
+    "$oid": "6538f94f9061ff03a8f1091f"
+  },
+  "createdAt": {
+    "$date": "2023-10-25T14:20:38.399Z"
+  },
+  "updatedAt": {
+    "$date": "2023-10-25T22:55:59.739Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "653924379dca887f760beb78"
+  },
+  "isOccupied": false,
+  "seatNumber": "2-6",
+  "position": "default",
+  "theater_id": {
+    "$oid": "6538f94f9061ff03a8f1091f"
+  },
+  "createdAt": {
+    "$date": "2023-10-25T14:20:39.401Z"
+  },
+  "updatedAt": {
+    "$date": "2023-10-25T22:55:59.739Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "653924389dca887f760beb7d"
+  },
+  "isOccupied": false,
+  "seatNumber": "2-7",
+  "position": "default",
+  "theater_id": {
+    "$oid": "6538f94f9061ff03a8f1091f"
+  },
+  "createdAt": {
+    "$date": "2023-10-25T14:20:40.450Z"
+  },
+  "updatedAt": {
+    "$date": "2023-10-25T22:55:59.739Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "653924399dca887f760beb82"
+  },
+  "isOccupied": false,
+  "seatNumber": "2-8",
+  "position": "default",
+  "theater_id": {
+    "$oid": "6538f94f9061ff03a8f1091f"
+  },
+  "createdAt": {
+    "$date": "2023-10-25T14:20:41.510Z"
+  },
+  "updatedAt": {
+    "$date": "2023-10-25T22:55:59.739Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6539243a9dca887f760beb87"
+  },
+  "isOccupied": false,
+  "seatNumber": "2-10",
+  "position": "default",
+  "theater_id": {
+    "$oid": "6538f94f9061ff03a8f1091f"
+  },
+  "createdAt": {
+    "$date": "2023-10-25T14:20:42.697Z"
+  },
+  "updatedAt": {
+    "$date": "2023-10-25T14:34:17.512Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6539243d9dca887f760beb8c"
+  },
+  "isOccupied": false,
+  "seatNumber": "2-11",
+  "position": "default",
+  "theater_id": {
+    "$oid": "6538f94f9061ff03a8f1091f"
+  },
+  "createdAt": {
+    "$date": "2023-10-25T14:20:45.631Z"
+  },
+  "updatedAt": {
+    "$date": "2023-10-25T14:34:17.512Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "653924429dca887f760beb91"
+  },
+  "isOccupied": false,
+  "seatNumber": "3-6",
+  "position": "default",
+  "theater_id": {
+    "$oid": "6538f94f9061ff03a8f1091f"
+  },
+  "createdAt": {
+    "$date": "2023-10-25T14:20:50.826Z"
+  },
+  "updatedAt": {
+    "$date": "2023-10-25T14:20:50.826Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "653924449dca887f760beb96"
+  },
+  "isOccupied": false,
+  "seatNumber": "3-7",
+  "position": "default",
+  "theater_id": {
+    "$oid": "6538f94f9061ff03a8f1091f"
+  },
+  "createdAt": {
+    "$date": "2023-10-25T14:20:52.128Z"
+  },
+  "updatedAt": {
+    "$date": "2023-10-25T14:20:52.128Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "653924459dca887f760beb9b"
+  },
+  "isOccupied": false,
+  "seatNumber": "3-8",
+  "position": "default",
+  "theater_id": {
+    "$oid": "6538f94f9061ff03a8f1091f"
+  },
+  "createdAt": {
+    "$date": "2023-10-25T14:20:53.682Z"
+  },
+  "updatedAt": {
+    "$date": "2023-10-25T14:20:53.682Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6539246f9dca887f760beba0"
+  },
+  "isOccupied": false,
+  "seatNumber": "3-9",
+  "position": "default",
+  "theater_id": {
+    "$oid": "6538f94f9061ff03a8f1091f"
+  },
+  "createdAt": {
+    "$date": "2023-10-25T14:21:35.435Z"
+  },
+  "updatedAt": {
+    "$date": "2023-10-25T14:21:35.435Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "653924719dca887f760beba5"
+  },
+  "isOccupied": false,
+  "seatNumber": "3-10",
+  "position": "default",
+  "theater_id": {
+    "$oid": "6538f94f9061ff03a8f1091f"
+  },
+  "createdAt": {
+    "$date": "2023-10-25T14:21:37.186Z"
+  },
+  "updatedAt": {
+    "$date": "2023-10-25T14:21:37.186Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "653924729dca887f760bebaa"
+  },
+  "isOccupied": false,
+  "seatNumber": "3-11",
+  "position": "default",
+  "theater_id": {
+    "$oid": "6538f94f9061ff03a8f1091f"
+  },
+  "createdAt": {
+    "$date": "2023-10-25T14:21:38.655Z"
+  },
+  "updatedAt": {
+    "$date": "2023-10-25T14:21:38.655Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "653924769dca887f760bebaf"
+  },
+  "isOccupied": false,
+  "seatNumber": "4-2",
+  "position": "default",
+  "theater_id": {
+    "$oid": "6538f94f9061ff03a8f1091f"
+  },
+  "createdAt": {
+    "$date": "2023-10-25T14:21:42.502Z"
+  },
+  "updatedAt": {
+    "$date": "2023-10-25T14:21:42.502Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "653924779dca887f760bebb4"
+  },
+  "isOccupied": false,
+  "seatNumber": "4-3",
+  "position": "default",
+  "theater_id": {
+    "$oid": "6538f94f9061ff03a8f1091f"
+  },
+  "createdAt": {
+    "$date": "2023-10-25T14:21:43.782Z"
+  },
+  "updatedAt": {
+    "$date": "2023-10-25T14:21:43.782Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "653924789dca887f760bebb9"
+  },
+  "isOccupied": false,
+  "seatNumber": "4-4",
+  "position": "default",
+  "theater_id": {
+    "$oid": "6538f94f9061ff03a8f1091f"
+  },
+  "createdAt": {
+    "$date": "2023-10-25T14:21:44.968Z"
+  },
+  "updatedAt": {
+    "$date": "2023-10-25T14:21:44.968Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6539247a9dca887f760bebbe"
+  },
+  "isOccupied": false,
+  "seatNumber": "4-5",
+  "position": "default",
+  "theater_id": {
+    "$oid": "6538f94f9061ff03a8f1091f"
+  },
+  "createdAt": {
+    "$date": "2023-10-25T14:21:46.836Z"
+  },
+  "updatedAt": {
+    "$date": "2023-10-25T14:21:46.836Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6539247c9dca887f760bebc3"
+  },
+  "isOccupied": false,
+  "seatNumber": "4-6",
+  "position": "default",
+  "theater_id": {
+    "$oid": "6538f94f9061ff03a8f1091f"
+  },
+  "createdAt": {
+    "$date": "2023-10-25T14:21:48.586Z"
+  },
+  "updatedAt": {
+    "$date": "2023-10-25T14:21:48.586Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6539247e9dca887f760bebc8"
+  },
+  "isOccupied": false,
+  "seatNumber": "4-7",
+  "position": "default",
+  "theater_id": {
+    "$oid": "6538f94f9061ff03a8f1091f"
+  },
+  "createdAt": {
+    "$date": "2023-10-25T14:21:50.017Z"
+  },
+  "updatedAt": {
+    "$date": "2023-10-25T14:21:50.017Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "653924809dca887f760bebcd"
+  },
+  "isOccupied": false,
+  "seatNumber": "4-8",
+  "position": "default",
+  "theater_id": {
+    "$oid": "6538f94f9061ff03a8f1091f"
+  },
+  "createdAt": {
+    "$date": "2023-10-25T14:21:52.401Z"
+  },
+  "updatedAt": {
+    "$date": "2023-10-25T14:21:52.401Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "653924839dca887f760bebd2"
+  },
+  "isOccupied": false,
+  "seatNumber": "4-9",
+  "position": "default",
+  "theater_id": {
+    "$oid": "6538f94f9061ff03a8f1091f"
+  },
+  "createdAt": {
+    "$date": "2023-10-25T14:21:55.021Z"
+  },
+  "updatedAt": {
+    "$date": "2023-10-25T14:21:55.021Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "653924859dca887f760bebd7"
+  },
+  "isOccupied": false,
+  "seatNumber": "4-10",
+  "position": "default",
+  "theater_id": {
+    "$oid": "6538f94f9061ff03a8f1091f"
+  },
+  "createdAt": {
+    "$date": "2023-10-25T14:21:57.005Z"
+  },
+  "updatedAt": {
+    "$date": "2023-10-25T14:21:57.005Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "653924869dca887f760bebdc"
+  },
+  "isOccupied": false,
+  "seatNumber": "4-11",
+  "position": "default",
+  "theater_id": {
+    "$oid": "6538f94f9061ff03a8f1091f"
+  },
+  "createdAt": {
+    "$date": "2023-10-25T14:21:58.454Z"
+  },
+  "updatedAt": {
+    "$date": "2023-10-25T14:21:58.454Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "653924889dca887f760bebe1"
+  },
+  "isOccupied": false,
+  "seatNumber": "4-12",
+  "position": "default",
+  "theater_id": {
+    "$oid": "6538f94f9061ff03a8f1091f"
+  },
+  "createdAt": {
+    "$date": "2023-10-25T14:22:00.604Z"
+  },
+  "updatedAt": {
+    "$date": "2023-10-25T14:22:00.604Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "653924979dca887f760bebff"
+  },
+  "isOccupied": false,
+  "seatNumber": "5-2",
+  "position": "default",
+  "theater_id": {
+    "$oid": "6538f94f9061ff03a8f1091f"
+  },
+  "createdAt": {
+    "$date": "2023-10-25T14:22:15.329Z"
+  },
+  "updatedAt": {
+    "$date": "2023-10-25T14:22:15.329Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "653924999dca887f760bec04"
+  },
+  "isOccupied": false,
+  "seatNumber": "5-3",
+  "position": "default",
+  "theater_id": {
+    "$oid": "6538f94f9061ff03a8f1091f"
+  },
+  "createdAt": {
+    "$date": "2023-10-25T14:22:17.391Z"
+  },
+  "updatedAt": {
+    "$date": "2023-10-25T14:22:17.391Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6539249a9dca887f760bec09"
+  },
+  "isOccupied": false,
+  "seatNumber": "5-4",
+  "position": "default",
+  "theater_id": {
+    "$oid": "6538f94f9061ff03a8f1091f"
+  },
+  "createdAt": {
+    "$date": "2023-10-25T14:22:18.602Z"
+  },
+  "updatedAt": {
+    "$date": "2023-10-25T14:22:18.602Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6539249b9dca887f760bec0e"
+  },
+  "isOccupied": false,
+  "seatNumber": "5-5",
+  "position": "default",
+  "theater_id": {
+    "$oid": "6538f94f9061ff03a8f1091f"
+  },
+  "createdAt": {
+    "$date": "2023-10-25T14:22:19.782Z"
+  },
+  "updatedAt": {
+    "$date": "2023-10-25T14:22:19.782Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6539249c9dca887f760bec13"
+  },
+  "isOccupied": false,
+  "seatNumber": "5-6",
+  "position": "default",
+  "theater_id": {
+    "$oid": "6538f94f9061ff03a8f1091f"
+  },
+  "createdAt": {
+    "$date": "2023-10-25T14:22:20.797Z"
+  },
+  "updatedAt": {
+    "$date": "2023-10-25T14:22:20.797Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6539249d9dca887f760bec18"
+  },
+  "isOccupied": false,
+  "seatNumber": "5-7",
+  "position": "default",
+  "theater_id": {
+    "$oid": "6538f94f9061ff03a8f1091f"
+  },
+  "createdAt": {
+    "$date": "2023-10-25T14:22:21.854Z"
+  },
+  "updatedAt": {
+    "$date": "2023-10-25T14:22:21.854Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6539249e9dca887f760bec1d"
+  },
+  "isOccupied": false,
+  "seatNumber": "5-8",
+  "position": "default",
+  "theater_id": {
+    "$oid": "6538f94f9061ff03a8f1091f"
+  },
+  "createdAt": {
+    "$date": "2023-10-25T14:22:22.855Z"
+  },
+  "updatedAt": {
+    "$date": "2023-10-25T14:22:22.855Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6539249f9dca887f760bec22"
+  },
+  "isOccupied": false,
+  "seatNumber": "5-9",
+  "position": "default",
+  "theater_id": {
+    "$oid": "6538f94f9061ff03a8f1091f"
+  },
+  "createdAt": {
+    "$date": "2023-10-25T14:22:23.959Z"
+  },
+  "updatedAt": {
+    "$date": "2023-10-25T14:22:23.959Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "653924a09dca887f760bec27"
+  },
+  "isOccupied": false,
+  "seatNumber": "5-10",
+  "position": "default",
+  "theater_id": {
+    "$oid": "6538f94f9061ff03a8f1091f"
+  },
+  "createdAt": {
+    "$date": "2023-10-25T14:22:24.965Z"
+  },
+  "updatedAt": {
+    "$date": "2023-10-25T14:22:24.965Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "653924a29dca887f760bec2c"
+  },
+  "isOccupied": false,
+  "seatNumber": "5-11",
+  "position": "default",
+  "theater_id": {
+    "$oid": "6538f94f9061ff03a8f1091f"
+  },
+  "createdAt": {
+    "$date": "2023-10-25T14:22:26.393Z"
+  },
+  "updatedAt": {
+    "$date": "2023-10-25T14:22:26.393Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "653924a49dca887f760bec31"
+  },
+  "isOccupied": false,
+  "seatNumber": "6-2",
+  "position": "default",
+  "theater_id": {
+    "$oid": "6538f94f9061ff03a8f1091f"
+  },
+  "createdAt": {
+    "$date": "2023-10-25T14:22:28.425Z"
+  },
+  "updatedAt": {
+    "$date": "2023-10-25T14:22:28.425Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "653924a59dca887f760bec36"
+  },
+  "isOccupied": false,
+  "seatNumber": "6-3",
+  "position": "default",
+  "theater_id": {
+    "$oid": "6538f94f9061ff03a8f1091f"
+  },
+  "createdAt": {
+    "$date": "2023-10-25T14:22:29.517Z"
+  },
+  "updatedAt": {
+    "$date": "2023-10-25T14:22:29.517Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "653924a89dca887f760bec3b"
+  },
+  "isOccupied": false,
+  "seatNumber": "6-4",
+  "position": "default",
+  "theater_id": {
+    "$oid": "6538f94f9061ff03a8f1091f"
+  },
+  "createdAt": {
+    "$date": "2023-10-25T14:22:32.211Z"
+  },
+  "updatedAt": {
+    "$date": "2023-10-25T14:22:32.211Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "653924a99dca887f760bec40"
+  },
+  "isOccupied": false,
+  "seatNumber": "6-5",
+  "position": "default",
+  "theater_id": {
+    "$oid": "6538f94f9061ff03a8f1091f"
+  },
+  "createdAt": {
+    "$date": "2023-10-25T14:22:33.216Z"
+  },
+  "updatedAt": {
+    "$date": "2023-10-25T14:22:33.216Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "653924aa9dca887f760bec45"
+  },
+  "isOccupied": false,
+  "seatNumber": "6-6",
+  "position": "default",
+  "theater_id": {
+    "$oid": "6538f94f9061ff03a8f1091f"
+  },
+  "createdAt": {
+    "$date": "2023-10-25T14:22:34.627Z"
+  },
+  "updatedAt": {
+    "$date": "2023-10-25T14:22:34.627Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "653924ab9dca887f760bec4a"
+  },
+  "isOccupied": false,
+  "seatNumber": "6-7",
+  "position": "default",
+  "theater_id": {
+    "$oid": "6538f94f9061ff03a8f1091f"
+  },
+  "createdAt": {
+    "$date": "2023-10-25T14:22:35.783Z"
+  },
+  "updatedAt": {
+    "$date": "2023-10-25T14:22:35.783Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "653924ac9dca887f760bec4f"
+  },
+  "isOccupied": false,
+  "seatNumber": "6-8",
+  "position": "default",
+  "theater_id": {
+    "$oid": "6538f94f9061ff03a8f1091f"
+  },
+  "createdAt": {
+    "$date": "2023-10-25T14:22:36.884Z"
+  },
+  "updatedAt": {
+    "$date": "2023-10-25T14:22:36.884Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "653924ae9dca887f760bec54"
+  },
+  "isOccupied": false,
+  "seatNumber": "6-9",
+  "position": "default",
+  "theater_id": {
+    "$oid": "6538f94f9061ff03a8f1091f"
+  },
+  "createdAt": {
+    "$date": "2023-10-25T14:22:38.018Z"
+  },
+  "updatedAt": {
+    "$date": "2023-10-25T14:22:38.018Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "653924ae9dca887f760bec59"
+  },
+  "isOccupied": false,
+  "seatNumber": "6-10",
+  "position": "default",
+  "theater_id": {
+    "$oid": "6538f94f9061ff03a8f1091f"
+  },
+  "createdAt": {
+    "$date": "2023-10-25T14:22:38.986Z"
+  },
+  "updatedAt": {
+    "$date": "2023-10-25T14:22:38.986Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "653924b09dca887f760bec5e"
+  },
+  "isOccupied": false,
+  "seatNumber": "6-11",
+  "position": "default",
+  "theater_id": {
+    "$oid": "6538f94f9061ff03a8f1091f"
+  },
+  "createdAt": {
+    "$date": "2023-10-25T14:22:40.044Z"
+  },
+  "updatedAt": {
+    "$date": "2023-10-25T14:22:40.044Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "653924b09dca887f760bec63"
+  },
+  "isOccupied": false,
+  "seatNumber": "6-12",
+  "position": "default",
+  "theater_id": {
+    "$oid": "6538f94f9061ff03a8f1091f"
+  },
+  "createdAt": {
+    "$date": "2023-10-25T14:22:40.994Z"
+  },
+  "updatedAt": {
+    "$date": "2023-10-25T14:22:40.994Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "653924b29dca887f760bec68"
+  },
+  "isOccupied": false,
+  "seatNumber": "7-2",
+  "position": "default",
+  "theater_id": {
+    "$oid": "6538f94f9061ff03a8f1091f"
+  },
+  "createdAt": {
+    "$date": "2023-10-25T14:22:42.311Z"
+  },
+  "updatedAt": {
+    "$date": "2023-10-25T14:22:42.311Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "653924b39dca887f760bec6d"
+  },
+  "isOccupied": false,
+  "seatNumber": "7-3",
+  "position": "default",
+  "theater_id": {
+    "$oid": "6538f94f9061ff03a8f1091f"
+  },
+  "createdAt": {
+    "$date": "2023-10-25T14:22:43.714Z"
+  },
+  "updatedAt": {
+    "$date": "2023-10-25T14:22:43.714Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "653924b59dca887f760bec72"
+  },
+  "isOccupied": false,
+  "seatNumber": "7-4",
+  "position": "default",
+  "theater_id": {
+    "$oid": "6538f94f9061ff03a8f1091f"
+  },
+  "createdAt": {
+    "$date": "2023-10-25T14:22:45.026Z"
+  },
+  "updatedAt": {
+    "$date": "2023-10-25T14:22:45.026Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "653924b59dca887f760bec77"
+  },
+  "isOccupied": false,
+  "seatNumber": "7-5",
+  "position": "default",
+  "theater_id": {
+    "$oid": "6538f94f9061ff03a8f1091f"
+  },
+  "createdAt": {
+    "$date": "2023-10-25T14:22:45.968Z"
+  },
+  "updatedAt": {
+    "$date": "2023-10-25T14:22:45.968Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "653924b69dca887f760bec7c"
+  },
+  "isOccupied": false,
+  "seatNumber": "7-6",
+  "position": "default",
+  "theater_id": {
+    "$oid": "6538f94f9061ff03a8f1091f"
+  },
+  "createdAt": {
+    "$date": "2023-10-25T14:22:46.962Z"
+  },
+  "updatedAt": {
+    "$date": "2023-10-25T14:22:46.962Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "653924b89dca887f760bec81"
+  },
+  "isOccupied": false,
+  "seatNumber": "7-7",
+  "position": "default",
+  "theater_id": {
+    "$oid": "6538f94f9061ff03a8f1091f"
+  },
+  "createdAt": {
+    "$date": "2023-10-25T14:22:48.212Z"
+  },
+  "updatedAt": {
+    "$date": "2023-10-25T14:22:48.212Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "653924ba9dca887f760bec86"
+  },
+  "isOccupied": false,
+  "seatNumber": "7-8",
+  "position": "default",
+  "theater_id": {
+    "$oid": "6538f94f9061ff03a8f1091f"
+  },
+  "createdAt": {
+    "$date": "2023-10-25T14:22:50.645Z"
+  },
+  "updatedAt": {
+    "$date": "2023-10-25T14:22:50.645Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "653924bb9dca887f760bec8b"
+  },
+  "isOccupied": false,
+  "seatNumber": "7-9",
+  "position": "default",
+  "theater_id": {
+    "$oid": "6538f94f9061ff03a8f1091f"
+  },
+  "createdAt": {
+    "$date": "2023-10-25T14:22:51.727Z"
+  },
+  "updatedAt": {
+    "$date": "2023-10-25T14:22:51.727Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "653924bc9dca887f760bec90"
+  },
+  "isOccupied": false,
+  "seatNumber": "7-10",
+  "position": "default",
+  "theater_id": {
+    "$oid": "6538f94f9061ff03a8f1091f"
+  },
+  "createdAt": {
+    "$date": "2023-10-25T14:22:52.809Z"
+  },
+  "updatedAt": {
+    "$date": "2023-10-25T14:22:52.809Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "653924bd9dca887f760bec95"
+  },
+  "isOccupied": false,
+  "seatNumber": "7-11",
+  "position": "default",
+  "theater_id": {
+    "$oid": "6538f94f9061ff03a8f1091f"
+  },
+  "createdAt": {
+    "$date": "2023-10-25T14:22:53.916Z"
+  },
+  "updatedAt": {
+    "$date": "2023-10-25T14:22:53.916Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65399cbc6c46518596fed8d5"
+  },
+  "isOccupied": false,
+  "seatNumber": "1-2",
+  "position": "default",
+  "theater_id": {
+    "$oid": "6538f5929061ff03a8f10856"
+  },
+  "createdAt": {
+    "$date": "2023-10-25T22:54:52.719Z"
+  },
+  "updatedAt": {
+    "$date": "2023-10-25T22:54:52.719Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65399cbe6c46518596fed8da"
+  },
+  "isOccupied": false,
+  "seatNumber": "1-3",
+  "position": "default",
+  "theater_id": {
+    "$oid": "6538f5929061ff03a8f10856"
+  },
+  "createdAt": {
+    "$date": "2023-10-25T22:54:54.047Z"
+  },
+  "updatedAt": {
+    "$date": "2023-10-25T22:54:54.047Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65399cbe6c46518596fed8df"
+  },
+  "isOccupied": false,
+  "seatNumber": "1-4",
+  "position": "default",
+  "theater_id": {
+    "$oid": "6538f5929061ff03a8f10856"
+  },
+  "createdAt": {
+    "$date": "2023-10-25T22:54:54.952Z"
+  },
+  "updatedAt": {
+    "$date": "2023-10-25T22:54:54.952Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65399cc06c46518596fed8e4"
+  },
+  "isOccupied": false,
+  "seatNumber": "1-5",
+  "position": "default",
+  "theater_id": {
+    "$oid": "6538f5929061ff03a8f10856"
+  },
+  "createdAt": {
+    "$date": "2023-10-25T22:54:56.747Z"
+  },
+  "updatedAt": {
+    "$date": "2023-10-25T22:54:56.747Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65399cc36c46518596fed8e9"
+  },
+  "isOccupied": false,
+  "seatNumber": "1-empty",
+  "position": "empty",
+  "theater_id": {
+    "$oid": "6538f5929061ff03a8f10856"
+  },
+  "createdAt": {
+    "$date": "2023-10-25T22:54:59.242Z"
+  },
+  "updatedAt": {
+    "$date": "2023-10-25T22:54:59.242Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65399cc46c46518596fed8ee"
+  },
+  "isOccupied": false,
+  "seatNumber": "1-empty",
+  "position": "empty",
+  "theater_id": {
+    "$oid": "6538f5929061ff03a8f10856"
+  },
+  "createdAt": {
+    "$date": "2023-10-25T22:55:00.656Z"
+  },
+  "updatedAt": {
+    "$date": "2023-10-25T22:55:00.656Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65399cc66c46518596fed8f3"
+  },
+  "isOccupied": false,
+  "seatNumber": "1-6",
+  "position": "default",
+  "theater_id": {
+    "$oid": "6538f5929061ff03a8f10856"
+  },
+  "createdAt": {
+    "$date": "2023-10-25T22:55:02.967Z"
+  },
+  "updatedAt": {
+    "$date": "2023-10-25T22:55:02.967Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65399cc96c46518596fed8f8"
+  },
+  "isOccupied": false,
+  "seatNumber": "1-7",
+  "position": "default",
+  "theater_id": {
+    "$oid": "6538f5929061ff03a8f10856"
+  },
+  "createdAt": {
+    "$date": "2023-10-25T22:55:05.493Z"
+  },
+  "updatedAt": {
+    "$date": "2023-10-25T22:55:05.493Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65399ccf6c46518596fed8fd"
+  },
+  "isOccupied": false,
+  "seatNumber": "1-empty",
+  "position": "empty",
+  "theater_id": {
+    "$oid": "6538f5929061ff03a8f10856"
+  },
+  "createdAt": {
+    "$date": "2023-10-25T22:55:11.060Z"
+  },
+  "updatedAt": {
+    "$date": "2023-10-25T22:55:11.060Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65399cd26c46518596fed902"
+  },
+  "isOccupied": false,
+  "seatNumber": "1-empty",
+  "position": "empty",
+  "theater_id": {
+    "$oid": "6538f5929061ff03a8f10856"
+  },
+  "createdAt": {
+    "$date": "2023-10-25T22:55:14.213Z"
+  },
+  "updatedAt": {
+    "$date": "2023-10-25T22:55:14.213Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65399cd46c46518596fed907"
+  },
+  "isOccupied": false,
+  "seatNumber": "1-8",
+  "position": "default",
+  "theater_id": {
+    "$oid": "6538f5929061ff03a8f10856"
+  },
+  "createdAt": {
+    "$date": "2023-10-25T22:55:16.845Z"
+  },
+  "updatedAt": {
+    "$date": "2023-10-25T22:55:16.845Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65399cd66c46518596fed90c"
+  },
+  "isOccupied": false,
+  "seatNumber": "1-9",
+  "position": "default",
+  "theater_id": {
+    "$oid": "6538f5929061ff03a8f10856"
+  },
+  "createdAt": {
+    "$date": "2023-10-25T22:55:18.527Z"
+  },
+  "updatedAt": {
+    "$date": "2023-10-25T22:55:18.527Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65399cd76c46518596fed911"
+  },
+  "isOccupied": false,
+  "seatNumber": "1-10",
+  "position": "default",
+  "theater_id": {
+    "$oid": "6538f5929061ff03a8f10856"
+  },
+  "createdAt": {
+    "$date": "2023-10-25T22:55:19.581Z"
+  },
+  "updatedAt": {
+    "$date": "2023-10-25T22:55:19.581Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65399cd86c46518596fed916"
+  },
+  "isOccupied": false,
+  "seatNumber": "1-11",
+  "position": "default",
+  "theater_id": {
+    "$oid": "6538f5929061ff03a8f10856"
+  },
+  "createdAt": {
+    "$date": "2023-10-25T22:55:20.539Z"
+  },
+  "updatedAt": {
+    "$date": "2023-10-25T22:55:20.539Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65399cd96c46518596fed91b"
+  },
+  "isOccupied": false,
+  "seatNumber": "1-12",
+  "position": "default",
+  "theater_id": {
+    "$oid": "6538f5929061ff03a8f10856"
+  },
+  "createdAt": {
+    "$date": "2023-10-25T22:55:21.993Z"
+  },
+  "updatedAt": {
+    "$date": "2023-10-25T22:55:21.993Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65399e1e6c46518596feda38"
+  },
+  "isOccupied": false,
+  "seatNumber": "2-2",
+  "position": "default",
+  "theater_id": {
+    "$oid": "6538f5929061ff03a8f10856"
+  },
+  "createdAt": {
+    "$date": "2023-10-25T23:00:46.008Z"
+  },
+  "updatedAt": {
+    "$date": "2023-10-25T23:00:46.008Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65399e206c46518596feda3d"
+  },
+  "isOccupied": false,
+  "seatNumber": "2-NaN",
+  "position": "empty",
+  "theater_id": {
+    "$oid": "6538f5929061ff03a8f10856"
+  },
+  "createdAt": {
+    "$date": "2023-10-25T23:00:48.348Z"
+  },
+  "updatedAt": {
+    "$date": "2023-10-25T23:01:59.405Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65399e266c46518596feda47"
+  },
+  "isOccupied": false,
+  "seatNumber": "2-3",
+  "position": "default",
+  "theater_id": {
+    "$oid": "6538f5929061ff03a8f10856"
+  },
+  "createdAt": {
+    "$date": "2023-10-25T23:00:54.466Z"
+  },
+  "updatedAt": {
+    "$date": "2023-10-25T23:00:54.466Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65399e2d6c46518596feda51"
+  },
+  "isOccupied": false,
+  "seatNumber": "2-4",
+  "position": "default",
+  "theater_id": {
+    "$oid": "6538f5929061ff03a8f10856"
+  },
+  "createdAt": {
+    "$date": "2023-10-25T23:01:01.351Z"
+  },
+  "updatedAt": {
+    "$date": "2023-10-25T23:01:01.351Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65399e2f6c46518596feda56"
+  },
+  "isOccupied": false,
+  "seatNumber": "2-NaN",
+  "position": "empty",
+  "theater_id": {
+    "$oid": "6538f5929061ff03a8f10856"
+  },
+  "createdAt": {
+    "$date": "2023-10-25T23:01:03.750Z"
+  },
+  "updatedAt": {
+    "$date": "2023-10-25T23:01:59.405Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65399e376c46518596feda6a"
+  },
+  "isOccupied": false,
+  "seatNumber": "2-5",
+  "position": "default",
+  "theater_id": {
+    "$oid": "6538f5929061ff03a8f10856"
+  },
+  "createdAt": {
+    "$date": "2023-10-25T23:01:11.061Z"
+  },
+  "updatedAt": {
+    "$date": "2023-10-25T23:01:11.061Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65399e396c46518596feda6f"
+  },
+  "isOccupied": false,
+  "seatNumber": "2-6",
+  "position": "default",
+  "theater_id": {
+    "$oid": "6538f5929061ff03a8f10856"
+  },
+  "createdAt": {
+    "$date": "2023-10-25T23:01:13.236Z"
+  },
+  "updatedAt": {
+    "$date": "2023-10-25T23:01:13.236Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65399e446c46518596feda8d"
+  },
+  "isOccupied": false,
+  "seatNumber": "2-7",
+  "position": "default",
+  "theater_id": {
+    "$oid": "6538f5929061ff03a8f10856"
+  },
+  "createdAt": {
+    "$date": "2023-10-25T23:01:24.550Z"
+  },
+  "updatedAt": {
+    "$date": "2023-10-25T23:01:24.550Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65399e566c46518596fedab0"
+  },
+  "isOccupied": false,
+  "seatNumber": "2-NaN",
+  "position": "empty",
+  "theater_id": {
+    "$oid": "6538f5929061ff03a8f10856"
+  },
+  "createdAt": {
+    "$date": "2023-10-25T23:01:42.821Z"
+  },
+  "updatedAt": {
+    "$date": "2023-10-25T23:01:59.405Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65399e586c46518596fedab5"
+  },
+  "isOccupied": false,
+  "seatNumber": "2-8",
+  "position": "default",
+  "theater_id": {
+    "$oid": "6538f5929061ff03a8f10856"
+  },
+  "createdAt": {
+    "$date": "2023-10-25T23:01:44.968Z"
+  },
+  "updatedAt": {
+    "$date": "2023-10-25T23:01:59.405Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65399e5a6c46518596fedaba"
+  },
+  "isOccupied": false,
+  "seatNumber": "2-10",
+  "position": "default",
+  "theater_id": {
+    "$oid": "6538f5929061ff03a8f10856"
+  },
+  "createdAt": {
+    "$date": "2023-10-25T23:01:46.647Z"
+  },
+  "updatedAt": {
+    "$date": "2023-10-25T23:01:46.647Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65399e5d6c46518596fedabf"
+  },
+  "isOccupied": false,
+  "seatNumber": "2-NaN",
+  "position": "empty",
+  "theater_id": {
+    "$oid": "6538f5929061ff03a8f10856"
+  },
+  "createdAt": {
+    "$date": "2023-10-25T23:01:49.593Z"
+  },
+  "updatedAt": {
+    "$date": "2023-10-25T23:01:59.405Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65399e5f6c46518596fedac4"
+  },
+  "isOccupied": false,
+  "seatNumber": "2-11",
+  "position": "default",
+  "theater_id": {
+    "$oid": "6538f5929061ff03a8f10856"
+  },
+  "createdAt": {
+    "$date": "2023-10-25T23:01:51.790Z"
+  },
+  "updatedAt": {
+    "$date": "2023-10-25T23:01:51.790Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65399e6b6c46518596fedada"
+  },
+  "isOccupied": false,
+  "seatNumber": "2-12",
+  "position": "default",
+  "theater_id": {
+    "$oid": "6538f5929061ff03a8f10856"
+  },
+  "createdAt": {
+    "$date": "2023-10-25T23:02:03.822Z"
+  },
+  "updatedAt": {
+    "$date": "2023-10-25T23:02:03.822Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65399e796c46518596fedadf"
+  },
+  "isOccupied": false,
+  "seatNumber": "3-2",
+  "position": "default",
+  "theater_id": {
+    "$oid": "6538f5929061ff03a8f10856"
+  },
+  "createdAt": {
+    "$date": "2023-10-25T23:02:17.482Z"
+  },
+  "updatedAt": {
+    "$date": "2023-10-25T23:02:17.482Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65399e7b6c46518596fedae4"
+  },
+  "isOccupied": false,
+  "seatNumber": "3-3",
+  "position": "default",
+  "theater_id": {
+    "$oid": "6538f5929061ff03a8f10856"
+  },
+  "createdAt": {
+    "$date": "2023-10-25T23:02:19.026Z"
+  },
+  "updatedAt": {
+    "$date": "2023-10-25T23:02:19.026Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65399e7b6c46518596fedae9"
+  },
+  "isOccupied": false,
+  "seatNumber": "3-4",
+  "position": "default",
+  "theater_id": {
+    "$oid": "6538f5929061ff03a8f10856"
+  },
+  "createdAt": {
+    "$date": "2023-10-25T23:02:19.978Z"
+  },
+  "updatedAt": {
+    "$date": "2023-10-25T23:02:19.978Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65399e7c6c46518596fedaee"
+  },
+  "isOccupied": false,
+  "seatNumber": "3-5",
+  "position": "default",
+  "theater_id": {
+    "$oid": "6538f5929061ff03a8f10856"
+  },
+  "createdAt": {
+    "$date": "2023-10-25T23:02:20.990Z"
+  },
+  "updatedAt": {
+    "$date": "2023-10-25T23:02:20.990Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65399e7e6c46518596fedaf3"
+  },
+  "isOccupied": false,
+  "seatNumber": "3-6",
+  "position": "default",
+  "theater_id": {
+    "$oid": "6538f5929061ff03a8f10856"
+  },
+  "createdAt": {
+    "$date": "2023-10-25T23:02:22.108Z"
+  },
+  "updatedAt": {
+    "$date": "2023-10-25T23:02:22.108Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65399e806c46518596fedaf8"
+  },
+  "isOccupied": false,
+  "seatNumber": "3-7",
+  "position": "default",
+  "theater_id": {
+    "$oid": "6538f5929061ff03a8f10856"
+  },
+  "createdAt": {
+    "$date": "2023-10-25T23:02:24.127Z"
+  },
+  "updatedAt": {
+    "$date": "2023-10-25T23:02:24.127Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65399e826c46518596fedafd"
+  },
+  "isOccupied": false,
+  "seatNumber": "3-8",
+  "position": "default",
+  "theater_id": {
+    "$oid": "6538f5929061ff03a8f10856"
+  },
+  "createdAt": {
+    "$date": "2023-10-25T23:02:26.398Z"
+  },
+  "updatedAt": {
+    "$date": "2023-10-25T23:02:26.398Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65399e836c46518596fedb02"
+  },
+  "isOccupied": false,
+  "seatNumber": "3-9",
+  "position": "default",
+  "theater_id": {
+    "$oid": "6538f5929061ff03a8f10856"
+  },
+  "createdAt": {
+    "$date": "2023-10-25T23:02:27.455Z"
+  },
+  "updatedAt": {
+    "$date": "2023-10-25T23:02:27.455Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65399e846c46518596fedb07"
+  },
+  "isOccupied": false,
+  "seatNumber": "3-10",
+  "position": "default",
+  "theater_id": {
+    "$oid": "6538f5929061ff03a8f10856"
+  },
+  "createdAt": {
+    "$date": "2023-10-25T23:02:28.377Z"
+  },
+  "updatedAt": {
+    "$date": "2023-10-25T23:02:28.377Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65399e856c46518596fedb0c"
+  },
+  "isOccupied": false,
+  "seatNumber": "3-11",
+  "position": "default",
+  "theater_id": {
+    "$oid": "6538f5929061ff03a8f10856"
+  },
+  "createdAt": {
+    "$date": "2023-10-25T23:02:29.346Z"
+  },
+  "updatedAt": {
+    "$date": "2023-10-25T23:02:29.346Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65399e866c46518596fedb11"
+  },
+  "isOccupied": false,
+  "seatNumber": "3-12",
+  "position": "default",
+  "theater_id": {
+    "$oid": "6538f5929061ff03a8f10856"
+  },
+  "createdAt": {
+    "$date": "2023-10-25T23:02:30.277Z"
+  },
+  "updatedAt": {
+    "$date": "2023-10-25T23:02:30.277Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65399e876c46518596fedb16"
+  },
+  "isOccupied": false,
+  "seatNumber": "3-13",
+  "position": "default",
+  "theater_id": {
+    "$oid": "6538f5929061ff03a8f10856"
+  },
+  "createdAt": {
+    "$date": "2023-10-25T23:02:31.279Z"
+  },
+  "updatedAt": {
+    "$date": "2023-10-25T23:02:31.279Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65399e886c46518596fedb1b"
+  },
+  "isOccupied": false,
+  "seatNumber": "3-14",
+  "position": "default",
+  "theater_id": {
+    "$oid": "6538f5929061ff03a8f10856"
+  },
+  "createdAt": {
+    "$date": "2023-10-25T23:02:32.325Z"
+  },
+  "updatedAt": {
+    "$date": "2023-10-25T23:02:32.325Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65399e896c46518596fedb20"
+  },
+  "isOccupied": false,
+  "seatNumber": "3-15",
+  "position": "default",
+  "theater_id": {
+    "$oid": "6538f5929061ff03a8f10856"
+  },
+  "createdAt": {
+    "$date": "2023-10-25T23:02:33.195Z"
+  },
+  "updatedAt": {
+    "$date": "2023-10-25T23:02:33.195Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65399e8a6c46518596fedb25"
+  },
+  "isOccupied": false,
+  "seatNumber": "3-16",
+  "position": "default",
+  "theater_id": {
+    "$oid": "6538f5929061ff03a8f10856"
+  },
+  "createdAt": {
+    "$date": "2023-10-25T23:02:34.227Z"
+  },
+  "updatedAt": {
+    "$date": "2023-10-25T23:02:34.227Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65399e8d6c46518596fedb2a"
+  },
+  "isOccupied": false,
+  "seatNumber": "4-2",
+  "position": "default",
+  "theater_id": {
+    "$oid": "6538f5929061ff03a8f10856"
+  },
+  "createdAt": {
+    "$date": "2023-10-25T23:02:37.197Z"
+  },
+  "updatedAt": {
+    "$date": "2023-10-25T23:02:37.197Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65399e8f6c46518596fedb2f"
+  },
+  "isOccupied": false,
+  "seatNumber": "4-3",
+  "position": "default",
+  "theater_id": {
+    "$oid": "6538f5929061ff03a8f10856"
+  },
+  "createdAt": {
+    "$date": "2023-10-25T23:02:39.933Z"
+  },
+  "updatedAt": {
+    "$date": "2023-10-25T23:02:39.933Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65399e906c46518596fedb34"
+  },
+  "isOccupied": false,
+  "seatNumber": "4-4",
+  "position": "default",
+  "theater_id": {
+    "$oid": "6538f5929061ff03a8f10856"
+  },
+  "createdAt": {
+    "$date": "2023-10-25T23:02:40.946Z"
+  },
+  "updatedAt": {
+    "$date": "2023-10-25T23:02:40.946Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65399e916c46518596fedb39"
+  },
+  "isOccupied": false,
+  "seatNumber": "4-5",
+  "position": "default",
+  "theater_id": {
+    "$oid": "6538f5929061ff03a8f10856"
+  },
+  "createdAt": {
+    "$date": "2023-10-25T23:02:41.963Z"
+  },
+  "updatedAt": {
+    "$date": "2023-10-25T23:02:41.963Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65399e926c46518596fedb3e"
+  },
+  "isOccupied": false,
+  "seatNumber": "4-6",
+  "position": "default",
+  "theater_id": {
+    "$oid": "6538f5929061ff03a8f10856"
+  },
+  "createdAt": {
+    "$date": "2023-10-25T23:02:42.841Z"
+  },
+  "updatedAt": {
+    "$date": "2023-10-25T23:02:42.841Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65399e936c46518596fedb43"
+  },
+  "isOccupied": false,
+  "seatNumber": "4-7",
+  "position": "default",
+  "theater_id": {
+    "$oid": "6538f5929061ff03a8f10856"
+  },
+  "createdAt": {
+    "$date": "2023-10-25T23:02:43.748Z"
+  },
+  "updatedAt": {
+    "$date": "2023-10-25T23:02:43.748Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65399e946c46518596fedb48"
+  },
+  "isOccupied": false,
+  "seatNumber": "4-8",
+  "position": "default",
+  "theater_id": {
+    "$oid": "6538f5929061ff03a8f10856"
+  },
+  "createdAt": {
+    "$date": "2023-10-25T23:02:44.800Z"
+  },
+  "updatedAt": {
+    "$date": "2023-10-25T23:02:44.800Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65399e956c46518596fedb4d"
+  },
+  "isOccupied": false,
+  "seatNumber": "4-9",
+  "position": "default",
+  "theater_id": {
+    "$oid": "6538f5929061ff03a8f10856"
+  },
+  "createdAt": {
+    "$date": "2023-10-25T23:02:45.780Z"
+  },
+  "updatedAt": {
+    "$date": "2023-10-25T23:02:45.780Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65399e966c46518596fedb52"
+  },
+  "isOccupied": false,
+  "seatNumber": "4-10",
+  "position": "default",
+  "theater_id": {
+    "$oid": "6538f5929061ff03a8f10856"
+  },
+  "createdAt": {
+    "$date": "2023-10-25T23:02:46.883Z"
+  },
+  "updatedAt": {
+    "$date": "2023-10-25T23:02:46.883Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65399e986c46518596fedb57"
+  },
+  "isOccupied": false,
+  "seatNumber": "4-11",
+  "position": "default",
+  "theater_id": {
+    "$oid": "6538f5929061ff03a8f10856"
+  },
+  "createdAt": {
+    "$date": "2023-10-25T23:02:48.013Z"
+  },
+  "updatedAt": {
+    "$date": "2023-10-25T23:02:48.013Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65399e996c46518596fedb5c"
+  },
+  "isOccupied": false,
+  "seatNumber": "4-12",
+  "position": "default",
+  "theater_id": {
+    "$oid": "6538f5929061ff03a8f10856"
+  },
+  "createdAt": {
+    "$date": "2023-10-25T23:02:49.333Z"
+  },
+  "updatedAt": {
+    "$date": "2023-10-25T23:02:49.333Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65399e9a6c46518596fedb61"
+  },
+  "isOccupied": false,
+  "seatNumber": "4-13",
+  "position": "default",
+  "theater_id": {
+    "$oid": "6538f5929061ff03a8f10856"
+  },
+  "createdAt": {
+    "$date": "2023-10-25T23:02:50.333Z"
+  },
+  "updatedAt": {
+    "$date": "2023-10-25T23:02:50.333Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65399e9b6c46518596fedb66"
+  },
+  "isOccupied": false,
+  "seatNumber": "4-14",
+  "position": "default",
+  "theater_id": {
+    "$oid": "6538f5929061ff03a8f10856"
+  },
+  "createdAt": {
+    "$date": "2023-10-25T23:02:51.264Z"
+  },
+  "updatedAt": {
+    "$date": "2023-10-25T23:02:51.264Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65399e9c6c46518596fedb6b"
+  },
+  "isOccupied": false,
+  "seatNumber": "4-15",
+  "position": "default",
+  "theater_id": {
+    "$oid": "6538f5929061ff03a8f10856"
+  },
+  "createdAt": {
+    "$date": "2023-10-25T23:02:52.248Z"
+  },
+  "updatedAt": {
+    "$date": "2023-10-25T23:02:52.248Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65399e9d6c46518596fedb70"
+  },
+  "isOccupied": false,
+  "seatNumber": "4-16",
+  "position": "default",
+  "theater_id": {
+    "$oid": "6538f5929061ff03a8f10856"
+  },
+  "createdAt": {
+    "$date": "2023-10-25T23:02:53.470Z"
+  },
+  "updatedAt": {
+    "$date": "2023-10-25T23:02:53.470Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65399e9f6c46518596fedb75"
+  },
+  "isOccupied": false,
+  "seatNumber": "5-2",
+  "position": "default",
+  "theater_id": {
+    "$oid": "6538f5929061ff03a8f10856"
+  },
+  "createdAt": {
+    "$date": "2023-10-25T23:02:55.502Z"
+  },
+  "updatedAt": {
+    "$date": "2023-10-25T23:02:55.502Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65399ea06c46518596fedb7a"
+  },
+  "isOccupied": false,
+  "seatNumber": "5-3",
+  "position": "default",
+  "theater_id": {
+    "$oid": "6538f5929061ff03a8f10856"
+  },
+  "createdAt": {
+    "$date": "2023-10-25T23:02:56.593Z"
+  },
+  "updatedAt": {
+    "$date": "2023-10-25T23:02:56.593Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65399ea16c46518596fedb7f"
+  },
+  "isOccupied": false,
+  "seatNumber": "5-4",
+  "position": "default",
+  "theater_id": {
+    "$oid": "6538f5929061ff03a8f10856"
+  },
+  "createdAt": {
+    "$date": "2023-10-25T23:02:57.967Z"
+  },
+  "updatedAt": {
+    "$date": "2023-10-25T23:02:57.967Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65399ea36c46518596fedb84"
+  },
+  "isOccupied": false,
+  "seatNumber": "5-5",
+  "position": "default",
+  "theater_id": {
+    "$oid": "6538f5929061ff03a8f10856"
+  },
+  "createdAt": {
+    "$date": "2023-10-25T23:02:59.144Z"
+  },
+  "updatedAt": {
+    "$date": "2023-10-25T23:02:59.144Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65399ea46c46518596fedb89"
+  },
+  "isOccupied": false,
+  "seatNumber": "5-6",
+  "position": "default",
+  "theater_id": {
+    "$oid": "6538f5929061ff03a8f10856"
+  },
+  "createdAt": {
+    "$date": "2023-10-25T23:03:00.572Z"
+  },
+  "updatedAt": {
+    "$date": "2023-10-25T23:03:00.572Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65399ea66c46518596fedb8e"
+  },
+  "isOccupied": false,
+  "seatNumber": "5-7",
+  "position": "default",
+  "theater_id": {
+    "$oid": "6538f5929061ff03a8f10856"
+  },
+  "createdAt": {
+    "$date": "2023-10-25T23:03:02.065Z"
+  },
+  "updatedAt": {
+    "$date": "2023-10-25T23:03:02.065Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65399ea66c46518596fedb93"
+  },
+  "isOccupied": false,
+  "seatNumber": "5-8",
+  "position": "default",
+  "theater_id": {
+    "$oid": "6538f5929061ff03a8f10856"
+  },
+  "createdAt": {
+    "$date": "2023-10-25T23:03:02.931Z"
+  },
+  "updatedAt": {
+    "$date": "2023-10-25T23:03:02.931Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65399ea76c46518596fedb98"
+  },
+  "isOccupied": false,
+  "seatNumber": "5-9",
+  "position": "default",
+  "theater_id": {
+    "$oid": "6538f5929061ff03a8f10856"
+  },
+  "createdAt": {
+    "$date": "2023-10-25T23:03:03.968Z"
+  },
+  "updatedAt": {
+    "$date": "2023-10-25T23:03:03.968Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65399ea86c46518596fedb9d"
+  },
+  "isOccupied": false,
+  "seatNumber": "5-10",
+  "position": "default",
+  "theater_id": {
+    "$oid": "6538f5929061ff03a8f10856"
+  },
+  "createdAt": {
+    "$date": "2023-10-25T23:03:04.804Z"
+  },
+  "updatedAt": {
+    "$date": "2023-10-25T23:03:04.804Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65399ea96c46518596fedba2"
+  },
+  "isOccupied": false,
+  "seatNumber": "5-11",
+  "position": "default",
+  "theater_id": {
+    "$oid": "6538f5929061ff03a8f10856"
+  },
+  "createdAt": {
+    "$date": "2023-10-25T23:03:05.852Z"
+  },
+  "updatedAt": {
+    "$date": "2023-10-25T23:03:05.852Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65399eab6c46518596fedba7"
+  },
+  "isOccupied": false,
+  "seatNumber": "5-12",
+  "position": "default",
+  "theater_id": {
+    "$oid": "6538f5929061ff03a8f10856"
+  },
+  "createdAt": {
+    "$date": "2023-10-25T23:03:07.317Z"
+  },
+  "updatedAt": {
+    "$date": "2023-10-25T23:03:07.317Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65399eac6c46518596fedbac"
+  },
+  "isOccupied": false,
+  "seatNumber": "5-13",
+  "position": "default",
+  "theater_id": {
+    "$oid": "6538f5929061ff03a8f10856"
+  },
+  "createdAt": {
+    "$date": "2023-10-25T23:03:08.132Z"
+  },
+  "updatedAt": {
+    "$date": "2023-10-25T23:03:08.132Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65399ead6c46518596fedbb1"
+  },
+  "isOccupied": false,
+  "seatNumber": "5-14",
+  "position": "default",
+  "theater_id": {
+    "$oid": "6538f5929061ff03a8f10856"
+  },
+  "createdAt": {
+    "$date": "2023-10-25T23:03:09.135Z"
+  },
+  "updatedAt": {
+    "$date": "2023-10-25T23:03:09.135Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65399eae6c46518596fedbb6"
+  },
+  "isOccupied": false,
+  "seatNumber": "5-15",
+  "position": "default",
+  "theater_id": {
+    "$oid": "6538f5929061ff03a8f10856"
+  },
+  "createdAt": {
+    "$date": "2023-10-25T23:03:10.073Z"
+  },
+  "updatedAt": {
+    "$date": "2023-10-25T23:03:10.073Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65399eaf6c46518596fedbbb"
+  },
+  "isOccupied": false,
+  "seatNumber": "5-16",
+  "position": "default",
+  "theater_id": {
+    "$oid": "6538f5929061ff03a8f10856"
+  },
+  "createdAt": {
+    "$date": "2023-10-25T23:03:11.461Z"
+  },
+  "updatedAt": {
+    "$date": "2023-10-25T23:03:11.461Z"
+  },
+  "__v": 0
+}]

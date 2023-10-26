@@ -87,15 +87,14 @@ module.exports = {
   actionEditSeats: async (req, res) => {
     try {
       const { id } = req.params
-      const { rows, columns } = req.body
+      const { theater_id } = req.body
 
       await Setting.findOneAndUpdate(
         {
           _id: id,
         },
         {
-          rows: rows,
-          columns: columns,
+          theater_id: theater_id,
         }
       )
       res.status(200).json({

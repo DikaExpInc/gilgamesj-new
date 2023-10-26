@@ -1,13 +1,58 @@
-import React, { useEffect, useState } from 'react'
-import { Row, Col, Card, Form, Input, Button, message, InputNumber } from 'antd'
+import React, { useCallback, useEffect, useState } from 'react'
+import {
+  Row,
+  Col,
+  Card,
+  Form,
+  Input,
+  Button,
+  message,
+  InputNumber,
+  Select,
+} from 'antd'
 import { colorPrimary } from 'configs/AppConfig'
 import settingService from 'services/SettingService'
+import theaterService from 'services/TheaterService'
+import { useDispatch } from 'react-redux'
+import { getAllTheater } from 'redux/actions/Theater'
 
+const { Option } = Select
 const GeneralField = (props) => {
+  const dispatch = useDispatch()
   const [submitLoading, setSubmitLoading] = useState(false)
   const [seatsRows, setSeatsRows] = useState(props.seatsRows || 0)
   const [seatsColumns, setSeatsColumns] = useState(props.seatsColumns || 0)
   const [ishtarRows, setIshtarRows] = useState(props.ishtarRows || 0)
+  const [theater, setTheater] = useState([])
+  const [selectValues, setSelectValues] = useState({
+    theater_selected: [],
+  })
+
+  const handleInputChange = useCallback((name, value) => {
+    setSelectValues((prevValues) => ({
+      ...prevValues,
+      [name]: value,
+    }))
+  }, [])
+
+  useEffect(() => {
+    theaterService
+      .getTheaterList()
+      .then((querySnapshot) => {
+        let listData = []
+        querySnapshot.data.forEach((doc) => {
+          listData.push({
+            value: doc._id,
+            label: 'Theater - ' + doc.name,
+          })
+        })
+        dispatch(getAllTheater(listData))
+        setTheater(listData)
+      })
+      .catch((error) => {
+        console.log('Error getting document:', error)
+      })
+  }, [dispatch])
 
   useEffect(() => {
     setSeatsRows(props.seatsRows)
@@ -18,8 +63,7 @@ const GeneralField = (props) => {
   const onFinishSeats = () => {
     setSubmitLoading(true)
     const seatsData = {
-      rows: seatsRows,
-      columns: seatsColumns,
+      theater_id: selectValues.theater_selected,
     }
     settingService
       .updateSettingSeats('64de3fd2843badaf9efc006b', seatsData)
@@ -55,7 +99,7 @@ const GeneralField = (props) => {
     <Row gutter={16}>
       <Col xs={24} sm={24} md={24}>
         <Card title="Seats Number Global Information">
-          <Row gutter={16}>
+          {/* <Row gutter={16}>
             <Col>
               <Form.Item
                 name="seatsRows"
@@ -72,6 +116,25 @@ const GeneralField = (props) => {
                 onChange={(e) => setSeatsColumns(e.target.value)}
               >
                 <InputNumber placeholder="Columns theater" max={12} min={1} />
+              </Form.Item>
+            </Col>
+          </Row> */}
+          <Row gutter={16}>
+            <Col>
+              <Form.Item
+                name="theater"
+                label="Select Theater"
+                onChange={(e) => setSeatsRows(e.target.value)}
+              >
+                <Select
+                  placeholder="Please select"
+                  style={{ width: '200px' }}
+                  options={theater}
+                  onChange={(value) =>
+                    handleInputChange('theater_selected', value)
+                  }
+                  defaultValue={props.gallery_photo_list}
+                />
               </Form.Item>
             </Col>
           </Row>

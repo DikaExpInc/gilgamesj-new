@@ -1,0 +1,30 @@
+[{
+  "_id": {
+    "$oid": "6538f5929061ff03a8f10856"
+  },
+  "name": "test",
+  "description": "test",
+  "totalSeatRows": 5,
+  "createdAt": {
+    "$date": "2023-10-25T11:01:38.732Z"
+  },
+  "updatedAt": {
+    "$date": "2023-10-25T11:01:38.732Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6538f94f9061ff03a8f1091f"
+  },
+  "name": "gilgamesj theater",
+  "description": "description",
+  "totalSeatRows": 7,
+  "createdAt": {
+    "$date": "2023-10-25T11:17:35.869Z"
+  },
+  "updatedAt": {
+    "$date": "2023-10-25T11:17:35.869Z"
+  },
+  "__v": 0
+}]

@@ -11,9 +11,9 @@ let settingSchema = mongoose.Schema(
     control: {
       type: String,
     },
-    stage_id: {
+    theater_id: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: 'Stage',
+      ref: 'Theater',
     },
     notification: {
       type: String,

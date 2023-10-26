@@ -84,33 +84,50 @@ const SeatFiled = (props) => {
   useEffect(() => {
     fetchSeats()
   }, [])
-
   const handleSubmit = async (seat, e) => {
     setSubmitLoading(true)
     try {
-      console.log(selectedStatus)
+      const [row, col] = seat.seatNumber.split('-').map(Number)
 
-      const [row, col] = seat.seatNumber.split('-').map(Number) // Mengkonversi setiap elemen menjadi number
+      // if (isNaN(row) || isNaN(col)) {
+      //   throw new Error('Invalid seat number format')
+      // }
 
-      const newCol = col + 1
+      const seatsInSameRow = seatTheater.filter((seat) => {
+        const [rowNum] = seat?.seatNumber?.split('-')
+        return parseInt(rowNum) === row && !seat.seatNumber.includes('empty')
+      })
 
-      if (selectedStatus != 'default') {
-        const resp = await theaterService.addSeat(
-          {
-            name: '1-empty',
-            position: selectedStatus,
-          },
-          id
-        )
-      } else {
-        const resp = await theaterService.addSeat(
-          {
-            name: `${row}-${newCol}`,
-            position: selectedStatus,
-          },
-          id
-        )
+      // Sort the seats based on seat number
+      seatsInSameRow.sort((a, b) => {
+        const [, aSeatNum] = a.seatNumber.split('-')
+        const [, bSeatNum] = b.seatNumber.split('-')
+        return parseInt(aSeatNum) - parseInt(bSeatNum)
+      })
+
+      // Find the maximum seat number in the row
+      let maxSeatNumber = 0
+      if (seatsInSameRow.length > 0) {
+        const [, lastSeatNum] =
+          seatsInSameRow[seatsInSameRow.length - 1].seatNumber.split('-')
+        maxSeatNumber = parseInt(lastSeatNum)
       }
+
+      let newSeatNumber
+      if (selectedStatus === 'empty' || selectedStatus === NaN) {
+        newSeatNumber = `${row}-empty`
+      } else {
+        newSeatNumber = `${row}-${maxSeatNumber + 1}`
+        // Since we've already filtered out 'empty' seats in the previous step,
+        // we don't need to check for duplicates here.
+      }
+
+      const seatData = {
+        name: newSeatNumber,
+        position: selectedStatus,
+      }
+
+      await theaterService.addSeat(seatData, id)
 
       fetchSeats()
       setActivePopover(null)
@@ -119,7 +136,7 @@ const SeatFiled = (props) => {
         message.success(`Seats created`)
       }, 1000)
     } catch (error) {
-      message.error(`Failed to create theater`)
+      message.error(error.message || `Failed to create theater`)
     }
   }
 

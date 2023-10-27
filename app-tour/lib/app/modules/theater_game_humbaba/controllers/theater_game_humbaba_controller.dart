@@ -29,6 +29,8 @@ class TheaterGameHumbabaController extends GetxController {
   RxString audio2 = RxString("");
   RxString audio3 = RxString("");
 
+  bool isClosed = false;
+
   Future<void> playAudio(String audioFileName) async {
     audioPlayer = await audioCache.play(audioFileName);
   }
@@ -43,11 +45,14 @@ class TheaterGameHumbabaController extends GetxController {
   }
 
   void startAnimation() {
-    if (!isStartAnimation.value) {
+    if (!isStartAnimation.value && !isClosed) {
       isStartAnimation.value = true;
       Future.delayed(Duration(seconds: 2), () {
+        if (isClosed) return; // Jika onClose telah dipanggil, hentikan eksekusi
         showBeast.value = true;
-        Future.delayed(Duration(seconds: 3), () async {
+        Future.delayed(Duration(seconds: 3), () {
+          if (isClosed)
+            return; // Jika onClose telah dipanggil, hentikan eksekusi
           blackScreen.value = true;
           playAudio("hoembaba-lange-toon.wav");
         });
@@ -57,8 +62,10 @@ class TheaterGameHumbabaController extends GetxController {
 
   @override
   void onClose() {
+    isClosed = true;
     audioPlayer.stop();
     audioPlayer.dispose();
+    print('terclose');
     super.onClose();
   }
 }

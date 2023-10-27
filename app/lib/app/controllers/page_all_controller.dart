@@ -67,8 +67,8 @@ class PageAllController extends GetxController {
     // GetStorage().write('mode', "test");
     String? teamName = GetStorage().read('teamName');
     if (teamName != null && teamName.isNotEmpty) {
-      String? totalPlayer = GetStorage().read('totalPlayer');
-      if (totalPlayer != null && totalPlayer.isNotEmpty) {
+      int? totalPlayer = GetStorage().read('played_number');
+      if (totalPlayer != null) {
         update();
         SettingModel? settingModel = await SettingApi().getSetting();
         updateSetting(settingModel!);

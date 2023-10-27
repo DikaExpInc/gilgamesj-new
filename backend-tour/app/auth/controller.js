@@ -213,6 +213,8 @@ module.exports = {
     let rows = seatsInRows.length
 
     for (const player of players) {
+      // console.log(player.username)
+      // console.log(player.seat)
       while (true) {
         const query = {
           seatNumber: `${currentRow}-${currentCol}`,

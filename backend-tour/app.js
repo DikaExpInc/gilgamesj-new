@@ -478,6 +478,7 @@ server.on('message', async (msg) => {
         ...disabilityPlayers,
       ]
 
+
       await TheaterSeat.updateMany({}, { $set: { isOccupied: false } })
       // Memberikan tempat duduk sesuai urutan
       await assignSeats(sortedPlayers)

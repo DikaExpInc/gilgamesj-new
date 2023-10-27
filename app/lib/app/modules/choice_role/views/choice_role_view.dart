@@ -82,7 +82,7 @@ class ChoiceRoleView extends GetView<ChoiceRoleController> {
               ],
             ),
             Text(
-              'Kinderen',
+              'Selecteer een rol',
               textAlign: TextAlign.center,
               style: TextStyle(
                 color: Colors.black,

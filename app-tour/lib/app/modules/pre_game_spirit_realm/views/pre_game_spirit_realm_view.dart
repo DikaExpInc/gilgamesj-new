@@ -46,7 +46,8 @@ class PreGameSpiritRealmView extends GetView<PreGameSpiritRealmController> {
                   child: AnimatedTextKit(
                     animatedTexts: [
                       TyperAnimatedText(
-                          'Richt de camera op de QR-code / AR-object.',
+                          // 'Richt de camera op de QR-code / AR-object.',
+                          "Vind het symbool en de bijbehorende code op het museumstuk",
                           textAlign: TextAlign.center),
                     ],
                     isRepeatingAnimation: false,

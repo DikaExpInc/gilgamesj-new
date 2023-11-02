@@ -48,7 +48,8 @@ class PreGameItemsArView extends GetView<PreGameItemsArController> {
                         ),
                       ),
                       Text(
-                        "Richt de camera op de QR-code / AR-object.",
+                        // "Richt de camera op de QR-code / AR-object.",
+                        "Vind het symbool en de bijbehorende code op het museumstuk",
                         style: TextStyle(
                           fontFamily: 'Abel',
                           fontSize: 32,
@@ -117,49 +118,59 @@ class PreGameItemsArView extends GetView<PreGameItemsArController> {
                       ),
                     ),
                   ),
-                  Center(
-                    child: Column(
-                      children: [
-                        InkWell(
-                          onTap: () => {controller.onSubmit()},
-                          child: Container(
-                            width: mWidth / 4,
-                            padding: EdgeInsets.symmetric(
-                                vertical: 20.0,
-                                horizontal:
-                                    MediaQuery.of(context).size.width > 600
-                                        ? 50
-                                        : 20),
-                            decoration: BoxDecoration(
-                              image: DecorationImage(
-                                image: AssetImage("assets/images/bg_btn.png"),
-                                fit: BoxFit.fill,
-                              ),
-                            ),
-                            child: Row(
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              mainAxisAlignment: MainAxisAlignment.center,
+                  Obx(
+                    () => controller.selectedItemIndex.value != 0
+                        ? Center(
+                            child: Column(
                               children: [
-                                Text(
-                                  "DOORGAAN",
-                                  style: TextStyle(
-                                    fontSize:
-                                        MediaQuery.of(context).size.width > 600
-                                            ? 16
-                                            : 12,
-                                    fontWeight: FontWeight.w700,
-                                    color: Colors.white,
+                                InkWell(
+                                  onTap: () => {controller.onSubmit()},
+                                  child: Container(
+                                    width: mWidth / 4,
+                                    padding: EdgeInsets.symmetric(
+                                        vertical: 20.0,
+                                        horizontal:
+                                            MediaQuery.of(context).size.width >
+                                                    600
+                                                ? 50
+                                                : 20),
+                                    decoration: BoxDecoration(
+                                      image: DecorationImage(
+                                        image: AssetImage(
+                                            "assets/images/bg_btn.png"),
+                                        fit: BoxFit.fill,
+                                      ),
+                                    ),
+                                    child: Row(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.center,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        Text(
+                                          "DOORGAAN",
+                                          style: TextStyle(
+                                            fontSize: MediaQuery.of(context)
+                                                        .size
+                                                        .width >
+                                                    600
+                                                ? 16
+                                                : 12,
+                                            fontWeight: FontWeight.w700,
+                                            color: Colors.white,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
                                   ),
+                                ),
+                                SizedBox(
+                                  height: 80,
                                 ),
                               ],
                             ),
-                          ),
-                        ),
-                        SizedBox(
-                          height: 80,
-                        ),
-                      ],
-                    ),
+                          )
+                        : Container(),
                   ),
                 ],
               ),

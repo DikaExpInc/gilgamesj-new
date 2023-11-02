@@ -12,7 +12,8 @@ class ScanQrView extends GetView<ScanQrController> {
       appBar: AppBar(
         title: Center(
             child: Text(
-          "Scan de code of vulHem in.",
+          // "Scan de code of vulHem in.",
+          "Vul de code in",
           style: TextStyle(
             fontFamily: 'Abel',
             color: Colors.white,
@@ -52,7 +53,7 @@ class ScanQrView extends GetView<ScanQrController> {
           ),
           unselectedLabelColor: Colors.grey[600],
           tabs: [
-            Tab(text: "Scan QR"),
+            // Tab(text: "Scan QR"),
             Tab(text: "Code invoeren"),
           ],
         ),
@@ -60,10 +61,13 @@ class ScanQrView extends GetView<ScanQrController> {
       body: new TabBarView(
         controller: controller.tabController,
         children: <Widget>[
-          ScanQrTab(),
+          // ScanQrTab(),
           FillQrTab(),
         ],
       ),
     );
+    // return Scaffold(
+    //   body: FillQrTab(),
+    // );
   }
 }

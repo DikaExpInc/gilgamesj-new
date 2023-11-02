@@ -94,7 +94,7 @@ module.exports = {
             page: 'pre-game',
           }
         )
-      }, 2000)
+      }, 4000)
 
       // Delete all users except the admin
       await User.deleteMany({ _id: { $ne: adminUser._id } })

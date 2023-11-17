@@ -1,6 +1,6 @@
-import 'package:app/app/modules/browser/views/widgets/news_widget.dart';
-import 'package:app/app/utils/app_color.dart';
-import 'package:app/app/widgets/navbar_browser.dart';
+import 'package:gilgamesj_tour/app/modules/browser/views/widgets/news_widget.dart';
+import 'package:gilgamesj_tour/app/utils/app_color.dart';
+import 'package:gilgamesj_tour/app/widgets/navbar_browser.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';

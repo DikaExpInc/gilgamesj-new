@@ -1,10 +1,10 @@
 import 'dart:async';
 import 'dart:math';
 
-import 'package:app/app/data/game2_model.dart';
-import 'package:app/app/modules/theater_game_lightning_game/views/screens/lightning_game_character_screen.dart';
-import 'package:app/app/routes/app_pages.dart';
-import 'package:app/app/services/game2_service.dart';
+import 'package:gilgamesj_tour/app/data/game2_model.dart';
+import 'package:gilgamesj_tour/app/modules/theater_game_lightning_game/views/screens/lightning_game_character_screen.dart';
+import 'package:gilgamesj_tour/app/routes/app_pages.dart';
+import 'package:gilgamesj_tour/app/services/game2_service.dart';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

@@ -1,5 +1,5 @@
-import 'package:app/app/modules/pre_game_guess/controllers/pre_game_guess_controller.dart';
-import 'package:app/app/modules/pre_game_guess/views/widgets/guess_widget.dart';
+import 'package:gilgamesj_tour/app/modules/pre_game_guess/controllers/pre_game_guess_controller.dart';
+import 'package:gilgamesj_tour/app/modules/pre_game_guess/views/widgets/guess_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';

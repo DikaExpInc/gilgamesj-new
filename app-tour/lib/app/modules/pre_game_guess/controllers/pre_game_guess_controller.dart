@@ -1,6 +1,6 @@
-import 'package:app/app/data/guess_model.dart';
-import 'package:app/app/modules/pre_game_guess/views/screens/guess_game_main_screen.dart';
-import 'package:app/app/routes/app_pages.dart';
+import 'package:gilgamesj_tour/app/data/guess_model.dart';
+import 'package:gilgamesj_tour/app/modules/pre_game_guess/views/screens/guess_game_main_screen.dart';
+import 'package:gilgamesj_tour/app/routes/app_pages.dart';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';

@@ -1,4 +1,4 @@
-import 'package:app/app/modules/dies_tablet_video/controllers/dies_tablet_video_controller.dart';
+import 'package:gilgamesj_tour/app/modules/dies_tablet_video/controllers/dies_tablet_video_controller.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';

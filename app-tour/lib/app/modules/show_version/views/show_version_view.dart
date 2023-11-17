@@ -1,4 +1,4 @@
-import 'package:app/app/utils/app_config.dart';
+import 'package:gilgamesj_tour/app/utils/app_config.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';

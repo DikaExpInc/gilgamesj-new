@@ -2,10 +2,10 @@ library passcode_screen;
 
 import 'dart:async';
 
-import 'package:app/app/modules/lock_music/views/components/circle_music.dart';
-import 'package:app/app/modules/lock_music/views/components/keyboard_music.dart';
-import 'package:app/app/modules/lock_music/views/components/shake_curve_music.dart';
-import 'package:app/app/routes/app_pages.dart';
+import 'package:gilgamesj_tour/app/modules/lock_music/views/components/circle_music.dart';
+import 'package:gilgamesj_tour/app/modules/lock_music/views/components/keyboard_music.dart';
+import 'package:gilgamesj_tour/app/modules/lock_music/views/components/shake_curve_music.dart';
+import 'package:gilgamesj_tour/app/routes/app_pages.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

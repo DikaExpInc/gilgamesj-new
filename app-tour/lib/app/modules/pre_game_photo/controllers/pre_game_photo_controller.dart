@@ -1,6 +1,6 @@
-import 'package:app/app/routes/app_pages.dart';
-import 'package:app/app/services/selfie_service.dart';
-import 'package:app/app/widgets/loading.dart';
+import 'package:gilgamesj_tour/app/routes/app_pages.dart';
+import 'package:gilgamesj_tour/app/services/selfie_service.dart';
+import 'package:gilgamesj_tour/app/widgets/loading.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:image_picker/image_picker.dart';

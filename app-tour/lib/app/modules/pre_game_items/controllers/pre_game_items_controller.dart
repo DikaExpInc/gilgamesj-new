@@ -1,7 +1,7 @@
 import 'dart:async';
 
-import 'package:app/app/routes/app_pages.dart';
-import 'package:app/app/widgets/dialog/items_dialog.dart';
+import 'package:gilgamesj_tour/app/routes/app_pages.dart';
+import 'package:gilgamesj_tour/app/widgets/dialog/items_dialog.dart';
 import 'package:get/get.dart';
 
 class PreGameItemsController extends GetxController {

@@ -1,4 +1,4 @@
-import 'package:app/app/modules/objective_detail/controllers/objective_detail_controller.dart';
+import 'package:gilgamesj_tour/app/modules/objective_detail/controllers/objective_detail_controller.dart';
 import 'package:babylonjs_viewer/babylonjs_viewer.dart';
 import 'package:flutter/material.dart';
 

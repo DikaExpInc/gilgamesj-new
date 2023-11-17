@@ -1,4 +1,4 @@
-import 'package:app/app/data/player_model.dart';
+import 'package:gilgamesj_tour/app/data/player_model.dart';
 
 class UserModel {
   final int? statusCode;

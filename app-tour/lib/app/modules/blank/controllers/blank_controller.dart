@@ -1,7 +1,7 @@
-import 'package:app/app/data/player_model.dart';
-import 'package:app/app/data/seat_model.dart';
-import 'package:app/app/modules/lightning/controllers/lightning_controller.dart';
-import 'package:app/app/services/auth_service.dart';
+import 'package:gilgamesj_tour/app/data/player_model.dart';
+import 'package:gilgamesj_tour/app/data/seat_model.dart';
+import 'package:gilgamesj_tour/app/modules/lightning/controllers/lightning_controller.dart';
+import 'package:gilgamesj_tour/app/services/auth_service.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 

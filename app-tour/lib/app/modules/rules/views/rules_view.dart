@@ -1,5 +1,5 @@
-import 'package:app/app/modules/rules/controllers/rules_controller.dart';
-import 'package:app/app/modules/rules/views/widgets/rules_widget.dart';
+import 'package:gilgamesj_tour/app/modules/rules/controllers/rules_controller.dart';
+import 'package:gilgamesj_tour/app/modules/rules/views/widgets/rules_widget.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';

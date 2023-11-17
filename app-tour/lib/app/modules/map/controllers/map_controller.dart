@@ -1,5 +1,5 @@
-import 'package:app/app/data/map_model.dart';
-import 'package:app/app/services/map_service.dart';
+import 'package:gilgamesj_tour/app/data/map_model.dart';
+import 'package:gilgamesj_tour/app/services/map_service.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 

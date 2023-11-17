@@ -1,7 +1,7 @@
 import 'dart:async';
 
-import 'package:app/app/modules/theater_game_chat_and_call_game/views/screens/chat_and_call_game_call_screen.dart';
-import 'package:app/app/routes/app_pages.dart';
+import 'package:gilgamesj_tour/app/modules/theater_game_chat_and_call_game/views/screens/chat_and_call_game_call_screen.dart';
+import 'package:gilgamesj_tour/app/routes/app_pages.dart';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

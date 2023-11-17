@@ -1,6 +1,6 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
-import 'package:app/app/modules/browser/controllers/browser_controller.dart';
-import 'package:app/app/routes/app_pages.dart';
+import 'package:gilgamesj_tour/app/modules/browser/controllers/browser_controller.dart';
+import 'package:gilgamesj_tour/app/routes/app_pages.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

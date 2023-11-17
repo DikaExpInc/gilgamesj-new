@@ -1,4 +1,4 @@
-import 'package:app/app/modules/gallery_image_detail/controllers/gallery_image_detail_controller.dart';
+import 'package:gilgamesj_tour/app/modules/gallery_image_detail/controllers/gallery_image_detail_controller.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 

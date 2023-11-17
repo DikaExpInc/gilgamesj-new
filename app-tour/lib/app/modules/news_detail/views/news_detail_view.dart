@@ -1,5 +1,5 @@
-import 'package:app/app/modules/news_detail/controllers/news_detail_controller.dart';
-import 'package:app/app/widgets/navbar_browser.dart';
+import 'package:gilgamesj_tour/app/modules/news_detail/controllers/news_detail_controller.dart';
+import 'package:gilgamesj_tour/app/widgets/navbar_browser.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 

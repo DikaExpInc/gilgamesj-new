@@ -1,6 +1,6 @@
-import 'package:app/app/modules/home/controllers/home_controller.dart';
-import 'package:app/app/modules/home/views/tabs/widgets/task_widget.dart';
-import 'package:app/app/widgets/toast/custom_toast.dart';
+import 'package:gilgamesj_tour/app/modules/home/controllers/home_controller.dart';
+import 'package:gilgamesj_tour/app/modules/home/views/tabs/widgets/task_widget.dart';
+import 'package:gilgamesj_tour/app/widgets/toast/custom_toast.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';

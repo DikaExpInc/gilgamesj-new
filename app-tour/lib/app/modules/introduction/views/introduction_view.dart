@@ -1,6 +1,6 @@
-import 'package:app/app/modules/introduction/controllers/introduction_controller.dart';
-import 'package:app/app/routes/app_pages.dart';
-import 'package:app/app/utils/app_color.dart';
+import 'package:gilgamesj_tour/app/modules/introduction/controllers/introduction_controller.dart';
+import 'package:gilgamesj_tour/app/routes/app_pages.dart';
+import 'package:gilgamesj_tour/app/utils/app_color.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';

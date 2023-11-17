@@ -156,7 +156,7 @@ class ScanQrController extends GetxController
 
   @override
   void onInit() {
-    tabController = new TabController(vsync: this, length: 2);
+    tabController = new TabController(vsync: this, length: 1);
     super.onInit();
   }
 

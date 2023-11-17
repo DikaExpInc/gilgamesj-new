@@ -1,5 +1,5 @@
-import 'package:app/app/modules/browser_search/controllers/browser_search_controller.dart';
-import 'package:app/app/widgets/navbar_browser.dart';
+import 'package:gilgamesj_tour/app/modules/browser_search/controllers/browser_search_controller.dart';
+import 'package:gilgamesj_tour/app/widgets/navbar_browser.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';

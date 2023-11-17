@@ -1,4 +1,4 @@
-import 'package:app/app/widgets/pulse_icon.dart';
+import 'package:gilgamesj_tour/app/widgets/pulse_icon.dart';
 import 'package:flutter/material.dart';
 
 class MenuWidget extends StatelessWidget {

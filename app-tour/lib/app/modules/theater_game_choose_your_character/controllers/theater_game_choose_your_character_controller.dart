@@ -1,8 +1,8 @@
 import 'dart:async';
 import 'dart:math';
 
-import 'package:app/app/modules/theater_game_choose_your_character/views/screens/choose_game_character_screen.dart';
-import 'package:app/app/routes/app_pages.dart';
+import 'package:gilgamesj_tour/app/modules/theater_game_choose_your_character/views/screens/choose_game_character_screen.dart';
+import 'package:gilgamesj_tour/app/routes/app_pages.dart';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

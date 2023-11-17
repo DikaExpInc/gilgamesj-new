@@ -1,6 +1,6 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
-import 'package:app/app/modules/theater_game_chat_game/controllers/theater_game_chat_game_controller.dart';
-import 'package:app/app/modules/theater_game_chat_game/views/screens/chat_game_main_screen.dart';
+import 'package:gilgamesj_tour/app/modules/theater_game_chat_game/controllers/theater_game_chat_game_controller.dart';
+import 'package:gilgamesj_tour/app/modules/theater_game_chat_game/views/screens/chat_game_main_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -66,7 +66,6 @@ class ChatGameMessageScreen extends GetView<TheaterGameChatGameController> {
                           print('terprint');
                           controller.tapStatus.value = true;
                           controller.startTapLoading();
-                          
                         },
                         onLongPressUp: () {
                           print('terlepas');

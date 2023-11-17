@@ -1,6 +1,6 @@
-import 'package:app/app/modules/theater_game_chat_game/views/widgets/answer_widget.dart';
-import 'package:app/app/modules/theater_game_contact_chat_detail/views/widgets/chat_widget.dart';
-import 'package:app/app/routes/app_pages.dart';
+import 'package:gilgamesj_tour/app/modules/theater_game_chat_game/views/widgets/answer_widget.dart';
+import 'package:gilgamesj_tour/app/modules/theater_game_contact_chat_detail/views/widgets/chat_widget.dart';
+import 'package:gilgamesj_tour/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 

@@ -1,5 +1,5 @@
-import 'package:app/app/modules/scan_qr/views/tabs/fill_qr_tab.dart';
-import 'package:app/app/modules/scan_qr/views/tabs/scan_qr_tab.dart';
+import 'package:gilgamesj_tour/app/modules/scan_qr/views/tabs/fill_qr_tab.dart';
+import 'package:gilgamesj_tour/app/modules/scan_qr/views/tabs/scan_qr_tab.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

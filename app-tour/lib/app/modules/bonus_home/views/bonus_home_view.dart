@@ -1,6 +1,6 @@
-import 'package:app/app/modules/bonus_home/controllers/bonus_home_controller.dart';
-import 'package:app/app/modules/home/views/tabs/widgets/menu_widget.dart';
-import 'package:app/app/routes/app_pages.dart';
+import 'package:gilgamesj_tour/app/modules/bonus_home/controllers/bonus_home_controller.dart';
+import 'package:gilgamesj_tour/app/modules/home/views/tabs/widgets/menu_widget.dart';
+import 'package:gilgamesj_tour/app/routes/app_pages.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

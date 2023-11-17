@@ -52,7 +52,7 @@ class ScanQrView extends GetView<ScanQrController> {
           ),
           unselectedLabelColor: Colors.grey[600],
           tabs: [
-            Tab(text: "Scan QR"),
+            // Tab(text: "Scan QR"),
             Tab(text: "Code invoeren"),
           ],
         ),
@@ -60,7 +60,7 @@ class ScanQrView extends GetView<ScanQrController> {
       body: new TabBarView(
         controller: controller.tabController,
         children: <Widget>[
-          ScanQrTab(),
+          // ScanQrTab(),
           FillQrTab(),
         ],
       ),

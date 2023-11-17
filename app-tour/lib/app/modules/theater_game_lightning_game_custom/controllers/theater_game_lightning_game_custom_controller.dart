@@ -1,8 +1,8 @@
 import 'dart:async';
 import 'dart:math';
 
-import 'package:app/app/modules/theater_game_lightning_game_custom/views/screens/lightning_game_custom_light_screen.dart';
-import 'package:app/app/modules/theater_game_lightning_game_custom/views/screens/lightning_game_custom_message_screen.dart';
+import 'package:gilgamesj_tour/app/modules/theater_game_lightning_game_custom/views/screens/lightning_game_custom_light_screen.dart';
+import 'package:gilgamesj_tour/app/modules/theater_game_lightning_game_custom/views/screens/lightning_game_custom_message_screen.dart';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

@@ -1,4 +1,4 @@
-import 'package:app/app/utils/app_config.dart';
+import 'package:gilgamesj_tour/app/utils/app_config.dart';
 import 'package:get_storage/get_storage.dart';
 
 class SharedApi {

@@ -1,4 +1,4 @@
-import 'package:app/app/modules/social_media/views/widgets/feed_widget.dart';
+import 'package:gilgamesj_tour/app/modules/social_media/views/widgets/feed_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../controllers/social_media_controller.dart';

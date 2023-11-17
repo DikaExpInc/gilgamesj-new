@@ -1,10 +1,10 @@
-import 'package:app/app/data/contact_model.dart';
-import 'package:app/app/data/phone_model.dart';
-import 'package:app/app/modules/phone/views/tabs/contact_tab.dart';
-import 'package:app/app/modules/phone/views/tabs/phone_tab.dart';
-import 'package:app/app/services/contact_service.dart';
-import 'package:app/app/services/phone_service.dart';
-import 'package:app/app/utils/api.dart';
+import 'package:gilgamesj_tour/app/data/contact_model.dart';
+import 'package:gilgamesj_tour/app/data/phone_model.dart';
+import 'package:gilgamesj_tour/app/modules/phone/views/tabs/contact_tab.dart';
+import 'package:gilgamesj_tour/app/modules/phone/views/tabs/phone_tab.dart';
+import 'package:gilgamesj_tour/app/services/contact_service.dart';
+import 'package:gilgamesj_tour/app/services/phone_service.dart';
+import 'package:gilgamesj_tour/app/utils/api.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';

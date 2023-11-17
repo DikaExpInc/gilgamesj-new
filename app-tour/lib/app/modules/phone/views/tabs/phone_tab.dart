@@ -1,4 +1,4 @@
-import 'package:app/app/modules/phone/controllers/phone_controller.dart';
+import 'package:gilgamesj_tour/app/modules/phone/controllers/phone_controller.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';

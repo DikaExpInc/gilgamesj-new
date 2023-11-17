@@ -1,6 +1,6 @@
-import 'package:app/app/modules/view_player/controllers/view_player_controller.dart';
-import 'package:app/app/modules/view_player/views/widgets/player_widget.dart';
-import 'package:app/app/widgets/no_data.dart';
+import 'package:gilgamesj_tour/app/modules/view_player/controllers/view_player_controller.dart';
+import 'package:gilgamesj_tour/app/modules/view_player/views/widgets/player_widget.dart';
+import 'package:gilgamesj_tour/app/widgets/no_data.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';

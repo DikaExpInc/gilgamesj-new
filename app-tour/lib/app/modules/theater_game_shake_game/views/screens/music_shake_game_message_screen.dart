@@ -1,6 +1,6 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
-import 'package:app/app/modules/theater_game_shake_game/controllers/theater_game_shake_game_controller.dart';
-import 'package:app/app/modules/theater_game_shake_game/views/screens/music_shake_game_main_screen.dart';
+import 'package:gilgamesj_tour/app/modules/theater_game_shake_game/controllers/theater_game_shake_game_controller.dart';
+import 'package:gilgamesj_tour/app/modules/theater_game_shake_game/views/screens/music_shake_game_main_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -8,7 +8,8 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
 // ignore: must_be_immutable
-class MusicShakeGameMessageScreen extends GetView<TheaterGameShakeGameController> {
+class MusicShakeGameMessageScreen
+    extends GetView<TheaterGameShakeGameController> {
   late double mWidth;
   late double mHeight;
 

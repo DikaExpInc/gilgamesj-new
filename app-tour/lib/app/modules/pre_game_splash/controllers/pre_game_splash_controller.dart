@@ -1,5 +1,5 @@
 import 'dart:async';
-import 'package:app/app/routes/app_pages.dart';
+import 'package:gilgamesj_tour/app/routes/app_pages.dart';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

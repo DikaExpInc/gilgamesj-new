@@ -1,4 +1,4 @@
-// import 'package:app/app/modules/mini_game_lightning_game/controllers/mini_game_lightning_game_controller.dart';
+// import 'package:gilgamesj_tour/app/modules/mini_game_lightning_game/controllers/mini_game_lightning_game_controller.dart';
 // import 'package:flutter/material.dart';
 
 // import 'package:get/get.dart';

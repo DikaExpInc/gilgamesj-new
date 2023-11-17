@@ -1,4 +1,4 @@
-import 'package:app/app/controllers/page_all_controller.dart';
+import 'package:gilgamesj_tour/app/controllers/page_all_controller.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

@@ -95,7 +95,7 @@
 //             subdomains: ['a', 'b', 'c'],
 //             tileBuilder: darkModeTileBuilder,
 //             backgroundColor: Colors.black,
-//             userAgentPackageName: 'com.example.app',
+//             userAgentPackageName: 'com.expinc.gilgamesjtour',
 //           ),
 //         ],
 //       ),

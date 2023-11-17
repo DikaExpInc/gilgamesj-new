@@ -1,5 +1,5 @@
-import 'package:app/app/modules/comment/controllers/comment_controller.dart';
-import 'package:app/app/modules/comment/views/widget/comment_widget.dart';
+import 'package:gilgamesj_tour/app/modules/comment/controllers/comment_controller.dart';
+import 'package:gilgamesj_tour/app/modules/comment/views/widget/comment_widget.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

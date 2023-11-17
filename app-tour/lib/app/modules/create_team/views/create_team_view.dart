@@ -1,4 +1,4 @@
-import 'package:app/app/modules/create_team/controllers/create_team_controller.dart';
+import 'package:gilgamesj_tour/app/modules/create_team/controllers/create_team_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 

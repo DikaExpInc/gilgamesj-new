@@ -1,5 +1,5 @@
-import 'package:app/app/modules/phone_call/controllers/phone_call_controller.dart';
-import 'package:app/app/modules/phone_call/views/widgets/countdown_timer_widget.dart';
+import 'package:gilgamesj_tour/app/modules/phone_call/controllers/phone_call_controller.dart';
+import 'package:gilgamesj_tour/app/modules/phone_call/views/widgets/countdown_timer_widget.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

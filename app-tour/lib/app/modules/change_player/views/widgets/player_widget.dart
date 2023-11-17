@@ -1,4 +1,4 @@
-import 'package:app/app/modules/view_player/controllers/view_player_controller.dart';
+import 'package:gilgamesj_tour/app/modules/view_player/controllers/view_player_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

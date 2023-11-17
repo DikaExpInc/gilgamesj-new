@@ -1,6 +1,6 @@
-import 'package:app/app/controllers/page_all_controller.dart';
-import 'package:app/app/data/social_media_model.dart';
-import 'package:app/app/services/social_media_service.dart';
+import 'package:gilgamesj_tour/app/controllers/page_all_controller.dart';
+import 'package:gilgamesj_tour/app/data/social_media_model.dart';
+import 'package:gilgamesj_tour/app/services/social_media_service.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import '../../../widgets/loading.dart';

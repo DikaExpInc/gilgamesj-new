@@ -1,5 +1,5 @@
-import 'package:app/app/data/social_media_comment.dart';
-import 'package:app/app/services/social_media_comment_service.dart';
+import 'package:gilgamesj_tour/app/data/social_media_comment.dart';
+import 'package:gilgamesj_tour/app/services/social_media_comment_service.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 

@@ -1,12 +1,12 @@
 import 'dart:convert';
 
-import 'package:app/app/data/player_model.dart';
-import 'package:app/app/data/seat_model.dart';
-import 'package:app/app/data/user_model.dart';
-import 'package:app/app/utils/api.dart';
-import 'package:app/app/widgets/loading.dart';
-import 'package:app/app/widgets/message/errorMessage.dart';
-import 'package:app/app/widgets/message/internetMessage.dart';
+import 'package:gilgamesj_tour/app/data/player_model.dart';
+import 'package:gilgamesj_tour/app/data/seat_model.dart';
+import 'package:gilgamesj_tour/app/data/user_model.dart';
+import 'package:gilgamesj_tour/app/utils/api.dart';
+import 'package:gilgamesj_tour/app/widgets/loading.dart';
+import 'package:gilgamesj_tour/app/widgets/message/errorMessage.dart';
+import 'package:gilgamesj_tour/app/widgets/message/internetMessage.dart';
 import 'package:http/http.dart' as http;
 
 class AuthApi extends SharedApi {

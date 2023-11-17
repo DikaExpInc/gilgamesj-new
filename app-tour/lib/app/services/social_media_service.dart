@@ -1,7 +1,7 @@
 import 'dart:convert';
 
-import 'package:app/app/data/social_media_model.dart';
-import 'package:app/app/utils/api.dart';
+import 'package:gilgamesj_tour/app/data/social_media_model.dart';
+import 'package:gilgamesj_tour/app/utils/api.dart';
 import 'package:http/http.dart' as http;
 
 import '../widgets/loading.dart';

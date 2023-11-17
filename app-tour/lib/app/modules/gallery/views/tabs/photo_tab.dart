@@ -1,4 +1,4 @@
-import 'package:app/app/modules/gallery/controllers/gallery_controller.dart';
+import 'package:gilgamesj_tour/app/modules/gallery/controllers/gallery_controller.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
@@ -23,7 +23,8 @@ class PhotoTab extends GetView<GalleryController> {
         // Membuat list boolean untuk menyimpan hasil pengecekan
         List<bool> hasDetailIds = controller
             .pageAllController.galleryPhotos!.items!
-            .map((gallerySnapshot) => taskDetailIds.contains(gallerySnapshot.sId))
+            .map((gallerySnapshot) =>
+                taskDetailIds.contains(gallerySnapshot.sId))
             .toList();
         return Scaffold(
           body: SingleChildScrollView(

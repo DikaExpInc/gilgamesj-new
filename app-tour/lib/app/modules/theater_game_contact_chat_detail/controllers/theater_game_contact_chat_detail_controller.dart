@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:app/app/routes/app_pages.dart';
+import 'package:gilgamesj_tour/app/routes/app_pages.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:vibration/vibration.dart';

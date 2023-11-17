@@ -1,8 +1,8 @@
 import 'dart:async';
 
-import 'package:app/app/data/game5_model.dart';
-import 'package:app/app/services/auth_service.dart';
-import 'package:app/app/services/game5_service.dart';
+import 'package:gilgamesj_tour/app/data/game5_model.dart';
+import 'package:gilgamesj_tour/app/services/auth_service.dart';
+import 'package:gilgamesj_tour/app/services/game5_service.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 

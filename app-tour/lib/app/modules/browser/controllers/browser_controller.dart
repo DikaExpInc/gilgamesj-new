@@ -1,5 +1,5 @@
-import 'package:app/app/data/browser_model.dart';
-import 'package:app/app/services/browser_service.dart';
+import 'package:gilgamesj_tour/app/data/browser_model.dart';
+import 'package:gilgamesj_tour/app/services/browser_service.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 

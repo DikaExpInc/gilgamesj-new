@@ -1,4 +1,4 @@
-import 'package:app/app/data/stage_model.dart';
+import 'package:gilgamesj_tour/app/data/stage_model.dart';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';

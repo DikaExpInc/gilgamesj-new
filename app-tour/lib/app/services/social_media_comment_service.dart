@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:app/app/utils/api.dart';
+import 'package:gilgamesj_tour/app/utils/api.dart';
 import 'package:http/http.dart' as http;
 import '../data/social_media_comment.dart';
 import '../widgets/loading.dart';

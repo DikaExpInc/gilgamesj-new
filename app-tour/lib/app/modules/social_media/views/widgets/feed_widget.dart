@@ -1,7 +1,7 @@
-import 'package:app/app/modules/social_media/controllers/social_media_controller.dart';
-import 'package:app/app/routes/app_pages.dart';
-import 'package:app/app/utils/api.dart';
-import 'package:app/app/utils/app_color.dart';
+import 'package:gilgamesj_tour/app/modules/social_media/controllers/social_media_controller.dart';
+import 'package:gilgamesj_tour/app/routes/app_pages.dart';
+import 'package:gilgamesj_tour/app/utils/api.dart';
+import 'package:gilgamesj_tour/app/utils/app_color.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -119,8 +119,9 @@ class FeedWidget extends GetView<SocialMediaController> {
                     child: Container(
                       padding: EdgeInsets.symmetric(
                           vertical: 10.0,
-                          horizontal:
-                              MediaQuery.of(context).size.width > 600 ? 50 : 20),
+                          horizontal: MediaQuery.of(context).size.width > 600
+                              ? 50
+                              : 20),
                       decoration: BoxDecoration(
                         image: DecorationImage(
                           image: AssetImage("assets/images/bg_btn.png"),

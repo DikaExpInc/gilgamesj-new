@@ -1,4 +1,4 @@
-import 'package:app/app/routes/app_pages.dart';
+import 'package:gilgamesj_tour/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';

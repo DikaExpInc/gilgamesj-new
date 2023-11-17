@@ -1,7 +1,7 @@
-import 'package:app/app/data/gallery_video_model.dart';
-import 'package:app/app/modules/gallery/views/tabs/photo_tab.dart';
-import 'package:app/app/modules/gallery/views/tabs/video_tab.dart';
-import 'package:app/app/services/gallery_video_service.dart';
+import 'package:gilgamesj_tour/app/data/gallery_video_model.dart';
+import 'package:gilgamesj_tour/app/modules/gallery/views/tabs/photo_tab.dart';
+import 'package:gilgamesj_tour/app/modules/gallery/views/tabs/video_tab.dart';
+import 'package:gilgamesj_tour/app/services/gallery_video_service.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';

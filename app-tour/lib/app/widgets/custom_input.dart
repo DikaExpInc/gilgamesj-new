@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:app/app/utils/app_color.dart';
+import 'package:gilgamesj_tour/app/utils/app_color.dart';
 import 'package:intl/intl.dart';
 
 class CustomInput extends StatefulWidget {

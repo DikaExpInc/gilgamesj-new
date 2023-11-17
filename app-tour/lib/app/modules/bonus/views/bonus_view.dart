@@ -1,5 +1,5 @@
-import 'package:app/app/modules/bonus/controllers/bonus_controller.dart';
-import 'package:app/app/routes/app_pages.dart';
+import 'package:gilgamesj_tour/app/modules/bonus/controllers/bonus_controller.dart';
+import 'package:gilgamesj_tour/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';

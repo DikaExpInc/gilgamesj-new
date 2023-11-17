@@ -1,9 +1,9 @@
 import 'dart:convert';
 
-import 'package:app/app/data/game2_model.dart';
-import 'package:app/app/utils/api.dart';
-import 'package:app/app/widgets/loading.dart';
-import 'package:app/app/widgets/message/internetMessage.dart';
+import 'package:gilgamesj_tour/app/data/game2_model.dart';
+import 'package:gilgamesj_tour/app/utils/api.dart';
+import 'package:gilgamesj_tour/app/widgets/loading.dart';
+import 'package:gilgamesj_tour/app/widgets/message/internetMessage.dart';
 import 'package:http/http.dart' as http;
 
 class Game2Api extends SharedApi {

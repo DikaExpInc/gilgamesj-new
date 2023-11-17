@@ -56,125 +56,125 @@ class TicketView extends GetView<TicketController> {
                     SizedBox(
                       height: 20,
                     ),
-                    Divider(
-                      color: Colors.white, // Warna putih
-                      thickness: 2, // Ketebalan garis
-                      height: 50, // Tinggi garis
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              '',
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 36,
-                              ),
-                            ),
-                            SizedBox(
-                              height: 20,
-                            ),
-                            Column(
-                              children: List.generate(
-                                int.parse(GetStorage().read('totalPlayer')),
-                                (index) => Text(
-                                  '${GetStorage().read('played_name_$index')}',
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 36,
-                                  ),
-                                ),
-                              ),
-                            )
-                          ],
-                        ),
-                        Row(),
-                        Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            const Text(
-                              'Rij',
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 36,
-                              ),
-                            ),
-                            SizedBox(
-                              height: 20,
-                            ),
-                            Column(
-                              children: List.generate(
-                                int.parse(GetStorage().read('totalPlayer')),
-                                (index) => Text(
-                                  '${GetStorage().read('stoel_$index')}',
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 36,
-                                  ),
-                                  textAlign: TextAlign.center,
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                        Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            const Text(
-                              'Stoel',
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 36,
-                              ),
-                            ),
-                            SizedBox(
-                              height: 20,
-                            ),
-                            Column(
-                              children: List.generate(
-                                int.parse(GetStorage().read('totalPlayer')),
-                                (index) => Text(
-                                  '${GetStorage().read('rij_$index')}',
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 36,
-                                  ),
-                                  textAlign: TextAlign.center,
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
+                    // Divider(
+                    //   color: Colors.white, // Warna putih
+                    //   thickness: 2, // Ketebalan garis
+                    //   height: 50, // Tinggi garis
+                    // ),
+                    // Row(
+                    //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    //   crossAxisAlignment: CrossAxisAlignment.start,
+                    //   children: [
+                    //     Column(
+                    //       crossAxisAlignment: CrossAxisAlignment.start,
+                    //       children: [
+                    //         Text(
+                    //           '',
+                    //           style: TextStyle(
+                    //             color: Colors.white,
+                    //             fontSize: 36,
+                    //           ),
+                    //         ),
+                    //         SizedBox(
+                    //           height: 20,
+                    //         ),
+                    //         Column(
+                    //           children: List.generate(
+                    //             int.parse(GetStorage().read('totalPlayer')),
+                    //             (index) => Text(
+                    //               '${GetStorage().read('played_name_$index')}',
+                    //               style: TextStyle(
+                    //                 color: Colors.white,
+                    //                 fontSize: 36,
+                    //               ),
+                    //             ),
+                    //           ),
+                    //         )
+                    //       ],
+                    //     ),
+                    //     Row(),
+                    //     Column(
+                    //       mainAxisAlignment: MainAxisAlignment.center,
+                    //       crossAxisAlignment: CrossAxisAlignment.center,
+                    //       children: [
+                    //         const Text(
+                    //           'Rij',
+                    //           style: TextStyle(
+                    //             color: Colors.white,
+                    //             fontSize: 36,
+                    //           ),
+                    //         ),
+                    //         SizedBox(
+                    //           height: 20,
+                    //         ),
+                    //         Column(
+                    //           children: List.generate(
+                    //             int.parse(GetStorage().read('totalPlayer')),
+                    //             (index) => Text(
+                    //               '${GetStorage().read('stoel_$index')}',
+                    //               style: TextStyle(
+                    //                 color: Colors.white,
+                    //                 fontSize: 36,
+                    //               ),
+                    //               textAlign: TextAlign.center,
+                    //             ),
+                    //           ),
+                    //         ),
+                    //       ],
+                    //     ),
+                    //     Column(
+                    //       mainAxisAlignment: MainAxisAlignment.center,
+                    //       crossAxisAlignment: CrossAxisAlignment.center,
+                    //       children: [
+                    //         const Text(
+                    //           'Stoel',
+                    //           style: TextStyle(
+                    //             color: Colors.white,
+                    //             fontSize: 36,
+                    //           ),
+                    //         ),
+                    //         SizedBox(
+                    //           height: 20,
+                    //         ),
+                    //         Column(
+                    //           children: List.generate(
+                    //             int.parse(GetStorage().read('totalPlayer')),
+                    //             (index) => Text(
+                    //               '${GetStorage().read('rij_$index')}',
+                    //               style: TextStyle(
+                    //                 color: Colors.white,
+                    //                 fontSize: 36,
+                    //               ),
+                    //               textAlign: TextAlign.center,
+                    //             ),
+                    //           ),
+                    //         ),
+                    //       ],
+                    //     ),
+                    //   ],
+                    // ),
                   ],
                 ),
               ),
-              Image.asset('assets/images/podium.png'),
-              controller.seatModel?.dataJson != null
-                  ? Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: controller.seatModel!.dataJson!.keys
-                          .map<Widget>((rowKey) {
-                        final cols = List<int>.from(
-                            controller.seatModel!.dataJson![rowKey]);
-                        return Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: cols.map((colNum) {
-                            return buildSeat(int.parse(rowKey), colNum);
-                          }).toList(),
-                        );
-                      }).toList(),
-                    )
-                  : Container(),
+              // Image.asset('assets/images/podium.png'),
+              // controller.seatModel?.dataJson != null
+              //     ? Column(
+              //         mainAxisAlignment: MainAxisAlignment.center,
+              //         crossAxisAlignment: CrossAxisAlignment.center,
+              //         children: controller.seatModel!.dataJson!.keys
+              //             .map<Widget>((rowKey) {
+              //           final cols = List<int>.from(
+              //               controller.seatModel!.dataJson![rowKey]);
+              //           return Row(
+              //             mainAxisAlignment: MainAxisAlignment.center,
+              //             crossAxisAlignment: CrossAxisAlignment.center,
+              //             children: cols.map((colNum) {
+              //               return buildSeat(int.parse(rowKey), colNum);
+              //             }).toList(),
+              //           );
+              //         }).toList(),
+              //       )
+              //     : Container(),
             ],
           ),
         ),

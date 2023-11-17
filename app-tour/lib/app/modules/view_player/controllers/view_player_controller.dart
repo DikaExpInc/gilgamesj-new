@@ -1,8 +1,8 @@
-import 'package:app/app/data/player_model.dart';
-import 'package:app/app/routes/app_pages.dart';
-import 'package:app/app/services/auth_service.dart';
-import 'package:app/app/widgets/dialog/player_dialog.dart';
-import 'package:app/app/widgets/loading.dart';
+import 'package:gilgamesj_tour/app/data/player_model.dart';
+import 'package:gilgamesj_tour/app/routes/app_pages.dart';
+import 'package:gilgamesj_tour/app/services/auth_service.dart';
+import 'package:gilgamesj_tour/app/widgets/dialog/player_dialog.dart';
+import 'package:gilgamesj_tour/app/widgets/loading.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';

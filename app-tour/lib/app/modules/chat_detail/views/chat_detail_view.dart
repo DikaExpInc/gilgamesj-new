@@ -1,5 +1,5 @@
-import 'package:app/app/modules/chat_detail/controllers/chat_detail_controller.dart';
-import 'package:app/app/modules/chat_detail/views/widgets/answer_widget.dart';
+import 'package:gilgamesj_tour/app/modules/chat_detail/controllers/chat_detail_controller.dart';
+import 'package:gilgamesj_tour/app/modules/chat_detail/views/widgets/answer_widget.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 

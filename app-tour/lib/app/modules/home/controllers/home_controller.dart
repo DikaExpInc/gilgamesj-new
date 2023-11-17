@@ -1,7 +1,7 @@
-import 'package:app/app/controllers/page_all_controller.dart';
-import 'package:app/app/data/task_model.dart';
-import 'package:app/app/routes/app_pages.dart';
-import 'package:app/app/services/task_service.dart';
+import 'package:gilgamesj_tour/app/controllers/page_all_controller.dart';
+import 'package:gilgamesj_tour/app/data/task_model.dart';
+import 'package:gilgamesj_tour/app/routes/app_pages.dart';
+import 'package:gilgamesj_tour/app/services/task_service.dart';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

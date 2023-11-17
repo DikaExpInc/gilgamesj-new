@@ -1,7 +1,7 @@
 import 'dart:async';
 
-import 'package:app/app/data/question_model.dart';
-import 'package:app/app/routes/app_pages.dart';
+import 'package:gilgamesj_tour/app/data/question_model.dart';
+import 'package:gilgamesj_tour/app/routes/app_pages.dart';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:get/get.dart';
 import 'package:vibration/vibration.dart';

@@ -1,5 +1,5 @@
-import 'package:app/app/utils/app_color.dart';
-import 'package:app/app/widgets/custom_input.dart';
+import 'package:gilgamesj_tour/app/utils/app_color.dart';
+import 'package:gilgamesj_tour/app/widgets/custom_input.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

@@ -1,4 +1,4 @@
-import 'package:app/app/modules/scan_qr/controllers/scan_qr_controller.dart';
+import 'package:gilgamesj_tour/app/modules/scan_qr/controllers/scan_qr_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';

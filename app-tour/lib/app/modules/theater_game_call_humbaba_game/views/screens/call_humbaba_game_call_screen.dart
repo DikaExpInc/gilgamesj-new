@@ -1,7 +1,7 @@
-import 'package:app/app/modules/theater_game_call_humbaba_game/controllers/theater_game_call_humbaba_game_controller.dart';
-import 'package:app/app/modules/theater_game_call_humbaba_game/views/widgets/contact_widget.dart';
-import 'package:app/app/modules/theater_game_call_humbaba_game/views/widgets/profile_abjad.dart';
-import 'package:app/app/routes/app_pages.dart';
+import 'package:gilgamesj_tour/app/modules/theater_game_call_humbaba_game/controllers/theater_game_call_humbaba_game_controller.dart';
+import 'package:gilgamesj_tour/app/modules/theater_game_call_humbaba_game/views/widgets/contact_widget.dart';
+import 'package:gilgamesj_tour/app/modules/theater_game_call_humbaba_game/views/widgets/profile_abjad.dart';
+import 'package:gilgamesj_tour/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

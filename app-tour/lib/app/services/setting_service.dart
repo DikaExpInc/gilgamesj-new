@@ -1,8 +1,8 @@
 import 'dart:convert';
 
-import 'package:app/app/data/setting_model.dart';
-import 'package:app/app/utils/api.dart';
-import 'package:app/app/widgets/message/errorMessage.dart';
+import 'package:gilgamesj_tour/app/data/setting_model.dart';
+import 'package:gilgamesj_tour/app/utils/api.dart';
+import 'package:gilgamesj_tour/app/widgets/message/errorMessage.dart';
 import 'package:http/http.dart' as http;
 
 class SettingApi extends SharedApi {

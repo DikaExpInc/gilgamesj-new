@@ -1,4 +1,4 @@
-import 'package:app/app/modules/bonus_camera/controllers/bonus_camera_controller.dart';
+import 'package:gilgamesj_tour/app/modules/bonus_camera/controllers/bonus_camera_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 

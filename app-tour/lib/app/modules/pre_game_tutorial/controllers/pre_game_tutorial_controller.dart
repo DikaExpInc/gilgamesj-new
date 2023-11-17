@@ -1,4 +1,4 @@
-import 'package:app/app/routes/app_pages.dart';
+import 'package:gilgamesj_tour/app/routes/app_pages.dart';
 import 'package:get/get.dart';
 
 class PreGameTutorialController extends GetxController {

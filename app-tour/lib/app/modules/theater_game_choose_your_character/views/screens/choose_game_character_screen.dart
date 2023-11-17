@@ -1,5 +1,5 @@
 // ignore: must_be_immutable
-import 'package:app/app/modules/theater_game_choose_your_character/controllers/theater_game_choose_your_character_controller.dart';
+import 'package:gilgamesj_tour/app/modules/theater_game_choose_your_character/controllers/theater_game_choose_your_character_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

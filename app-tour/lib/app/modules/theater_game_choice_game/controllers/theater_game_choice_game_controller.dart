@@ -1,10 +1,10 @@
 import 'dart:async';
 
-import 'package:app/app/data/game5_model.dart';
-import 'package:app/app/data/question_model.dart';
-import 'package:app/app/modules/theater_game_choice_game/views/screens/choice_game_character_screen.dart';
-import 'package:app/app/routes/app_pages.dart';
-import 'package:app/app/services/game5_service.dart';
+import 'package:gilgamesj_tour/app/data/game5_model.dart';
+import 'package:gilgamesj_tour/app/data/question_model.dart';
+import 'package:gilgamesj_tour/app/modules/theater_game_choice_game/views/screens/choice_game_character_screen.dart';
+import 'package:gilgamesj_tour/app/routes/app_pages.dart';
+import 'package:gilgamesj_tour/app/services/game5_service.dart';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

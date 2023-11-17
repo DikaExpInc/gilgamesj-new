@@ -1,4 +1,4 @@
-import 'package:app/app/modules/chat/views/widgets/contact_widget.dart';
+import 'package:gilgamesj_tour/app/modules/chat/views/widgets/contact_widget.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';

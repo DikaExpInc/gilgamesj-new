@@ -1,9 +1,9 @@
 import 'dart:async';
 
-import 'package:app/app/modules/lock_music/controllers/lock_music_controller.dart';
-import 'package:app/app/modules/lock_music/views/components/password_music.dart';
-import 'package:app/app/routes/app_pages.dart';
-import 'package:app/app/utils/app_color.dart';
+import 'package:gilgamesj_tour/app/modules/lock_music/controllers/lock_music_controller.dart';
+import 'package:gilgamesj_tour/app/modules/lock_music/views/components/password_music.dart';
+import 'package:gilgamesj_tour/app/routes/app_pages.dart';
+import 'package:gilgamesj_tour/app/utils/app_color.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';

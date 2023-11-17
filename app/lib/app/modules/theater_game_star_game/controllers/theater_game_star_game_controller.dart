@@ -1,6 +1,5 @@
 import 'dart:async';
 
-import 'package:app/app/modules/theater_game_star_game/views/screens/star_game_message_screen.dart';
 import 'package:app/app/modules/theater_game_star_game/views/screens/star_game_sky_screen.dart';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
@@ -9,8 +8,6 @@ import 'package:vibration/vibration.dart';
 
 class TheaterGameStarGameController extends GetxController
     with GetTickerProviderStateMixin {
-  late AnimationController _controller;
-  late AnimationController _controllerParticle;
   RxBool isFinished = false.obs;
   final AudioCache audioCache =
       AudioCache(prefix: 'assets/audios/pregames/night_sounds/');
@@ -31,17 +28,16 @@ class TheaterGameStarGameController extends GetxController
   final RxDouble tapValue = 0.0.obs;
   RxBool tapStatus = false.obs;
 
-  // Method untuk memainkan audio
   Future<void> playAudio(String audioFileName) async {
-    audioPlayer.stop();
+    await audioPlayer.stop();
     audioPlayer = await audioCache.loop(audioFileName);
   }
 
   @override
   void onClose() {
-    _controller.dispose();
-    _controllerParticle.dispose();
     audioPlayer.stop();
+    audioPlayer.dispose();
+    print('terclose');
     super.onClose();
   }
 
@@ -64,20 +60,6 @@ class TheaterGameStarGameController extends GetxController
     tapValue.value = 0;
   }
 
-  Widget get rotatingImage {
-    return RotationTransition(
-      turns: _controller,
-      child: Image.asset('assets/images/center_of_god.png'),
-    );
-  }
-
-  Widget get rotatingParticle {
-    return RotationTransition(
-      turns: _controllerParticle,
-      child: Image.asset('assets/images/particle.png'),
-    );
-  }
-
   //TODO: Implement TheaterGameLightningGameController
   // Buat sebuah variabel yang akan menampung widget yang akan dipanggil
   late Widget selectedWidget;
@@ -94,16 +76,6 @@ class TheaterGameStarGameController extends GetxController
     // setWidget(StarGameMessageScreen());
     setWidget(StarGameSkyScreen());
     Vibration.vibrate(duration: 1000);
-
-    _controller = AnimationController(
-      vsync: this,
-      duration: Duration(seconds: 20),
-    )..repeat();
-
-    _controllerParticle = AnimationController(
-      vsync: this,
-      duration: Duration(seconds: 10),
-    )..repeat();
 
     super.onInit();
   }

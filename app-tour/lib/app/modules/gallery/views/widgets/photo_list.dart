@@ -1,6 +1,6 @@
-import 'package:app/app/data/gallery_photo_model.dart';
-import 'package:app/app/modules/gallery/controllers/gallery_controller.dart';
-import 'package:app/app/routes/app_pages.dart';
+import 'package:gilgamesj_tour/app/data/gallery_photo_model.dart';
+import 'package:gilgamesj_tour/app/modules/gallery/controllers/gallery_controller.dart';
+import 'package:gilgamesj_tour/app/routes/app_pages.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

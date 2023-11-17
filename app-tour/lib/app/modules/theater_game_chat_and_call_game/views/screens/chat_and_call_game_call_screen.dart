@@ -1,5 +1,5 @@
-import 'package:app/app/modules/theater_game_chat_and_call_game/views/widgets/countdown_timer_widget.dart';
-import 'package:app/app/modules/theater_game_chat_and_call_game/controllers/theater_game_chat_and_call_game_controller.dart';
+import 'package:gilgamesj_tour/app/modules/theater_game_chat_and_call_game/views/widgets/countdown_timer_widget.dart';
+import 'package:gilgamesj_tour/app/modules/theater_game_chat_and_call_game/controllers/theater_game_chat_and_call_game_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

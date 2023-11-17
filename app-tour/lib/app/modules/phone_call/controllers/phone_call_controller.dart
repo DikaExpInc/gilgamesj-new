@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:app/app/routes/app_pages.dart';
+import 'package:gilgamesj_tour/app/routes/app_pages.dart';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';

@@ -1,6 +1,6 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
-import 'package:app/app/modules/theater_game_lightning_game/controllers/theater_game_lightning_game_controller.dart';
-import 'package:app/app/modules/theater_game_lightning_game/views/screens/lightning_game_character_screen.dart';
+import 'package:gilgamesj_tour/app/modules/theater_game_lightning_game/controllers/theater_game_lightning_game_controller.dart';
+import 'package:gilgamesj_tour/app/modules/theater_game_lightning_game/views/screens/lightning_game_character_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 

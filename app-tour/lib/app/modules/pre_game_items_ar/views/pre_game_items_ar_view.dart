@@ -55,6 +55,7 @@ class PreGameItemsArView extends GetView<PreGameItemsArController> {
                           fontSize: 32,
                           color: Colors.white,
                         ),
+                        textAlign: TextAlign.center,
                       ),
                     ],
                   ),

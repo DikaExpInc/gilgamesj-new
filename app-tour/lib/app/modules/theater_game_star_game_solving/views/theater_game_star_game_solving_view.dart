@@ -1,4 +1,4 @@
-import 'package:app/app/modules/theater_game_star_game_solving/controllers/theater_game_star_game_solving_controller.dart';
+import 'package:gilgamesj_tour/app/modules/theater_game_star_game_solving/controllers/theater_game_star_game_solving_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

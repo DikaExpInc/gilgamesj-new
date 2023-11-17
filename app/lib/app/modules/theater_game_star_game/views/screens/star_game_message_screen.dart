@@ -28,7 +28,7 @@ class StarGameMessageScreen extends GetView<TheaterGameStarGameController> {
       ),
       child: Stack(
         children: [
-          controller.rotatingParticle,
+          // controller.rotatingParticle,
           Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.spaceAround,

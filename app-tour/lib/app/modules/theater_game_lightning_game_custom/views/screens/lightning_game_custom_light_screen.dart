@@ -1,4 +1,4 @@
-import 'package:app/app/modules/theater_game_lightning_game_custom/controllers/theater_game_lightning_game_custom_controller.dart';
+import 'package:gilgamesj_tour/app/modules/theater_game_lightning_game_custom/controllers/theater_game_lightning_game_custom_controller.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';

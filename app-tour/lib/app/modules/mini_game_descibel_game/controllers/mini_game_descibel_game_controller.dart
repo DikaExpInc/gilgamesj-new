@@ -1,7 +1,7 @@
 import 'dart:async';
 
-import 'package:app/app/routes/app_pages.dart';
-import 'package:app/app/widgets/dialog/descibel_dialog.dart';
+import 'package:gilgamesj_tour/app/routes/app_pages.dart';
+import 'package:gilgamesj_tour/app/widgets/dialog/descibel_dialog.dart';
 import 'package:flutter/gestures.dart';
 import 'package:get/get.dart';
 import 'package:noise_meter/noise_meter.dart';

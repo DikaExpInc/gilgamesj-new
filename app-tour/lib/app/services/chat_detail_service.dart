@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:app/app/data/player_chat_model.dart';
+import 'package:gilgamesj_tour/app/data/player_chat_model.dart';
 
 import '../data/chat_detail_model.dart';
 import '../utils/api.dart';

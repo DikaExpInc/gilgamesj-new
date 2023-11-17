@@ -1,5 +1,5 @@
-import 'package:app/app/modules/gallery/controllers/gallery_controller.dart';
-import 'package:app/app/utils/app_color.dart';
+import 'package:gilgamesj_tour/app/modules/gallery/controllers/gallery_controller.dart';
+import 'package:gilgamesj_tour/app/utils/app_color.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';

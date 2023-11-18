@@ -8,7 +8,7 @@ import {
   QuestionCircleOutlined,
   LogoutOutlined,
 } from "@ant-design/icons";
-import Icon from "components/util-components/Icon";
+// import Icon from "components/util-components/Icon";
 import { signOut } from "redux/actions/Auth";
 
 const menuItem = [

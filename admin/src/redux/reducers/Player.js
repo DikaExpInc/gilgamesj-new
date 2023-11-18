@@ -1,3 +1,4 @@
+/* eslint-disable no-duplicate-case */
 import {
   CREATE_PLAYER,
   DELETE_PLAYER,

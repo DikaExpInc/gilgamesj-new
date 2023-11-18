@@ -1,17 +1,17 @@
 import { Card, Col, Form, Input, Row } from 'antd'
-import { useCallback } from 'react'
+// import { useCallback } from 'react'
 
 const GeneralField = (props) => {
 
-  const handleInputChange = useCallback(
-    (name, value) => {
-      props.setSelectValues((prevValues) => ({
-        ...prevValues,
-        [name]: value,
-      }))
-    },
-    [props]
-  )
+  // const handleInputChange = useCallback(
+  //   (name, value) => {
+  //     props.setSelectValues((prevValues) => ({
+  //       ...prevValues,
+  //       [name]: value,
+  //     }))
+  //   },
+  //   [props]
+  // )
 
   return (
     <>

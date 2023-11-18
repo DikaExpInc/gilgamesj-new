@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Card, Table, Input, Menu, message, Modal } from 'antd'
+import { Card, Table, Input, Menu, Modal } from 'antd'
 import { EyeOutlined, DeleteOutlined, SearchOutlined } from '@ant-design/icons'
 import EllipsisDropdown from 'components/shared-components/EllipsisDropdown'
 import Flex from 'components/shared-components/Flex'
@@ -48,9 +48,9 @@ const UserList = () => {
     })
   }
 
-  const cancel = (e) => {
-    message.error('Canceled')
-  }
+  // const cancel = (e) => {
+  //   message.error('Canceled')
+  // }
 
   const dropdownMenu = (row) => (
     <Menu>

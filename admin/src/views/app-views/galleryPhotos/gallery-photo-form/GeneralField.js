@@ -1,5 +1,5 @@
 import React from 'react'
-import { Input, Row, Col, Card, Form, Upload, message, DatePicker } from 'antd'
+import { Input, Row, Col, Card, Form, Upload, DatePicker } from 'antd'
 import { ImageSvg } from 'assets/svg/icon'
 import CustomIcon from 'components/util-components/CustomIcon'
 import { LoadingOutlined } from '@ant-design/icons'

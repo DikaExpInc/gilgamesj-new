@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect } from 'react'
 import { Row, Col, Badge, Card, Button, message } from 'antd'
 import DonutChartWidget from 'components/shared-components/DonutChartWidget'

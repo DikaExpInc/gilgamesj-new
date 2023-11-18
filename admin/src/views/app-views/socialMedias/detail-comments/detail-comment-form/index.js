@@ -59,7 +59,7 @@ const SocialMediaCommentForm = (props) => {
     } else {
       setLoadingData(false)
     }
-  }, [form, mode, param, props])
+  }, [form, mode, param, props, socialMediaId])
 
   const handleUploadProfileChange = (info) => {
     const isJpgOrPng =

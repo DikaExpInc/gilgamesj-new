@@ -1,18 +1,7 @@
 import {
   DashboardOutlined,
   UserOutlined,
-  ContactsOutlined,
-  PhoneOutlined,
-  BarsOutlined,
-  UsergroupAddOutlined,
-  NumberOutlined,
-  VideoCameraOutlined,
-  FundOutlined,
-  MessageOutlined,
   SettingOutlined,
-  CheckSquareFilled,
-  CameraOutlined,
-  LinkOutlined,
   HomeOutlined,
 } from '@ant-design/icons'
 import { APP_PREFIX_PATH } from 'configs/AppConfig'

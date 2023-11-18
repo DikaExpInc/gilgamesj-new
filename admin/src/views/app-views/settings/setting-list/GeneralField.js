@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Row, Col, Card, Form, Input, Button, message, InputNumber } from 'antd'
+import { Row, Col, Card, Form, Button, message, InputNumber } from 'antd'
 import { colorPrimary } from 'configs/AppConfig'
 import settingService from 'services/SettingService'
 

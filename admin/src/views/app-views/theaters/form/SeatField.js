@@ -1,3 +1,5 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom/cjs/react-router-dom.min'
 import theaterService from 'services/TheaterService'
@@ -21,7 +23,7 @@ const SeatFiled = (props) => {
   const [submitLoading, setSubmitLoading] = useState(false)
   const [seatTheater, setSeatTheater] = useState([])
   const [selectedStatus, setSelectedStatus] = useState('default')
-  const [visible, setVisible] = useState(false)
+  // const [visible, setVisible] = useState(false)
   const [activePopover, setActivePopover] = useState(null)
   const { id } = useParams()
 
@@ -96,30 +98,30 @@ const SeatFiled = (props) => {
 
       // _seatTheater?.map((seat) => {
       //   let isEmpty = seat?.position === 'empty'
-        
+
       // })
       const seatsInSameRow = seatTheater.filter((seat) => {
-        const [rowNum] = seat?.seatNumber?.split('-');
-        return parseInt(rowNum) === row;
-      });
+        const [rowNum] = seat?.seatNumber?.split('-')
+        return parseInt(rowNum) === row
+      })
 
       // Find the first available seat number in the same row
-      let nextSeatNumber = 1;
+      let nextSeatNumber = 1
       for (let i = 0; i < seatsInSameRow.length; i++) {
-        const [currentRow, currentSeatNum] = seatsInSameRow[i]?.seatNumber?.split('-');
-        const seatNum = parseInt(currentSeatNum);
+        const [currentRow, currentSeatNum] =
+          seatsInSameRow[i]?.seatNumber?.split('-')
+        const seatNum = parseInt(currentSeatNum)
         if (seatNum === nextSeatNumber) {
-          nextSeatNumber++;
+          nextSeatNumber++
         } else {
-          break; // Found a gap, use the current number
+          break // Found a gap, use the current number
         }
       }
 
       // Use nextSeatNumber to assign the new seat number
-      const newSeatNumber = `${row}-${nextSeatNumber}`;
-     
+      const newSeatNumber = `${row}-${nextSeatNumber}`
 
-      if (selectedStatus != 'default') {
+      if (selectedStatus !== 'default') {
         const resp = await theaterService.addSeat(
           {
             name: `${row}-empty`,

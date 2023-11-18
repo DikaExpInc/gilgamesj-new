@@ -25,34 +25,34 @@ const LightList = () => {
   const [selectedRowKeys, setSelectedRowKeys] = useState([])
 
   // Fungsi untuk mengubah nilai menjadi label
-  const mapValueToLabel = (value) => {
-    switch (value) {
-      case 1:
-        return 'Red'
-      case 2:
-        return 'Orange'
-      case 3:
-        return 'Yellow'
-      case 4:
-        return 'Green'
-      case 5:
-        return 'Blue'
-      case 6:
-        return 'Purple'
-      case 7:
-        return 'Pink'
-      case 8:
-        return 'Brown'
-      case 9:
-        return 'Black'
-      case 10:
-        return 'Gray'
-      case 11:
-        return 'White'
-      default:
-        return ''
-    }
-  }
+  // const mapValueToLabel = (value) => {
+  //   switch (value) {
+  //     case 1:
+  //       return 'Red'
+  //     case 2:
+  //       return 'Orange'
+  //     case 3:
+  //       return 'Yellow'
+  //     case 4:
+  //       return 'Green'
+  //     case 5:
+  //       return 'Blue'
+  //     case 6:
+  //       return 'Purple'
+  //     case 7:
+  //       return 'Pink'
+  //     case 8:
+  //       return 'Brown'
+  //     case 9:
+  //       return 'Black'
+  //     case 10:
+  //       return 'Gray'
+  //     case 11:
+  //       return 'White'
+  //     default:
+  //       return ''
+  //   }
+  // }
   useEffect(() => {
     lightService
       .getLightList()

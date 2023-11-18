@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:app/app/data/question_model.dart';
-import 'package:app/app/routes/app_pages.dart';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:get/get.dart';
 import 'package:vibration/vibration.dart';
@@ -78,19 +77,19 @@ class TheaterGameTabletDiesController extends GetxController
 
   Future<void> clickNoChoice() async {
     countClick++;
-    if (countClick >= 3) {
-      isGlitch.value = true;
-      audioCache.play('glitch-sound.mp3');
-      await Future.delayed(Duration(seconds: 1));
-      Get.offAllNamed(Routes.DIES_TABLET_VIDEO);
-      print('ini pindah');
-      isGlitch.value = false;
-    } else {
-      characterSelect.value = "${questions[currentIndex.value].title2}";
-      isGlitch.value = true;
-      audioCache.play('glitch-sound.mp3');
-      await Future.delayed(Duration(seconds: 1));
-      isGlitch.value = false;
-    }
+    // if (countClick >= 3) {
+    // isGlitch.value = true;
+    // audioCache.play('glitch-sound.mp3');
+    // await Future.delayed(Duration(seconds: 1));
+    // Get.offAllNamed(Routes.DIES_TABLET_VIDEO);
+    // print('ini pindah');
+    // isGlitch.value = false;
+    // } else {
+    characterSelect.value = "${questions[currentIndex.value].title2}";
+    isGlitch.value = true;
+    audioCache.play('glitch-sound.mp3');
+    await Future.delayed(Duration(seconds: 1));
+    isGlitch.value = false;
+    // }
   }
 }

@@ -240,7 +240,7 @@ module.exports = {
           await Player.findByIdAndUpdate(player._id, {
             $set: {
               seat: seat.seatNumber,
-              status_seat: `row${currentCol}`,
+              status_seat: `row${currentRow}`,
               position,
               stoel: currentRow,
               rij: currentCol,

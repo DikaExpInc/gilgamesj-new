@@ -105,7 +105,7 @@ class ScanQrController extends GetxController
       }
     }
     if (arguments['id'] == 4) {
-      if (inputCodeController.text == "102934") {
+      if (inputCodeController.text == "102934") { 
         Get.toNamed(Routes.PRE_GAME_GUESS, arguments: {
           "id": 5,
           "game": "game5",

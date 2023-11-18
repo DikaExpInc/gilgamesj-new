@@ -50,7 +50,7 @@ class PreGameItemsArView extends GetView<PreGameItemsArController> {
                         ),
                       ),
                       Text(
-                        "Richt de camera op de QR-code / AR-object.",
+                        "Voer de juiste code in",
                         style: TextStyle(
                           fontFamily: 'Abel',
                           fontSize: 32,

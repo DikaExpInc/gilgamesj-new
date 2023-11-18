@@ -37,7 +37,7 @@ class TheaterGameStarGameController extends GetxController
   void onClose() {
     audioPlayer.stop();
     audioPlayer.dispose();
-    print('terclose');
+    // print('terclose');
     super.onClose();
   }
 

@@ -869,6 +869,19 @@ server.on('message', async (msg) => {
       )
     }
   }
+  if (result['url'] == '/game/game10-die-tablet-video') {
+    if (result['value'] == 'all') {
+      await Setting.findOneAndUpdate(
+        {
+          _id: '64de3fd2843badaf9efc006b',
+        },
+        {
+          page: 'game10-die-tablet-video',
+          player: 'all',
+        }
+      )
+    }
+  }
   if (result['url'] == '/signaling/give-tablet-back') {
     if (result['value'] == 'all') {
       await Setting.findOneAndUpdate(

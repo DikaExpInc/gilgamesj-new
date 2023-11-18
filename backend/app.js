@@ -404,6 +404,43 @@ server.on('message', async (msg) => {
       )
     }
   }
+  if (result['url'] == '/movement/go-to-theater-blank') {
+    if (result['value'] == 'all') {
+      const players = await Player.find({})
+
+      // Memisahkan pemain menjadi tiga array berdasarkan user_type
+      const childrenPlayers = players.filter(
+        (player) => player.user_type === 'children'
+      )
+      const parentPlayers = players.filter(
+        (player) => player.user_type === 'parent'
+      )
+      const disabilityPlayers = players.filter(
+        (player) => player.user_type === 'disability'
+      )
+
+      // Menggabungkan kembali array pemain dalam urutan yang diinginkan
+      const sortedPlayers = [
+        ...childrenPlayers,
+        ...parentPlayers,
+        ...disabilityPlayers,
+      ]
+
+      await TheaterSeat.updateMany({}, { $set: { isOccupied: false } })
+      // Memberikan tempat duduk sesuai urutan
+      await assignSeats(sortedPlayers)
+
+      await Setting.findOneAndUpdate(
+        {
+          _id: '64de3fd2843badaf9efc006b',
+        },
+        {
+          page: 'go-to-theater-blank',
+          player: 'all',
+        }
+      )
+    }
+  }
   if (result['url'] == '/movement/go-to-theater') {
     if (result['value'] == 'all') {
       const players = await Player.find({})

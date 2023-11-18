@@ -1,3 +1,5 @@
+import 'package:app/app/modules/ticket_blank/bindings/ticket_blank_binding.dart';
+import 'package:app/app/modules/ticket_blank/views/ticket_blank_view.dart';
 import 'package:get/get.dart';
 
 import '../modules/blank/bindings/blank_binding.dart';
@@ -531,6 +533,11 @@ class AppPages {
       name: _Paths.TICKET,
       page: () => TicketView(),
       binding: TicketBinding(),
+    ),
+    GetPage(
+      name: _Paths.TICKET_BLANK,
+      page: () => TicketBlankView(),
+      binding: TicketBlankBinding(),
     ),
     GetPage(
       name: _Paths.CHANGE_SEAT,

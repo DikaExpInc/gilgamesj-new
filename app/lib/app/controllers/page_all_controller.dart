@@ -176,6 +176,14 @@ class PageAllController extends GetxController {
                   }
                 }
                 break;
+              case "go-to-theater-blank":
+                if (setting!.player == "all") {
+                  if (mode != "go-to-theater-blank") {
+                    GetStorage().write('mode', "go-to-theater-blank");
+                    Get.offAllNamed(Routes.TICKET_BLANK);
+                  }
+                }
+                break;
               case "go-to-theater":
                 if (setting!.player == "all") {
                   if (mode != "go-to-theater") {

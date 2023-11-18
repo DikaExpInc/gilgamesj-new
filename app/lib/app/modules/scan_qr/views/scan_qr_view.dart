@@ -1,5 +1,5 @@
 import 'package:app/app/modules/scan_qr/views/tabs/fill_qr_tab.dart';
-import 'package:app/app/modules/scan_qr/views/tabs/scan_qr_tab.dart';
+// import 'package:app/app/modules/scan_qr/views/tabs/scan_qr_tab.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -12,7 +12,8 @@ class ScanQrView extends GetView<ScanQrController> {
       appBar: AppBar(
         title: Center(
             child: Text(
-          "Scan de code of vulHem in.",
+          // "Scan de code of vulHem in.",
+          "Vul de code in",
           style: TextStyle(
             fontFamily: 'Abel',
             color: Colors.white,

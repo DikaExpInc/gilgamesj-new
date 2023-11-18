@@ -83,6 +83,7 @@ abstract class Routes {
   static const THEATER_GAME_CALL_HUMBABA_GAME_DONE =
       _Paths.THEATER_GAME_CALL_HUMBABA_GAME_DONE;
   static const TICKET = _Paths.TICKET;
+  static const TICKET_BLANK = _Paths.TICKET_BLANK;
   static const CHANGE_SEAT = _Paths.CHANGE_SEAT;
   static const CHOICE_ROLE = _Paths.CHOICE_ROLE;
   static const TABLET_HOLDER = _Paths.TABLET_HOLDER;
@@ -196,6 +197,7 @@ abstract class _Paths {
   static const THEATER_GAME_CALL_HUMBABA_GAME_DONE =
       '/theater-game-call-humbaba-game-done';
   static const TICKET = '/ticket';
+  static const TICKET_BLANK = '/ticket-blank';
   static const CHANGE_SEAT = '/change-seat';
   static const CHOICE_ROLE = '/choice-role';
   static const TABLET_HOLDER = '/tablet-holder';

@@ -7,6 +7,10 @@ class SettingModel {
   final int? rows;
   final int? ishtarColumns;
   final int? ishtarRows;
+  final int? humbabaColumns;
+  final int? humbabaRows;
+  final int? spearColumns;
+  final int? spearRows;
   final String? control;
   final String? stage_id;
   final String? notification;
@@ -22,6 +26,10 @@ class SettingModel {
     this.rows,
     this.ishtarColumns,
     this.ishtarRows,
+    this.humbabaColumns,
+    this.humbabaRows,
+    this.spearColumns,
+    this.spearRows,
     this.control,
     this.stage_id,
     this.notification,
@@ -40,6 +48,13 @@ class SettingModel {
       ishtarColumns:
           jsonData['ishtarColumns'] != null ? jsonData['ishtarColumns'] : 0,
       ishtarRows: jsonData['ishtarRows'] != null ? jsonData['ishtarRows'] : 0,
+      humbabaColumns:
+          jsonData['humbabaColumns'] != null ? jsonData['humbabaColumns'] : 0,
+      humbabaRows:
+          jsonData['humbabaRows'] != null ? jsonData['humbabaRows'] : 0,
+      spearColumns:
+          jsonData['spearColumns'] != null ? jsonData['spearColumns'] : 0,
+      spearRows: jsonData['spearRows'] != null ? jsonData['spearRows'] : 0,
       control: jsonData['control'] != null ? jsonData['control'] : "",
       stage_id: jsonData['stage_id'] != null ? jsonData['stage_id'] : "",
       notification:

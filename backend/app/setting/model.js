@@ -30,6 +30,18 @@ let settingSchema = mongoose.Schema(
     ishtarColumns: {
       type: Number,
     },
+    humbabaRows: {
+      type: Number,
+    },
+    humbabaColumns: {
+      type: Number,
+    },
+    spearRows: {
+      type: Number,
+    },
+    spearColumns: {
+      type: Number,
+    },
   },
   { timestamps: true }
 )

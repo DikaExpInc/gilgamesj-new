@@ -105,6 +105,11 @@ const UserList = () => {
       sorter: (a, b) => utils.antdTableSorter(a, b, 'group'),
     },
     {
+      title: 'Role',
+      dataIndex: 'user_type',
+      sorter: (a, b) => utils.antdTableSorter(a, b, 'user_type'),
+    },
+    {
       title: '',
       dataIndex: 'actions',
       render: (_, elm) => (

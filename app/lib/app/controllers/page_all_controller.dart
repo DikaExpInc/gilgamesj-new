@@ -428,10 +428,28 @@ class PageAllController extends GetxController {
                         arguments: {'game': 'find_humbaba', 'name': 'Humbaba'});
                   }
                 }
+                bool isPlayer = checkPlayerData(2, setting!.humbabaColumns!);
+
+                if (setting!.player == "random" && isPlayer) {
+                  if (mode != "chat-find-humbaba") {
+                    GetStorage().write('mode', "chat-find-humbaba");
+                    Get.offAllNamed(Routes.THEATER_GAME_CHAT_GAME,
+                        arguments: {'game': 'find_humbaba', 'name': 'Humbaba'});
+                  }
+                }
                 break;
               case "chat-find-spear":
                 if (setting!.player == "museum2" &&
                     status_seat_tablet == "museum2") {
+                  if (mode != "chat-find-spear") {
+                    GetStorage().write('mode', "chat-find-spear");
+                    Get.offAllNamed(Routes.THEATER_GAME_CHAT_GAME,
+                        arguments: {'game': 'find_spear', 'name': 'Spear'});
+                  }
+                }
+                bool isPlayer = checkPlayerData(2, setting!.spearColumns!);
+
+                if (setting!.player == "random" && isPlayer) {
                   if (mode != "chat-find-spear") {
                     GetStorage().write('mode', "chat-find-spear");
                     Get.offAllNamed(Routes.THEATER_GAME_CHAT_GAME,

@@ -787,6 +787,18 @@ server.on('message', async (msg) => {
         }
       )
     }
+    if (result['value'] == 'random') {
+      await updateFindHumbaba()
+      await Setting.findOneAndUpdate(
+        {
+          _id: '64de3fd2843badaf9efc006b',
+        },
+        {
+          page: 'chat-find-humbaba',
+          player: 'random',
+        }
+      )
+    }
   }
   if (result['url'] == '/game/chat-find-spear') {
     if (result['value'] == 'museum2') {
@@ -797,6 +809,18 @@ server.on('message', async (msg) => {
         {
           page: 'chat-find-spear',
           player: 'museum2',
+        }
+      )
+    }
+    if (result['value'] == 'random') {
+      await updateFindSpear()
+      await Setting.findOneAndUpdate(
+        {
+          _id: '64de3fd2843badaf9efc006b',
+        },
+        {
+          page: 'chat-find-spear',
+          player: 'random',
         }
       )
     }
@@ -1010,6 +1034,8 @@ const {
   getSeats,
   assignSeats,
   updateIshtarCall,
+  updateFindSpear,
+  updateFindHumbaba,
 } = require('./app/auth/controller')
 
 const app = express()

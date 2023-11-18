@@ -210,8 +210,6 @@ module.exports = {
       }
     }
 
-    let rows = seatsInRows.length
-
     for (const player of players) {
       while (true) {
         const query = {
@@ -225,6 +223,8 @@ module.exports = {
         })
 
         let cols = seatsInRows[currentRow].length
+
+        console.log(currentCol + 'x' + cols)
 
         if (seat) {
           // Hitung setengah jumlah baris
@@ -248,11 +248,13 @@ module.exports = {
           break // Keluar dari loop jika kursi sudah ditemukan
         } else {
           if (isForward) {
-            currentCol++
-            if (currentCol > cols) {
+            if (currentCol >= cols) {
               currentRow++
+              cols = seatsInRows[currentRow].length
               currentCol = cols // Jika mencapai kolom terakhir, tetap di kolom terakhir
               isForward = false
+            } else {
+              currentCol++
             }
           } else {
             currentCol--
@@ -271,8 +273,8 @@ module.exports = {
         }
         if (prevRole !== currentRole) {
           // Jika peran saat ini berbeda dengan peran sebelumnya, reset kolom ke 1
-          currentCol += 1
-          currentRow = 1
+          currentCol = 1
+          currentRow += 1
           prevRole = currentRole
         }
       }
@@ -463,45 +465,92 @@ module.exports = {
   },
   updateIshtarCall: async () => {
     try {
-      const player = await Player.find({})
-      const rijValues = player
-        .map((item) => parseInt(item.stoel))
-        .filter((value) => !isNaN(value)) // Filter nilai NaN
+      const players = await Player.find({})
 
-      // Mencari nilai maksimal dari array rijValues
-      const maxRij = Math.max(...rijValues)
-
-      // Buat urutan kolom acak
-      const randomRow = generateRandomColumnsRow(maxRij)
-
-      // Membuat objek untuk menyimpan jumlah kolom pada setiap row
-      const columnCounts = {}
-
-      // Mengelompokkan data berdasarkan nilai rij (row)
-      player.forEach((item) => {
-        const rij = item.stoel
-        if (!columnCounts[rij]) {
-          columnCounts[rij] = 0
-        }
-        columnCounts[rij]++
-      })
-
-      // Mengakses jumlah kolom untuk row tertentu (misalnya row 1)
-      const rowToRetrieve = randomRow
-      const jumlahKolomRow1 = columnCounts[rowToRetrieve] || 0
-
-      // Buat urutan kolom acak
-      const randomCol = generateRandomColumnsRow(jumlahKolomRow1)
+      // Select a random player
+      const randomIndex = Math.floor(Math.random() * players.length)
+      const randomPlayer = players[randomIndex]
+      console.log(randomPlayer.rij + '-' + randomPlayer.stoel)
 
       await Setting.findOneAndUpdate(
         {
           _id: '64de3fd2843badaf9efc006b',
         },
         {
-          ishtarColumns: randomCol,
-          istharRows: randomRow,
+          ishtarColumns: randomPlayer.rij,
+          ishtarRows: randomPlayer.stoel,
         }
       )
+    } catch (err) {}
+  },
+  updateFindHumbaba: async () => {
+    try {
+      const players = await Player.find({ stoel: 2 })
+
+      // Check if there are any players
+      if (players.length > 0) {
+        // Select a random player
+        const randomIndex = Math.floor(Math.random() * players.length)
+        const randomPlayer = players[randomIndex]
+        await Setting.findOneAndUpdate(
+          {
+            _id: '64de3fd2843badaf9efc006b',
+          },
+          {
+            humbabaColumns: randomPlayer.rij,
+            humbabaRows: 2,
+          }
+        )
+      } else {
+        const players2 = await Player.find({ stoel: 1 })
+        // Select a random player
+        const randomIndex = Math.floor(Math.random() * players2.length)
+        const randomPlayer = players2[randomIndex]
+        await Setting.findOneAndUpdate(
+          {
+            _id: '64de3fd2843badaf9efc006b',
+          },
+          {
+            humbabaColumns: randomPlayer.rij,
+            humbabaRows: 1,
+          }
+        )
+      }
+    } catch (err) {}
+  },
+  updateFindSpear: async () => {
+    try {
+      const players = await Player.find({ stoel: 2 })
+
+      // Check if there are any players
+      if (players.length > 0) {
+        // Select a random player
+        const randomIndex = Math.floor(Math.random() * players.length)
+        const randomPlayer = players[randomIndex]
+        await Setting.findOneAndUpdate(
+          {
+            _id: '64de3fd2843badaf9efc006b',
+          },
+          {
+            spearColumns: randomPlayer.rij,
+            spearRows: 2,
+          }
+        )
+      } else {
+        const players2 = await Player.find({ stoel: 1 })
+        // Select a random player
+        const randomIndex = Math.floor(Math.random() * players2.length)
+        const randomPlayer = players2[randomIndex]
+        await Setting.findOneAndUpdate(
+          {
+            _id: '64de3fd2843badaf9efc006b',
+          },
+          {
+            spearColumns: randomPlayer.rij,
+            spearRows: 1,
+          }
+        )
+      }
     } catch (err) {}
   },
   signin: (req, res, next) => {

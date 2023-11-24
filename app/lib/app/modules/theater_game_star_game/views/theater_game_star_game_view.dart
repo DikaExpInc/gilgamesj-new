@@ -4,7 +4,13 @@ import 'package:get/get.dart';
 
 import '../controllers/theater_game_star_game_controller.dart';
 
-class TheaterGameStarGameView extends StatelessWidget {
+class TheaterGameStarGameView extends StatefulWidget {
+  @override
+  State<TheaterGameStarGameView> createState() =>
+      _TheaterGameStarGameViewState();
+}
+
+class _TheaterGameStarGameViewState extends State<TheaterGameStarGameView> {
   late double mWidth;
   late double mHeight;
 
@@ -12,217 +18,225 @@ class TheaterGameStarGameView extends StatelessWidget {
       TheaterGameStarGameController();
 
   @override
+  void dispose() {
+    // Memanggil dispose pada controller sebelum widget dihapus
+    controller.dispose();
+    Get.delete<TheaterGameStarGameController>();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     mWidth = MediaQuery.of(context).size.width;
     mHeight = MediaQuery.of(context).size.height;
     return GetBuilder(
-        init: controller,
-        dispose: (_) {
-          controller.onClose();
-        },
-        builder: (context) {
-          return Scaffold(
-            body: Container(
-              width: mWidth,
-              height: mHeight,
-              decoration: BoxDecoration(
-                image: DecorationImage(
-                  image: AssetImage("assets/images/star_sky_bg.png"),
-                  fit: BoxFit.cover,
-                ),
-              ),
-              child: Stack(
-                alignment: Alignment.center,
-                children: [
-                  Positioned(
-                    width: mWidth,
-                    top: 0,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: [
-                        Container(
-                          margin: EdgeInsets.only(top: 40),
-                          child: Text(
-                            'Maak nachtgeluiden\ndoor op de sterren te drukken.',
-                            style: const TextStyle(
-                              fontFamily: 'Centrion',
-                              fontSize: 30,
-                              color: Colors.white,
-                              fontWeight: FontWeight.normal,
-                            ),
-                            textAlign: TextAlign.center,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  Obx(
-                    () => Visibility(
-                      visible: controller.showButtons.value,
-                      child: Positioned(
-                        width: mWidth,
-                        top: mHeight /
-                            2, // Sesuaikan dengan posisi horizontal yang diinginkan
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          children: [
-                            Container(
-                              margin: EdgeInsets.only(top: 40),
-                              child: InkWell(
-                                onTap: () {
-                                  controller.playAudio("diertje.wav");
-                                  controller.selectedImageIndex.value = 0;
-                                },
-                                child: Obx(() {
-                                  return Image.asset(
-                                    controller.selectedImageIndex.value == 0
-                                        ? 'assets/images/star.png'
-                                        : 'assets/images/star1.png',
-                                    width: mWidth / 5,
-                                    height: mWidth / 5,
-                                  );
-                                }),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
-                  Obx(
-                    () => Visibility(
-                      visible: controller.showButtons.value,
-                      child: Positioned(
-                        width: mWidth / 1.2,
-                        top: mHeight / 2.5,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Container(
-                              child: InkWell(
-                                onTap: () {
-                                  controller.playAudio("kikkers.wav");
-                                  controller.selectedImageIndex.value = 1;
-                                },
-                                child: Obx(() {
-                                  return Image.asset(
-                                    controller.selectedImageIndex.value == 1
-                                        ? 'assets/images/star.png'
-                                        : 'assets/images/star1.png',
-                                    width: mWidth / 5,
-                                    height: mWidth / 10,
-                                  );
-                                }),
-                              ),
-                            ),
-                            Container(
-                              child: InkWell(
-                                onTap: () {
-                                  controller.playAudio("krekels.wav");
-                                  controller.selectedImageIndex.value = 2;
-                                },
-                                child: Obx(() {
-                                  return Image.asset(
-                                    controller.selectedImageIndex.value == 2
-                                        ? 'assets/images/star.png'
-                                        : 'assets/images/star1.png',
-                                    width: mWidth / 5,
-                                    height: mWidth / 5,
-                                  );
-                                }),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
-                  Obx(
-                    () => Visibility(
-                      visible: controller.showButtons.value,
-                      child: Positioned(
-                        width: mWidth / 1.2,
-                        top: mHeight /
-                            8, // Sesuaikan dengan posisi horizontal yang diinginkan
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Container(
-                              child: InkWell(
-                                onTap: () {
-                                  controller.playAudio("takjes geruis.wav");
-                                  controller.selectedImageIndex.value = 3;
-                                },
-                                child: Obx(() {
-                                  return Image.asset(
-                                    controller.selectedImageIndex.value == 3
-                                        ? 'assets/images/star.png'
-                                        : 'assets/images/star1.png',
-                                    width: mWidth / 5,
-                                    height: mWidth / 2,
-                                  );
-                                }),
-                              ),
-                            ),
-                            Container(
-                              child: InkWell(
-                                onTap: () {
-                                  controller.playAudio("uil.wav");
-                                  controller.selectedImageIndex.value = 4;
-                                },
-                                child: Obx(() {
-                                  return Image.asset(
-                                    controller.selectedImageIndex.value == 4
-                                        ? 'assets/images/star.png'
-                                        : 'assets/images/star1.png',
-                                    width: mWidth / 5,
-                                    height: mWidth / 2,
-                                  );
-                                }),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
-                  Obx(
-                    () => Visibility(
-                      visible: controller.showButtons.value,
-                      child: Positioned(
-                        width: mWidth,
-                        top: mHeight /
-                            10, // Sesuaikan dengan posisi horizontal yang diinginkan
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            Container(
-                              margin: EdgeInsets.only(bottom: 80),
-                              child: InkWell(
-                                onTap: () {
-                                  controller.playAudio("vogels.wav");
-                                  controller.selectedImageIndex.value = 5;
-                                },
-                                child: Obx(() {
-                                  return Image.asset(
-                                    controller.selectedImageIndex.value == 5
-                                        ? 'assets/images/star.png'
-                                        : 'assets/images/star1.png',
-                                    width: mWidth / 5,
-                                    height: mWidth / 5,
-                                  );
-                                }),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
+      init: controller,
+      dispose: (_) {
+        controller.onClose();
+      },
+      builder: (context) {
+        return Scaffold(
+          body: Container(
+            width: mWidth,
+            height: mHeight,
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage("assets/images/star_sky_bg.png"),
+                fit: BoxFit.cover,
               ),
             ),
-          );
-        });
+            child: Stack(
+              alignment: Alignment.center,
+              children: [
+                Positioned(
+                  width: mWidth,
+                  top: 0,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      Container(
+                        margin: EdgeInsets.only(top: 40),
+                        child: Text(
+                          'Maak nachtgeluiden\ndoor op de sterren te drukken.',
+                          style: const TextStyle(
+                            fontFamily: 'Centrion',
+                            fontSize: 30,
+                            color: Colors.white,
+                            fontWeight: FontWeight.normal,
+                          ),
+                          textAlign: TextAlign.center,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                Obx(
+                  () => Visibility(
+                    visible: controller.showButtons.value,
+                    child: Positioned(
+                      width: mWidth,
+                      top: mHeight /
+                          2, // Sesuaikan dengan posisi horizontal yang diinginkan
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          Container(
+                            margin: EdgeInsets.only(top: 40),
+                            child: InkWell(
+                              onTap: () {
+                                controller.playAudio("diertje.wav");
+                                controller.selectedImageIndex.value = 0;
+                              },
+                              child: Obx(() {
+                                return Image.asset(
+                                  controller.selectedImageIndex.value == 0
+                                      ? 'assets/images/star.png'
+                                      : 'assets/images/star1.png',
+                                  width: mWidth / 5,
+                                  height: mWidth / 5,
+                                );
+                              }),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+                Obx(
+                  () => Visibility(
+                    visible: controller.showButtons.value,
+                    child: Positioned(
+                      width: mWidth / 1.2,
+                      top: mHeight / 2.5,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Container(
+                            child: InkWell(
+                              onTap: () {
+                                controller.playAudio("kikkers.wav");
+                                controller.selectedImageIndex.value = 1;
+                              },
+                              child: Obx(() {
+                                return Image.asset(
+                                  controller.selectedImageIndex.value == 1
+                                      ? 'assets/images/star.png'
+                                      : 'assets/images/star1.png',
+                                  width: mWidth / 5,
+                                  height: mWidth / 10,
+                                );
+                              }),
+                            ),
+                          ),
+                          Container(
+                            child: InkWell(
+                              onTap: () {
+                                controller.playAudio("krekels.wav");
+                                controller.selectedImageIndex.value = 2;
+                              },
+                              child: Obx(() {
+                                return Image.asset(
+                                  controller.selectedImageIndex.value == 2
+                                      ? 'assets/images/star.png'
+                                      : 'assets/images/star1.png',
+                                  width: mWidth / 5,
+                                  height: mWidth / 5,
+                                );
+                              }),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+                Obx(
+                  () => Visibility(
+                    visible: controller.showButtons.value,
+                    child: Positioned(
+                      width: mWidth / 1.2,
+                      top: mHeight / 8,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Container(
+                            child: InkWell(
+                              onTap: () {
+                                controller.playAudio("takjes geruis.wav");
+                                controller.selectedImageIndex.value = 3;
+                              },
+                              child: Obx(() {
+                                return Image.asset(
+                                  controller.selectedImageIndex.value == 3
+                                      ? 'assets/images/star.png'
+                                      : 'assets/images/star1.png',
+                                  width: mWidth / 5,
+                                  height: mWidth / 2,
+                                );
+                              }),
+                            ),
+                          ),
+                          Container(
+                            child: InkWell(
+                              onTap: () {
+                                controller.playAudio("uil.wav");
+                                controller.selectedImageIndex.value = 4;
+                              },
+                              child: Obx(() {
+                                return Image.asset(
+                                  controller.selectedImageIndex.value == 4
+                                      ? 'assets/images/star.png'
+                                      : 'assets/images/star1.png',
+                                  width: mWidth / 5,
+                                  height: mWidth / 2,
+                                );
+                              }),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+                Obx(
+                  () => Visibility(
+                    visible: controller.showButtons.value,
+                    child: Positioned(
+                      width: mWidth,
+                      top: mHeight /
+                          10, // Sesuaikan dengan posisi horizontal yang diinginkan
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          Container(
+                            margin: EdgeInsets.only(bottom: 80),
+                            child: InkWell(
+                              onTap: () {
+                                controller.playAudio("vogels.wav");
+                                controller.selectedImageIndex.value = 5;
+                              },
+                              child: Obx(() {
+                                return Image.asset(
+                                  controller.selectedImageIndex.value == 5
+                                      ? 'assets/images/star.png'
+                                      : 'assets/images/star1.png',
+                                  width: mWidth / 5,
+                                  height: mWidth / 5,
+                                );
+                              }),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        );
+      },
+    );
   }
 }

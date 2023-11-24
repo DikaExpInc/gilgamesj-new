@@ -33,14 +33,6 @@ class TheaterGameStarGameController extends GetxController
     audioPlayer = await audioCache.loop(audioFileName);
   }
 
-  @override
-  void onClose() {
-    audioPlayer.stop();
-    audioPlayer.dispose();
-    print('terclose');
-    super.onClose();
-  }
-
   void startTapLoading() async {
     while (tapStatus.value) {
       await Future.delayed(Duration(milliseconds: 100));
@@ -72,11 +64,17 @@ class TheaterGameStarGameController extends GetxController
 
   @override
   void onInit() {
-    // Di sini Anda dapat mengatur widget awal yang akan ditampilkan
     // setWidget(StarGameMessageScreen());
     setWidget(StarGameSkyScreen());
     Vibration.vibrate(duration: 1000);
 
     super.onInit();
+  }
+
+  @override
+  void onClose() {
+    audioPlayer.stop();
+    audioPlayer.dispose();
+    super.onClose();
   }
 }

@@ -4,12 +4,26 @@ import 'package:get/get.dart';
 
 import '../controllers/theater_game_humbaba_controller.dart';
 
-class TheaterGameHumbabaView extends StatelessWidget {
+class TheaterGameHumbabaView extends StatefulWidget {
+  @override
+  State<TheaterGameHumbabaView> createState() => _TheaterGameHumbabaViewState();
+}
+
+class _TheaterGameHumbabaViewState extends State<TheaterGameHumbabaView> {
   late double mWidth;
+
   late double mHeight;
 
   final TheaterGameHumbabaController controller =
       TheaterGameHumbabaController();
+
+  @override
+  void dispose() {
+    // Memanggil dispose pada controller sebelum widget dihapus
+    controller.dispose();
+    Get.delete<TheaterGameHumbabaController>();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {

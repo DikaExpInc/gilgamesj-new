@@ -259,6 +259,20 @@ class PageAllController extends GetxController {
                     });
                   }
                 }
+                bool isPlayer = checkPlayerData(2, setting!.humbabaColumns!);
+
+                if (setting!.player == "random" && isPlayer) {
+                  if (mode != "go-to-museum1") {
+                    GetStorage().write('mode', "go-to-museum1");
+                    GetStorage().write('status_seat_tablet', "museum1");
+                    Get.offAllNamed(Routes.MOVEMENT_PAGE, arguments: {
+                      "title":
+                          "Jullie hebben een geheime missie. Sta op en loop naar het museum",
+                      "description":
+                          "Geheime opdracht: Ga aan de linkerkant de zaal uit richting het museum. Neem je groepje mee!"
+                    });
+                  }
+                }
                 break;
               case "go-to-museum2":
                 if (setting!.player == "row2-right-side" &&
@@ -282,6 +296,20 @@ class PageAllController extends GetxController {
                     GetStorage().write('status_seat_tablet', "museum2");
                     Get.offAllNamed(Routes.MOVEMENT_PAGE, arguments: {
                       "title": "Verzamel je nu bij Gilgamesj",
+                      "description":
+                          "Geheime opdracht: Ga aan de rechterkant de zaal uit richting het museum. Neem je groepje mee!"
+                    });
+                  }
+                }
+                bool isPlayer = checkPlayerData(2, setting!.spearColumns!);
+
+                if (setting!.player == "random" && isPlayer) {
+                  if (mode != "go-to-museum2") {
+                    GetStorage().write('mode', "go-to-museum2");
+                    GetStorage().write('status_seat_tablet', "museum2");
+                    Get.offAllNamed(Routes.MOVEMENT_PAGE, arguments: {
+                      "title":
+                          "Jullie hebben een geheime missie. Sta op en loop naar het museum",
                       "description":
                           "Geheime opdracht: Ga aan de rechterkant de zaal uit richting het museum. Neem je groepje mee!"
                     });
@@ -428,15 +456,7 @@ class PageAllController extends GetxController {
                         arguments: {'game': 'find_humbaba', 'name': 'Humbaba'});
                   }
                 }
-                bool isPlayer = checkPlayerData(2, setting!.humbabaColumns!);
 
-                if (setting!.player == "random" && isPlayer) {
-                  if (mode != "chat-find-humbaba") {
-                    GetStorage().write('mode', "chat-find-humbaba");
-                    Get.offAllNamed(Routes.THEATER_GAME_CHAT_GAME,
-                        arguments: {'game': 'find_humbaba', 'name': 'Humbaba'});
-                  }
-                }
                 break;
               case "chat-find-spear":
                 if (setting!.player == "museum2" &&
@@ -447,15 +467,7 @@ class PageAllController extends GetxController {
                         arguments: {'game': 'find_spear', 'name': 'Spear'});
                   }
                 }
-                bool isPlayer = checkPlayerData(2, setting!.spearColumns!);
 
-                if (setting!.player == "random" && isPlayer) {
-                  if (mode != "chat-find-spear") {
-                    GetStorage().write('mode', "chat-find-spear");
-                    Get.offAllNamed(Routes.THEATER_GAME_CHAT_GAME,
-                        arguments: {'game': 'find_spear', 'name': 'Spear'});
-                  }
-                }
                 break;
               case "star-game":
                 if (setting!.player == "all-museum1+2" &&

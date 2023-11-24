@@ -545,6 +545,18 @@ server.on('message', async (msg) => {
         }
       )
     }
+    if (result['value'] == 'random') {
+      await updateFindHumbaba()
+      await Setting.findOneAndUpdate(
+        {
+          _id: '64de3fd2843badaf9efc006b',
+        },
+        {
+          page: 'go-to-museum1',
+          player: 'random',
+        }
+      )
+    }
   }
   if (result['url'] == '/movement/go-to-museum2') {
     if (result['value'] == 'row2-right-side') {
@@ -566,6 +578,18 @@ server.on('message', async (msg) => {
         {
           page: 'go-to-museum2',
           player: 'group-gilgamesj',
+        }
+      )
+    }
+    if (result['value'] == 'random') {
+      await updateFindSpear()
+      await Setting.findOneAndUpdate(
+        {
+          _id: '64de3fd2843badaf9efc006b',
+        },
+        {
+          page: 'go-to-museum2',
+          player: 'random',
         }
       )
     }
@@ -787,18 +811,6 @@ server.on('message', async (msg) => {
         }
       )
     }
-    if (result['value'] == 'random') {
-      await updateFindHumbaba()
-      await Setting.findOneAndUpdate(
-        {
-          _id: '64de3fd2843badaf9efc006b',
-        },
-        {
-          page: 'chat-find-humbaba',
-          player: 'random',
-        }
-      )
-    }
   }
   if (result['url'] == '/game/chat-find-spear') {
     if (result['value'] == 'museum2') {
@@ -809,18 +821,6 @@ server.on('message', async (msg) => {
         {
           page: 'chat-find-spear',
           player: 'museum2',
-        }
-      )
-    }
-    if (result['value'] == 'random') {
-      await updateFindSpear()
-      await Setting.findOneAndUpdate(
-        {
-          _id: '64de3fd2843badaf9efc006b',
-        },
-        {
-          page: 'chat-find-spear',
-          player: 'random',
         }
       )
     }
